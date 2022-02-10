@@ -102,7 +102,7 @@ leur être faites.
 
 \subparagraph{\label{q_02}}\textit{Complétez les diagrammes S.A.D.T. « A-0 », puis « A.0 », du système « rugosimètre 3D » préfiguré par le prototype 2D décrit ci-dessus. Vous éviterez les confusions entre entrées, moyens et contrôles.}
 
-\section{Calculs prévisionnels des actionneurs}
+\section{Calculs prévisionnels des actionneurs \label{sec:3}}
 
 
 Les calculs d’avant projet doivent permettre de dimensionner les différents composants qui seront utilisés
@@ -535,4 +535,30 @@ KpMarge stabilité .
 Expliciter votre choix final du coefficient $K_p$ et conclure sur la commande de l’unité de rotation.}
 
 
+\section{AMELIORATION DE L’UNITE DE POSITIONNEMENT EN (Z)}
 
+Dans ce prototype, le positionnement vertical (en $z$) du point focal est obtenu par l’unité de rotation. Ceci a
+plusieurs conséquences négatives sur le fonctionnement global du capteur :
+\begin{itemize}
+\item modification de la position longitudinale du point de mesure. Lorsque la tête optique tourne, la
+mesure de ($z$) n’est pas réalisée à l’endroit désiré, ce qui induit une erreur dans la reconstruction de
+la surface ;
+\item modification de l’angle d’incidence des faisceaux optiques ;
+\item modification de la position de la tête optique lors des phases d’accélération et de freinage de l’unité
+de translation longitudinale (étudiée à la partie \ref{sec:3}).
+\end{itemize}
+
+
+\subsection{ETUDE DE LA POSITION REELLE LONGITUDINALE DU POINT FOCAL}
+
+Il vous est demandé, dans un premier temps, de quantifier l’écart de position
+longitudinale obtenu lorsque l’on utilise la totalité du débattement vertical.
+La \autoref{fig_17} illustre le problème d’erreur de positionnement longitudinal ($\Delta x$) créée
+par la rotation de la tête de mesure. 
+
+Données : 
+$ \vect{AP} = a\vect{x_3}-b\vect{z_3}$ (avec $a = \SI{50}{mm}$ et $b =\SI{15}{mm}$);
+$\Delta x = x_P(\theta)-x_P(0)$; $\Delta z = z_P(\theta) - z_P(0)$.
+
+Le cahier des charges de ce système impose une variation verticale ($z$) du point
+focal de $\pm \SI{5}{mm}$ par rapport à la position de référence ( $\theta = 0\degres$).
