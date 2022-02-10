@@ -1,0 +1,538 @@
+
+\section{Présentation générale du rugosimètre à grande vitesse}
+
+La rugosimétrie est la mesure de l’état de surface des pièces mécaniques. L’ordre de grandeur des défauts
+mesurés est le micron. Cette mesure des états de surfaces est aussi répandue et indispensable que la mesure
+des caractéristiques dimensionnelles et géométriques des pièces mécaniques (longueur, orientation,
+perpendicularité…). La \autoref{fig_01} représente un relevé rugosimétrique tridimensionnel d’une partie d’une
+aube de turbine de haute précision (à droite en fausses couleurs).
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.6\linewidth]{fig_01}
+\caption{\label{fig_01} Relevé rugosimétrique tridimensionnel d’une aube}
+\end{figure}
+
+La mesure de rugosimétrie repose traditionnellement sur deux éléments distincts : le capteur, qui peut être
+mécanique (palpeur) ou optique, et le traitement du signal et des données (algorithmes informatiques), qui
+permet de traduire les mesures physiques de base, produites par le capteur, en données numériques
+exploitables, représentatives des caractéristiques physiques de la surface analysée.
+
+
+De la conjonction des caractéristiques techniques du capteur et du traitement numérique vont découler les
+qualités essentielles du rugosimètre : sa rapidité ; sa résolution ; sa précision ; son amplitude de mesure.
+
+Lorsque l’ensemble est suffisamment rapide, il peut être utilisé pour réaliser des relevés de surface
+($z$ fonction de $(x, y)$, ou « mesure 3D ») et non plus simplement des profils linéaires ($z$ fonction de $x$, ou
+« mesure 2D »). Si, à cette exigence de rapidité, on ajoute celle de précision ainsi que celle de grande
+amplitude de mesure, on arrive, avec les technologies actuellement disponibles, à des capteurs très chers
+(de l’ordre de 50 000 euros). Cela fait que le développement de la rugosimétrie 3D de précision a été,
+jusqu'à présent, assez lent. Le projet, dont est tiré le sujet, a pour ambition de développer et de mettre sur le
+marché un rugosimètre 3D de précision à faible coût.
+
+L’objet de cette étude est de valider / critiquer / améliorer certaines techniques et technologies retenues
+pour le prototype du rugosimètre 2D. Ce prototype a été conçu par le laboratoire SATIE de l’École
+Normale Supérieure de Cachan. Ce projet est le fruit d’un travail pluridisciplinaire qui a impliqué des
+commerciaux, des scientifiques et des techniciens, et a été financé par l’Agence pour la Valorisation de la
+Recherche d’Ile-de-France.
+
+\subsection{Structure générale du rugosimètre à grande vitesse}
+
+Le principe d’un capteur opto-mécanique (association d’un capteur optique et d’un capteur mécanique) a
+été retenu, pour ce prototype. Il est décrit succinctement ci-après (\autoref{fig_02}) :
+\begin{itemize}
+\item un capteur optique assure une résolution verticale comparable à celle des meilleurs capteurs mécaniques actuels ($< \SI{10}{nm}$). Ce capteur, de faible amplitude de lecture (\SI{20}{\mu m}), permet une mesure rapide des hautes fréquences spatiales (variations rapides) des profils rugosimétriques mesurés ;
+\item un asservissement mécanique vertical à grande amplitude (environ \SI{10}{mm}) permet à la tête optique de suivre les moyennes et basses fréquences spatiales (variations plus lentes) des profils. Un second capteur donne la position verticale de la tête optique.
+\end{itemize}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.45\linewidth]{fig_02}
+\caption{\label{fig_02} Principe du système opto-mécanique}
+\end{figure}
+
+Le profil complet sera obtenu par la somme des signaux fournis par les deux capteurs. Le déplacement
+vertical du capteur optique est assuré par une Unité de Rotation (U.R.) portée par le coulisseau (2)
+(\autoref{fig_03}).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{fig_03}
+\caption{\label{fig_03} Schéma du prototype de rugosimètre 2D}
+\end{figure}
+
+Ce capteur opto-mécanique est lui-même déplacé au dessus de la surface à mesurer par une Unité de
+Translation (U.T.) à vitesse régulée (\autoref{fig_03}), ce qui permet d’obtenir un « profil 2D », $z$ fonction de $x$. La
+vitesse de déplacement visée par ce prototype est de \SI{20}{mm.s^{-1}}.
+
+Dans sa future version 3D, une seconde U.T. de direction ($\vect{y}$) permettra de donner une image de la surface
+par une juxtaposition de profils 2D : on « scannera » la surface.
+
+Le coût estimé de ce rugomimètre est de 10 000 euros.
+
+\subsection{Principe de mesure du capteur optique}
+
+Le principe de mesure du capteur optique est l’écartométrie. Ce procédé, déjà utilisé en robotique, n’a encore jamais servi en rugosimétrie industrielle. Un faisceau laser (« émission ») est focalisé sur la surface à mesurer. La tache focale se déplace devant les images de deux demi-disques de réception. L’intensité lumineuse d’émission se partage ainsi entre deux photorécepteurs.
+
+Cette différence d’intensité permet de calculer la position horizontale de la tache focale d’émission. Cette position horizontale de la tache focale est ensuite convertie en position verticale de la surface par rapport au point focal (qui sera noté par la suite (P)) (\autoref{fig_04}).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.5\linewidth]{fig_04}
+\caption{\label{fig_04} Principe du capteur optique : l’écartométrie}
+\end{figure}
+
+\section{Caractérisation globale du rugosimètre}
+
+Dans cette partie, nous vous demandons de caractériser de façon globale le système étudié puis de
+déterminer les liens existant entre les différents éléments de ce système. Ceci permettra d’étudier
+ultérieurement les caractéristiques de certains constituants, puis de les modifier si leur comportement ne
+donne pas satisfaction en ayant en permanence à l’esprit les contraintes qui lient ces éléments spécifiques
+aux autres éléments du système global.
+
+Le marché économique d’un tel instrument de mesure est très concurrentiel. Les acheteurs potentiels de ces
+capteurs choisissent plusieurs critères pour évaluer les différentes propositions commerciales qui peuvent
+leur être faites.
+
+
+
+\subparagraph{\label{q_01}}\textit{Donner les différents critères de performance et les niveaux associés du rugosimètre.}
+
+\subparagraph{\label{q_02}}\textit{Complétez les diagrammes S.A.D.T. « A-0 », puis « A.0 », du système « rugosimètre 3D » préfiguré par le prototype 2D décrit ci-dessus. Vous éviterez les confusions entre entrées, moyens et contrôles.}
+
+\section{Calculs prévisionnels des actionneurs}
+
+
+Les calculs d’avant projet doivent permettre de dimensionner les différents composants qui seront utilisés
+et de définir certains paramètres de réglages (paramètres d’asservissement…).
+
+Les calculs prévisionnels visent, dans un premier temps, à déterminer les équations dynamiques qui
+permettront de déterminer les couples moteurs (minimum) des différents actionneurs en fonction des
+caractéristiques géométriques, massiques et inertielles des pièces ainsi que des conditions d’utilisation.
+
+Dans toute cette partie, nous considérerons que seules l'unité de translation ($\vect{x}$ ) et l’unité de rotation sont
+actionnées.
+
+\subsection{Mise en place du problème}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{fig_05}
+\caption{\label{fig_05} Schéma paramétré du prototype de rugosimètre 2D (les actionneurs ne sont pas représentés)}
+\end{figure}
+
+La figure 5 présente le schéma et le paramétrage qui sera utilisé pour cette partie de l’étude. Ce système
+comporte quatre pièces :
+\begin{itemize}
+\item le bâti (0). On associe à cette pièce le repère ($\mathcal{R}_0\left(O, \vect{x_0}, \vect{y_0}, \vect{z_0}\right)$) que l’on considère galiléen ;
+\item le rotor (1) :
+\begin{itemize}
+\item moment d’inertie selon l’axe $\left(O,\vect{x_0}\right)$  noté $J_1$ avec $J_1 = \SI{1e-6}{kg.m^2}$;
+\item centre d’inertie ($G_1$), avec $\vect{OG_1} = -a\vect{x_0}$;
+\item la liaison pivot ($L_{0/1}$), dont le paramètre angulaire est $\varphi = \left(\vect{y_0},\vect{x_0}\right)$, présente un frottement visqueux de coefficient $f_1$, créant un moment : $\vectm{O}{0}{1} = -f_1 \dot{\varphi} \vect{x_0}$ ($f_1 = \SI{5e-5}{Nm.rad^{-1}.s}$);
+\item un moteur (M1) gère le mouvement de rotation de (1) par rapport à (0). Le couple moteur
+appliqué sur (1) est noté : $\vect{C}_{\text{Moteur 1}\rightarrow 1}=C_{m1}\vect{x_0}$;
+\end{itemize}
+\item le coulisseau (2) :
+\begin{itemize}
+\item masse : $m_2$ avec $m_2 = \SI{2}{kg}$ ;
+\item centre d’inertie ($G_2$),
+\item la liaison hélicoïdale ($L_{1/2}$) (supposée parfaite) possède un pas noté ($p_a$) ($p_a = \SI{0,5}{mm/tour}$).
+Ce pas est à droite (sens classique) ;
+\item la liaison glissière ($L_{0/2}$), dont le paramètre de position (translation) est noté ($x$) : $\vect{OA} = x\vect{x_0}$, présente un frottement visqueux de coefficient $f_2$, créant une force : $\vectf{0}{2}=-f_2 \dot{x}\vect{x_0}$ ($f_2 = \SI{5}{N.m^{-1}.s}$);
+\end{itemize}
+\item l’ensemble (3) :
+\begin{itemize}
+\item masse : $m_3$ (cette masse sera déterminée à la question \ref{q_03}) ;
+\item centre d’inertie ($G_3$) : $\vect{AG_3}=r\vect{x_3}$;
+\item matrice d’inertie en (A) : $\inertie{A}{3} = \matinertie{A}{B}{C}{-D}{-E}{-F}{A,\mathcal{B}_3}$, avec $\mathcal{B}_3=\left(\vect{x_3},\vect{y_3},\vect{z_3}\right)$
+\item la liaison pivot ($L_{2/3}$), de paramètre angulaire $\theta = \left(\vect{x_0} , \vect{x_3}\right)$, présente un frottement visqueux de coefficient $f_3$, créant un moment : $\vectm{A}{2}{3} = -f_3 \dot{\theta} \vect{y_0}$;
+\item un moteur (M3) gère la rotation de l’ensemble (3) par rapport à (2). Le couple moteur appliqué
+sur (3) est noté : $\vect{C}_{\text{Moteur 3}\rightarrow 3}=C_{m3}\vect{y_0}$;
+\item un système d’équilibrage (ressort de torsion) permet à la tête optique d’être horizontale ($\theta = 0\degres$)
+en position de repos, c’est-à-dire lorsque le moteur (M3) n’est pas alimenté. Ce système
+d’équilibrage exerce sur l’ensemble (3) un couple de rappel noté : $\vect{C}=C_r \vect{y_0}$, avec
+$C_r = -\left(K_{\text{tors}}\theta + C_0\right)$. Le terme $C_0$ permet d’équilibrer le moment en (A) créé par l’action de
+pesanteur sur (3) lorsque ($\theta = 0\degres$).
+\end{itemize}
+\end{itemize}
+\subsection{Positionnement du centre d'inertie}
+
+
+Comme le montre la \autoref{fig_06}, l’ensemble (3) est constitué de plusieurs solides en liaison encastrement :
+\begin{itemize}
+\item le bras (4) lié au moteur couple;
+\item la tête optique (5);
+\item un contrepoids (6).
+\end{itemize}
+Ce contrepoids (6) a été ajouté pour assurer que le centre d’inertie ($G_3$) soit sur l’axe $\axe{A}{x_3}$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.4\linewidth]{fig_06}
+\caption{\label{fig_06} Unité de rotation}
+\end{figure}
+
+Les caractéristiques géométriques de l’ensemble (3) étudié sont données ci-après :
+\begin{itemize}
+\item bras (4) du moteur couple : masse : $m_4=\SI{e-3}{kg}$; centre d’inertie : $\vect{AG_4} = - b_4 \vect{y_0}$ avec $b_4 =  \SI{4}{mm}$;
+\item tête optique (5) : masse : $m_5= \SI{5e-3}{kg}$; centre d’inertie : $\vect{AG_5}= a_5 \vect{x_3}+b_5 \vect{y_3}-c_5 \vect{z_3}$ avec $a_5 = \SI{40}{mm}$ ; $b_5 = \SI{0,8}{mm}$ ; $c_5 = \SI{10}{mm}$;
+\item contrepoids (6) : masse : $m_6$ (à déterminer à la question \ref{q_03}) ; centre d’inertie :
+$\vect{AG_6}= a_6 \vect{x_3}+c_6 \vect{z_3}$ avec $a_6 = \SI{10}{mm}$ ; $c_6 = \SI{25}{mm}$.
+\end{itemize}
+
+\subparagraph{\label{q_03}}\textit{Déterminez l’expression littérale de la masse du contrepoids (6) qui assure que le terme (c) de l’expression de la position du centre d’inertie ($\vect{AG_3}=r\vect{x_3} - b\vect{y_3} + c\vect{z_3}$) est nul. Réalisez l’application numérique. Montrez que dans ce cas, $r=\SI{27,5}{mm}$ avec $\vect{AG_3}=r\vect{x_3}$.}
+
+\subsection{Équations dynamiques}
+
+Le système étudié possède deux mobilités, il est donc nécessaire de déterminer deux équations pour
+pouvoir atteindre les grandeurs recherchées, le couple moteur dans l’actionneur de l’unité de rotation
+($C_{\text{m3}}$) et le couple moteur dans l’unité de translation ($C_{\text{m1}}$) en fonction des caractéristiques
+dimensionnelles et matérielles des pièces, des lois de mouvement et des dissipations dans les liaisons.
+
+%Pour obtenir la première équation, vous êtes obligé d’appliquer la méthode demandée.
+
+\subparagraph{\label{q_04}}\textit{Isoler l’ensemble (3) et réaliser le BAME puis écrire le théorème du moment dynamique en (A) en projection sur $\vect{y_0}$. Ecrire votre résultat sous le forme $d\ddot{\theta}+e\ddot{x}+f\dot{\theta}+g\theta = h $ les termes $d$, $e$, $f$, $g$ et $h$ peuvent dependre de $\theta$.}
+
+%\subparagraph{\label{q_04a}}\textit{Réaliser le graphe de strcuture du mécanisme. Préciser l'ensemble des actions mécaniques en $A$.}
+%\subparagraph{\label{q_04_b}}\textit{Calculer $\vectv{A}{3}{0}$ et $\vectv{G}{3}{0}$.}
+%\subparagraph{\label{q_04_c}}\textit{Calculer le moment cinétique en $A$ de 3 par rapport à 0. On rappelle que pour un point quelconque, 
+%$\vectmc{A}{3}{0}=\inertie{A}{3}\vecto{3}{0}+m_3\vect{AG_3}\wedge \vectv{A}{3}{0}$.}
+%\subparagraph{\label{q_04_d}}\textit{Calculer $\vectmd{A}{3}{0}\cdot\vect{y_0}$.}
+%\subparagraph{\label{q_04_e}}\textit{Ecrire le théorème du moment dynamique en $A$ en projection sur $\vect{y_0}$. Ecrire votre résultat sous le forme $d\ddot{\theta}+e\ddot{x}+f\dot{\theta}+g\theta = h $ les termes $d$, $e$, $f$, $g$ et $h$ peuvent dependre de $\theta$.}
+ 
+
+Pour déterminer la relation permettant de calculer le couple moteur $C_{\text{m1}}$, vous êtes libre de la méthode,
+mais vous procéderez obligatoirement en deux étapes (questions \ref{q_05} et \ref{q_06}). Cette relation peut nécessiter
+l’écriture de plusieurs équations, mais elle ne doit pas, au final, contenir d’inconnues mécaniques
+transmissibles dans les liaisons ($L_{\text{0/1}}$ , $L_{\text{1/2}}$ , $L_{\text{2/3}}$ , $L_{\text{0/2}}$).
+
+\subparagraph{\label{q_05}}\textit{Sans faire de calcul, donner, très clairement et précisément, la démarche qui vous permet d’obtenir
+le couple moteur $C_{\text{m1}}$. Préciser quel(s) est(sont) le(s) système(s) étudié(s), quel(s) est(sont) le(s)
+théorème(s) ou principe(s) utilisés, quels sont les termes qu’il faut calculer. Justifier clairement vos
+choix.}
+
+\subparagraph{\label{q_06}}\textit{Réaliser les calculs présentés à la question précédente et donner la relation recherchée. Dans cette équation, le paramètre $\varphi$ et ses dérivées ne doivent pas intervenir. Seuls
+les paramètres $\theta$, $x$ et leurs dérivées sont autorisés.}
+
+\subsection{Détermination des couples moteurs}
+Les deux équations que vous venez d’obtenir aux
+questions \ref{q_04_e} et \ref{q_06} sont des équations différentielles
+couplées et non linéaires :
+$$ B\ddot{\theta} -m_3 r\ddot{x} \sin \theta + f_3\dot{\theta} + K_{\text{tor}} \theta = 
+C_{\text{m3}}+m_3gr\left(\cos\theta - 1\right)$$
+$$ C_{\text{m1}} = 
+-f_1 \dfrac{2\pi }{p_a} \dot{x}
+-f_2 \dfrac{p_a}{2\pi } \dot{x}
+- \left( J_1 \dfrac{2\pi }{p_a} + \left(m_2+m_3\right)\dfrac{p_a}{2\pi } \right)\ddot{x}
++ m_3 r \dfrac{p_a}{2\pi }\left(\ddot{\theta}\sin\theta + \dot{\theta}^2\cos\theta\right)
+$$
+
+ Pour résoudre algébriquement ce système d’équations, nous allons
+étudier le mécanisme dans des conditions
+particulières.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.4\linewidth]{fig_07}
+\caption{\label{fig_07} Consigne de vitesse}
+\end{figure}
+
+Lorsque le point focal de la tête optique suit le profil
+moyen de la surface, l’angle $\theta$ varie au voisinage
+de 0\degres. Nous montrerons %(partie V*** du sujet) 
+que cette
+variation de position est d’amplitude très faible, et
+qu’en conséquence, il est possible de réaliser une linéarisation de ces équations au voisinage de 0\degres ( $\theta$ reste
+petit). Nous supposons également que les termes de la forme $a\ddot{\theta}$  et $b\dot{\theta}^2$ sont négligeables devant le terme en $\ddot{x}$.
+La loi de commande de l’unité de translation est représentée à la \autoref{fig_07}. La vitesse nominale (constante)
+recherchée est notée ($V_0$). L’accélération maximale est notée ($A_{\text{cMax}}$).
+
+\subparagraph{\label{q_07}}\textit{En utilisant les simplifications mentionnées, déterminez, dans la phase d’accélération, puis dans la phase de déplacement à vitesse constante, les expressions littérales de $C_{\text{m1}}$ et $C_{\text{m3}}$.
+Calculez la valeur du couple $C_{\text{m1}}$ maximal ($V_0 = \SI{0,2}{m.s^{-1}}$, $A_{\text{cMax}}=\SI{0,2}{m.s^{-2}}$).}
+
+Le choix des moteurs (M1 et M3) se fera à partir d’un cahier des charges, dont le couple maximal
+transmissible par les moteurs est une des caractéristiques. Il existe bien d’autres spécifications comme, la
+vitesse et l’accélération maximale, la surintensité supportée, l’encombrement axial et longitudinal…
+
+
+\section{Commande de l'unité de rotation (UR)}
+Ce rugosimètre ne peut fonctionner, dans des conditions idéales, que si le point focal (P) de la tête optique
+se situe en permanence au plus près du profil moyen de la pièce. Ceci nécessite, entre autres, un réglage
+affiné des paramètres du correcteur de la chaîne d’asservissement associée à l’Unité de Rotation.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\linewidth]{fig_08}
+\caption{\label{fig_08} Profil réel / profil moyen et grandeurs utilisées}
+\end{figure}
+
+La \autoref{fig_08} illustre la problématique de mesure du profil de la pièce et met en place les différentes
+grandeurs utilisées dans la chaîne d’asservissement de l’unité de rotation :
+\begin{itemize}
+\item la tête optique (capteur optique) permet de mesurer la distance entre le point focal (P) du système
+optique et le profil réel de la pièce. Le signal de sortie de ce système est $\Delta z$ avec
+$\Delta z(t)=z_{\text{pro}}(t)-z_p(t)$;
+\item le pilotage (en altitude) du point focal (P) de la tête optique se fait sur une consigne particulière : la
+position moyenne du profil de rugosité. Cette consigne $z_c$ est obtenue par une opération « Calcul de
+la moyenne » qui détermine la moyenne mobile, sur un temps caractéristique $\tau$, de l’altitude du
+profil de la pièce. La position réelle du point focal $z_p(t)$ est mesurée par l’intermédiaire d’un
+capteur.
+\end{itemize}
+Avant de commencer une mesure, l’altitude moyenne de la pièce à mesurer est réglée (par un mécanisme,
+non décrit dans cette étude), de telle façon qu’au début de la mesure le profil réel de la pièce soit
+($z_{\text{pro}}(t=0)=0$), ce qui correspond à une consigne du bras $\theta_c$ également nulle : ($\theta_{c}(t=0)=0$).
+Dans toute cette partie, vous considérerez que l’angle de rotation du bras (3) reste petit.
+Le schéma bloc de l’unité de mesure est décrit à la \autoref{fig_09}.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{fig_09}
+\caption{\label{fig_09} Schéma fonctionnel de l’unité de mesure}
+\end{figure}
+
+\begin{multicols}{2}
+\begin{itemize}
+\item $Z_{\text{pro}}$ : profil réel de la pièce (m);
+\item $Z_{\text{mes}}$ : profil mesuré de la pièce (m);
+\item $Z_{C}$ : consigne de postion du point focal (m);
+\item $\theta_{C}$ : consigne de postion du bras (\si{rad});
+\item $\theta$ : position du bras (3) (\si{rad});
+\item $Z_{p}$ : position verticale du point focal (m);
+\item $\Delta z$ : mesure réalisée par la tête optique (m);
+\item $\text{Pert}$ : perturbation créée sur la position du bras (3), par l'accélération longitudinale (\si{Nm}).
+\end{itemize}
+\end{multicols}
+
+Les fonctions de transfert associées aux différents éléments sont données ci-après : 
+\begin{itemize}
+\item tête optique : $H_{\text{opt}}(p)$;
+\item adaptateur : $H_{\text{ada}}(p)=K_{\text{ada}}$ avec $K_{\text{ada}}=\SI{20}{rad.m^{-1}}$;
+\item bras : $H_{\text{bras}}(p)=K_{\text{bras}}$ avec $K_{\text{bras}}=\SI{5e-2}{m.rad^{-1}}$;
+\item calcul de la moyenne : $H_{\text{moy}}(p)$;
+\item unité de rotation : $H_{\text{rot}}(p)$.
+\end{itemize}
+
+
+
+
+\subsection{Caractérisation globale de l'unité de mesure}
+
+Afin d’optimiser les performances du capteur de rugosité, l’exactitude de la mesure, la rapidité de la
+mesure, la stabilité de l’ensemble…, il est nécessaire de déterminer la relation entre la fonction de transfert
+globale et les fonctions de transfert élémentaires. Pour optimiser cette réponse globale, il sera possible de
+modifier localement certains composants, puis de réinjecter dans le calcul complet les nouvelles fonctions
+de transfert de ces composants.
+\subparagraph{\label{q_08}}\textit{ En supposant que le système se déplace à vitesse constante (pas de perturbation), déterminez la fonction de transfert globale de l’unité de mesure : $F_{\text{G mes}}(p)=\dfrac{Z_{\text{mes}}(p)}{Z_{\text{pro}}(p)}$.}
+
+\subsection{Calcul de la moyenne mobile}
+
+Pour déterminer la consigne de position $z_c$ du point focal (P) de la tête optique, il est nécessaire de
+calculer la position moyenne du profil. Plusieurs techniques peuvent être utilisées, l’une des plus simples
+est de définir cette consigne comme étant la moyenne, sur un temps donné, des positions antérieures. Ceci
+s’écrit mathématiquement : $z_c(t)=\dfrac{\int\limits_{t-\tau}^{t}z_{\text{mes}}(v)\dd v}{\tau}$.
+
+
+
+\subparagraph{\label{q_}}\textit{Montrez que la transmittance $H_{\text{moy}}(p)$ peut se mettre sous la forme :
+$H_{\text{moy}}(p) = \dfrac{Z_c(p)}{Z_{\text{mes}}(p)}=\dfrac{1-\text{e}^{-p\tau}}{p \tau}$.}
+
+\subsection{Etude détaillée de l'unité de rotation}
+
+
+La seule fonction qu’il reste à caractériser, puis à optimiser, est celle de l’Unité de Rotation (Moteur
+couple + Tête optique). Le schéma bloc de ce système est donné à la \autoref{fig_10}.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\linewidth]{fig_10}
+\caption{\label{fig_10} Schéma-blocs de la commande du moteur couple}
+\end{figure}
+
+
+\begin{multicols}{2}
+\begin{itemize}
+\item $\theta_c$ consigne de position du bras (rad);
+\item $I_{\theta}$ intensité correspondant à la consigne (A);
+\item $I_{\text{capt}}$ intensité en sortie du capteur angulaire (A);
+\item $I_{\text{mot}}$ intensité d’alimentation du moteur couple (A);
+\item $C_{\text{m3}}$ couple moteur développé (Nm);
+\item $C_{\text{pert acc}}$ couple perturbateur créé lors de l’accélération de
+l’unité de translation (Nm);
+\item $\theta$ position angulaire du bras (3) (rad).
+\end{itemize}
+\end{multicols}
+
+Les fonctions de transfert associées aux différents éléments sont données ci-après :
+\begin{multicols}{2}
+\begin{itemize}
+\item convertisseur : $H_{\text{con}}(p)=K_{\text{con}}$, avec $K_{\text{con}}=\SI{2}{A.rad^{-1}}$;
+\item moteur : $H_{\text{mot}}(p)=K_{\text{mot}}$, avec $K_{\text{mot}}=\SI{0,05}{N.m.A^{-1}}$;
+\item tête optique et système de rappel : $$H_{\text{tête}}(p)=\dfrac{K_t}{1+\dfrac{2\xi}{\omega_0}+\dfrac{p^2}{\omega_0^2}};$$
+\item capteur : $H_{\text{capt}}(p)=K_{\text{capt}}=K_{\text{con}}$;
+\item correcteur : $H_{\text{Cor}}(p)$.
+\end{itemize}
+\end{multicols}
+
+\subsubsection{Identification des paramètres de la tête optique}
+Pour identifier les paramètres du modèle associé à la tête optique, on soumet le système, décrit à la \autoref{fig_11}, à un échelon d’intensité d’amplitude (\SI{2,5}{mA}). La
+réponse indicielle de ce système est donnée à la \autoref{fig_12}. La réponse a été adimensionnée (position / position
+finale) pour faciliter les calculs ultérieurs. La valeur asymptotique finale est : \SI{158e-6}{rad}.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.4\linewidth]{fig_11}
+\caption{\label{fig_11} Système testé en réponse indicielle}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.6\linewidth]{fig_12}
+\caption{\label{fig_12} Réponse indicielle adimensionnée (sortie/valeur finale de la sortie)}
+\end{figure}
+
+\subparagraph{\label{q_10}}\textit{En utilisant la réponse indicielle de la \autoref{fig_12}, justifiez et critiquez le modèle qui a été retenu pour décrire, d’un point de vue mécanique, la fonction de transfert de la tête optique et du système de rappel :
+$H_{\text{tête}}(p)=\dfrac{K_t}{1+\dfrac{2\xi p}{\omega_0}+\dfrac{p^2}{\omega_0^2}}$. Vous analyserez très finement les différents dépassements. Donnez, après identification, les valeurs numériques et les unités des paramètres ($K_t$, $\xi$, $\omega_0$).}
+%Expliquez clairement votre démarche d’identification. Vous pouvez utiliser les abaques des figures
+%\autoref{fig_13} et \autoref{fig_14}. Toutes les grandeurs mesurées sur les figures \autoref{fig_12}, \autoref{fig_13} et \autoref{fig_14} devront être mentionnées sur les
+%figures du document réponse.}
+
+\begin{minipage}[c]{.47\linewidth}
+\begin{figure}[H]
+\centering
+\includegraphics[height=5cm]{fig_13}
+\caption{\label{fig_13} Dépassement relatif (\%) (1 = 100~\%) en fonction
+du coefficient d’amortissement et du numéro du dépassement}
+\end{figure}
+\end{minipage}\hfill
+\begin{minipage}[c]{.47\linewidth}
+\begin{figure}[H]
+\centering
+\includegraphics[height=5cm]{fig_14}
+\caption{\label{fig_14} Pseudo période en fonction de la pulsation
+propre et du coefficient d’amortissement}
+\end{figure}
+\end{minipage}
+
+\vspace{.25cm}
+
+Une identification, plus fine (à l’aide de moyens informatiques), a permis de déterminer les valeurs des
+paramètres de $H_{\text{tête}}(p)$. Quels que soient les résultats que vous avez trouvés à la question \ref{q_10}, et sans
+présager de la corrélation de ces valeurs numériques et des vôtres, vous prendrez pour la suite du
+problème : $K_t =\SI{1,2}{U.S.I.}$, $\xi = 0,2$ , $\omega_0 = \SI{300}{U.S.I.}$.
+
+
+Ces paramètres permettent de remonter aux caractéristiques matérielles, inertielles, des pièces ainsi qu’aux
+caractéristiques dissipatives des liaisons non parfaites. Dans cet essai, il n’y a pas de translation de
+l’ensemble du rugosimètre.
+
+
+\subparagraph{\label{q_11}}\textit{Donnez les relations liant les paramètres de la fonction de transfert 
+$H_{\text{tête}}(p)$ et ceux utilisés à la question~\ref{q_04_e} (calcul de ($C_{\text{m3}}$), qui est maintenant noté
+($C_{\text{m}}$), lorsque l’accélération est nulle et lorsque l’on reste au voisinage de ($\theta=0\degres$)).
+Donnez les valeurs numériques des coefficients $K_{\text{tors}}$ (raideur du ressort torsion), $f_3$ (coefficient de
+frottement visqueux) et $B$ (moment d’inertie). }
+
+\subsubsection{Choix du correcteur}
+
+Afin de suivre, de la façon la plus fine possible, le profil moyen de la pièce, il est nécessaire de choisir
+avec soin le correcteur afin d’assurer la précision, la rapidité et la stabilité de la position du point focal (P)
+donc la position du bras (3).
+
+En ce qui concerne la précision de position angulaire du bras, les concepteurs de ce rugosimètre
+souhaitent :
+\begin{itemize}
+\item annuler, en régime permanent, l’influence d’une perturbation de type échelon. Cette forme de
+perturbation peut être rencontrée lors de la phase d’accélération de l’unité de translation;
+\item limiter au maximum, sans nécessairement l’annuler, l’erreur de positionnement pour une consigne
+de type rampe (erreur de traînage). Cette entrée est suffisamment représentative si l’on considère un
+profil moyen qui serait décrit par la figure 15.
+\end{itemize}
+Pour cette exigence du cahier des charges, les concepteurs envisagent trois choix possibles : un correcteur
+proportionnel, un correcteur proportionnel-intégral, et un correcteur dont la fonction de transfert est
+$H_{\text{cor}}(p) = \dfrac{K_p}{p^2}$.
+
+
+\subparagraph{\label{q_12}}\textit{Donnez, parmi ces trois choix, le ou les correcteurs qui respecte(nt) les critères de précision.
+Quelles sont les conséquences sur la stabilité de ces correcteurs ?
+Quel est votre choix final (justifiez votre réponse).
+Vos réponses devront être clairement argumentées (résultats de cours ou démonstrations).}
+
+
+Pour diverses raisons, que nous n’exposerons pas dans le sujet, le choix des concepteurs s’est finalement
+porté sur un correcteur dont la fonction de transfert est 
+$H_{\text{cor}}(p) = \dfrac{K_p}{p}$ et dont il reste à déterminer le
+coefficient ($K_p$).
+
+
+Le cahier des charges de l’unité de rotation nous impose d’avoir des marges de stabilité suffisantes, tout en
+ayant un système qui soit le plus rapide possible. La marge de phase doit être d’au moins 45\degres et la marge
+de gain minimale est de \SI{6}{dB}.
+
+\subparagraph{\label{q_13}}\textit{Déterminez (en justifiant votre réponse, votre démarche) le gain ($K_p$) optimal, vis-à-vis des marges de stabilité, du correcteur. Vous pouvez utiliser et compléter, si vous le jugez nécessaire, les diagrammes du document réponse (graphe semi-logarithmique).}
+
+A toute fin utile, le tableau ci-dessous donne les phases (en \degres) et les modules (en dB) de la
+transmittance  $H(j\omega )=\dfrac{1}{1+\dfrac{0,4 }{300}j\omega-\dfrac{1}{9\times 10^4}\omega^2}$
+différentes valeurs de pulsations.
+
+\begin{center}
+\begin{tabular}{ccc}
+\hline
+Pulsation (rd/s) & Phase (\degres) & Amplitude (dB)  \\ \hline \hline
+100 & -8,5 & 0,9 \\\hline
+200 & -25,6 & 4,2\\ \hline
+246 & -45,0 & 6,7\\ \hline
+300 & -90,0 & 8,0\\ \hline
+366 & -135,0 & 3,21\\ \hline
+1000 & -172,5 & -20,2\\ \hline
+\end{tabular}
+\end{center}
+
+
+%\subparagraph{\label{q_13a}}\textit{Tracer le diagramme de la fonction de transfert en boucle ouverte $H_{\text{BO}}(p)=\dfrac{Kp}{p}K_{\text{mot}}\dfrac{K_t}{1+\dfrac{2\xi}{\omega_0}p+\dfrac{p^2}{\omega_0^2}}$.}
+%
+%\subparagraph{\label{q_13b}}\textit{Déterminez (en justifiant votre réponse, votre démarche) le gain ($K_p$) optimal, vis-à-vis de la marge de gain, du correcteur. }
+%
+%\subparagraph{\label{q_13c}}\textit{Déterminez (en justifiant votre réponse, votre démarche) le gain ($K_p$) optimal, vis-à-vis de la marge de phase, du correcteur.}
+%
+%\subparagraph{\label{q_13d}}\textit{Conclure.}
+
+
+Le réglage qui vient d’être réalisé concerne principalement la stabilité du système. La précision a été respectée
+par le choix du type de correcteur (question \ref{q_12}). Il reste maintenant à se
+pencher sur la rapidité de ce système.
+Pour cela, nous avons simulé, avec un
+logiciel dédié, la réponse indicielle du
+système de commande de l’Unité de
+Rotation (fig. 10) pour trois valeurs de
+($K_p$ ) : celle qui correspond au réglage des marges de stabilité
+(Kp Marge stabilité ) , 90 \% de cette valeur
+de KpMarge stabilité et 110 \% de
+KpMarge stabilité .
+
+\begin{minipage}[c]{.47\linewidth}
+\begin{figure}[H]
+\centering
+\includegraphics[height=4.5cm]{fig_16}
+\caption{\label{fig_16}Réponse indicielle adimensionnée de l’Unité de Rotation}
+\end{figure}
+\end{minipage}\hfill
+\begin{minipage}[c]{.47\linewidth}
+\begin{figure}[H]
+\centering
+\includegraphics[height=4.5cm]{fig_16_bis}
+\caption{\label{fig_16b} Zoom de la réponse indicielle adimensionnée de l’Unité de Rotation}
+\end{figure}
+\end{minipage}
+
+\subparagraph{\label{q_14}}\textit{Déterminer parmi ces trois courbes, celle qui présente le meilleur temps de réponse à \SI{1}{\%}. Donnez ce temps de réponse à \SI{1}{\%}. Réalisez les tracés nécessaires sur le document réponse.
+Expliciter votre choix final du coefficient $K_p$ et conclure sur la commande de l’unité de rotation.}
+
+
+
