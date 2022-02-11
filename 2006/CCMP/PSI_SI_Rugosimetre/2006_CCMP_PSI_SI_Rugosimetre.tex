@@ -70,7 +70,7 @@ vitesse de déplacement visée par ce prototype est de \SI{20}{mm.s^{-1}}.
 Dans sa future version 3D, une seconde U.T. de direction ($\vect{y}$) permettra de donner une image de la surface
 par une juxtaposition de profils 2D : on « scannera » la surface.
 
-Le coût estimé de ce rugomimètre est de 10 000 euros.
+Le coût estimé de ce rugosimètre est de 10 000 euros.
 
 \subsection{Principe de mesure du capteur optique}
 
@@ -100,7 +100,7 @@ leur être faites.
 
 \subparagraph{\label{q_01}}\textit{Donner les différents critères de performance et les niveaux associés du rugosimètre.}
 
-\subparagraph{\label{q_02}}\textit{Complétez les diagrammes S.A.D.T. « A-0 », puis « A.0 », du système « rugosimètre 3D » préfiguré par le prototype 2D décrit ci-dessus. Vous éviterez les confusions entre entrées, moyens et contrôles.}
+%\subparagraph{\label{q_02}}\textit{Complétez les diagrammes S.A.D.T. « A-0 », puis « A.0 », du système « rugosimètre 3D » préfiguré par le prototype 2D décrit ci-dessus. Vous éviterez les confusions entre entrées, moyens et contrôles.}
 
 \section{Calculs prévisionnels des actionneurs \label{sec:3}}
 
@@ -194,7 +194,7 @@ dimensionnelles et matérielles des pièces, des lois de mouvement et des dissip
 
 %Pour obtenir la première équation, vous êtes obligé d’appliquer la méthode demandée.
 
-\subparagraph{\label{q_04}}\textit{Isoler l’ensemble (3) et réaliser le BAME puis écrire le théorème du moment dynamique en (A) en projection sur $\vect{y_0}$. Ecrire votre résultat sous le forme $d\ddot{\theta}+e\ddot{x}+f\dot{\theta}+g\theta = h $ les termes $d$, $e$, $f$, $g$ et $h$ peuvent dependre de $\theta$.}
+\subparagraph{\label{q_04}}\textit{Isoler l’ensemble (3) et réaliser le BAME puis écrire le théorème du moment dynamique en (A) en projection sur $\vect{y_0}$. Écrire votre résultat sous le forme $d\ddot{\theta}+e\ddot{x}+f\dot{\theta}+g\theta = h $ les termes $d$, $e$, $f$, $g$ et $h$ peuvent dépendre de $\theta$.}
 
 %\subparagraph{\label{q_04a}}\textit{Réaliser le graphe de strcuture du mécanisme. Préciser l'ensemble des actions mécaniques en $A$.}
 %\subparagraph{\label{q_04_b}}\textit{Calculer $\vectv{A}{3}{0}$ et $\vectv{G}{3}{0}$.}
@@ -300,8 +300,8 @@ Le schéma bloc de l’unité de mesure est décrit à la \autoref{fig_09}.
 \begin{itemize}
 \item $Z_{\text{pro}}$ : profil réel de la pièce (m);
 \item $Z_{\text{mes}}$ : profil mesuré de la pièce (m);
-\item $Z_{C}$ : consigne de postion du point focal (m);
-\item $\theta_{C}$ : consigne de postion du bras (\si{rad});
+\item $Z_{C}$ : consigne de position du point focal (m);
+\item $\theta_{C}$ : consigne de position du bras (\si{rad});
 \item $\theta$ : position du bras (3) (\si{rad});
 \item $Z_{p}$ : position verticale du point focal (m);
 \item $\Delta z$ : mesure réalisée par la tête optique (m);
@@ -537,7 +537,7 @@ KpMarge stabilité .
 Expliciter votre choix final du coefficient $K_p$ et conclure sur la commande de l’unité de rotation.}
 
 
-\section{AMELIORATION DE L’UNITE DE POSITIONNEMENT EN (Z)}
+\section{Amélioration de l’unité de positionnement en $Z$}
 
 Dans ce prototype, le positionnement vertical (en $z$) du point focal est obtenu par l’unité de rotation. Ceci a
 plusieurs conséquences négatives sur le fonctionnement global du capteur :
@@ -551,12 +551,17 @@ de translation longitudinale (étudiée à la partie \ref{sec:3}).
 \end{itemize}
 
 
-\subsection{ETUDE DE LA POSITION REELLE LONGITUDINALE DU POINT FOCAL}
+\subsection{Étude de la position réelle longitudinale du point focal}
 
 Il vous est demandé, dans un premier temps, de quantifier l’écart de position
 longitudinale obtenu lorsque l’on utilise la totalité du débattement vertical.
 La \autoref{fig_17} illustre le problème d’erreur de positionnement longitudinal ($\Delta x$) créée
 par la rotation de la tête de mesure. 
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\linewidth]{fig_17}
+\caption{\label{fig_17} Incidence sur le positionnement du point focal lors de la rotation,de la tête optique}
+\end{figure}
 
 Données : 
 $ \vect{AP} = a\vect{x_3}-b\vect{z_3}$ (avec $a = \SI{50}{mm}$ et $b =\SI{15}{mm}$);
@@ -566,7 +571,7 @@ Le cahier des charges de ce système impose une variation verticale ($z$) du poi
 focal de $\pm \SI{5}{mm}$ par rapport à la position de référence ( $\theta = 0\degres$).
 
 \subparagraph{\label{q_15}}\textit{
-Après avoir donné les expressions littérales des variations de position longitudinale ($\Delta x = f(\theta, a, b)$ )
+Après avoir donné les expressions littérales des variations de position longitudinale ($\Delta x = f(\theta, a, b)$)
 et verticale ($\Delta z = g(\theta, a, b)$) du point focal en fonction de la rotation de la tête optique, linéarisez ces
 expressions afin d’obtenir une formule approchée donnant le rapport ($\Delta x / \Delta z$) : $\Delta x / \Delta z = h(a, b)$.
 Donner la valeur numérique du décalage longitudinal maximal.
@@ -577,11 +582,78 @@ longitudinale du point de mesure ».}
 En plus de ce problème de position longitudinale du point focal, il y a aussi une modification de l’angle
 d’incidence et de réflexion des faisceaux optiques par rapport à la surface de la pièce qui correspond à une
 variation de ($2\theta$).
-\subparagraph{\label{q_16}}\textit{}
 
-\subparagraph{\label{q_17}}\textit{}
+\subsection{Modification de l'unité de positionnement vertical du point focal}
 
-\subparagraph{\label{q_18}}\textit{}
+Afin de découpler les mouvements verticaux et longitudinaux du point focal lors des phases d’accélération
+et de freinage de l’axe longitudinal (x), et d’éviter la rotation de la tête optique, les concepteurs de ce
+capteur ont imaginé une autre chaîne cinématique pour le positionnement vertical du point focal.
 
-\subparagraph{\label{q_19}}\textit{}
-\subparagraph{\label{q_20}}\textit{}
+Les principales caractéristiques du moteur couple donnant satisfaction, les concepteurs désirent conserver ce
+système de motorisation. La figure 18 représente le schéma cinématique plan du mécanisme envisagé.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\linewidth]{fig_18}
+\caption{\label{fig_18} Schéma cinématique de l'unité de positionnement vertical (sur cette figure ($\theta_4 = 0\degres$))}
+\end{figure}
+
+La tête optique (non représentée sur ce schéma) sera fixée à la pièce (4).
+Cette unité de positionnement vertical ($z$) est composée de deux sous-ensembles :
+\begin{itemize}
+\item un système quatre barres (0, 3, 4, 5). Ce système permet le déplacement selon ($z_0$) de la tête optique qui est solidaire de (4) ;
+\item un système moteur (1, 2). L’axe de sortie du moteur couple est noté (1). La translation de la tête optique (4) est obtenue par la biellette (2) qui est liée à l’axe de sortie du moteur couple (en A) et à la pièce (3) en (F).
+\end{itemize}
+Ce mécanisme comporte cinq liaisons pivot (d’axe $\axe{O}{y_0}$, $\axe{B}{y_0}$, $\axe{C}{y_0}$, $\axe{D}{y_0}$, $\axe{E}{y_0}$) et deux liaisons qu’il convient de définir.
+
+\textbf{Données : }
+$\vect{OA}=l_1\vect{x_1}$, 
+$\vect{FA}=l_2\vect{z_2}$, 
+$\vect{CB}=l_3\vect{x_3}$, 
+$\vect{CF}=l_3\vect{x_3} +b_3 \vect{z_3} $, 
+$\vect{DE}=l_5\vect{x_5}$, 
+$\vect{EB}=l_4\vect{z_4}$, 
+$\vect{CD}=-f\vect{z_0}$, 
+$\vect{OC}=d\vect{x_0}-e\vect{z_0}$, 
+$\theta_1 = \angl{x_0}{x_1}$,
+$\theta_2 = \angl{z_0}{z_2}$,
+$\theta_3 = \angl{x_0}{x_3}$,
+$\theta_4 = \angl{z_0}{z_4}$,
+$\theta_5 = \angl{x_0}{x_5}$.
+
+\subsubsection{Solution technique du système quatre barres}
+Dans un premier temps, nous étudierons le modèle quatre barres (0, 3, 4, 5) en cherchant à vérifier, que
+cette nouvelle cinématique permet d’empêcher la rotation de la tête optique (en liaison encastrement avec
+la pièce (4), puis à définir des solutions réelles pour les différentes liaisons.
+
+\subparagraph{\label{q_16}}\textit{Donnez la(les) relation(s) qu’il faut respecter entre les paramètres ($l_3$, $l_4$, $l_5$, $f$ ) pour que la tête
+optique (fixée à (4)) n’ait aucun mouvement de rotation par rapport à (0). Vous justifierez
+rapidement votre proposition.
+Quelle est la nature du mouvement entre (4) et (0) ?}
+
+\subparagraph{\label{q_17}}\textit{Calculez la mobilité et le degré d’hyperstaticité de ce modèle du mécanisme (0, 3, 4, 5).
+Commentez la valeur du degré d’hyperstaticité obtenu (avantages / inconvénients) pour le modèle du
+mécanisme étudié dont la fonction est d’assurer un positionnement vertical.}
+
+Le système de positionnement vertical du point focal doit, absolument, se faire sans jeu dans les liaisons.
+Tout jeu dans les liaisons induirait automatiquement une erreur dans la position verticale réelle du point
+focal.
+
+\subparagraph{\label{q_18}}\textit{Proposez une solution technique pour réaliser des liaisons pivot sans jeu.
+Dessinez, à main levée, un schéma technique spatial représentant le système quatre barres avec ces
+différentes solutions techniques pour les liaisons.}
+
+\subsubsection{Transmission du mouvement entre le moteur couple et la tête optique}
+La seconde partie du mécanisme est un transmetteur, qui permet le déplacement de la pièce (4) à partir du
+mouvement de rotation du moteur couple.
+
+Pour ce mécanisme, le concepteur a choisi une disposition géométrique particulière : en position de
+référence, les angles $\theta_1$, $\theta_2$, $\theta_3$ et $\theta_4$ sont tous nuls.
+
+
+\subparagraph{\label{q_19}}\textit{Quelles sont les raisons qui ont conduit le concepteur de ce mécanisme à choisir cette disposition ?}
+On désire que le mécanisme (de transmission de mouvement) (0, 1, 2, 3) soit isostatique. On ne se
+préoccupe pas, dans cette partie, de réaliser (bien que ce soit également nécessaire) un système sans jeu.
+
+\subparagraph{\label{q_20}}\textit{Proposez, en justifiant votre réponse, une solution (liaison 1 et liaison 2) permettant d’obtenir un
+modèle de mécanisme (0, 1, 2, 3) isostatique.}
