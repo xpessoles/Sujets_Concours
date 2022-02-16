@@ -194,7 +194,7 @@ dimensionnelles et matérielles des pièces, des lois de mouvement et des dissip
 
 %Pour obtenir la première équation, vous êtes obligé d’appliquer la méthode demandée.
 
-\subparagraph{\label{q_04}}\textit{Isoler l’ensemble (3) et réaliser le BAME puis écrire le théorème du moment dynamique en (A) en projection sur $\vect{y_0}$. Écrire votre résultat sous le forme $d\ddot{\theta}+e\ddot{x}+f\dot{\theta}+g\theta = h $ les termes $d$, $e$, $f$, $g$ et $h$ peuvent dépendre de $\theta$.}
+\subparagraph{\label{q_04}}\textit{Isoler l’ensemble (3) et réaliser le BAME puis écrire le théorème du moment dynamique en (A) en projection sur $\vect{y_0}$. Écrire votre résultat sous le forme $d\ddot{\theta}+e\ddot{x}+f\dot{\theta}+g\theta = h $ (les termes $d$, $e$, $f$, $g$ et $h$ peuvent dépendre de $\theta$).}
 
 %\subparagraph{\label{q_04a}}\textit{Réaliser le graphe de strcuture du mécanisme. Préciser l'ensemble des actions mécaniques en $A$.}
 %\subparagraph{\label{q_04_b}}\textit{Calculer $\vectv{A}{3}{0}$ et $\vectv{G}{3}{0}$.}
@@ -374,7 +374,7 @@ Les fonctions de transfert associées aux différents éléments sont données c
 \begin{itemize}
 \item convertisseur : $H_{\text{con}}(p)=K_{\text{con}}$, avec $K_{\text{con}}=\SI{2}{A.rad^{-1}}$;
 \item moteur : $H_{\text{mot}}(p)=K_{\text{mot}}$, avec $K_{\text{mot}}=\SI{0,05}{N.m.A^{-1}}$;
-\item tête optique et système de rappel : $$H_{\text{tête}}(p)=\dfrac{K_t}{1+\dfrac{2\xi}{\omega_0}+\dfrac{p^2}{\omega_0^2}};$$
+\item tête optique et système de rappel : $$H_{\text{tête}}(p)=\dfrac{K_t}{1+\dfrac{2\xi}{\omega_0}p+\dfrac{p^2}{\omega_0^2}};$$
 \item capteur : $H_{\text{capt}}(p)=K_{\text{capt}}=K_{\text{con}}$;
 \item correcteur : $H_{\text{Cor}}(p)$.
 \end{itemize}
