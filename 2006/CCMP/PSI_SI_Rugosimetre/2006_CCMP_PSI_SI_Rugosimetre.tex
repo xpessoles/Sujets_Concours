@@ -99,6 +99,22 @@ leur être faites.
 
 
 \subparagraph{\label{q_01}}\textit{Donner les différents critères de performance et les niveaux associés du rugosimètre.}
+\ifprof
+\begin{corrige} ~\\
+
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Critères de performances & Niveaux associés \\ \hline \hline
+Résolution verticale du capteur optique & $< \SI{10}{nm}$ \\ \hline
+Amplitude de lecture & $\SI{20}{\mu m}$ \\ \hline
+Amplitude de l'asservissement (??) & $\SI{10}{mm}$ \\ \hline
+Vitesse de déplacement & $\SI{20}{mm.s^{-1}}$\\ \hline
+\end{tabular}
+\end{center}
+\end{corrige}
+\else
+\fi
 
 %\subparagraph{\label{q_02}}\textit{Complétez les diagrammes S.A.D.T. « A-0 », puis « A.0 », du système « rugosimètre 3D » préfiguré par le prototype 2D décrit ci-dessus. Vous éviterez les confusions entre entrées, moyens et contrôles.}
 
@@ -185,7 +201,36 @@ $\vect{AG_6}= a_6 \vect{x_3}+c_6 \vect{z_3}$ avec $a_6 = \SI{10}{mm}$ ; $c_6 = \
 
 \subparagraph{\label{q_03}}\textit{Déterminez l’expression littérale de la masse du contrepoids (6) qui assure que le terme (c) de l’expression de la position du centre d’inertie ($\vect{AG_3}=r\vect{x_3} - b\vect{y_3} + c\vect{z_3}$) est nul. Réalisez l’application numérique. Montrez que dans ce cas, $r=\SI{27,5}{mm}$ avec $\vect{AG_3}=r\vect{x_3}$.}
 \ifprof
-\begin{corrige}
+\begin{corrige} ~\\
+\begin{minipage}[c]{.7\linewidth}
+Déterminons la position du centre d'inertie de l'ensemble (3) en utilisant le barycentre des centres d'inertie des pièces qui le compose.
+
+$\left(m_4 + m_5 +m_6 \right) \vect{AG_3} = m_4 \vect{AG_4}+m_5 \vect{AG_5}+m_6 \vect{AG_6} $. 
+
+On souhaite que  $\vect{AG_3}\cdot \vect{z_3}$ soit nul. En conséquences, 
+$ m_4 \vect{AG_4} \cdot \vect{z_3}+m_5 \vect{AG_5}\cdot \vect{z_3}+m_6 \vect{AG_6}\cdot \vect{z_3} = 0 $. 
+
+On a alors :$ - m_4 b_4 \vect{y_0} \cdot \vect{z_3} - m_5 c_5 +m_6 c_6  = 0 $
+$\Leftrightarrow  - m_5 c_5 +m_6 c_6  = 0 $.
+$\Leftrightarrow   m_6   = m_5 \dfrac{c_5}{c_6}$.
+ 
+\textit{Application numérique : } $m_6 = \dfrac{5\times 10^{-3} \times 10}{25} = \SI{2e-3}{kg}$.
+
+\end{minipage} \hfill
+\begin{minipage}[c]{.25\linewidth}
+\begin{center}
+\includegraphics[width=\linewidth]{cor_01}
+\end{center}
+\end{minipage}
+
+Par ailleurs, on cherche $r_3$; donc
+$\left(m_4 + m_5 +m_6 \right) \vect{AG_3}\cdot \vect{x_3} = m_4 \vect{AG_4}\cdot \vect{x_3}+m_5 \vect{AG_5}\cdot \vect{x_3}+m_6 \vect{AG_6}\cdot \vect{x_3} $  
+soit 
+$\left(m_4 + m_5 +m_6 \right) r =m_5 a_5+m_6 a_6 $; donc $ r =\dfrac{m_5 a_5+ m_6a_6}{m_4 + m_5 +m_6 } $.
+
+\textit{Application numérique : } $r = \dfrac{\num{5e-3}\times 40 + \num{2e-3}\times 10}{\num{e-3}+ \num{5e-3} + \num{2e-3}} = \dfrac{220}{8}=\SI{27,5}{mm}$.
+
+Pour finir, il faudrait vérifier que $b=\SI{0}{mm}$.
 \end{corrige}
 \else
 \fi
