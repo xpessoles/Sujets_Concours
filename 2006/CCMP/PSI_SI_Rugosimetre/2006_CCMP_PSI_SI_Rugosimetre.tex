@@ -678,6 +678,12 @@ s’écrit mathématiquement : $z_c(t)=\dfrac{\int\limits_{t-\tau}^{t}z_{\text{m
 $H_{\text{moy}}(p) = \dfrac{Z_c(p)}{Z_{\text{mes}}(p)}=\dfrac{1-\text{e}^{-p\tau}}{p \tau}$.}
 \ifprof
 \begin{corrige}
+On a $z_c(t)=\dfrac{1}{\tau} \int\limits_{t-\tau}^{t}z_{\text{mes}}(v)\dd v$ 
+$=\dfrac{1}{\tau} \left( \int\limits_{0}^{t}z_{\text{mes}}(v)\dd v - \int\limits_{0}^{t-\tau}z_{\text{mes}}(v)\dd v \right)$. En passant dans le domaine de Laplace en utilisant le théorème de l'intégration et du retard, on a : 
+$Z_c(p)=\dfrac{1}{\tau} \left( \dfrac{1}{p}Z_{\text{mes}}(p)- \dfrac{1}{p}Z_{\text{mes}}(p)\text{e}^{-\tau p}  \right)$$=\dfrac{1}{\tau p} Z_{\text{mes}}(p)\left( 1- \text{e}^{-\tau p}  \right)$.
+
+On a donc $H_{\text{moy}}(p) = \dfrac{Z_c(p)}{Z_{\text{mes}}(p)}=\dfrac{1-\text{e}^{-p\tau}}{p \tau}$.
+
 \end{corrige}
 \else
 \fi
