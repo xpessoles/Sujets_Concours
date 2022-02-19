@@ -376,25 +376,28 @@ $=rm_3 g   \dot{\theta} \cos \theta$.
 
 \item $\ec{2}{0}= \dfrac{1}{2}m_2 \dot{x}^2$ et $\deriv{\ec{2}{0}}{} = m_2 \dot{x}\ddot{x}$.
 
-\item $\ec{3}{0} = \dfrac{1}{2} \torseurl{\dot{\theta} \vect{y_0}}{ \dot{x}\vect{x_0} -r  \dot{\theta}\vect{z_3}}{G_3} \otimes \torseurl{m_3\left(\dot{x}\vect{x_0} -r  \dot{\theta}\vect{z_3}\right)}{-F\dot{\theta} \vect{x_3} + B\dot{\theta} \vect{y_3}  -D\dot{\theta}  \vect{z_3}}{G_3}$ 
-$ = \dfrac{1}{2} m_3\left(\dot{x}\vect{x_0} -r  \dot{\theta}\vect{z_3}\right)^2 + \dfrac{1}{2}B\dot{\theta}^2$
+\item $\ec{3}{0} = \dfrac{1}{2} \torseurl{\dot{\theta} \vect{y_0}}{ \dot{x}\vect{x_0} }{A_3} \otimes \torseurl{m_3\left(\dot{x}\vect{x_0} -r  \dot{\theta}\vect{z_3}\right)}{-F\dot{\theta} \vect{x_3} + B\dot{\theta} \vect{y_3}  -D\dot{\theta}  \vect{z_3}  -  m_3 r\sin\theta \dot{x}\vect{y_0}}{A_3}$ 
 
-$ = \dfrac{1}{2} m_3\left(\dot{x}^2 +r^2  \dot{\theta}^2 - 2r\dot{\theta}\dot{x}  \sin \theta \right)+ \dfrac{1}{2}B\dot{\theta}^2$
+$=\dfrac{1}{2} \dot{\theta} \vect{y_3} \cdot\left(-F\dot{\theta} \vect{x_3} + B\dot{\theta} \vect{y_3}  -D\dot{\theta}  \vect{z_3}  -  m_3 r\sin\theta \dot{x}\vect{y_0} \right) + \dfrac{1}{2} \dot{x}\vect{x_0} \left(m_3\left(\dot{x}\vect{x_0} -r  \dot{\theta}\vect{z_3}\right)\right)  $
+
+$=\dfrac{1}{2} \dot{\theta}  \cdot\left( B\dot{\theta}   -  m_3 r\sin\theta \dot{x} \right) + \dfrac{1}{2} \dot{x}m_3\left(\dot{x} -r  \dot{\theta}\sin\theta\right)  $
+$=\dfrac{1}{2}  B\dot{\theta}^2   + \dfrac{1}{2} m_3\dot{x}^2 - m_3 r\dot{\theta}\dot{x} \sin\theta$
+
 et
 
- $\deriv{\ec{3}{0}}{} =m_3\left(\dot{x}\ddot{x} +r^2  \dot{\theta}\ddot{\theta} - r\ddot{\theta}\dot{x}  \sin \theta- r\dot{\theta}\ddot{x}  \sin \theta- r\dot{\theta}^2\dot{x}  \cos \theta \right)+ B\dot{\theta}\ddot{\theta} $
+ $\deriv{\ec{3}{0}}{} =  B\dot{\theta}\ddot{\theta}   + m_3\dot{x}\ddot{x}- m_3 r\ddot{\theta}\dot{x} \sin\theta- m_3 r\dot{\theta}\ddot{x} \sin\theta- m_3 r\dot{\theta}^2\dot{x} \cos\theta$
 \end{itemize}
 \item On a de plus, $\dot{x}=-\dot{\varphi}\dfrac{\text{pas}}{2\pi}$ soit $-\dot{x}\dfrac{2\pi}{\text{pas}}=\dot{\varphi}$. 
 
 \item On applique le théorème de l'énergie cinétique : 
 $$
-m_3\left(\dot{x}\ddot{x} +r^2  \dot{\theta}\ddot{\theta} - r\ddot{\theta}\dot{x}  \sin \theta- r\dot{\theta}\ddot{x}  \sin \theta- r\dot{\theta}^2\dot{x}  \cos \theta \right)+ B\dot{\theta}\ddot{\theta}
+m_3\left(\dot{x}\ddot{x}  - r\ddot{\theta}\dot{x}  \sin \theta- r\dot{\theta}\ddot{x}  \sin \theta- r\dot{\theta}^2\dot{x}  \cos \theta \right)+ B\dot{\theta}\ddot{\theta}
 + m_2 \dot{x}\ddot{x}
 + J_1 \dot{\varphi}\ddot{\varphi}
 $$
 $$=
  -f_3 \dot{\theta}^2
- C_{\text{m3}}\dot{\theta}
+ +C_{\text{m3}}\dot{\theta}
  -\left(K_{\text{tors}}\theta + C_0\right) \dot{\theta}
   -f_1 \dot{\varphi}^2  
   - f_2 \dot{x}^2 +C_{\text{m1}} \dot{\varphi} 
@@ -402,17 +405,75 @@ $$=
 $$
 
 $$
-m_3\left(\dot{x}\ddot{x} +r^2  \dot{\theta}\ddot{\theta} - r\ddot{\theta}\dot{x}  \sin \theta- r\dot{\theta}\ddot{x}  \sin \theta- r\dot{\theta}^2\dot{x}  \cos \theta \right)+ B\dot{\theta}\ddot{\theta}
+\Leftrightarrow m_3\left(\dot{x}\ddot{x}  - r\ddot{\theta}\dot{x}  \sin \theta- r\dot{\theta}\ddot{x}  \sin \theta- r\dot{\theta}^2\dot{x}  \cos \theta \right)+ B\dot{\theta}\ddot{\theta}
 + m_2 \dot{x}\ddot{x}
 + J_1 \dot{x}\ddot{x}\dfrac{4\pi^2}{\text{pas}^2} 
 $$
 $$=
  -f_3 \dot{\theta}^2
- C_{\text{m3}}\dot{\theta}
- -\left(K_{\text{tors}}\theta + C_0\right) \dot{\theta}
+ +C_{\text{m3}}\dot{\theta}
+ -\left(K_{\text{tors}}\theta +rm_3 g\right) \dot{\theta}
   -f_1 \dot{x}^2\dfrac{4\pi^2}{\text{pas}^2} 
   - f_2 \dot{x}^2 -C_{\text{m1}} \dot{x}\dfrac{2\pi}{\text{pas}}
   +rm_3 g   \dot{\theta} \cos \theta
+$$
+
+$$
+\Leftrightarrow m_3\left(
+    \dot{x}\ddot{x} 
+    - r\ddot{\theta}\dot{x}  \sin \theta
+    - r\dot{\theta}^2\dot{x}  \cos \theta \right)
++ m_2 \dot{x}\ddot{x}
++ J_1 \dot{x}\ddot{x}\dfrac{4\pi^2}{\text{pas}^2} 
+       + \left(B\ddot{\theta} \dot{\theta}
+       - m_3 r \sin \theta \ddot{x}   \dot{\theta}
+        +f_3 \dot{\theta}^2
+       +K_{\text{tors}}\theta \dot{\theta}
+       - C_{\text{m3}}\dot{\theta}
+       -rm_3 g   \dot{\theta} \cos \theta
+       +rm_3 g \dot{\theta}\right)
+$$
+$$=
+  -f_1 \dot{x}^2\dfrac{4\pi^2}{\text{pas}^2} 
+  - f_2 \dot{x}^2 -C_{\text{m1}} \dot{x}\dfrac{2\pi}{\text{pas}}
+$$
+
+Or $B\ddot{\theta} - m_3 r\sin\theta \ddot{x} + f_3 \dot{\theta} + K_{\text{tors}}\theta-  C_{\text{m3}} - rm_3g \left(\cos \theta - 1 \right) = 0   $; donc
+
+$$ m_3\left(
+    \dot{x}\ddot{x} 
+    - r\ddot{\theta}\dot{x}  \sin \theta
+    - r\dot{\theta}^2\dot{x}  \cos \theta \right)
++ m_2 \dot{x}\ddot{x}
++ J_1 \dot{x}\ddot{x}\dfrac{4\pi^2}{\text{pas}^2} 
+$$
+$$=
+  -f_1 \dot{x}^2\dfrac{4\pi^2}{\text{pas}^2} 
+  - f_2 \dot{x}^2 -C_{\text{m1}} \dot{x}\dfrac{2\pi}{\text{pas}}
+$$
+ Et donc 
+
+$$ 
+  C_{\text{m1}} \dot{x}\dfrac{2\pi}{\text{pas}}
+  =
+  -m_3\left(
+    \dot{x}\ddot{x} 
+    - r\ddot{\theta}\dot{x}  \sin \theta
+    - r\dot{\theta}^2\dot{x}  \cos \theta \right)
+- m_2 \dot{x}\ddot{x}
+- J_1 \dot{x}\ddot{x}\dfrac{4\pi^2}{\text{pas}^2} 
+ -f_1 \dot{x}^2\dfrac{4\pi^2}{\text{pas}^2} 
+  -f_2 \dot{x}^2 
+$$
+ 
+ $$ 
+ \Longleftrightarrow C_{\text{m1}} 
+  =
+   - \dot{x}\left( f_1\dfrac{2\pi}{\text{pas}} +f_2  \dfrac{\text{pas}}{2\pi}\right)
+- \ddot{x}\left( \left( m_3+m_2 \right)\dfrac{\text{pas}}{2\pi}+ J_1 \dfrac{2\pi}{\text{pas}} \right)
+  +m_3r\dfrac{\text{pas}}{2\pi}\left(
+    \ddot{\theta}\sin \theta
+    +\dot{\theta}^2  \cos \theta \right)
 $$
 \end{itemize}
 
@@ -459,6 +520,25 @@ recherchée est notée ($V_0$). L’accélération maximale est notée ($A_{\tex
 Calculez la valeur du couple $C_{\text{m1}}$ maximal ($V_0 = \SI{0,2}{m.s^{-1}}$, $A_{\text{cMax}}=\SI{0,2}{m.s^{-2}}$).}
 \ifprof
 \begin{corrige}
+En tenant compte des hyothèses : 
+$ C_{\text{m3}} = B\ddot{\theta}  - m_3 r\theta \ddot{x} + f_3 \dot{\theta}   $
+
+ $C_{\text{m1}} 
+  =
+   - \dot{x}\left( f_1\dfrac{2\pi}{\text{pas}} +f_2  \dfrac{\text{pas}}{2\pi}\right)
+- \ddot{x}\left( \left( m_3+m_2 \right)\dfrac{\text{pas}}{2\pi}+ J_1 \dfrac{2\pi}{\text{pas}} \right)
+$
+
+
+Le couple maximal est atteint en fin d'accélération. Dans les conditions données, le temps d'accélération est donné par 
+$V_0 = A_{\text{cMax}} t_a$ soit $ t_a  = \dfrac{A_{\text{cMax}}}{V_0} = \SI{1}{s}$.
+
+On a donc 
+ $C_{\text{m1 max}} 
+  =
+   - V_0\left( f_1\dfrac{2\pi}{\text{pas}} +f_2  \dfrac{\text{pas}}{2\pi}\right)
+-  A_{\text{cMax}}\left( \left( m_3+m_2 \right)\dfrac{\text{pas}}{2\pi}+ J_1 \dfrac{2\pi}{\text{pas}} \right) = -\SI{0,128}{Nm}$.
+
 \end{corrige}
 \else
 \fi
@@ -539,6 +619,17 @@ de transfert de ces composants.
 \subparagraph{\label{q_08}}\textit{ En supposant que le système se déplace à vitesse constante (pas de perturbation), déterminez la fonction de transfert globale de l’unité de mesure : $F_{\text{G mes}}(p)=\dfrac{Z_{\text{mes}}(p)}{Z_{\text{pro}}(p)}$.}
 \ifprof
 \begin{corrige}
+On note $G(p)=H_{\text{moy}}(p) K_{\text{ada}} H_{\text{rot}}(p) K_{\text{bras}}$.
+
+On a alors $Z_{\text{mes}}(p)=\Delta_z(p)+Z_p = \left( Z_{\text{pro}}(p) -Z_p(p)\right)  H_{\text{opt}}(p)+Z_p(p)$.
+De plus $Z_p (p)= Z_{\text{mes}}(p) G(p)$; donc 
+
+$Z_{\text{mes}}(p)=  \left( Z_{\text{pro}}(p) - Z_{\text{mes}}(p) G(p)\right)  H_{\text{opt}}(p)+ Z_{\text{mes}}(p) G(p)$ 
+$\Leftrightarrow Z_{\text{mes}}(p) \left(1+G(p) H_{\text{opt}}(p) - G(p) \right)=   Z_{\text{pro}}(p)  H_{\text{opt}}(p)$. 
+
+Au final,  $F_{\text{G mes}}(p)=\dfrac{H_{\text{opt}}(p)}{1+G(p) H_{\text{opt}}(p) - G(p)} = 
+\dfrac{H_{\text{opt}}(p)}{1+H_{\text{moy}}(p) K_{\text{ada}} H_{\text{rot}}(p) K_{\text{bras}}\left( H_{\text{opt}}(p) - 1\right)}$
+
 \end{corrige}
 \else
 \fi
