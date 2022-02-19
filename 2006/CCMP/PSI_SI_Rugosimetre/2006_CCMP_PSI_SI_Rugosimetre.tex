@@ -315,6 +315,32 @@ théorème(s) ou principe(s) utilisés, quels sont les termes qu’il faut calcu
 choix.}
 \ifprof
 \begin{corrige}
+\begin{itemize}
+\item On isole (1+2+3) et on réalise le théorème de l'énergie cinétique. Ainsi on ne fera pas apparaître d'actions de liaisons.
+\item On réalise le bilan des puissances intérieures : 
+\begin{itemize}
+\item pas de frottement dans la glissière hélicoïdale;
+\item pivot avec frottement entre 2 et 3;
+\item puissance du couple moteur 3; 
+\item puissance du couple ressort 3.
+\end{itemize}
+\item On réalise le bilan des puissances extérieures : 
+\begin{itemize}
+\item pivot avec frottement entre 0 et 1;
+\item glissière avec frottement entre 0 et 2;
+\item puissance du couple moteur 1; 
+\item puissance de la pesanteur sur 1; 
+\item puissance de la pesanteur sur 2; 
+\item puissance de la pesanteur sur 3.
+\end{itemize}
+\item On calcule l'énergie cinétique de (1+2+3) :
+\begin{itemize}
+\item $\ec{1+2+3}{0}=\ec{1}{0}+\ec{2}{0}+\ec{3}{0}$.
+\item $\ec{1}{0}$ : rotation autour d'un axe fixe.
+\item $\ec{2}{0}$ : translation suivant une direction fixe.
+\item $\ec{3}{0}$ : mouvement composé. 
+\end{itemize}
+\end{itemize}
 \end{corrige}
 \else
 \fi
@@ -323,6 +349,73 @@ choix.}
 les paramètres $\theta$, $x$ et leurs dérivées sont autorisés.}
 \ifprof
 \begin{corrige}
+\begin{itemize}
+\item On isole (1+2+3) et on réalise le théorème de l'énergie cinétique. Ainsi on ne fera pas apparaître d'actions de liaisons.
+\item On réalise le bilan des puissances intérieures : 
+\begin{itemize}
+\item pas de frottement dans la glissière hélicoïdale : $\pint{1}{2}{GH} = 0$;
+\item pivot avec frottement entre 2 et 3 $\pint{2}{3}{Piv.} = \vectm{A}{2}{3} \cdot  \vecto{3}{2} = -f_3 \dot{\theta} \vect{y_0} \cdot \dot{\theta}\vect{y_0} = -f_3 \dot{\theta}^2$;
+\item puissance du couple moteur 3 : $\pint{2}{3}{Mot.} =  C_{\text{m3}}\dot{\theta}$; 
+\item puissance du couple ressort 3 : $\pint{2}{3}{Res.} =  -\left(K_{\text{tors}}\theta + C_0\right) \dot{\theta}$; 
+\end{itemize}
+\item On réalise le bilan des puissances extérieures : 
+\begin{itemize}
+\item pivot avec frottement entre 0 et 1 $\pext{0}{1}{0} =-f_1 \dot{\varphi}^2 $;
+\item glissière avec frottement entre 0 et 2 $\pext{0}{2}{0} = - f_2 \dot{x}^2 $;
+\item puissance du couple moteur 1 $\pext{0}{1}{0} =C_{\text{m1}} \dot{\varphi} $;
+\item puissance de la pesanteur sur 1 $\pext{\text{pes}}{1}{0} = 0 $ car $\vectv{G_1}{1}{0}=\vect{0}$; 
+\item puissance de la pesanteur sur 2 $\pext{\text{pes}}{2}{0} = 0 $ car $\vectv{G_2}{2}{0} = \dot{x}\vect{x_0}$ perpendiculaire à $-m_2 g \vect{z_0}$; 
+\item puissance de la pesanteur sur 3 $\pext{\text{pes}}{3}{0} = -m_3 g \vect{z_0}\cdot \vectv{G_3}{3}{0}$ 
+$=-m_3 g \vect{z_0}\cdot \left( \dot{x}\vect{x_0} -r  \dot{\theta}\vect{z_3}\right)$ 
+$=rm_3 g   \dot{\theta} \cos \theta$.
+\end{itemize}
+\item On calcule l'énergie cinétique de (1+2+3) :
+\begin{itemize}
+\item $\ec{1+2+3}{0}=\ec{1}{0}+\ec{2}{0}+\ec{3}{0}$.
+\item $\ec{1}{0} =\dfrac{1}{2}J_1 \dot{\varphi}^2 $ et $\deriv{\ec{1}{0}}{} = J_1 \dot{\varphi}\ddot{\varphi}$.
+
+\item $\ec{2}{0}= \dfrac{1}{2}m_2 \dot{x}^2$ et $\deriv{\ec{2}{0}}{} = m_2 \dot{x}\ddot{x}$.
+
+\item $\ec{3}{0} = \dfrac{1}{2} \torseurl{\dot{\theta} \vect{y_0}}{ \dot{x}\vect{x_0} -r  \dot{\theta}\vect{z_3}}{G_3} \otimes \torseurl{m_3\left(\dot{x}\vect{x_0} -r  \dot{\theta}\vect{z_3}\right)}{-F\dot{\theta} \vect{x_3} + B\dot{\theta} \vect{y_3}  -D\dot{\theta}  \vect{z_3}}{G_3}$ 
+$ = \dfrac{1}{2} m_3\left(\dot{x}\vect{x_0} -r  \dot{\theta}\vect{z_3}\right)^2 + \dfrac{1}{2}B\dot{\theta}^2$
+
+$ = \dfrac{1}{2} m_3\left(\dot{x}^2 +r^2  \dot{\theta}^2 - 2r\dot{\theta}\dot{x}  \sin \theta \right)+ \dfrac{1}{2}B\dot{\theta}^2$
+et
+
+ $\deriv{\ec{3}{0}}{} =m_3\left(\dot{x}\ddot{x} +r^2  \dot{\theta}\ddot{\theta} - r\ddot{\theta}\dot{x}  \sin \theta- r\dot{\theta}\ddot{x}  \sin \theta- r\dot{\theta}^2\dot{x}  \cos \theta \right)+ B\dot{\theta}\ddot{\theta} $
+\end{itemize}
+\item On a de plus, $\dot{x}=-\dot{\varphi}\dfrac{\text{pas}}{2\pi}$ soit $-\dot{x}\dfrac{2\pi}{\text{pas}}=\dot{\varphi}$. 
+
+\item On applique le théorème de l'énergie cinétique : 
+$$
+m_3\left(\dot{x}\ddot{x} +r^2  \dot{\theta}\ddot{\theta} - r\ddot{\theta}\dot{x}  \sin \theta- r\dot{\theta}\ddot{x}  \sin \theta- r\dot{\theta}^2\dot{x}  \cos \theta \right)+ B\dot{\theta}\ddot{\theta}
++ m_2 \dot{x}\ddot{x}
++ J_1 \dot{\varphi}\ddot{\varphi}
+$$
+$$=
+ -f_3 \dot{\theta}^2
+ C_{\text{m3}}\dot{\theta}
+ -\left(K_{\text{tors}}\theta + C_0\right) \dot{\theta}
+  -f_1 \dot{\varphi}^2  
+  - f_2 \dot{x}^2 +C_{\text{m1}} \dot{\varphi} 
+  +rm_3 g   \dot{\theta} \cos \theta
+$$
+
+$$
+m_3\left(\dot{x}\ddot{x} +r^2  \dot{\theta}\ddot{\theta} - r\ddot{\theta}\dot{x}  \sin \theta- r\dot{\theta}\ddot{x}  \sin \theta- r\dot{\theta}^2\dot{x}  \cos \theta \right)+ B\dot{\theta}\ddot{\theta}
++ m_2 \dot{x}\ddot{x}
++ J_1 \dot{x}\ddot{x}\dfrac{4\pi^2}{\text{pas}^2} 
+$$
+$$=
+ -f_3 \dot{\theta}^2
+ C_{\text{m3}}\dot{\theta}
+ -\left(K_{\text{tors}}\theta + C_0\right) \dot{\theta}
+  -f_1 \dot{x}^2\dfrac{4\pi^2}{\text{pas}^2} 
+  - f_2 \dot{x}^2 -C_{\text{m1}} \dot{x}\dfrac{2\pi}{\text{pas}}
+  +rm_3 g   \dot{\theta} \cos \theta
+$$
+\end{itemize}
+
 \end{corrige}
 \else
 \fi
