@@ -1,6 +1,7 @@
 
 \section{Présentation générale du rugosimètre à grande vitesse}
-
+\ifprof
+\else
 La rugosimétrie est la mesure de l’état de surface des pièces mécaniques. L’ordre de grandeur des défauts
 mesurés est le micron. Cette mesure des états de surfaces est aussi répandue et indispensable que la mesure
 des caractéristiques dimensionnelles et géométriques des pièces mécaniques (longueur, orientation,
@@ -36,9 +37,10 @@ pour le prototype du rugosimètre 2D. Ce prototype a été conçu par le laborat
 Normale Supérieure de Cachan. Ce projet est le fruit d’un travail pluridisciplinaire qui a impliqué des
 commerciaux, des scientifiques et des techniciens, et a été financé par l’Agence pour la Valorisation de la
 Recherche d’Ile-de-France.
-
+\fi
 \subsection{Structure générale du rugosimètre à grande vitesse}
-
+\ifprof
+\else
 Le principe d’un capteur opto-mécanique (association d’un capteur optique et d’un capteur mécanique) a
 été retenu, pour ce prototype. Il est décrit succinctement ci-après (\autoref{fig_02}) :
 \begin{itemize}
@@ -71,9 +73,10 @@ Dans sa future version 3D, une seconde U.T. de direction ($\vect{y}$) permettra 
 par une juxtaposition de profils 2D : on « scannera » la surface.
 
 Le coût estimé de ce rugosimètre est de 10 000 euros.
-
+\fi
 \subsection{Principe de mesure du capteur optique}
-
+\ifprof
+\else
 Le principe de mesure du capteur optique est l’écartométrie. Ce procédé, déjà utilisé en robotique, n’a encore jamais servi en rugosimétrie industrielle. Un faisceau laser (« émission ») est focalisé sur la surface à mesurer. La tache focale se déplace devant les images de deux demi-disques de réception. L’intensité lumineuse d’émission se partage ainsi entre deux photorécepteurs.
 
 Cette différence d’intensité permet de calculer la position horizontale de la tache focale d’émission. Cette position horizontale de la tache focale est ensuite convertie en position verticale de la surface par rapport au point focal (qui sera noté par la suite (P)) (\autoref{fig_04}).
@@ -83,9 +86,11 @@ Cette différence d’intensité permet de calculer la position horizontale de l
 \includegraphics[width=.5\linewidth]{fig_04}
 \caption{\label{fig_04} Principe du capteur optique : l’écartométrie}
 \end{figure}
+\fi
 
 \section{Caractérisation globale du rugosimètre}
-
+\ifprof
+\else
 Dans cette partie, nous vous demandons de caractériser de façon globale le système étudié puis de
 déterminer les liens existant entre les différents éléments de ce système. Ceci permettra d’étudier
 ultérieurement les caractéristiques de certains constituants, puis de les modifier si leur comportement ne
@@ -96,7 +101,7 @@ Le marché économique d’un tel instrument de mesure est très concurrentiel. 
 capteurs choisissent plusieurs critères pour évaluer les différentes propositions commerciales qui peuvent
 leur être faites.
 
-
+\fi
 
 \subparagraph{\label{q_01}}\textit{Donner les différents critères de performance et les niveaux associés du rugosimètre.}
 \ifprof
@@ -120,7 +125,8 @@ Vitesse de déplacement & $\SI{20}{mm.s^{-1}}$\\ \hline
 
 \section{Calculs prévisionnels des actionneurs \label{sec:3}}
 
-
+\ifprof
+\else
 Les calculs d’avant projet doivent permettre de dimensionner les différents composants qui seront utilisés
 et de définir certains paramètres de réglages (paramètres d’asservissement…).
 
@@ -130,9 +136,12 @@ caractéristiques géométriques, massiques et inertielles des pièces ainsi que
 
 Dans toute cette partie, nous considérerons que seules l'unité de translation ($\vect{x}$ ) et l’unité de rotation sont
 actionnées.
+\fi
 
 \subsection{Mise en place du problème}
 
+\ifprof
+\else
 \begin{figure}[H]
 \centering
 \includegraphics[width=.8\linewidth]{fig_05}
@@ -174,9 +183,12 @@ $C_r = -\left(K_{\text{tors}}\theta + C_0\right)$. Le terme $C_0$ permet d’éq
 pesanteur sur (3) lorsque ($\theta = 0\degres$).
 \end{itemize}
 \end{itemize}
+\fi
 \subsection{Positionnement du centre d'inertie}
 
 
+\ifprof
+\else
 Comme le montre la \autoref{fig_06}, l’ensemble (3) est constitué de plusieurs solides en liaison encastrement :
 \begin{itemize}
 \item le bras (4) lié au moteur couple;
@@ -198,6 +210,7 @@ Les caractéristiques géométriques de l’ensemble (3) étudié sont données 
 \item contrepoids (6) : masse : $m_6$ (à déterminer à la question \ref{q_03}) ; centre d’inertie :
 $\vect{AG_6}= a_6 \vect{x_3}+c_6 \vect{z_3}$ avec $a_6 = \SI{10}{mm}$ ; $c_6 = \SI{25}{mm}$.
 \end{itemize}
+\fi
 
 \subparagraph{\label{q_03}}\textit{Déterminez l’expression littérale de la masse du contrepoids (6) qui assure que le terme (c) de l’expression de la position du centre d’inertie ($\vect{AG_3}=r\vect{x_3} - b\vect{y_3} + c\vect{z_3}$) est nul. Réalisez l’application numérique. Montrez que dans ce cas, $r=\SI{27,5}{mm}$ avec $\vect{AG_3}=r\vect{x_3}$.}
 \ifprof
@@ -236,10 +249,13 @@ Pour finir, il faudrait vérifier que $b=\SI{0}{mm}$.
 \fi
 \subsection{Équations dynamiques}
 
+\ifprof
+\else
 Le système étudié possède deux mobilités, il est donc nécessaire de déterminer deux équations pour
 pouvoir atteindre les grandeurs recherchées, le couple moteur dans l’actionneur de l’unité de rotation
 ($C_{\text{m3}}$) et le couple moteur dans l’unité de translation ($C_{\text{m1}}$) en fonction des caractéristiques
 dimensionnelles et matérielles des pièces, des lois de mouvement et des dissipations dans les liaisons.
+\fi
 
 %Pour obtenir la première équation, vous êtes obligé d’appliquer la méthode demandée.
 
@@ -304,10 +320,13 @@ $B\ddot{\theta} - m_3 r\sin\theta \ddot{x} + f_3 \dot{\theta} + K_{\text{tors}}\
 %\subparagraph{\label{q_04_e}}\textit{Ecrire le théorème du moment dynamique en $A$ en projection sur $\vect{y_0}$. Ecrire votre résultat sous le forme $d\ddot{\theta}+e\ddot{x}+f\dot{\theta}+g\theta = h $ les termes $d$, $e$, $f$, $g$ et $h$ peuvent dependre de $\theta$.}
  
 
+\ifprof
+\else
 Pour déterminer la relation permettant de calculer le couple moteur $C_{\text{m1}}$, vous êtes libre de la méthode,
 mais vous procéderez obligatoirement en deux étapes (questions \ref{q_05} et \ref{q_06}). Cette relation peut nécessiter
 l’écriture de plusieurs équations, mais elle ne doit pas, au final, contenir d’inconnues mécaniques
 transmissibles dans les liaisons ($L_{\text{0/1}}$ , $L_{\text{1/2}}$ , $L_{\text{2/3}}$ , $L_{\text{0/2}}$).
+\fi
 
 \subparagraph{\label{q_05}}\textit{Sans faire de calcul, donner, très clairement et précisément, la démarche qui vous permet d’obtenir
 le couple moteur $C_{\text{m1}}$. Préciser quel(s) est(sont) le(s) système(s) étudié(s), quel(s) est(sont) le(s)
@@ -424,7 +443,9 @@ $$
     - r\ddot{\theta}\dot{x}  \sin \theta
     - r\dot{\theta}^2\dot{x}  \cos \theta \right)
 + m_2 \dot{x}\ddot{x}
-+ J_1 \dot{x}\ddot{x}\dfrac{4\pi^2}{\text{pas}^2} 
++ J_1 \dot{x}\ddot{x}\dfrac{4\pi^2}{\text{pas}^2}
+$$
+$$
        + \left(B\ddot{\theta} \dot{\theta}
        - m_3 r \sin \theta \ddot{x}   \dot{\theta}
         +f_3 \dot{\theta}^2
@@ -432,8 +453,7 @@ $$
        - C_{\text{m3}}\dot{\theta}
        -rm_3 g   \dot{\theta} \cos \theta
        +rm_3 g \dot{\theta}\right)
-$$
-$$=
+=
   -f_1 \dot{x}^2\dfrac{4\pi^2}{\text{pas}^2} 
   - f_2 \dot{x}^2 -C_{\text{m1}} \dot{x}\dfrac{2\pi}{\text{pas}}
 $$
@@ -483,6 +503,10 @@ $$
 
 \subsection{Détermination des couples moteurs}
 
+
+\ifprof
+\else
+
 Les deux équations que vous venez d’obtenir aux questions \ref{q_04} et \ref{q_06} sont des équations différentielles
 couplées et non linéaires.
 
@@ -495,6 +519,8 @@ couplées et non linéaires.
 %- \left( J_1 \dfrac{2\pi }{p_a} + \left(m_2+m_3\right)\dfrac{p_a}{2\pi } \right)\ddot{x}
 %+ m_3 r \dfrac{p_a}{2\pi }\left(\ddot{\theta}\sin\theta + \dot{\theta}^2\cos\theta\right)
 %$$
+
+
 
  Pour résoudre algébriquement ce système d’équations, nous allons
 étudier le mécanisme dans des conditions
@@ -515,6 +541,8 @@ qu’en conséquence, il est possible de réaliser une linéarisation de ces éq
 petit). Nous supposons également que les termes de la forme $a\ddot{\theta}$  et $b\dot{\theta}^2$ sont négligeables devant le terme en $\ddot{x}$.
 La loi de commande de l’unité de translation est représentée à la \autoref{fig_07}. La vitesse nominale (constante)
 recherchée est notée ($V_0$). L’accélération maximale est notée ($A_{\text{cMax}}$).
+
+\fi
 
 \subparagraph{\label{q_07}}\textit{En utilisant les simplifications mentionnées, déterminez, dans la phase d’accélération, puis dans la phase de déplacement à vitesse constante, les expressions littérales de $C_{\text{m1}}$ et $C_{\text{m3}}$.
 Calculez la valeur du couple $C_{\text{m1}}$ maximal ($V_0 = \SI{0,2}{m.s^{-1}}$, $A_{\text{cMax}}=\SI{0,2}{m.s^{-2}}$).}
@@ -543,12 +571,15 @@ On a donc
 \else
 \fi
 
+\ifprof
+\else
 Le choix des moteurs (M1 et M3) se fera à partir d’un cahier des charges, dont le couple maximal
 transmissible par les moteurs est une des caractéristiques. Il existe bien d’autres spécifications comme, la
 vitesse et l’accélération maximale, la surintensité supportée, l’encombrement axial et longitudinal…
-
+\fi
 
 \section{Commande de l'unité de rotation (UR)}
+
 Ce rugosimètre ne peut fonctionner, dans des conditions idéales, que si le point focal (P) de la tête optique
 se situe en permanence au plus près du profil moyen de la pièce. Ceci nécessite, entre autres, un réglage
 affiné des paramètres du correcteur de la chaîne d’asservissement associée à l’Unité de Rotation.
