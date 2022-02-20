@@ -579,7 +579,8 @@ vitesse et l’accélération maximale, la surintensité supportée, l’encombr
 \fi
 
 \section{Commande de l'unité de rotation (UR)}
-
+\ifprof
+\else
 Ce rugosimètre ne peut fonctionner, dans des conditions idéales, que si le point focal (P) de la tête optique
 se situe en permanence au plus près du profil moyen de la pièce. Ceci nécessite, entre autres, un réglage
 affiné des paramètres du correcteur de la chaîne d’asservissement associée à l’Unité de Rotation.
@@ -637,16 +638,20 @@ Les fonctions de transfert associées aux différents éléments sont données c
 \item unité de rotation : $H_{\text{rot}}(p)$.
 \end{itemize}
 
-
+\fi
 
 
 \subsection{Caractérisation globale de l'unité de mesure}
 
+\ifprof
+\else
 Afin d’optimiser les performances du capteur de rugosité, l’exactitude de la mesure, la rapidité de la
 mesure, la stabilité de l’ensemble…, il est nécessaire de déterminer la relation entre la fonction de transfert
 globale et les fonctions de transfert élémentaires. Pour optimiser cette réponse globale, il sera possible de
 modifier localement certains composants, puis de réinjecter dans le calcul complet les nouvelles fonctions
 de transfert de ces composants.
+\fi
+
 \subparagraph{\label{q_08}}\textit{ En supposant que le système se déplace à vitesse constante (pas de perturbation), déterminez la fonction de transfert globale de l’unité de mesure : $F_{\text{G mes}}(p)=\dfrac{Z_{\text{mes}}(p)}{Z_{\text{pro}}(p)}$.}
 \ifprof
 \begin{corrige}
@@ -666,11 +671,14 @@ Au final,  $F_{\text{G mes}}(p)=\dfrac{H_{\text{opt}}(p)}{1+G(p) H_{\text{opt}}(
 \fi
 
 \subsection{Calcul de la moyenne mobile}
-
+\ifprof
+\else
 Pour déterminer la consigne de position $z_c$ du point focal (P) de la tête optique, il est nécessaire de
 calculer la position moyenne du profil. Plusieurs techniques peuvent être utilisées, l’une des plus simples
 est de définir cette consigne comme étant la moyenne, sur un temps donné, des positions antérieures. Ceci
 s’écrit mathématiquement : $z_c(t)=\dfrac{\int\limits_{t-\tau}^{t}z_{\text{mes}}(v)\dd v}{\tau}$.
+\fi
+
 
 
 
@@ -690,6 +698,8 @@ On a donc $H_{\text{moy}}(p) = \dfrac{Z_c(p)}{Z_{\text{mes}}(p)}=\dfrac{1-\text{
 
 \subsection{Etude détaillée de l'unité de rotation}
 
+\ifprof
+\else
 
 La seule fonction qu’il reste à caractériser, puis à optimiser, est celle de l’Unité de Rotation (Moteur
 couple + Tête optique). Le schéma bloc de ce système est donné à la \autoref{fig_10}.
@@ -725,8 +735,13 @@ Les fonctions de transfert associées aux différents éléments sont données c
 \item correcteur : $H_{\text{Cor}}(p)$.
 \end{itemize}
 \end{multicols}
+\fi
 
 \subsubsection{Identification des paramètres de la tête optique}
+
+\ifprof
+\else
+
 Pour identifier les paramètres du modèle associé à la tête optique, on soumet le système, décrit à la \autoref{fig_11}, à un échelon d’intensité d’amplitude (\SI{2,5}{mA}). La
 réponse indicielle de ce système est donnée à la \autoref{fig_12}. La réponse a été adimensionnée (position / position
 finale) pour faciliter les calculs ultérieurs. La valeur asymptotique finale est : \SI{158e-6}{rad}.
@@ -744,6 +759,8 @@ finale) pour faciliter les calculs ultérieurs. La valeur asymptotique finale es
 \includegraphics[width=.6\linewidth]{fig_12}
 \caption{\label{fig_12} Réponse indicielle adimensionnée (sortie/valeur finale de la sortie)}
 \end{figure}
+\fi
+
 
 \subparagraph{\label{q_10}}\textit{En utilisant la réponse indicielle de la \autoref{fig_12}, justifiez et critiquez le modèle qui a été retenu pour décrire, d’un point de vue mécanique, la fonction de transfert de la tête optique et du système de rappel :
 $H_{\text{tête}}(p)=\dfrac{K_t}{1+\dfrac{2\xi p}{\omega_0}+\dfrac{p^2}{\omega_0^2}}$. Vous analyserez très finement les différents dépassements. Donnez, après identification, les valeurs numériques et les unités des paramètres ($K_t$, $\xi$, $\omega_0$).
@@ -766,6 +783,9 @@ $  K_t = \dfrac{ \SI{158e-6}{rad}}{\SI{2,5e-3}{A}\SI{0,05}{NmA^{-1}}}= \dfrac{ \
 \else
 \fi
 
+
+\ifprof
+\else
 \begin{minipage}[c]{.47\linewidth}
 \begin{figure}[H]
 \centering
@@ -794,6 +814,8 @@ problème : $K_t =\SI{1,2}{U.S.I.}$, $\xi = 0,2$ , $\omega_0 = \SI{300}{U.S.I.}$
 Ces paramètres permettent de remonter aux caractéristiques matérielles, inertielles, des pièces ainsi qu’aux
 caractéristiques dissipatives des liaisons non parfaites. Dans cet essai, il n’y a pas de translation de
 l’ensemble du rugosimètre.
+\fi
+
 
 
 \subparagraph{\label{q_11}}\textit{Donnez les relations liant les paramètres de la fonction de transfert 
@@ -817,6 +839,8 @@ $\dfrac{1}{\omega_0^2} = \dfrac{B}{K_{\text{tor}}}$ soit $B=\dfrac{K_{\text{tor}
 
 \subsubsection{Choix du correcteur}
 
+\ifprof
+\else
 Afin de suivre, de la façon la plus fine possible, le profil moyen de la pièce, il est nécessaire de choisir
 avec soin le correcteur afin d’assurer la précision, la rapidité et la stabilité de la position du point focal (P)
 donc la position du bras~(3).
@@ -834,6 +858,7 @@ Pour cette exigence du cahier des charges, les concepteurs envisagent trois choi
 proportionnel, un correcteur proportionnel-intégral, et un correcteur dont la fonction de transfert est
 $H_{\text{cor}}(p) = \dfrac{K_p}{p^2}$.
 
+\fi
 
 \subparagraph{\label{q_12}}\textit{Donnez, parmi ces trois choix, le ou les correcteurs qui respecte(nt) les critères de précision.
 Quelles sont les conséquences sur la stabilité de ces correcteurs ?
@@ -841,16 +866,22 @@ Quel est votre choix final (justifiez votre réponse).
 Vos réponses devront être clairement argumentées (résultats de cours ou démonstrations).}
 \ifprof
 \begin{corrige} ~\\
+
+La FTBO du système est donné par $\text{FTBO}(p)=H_{\text{cor}}(p)K_{\text{mot}}H_{\text{tete}}(p)$ avec 
+$H_{\text{tete}}(p)$ une fonction d'ordre 2 et de classe 0. 
+
+\begin{center}
 \begin{tabular}{cccc}
 \hline
 & Correcteur P & Correcteur PI & Correcteur << II >> \\\hline
 & $C(p)=K_P$    & $C(p)=K_P + \dfrac{K_I}{p}$ & $C(p)= \dfrac{K_p}{p^2}$  \\  \hline
-Classe de la BO & & &  \\\hline
-Stablité  & & & \\\hline
-Ecart statique & & & \\\hline
-Ecart de trainage & & & \\\hline
+Classe de la BO & 0 & 1 & 2 \\\hline
+Stabilité  & Oui & ??? & Non \\\hline
+Ecart statique & $\dfrac{1}{1+K_PK_tK_{\text{mot}}}$ & 0 & (0)\\\hline
+Ecart de trainage & $\infty$ & $\dfrac{1}{K_PK_tK_{\text{mot}}/K_I}$ & (0)\\\hline
 \end{tabular}
-
+\end{center}
+Le choix se tourne vers le correcteur proportionnel intégral en réglant les paramètres permettant de garantir la stabilité et l'erreur de trainage souhaitée. 
 \end{corrige}
 \else
 \fi
@@ -869,12 +900,25 @@ de gain minimale est de \SI{6}{dB}.
 \subparagraph{\label{q_13}}\textit{Déterminez (en justifiant votre réponse, votre démarche) le gain ($K_p$) optimal, vis-à-vis des marges de stabilité, du correcteur. Vous pouvez utiliser et compléter, si vous le jugez nécessaire, les diagrammes du document réponse (graphe semi-logarithmique).}
 \ifprof
 \begin{corrige}
+On a $\text{FTBO}(p)=\dfrac{0,12}{1+\dfrac{2\times 0,2}{300}p+\dfrac{p^2}{300^2}} \dfrac{K_p}{p}$.
+
+\begin{center}
+\includegraphics[width=.8\linewidth]{cor_02}
+\end{center}
+
+Le système est stable. 
+
+Pour avoir une marge de phase de 45\degres, il faut remonter le gain de \SI{60}{dB} soit $K_p = 1000$.
+
+De mêle pour avoir une marge de gain de \SI{6}{dB}, il faut remonter le gain de \SI{54}{dB}.
 \end{corrige}
 \else
 \fi
 
+\ifprof
+\else
 
-A toute fin utile, le tableau ci-dessous donne les phases (en \degres) et les modules (en dB) de la
+À toute fin utile, le tableau ci-dessous donne les phases (en \degres) et les modules (en dB) de la
 transmittance  $H(j\omega )=\dfrac{1}{1+\dfrac{0,4 }{300}j\omega-\dfrac{1}{9\times 10^4}\omega^2}$
 différentes valeurs de pulsations.
 
@@ -907,7 +951,7 @@ pencher sur la rapidité de ce système.
 Pour cela, nous avons simulé, avec un
 logiciel dédié, la réponse indicielle du
 système de commande de l’Unité de
-Rotation (fig. 10) pour trois valeurs de
+Rotation (\autoref{fig_10}) pour trois valeurs de
 ($K_p$ ) : celle qui correspond au réglage des marges de stabilité
 (Kp Marge stabilité ) , 90 \% de cette valeur
 de KpMarge stabilité et 110 \% de
@@ -927,18 +971,30 @@ KpMarge stabilité .
 \caption{\label{fig_16b} Zoom de la réponse indicielle adimensionnée de l’Unité de Rotation}
 \end{figure}
 \end{minipage}
+\fi
 
 \subparagraph{\label{q_14}}\textit{Déterminer parmi ces trois courbes, celle qui présente le meilleur temps de réponse à \SI{1}{\%}. Donnez ce temps de réponse à \SI{1}{\%}. Réalisez les tracés nécessaires sur le document réponse.
 Expliciter votre choix final du coefficient $K_p$ et conclure sur la commande de l’unité de rotation.}
 \ifprof
-\begin{corrige}
+\begin{corrige} ~\\
+\begin{center}
+\begin{tabular}{lcc}
+\hline
+$90\% K_p$ & \SI{0,095}{s} & \\ \hline
+$K_p$ marge stab. &  \SI{0,103}{s}& \\ \hline
+$110\% K_p$ & \SI{0,115}{s} & \\ \hline
+\end{tabular}
+\end{center}
+
+Choix, rien ne semble empêcher de prendre le gain correspondant au respect des marges....
 \end{corrige}
 \else
 \fi
 
 
 \section{Amélioration de l’unité de positionnement en $Z$}
-
+\ifprof
+\else
 Dans ce prototype, le positionnement vertical (en $z$) du point focal est obtenu par l’unité de rotation. Ceci a
 plusieurs conséquences négatives sur le fonctionnement global du capteur :
 \begin{itemize}
@@ -949,10 +1005,12 @@ la surface ;
 \item modification de la position de la tête optique lors des phases d’accélération et de freinage de l’unité
 de translation longitudinale (étudiée à la partie \ref{sec:3}).
 \end{itemize}
+\fi
 
 
 \subsection{Étude de la position réelle longitudinale du point focal}
-
+\ifprof
+\else
 Il vous est demandé, dans un premier temps, de quantifier l’écart de position
 longitudinale obtenu lorsque l’on utilise la totalité du débattement vertical.
 La \autoref{fig_17} illustre le problème d’erreur de positionnement longitudinal ($\Delta x$) créée
@@ -970,6 +1028,8 @@ $\Delta x = x_P(\theta)-x_P(0)$; $\Delta z = z_P(\theta) - z_P(0)$.
 Le cahier des charges de ce système impose une variation verticale ($z$) du point
 focal de $\pm \SI{5}{mm}$ par rapport à la position de référence ( $\theta = 0\degres$).
 
+\fi
+
 \subparagraph{\label{q_15}}\textit{
 Après avoir donné les expressions littérales des variations de position longitudinale ($\Delta x = f(\theta, a, b)$)
 et verticale ($\Delta z = g(\theta, a, b)$) du point focal en fonction de la rotation de la tête optique, linéarisez ces
@@ -979,23 +1039,42 @@ Conclure quant à la réalité du problème soulevé précédemment : « modific
 longitudinale du point de mesure ».}
 \ifprof
 \begin{corrige}
+On a $\vect{AP} = a\vect{x_3}-b\vect{z_3}$. On projette cette relation dans la base $\rep{0}$ : 
+ $\vect{AP} = a\left(\cos\theta \vect{x_0} - \sin\theta \vect{z_0}  \right) -b\left(\cos\theta \vect{z_0} + \sin\theta \vect{x_0}  \right)$.
+ 
+ Par suite, 
+ $\vect{AP_0} = a\vect{x_0}  -b\vect{z_0} $ et 
+  $\vect{AP_{\theta}} = a\left(\cos\theta \vect{x_0} - \sin\theta \vect{z_0}  \right) -b\left(\cos\theta \vect{z_0} + \sin\theta \vect{x_0}  \right)$.
+
+On a donc 
+$\Delta x =  \left| a - \left(a\cos\theta   -b \sin\theta \right)\right|$ $=  \left| a - a\cos\theta +b \sin\theta \right| \simeq b\theta$ et
+
+$\Delta z =  \left| -b - \left(-a\sin\theta -b\cos\theta \right)\right|$ $=  \left| -b +a\sin\theta +b\cos\theta \right|\simeq a\theta$.
+
+Par suite, $\dfrac{\Delta x}{\Delta z} = \dfrac{b}{a}$. Ainsi, $\Delta_x = \dfrac{b}{a} \Delta z = \dfrac{15\times 5}{50}=\SI{1,5}{mm}$.
+
+Conclusion ???
 \end{corrige}
 \else
 \fi
 
-
+\ifprof
+\else
 En plus de ce problème de position longitudinale du point focal, il y a aussi une modification de l’angle
 d’incidence et de réflexion des faisceaux optiques par rapport à la surface de la pièce qui correspond à une
 variation de ($2\theta$).
+\fi
 
 \subsection{Modification de l'unité de positionnement vertical du point focal}
 
+\ifprof
+\else
 Afin de découpler les mouvements verticaux et longitudinaux du point focal lors des phases d’accélération
 et de freinage de l’axe longitudinal (x), et d’éviter la rotation de la tête optique, les concepteurs de ce
 capteur ont imaginé une autre chaîne cinématique pour le positionnement vertical du point focal.
 
 Les principales caractéristiques du moteur couple donnant satisfaction, les concepteurs désirent conserver ce
-système de motorisation. La figure 18 représente le schéma cinématique plan du mécanisme envisagé.
+système de motorisation. La \autoref{fig_18} représente le schéma cinématique plan du mécanisme envisagé.
 
 \begin{figure}[H]
 \centering
@@ -1025,11 +1104,15 @@ $\theta_2 = \angl{z_0}{z_2}$,
 $\theta_3 = \angl{x_0}{x_3}$,
 $\theta_4 = \angl{z_0}{z_4}$,
 $\theta_5 = \angl{x_0}{x_5}$.
+\fi
 
 \subsubsection{Solution technique du système quatre barres}
+\ifprof
+\else
 Dans un premier temps, nous étudierons le modèle quatre barres (0, 3, 4, 5) en cherchant à vérifier, que
 cette nouvelle cinématique permet d’empêcher la rotation de la tête optique (en liaison encastrement avec
 la pièce (4), puis à définir des solutions réelles pour les différentes liaisons.
+\fi
 
 \subparagraph{\label{q_16}}\textit{Donnez la(les) relation(s) qu’il faut respecter entre les paramètres ($l_3$, $l_4$, $l_5$, $f$ ) pour que la tête
 optique (fixée à (4)) n’ait aucun mouvement de rotation par rapport à (0). Vous justifierez
@@ -1037,6 +1120,9 @@ rapidement votre proposition.
 Quelle est la nature du mouvement entre (4) et (0) ?}
 \ifprof
 \begin{corrige}
+Pour que 4 n'ait aucun mouvement de rotation par rapport (0) il faut par exemple que (BE) et (CD) soient systèmatiquement parallèles. Pour cela, le quadrilatère (BCDE) doit être un parallélogramme et donc $l_4=f$ et $l_3=l_4$.
+
+Le mouvement de (4) par rapport (0) est une translation ciruclaire. 
 \end{corrige}
 \else
 \fi
@@ -1046,45 +1132,72 @@ Commentez la valeur du degré d’hyperstaticité obtenu (avantages / inconvéni
 mécanisme étudié dont la fonction est d’assurer un positionnement vertical.}
 \ifprof
 \begin{corrige}
+Pour le système 4 barres  (0, 3, 4, 5) il y a une mobilité.
+
+Il y a 4 liaisons pivot donc 4 inconnues cinématiques.
+
+Ces 4 barres forment un cycle. Il y a donc 6 équations cinématiques. 
+
+Au final, $h = m - I_c + E_c = 1-4+6 =3$.
+
+Le modèle est donc hyperstatique, permettant une plus grande rigidité du mécanisme. Cela est préférable pour assurer la robustesse du mécanisme et éviter la rotation de la tête.
 \end{corrige}
 \else
 \fi
-
+\ifprof
+\else
 Le système de positionnement vertical du point focal doit, absolument, se faire sans jeu dans les liaisons.
 Tout jeu dans les liaisons induirait automatiquement une erreur dans la position verticale réelle du point
 focal.
+\fi
 
 \subparagraph{\label{q_18}}\textit{Proposez une solution technique pour réaliser des liaisons pivot sans jeu.
 Dessinez, à main levée, un schéma technique spatial représentant le système quatre barres avec ces
 différentes solutions techniques pour les liaisons.}
 \ifprof
 \begin{corrige}
+Chacune des liaisons pivot peut être assuré, par exemple par la réalisation d'une rotule et d'une linéaire annulaire...
+
 \end{corrige}
 \else
 \fi
 
 \subsubsection{Transmission du mouvement entre le moteur couple et la tête optique}
+\ifprof
+\else
 La seconde partie du mécanisme est un transmetteur, qui permet le déplacement de la pièce (4) à partir du
 mouvement de rotation du moteur couple.
 
 Pour ce mécanisme, le concepteur a choisi une disposition géométrique particulière : en position de
 référence, les angles $\theta_1$, $\theta_2$, $\theta_3$ et $\theta_4$ sont tous nuls.
-
+\fi
 
 \subparagraph{\label{q_19}}\textit{Quelles sont les raisons qui ont conduit le concepteur de ce mécanisme à choisir cette disposition ?}
 \ifprof
 \begin{corrige}
+...
 \end{corrige}
 \else
 \fi
 
+\ifprof
+\else
 On désire que le mécanisme (de transmission de mouvement) (0, 1, 2, 3) soit isostatique. On ne se
 préoccupe pas, dans cette partie, de réaliser (bien que ce soit également nécessaire) un système sans jeu.
+\fi
 
 \subparagraph{\label{q_20}}\textit{Proposez, en justifiant votre réponse, une solution (liaison 1 et liaison 2) permettant d’obtenir un
 modèle de mécanisme (0, 1, 2, 3) isostatique.}
 \ifprof
 \begin{corrige}
+Pour rendre le modèle isostatique, on peut par exemple utiliser des rotules à la place des liaisons 1 et 2. 
+On aurait donc :
+\begin{itemize}
+\item $m=2$;
+\item $I_c = 8$;
+\item $E_c = 6$;
+\item $h=2-8+6=0$ : modèle isostatique. 
+\end{itemize}
 \end{corrige}
 \else
 \fi
