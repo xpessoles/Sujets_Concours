@@ -746,12 +746,22 @@ finale) pour faciliter les calculs ultérieurs. La valeur asymptotique finale es
 \end{figure}
 
 \subparagraph{\label{q_10}}\textit{En utilisant la réponse indicielle de la \autoref{fig_12}, justifiez et critiquez le modèle qui a été retenu pour décrire, d’un point de vue mécanique, la fonction de transfert de la tête optique et du système de rappel :
-$H_{\text{tête}}(p)=\dfrac{K_t}{1+\dfrac{2\xi p}{\omega_0}+\dfrac{p^2}{\omega_0^2}}$. Vous analyserez très finement les différents dépassements. Donnez, après identification, les valeurs numériques et les unités des paramètres ($K_t$, $\xi$, $\omega_0$).}
-%Expliquez clairement votre démarche d’identification. Vous pouvez utiliser les abaques des figures
-%\autoref{fig_13} et \autoref{fig_14}. Toutes les grandeurs mesurées sur les figures \autoref{fig_12}, \autoref{fig_13} et \autoref{fig_14} devront être mentionnées sur les
-%figures du document réponse.}
+$H_{\text{tête}}(p)=\dfrac{K_t}{1+\dfrac{2\xi p}{\omega_0}+\dfrac{p^2}{\omega_0^2}}$. Vous analyserez très finement les différents dépassements. Donnez, après identification, les valeurs numériques et les unités des paramètres ($K_t$, $\xi$, $\omega_0$).
+Expliquez clairement votre démarche d’identification. Vous pouvez utiliser les abaques des figures
+\autoref{fig_13} et \autoref{fig_14}. Toutes les grandeurs mesurées sur les figures \autoref{fig_12}, \autoref{fig_13} et \autoref{fig_14} devront être mentionnées sur les
+figures du document réponse.}
 \ifprof
 \begin{corrige}
+La tangente nulle à l'origine et les multiples dépassements peuvent indiquer que le comportement du système est celui d'un ordre 2 avec $\xi<0,7$.
+
+Ici le premier dépassement est de 30\,\% et le second dépassement est de 40\,\%. cet accroissement du dépassement indique qu'un ordre 2 ne sera qu'un modèle approché. 
+
+En utilisant les abaques, un premier dépassement de 30\,\% permet de choisir un coefficient d'amortissement $\xi =0,35$. 
+
+La pseudo période est de l'ordre de \SI{0,023}{s} soit une pulsation approximativement de \SI{290}{rad.s^{-1}}.
+
+Enfin, le gain est donné  par $ \dfrac{ \SI{158e-6}{rad}}{\SI{2,5e-3}{A}}=K_{\text{mot}} K_t $ soit 
+$  K_t = \dfrac{ \SI{158e-6}{rad}}{\SI{2,5e-3}{A}\SI{0,05}{NmA^{-1}}}= \dfrac{ \SI{158e-6}{rad}}{\num{2,5e-3}\times \SI{0,05}{Nm}} =\SI{1,2}{rad.Nm^{-1}}$.
 \end{corrige}
 \else
 \fi
@@ -787,12 +797,20 @@ l’ensemble du rugosimètre.
 
 
 \subparagraph{\label{q_11}}\textit{Donnez les relations liant les paramètres de la fonction de transfert 
-$H_{\text{tête}}(p)$ et ceux utilisés à la question~\ref{q_04_e} (calcul de ($C_{\text{m3}}$), qui est maintenant noté
+$H_{\text{tête}}(p)$ et ceux utilisés à la question~\ref{q_04} (calcul de ($C_{\text{m3}}$), qui est maintenant noté
 ($C_{\text{m}}$), lorsque l’accélération est nulle et lorsque l’on reste au voisinage de ($\theta=0\degres$)).
 Donnez les valeurs numériques des coefficients $K_{\text{tors}}$ (raideur du ressort torsion), $f_3$ (coefficient de
 frottement visqueux) et $B$ (moment d’inertie). }
 \ifprof
 \begin{corrige}
+En reprenant l'équation précédente, on a $ C_{\text{m3}} = B\ddot{\theta}  + K_{\text{tor}}\theta+ f_3 \dot{\theta}   $.
+En passant dans le domaine de Laplace, on a $H_{\text{tête}}(p) = \dfrac{\theta(p)}{C_{\text{m3}}(p)} = \dfrac{1}{Bp^2+f_3p+K_{\text{tor}}}$ $= \dfrac{\dfrac{1}{K_{\text{tor}}}}{\dfrac{B}{K_{\text{tor}}}p^2+\dfrac{f_3}{K_{\text{tor}}}p+1}$.
+
+On a donc $\dfrac{1}{K_{\text{tor}}} = K_t$ soit $K_{\text{tor}}=\dfrac{1}{K_t} = \SI{0,83}{Nm.rad^{-1}}$. 
+
+$\dfrac{2\xi}{\omega_0} = \dfrac{f_3}{K_{\text{tor}}}$ soit $f_3 = \dfrac{2\xi K_{\text{tor}} }{\omega_0} = \SI{1e-3}{Nms.rad^{-1}}$
+
+$\dfrac{1}{\omega_0^2} = \dfrac{B}{K_{\text{tor}}}$ soit $B=\dfrac{K_{\text{tor}}}{\omega_0^2 } = \SI{9,3e-6}{kg.m^2}$
 \end{corrige}
 \else
 \fi
@@ -801,7 +819,7 @@ frottement visqueux) et $B$ (moment d’inertie). }
 
 Afin de suivre, de la façon la plus fine possible, le profil moyen de la pièce, il est nécessaire de choisir
 avec soin le correcteur afin d’assurer la précision, la rapidité et la stabilité de la position du point focal (P)
-donc la position du bras (3).
+donc la position du bras~(3).
 
 En ce qui concerne la précision de position angulaire du bras, les concepteurs de ce rugosimètre
 souhaitent :
@@ -822,7 +840,17 @@ Quelles sont les conséquences sur la stabilité de ces correcteurs ?
 Quel est votre choix final (justifiez votre réponse).
 Vos réponses devront être clairement argumentées (résultats de cours ou démonstrations).}
 \ifprof
-\begin{corrige}
+\begin{corrige} ~\\
+\begin{tabular}{cccc}
+\hline
+& Correcteur P & Correcteur PI & Correcteur << II >> \\\hline
+& $C(p)=K_P$    & $C(p)=K_P + \dfrac{K_I}{p}$ & $C(p)= \dfrac{K_p}{p^2}$  \\  \hline
+Classe de la BO & & &  \\\hline
+Stablité  & & & \\\hline
+Ecart statique & & & \\\hline
+Ecart de trainage & & & \\\hline
+\end{tabular}
+
 \end{corrige}
 \else
 \fi
