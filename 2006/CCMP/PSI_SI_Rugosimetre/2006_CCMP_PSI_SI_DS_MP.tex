@@ -260,7 +260,62 @@ dimensionnelles et matérielles des pièces, des lois de mouvement et des dissip
 %Pour obtenir la première équation, vous êtes obligé d’appliquer la méthode demandée.
 
 %\subparagraph{\label{q_04}}\textit{Isoler l’ensemble (3) et réaliser le BAME puis écrire le théorème du moment dynamique en (A) en projection sur $\vect{y_0}$. Écrire votre résultat sous le forme $d\ddot{\theta}+e\ddot{x}+f\dot{\theta}+g\theta = h $ (les termes $d$, $e$, $f$, $g$ et $h$ peuvent dépendre de $\theta$).}
+
+
+\subparagraph{\label{q_04a}}\textit{Réaliser le graphe de strcuture du mécanisme. Préciser l'ensemble des actions mécaniques en $A$.}
 \ifprof
+\begin{corrige}~\\
+\begin{center}
+\includegraphics[width=.8\linewidth]{cor_03}
+\end{center}
+
+\end{corrige}
+\else
+\fi
+\subparagraph{\label{q_04_b}}\textit{Calculer $\vectv{A}{3}{0}$ et $\vectv{G}{3}{0}$.}
+\ifprof
+\begin{corrige}
+\begin{itemize}
+\item  $\vect{V(A/0)}  = \dot{x}\vect{x_0}$.
+
+\item  $\vectv{G_3}{3}{0}  = \vectv{A}{3}{0}  + \vect{G_3A} \wedge \vecto{3}{0}$  $=\dot{x}\vect{x_0} -r \vect{x_3} \wedge \dot{\theta}\vect{y_3}$ $=\dot{x}\vect{x_0} -r  \dot{\theta}\vect{z_3}$.
+\end{itemize}
+\end{corrige}
+\else
+\fi
+\subparagraph{\label{q_04_c}}\textit{Calculer le moment cinétique en $A$ de 3 par rapport à 0. On rappelle que pour un point quelconque, 
+$\vectmc{A}{3}{0}=\inertie{A}{3}\vecto{3}{0}+m_3\vect{AG_3}\wedge \vectv{A}{3}{0}$.}
+\ifprof
+\begin{corrige}
+De plus $\vectmc{A}{3}{0} = \inertie{A}{3} \vecto{3}{0}  + m_3 \vect{AG_3}\wedge \vectv{A}{3}{0}$ 
+$= \matinertie{A}{B}{C}{-D}{-E}{-F}{A,\mathcal{B}_3} \begin{pmatrix} 0  \\ \dot{\theta} \\ 0 \end{pmatrix}_{\rep{3}}
++ m_3 r\vect{x_3}\wedge \dot{x}\vect{x_0} $ 
+
+$ =\begin{pmatrix} -F\dot{\theta}  \\ B\dot{\theta} \\ -D\dot{\theta} \end{pmatrix}_{\rep{3}} -  m_3 r\sin\theta \dot{x}\vect{y_0} $. 
+
+\end{corrige}
+\else
+\fi
+\subparagraph{\label{q_04_d}}\textit{Calculer $\vectmd{A}{3}{0}\cdot\vect{y_0}$.}
+\ifprof
+\begin{corrige}
+\begin{itemize}
+\item Calcul de $\vectmd{A}{3}{0}\cdot \vect{y_3} = \deriv{\vectmc{A}{3}{0}}{\rep{0}}\cdot \vect{y_3} + m_3 \left(\vect{V(A/0)}\wedge\vectv{G_3}{3}{0}\right)\cdot \vect{y_3}$.
+\item$\deriv{\vectmc{A}{3}{0}\cdot \vect{y_3}}{} = B\ddot{\theta} - m_3 r\dot{x}\dot{\theta}\cos\theta - m_3 r\sin\theta \ddot{x}$.
+\item $m_3 \left(\vect{V(A/0)}\wedge\vectv{G_3}{3}{0}\right)\cdot \vect{y_3}$ 
+$ = m_3 \left(\dot{x}\vect{x_0}\wedge\left( \dot{x}\vect{x_0} -r  \dot{\theta}\vect{z_3}\right)\right)\cdot \vect{y_3}$
+$ = m_3 \left(\dot{x}\vect{x_0}\wedge -r  \dot{\theta}\vect{z_3} \right)\cdot \vect{y_3}$
+$ =-r  \dot{\theta} m_3 \dot{x} \left(\vect{z_3}\wedge \vect{y_3} \right)\cdot \vect{x_0}$
+$ =r  \dot{\theta} m_3 \dot{x} \vect{x_3} \cdot \vect{x_0}$
+$ =r  \dot{\theta} m_3 \dot{x} \cos \theta $.
+\end{itemize}
+
+$$\vectmd{A}{3}{0}\cdot\vect{y_0} = B\ddot{\theta} - m_3 r\dot{x}\dot{\theta}\cos\theta - m_3 r\sin\theta \ddot{x} + r  \dot{\theta} m_3 \dot{x} \cos \theta $$
+\end{corrige}
+\else
+\fi
+\subparagraph{\label{q_04_e}}\textit{Ecrire le théorème du moment dynamique en $A$ en projection sur $\vect{y_0}$. Ecrire votre résultat sous le forme $d\ddot{\theta}+e\ddot{x}+f\dot{\theta}+g\theta = h $ les termes $d$, $e$, $f$, $g$ et $h$ peuvent dependre de $\theta$.}
+ \ifprof
 \begin{corrige} ~\\
 \begin{itemize}
 \item On isole 3.
@@ -278,28 +333,8 @@ $= rm_3g\vect{z_3} \cdot \vect{z_0} $
 $= rm_3g\cos \theta $.
 \end{itemize}
 
-\item Calcul de $\vectmd{A}{3}{0}\cdot \vect{y_3} = \deriv{\vectmc{A}{3}{0}}{\rep{0}}\cdot \vect{y_3} + m_3 \left(\vect{V(A/0)}\wedge\vectv{G_3}{3}{0}\right)\cdot \vect{y_3}$.
-\begin{itemize}
+\item $\vectmd{A}{3}{0}\cdot\vect{y_0} = B\ddot{\theta} - m_3 r\dot{x}\dot{\theta}\cos\theta - m_3 r\sin\theta \ddot{x} + r  \dot{\theta} m_3 \dot{x} \cos \theta $ 
 
-\item  $\deriv{\vectmc{A}{3}{0}}{\rep{0}}\cdot \vect{y_3} =  \deriv{\vectmc{A}{3}{0}\cdot \vect{y_3}}{}+ \underbrace{\vectmc{A}{3}{0}\cdot \deriv{\vect{y_3}}{\rep{0}}}_{0}$.  
-
-\item De plus $\vectmc{A}{3}{0} = \inertie{A}{3} \vecto{3}{0}  + m_3 \vect{AG_3}\wedge \vectv{A}{3}{0}$ 
-$= \matinertie{A}{B}{C}{-D}{-E}{-F}{A,\mathcal{B}_3} \begin{pmatrix} 0  \\ \dot{\theta} \\ 0 \end{pmatrix}_{\rep{3}}
-+ m_3 r\vect{x_3}\wedge \dot{x}\vect{x_0} $ 
-
-$ =\begin{pmatrix} -F\dot{\theta}  \\ B\dot{\theta} \\ -D\dot{\theta} \end{pmatrix}_{\rep{3}} -  m_3 r\sin\theta \dot{x}\vect{y_0} $. Par suite, $\deriv{\vectmc{A}{3}{0}\cdot \vect{y_3}}{} = B\ddot{\theta} - m_3 r\dot{x}\dot{\theta}\cos\theta - m_3 r\sin\theta \ddot{x}$.
-
-\item  $\vect{V(A/0)}  = \dot{x}\vect{x_0}$.
-
-\item  $\vectv{G_3}{3}{0}  = \vectv{A}{3}{0}  + \vect{G_3A} \wedge \vecto{3}{0}$  $=\dot{x}\vect{x_0} -r \vect{x_3} \wedge \dot{\theta}\vect{y_3}$ $=\dot{x}\vect{x_0} -r  \dot{\theta}\vect{z_3}$.
-
-\item $m_3 \left(\vect{V(A/0)}\wedge\vectv{G_3}{3}{0}\right)\cdot \vect{y_3}$ 
-$ = m_3 \left(\dot{x}\vect{x_0}\wedge\left( \dot{x}\vect{x_0} -r  \dot{\theta}\vect{z_3}\right)\right)\cdot \vect{y_3}$
-$ = m_3 \left(\dot{x}\vect{x_0}\wedge -r  \dot{\theta}\vect{z_3} \right)\cdot \vect{y_3}$
-$ =-r  \dot{\theta} m_3 \dot{x} \left(\vect{z_3}\wedge \vect{y_3} \right)\cdot \vect{x_0}$
-$ =r  \dot{\theta} m_3 \dot{x} \vect{x_3} \cdot \vect{x_0}$
-$ =r  \dot{\theta} m_3 \dot{x} \cos \theta $.
-\end{itemize}
 \item On applique le TMD à 3 en $A$ : $ C_{\text{m3}}-f_3 \dot{\theta} -\left(K_{\text{tors}}\theta + C_0\right) +  rm_3g\cos \theta  = r  \dot{\theta} m_3 \dot{x} \cos \theta  + B\ddot{\theta} - m_3 r\dot{x}\dot{\theta}\cos\theta - m_3 r\sin\theta \ddot{x}$ et donc
 $ C_{\text{m3}}-f_3 \dot{\theta} -\left(K_{\text{tors}}\theta + C_0\right) +  rm_3g\cos \theta  = B\ddot{\theta} - m_3 r\sin\theta \ddot{x}$. 
 \item Par ailleurs à l'équilibre, lorsque $\theta=0$, le ressort doit équilibrer la charge, indépendamment du moteur 3; donc
@@ -311,14 +346,6 @@ $B\ddot{\theta} - m_3 r\sin\theta \ddot{x} + f_3 \dot{\theta} + K_{\text{tors}}\
 \end{corrige}
 \else
 \fi
-
-\subparagraph{\label{q_04a}}\textit{Réaliser le graphe de strcuture du mécanisme. Préciser l'ensemble des actions mécaniques en $A$.}
-\subparagraph{\label{q_04_b}}\textit{Calculer $\vectv{A}{3}{0}$ et $\vectv{G}{3}{0}$.}
-\subparagraph{\label{q_04_c}}\textit{Calculer le moment cinétique en $A$ de 3 par rapport à 0. On rappelle que pour un point quelconque, 
-$\vectmc{A}{3}{0}=\inertie{A}{3}\vecto{3}{0}+m_3\vect{AG_3}\wedge \vectv{A}{3}{0}$.}
-\subparagraph{\label{q_04_d}}\textit{Calculer $\vectmd{A}{3}{0}\cdot\vect{y_0}$.}
-\subparagraph{\label{q_04_e}}\textit{Ecrire le théorème du moment dynamique en $A$ en projection sur $\vect{y_0}$. Ecrire votre résultat sous le forme $d\ddot{\theta}+e\ddot{x}+f\dot{\theta}+g\theta = h $ les termes $d$, $e$, $f$, $g$ et $h$ peuvent dependre de $\theta$.}
- 
 
 \ifprof
 \else
@@ -900,11 +927,6 @@ de gain minimale est de \SI{6}{dB}.
 %\subparagraph{\label{q_13}}\textit{Déterminez (en justifiant votre réponse, votre démarche) le gain ($K_p$) optimal, vis-à-vis des marges de stabilité, du correcteur. Vous pouvez utiliser et compléter, si vous le jugez nécessaire, les diagrammes du document réponse (graphe semi-logarithmique).}
 \ifprof
 \begin{corrige}
-On a $\text{FTBO}(p)=\dfrac{0,12}{1+\dfrac{2\times 0,2}{300}p+\dfrac{p^2}{300^2}} \dfrac{K_p}{p}$.
-
-\begin{center}
-\includegraphics[width=.8\linewidth]{cor_02}
-\end{center}
 
 Le système est stable. 
 
@@ -938,11 +960,36 @@ Pulsation (rd/s) & Phase (\degres) & Amplitude (dB)  \\ \hline \hline
 \fi
 \subparagraph{\label{q_13a}}\textit{Tracer le diagramme de la fonction de transfert en boucle ouverte $H_{\text{BO}}(p)=\dfrac{K_p}{p}K_{\text{mot}}\dfrac{K_t}{1+\dfrac{2\xi}{\omega_0}p+\dfrac{p^2}{\omega_0^2}}$.}
 
+\ifprof
+\begin{corrige}
+On a $\text{FTBO}(p)=\dfrac{0,12}{1+\dfrac{2\times 0,2}{300}p+\dfrac{p^2}{300^2}} \dfrac{K_p}{p}$.
+\begin{center}
+\includegraphics[width=.8\linewidth]{cor_02}
+\end{center}
+\end{corrige}
+\else
+\fi
 \subparagraph{\label{q_13b}}\textit{Déterminez (en justifiant votre réponse, votre démarche) le gain ($K_p$) optimal, vis-à-vis de la marge de gain, du correcteur. }
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 \subparagraph{\label{q_13c}}\textit{Déterminez (en justifiant votre réponse, votre démarche) le gain ($K_p$) optimal, vis-à-vis de la marge de phase, du correcteur.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 \subparagraph{\label{q_13d}}\textit{Conclure.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 \ifprof
 \else
