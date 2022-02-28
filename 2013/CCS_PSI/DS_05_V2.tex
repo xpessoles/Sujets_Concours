@@ -1,0 +1,385 @@
+\documentclass[10pt,fleqn]{article} % Default font size and left-justified equations
+\usepackage[%
+    pdftitle={Modélisation systèmes multiphysiques : Modélisation linéaire et non linéaire},
+    pdfauthor={Xavier Pessoles}]{hyperref}
+\usepackage{pdfpages}
+\input{style/new_style}
+\input{style/macros_SII}
+\usepackage{multicol}
+\usepackage{standalone}
+\standaloneconfig{mode=buildnew}
+\usepackage{siunitx}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{listings}
+\lstset{language=Python,
+  inputencoding=utf8,
+  breaklines=true,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+  upquote = true,
+  columns=fullflexible,
+  backgroundcolor=\color{gray!10},frame=leftline,rulecolor=\color{gray}}  
+  
+\definecolor{mygreen}{rgb}{0,0.6,0}
+
+
+\lstset{
+     literate=%
+         {é}{{\'e}}1    
+         {è}{{\è}}1    
+         {ê}{{\^e}}1    
+         {à}{{\à}}1    
+         {ô}{{\^o}}1    
+         {ù}{{\`u}}1    
+}
+
+\graphicspath{{images/}{png/}}
+
+\fichetrue
+
+%\fichefalse
+
+\proftrue
+\proffalse
+
+\tdtrue
+%\tdfalse
+
+\courstrue
+\coursfalse
+
+\def\discipline{Sciences \\Industrielles de \\ l'Ingénieur}
+\def\xxtete{Sciences Industrielles de l'Ingénieur}
+
+\def\classe{PSI$\star$}
+\def\xxnumpartie{{DS 5}}%\textsf{\textsf{Cy. 4, 6 \& 7}}}
+\def\xxpartie{Devoir Surveillé 5}
+
+
+\def\xxnumchapitre{31 janvier 2022 \vspace{.2cm} $\;$ }
+\def\xxchapitre{\hspace{.12cm} }%Performances des systèmes asservis}
+
+
+\def\xxtitreexo{\noindent Chargement et déchargement
+des cargos porte-conteneurs}
+\def\xxsourceexo{\hspace{.2cm} DS ROUGE}%Banque PT -- SIA 2019}
+
+
+\def\xxposongletx{2}
+\def\xxposonglettext{1.45}
+\def\xxposonglety{20}
+%\def\xxonglet{Part. 1 -- Ch. 3}
+\def\xxonglet{\textsf{DS 5}}%\textsf{\textsf{Cy. 4, 6 \& 7}}}
+\def\xxactivite{\textsf{DS 5}}
+\def\xxauteur{\textsl{Xavier Pessoles}}
+
+\def\xxcompetences{%
+\textsl{%
+%\textbf{Savoirs et compétences :}\\
+%Les sources sont associées par un \emph{hacheur série}. La détermination des grandeurs électriques associées à ce montage permet de conclure vis à vis du cahier des charges.
+%\noindent \textbf{Résoudre :} à partir des modèles retenus :
+%\begin{itemize}[label=\ding{112},font=\color{ocre}] 
+%\item choisir une méthode de résolution analytique, graphique, numérique;
+%\item mettre en \oe{}uvre une méthode de résolution.
+%\end{itemize}
+%\begin{itemize}[label=\ding{112},font=\color{ocre}] 
+%\item \textit{Rés -- C1.1 :} Loi entrée sortie géométrique et cinématique -- Fermeture géométrique.
+%\end{itemize}
+%
+%\noindent \textit{Mod2 -- C4.1 :} Représentation par schéma-blocss.
+}}
+
+\def\xxfigures{
+%\includegraphics[width=.55\linewidth]{fig_00}
+}%figues de la page de garde
+
+
+\def\xxpied{%
+%Cycle 01 -- Modéliser le comportement des systèmes multiphysiques\\
+\xxactivite%
+}
+
+\setcounter{secnumdepth}{5}
+%---------------------------------------------------------------------------
+
+\usepackage{pgfplots}
+\begin{document}
+%\defimages{images}
+%\chapterimage{png/Fond_Cin}
+\input{style/new_pagegarde}
+\vspace{5cm}
+\pagestyle{fancy}
+\thispagestyle{plain}
+
+\def\columnseprulecolor{\color{white}}
+\setlength{\columnseprule}{0.4pt} 
+
+
+%\defimages2{images}
+
+\section{Contrôle d’attitude du satellite \label{sec:3}}
+\begin{obj}
+L’objectif de cette partie est de mettre en place une loi de commande permettant d’asservir les
+positions angulaires du satellite à des positions de référence. Dans les parties \autoref{sec:3:A}, \autoref{sec:3:B} et \autoref{sec:3:C},
+il s’agira de déterminer le régulateur qui assure les performances de la chaîne d’asservissement.
+Dans la partie \autoref{sec:3:D}, il s’agira de vérifier si la loi de commande déterminée permet de respecter
+les contraintes imposées à l’actionneur : couple maximal et vitesse maximale qu’il peut réaliser.
+Dans le cas général, les lois de commande développées nécessitent une approche multivariable (trois
+axes), le cadre de ce sujet se restreint uniquement aux mouvements de tangage, soit à la rotation
+d’angle $\theta$  autour de l’axe $\vect{y}$. Les modèles utilisés ont été établis en adoptant $\psi  =\phi = 0$.
+\end{obj}
+
+
+On rappelle que dans le mode de fonctionnement pointage fin (MNO) seuls les actionneurs par roues de réaction
+et les magnétocoupleurs sont utilisés. Le cahier des charges partiel portant sur l’asservissement d’attitude est
+détaillé dans le tableau de la \autoref{fig_09}. Ce cahier des charges doit être assuré même en cas d’un dépointage
+initial qui sera modélisé comme condition initiale $\theta_0$ sur l’angle de tangage $\theta$. La consigne d’angle est notée $\theta_{\text{ref}}$ .
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{images/fig_09}
+\caption{Cahier des charges pour la chaîne d’asservissement \label{fig_09}}
+\end{figure}
+
+L’architecture de contrôle d’attitude du satellite est représentée sur la \autoref{fig_10}. Dans le cas général, la loi de
+commande utilise la mesure de la position angulaire du satellite et une estimation de sa vitesse. Dans le mode
+de pointage fin, les actionneurs sont les roues de réaction qui fournissent un couple $C_{\text{roue}}$ conformément à un
+couple de consigne $C_{\text{piloté}}$ demandé par la loi de commande. Le satellite est aussi soumis :
+\begin{itemize}
+\item à des couples perturbateurs sinusoïdaux de pulsations $\omega_0$ et $2\omega_{0}$ (avec $\omega_0 = \SI{0,001}{rad.s^{-1}}$) et d’amplitude,
+dans le pire des cas, de $\SI{30e-6}{Nm}$;
+\item à un couple constant d’amplitude $\SI{1e-6}{Nm}$.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{images/fig_10}
+\caption{Architecture du système SCAO \label{fig_10}}
+\end{figure}
+
+Dans tous les modèles utilisés dans la suite, les angles sont exprimés en radians.
+
+\subsection{\label{sec:3:A} Choix d’un modèle de commande et analyses préliminaires}
+
+
+La figure \autoref{fig_11} montre la chaîne de régulation (monoaxe) où $H(p)$, $A(p)$ et $B(p)$ sont les fonctions de transfert
+modélisant respectivement le satellite, la roue de réaction et le capteur. On suppose dans un premier temps que
+l’actionneur et le capteur ont tous deux un gain statique unitaire mais sont affectés d’un retard pur : \SI{100}{ms}
+pour la roue de réaction et \SI{700}{ms} pour les capteurs stellaires. La fonction de transfert du satellite est obtenue à
+partir des relations obtenues à la question \ref{q_08} ; et au regard de la bande passante souhaitée, on admettra qu’elle
+peut être approchée par la fonction $H(p)$ donnée ci-dessous. Ainsi, les fonctions de transfert correspondant aux
+différents éléments de la chaîne d’asservissement sont :
+$$
+H(p)=\dfrac{0,028}{p^2} 
+\quad \quad 
+A(p)=A_r (p) e^{-0,1p}\simeq \dfrac{1}{1+\dfrac{1}{0,87}p}e^{-0,1 p} 
+\quad \quad 
+B(p)=e^{-0,7p}
+$$
+
+Enfin, le correcteur représenté par la fonction de transfert $C(p) = R(p) F(p)$ est le produit de deux termes :
+\begin{itemize}
+\item $R(p)$ correspond à un régulateur de type PID (proportionnel, intégral, dérivé), qu’il s’agira de déterminer
+dans la suite ;
+\item $F(p)$ est la fonction de transfert d’un filtre de type passe-bas. Il a comme objectif de réduire le gain du système
+en haute fréquence afin de ne pas exciter les modes oscillants (l’analyse de l’influence de ces modes est hors
+du cadre de cette étude). Cette fonction de transfert sera approchée par la forme suivante 
+$F(p) = \dfrac{1}{1 + 1,5p}$ (en pratique, ces filtres sont d’ordre 2).
+\end{itemize}
+
+\subparagraph{\label{q_15}}\textit{La figure B*** du document réponse donne le diagramme de Bode de la fonction $A_r(p)H(p)F(p)$. Tracer
+directement sur cette figure les diagrammes asymptotiques associés à cette fonction (document réponse à rendre
+avec la copie).}
+
+\subparagraph{\label{q_16}}\textit{En prenant $R(p) = 1$, préciser la fonction de transfert en boucle ouverte et tracer les diagrammes de
+Bode réels (5 ou 6 points judicieusement choisis suffisent pour ces tracés) sur la figure B***. Au regard des tracés
+effectués, justifier que des corrections proportionnelle ou proportionnelle-intégrale ne permettent pas d’assurer
+le cahier des charges escompté.}
+
+\subparagraph{\label{q_17}}\textit{En déduire les conditions sur le module et l’argument de $R(j\omega)$ pour assurer la pulsation de coupure et
+la marge de phase demandées par le cahier des charges associé au modèle nominal.}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{images/fig_11}
+\caption{Schéma-bloc de la boucle d’asservissement d’attitude \label{fig_11}}
+\end{figure}
+
+
+
+
+
+\subsection{\label{sec:3:B} Analyse des contraintes sur la loi de commande}
+
+L’objet de cette partie est de déterminer les contraintes que doit vérifier le régulateur en vue d’assurer les
+exigences de précision lorsque le procédé est soumis aux couples perturbateurs sinusoïdaux, c’est-à-dire de la
+forme 
+$c_{\text{ext}} = C_{00}\sin(\omega_0 t)$ et 
+$c_{\text{ext}} = C_{01} \sin(2\omega_0t)$, 
+dont les caractéristiques, amplitude et pulsation, sont données
+précédemment : $C_{00} = C_{01} = \SI{30e-6}{N.m}$  et $\omega_0 = \SI{0,001}{rad.s^{-1}}$.
+
+\subparagraph{\label{q_18}}\textit{En prenant une consigne $\theta_{\text{ref}} = 0$, déterminer la fonction de transfert $T(p) = \dfrac{\theta(p)}{C_{\text{ext}}(p)}$ entre les couples perturbateurs $C_{\text{ext}}(p)$ et la position $\theta(p)$ et l’exprimer à partir des fonctions de transfert de la \autoref{fig_11}.}
+
+\subparagraph{\label{q_19}}\textit{En utilisant les approximations fréquentielles 
+$||T_{\text{bo}}(j\omega)||>>1$
+$||T_{\text{bo}}(j\omega)||<<1$
+où $T_{\text{bo}}(p)$ est la fonction
+de transfert en boucle ouverte, montrer que dans l’intervalle des pulsations des couples perturbateurs, 
+on peut écrire : 
+$||T(j\omega)||\simeq \dfrac{1}{|| R\left(j\omega\right) F\left(j\omega\right) A\left(j\omega\right) B\left(j\omega\right)|| }$. 
+ Justifier que cette relation peut encore être simplifiée selon la formulation :
+ $||T(j\omega)||\simeq \dfrac{1}{|| R\left(j\omega\right)||}$.}
+
+
+\subparagraph{\label{q_20}}\textit{Donner l’expression de l’amplitude de  l'évolution temporelle de $\theta(t)$, en fonction de 
+de $|| R\left(j \omega\right)||$,  en réponse
+au couple perturbateur sinusoïdal de pulsation $\omega_0$. En déduire la condition que doit vérifier $|| R\left(j \omega\right)||$ en vue de
+satisfaire la précision d’écart de pointage, pour une consigne $\theta_{\text{ref}} = 0$, lorsque le satellite est soumis à ce couple
+perturbateur. Reprendre cette analyse dans le cas du couple 
+perturbateur de pulsation $2\omega_0$.}
+
+\subsection{\label{sec:3:C} Synthèse du régulateur}
+
+Pour la synthèse du régulateur $C(p)$, on recherche une solution de la forme : $R(p)=K \dfrac{\left(1+\tau p\right)^2}{p}$.
+
+\subparagraph{\label{q_21}}\textit{Déterminer la valeur de
+$\tau$  permettant d’obtenir 
+la marge de phase 
+$M \phi = 30\degres$
+ exigée par le cahier des charges.}
+ 
+
+\subparagraph{\label{q_22}}\textit{En conservant la valeur de
+$\tau$ déterminée précédemment, 
+calculer la valeur du gain $K$ qui assure la 
+pulsation de coupure imposée par le cahier des charges.}
+
+
+\subparagraph{\label{q_23}}\textit{Vérifier si le régulateur déterminé permet d’assurer les conditions nécessaires à satisfaire les performances,
+en termes d’écart de l’angle de pointage, lorsque le satellite est soumis aux variations sinusoïdales du couple
+perturbateur.}
+
+\subsection{\label{sec:3:D} Validation de la loi de commande}
+\begin{obj}
+L’objectif de cette partie est de vérifier que les commandes issues du régulateur précédent ne
+génèrent pas de contraintes excessives sur l’actionneur, en particulier que la vitesse maximale
+et le couple maximal restent dans les « limites » de l’actionneur réalisé par la roue de réaction.
+Cette vérification se fera d’une part vis-à-vis d’un dépointage initial et d’autre part vis-à-vis des
+différents couples perturbateurs. Enfin, une modification de la loi de commande sera envisagée en
+vue d’améliorer les performances.
+\end{obj}
+
+\subsubsection{\label{sec:3:D:1} Amélioration des performances vis-à-vis du dépointage initial}
+
+Pour cette analyse, on suppose que les conditions initiales correspondent à un dépointage de 20\degres, soit $\theta_0 = 20\degres$,
+et que la consigne d’attitude est nulle $\theta_{\text{ref}}=0$. La \autoref{fig_12} montre le schéma qui sera utilisé pour cette analyse
+où la condition initiale $\theta_0$ d’attitude est considérée comme un terme de perturbation constant.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{images/fig_12}
+\caption{Schéma d’analyse pour la réponse aux conditions initiales \label{fig_12}}
+\end{figure}
+
+\subparagraph{\label{q_24}}\textit{Déterminer $T_d(p)=\dfrac{C_{\text{piloté}}(p)}{\theta_0(p)}$ à partir des différentes fonctions de transfert de la \autoref{fig_12}. On note $c_{\text{pa}}(p)=c_{\text{piloté}}(t+\tau_1)$, avec $\tau_1 = \SI{0,7}{s}$. En déduire à partir de $T_d(p)$ l'expression de $\dfrac{C_{\text{pa}}}{\theta_0(p)}$.}
+
+\subparagraph{\label{q_25}}\textit{En utilisant le théorème de la valeur initiale,
+ou toute autre méthode de votre choix, déterminer littéralement
+et numériquement $c_{\text{pa}}(0)$ en réponse à une condition initiale 
+$\theta_0(t)=\Theta_0 \gamma(t)$ d'amplitude $\Theta_0 = 20\degres$. En
+déduire $c_{\text{piloté}}(\tau_1)$. 
+Remarques : $\gamma(t)$ désigne l’échelon d’Heaviside d’amplitude 1. On admettra que la valeur déterminée est proche de la 
+valeur maximale (en valeur absolue) de celle obtenue pour des cas d’utilisation
+de filtres $F(p)$ d'ordre supérieur à 1.}
+
+\subparagraph{\label{q_26}}\textit{En réponse à une condition initial $\theta_0(t)=\Theta_0 \gamma(t)$ d’amplitude 20\degres, 
+la \autoref{fig_13} montre l’évolution de la vitesse de rotation angulaire $\dot{\theta}$
+autour de l’axe $\vect{y}$. À partir de la relation obtenue à la question \ref{q_10}, déterminer
+la valeur maximale de la vitesse angulaire de la roue de réaction $\omega_r$.
+Effectuer l’application numérique pour
+$I_y = \SI{35,7}{kg.m^2}$ et $I_{\text{ry}}=\SI{4e-4}{kg.m^2}$.}
+
+\subparagraph{\label{q_27}}\textit{Conclure alors sur la capacité de la loi de commande à satisfaire les contraintes imposées par l’actionneur
+à roue de réaction.}
+
+\subsubsection{\label{sec:3:D:2} Amélioration des performances vis-à-vis du dépointage initial}
+
+On note $\Delta \theta = \theta_{\text{ref}}-\theta$. La loi de commande déterminée précédemment est modifiée en ajoutant une nouvelle
+fonction. Ainsi, avec la nouvelle architecture envisagée, la régulation se décompose en deux parties :
+\begin{itemize}
+\item pour un écart angulaire $|\Delta \theta|<0,3\degres$, la régulation se fait en position en utilisant le correcteur $C(p)$ déterminé
+précédemment ;
+\item pour un écart angulaire $|\Delta \theta|<0,3\degres$, le couple demandé à la roue de réaction est donné par $C_{\text{piloté}}(p)= -R_1(p)\left( b_v \text{sign}(\Delta \theta) + p\theta(p)\right))$ où $\text{sign}$ représente la fonction signe. L’objet de cette phase de l’étude est de
+déterminer les paramètres de la nouvelle fonction. La synthèse de la fonction de transfert $R_1(p)$ et la gestion
+de la commutation entre les deux parties de la loi de commande est hors du cadre de cette étude.
+\end{itemize}
+
+
+\subparagraph{\label{q_28}}\textit{Justifier que pour $|\Delta \theta|> 0,3 \degres$, la deuxième composante de la loi de commande est une régulation de
+vitesse avec une consigne de vitesse $\dot{\theta}_c(t)$ constante.}
+
+\subparagraph{\label{q_29}}\textit{En utilisant la relation obtenue à la question \ref{q_10}, déterminer la valeur maximale
+$|\dot{\theta}_c|_{\text{max}}$ (en \si{\degres.s^{-1}}) 
+de la consigne de vitess $\dot{\theta}_c(t)$ que l’on peut imposer. Effectuer l’application numérique pour$I_y = \SI{35,7}{kg.m^2}$, $I_{\text{ry}}=\SI{4e-4}{kg.m^2}$ et une vitesse maximale de la roue de \SI{2800}{tr.min^{-1}} (correspondant à la vitesse maximale
+de l’actionneur donnée par le tableau de la \autoref{fig_09}).}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{images/fig_13}
+\caption{Évolution de la vitesse de rotation du satellite $\dot{\theta}$ (\si{\degres.s^{-1}}) en réponse à un dépointage initial de 20\degres \label{fig_13}}
+\end{figure}
+
+\subparagraph{\label{q_30}}\textit{La \autoref{fig_14} montre les réponses obtenues (en utilisant un simulateur trois axes comportant en particulier les modes oscillants dus aux souplesses de la structure) avec la loi de commande définie précédemment pour un
+dépointage initia $\Theta_0 = \SI{20}{\degres}$. Commenter les réponses obtenues et conclure alors sur la capacité de la nouvelle
+loi de commande à satisfaire l’ensemble des contraintes imposées par le cahier des charges.}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{images/fig_14}
+\caption{Évolutions temporelles à partir d’une condition initiale (dépointage) $\theta_0 = 20\degres$ \label{fig_14}}
+\end{figure}
+
+\subsubsection{\label{sec:3:D:3} Analyse des performances vis-à-vis d’un couple perturbateur constant}
+
+L’objet de cette partie est d’analyser les performances de la loi de commande lorsque le satellite est soumis à
+un couple extérieur constant, $C_{\text{ext}}= C_0 \gamma(t)$ d’amplitude $C_0 =\SI{e-6}{Nm}$.
+
+\subparagraph{\label{q_31}}\textit{Sans calcul, mais en justifiant votre réponse, préciser l’écart en régime permanent en réponse à un couple
+perturbateur constant.}
+
+\subparagraph{\label{q_32}}\textit{À partir du schéma de la \autoref{fig_11}, déterminer la valeur du couple appliqué $C_{\text{roue}}$ en régime permanent
+en réponse au couple perturbateur $C_{\text{ext}}(t)$ supposé constant et en déduire la loi temporelle d’évolution de la
+vitesse de la roue. Quelle est la conséquence sur le fonctionnement de l’actionneur du couple perturbateur ? Justifier le terme de « saturation » pour décrire ce phénomène. À partir de quel horizon temporel survient cette
+situation ?}
+
+
+Pour remédier au problème de saturation, on utilise des bobines magnétiques, appelées magnétocoupleurs, qui
+permettent de créer des moments adaptés grâce à l’action du champ magnétique terrestre. Le satellite est équipé
+de trois magnétocoupleurs orientés respectivement selon les trois directions $\vect{x}$, $\vect{y}$ et $\vect{z}$ du satellite, et dont on peut
+commander précisément les moments magnétiques respectifs $\vect{\mathcal{M}}_x=\mathcal{M}_x\vect{x}$, $\vect{\mathcal{M}}_y=\mathcal{M}_y\vect{y}$ et $\vect{\mathcal{M}}_z=\mathcal{M}_z\vect{z}$. Dans
+le cas d’une orbite polaire, le champ magnétique terrestre a pour expression $\vect{B}=B_0 \cos\left(\omega_0 t\right) \vect{x} +2 B_0 \sin\left(\omega_0 t\right) \vect{z}.$ L’interaction entre les magnétocoupleurs et le champ magnétique terrestre se traduit par un moment (mécanique)
+dont l’expression au centre d’inertie $G$ du satellite est :
+$$
+\vect{M}_G (\text{magnétique}) = 
+B_0 \left( 
+2\mathcal{M}_y \sin \left(\omega_0 t \right) \vect{x}
++ \left(
+\mathcal{M}_z \cos \left(\omega_0 t \right) 
+-2\mathcal{M}_x \sin\left(\omega_0 t \right) \right)\vect{y}
+-\mathcal{M}_y \cos \left(\omega_0 t \right) \vect{z}
+\right).
+$$
+
+\subparagraph{\label{q_33}}\textit{Expliquer comment les magnétocoupleurs peuvent permettre de résoudre le problème de saturation des
+roues de réaction : on détaillera précisément quel est le rôle de chacun des trois magnétocoupleurs et à quels
+instants de l’orbite du satellite leurs effets sont les plus sensibles.}
+
+\end{document}
+
+
+

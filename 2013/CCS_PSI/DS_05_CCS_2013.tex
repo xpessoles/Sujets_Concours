@@ -1,0 +1,1315 @@
+\documentclass[10pt,fleqn]{article} % Default font size and left-justified equations
+\usepackage[%
+    pdftitle={Modélisation systèmes multiphysiques : Modélisation linéaire et non linéaire},
+    pdfauthor={Xavier Pessoles}]{hyperref}
+\usepackage{pdfpages}
+\input{style/new_style}
+\input{style/macros_SII}
+\usepackage{multicol}
+\usepackage{standalone}
+\standaloneconfig{mode=buildnew}
+\usepackage{siunitx}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{listings}
+\lstset{language=Python,
+  inputencoding=utf8,
+  breaklines=true,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+  upquote = true,
+  columns=fullflexible,
+  backgroundcolor=\color{gray!10},frame=leftline,rulecolor=\color{gray}}  
+  
+\definecolor{mygreen}{rgb}{0,0.6,0}
+
+
+\lstset{
+     literate=%
+         {é}{{\'e}}1    
+         {è}{{\è}}1    
+         {ê}{{\^e}}1    
+         {à}{{\à}}1    
+         {ô}{{\^o}}1    
+         {ù}{{\`u}}1    
+}
+
+\graphicspath{{images/}{png/}}
+
+\fichetrue
+
+%\fichefalse
+
+\proftrue
+\proffalse
+
+\tdtrue
+%\tdfalse
+
+\courstrue
+\coursfalse
+
+\def\discipline{Sciences \\Industrielles de \\ l'Ingénieur}
+\def\xxtete{Sciences Industrielles de l'Ingénieur}
+
+\def\classe{PSI$\star$}
+\def\xxnumpartie{{DS 5}}%\textsf{\textsf{Cy. 4, 6 \& 7}}}
+\def\xxpartie{Devoir Surveillé 5}
+
+
+\def\xxnumchapitre{31 janvier 2022 \vspace{.2cm} $\;$ }
+\def\xxchapitre{\hspace{.12cm} }%Performances des systèmes asservis}
+
+
+\def\xxtitreexo{\noindent Chargement et déchargement
+des cargos porte-conteneurs}
+\def\xxsourceexo{\hspace{.2cm} DS ROUGE}%Banque PT -- SIA 2019}
+
+
+\def\xxposongletx{2}
+\def\xxposonglettext{1.45}
+\def\xxposonglety{20}
+%\def\xxonglet{Part. 1 -- Ch. 3}
+\def\xxonglet{\textsf{DS 5}}%\textsf{\textsf{Cy. 4, 6 \& 7}}}
+\def\xxactivite{\textsf{DS 5}}
+\def\xxauteur{\textsl{Xavier Pessoles}}
+
+\def\xxcompetences{%
+\textsl{%
+%\textbf{Savoirs et compétences :}\\
+%Les sources sont associées par un \emph{hacheur série}. La détermination des grandeurs électriques associées à ce montage permet de conclure vis à vis du cahier des charges.
+%\noindent \textbf{Résoudre :} à partir des modèles retenus :
+%\begin{itemize}[label=\ding{112},font=\color{ocre}] 
+%\item choisir une méthode de résolution analytique, graphique, numérique;
+%\item mettre en \oe{}uvre une méthode de résolution.
+%\end{itemize}
+%\begin{itemize}[label=\ding{112},font=\color{ocre}] 
+%\item \textit{Rés -- C1.1 :} Loi entrée sortie géométrique et cinématique -- Fermeture géométrique.
+%\end{itemize}
+%
+%\noindent \textit{Mod2 -- C4.1 :} Représentation par schéma-blocss.
+}}
+
+\def\xxfigures{
+%\includegraphics[width=.55\linewidth]{fig_00}
+}%figues de la page de garde
+
+
+\def\xxpied{%
+%Cycle 01 -- Modéliser le comportement des systèmes multiphysiques\\
+\xxactivite%
+}
+
+\setcounter{secnumdepth}{5}
+%---------------------------------------------------------------------------
+
+\usepackage{pgfplots}
+\begin{document}
+%\defimages{images}
+%\chapterimage{png/Fond_Cin}
+\input{style/new_pagegarde}
+\vspace{5cm}
+\pagestyle{fancy}
+\thispagestyle{plain}
+
+\def\columnseprulecolor{\color{white}}
+\setlength{\columnseprule}{0.4pt} 
+
+%\defimages2{images}
+
+%\begin{multicols}{2}
+
+\section{Performances et architecture des grues}
+\subsection{Le rôle des ports dans le transport mondial des marchandises}
+Le transport des marchandises (hydrocarbures, charbon, agroalimentaire, ciment, matériaux de construction,
+biens de consommation. . .) à travers le monde est incontournable dans l’économie moderne. Excepté les matières
+premières, ces marchandises sont envoyées par conteneurs. Au port de Marseille (premier port français), 950 000
+conteneurs transitent chaque année, soit 9 millions de tonnes de marchandises et 1 300 navires.
+Les conteneurs sont des boites standardisées, d’une masse maximale de 40 tonnes, permettant de transporter des
+marchandises du fournisseur au client par navire, train, camion, voire par avion, sans déballer la marchandise.
+Les navires « post-panamax » sont les plus gros navires de transport et peuvent embarquer jusqu’à 13 000
+conteneurs.
+
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.48\linewidth]{images/fig_01_a}
+\includegraphics[width=.48\linewidth]{images/fig_01_b}
+\caption{Cargo porte-conteneurs et grues de chargement-déchargement \label{fig_01}}
+\end{figure}
+
+
+
+Pour rejoindre sa destination finale, un conteneur changera plusieurs fois de navire. Il sera déchargé puis rechargé
+par des grues dans des plateformes portuaires, véritables « hubs » du réseau maritime.
+Le temps d’immobilisation des navires à quai est donc un paramètre important du cout du transport. Ainsi
+les deux prestations principales attendues pour la grue sont la sécurité des hommes et des marchandises et la
+cadence de transfert. La figure 2*** et le tableau 1*** donnent les caractéristiques du cahier des charges partiel de la
+phase de déchargement.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{images/fig_02}
+\begin{itemize}
+\item FS1 : déplacer les conteneurs du navire vers les camions de transfert ;
+\item FS2 : assurer la sécurité du contenu du conteneur ;
+\item FS3 : fonctionner malgré des conditions météorologiques difficiles ;
+\item FS4 : assurer une cadence de transfert suffisamment rapide.
+\end{itemize}
+\caption{Diagramme partiel des interacteurs\label{fig_02}}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\includegraphics[width=.48\linewidth]{images/tab_01}
+\caption{Cahier des charges partiel de la grue de chargement/déchargement \label{tab_01}}
+\end{table}
+
+
+L’objet de ce sujet est la validation de quelques-unes des performances qui contribuent à la réalisation de ces
+prestations.
+Le contexte est celui du port de Fos, l’un des deux quais de déchargement du port de Marseille. Il est équipé de
+13 grues de chargement–déchargement, pour cargos de type « post-panamax », fonctionnant 23 heures sur 24,
+7 jours sur 7.
+Il y a quelques années, les équipements étant devenus vétustes, le port a engagé la modernisation des chaines
+de motorisation et des systèmes de commande des grues pour en améliorer la fiabilité et la cadence.
+Ce sujet s’inscrit en partie II*** et partie III*** dans cette démarche de validation des nouveaux équipements en
+vérifiant la stabilité mécanique de la grue sur ses appuis et en étudiant le risque de basculement lors du levage
+des conteneurs et par grand vent, et se poursuit par une étude prospective de l’automatisation du pilotage des
+grues dans la partie IV***.
+
+
+\subsection{Architecture d’une grue et performances souhaitées des nouvelles motorisations}
+Les grues (voir figure 3) sont constituées d’un portique (structure métallique) dont les quatre pieds peuvent se
+déplacer sur deux rails, d’un chariot de levage et d’un « spreader » (voir figure 5***), situé à l’extrémité des câbles,
+permettant de s’arrimer au conteneur par un verrouillage aux quatre coins supérieurs.
+
+Chaque grue de déchargement assure trois mouvements principaux de translation du conteneur : un mouvement
+appelé « translation », horizontal et parallèle au quai (suivant $\vect{x}$), un mouvement appelé « direction », horizontal
+et perpendiculaire au quai (suivant $\vect{y}$) et un mouvement de « levage », vertical (suivant $\vect{z}$).
+Le mouvement de translation est assuré par quatre moteurs implantés dans chaque pied de la grue (soit 16
+moteurs au total), permettant à l’ensemble de la grue de se déplacer le long de deux rails. Le mouvement de
+direction est assuré par un chariot motorisé se déplaçant sur le portique. Le mouvement de levage est assuré par
+un treuil et un moufle de douze câbles.
+
+Lors du déchargement d’un conteneur, le spreader est posé à plat sur le conteneur puis verrouillé (cette opération
+dure environ \SI{5}{s}). Un premier mouvement de levage extrait le conteneur des glissières de guidage du bateau.
+Une fois en hauteur, le mouvement de direction déplace le conteneur du coté du quai. Il est alors posé sur un
+camion, déverrouillé du spreader (cette opération dure environ \SI{5}{s}), puis évacué vers la zone de stockage arrière.
+
+\subsubsection*{Éléments de cahier des charges de la nouvelle motorisation}
+\begin{itemize}
+\item \textbf{translation :} vitesse maximale $V_{\text{tm}} = \SI{0,75}{m.s^{-1}}$, accélération maximale 
+$\gamma_{\text{tm}} = \SI{0,1}{m.s^{-2}}$. La motorisation doit pouvoir déplacer la grue malgré une force du vent sur le portique $F_{\text{vent}} = \SI{400}{kN}$. La masse du portique vaut $M_p = \SI{1 080}{tonnes}$;
+\item \textbf{direction :} vitesse maximale $V_{dm} = \SI{2,5}{m.s^{-1}}$, accélération maximale 
+$\gamma_{\text{dm}} = \SI{0,6}{m.s^{-2}}$ pour un chariot de masse $M_{\text{ch}}= \SI{27}{tonnes}$ ;
+\item \textbf{levage :} vitesse maximale $V_{\text{lmv}} = \SI{1,65}{m.s^{-1}}$ à vide (c’est-à-dire sans conteneur) et $V_{\text{lmp}} = \SI{0,75}{m.s^{-1}}$ avec un conteneur de masse $M_c = \SI{40}{tonnes}$  et un spreader de masse $M_s = \SI{10}{tonnes}$, accélération maximale $\gamma_{\text{lm}} = \SI{0,5}{m.s^{-2}}$.
+\end{itemize}
+
+\subparagraph{\label{q01}}\textit{Estimer à 10\% près le nombre de jours nécessaires au déchargement par les 13 grues d’un cargo
+post-panamax de 10 000 conteneurs. Pour cette estimation, le modèle retenu est celui de la figure 3****, où $D$ vaut
+\SI{40}{m} et $h_c$ \SI{26}{m}. Une hauteur moyenne des conteneurs sur le navire $h_c/2 = \SI{13}{m}$ et une distance moyenne au
+quai $D/2 = \SI{20}{m}$ pourront être adoptées. Les transitoires d’accélération et de décélération sont négligés.}
+
+
+\begin{table}[H]
+\centering
+\includegraphics[width=.8\linewidth]{images/fig_03}
+\caption{Grue de déchargement des conteneurs \label{fig_03}}
+\end{table}
+
+\section{Validation des nouvelles motorisations de la grue}
+\begin{obj}
+Vérifier l’adéquation entre les motorisations proposées par un fournisseur et les performances attendues
+de la grue.
+\end{obj}
+
+À partir des performances souhaitées (cahier des charges partie I.B****), un fournisseur de matériel électrotechnique
+a proposé dans des couts raisonnables une nouvelle motorisation pour chacun des 3 mouvements : translation,
+direction et levage. Le tableau 2 précise les caractéristiques principales de la solution technique.
+
+\begin{table}[H]
+\centering
+\includegraphics[width=.48\linewidth]{images/tab_02}
+\caption{Caractéristiques des motorisations proposées par le fournisseur \label{tab_02}}
+\end{table}
+
+
+\subsection{Description des chaines de transmission de puissance de la grue}
+
+\subsubsection{Mouvement de translation}
+Le mouvement de translation est guidé par 32 galets posés sur deux rails. Les 4 pieds disposent chacun de
+8 galets de diamètre $d_g = \SI{0,8}{m}$, entrainés par 4 moteurs asynchrones, par l’intermédiaire d’un réducteur de
+rapport $r_t = 1/80$. L’architecture cinématique de chaque pied est donnée figure 4 et chacun des moteurs entraine 2 galets.
+
+\subsubsection{Mouvement de direction}
+Le chariot de direction, de masse $M_{\text{ch}} = \SI{27}{tonnes}$, est mis en mouvement par des câbles s’enroulant sur un
+tambour de diamètre $d_{\text{ch}}  = \SI{0,54}{m}$. Un moteur à courant continu entraine le tambour par l’intermédiaire d’un
+réducteur de rapport $r_{\text{ch}}  =1/20$.
+
+\subsubsection{Mouvement de levage et positionnement du spreader}
+Le mouvement de levage est assuré par 6 câbles s’enroulant sur un tambour de diamètre $d_l = \SI{1,22}{m}$. Deux moteurs
+à courant continu accouplés entrainent le tambour par l’intermédiaire d’un réducteur de rapport $r_l = 1/34$.
+Un système de moufles élaboré (voir figure 5****) permet d’orienter le spreader dans 3 directions afin de le poser
+à plat sur le conteneur (condition nécessaire à un verrouillage correct). Un moufle est un dispositif mécanique
+permettant le levage d’une charge par plusieurs brins de câbles et poulies. En phase de prise du conteneur, trois
+vérins hydrauliques ajustent les points d’ancrage des câbles afin de déplacer en rotation le spreader avant son
+verrouillage sur le conteneur. En phase de déplacement, les vérins d’ancrage peuvent être libérés de façon à ne
+plus bloquer les mouvements de rotation du conteneur et répartir au mieux les efforts dans les câbles.
+Les vérins hydrauliques présentent deux modes de fonctionnement :
+\begin{itemize}
+\item vérin libéré (les chambres sont dépressurisées et le mouvement de translation est libre) ;
+\item vérin bloqué ou piloté (le déplacement est commandé par le conducteur).
+\end{itemize}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{images/fig_04}
+\caption{Pied de grue \label{fig_04}}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=.8\linewidth]{images/fig_05}
+\caption{Câblage assurant le mouvement de levage et l’orientation d’un conteneur de 20 pieds \label{fig_05}}
+\end{figure}
+
+\subsection{Validation des performances des nouvelles motorisations}
+Les hypothèses simplificatrices suivantes sont admises pour cette partie :
+\begin{itemize}
+\item les rendements sont unitaires ;
+\item les accélérations et décélérations sont constantes ;
+\item les inerties des pièces en rotation (rotors, tambours, galets, réducteurs, etc) sont négligées.
+\end{itemize}
+
+\subparagraph{\label{q02}}\textit{Vérifier pour chaque moteur (levage, direction et translation) si les performances du cahier des charges
+défini par les services techniques de la société portuaire (partie I.B***) sont satisfaites et compléter le tableau A***
+du document réponse. La masse de la charge suspendue (conteneur et spreader) ne sera pas prise en compte
+pour le mouvement de direction. Noter que le moufle conduit à une vitesse du conteneur égale à la moitié de la
+vitesse du câble.}
+
+\section{Tenue mécanique du portique et commande du spreader}
+\subsection{Stabilité du portique sur ses appuis}
+
+\begin{obj}
+Évaluer le risque de basculement lorsque le portique est soumis au vent et lors du levage d’un
+conteneur.
+\end{obj}
+
+La forme très élancée du portique présente des risques de basculement lors de la manipulation des conteneurs
+les plus lourds et par grand vent. Il s’agit de lever ces risques.
+Le centre de gravité du portique seul est noté $G_P$ ,
+le centre de gravité du chariot $G_{\text{ch}}$ et le centre
+de gravité de l’ensemble \{spreader et conteneur\}
+$Gè3$. Soient $l_x = \SI{17}{m}$, $l_y = \SI{15}{m}$, $H = \SI{32}{m}$ et
+$h = \SI{25}{m}$ certaines longueurs précisées figure 6*** et
+figure 3***.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.4\linewidth]{images/fig_06}
+\caption{Vue longitudinale du portique \label{fig_06}}
+\end{figure}
+
+\subparagraph{\label{q03}}\textit{Lorsque le chariot est en bout de bec avant
+(voir figure 3***, la distance $D$ vaut \SI{40}{m}) et que la
+charge maximale est levée à l’accélération maximale
+$\gamma_{lm}$, déterminer littéralement, dans le cadre
+d’un problème plan (dans le plan ($\vect{y}$, $\vect{z}$) de la figure
+3***), les efforts dans les contacts rails/portique,
+modélisés par des liaisons sphère-plan en A et B.
+Donner la condition de non basculement de la grue.
+Cette condition est-elle vérifiée ?}
+
+
+La grue doit pouvoir se déplacer normalement en
+translation dans une plage de vents de 0 à 120
+kilomètres par heure. Elle ne doit jamais basculer
+(vitesse maximale du vent mesurée au cours des
+100 dernières années : $\SI{300}{km.h^{-1}}$).
+La prise au vent latérale est très forte et sera modélisée
+par une force : $\vect{F}_{\text{vent}}=\SI{1}{2}\lambda V^2 \vect{x}$ appliquée
+en $K$ (figure 6***), avec $\lambda = \SI{800}{N.s^2.m^{-2}}$.
+
+La liaison galets-rail supporte les 1080 tonnes du
+portique. En raison des pressions admissibles aux
+contacts, plusieurs galets sont nécessaires pour
+chaque pied. Les questions suivantes visent à élaborer
+un modèle statique d’un pied pour conclure
+sur le critère de non basculement de la grue.
+
+\subparagraph{\label{q04}}\textit{Déterminer le degré d’hyperstatisme du modèle plan d’un seul pied, de la liaison portique/sol donné
+sur la figure 4. En déduire la répartition de la charge entre les 8 galets.}
+
+\subparagraph{\label{q05}}\textit{À partir de l’étude des mobilités du pied décrit figure 4***, proposer une liaison équivalente à la liaison
+assurée par un pied entre le portique et le rail, dans le plan $(\vect{x},\vect{z})$ de la figure 4***, en précisant ses caractéristiques géométriques.}
+
+\subparagraph{\label{q06}}\textit{Déterminer littéralement, dans le cadre d’une modélisation dans le plan $(\vect{x},\vect{z})$ de la figure 6***, les
+efforts normaux du sol sur la grue transmis par les pieds « gauche » et « droit », lorsque la grue est soumise au
+vent. (Hypothèses : le mouvement suivant $\vect{z}$ du conteneur ne sera pas considéré ; le chariot et le portique sont
+immobiles ; la masse des poutres supérieure, inférieure et des supports de galets est négligeable devant $M_p$.)}
+
+\subparagraph{\label{q07}}\textit{En déduire la valeur (en \si{km.h^{-1}}) de la vitesse de vent $V_1$ pour laquelle la grue bascule. En déduire
+la valeur (en \si{km.h^{-1}}) de la vitesse de vent $V_2$ pour laquelle la grue glisse, en considérant au contact roue/rail
+un modèle de frottement sec de coefficient $f = 0,2$. Vérifier si les deux derniers critères de la fonction FS3 du
+cahier des charges sont validés, et proposer le cas échéant des solutions techniques.}
+
+
+\subsection{Rôle du spreader et fonctionnement des vérins hydrauliques}
+\begin{obj}
+Vérifier les possibilités d’orientation du spreader dans les 3 directions et valider les 2 modes de
+fonctionnement d’un des vérins (libéré ou piloté).
+\end{obj}
+Le conteneur est soulevé par un dispositif élaboré de moufle à douze brins de câbles. Les deux fonctions assurées
+sont :
+\begin{itemize}
+\item orienter le « spreader » pour le poser à plat sur le conteneur lors de la prise ;
+\item assurer l’équi-répartition de l’effort dans les brins lors des déplacements de la charge.
+\end{itemize}
+Elles sont assurées par les vérins hydrauliques 1, 2 et 3 de la figure 5. Les vérins possèdent 2 modes de fonctionnement
+: libéré (chambres dépressurisées) ou piloté (déplacement du spreader commandé par le conducteur).
+
+\subparagraph{\label{q08}}\textit{Indiquer dans le tableau B*** du document réponse quel mouvement (0, $+$ ou $-$) imposer à chaque vérin
+pour assurer les rotations de sens positif du spreader autour des directions $\vect{x}$, $\vect{y}$ et $\vect{z}$.}
+
+Le schéma figure 7*** décrit le circuit hydraulique de commande d’un des trois vérins
+(une documentation est proposée tableau 3*** en page 12).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{images/fig_07}
+\caption{Schéma hydraulique de commande d’un vérin \label{fig_07}}
+\end{figure}
+
+\subparagraph{\label{q09}}\textit{Indiquer à quels modes de fonctionnement correspondent les deux cas où la variable de commande $V$
+des distributeurs est validée ou pas. Quel est le rôle des composants du cadre $a$ ? Quel est le rôle des composants
+du cadre $b$ ?}
+
+
+Les parties précédentes ont eu pour finalité de vérifier la capacité d’une grue à satisfaire la fonction de service
+FS3 du cahier des charges partiel de la figure 2****. L’objet de la partie qui suit concerne la fonction de service FS4,
+en s’intéressant plus particulièrement à l’élaboration d’une commande automatisée de déchargement.
+
+\section{Élaboration d’une commande automatisée de déchargement}
+
+Le port de Marseille souhaite offrir à ses clients les installations parmi les plus modernes au monde. Aussi,
+une étude prospective envisage l’automatisation des grues pour un chargement et un déchargement toujours
+plus efficaces et rapides. Le service technique de la Société portuaire souhaite implanter un nouveau système
+de commande, sans modifier la partie opérative couteuse (alimentation des moteurs, motorisation et chaine de
+transmission de puissance).
+Un extrait du cahier des charges du système de commande automatisé est décrit ci-dessous :
+\begin{itemize}
+\item \textbf{stabilité} : système stable, dépassements de moins de 10\% (en réponse à un échelon), marge de gain supérieure
+à \SI{10}{dB} et marge de phase supérieure à 50\degres ;
+\item \textbf{rapidité} : temps de réponse à 5\% inférieur à \SI{10}{s} (en réponse à un échelon) ;
+\item \textbf{précision du positionnement de la charge sur le camion} :  \SI{10}{cm} ;
+\item \textbf{sensibilité aux perturbations} : aucune en régime permanent pour une perturbation due à un vent
+constant.
+\end{itemize}
+
+\subsection{Asservissement de position du chariot}
+
+\begin{obj}
+Modéliser le procédé et choisir la loi de commande en position du chariot pour assurer les performances
+nécessaires au positionnement du conteneur.
+\end{obj}
+
+Le comportement global de la grue est directement dépendant de la qualité de la commande du chariot. L’asservissement
+en position $y_{\text{ch}}(t)$ doit être stable, précis, sans dépassement et rapide devant la période de balancement
+du conteneur (temps de réponse à 5\% de moins de \SI{5}{s}).
+
+Le déplacement du chariot est réalisé par un câble s’enroulant sur un tambour (voir figure 8***), entrainé par un
+moteur associé à un réducteur. Le rapport de réduction du réducteur est $r_{\text{ch}}= 1/20$, le diamètre du tambour
+$d_{\text{ch}}= \SI{0,54}{m}$ et le moment d’inertie du tambour $J_t = \SI{20}{kg.m^2}$ (l’inertie du réducteur est négligée).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.4\linewidth]{images/fig_08}
+\caption{Architecture de la chaine de transmission de puissance de la motorisation du chariot \label{fig_08}}
+\end{figure}
+
+Le moteur de direction est une machine à courant continu et aimants permanents modélisée par les équations
+de comportement :
+$$
+u(t)=R_{\text{ch}}i(t)+L_{\text{ch}}\dfrac{\dd i(t)}{\dd t}+e(t) 
+\quad
+J_{\text{eq}}\dfrac{\dd \omega_m(t)}{\dd t} = C_m(t)
+\quad 
+e(t)=K_m \omega_m(t)
+\quad 
+C_m(t)=K_m i(t)
+$$
+
+où $u(t)$ et $i(t)$ sont respectivement la tension aux bornes de l’induit et le courant d’induit, $e(t)$ la force contre-électromotrice,
+$Cm(t)$ et $\omega_m(t)$ le couple et la vitesse de rotation du moteur, $R_{\text{ch}} = \SI{0,17}{\Omega}$ et $L_{\text{ch}} = \SI{3,7}{mH}$ la
+résistance et l’inductance de l’induit, $J_{\text{eq}}$ le moment d’inertie équivalent de la chaine de transmission ramené à
+l’arbre du moteur et $K_m = \SI{2}{N. m.A^{-1}}$ la constante de couple (égale à la constante de force électromotrice).
+Le modèle du moteur est intégré dans le schéma-bloc figure A du document réponse, correspondant à la chaine
+d’asservissement en position du chariot. Le rotor seul a pour moment d’inertie $J_m = \SI{0,24}{kg.m^2}$.
+
+
+\subparagraph{\label{q10}}\textit{Compléter le schéma-bloc de la figure A du document réponse et exprimer littéralement la fonction de transfert $H_m(p) = Y_{\text{ch}}(p)U(p)$ sous forme canonique.}
+
+Le chariot a pour masse $M_{\text{ch}} = \SI{27}{tonnes}$. Pour la synthèse du correcteur, un modèle simplifié du comportement
+est adopté en négligeant les effets du câble, de la poulie et de la charge sur le moment d’inertie équivalent rapporté
+à l’arbre moteur (les câbles s’enroulent sans glisser sur le tambour et leur élasticité est négligée).
+
+\subparagraph{\label{q11}}\textit{Déterminer l’expression littérale du moment d’inertie équivalent $J_{\text{eq}}$ des éléments mobiles (à l’exception
+des câbles, de la poulie, du spreader et du conteneur) rapporté à l’arbre moteur de l’ensemble en mouvement.
+Un correcteur proportionnel $C_2(p) = K_P$ est adopté, où $K_P = 3$. Le capteur est modélisé par un gain unitaire.
+Dans ces conditions, la fonction de transfert 
+$H_{\text{dir}}(p) = \dfrac{Y_{\text{ch}}(p)}{Y C_{\text{ch}}(p)}$, d’ordre 3, possède les pôles suivants : 
+$p_1 = -\SI{41}{rad.s^{-1}}$, 
+$p_2 = -\SI{3,4}{rad.s^{-1}}$ et 
+$p_3 = -\SI{1,5}{rad.s^{-1}}$ et ne comporte pas de zéros.}
+
+\subparagraph{\label{q12}}\textit{L’asservissement du chariot est-il stable ? Est-il précis pour une consigne en échelon ? Présentera-t-il des
+dépassements pour une entrée en échelon ? Déterminer une expression simplifiée de $H_{\text{dir}}(p)$ afin d’en déduire
+une valeur approximative du temps de réponse à 5\% de l’asservissement en position du chariot. Conclure quant
+à l’objectif de cette partie.}
+
+\subsection{Modélisation dynamique du comportement de la charge}
+\begin{obj}
+Déterminer les équations du mouvement du conteneur de façon à en obtenir un modèle simple pour
+la synthèse de la commande.
+\end{obj}
+
+
+En vue d’élaborer une commande automatisée du déchargement des conteneurs, une bonne compréhension de
+la dynamique du système est nécessaire. Cette partie vise à établir les équations du mouvement du conteneur.
+Seul le vérin 3 est libéré. La charge peut alors balancer selon le modèle figure 9. Dans cette étude, le mouvement
+de levage est supposé arrêté et la vitesse de vent nulle. Les douze câbles supportant le conteneur sont assimilés
+à un seul câble indéformable, en liaison pivot à ses extrémités. Les liaisons entre les solides 0, 1, 2 et 3 sont
+supposées parfaites.
+
+Le portique support du chariot est noté 0, le chariot 1, le câble 2 et l’ensemble \{spreader + conteneur\} 3.
+
+\paragraph*{Paramétrage}
+\begin{itemize}
+\item Le repère $\mathcal{R}_0=\repere{O_0}{x_0}{y_0}{z_0}$ est lié au portique fixe ; il est supposé
+galiléen avec $\vect{z_0}$ l’axe vertical ascendant.
+\item La position du chariot telle que $\vect{OE} = y_{ch}(t) \vect{y_0}$ est notée $y_{ch}(t)$ ;
+l’angle $\angl{z_0}{z_2}$ d’inclinaison du câble $\theta(t)$ et l’angle $\angl{z_2}{z_3}$ d’inclinaison
+du conteneur par rapport au câble  $\beta(t)$.
+\end{itemize}
+
+
+\paragraph*{Données}
+\begin{itemize}
+\item $\mathcal{R}_1=\repere{E}{x_0}{y_0}{z_0}$  repère lié au chariot de levage 1.
+\item $\mathcal{R}_2=\repere{E}{x_0}{y_2}{z_2}$  repère lié au câble 2; $\ell_2 = \SI{50}{m}$ la longueur $EF$
+du câble ; la masse est négligée.
+\item $\mathcal{R}_3=\repere{F}{x_0}{y_3}{z_3}$  repère lié à l’ensemble \{spreader + conteneur\};
+$m_3 = \SI{50}{tonnes}$ la masse du solide 3 ; $G_3$ le centre de gravité du
+solide 3, tel que $\vect{G_3F}=h_3\vect{z_3}$ où $h_3 = \SI{2,5}{m}$; la matrice d’inertie du solide 3 s’écrit
+$\inertie{3}{G_3}=\matinertie{A_3}{B_3}{C_3}{0}{0}{0}{\left(\vect{x_0},\vect{y_3},\vect{z_3} \right)}$ où $\left| \begin{array}{l} A_3 = \SI{52e3}{kg.m^2} \\ B_3 = \SI{600e3}{kg.m^2} \\ C_3 = \SI{600e3}{kg.m^2} \end{array}\right.$. 
+\item la motorisation $M_D$ du mouvement de direction exerce, par l’intermédiaire de câbles, des actions mécaniques sur (1) qui se réduisent
+à un glisseur de la forme $\vectf{M_D}{1} =F \vect{y_0}$ ;
+\item l’action mécanique du câble sur le spreader est notée $\vectf{2}{3} =F_{23} \vect{z_2}$.
+\end{itemize}
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.4\linewidth]{images/fig_09}
+\caption{Paramétrage du mouvement de direction de la grue et du conteneur dans le plan $(y_0, z_0)$ \label{fig_09}}
+\end{figure}
+
+
+\subparagraph{\label{q13}}
+\textit{Après avoir réalisé le graphe de structure, déterminer le nombre de degrés de liberté et le nombre d’actionneurs du modèle proposé figure précédente. En
+déduire le nombre de degrés de liberté non motorisés. Expliquer pourquoi il est difficile de poser le conteneur
+sur un camion avec précision ?}
+\ifprof
+\begin{corrige} ~\\
+
+\begin{center}
+\includegraphics[width=.5\linewidth]{cor_01}
+\hfill
+\includegraphics[width=.3\linewidth]{cor_02}
+\end{center}
+
+Le système a trois mobilités : 
+\begin{itemize}
+\item la translation de la liaison glissière de longueur $y_{ch}(t)$ (degré de liberté motorisé);
+\item la rotation du câble d'angle $\theta(t)$ (degré de liberté non motorisé);
+\item la rotation du conteneur d'angle $\beta(t)$ (degré de liberté non motorisé). 
+\end{itemize}
+
+Les deux liaisons pivot n'étant pas freinées ou motorisées, lorsque le chariot se positionne au-dessus du camion le conteneur va se balancer, ce qui rend difficile la dépose du conteneur. 
+
+\end{corrige}
+\else
+\fi
+
+
+\subparagraph{}
+\textit{Déterminer littéralement, dans la base $\mathcal{B}_2$ et au point $G_3$, la vitesse $\vectv{G_3}{3}{0}$ puis le torseur dynamique $\torseurdyn{3}{0}$ de l’ensemble \{conteneur + spreader\} (3) dans son mouvement par rapport au repère galiléen $\mathcal{R}_0$.}
+%\textit{Déterminer littéralement, au point $G_3$, la vitesse $\vectv{G_3}{3}{0}$ puis le torseur dynamique $\torseurdyn{3}{0}$ de l’ensemble \{conteneur + spreader\} (3) dans son mouvement par rapport au repère galiléen $\mathcal{R}_0$.}
+\ifprof
+\begin{corrige}
+$\vectv{G_3}{3}{0}=   \left[\dfrac{\dd \vect{OG_3}}{\dd t}\right]_{\rep{0}}=   \left[\dfrac{\dd }{\dd t}\left(
+\vect{OE}+\vect{EF}+\vect{FG_3} \right)\right]_{\rep{0}}$ 
+$=   \left[\dfrac{\dd }{\dd t}\left(
+y_{ch}(t) \vect{y_0}-\ell_2\vect{z_2}-h_3\vect{z_3} \right)\right]_{\rep{0}}$. 
+
+On a : 
+\begin{itemize}
+\item $ \left[\dfrac{\dd \vect{z_2}}{\dd t}\right]_{\rep{0}}=\left[\dfrac{\dd \vect{z_2}}{\dd t}\right]_{\rep{2}}+\vecto{2}{0} \wedge \vect{z_2}=\dot{\theta} \vect{x_2}\wedge \vect{z_2}=-\dot{\theta} \vect{y_2}$;
+\item $ \left[\dfrac{\dd \vect{z_3}}{\dd t}\right]_{\rep{0}}=\left[\dfrac{\dd \vect{z_3}}{\dd t}\right]_{\rep{3}}+\vecto{3}{0} \wedge \vect{z_3}=\left(\dot{\theta}+\dot{\beta}\right) \vect{x_2}\wedge \vect{z_3}=-\left(\dot{\theta}+\dot{\beta}\right) \vect{y_3}$;
+\item $ \left[\dfrac{\dd \vect{y_2}}{\dd t}\right]_{\rep{0}}=\dot{\theta} \vect{z_2}$;
+\item $ \left[\dfrac{\dd \vect{y_3}}{\dd t}\right]_{\rep{0}}=\left(\dot{\theta}+\dot{\beta}\right) \vect{z_3}$.
+\end{itemize}
+
+$\vectv{G_3}{3}{0}=   
+\dot{y}_{ch}(t) \vect{y_0}+\ell_2\dot{\theta} \vect{y_2}+h_3\left(\dot{\theta}+\dot{\beta}\right) \vect{y_3}$.
+
+$\vectg{G_3}{3}{0}=   
+\ddot{y}_{ch}(t) \vect{y_0}+\ell_2\ddot{\theta} \vect{y_2}+h_3\left(\ddot{\theta}+\ddot{\beta}\right) \vect{y_3}
++   
+\ell_2\dot{\theta}^2 \vect{z_2}  +h_3\left(\dot{\theta}+\dot{\beta}\right)^2\vect{z_3} $.
+
+Par ailleurs, $G_3$ étant le centre d'inertie, de 3, on a $\vectmd{G_3}{3}{0}=\left[\dfrac{\dd \vectmc{G_3}{3}{0}}{\dd t}\right]_{\rep{0}}=\left[\dfrac{\dd A_3 \left(\dot{\theta}+\dot{\beta} \right)\vect{x_0}}{\dd t}\right]_{\rep{0}}=A_3 \left(\ddot{\theta}+\ddot{\beta} \right)\vect{x_0}$.
+
+On a donc, $\torseurdyn{3}{0}=\torseurl{M_3\left(\ddot{y}_{ch}(t) \vect{y_0}+\ell_2\ddot{\theta} \vect{y_2}+h_3\left(\ddot{\theta}+\ddot{\beta}\right) \vect{y_3}
++   
+\ell_2\dot{\theta}^2 \vect{z_2}  +h_3\left(\dot{\theta}+\dot{\beta}\right)^2\vect{z_3}\right)}{A_3 \left(\ddot{\theta}+\ddot{\beta} \right)\vect{x_0}}{G_3}$
+\end{corrige}
+\else
+\fi
+
+
+\subparagraph{}
+\textit{En précisant l’isolement et le bilan des actions mécaniques extérieures, déterminer l’équation différentielle
+de résultante reliant les paramètres $\theta(t)$, $\beta(t)$%$\beta(t)$
+ et $y_{ch}(t)$, sans inconnue de liaison.}
+\ifprof
+\begin{corrige}
+
+D'une part, on peut se dire qu'on va utiliser le résultat de la question précédente. D'autre part, le sujet demande une équation de résultante sans aucune action mécanique. Si on isole le solide 3, il va donc falloir projeter sur une direction ne faisant pas intervenir d'action mécanique. Les données précisent que l'action du câble est suivant $\vect{z_2}$, on peut donc suggérer de réaliser le thorème de la résultante dynamique appliqué au solide 3 en projection sur $\vect{y_2}$. 
+
+Le bilan des actions mécaniques est donc le suivant : 
+\begin{itemize}
+\item action de la pesanteur sur 3;
+\item action de 2 sur 3.
+\end{itemize}
+
+On a donc :
+$-M_3 g \vect{z_0}\cdot \vect{y_2} = 
+\left( M_3\left(\ddot{y}_{ch}(t) \vect{y_0}+\ell_2\ddot{\theta} \vect{y_2}+h_3\left(\ddot{\theta}+\ddot{\beta}\right) \vect{y_3}
++   
+\ell_2\dot{\theta}^2 \vect{z_2}  +h_3\left(\dot{\theta}+\dot{\beta}\right)^2\vect{z_3}\right)\right) \cdot \vect{y_2}$
+
+$ \Leftrightarrow -M_3 g \sin \theta  = 
+ M_3\left(\ddot{y}_{ch}(t) \cos \theta +\ell_2\ddot{\theta} +h_3\left(\ddot{\theta}+\ddot{\beta}\right)\cos \beta 
+-h_3\left(\dot{\theta}+\dot{\beta}\right)^2\sin\beta \right)$
+
+
+\vspace{.6cm}
+Résolution faisant intervenir $F$ -- Non demandé.
+
+L'équation de résultante étant demandée, on peut aussi isoler une pièce (ou un ensemble de pièces) en translation rectiligne. On isole donc \textbf{(1+2+3)} et on réalise un théorème de la résultante dynamique en projection sur $\vect{y_0}$. 
+
+Bilan des actions mécaniques : 
+\begin{itemize}
+\item action de la pesanteur sur 3 (la résultante n'a pas de composante sur $\vect{y_0}$);
+\item action de la pesanteur sur 1 (négligée) (la résultante n'a pas de composante sur $\vect{y_0}$);
+\item action de 0 sur 3 (glissière) (la résultante n'a pas de composante sur $\vect{y_0}$);
+\item action du moteur sur 1.
+\end{itemize}
+
+On applique le TRD sur $\vect{y_0}$ :
+$F = \vectrd{1+2+3}{0}\cdot \vect{y_0}= \underbrace{\vectrd{1}{0} \cdot  \vect{y_0}}_{=0 \text{(masse négligée)}}+ \underbrace{\vectrd{2}{0}\cdot  \vect{y_0}}_{=0 \text{(masse négligée)}} + \vectrd{3}{0}\cdot \vect{y_0}$
+
+ $ \Rightarrow F = \left( M_3\left(\ddot{y}_{ch}(t) \vect{y_0}+\ell_2\ddot{\theta} \vect{y_2}+h_3\left(\ddot{\theta}+\ddot{\beta}\right) \vect{y_3}
++   
+\ell_2\dot{\theta}^2 \vect{z_2}  +h_3\left(\dot{\theta}+\dot{\beta}\right)^2\vect{z_3}\right)\right) \cdot \vect{y_0}$
+
+ $ \Leftrightarrow F =  M_3\left(\ddot{y}_{ch}(t) +\ell_2\ddot{\theta} \cos \theta +h_3\left(\ddot{\theta}+\ddot{\beta}\right) \cos \left( \beta+\theta\right)
+-
+\ell_2\dot{\theta}^2 \sin \theta   -h_3\left(\dot{\theta}+\dot{\beta}\right)^2  \sin \left( \beta+\theta\right)\right) $
+\end{corrige}
+\else
+\fi
+
+
+%\subparagraph{}
+%\textit{En précisant l’isolement et le bilan des actions mécaniques extérieures, déterminer les équations différentielles
+%reliant les paramètres $\theta(t)$, $\beta(t)$  et $y_{ch}(t)$ et sans inconnue de liaison. La méthode sera clairement séparée des calculs.}
+%\ifprof
+%\begin{corrige}
+%Le TRD appliqué à 3 en projection suivant $\vect{z_2}$ se traduit par : 
+%
+%$F-M_3 g \vect{z_0}\cdot \vect{z_2} = 
+%\left( M_3\left(\ddot{y}_{ch}(t) \vect{y_0}+\ell_2\ddot{\theta} \vect{y_2}+h_3\left(\ddot{\theta}+\ddot{\beta}\right) \vect{y_3}
+%+   
+%\ell_2\dot{\theta}^2 \vect{z_2}  +h_3\left(\dot{\theta}+\dot{\beta}\right)^2\vect{z_3}\right)\right) \cdot \vect{z_2}$
+%
+%$\Leftrightarrow F-M_3 g \cos \theta  = 
+% M_3\left(- \ddot{y}_{ch}(t) \sin \theta +h_3\left(\ddot{\theta}+\ddot{\beta}\right) \sin\beta
+%+   
+%\ell_2\dot{\theta}^2   +h_3\left(\dot{\theta}+\dot{\beta}\right)^2\cos \beta \right) $.
+%
+%
+%
+%Le TMD appliqué à 3 au point $F$ en projection suivant $\vect{x_0}$ se traduit par : 
+%
+%$\vect{FG_3}\wedge \left(-M_3g \vect{z_0} \right) \cdot \vect{x_0} =\left(\vectmd{G_3}{3}{0}+\vect{FG_3}\wedge \vectrd{3}{0}\right)\cdot \vect{x_0}$
+%
+%$\Leftrightarrow -h_3 \vect{z_3} \wedge \left(-M_3g \vect{z_0} \right) \cdot \vect{x_0} =A_3 \left(\ddot{\theta}+\ddot{\beta} \right)$
+%
+%$\Leftrightarrow - M_3gh_3 \sin\left( \beta + \theta\right) =A_3 \left(\ddot{\theta}+\ddot{\beta} \right)$.
+%\end{corrige}
+%\else
+%\fi
+%
+
+Les deux autres équations diférentielles (équation de la résultante en projection sur $\vect{z_2}$ et équation de moments) sont données :
+$$
+\left\{
+\begin{array}{l}
+m_3\left(
+l_2\dot{\theta}^2 - \ddot{y}_{\text{ch}} \sin \theta  
++ h_3\left(\ddot{\theta}+\ddot{\beta}\right)\sin \beta
++ h_3\left(\dot{\theta}+\dot{\beta}\right)^2\cos \beta
+\right)=-m_3 g \cos \theta + F_{23} \\
+A_3\left(\ddot{\theta}+\ddot{\beta}\right)=F_{23}h_3\sin\beta
+\end{array}
+\right.
+$$
+\subparagraph{\label{q16}}
+\textit{En supposant que $\theta$, $\beta$, $\dot{\theta}$ et $\dot{\beta}$ sont petits, linéariser les équations précédentes.  }
+\ifprof
+\begin{corrige}
+\begin{itemize}
+\item On a 
+$ -M_3 g \sin \theta  = 
+ M_3\left(\ddot{y}_{ch}(t) \cos \theta +\ell_2\ddot{\theta} +h_3\left(\ddot{\theta}+\ddot{\beta}\right)\cos \beta 
+-h_3\left(\dot{\theta}+\dot{\beta}\right)^2\sin\beta \right)$. En linéarisant, on obtient 
+$ -M_3 g \theta  = 
+ M_3\left(\ddot{y}_{ch}(t) +\ell_2\ddot{\theta} +h_3\left(\ddot{\theta}+\ddot{\beta}\right) 
+-h_3\left(\dot{\theta}+\dot{\beta}\right)^2\beta \right)$. En considérant que $\dot{\theta}$ et $\dot{\beta}$ sont petits, on a : 
+$ -M_3 g \theta  = 
+ M_3\left(\ddot{y}_{ch}(t) +\ell_2\ddot{\theta} +h_3\left(\ddot{\theta}+\ddot{\beta}\right)  \right)$.
+\item  On a : $F-M_3 g \cos \theta  = 
+ M_3\left(- \ddot{y}_{ch}(t) \sin \theta +h_3\left(\ddot{\theta}+\ddot{\beta}\right) \sin\beta
++   
+\ell_2\dot{\theta}^2   +h_3\left(\dot{\theta}+\dot{\beta}\right)^2\cos \beta \right) $. En linéarisant, on obtient :
+$F-M_3 g  = 
+ M_3\left(- \ddot{y}_{ch}(t) \theta +h_3\left(\ddot{\theta}+\ddot{\beta}\right) \beta
++   
+\ell_2\dot{\theta}^2   +h_3\left(\dot{\theta}+\dot{\beta}\right)^2 \right) $
+En considérant que $\dot{\theta}$ et $\dot{\beta}$ sont petits, on a : 
+$F-M_3 g  = 
+ M_3\left(- \ddot{y}_{ch}(t) \theta +h_3\left(\ddot{\theta}+\ddot{\beta}\right) \beta
+ \right) $.
+ \item On a : $ M_3gh_3 \sin\left( \beta + \theta\right) =A_3 \left(\ddot{\theta}+\ddot{\beta} \right)$ En linéarisant, on obtient  $M_3gh_3 \left( \beta + \theta\right) =A_3 \left(\ddot{\theta}+\ddot{\beta} \right)$.
+ \end{itemize}
+
+\end{corrige}
+\else
+\fi
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{images/fig_10}
+\caption{Résultats de simulation \label{fig_10}}
+\end{figure}
+
+
+Les courbes temporelles figure 10**** ont été obtenues par simulation, à partir des équations précédentes, pour un
+échelon en$y_{\text{ch}}(t)$ de \SI{10}{m}. Une étude fréquentielle complémentaire permet de montrer que le paramètre  est
+négligeable dans le comportement du conteneur. Nous pouvons donc adopter le modèle défini figure 11***.
+
+
+\subsection{Élaboration d’une commande en boucle fermée avec correcteur}
+
+\begin{obj}
+Piloter le mouvement du conteneur à travers une boucle fermée et ajuster le correcteur pour
+satisfaire les performances du cahier des charges.
+\end{obj}
+
+Un modèle simplifié figure 11 est adopté. L’équation différentielle liant $\theta(t)$ et $y_{\text{ch}}(t)$ est admise :
+$$
+\ddot{\theta}(t)+\dfrac{g}{L}\theta(t) = -\dfrac{\ddot{y}_{\text{ch}}(t)}{L} 
+$$
+où $L=\SI{52,5}{m}$ désigne la longueur $EG_3$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{images/fig_11}
+\caption{Modèle simplifié du mouvement de direction de la grue et du conteneur \label{fig_11}}
+\end{figure}
+
+
+Un schéma d’asservissement à deux boucles est proposé, figure 12*** :
+\begin{itemize}
+\item une boucle d’asservissement du chariot en position $Y_{\text{ch}}(p)$ ;
+\item une boucle d’asservissement de la position du conteneur $Y (p)$ (incomplète).
+\end{itemize}
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{images/fig_12}
+\caption{Schéma-blocs de l’asservissement de la position du conteneur \label{fig_12}}
+\end{figure}
+
+Notations :
+\begin{itemize}
+\item $Y C(p)$ est la consigne de déplacement de la charge ;
+\item $Y (p)$ le déplacement de la charge ;
+\item $Y C_{\text{ch}}(p)$ la consigne de déplacement du chariot ;
+\item $Y_{\text{ch}}(p)$ le déplacement du chariot ;
+\item $\theta(p)$ l’angle d’inclinaison de la charge ;
+\item $\theta_{\text{mes}}(p)$ la valeur mesurée par le capteur d’angle de la charge ;
+\item $Y_{\text{ch-mes}}(p)$ la valeur mesurée par le capteur de déplacement du chariot ;
+\item $Y_{\text{mes}}(p)$ l’image de la position $Y (p)$ du conteneur, issue d’une combinaison des mesures $\theta_{\text{mes}}(p)$ et $Y_{\text{ch-mes}}(p)$;
+\item $C_1(p)$ et $C_2(p)$ les fonctions de transfert des deux correcteurs ;
+\item $K_A = 50$ le gain de la chaine de puissance du moteur.
+\end{itemize}
+
+
+
+
+\subparagraph{\label{q17}}\textit{Compléter le bloc vide du schéma-bloc du document réponse figure B. Déterminer l’expression linéarisée de $Y_{\text{mes}}(p)$ en fonction de $\theta_{\text{mes}}(p)$ et de $Y_{\text{ch-mes}}(p)$, puis compléter le schéma-bloc du document réponse figure B
+pour réaliser la seconde boucle d’asservissement en $Y (p)$.
+Le schéma-bloc de la figure 12*** est simplifié et remplacé par celui de la figure 13***. Pour la suite, l’expression
+simplifiée $H_{\text{dir}}(p) = \dfrac{1}{1+Tp}$ est adoptée, où $T = \SI{0,67}{s}$.}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{images/fig_13}
+\caption{Schéma-blocs simplifié de l’asservissement de la position du conteneur \label{fig_13}}
+\end{figure}
+
+
+
+\subparagraph{\label{q18}}\textit{Déterminer la fonction de transfert 
+$H_{\text{processus}}(p)$ et en déduire l’expression littérale de la fonction de
+transfert en boucle ouverte non corrigée $\text{FTBO}_{\text{nc}}(p)$ du schéma-bloc de la figure 13***. Tracer les diagrammes de
+Bode (asymptotiques et allure des diagrammes réels) de cette fonction de transfert en précisant les éléments
+caractéristiques (pentes, pulsations de cassure, gain statique). Le système en boucle fermée, pour $C_1(p) = 1$,
+est-t-il stable ? Est-il précis ?}
+
+Pour rappel, l’erreur s’écrit $\mu(t) = yc(t) - y(t)$.
+
+\subparagraph{\label{q19}}\textit{Déterminer la condition que doit vérifier $C_1(p)$ pour que l’erreur en réponse à un échelon en régime permanent soit nulle.}
+
+Pour la suite, le correcteur $C_1(p)=\dfrac{5p}{1+\dfrac{p}{100}}$ est adopté. 
+
+\subparagraph{\label{q20}}\textit{En déduire les diagrammes de Bode asymptotiques et l’allure des diagrammes de Bode réels de la
+fonction de transfert en boucle ouverte corrigée ($\text{FTBOc}(p)$), ainsi que les marges de phase et de gain. Pour
+le calcul des marges, la courbe réelle des gains pourra être approchée par le tracé asymptotique. Pour ce
+tracé, une attention particulière devra être apportée à l’emplacement de la courbe par rapport à l’axe \SI{0}{dB}, en
+précisant la (ou les) pulsation(s) de coupure à \SI{0}{dB}.}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{images/fig_14}
+\caption{Courbes de réponses temporelles obtenues par un asservissement de position classique \label{fig_14}}
+\end{figure}
+
+\subparagraph{\label{q21}}\textit{Les courbes de réponses indicielles figure 14*** sont obtenues après réglage du correcteur $C_1(p)$, en boucle
+fermée et en réponse à un échelon de consigne d’amplitude 10 mètres. Conclure vis-à-vis du cahier des charges
+du système de commande décrit page 6****.}
+
+\subsection{Élaboration d’une commande avec mise en forme de la consigne}
+
+\begin{obj}
+Mettre en forme la consigne de mouvement du chariot pour améliorer la réponse dynamique du
+conteneur.
+\end{obj}
+
+Une charge suspendue à un câble forme un système très peu amorti. L’asservissement classique est mal adapté
+car la consigne du chariot est élaborée a posteriori, à partir de l’erreur entre la consigne et la valeur atteinte.
+Un bon conducteur anticipe le balancement de la charge dans le pilotage du chariot. Cette observation conduit
+à utiliser un « shaper » permettant de mettre en forme la consigne du chariot à partir du déplacement voulu du
+conteneur (figure 15**).
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{images/fig_15}
+\caption{Implantation du shaper dans le schéma-bloc \label{fig_15}}
+\end{figure}
+
+Dans la gamme de pulsations étudiée et dans un souci de simplification, l’asservissement du chariot est supposé
+remplir parfaitement son rôle : $H_{\text{dir}}(p) = 1$. La fonction de transfert du processus est donnée :
+$$
+H_{\text{processus}}(p) = \dfrac{Y(p)}{Y_{\text{ch}}(p)}= \dfrac{g/L}{p^2 + g/L}.
+$$
+
+\subparagraph{\label{q22}}\textit{}
+\subparagraph{\label{q23}}\textit{}
+\subparagraph{\label{q24}}\textit{}
+\subparagraph{\label{q25}}\textit{}
+\subparagraph{\label{q26}}\textit{}
+\subparagraph{\label{q27}}\textit{}
+\subparagraph{\label{q28}}\textit{}
+
+
+
+
+
+
+
+\end{document}
+\begin{center}
+\includegraphics[width=.8\linewidth]{images/FIG_03}
+\end{center}
+
+Les appareils photos modernes fonctionnent en rafales : 8 à 10 images par seconde et en mode vidéo. Le besoin de stabilisation de l’image dans de telles conditions est impératif.
+
+\begin{itemize}
+\item Figure 1 : le stabilisateur mécanique est muni d’une poignée de prise, il nécessite des réglages de contrepoids ;
+\item Figure 2 : Un autre modèle dans une autre position ;
+\end{itemize}
+Le besoin de prises de vue originales et au plus près de l’action à filmer a conduit les concepteurs de matériel cinématographique à déplacer leur caméra au moyen de supports mobiles très variés :
+\begin{itemize}
+\item Figure 3 : stabilisateur de caméra vidéo avec support de portage sur le torse du cameraman ;
+\item Figure 4 : le système de prise de vue est tenu par des câbles de très grande longueur au-dessus d’un stade ;
+\item Figure 5 : le système de prise de vue est fixé à l’avant d’un hélicoptère ;
+\item Figure 6 : le système de prise de vue est fixé à un bras télescopique mobile type « Louma » ;
+\item Figures 7 : le système de prise de vue est fixé à un ballon gonflé à l’hélium en position fixe au-dessus d’un stade pendant un match de football par exemple. 
+\end{itemize}
+Le but de ce sujet est de s’intéresser au support de la caméra (appareil photo) assurant la liaison entre le système de mise en mouvement appelé porteur (poignée -- câble -- hélicoptère -- bras) et la caméra elle-même. 
+Dans la première partie le sujet aborde le cas des stabilisateurs passifs puis par comparaison montre l’intérêt des stabilisateurs actifs.
+Pour les parties suivantes, la modélisation décrite dans le DOCUMENT D1 Présentation de la nacelle de la caméra est utilisée pour l’ensemble du questionnement. Ce système de stabilisation est nommé CAM-GYR, c’est un système actif.
+
+
+\section{Analyse mécanique des stabilisateurs passif et actif}
+
+\begin{obj}
+Valider l’exigence 2 « support passif »  DOCUMENT D5-b.
+\end{obj}
+
+\subsection{Stabilisateur de type « passif », principe et réglage}
+ 
+
+Afin de mieux appréhender les caractéristiques et les performances attendues du système actif de stabilisation étudié dans la suite du sujet, on présente dans un premier temps, une version passive (c’est-à-dire sans aucune motorisation). Comme le précise la \autoref{FIG_08}, ce système (commercialisé sous le nom de « stabilisateur ») se compose principalement de trois objets :
+\begin{itemize}
+\item une poignée orientable (1) manipulée directement par le photographe, liée au support (2) en O;
+\item un support rigide (2) (supposé sans masse) sur lequel vient se fixer une caméra assimilée en première approximation à une masse ponctuelle mc placée en $G_c$ ;
+\item un contrepoids lié à (2) et assimilé à une masse ponctuelle mcp placée en $G_{cp}$.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.5\linewidth]{FiG_08}
+\caption{Stabilisateur passif, vue générale\label{FIG_08}}
+\end{figure}
+
+L’utilisateur (le porteur) tient fermement la poignée (1) dans une position angulaire quelconque, ce qui permet d’affirmer que le (porteur + (1)) ne forme qu’une seule classe d’équivalence. 
+Afin de produire des images toujours fluides, sans à-coups, ce stabilisateur à main doit maintenir constamment la caméra dans une position (ou « attitude ») verticale (parallèle au champ de gravité), que le porteur soit immobile (plan fixe) ou en mouvement (travelling).
+
+Pour l’ensemble du sujet, on adopte les notations suivantes :
+%\begin{itemize}
+%\item torseur cinématique caractérisant le mouvement du solide (i) par rapport au solide (j) réduit au point A quelconque :  
+%ou dans la base   : 
+%•	torseur des actions mécaniques exercées par le solide (i) sur le solide (j) réduit au point A quelconque :  
+
+L’ensemble des études et des conclusions apportées dans les questions suivantes permet de remplir efficacement le tableau de synthèse de la question \ref{q7}.
+
+%Question 1 :
+\subparagraph{}\textit{En cohérence avec l’attitude attendue de la caméra, donner les éléments de réduction en $O$ du torseur cinématique de l'ensemble \{support + caméra\} par rapport au sol noté (0) en $O$ soit  $\torseurcin{V}{2}{0}$.}
+
+%; utiliser les notations définies ci-dessus pour les torseurs ;
+On suppose quelconque le mouvement du porteur (équivalent à (1)) dans (0), caractérisé par le torseur cinématique suivant :
+$\torseurcin{V}{1}{0}=
+\torseurl{\vecto{1}{0}=\omega_x(1/0)\vect{X_0}+\omega_y(1/0)\vect{Y_0}+\omega_z(1/0)\vect{Z_0}}{\vectv{O}{1}{0}=v_x(1/0)\vect{X_0}+v_y(1/0)\vect{Y_0}+v_z(1/0)\vect{Z_0}}{O}$.
+
+\subparagraph{\label{q1}}\textit{En utilisant la composition des vitesses, déterminer les éléments de réduction du torseur cinématique  $\torseurcin{V}{2}{1}$ en $O$. En discutant de la valeur du terme $\omega_z(2/0)-\omega_z(1/0)$ , donner le(s) nom(s) de(s) liaison(s) mécanique(s) (1)-(2) compatible(s) avec le maintien de l’attitude de la caméra.}
+
+On utilise les éléments définis sur la figure 8. On se place dans un premier temps dans une phase qualifiée de « statique », c'est-à-dire que la poignée (1) est parfaitement immobile par rapport au sol (0). 
+L’utilisateur solidarise la caméra sur le support (2) démuni de contrepoids. On appelle $G_c$ le centre de gravité de l'ensemble   et O le centre de la liaison (parfaite au sens énergétique) poignée (1)--support (2).
+
+%Question 2a :	
+\subparagraph{\label{q2a}}\textit{Isoler l'ensemble E=\{support, caméra\}  puis  lister et dénombrer les actions mécaniques extérieures à (E).}
+
+%Question 2b :	
+\subparagraph{\label{q2b}}\textit{Enoncer alors la condition géométrique portant sur la position de $G_c$, assurant l’équilibre de (E) dans (0) ?}
+
+%Question 2c :	
+\subparagraph{\label{q2c}}\textit{L’équilibre obtenu peut-il être qualifié de stable ou instable ? Qu’en déduit l’utilisateur par rapport à l’exigence 2.1  « pré réglage » du DOCUMENT D5-b ?}
+
+
+Dans un souci de simplification, on adopte le paramétrage décrit par la figure de la question \ref{q3} du document réponse. A l'instant initial, l'ensemble (E) est en position verticale ($\varphi = 0$).
+Des rainures de réglage placées selon $\vect{X_2}$ et $\vect{Y_2}$ permettent de solidariser la caméra sur le support (2) tout en respectant la condition établie précédemment (Question \ref{q2b}). 
+
+Ce réglage effectué, on note $\vect{OG_c}=L_c\vect{Z_2}$. On adjoint à présent au support (2) un contrepoids 
+(assimilé à une masse ponctuelle $m_{cp}$ en $G_{cp}$ tel que , $\vect{OG_{cp}}=-L_{cp}\vect{Z_2}$ réglable) 
+censé améliorer la qualité de l’équilibre de l'ensemble complet noté E'=\{support, caméra, contrepoids\} de centre 
+de gravité $G$.
+
+
+%Question 3 :	
+\subparagraph{\label{q3}}\textit{En utilisant la figure du document réponse, établir une condition liant $m_c$, $m_{cp}$, $L_c$ et $L_{cp}$  garantissant une attitude satisfaisante de la caméra tout en assurant un équilibre stable.}
+
+On se place à présent dans une phase dite « dynamique ». Le porteur (1) est en mouvement par rapport au sol. On suppose qu'à l'instant initial, l'ensemble (E') est en équilibre stable en position verticale.
+
+On utilise toujours la figure de la question \ref{q3} (document réponse) pour le paramétrage et on se limite à une translation du poignet (1) selon $\vect{X_0}$ dans (0). 
+
+Ainsi $\torseurcin{V}{1}{0}=\torseurl{\vect{0}}{\vectv{V}{1}{0}=v(t)\vect{X_0}}{\forall P}$.
+On note l’accélération  $a(t)=\dfrac{\dd v(t)}{\dd t}$.
+
+
+%Question 4 :	 
+\subparagraph{ \label{q4}} \textbf{QUESTION LONGUE -- PLEIN DE POINTS ICI !!} \textit{Par une étude dynamique que vous mettrez en œuvre, montrer que l'équation de mouvement de (E') dans (0) galiléen s'exprime comme : $A_1 \dfrac{\dd^2 \varphi(t)}{\dd t^2}+Q_2 = Q_3 a(t)$.
+ Pour cela, vous commencerez par exprimer le bilan des actions mécaniques extérieures s’exerçant sur (E’). Puis, le théorème de la dynamique utilisé sera clairement énoncé. Enfin, les expressions des $Q_i$ en fonction de  $m_c$, $m_{cp}$, $L_c$, $L_{cp}$, $g$, $\sin\varphi(t)$ et $\cos\varphi(t)$ seront établies.}
+
+%Question 5 :	 
+\subparagraph{\label{q5}}\textit{À partir de la position de repos, le porteur se met en mouvement dans (0) ; on suppose que  $a\neq 0$ et on considère que la condition établie à la question \ref{q3} est satisfaite. À l’aide de l'équation établie précédemment, indiquer (en le justifiant) si l’attitude $\varphi(t)$ de (E') se trouve modifiée dans le cas où :}
+\textit{\begin{enumerate}
+\item le centre de gravité de (E') noté $G$, se trouve confondu avec $O$ ;
+\item le centre de gravité de (E') noté $G$, ne se trouve pas confondu avec $O$.
+\end{enumerate}}
+
+Afin de quantifier la modification d’attitude de (E’), l'équation de mouvement est linéarisée autour de la position d'équilibre (verticale) en supposant que les valeurs de l'angle $\varphi$  restent faibles. On transpose cette équation différentielle dans le domaine de Laplace et on note 
+$\mathcal{L}\left( \varphi(t)\right)=\Phi(p)$ et $\mathcal{L}\left( \alpha(t)\right)=A(p)$.
+On suppose vérifiée la condition établie à la question \ref{q3}.
+Afin de conserver la fluidité des images lors de travelling, les fluctuations indésirables des mouvements du porteur ne doivent pas être intégralement transmisses à (E’). 
+On suppose que : $a(t)=a_0 \sin\left(\omega_a t\right)$ avec $a_0=\SI{0,5}{m.s^{-2}}$; on prendra $g=\SI{10}{m.s^{-2}}$.
+
+
+%Question 6a :	
+\subparagraph{\label{q6a}}\textit{Etablir, sous forme canonique, la fonction de transfert $H(p)=\dfrac{\Phi(p)}{A(p)}$. Donner l'expression de la pulsation propre $\omega_0$ en fonction de  $m_c$, $m_{cp}$, $L_c$, $L_{cp}$ et $g$.}
+
+%Question 6b :	
+\subparagraph{\label{q6b}}\textit{Tracer l'allure du diagramme asymptotique de gain $G_{\text{dB}}=f(\omega)$ de la fonction de transfert $H(j\omega)$. Placer les caractéristiques remarquables.}
+
+%Question 6c :	
+\subparagraph{\label{q6c}}\textit{Pour un fonctionnement filtrant satisfaisant, on impose que $\omega_0=0,1\omega_a$. Le stabilisateur est réglé en conséquence par l’intermédiaire du couple $\left(m_{cp},L_{cp}\right)$. En utilisant le comportement asymptotique en gain de $G_{\text{dB}}$, estimer numériquement l'amplitude $\Delta \varphi$ (en degrés) des oscillations de (E') selon l'axe $\left(O,\vect{Y_0}\right)$.}
+
+%Question 6d :	
+\subparagraph{\label{q6d}}\textit{Dans ces conditions, le stabilisateur mécanique d’image respecte-t-il l’exigence 2.1.2 « valider pré réglage fréquence » du DOCUMENT D5-b ?}
+
+%Question 7 :	 
+\subparagraph{\label{q7}}\textit{En utilisant les différentes réponses apportées aux questions précédentes, remplir (par oui ou par non ou par indifférent) le tableau du document-réponse.}
+
+\paragraph*{Conclusion}
+Le réglage délicat ainsi que les limitations dynamiques d'un stabilisateur de type passif incitent les concepteurs à proposer une version active, objet principal de cette étude. Equipé d'actionneurs, le stabilisateur actif reprend les principes du stabilisateur passif en corrigeant/améliorant ses performances.
+
+\subsection{Stabilisateur de type « actif »}
+
+Afin de traiter les questions qui suivent, on fait référence principalement aux figures 1 et 2 du DOCUMENT D1.
+\paragraph*{Définitions}
+Dans l'ensemble du sujet, on désigne par :
+\begin{itemize}
+\item nacelle : ensemble mécanique constitué de l'association des 3 solides indéformables \{solide 2, solide 2, support 4\}en liaison les uns avec les autres ;
+\item caméra stabilisée : ensemble constitué de l'association  \{nacelle, caméra complète (boitier, objectif), AHRS\};
+\item porteur : tout système mécanique \{bras, câbles avec enrouleurs, apparail volant de tout type, ...\} qui constitue une structure assurant le positionnement de la caméra stabilisée par rapport au sol supposé galiléen. Le solide (1) (nommé « base ») peut être considéré comme le dernier élément du porteur et supportant la nacelle.
+\end{itemize}
+
+Les mouvements autorisés entre les solides composant la nacelle sont associés aux axes référencés (voir DOCUMENT D3) et sont définis par l’exigence 1.2 « Liaison avec le porteur » du DOCUMENT D5-a.
+
+%Question 8 :	 
+\subparagraph{\label{q8}}\textit{En vous appuyant sur les figures du DOCUMENT D1, proposer une modélisation des liaisons entre les différents solides, en indiquant précisément leurs caractéristiques (par exemple : axe ou direction ou normale ou centre, etc.). Compléter le tableau du document-réponse.}
+
+%Question 9 :	 
+\subparagraph{\label{q9}}\textit{Tracer alors un schéma cinématique obligatoirement tridimensionnel de la nacelle, en respectant scrupuleusement la disposition des axes donnée sur le document-réponse. Nommer les axes en accord avec le DOCUMENT D1.}
+
+%D'un point de vue géométrique, la fonction de l'association \{nacelle, porteur\}  est de pouvoir placer la caméra dans une position quelconque par rapport à un repère lié au sol afin de créer une image satisfaisante.
+%On cherche à mettre en évidence des similarités et des différences de conception mécanique entre les versions active et passive du stabilisateur. La figure 2 du DOCUMENT D1 montre que, par construction, les trois axes de la nacelle seule sont concourants en O.
+%
+%%Question 10a :	
+%\subparagraph{}\textit{La structure en chaine ouverte de la nacelle permet d’affirmer que la mobilité de la caméra par rapport au porteur est égale à trois. Décrire la configuration géométrique particulière dans laquelle on peut affirmer que cette mobilité se réduit à deux (on parle alors de « blocage de Cardan »). }
+%
+%%Question 10b :	
+%\subparagraph{}\textit{Cette configuration pénalisante peut-elle se produire pour le stabilisateur passif ? }
+
+%Afin de garantir des performances satisfaisantes, le lien mécanique placé entre les constituants de la nacelle repérés (3) et (4) (axe tangage) doit être très rigide et sans jeu. Etant donné la constitution particulière des moteurs "plats" utilisés, le guidage en rotation de cet axe est réalisé à l'aide de plusieurs paliers à éléments roulants dont on donne un modèle cinématique possible :
+% 
+%Figure 9 : architecture du guidage. 
+%
+%%Question 11 :
+%\subparagraph{}\textit{	
+%a)	déterminer le degré d'hyperstaticité noté « h » du modèle de guidage en rotation de l'axe tangage décrit sur la figure 9.
+%L’observation de l'architecture mécanique de la nacelle (figure 2 du DOCUMENT D1) montre une autre conception de guidage dit en « porte à faux » pour les axes de lacet et de roulis.
+%b)	déterminer le degré d'hyperstaticité noté « h’» du modèle de guidage en rotation des axes de lacet et roulis (encadré en traits mixtes dans la figure 9) ;
+%D’après la figure 8, on suppose que la nature géométrique de surfaces en contact en O entre (1) et (2) est du type sphère-sphère.
+%c)	Dans ces conditions, les contraintes engendrées par le guidage hyperstatique des axes de la nacelle existent-elles pour le stabilisateur passif (figure 8) ? 
+
+\paragraph*{Conclusion}
+Par rapport à sa version passive, la version active du stabilisateur reprend et étend le principe général du maintien d'attitude grâce à :
+\begin{itemize}
+\item la similarité de la liaison mécanique entre le porteur et la caméra ; 
+\item et la maitrise du positionnement du centre de gravité. 
+\end{itemize}
+Les performances attendues sont cependant très différentes. Le stabilisateur est « bi axial » en  version  passive  et  « tri axial » dans sa version active. L’attitude générale de la caméra dans l’espace tridimensionnel est contrôlée grâce aux trois axes motorisés.
+
+\section{Analyse de la chaîne d’information de la caméra stabilisée}
+
+\begin{obj}
+Valider l’exigence 1.4 : « Connaître l’orientation » DOCUMENT D5.a. Décrire la structure interne du composant correspondant : AHRS. Etudier les traitements internes du module AHRS.
+\end{obj}
+
+Le bloc fonctionnel AHRS (Attitude and Heading Reference System c’est-à-dire Contrôle de Cap et d’Attitude) décrit sur le DOCUMENT D2 permet de déterminer l’orientation (la position angulaire) de la caméra dans l’espace au moyen des angles de CARDAN (voir DOCUMENT D3). Le bloc AHRS fournit également les trois valeurs des vitesses angulaires de rotation selon les directions de CARDAN. 
+Pour construire ces informations, le bloc fonctionnel (DOCUMENT D2) utilise les neuf informations fournies par deux composants de la carte NAVEOL :
+ \begin{itemize}
+ \item un composant \{accéléromètre, gyromètre\} qui mesure pour l’accéléromètre : les trois composantes $[a_x, a_y, a_z]$ de l’accélération subie par le capteur suivant les trois directions repérés sur la carte et pour le gyromètre : les trois vitesses angulaires de rotation $[\omega_x,\omega_y,\omega_z]$ autour des trois directions précédemment citées ;
+ \item un composant  « magnétomètre » qui mesure les trois composantes du champ magnétique terrestre $[m_x, m_y, m_z]$ suivant les trois directions repérés sur la carte.
+ \end{itemize}
+Ces mesures sont effectuées dans la base $[X, Y, Z]$ associée à la carte Voir DOCUMENT D2.
+
+Le but de cette première partie est d’analyser le fonctionnement de ce module. 
+
+\subsection{Orientation de la caméra par rapport à la base}
+Nous nous plaçons en début de fonctionnement (après une phase d’initialisation), le solide (1) voir DOCUMENT D1 est considéré confondu avec le repère terrestre (galiléen). $Z_{Rg}$ ($Z_{Rg}=Z_1$) est la verticale ascendante du lieu (DOCUMENT D3). L’orientation du solide (4) support de la caméra et du module AHRS par rapport à la base (B1) peut être définie par trois rotations en utilisant les angles de CARDAN  (DOCUMENT D3).
+
+%Question 12 -  
+\subparagraph{\label{q12}}\textit{Compléter le document réponse en vous inspirant de la première rotation (figure et matrice) proposée.}
+
+%Question 13 - 
+\subparagraph{\label{q13}}\textit{En déduire la matrice exprimant la base associée au solide (4) : ($\mathcal{B}_4$) par rapport à la base associée au solide (1) : ($\mathcal{B}_1$).}
+ 
+Appelons $(0, 0, G_Z = -g)$ les composantes de l’accélération de la pesanteur dans la base ($\mathcal{B}_1$) et appelons $(a_X, a_Y, a_Z)$ les composantes de l’accélération de la pesanteur mesurées dans la base de la carte par AHRS. Les mouvements sont suffisamment lents pour que la seule accélération non négligeable soit celle de la pesanteur.
+
+%Question 14 – 
+\subparagraph{\label{q14}}\textit{En utilisant la matrice obtenue à la question \ref{q13} écrire les trois relations liant $G_Z$, $a_X$, $a_Y$ et $a_Z$ et les angles de définition de l’attitude. En déduire que la seule connaissance des composantes du vecteur accélération dans la base liée au solide (4) ne suffit pas à connaître entièrement l’attitude de la caméra par rapport au repère galiléen.}
+
+Il faut donc ajouter la mesure d’une autre grandeur physique pour déterminer l’attitude. C’est le rôle des magnétomètres présents dans la centrale de contrôle de l’attitude qui mesurent le champ magnétique terrestre (DOCUMENT D2). 
+
+Ce champ, dirigé vers le nord magnétique, est incliné de $\gamma=64\degres$ par rapport à l’horizontale à Paris.
+On peut noter ce vecteur dans le repère terrestre sous la forme $\vect{M_{Rg}}=M\cos\gamma \vect{X_{Rg}}-M\sin\gamma \vect{Z_{Rg}}$ avec $M$ amplitude du champ magnétique dans la zone de travail. 
+
+On note aussi $(m_X, m_Y, m_Z)$ les valeurs mesurées par le magnétomètre trois directions de l’AHRS dans le repère lié au solide (4).
+
+%Question 15 -  
+\subparagraph{\label{q15}}\textit{Sans effectuer le calcul complet, montrer alors que l’on peut déterminer l’attitude $(\psi,\theta,\varphi)$ à partir des mesures de ces deux vecteurs (une seule équation suffit).}
+
+
+\subsection{Mesure des vitesses angulaires de rotation}
+
+Le module AHRS possède également un gyromètre « trois axes » qui assure les mesures des vitesses angulaires de rotations suivant trois directions orthogonales. 
+Les trois angles qui définissent l’attitude $(\psi,\theta,\varphi)$ ne sont pas déterminés de manière assez précise à partir des deux capteurs précédents (accéléromètres et magnétomètres) pour permettre d’obtenir les vitesses angulaires de rotation et donc détecter les petits mouvements de la caméra. 
+Le but de cette partie est de mettre en place le traitement permettant de passer de $[\omega_x,\omega_y,\omega_z]$  mesurés par la carte dans la base $[X, Y, Z]$ associée à la carte à $\left[ \dfrac{\dd \psi}{\dd t},\dfrac{\dd \theta}{\dd t},\dfrac{\dd \varphi}{\dd t} \right]$ vitesses angulaire de rotation des axes de Lacet , Roulis et Tangage utiles pour les asservissements des axes Lacet , Roulis et Tangage (voir DOCUMENT D4).
+
+
+%Question 16 - 
+\subparagraph{\label{q16}}\textit{Dans la position du DOCUMENT D2 c’est-à-dire avec $\psi=0$, $\theta=0$, $\varphi=0$ compléter le tableau du document réponse afin d’associer les directions de mesure $(X, Y, Z)$ avec les directions de Lacet, Roulis et Tangage.}
+
+%Question 17 -  
+\subparagraph{\label{q17}}\textit{Une des directions du gyromètre « trois axes » lié à la carte [DOCUMENT D2] reste toujours colinéaire avec la direction de l’un des axes de rotation. Préciser laquelle reste colinéaire et avec quel axe (utiliser les notations de la question précédente).}
+
+En considérant uniquement la rotation autour de cet axe, on cherche à déterminer les valeurs de rotation angulaire autour des autres axes en fonction des mesures par l’AHRS. 
+
+%Question 18 -  
+\subparagraph{\label{q18}}\textit{En utilisant la vue plane de rotation du document réponse, placer les autres axes de rotation (parmi Lacet, Roulis ou Tangage) en position relative par rapport aux autres directions (parmi $X$, $Y$ ou $Z$) du capteur. En déduire les relations liant $[\omega_x,\omega_y,\omega_z]$ à $\left[ \dfrac{\dd \psi}{\dd t},\dfrac{\dd \theta}{\dd t},\dfrac{\dd \varphi}{\dd t} \right]$.}
+
+
+
+
+\section{Analyse des caractéristiques mécaniques de la nacelle de caméra}
+
+\begin{obj}
+Etablir le protocole d’équilibrage statique de la nacelle munie de la caméra.
+\end{obj}
+
+Lors du montage de la caméra sur le support, la première opération à réaliser est son équilibrage statique. Outre la réduction de la consommation d'énergie (qui a pour effet d'accroitre sensiblement l'autonomie de la nacelle), un bon équilibrage est un des facteurs influençant majoritairement la qualité de l'image produite.
+Le document d'accompagnement fourni avec la nacelle précise lapidairement les points suivants :
+\begin{itemize}
+\item brider efficacement la caméra sur la nacelle ;
+\item équilibrer statiquement l'ensemble (nacelle hors tension) selon les trois axes.
+\end{itemize}
+
+%Question 19 :	
+\subparagraph{\label{q19}}\textit{En vous appuyant sur la figure suivante :}
+\textit{
+\begin{enumerate}
+\item rappeler la condition à satisfaire pour affirmer que le solide quelconque ($S$) de centre de gravité $G_S$ est équilibré statiquement par rapport à l'axe  $\left(M,\vect{u}\right)$;
+\item indiquer deux solutions pratiques couramment utilisées afin de procéder à l'équilibrage statique du solide ($S$).
+\end{enumerate}}
+
+\begin{center}
+\includegraphics[width=.25\linewidth]{fig_a}
+\end{center}
+ 
+Notation adoptée : on appelle $G_{4c}$ : le centre de gravité de l’ensemble \{4,caméra\}, $G_{34c}$ : le centre de gravité de l'ensemble \{3, 4, caméra\}, et $G_{234c}$ : le centre de gravité de l'ensemble \{2, 3, 4, caméra\}. On fait référence aux notations définies sur le DOCUMENT D6.
+
+%Question 20a :
+\subparagraph{\label{q20a}}\textit{En utilisant la définition du barycentre d’un ensemble à préciser, établir les expressions des deux valeurs réglables de position de la caméra sur le support (4) notées $\left(y_c,z_c\right)$ en fonction des données massiques utiles (voir DOCUMENT 6) assurant ainsi l'équilibrage de la nacelle selon l'axe de tangage. Donner une estimation numérique de $y_c$ et de $z_c$ (en millimètres).}
+
+%Question 20b :
+\subparagraph{\label{q20b}}\textit{À la fin de la procédure d’équilibrage de l’axe de tangage, exprimer $\vect{O'G_{4c}}$.}
+
+%Question 20c :
+\subparagraph{\label{q20c}}\textit{Compléter alors la 1ère ligne du tableau du document-réponse en indiquant les solides concernés par la procédure d’équilibrage ainsi que le décalage à effectuer.}% (utiliser le symbole ).}
+
+%Question 20d :
+\subparagraph{\label{q20d}}\textit{Sans faire de calculs, compléter les lignes 2 et 3 du tableau du document réponse en indiquant le nom de l’axe, les solides concernés par la procédure d’équilibrage ainsi que la direction du décalage à effectuer.}% (utiliser le symbole ) .
+
+\section{Déterminer les performances globales de la caméra stabilisée}
+\begin{obj}
+Justifier la forme particulière de la commande asservie (ou régulée) de la caméra stabilisée : exigence 1.1 « déplacer la caméra » du DOCUMENT D5.a. Proposer un réglage d’un axe suivant plusieurs modes de fonctionnement.
+\end{obj}
+
+La caméra stabilisée possède plusieurs modes de fonctionnement selon les applications. On ne retiendra ici que quatre modes :
+\begin{itemize}
+\item \textbf{Mode initialisation} : la caméra hors tension est placée dans une position quelconque (manuellement) par l’opérateur. A la mise sous tension, la commande de la caméra ramène $\theta$ à zéro puis enregistre les valeurs de $\psi$ et de $\theta$. Elle affecte les valeurs de $\psi$ , $\theta=0$ et $\varphi$ aux consignes $\alpha_L^{\star}$, $\alpha_R^{\star}$ et $\alpha_T^{\star}$. (voir DOCUMENT D4);
+\item \textbf{Mode pilotage} : une fois l’initialisation effectuée, on peut passer au mode pilotage au moyen d’un joystick 
+qui permet de faire varier  $\alpha_L^{\star}$ et  $\alpha_T^{\star}$
+mais pas $\alpha_R^{\star}$ en respectant 
+les limites d’amplitude définie par l’exigence 1.2 du DOCUMENT D5-a ;
+\item \textbf{Mode suivi de mouvement} : une fois les consignes fixées par l’initialisation ou le pilotage, si le système détecte une sollicitation « continue et régulière » sur le lacet et/ou le tangage alors le système va suivre cette sollicitation et modifier son orientation en conséquence ;
+\item \textbf{Mode stabilisé} : une fois les consignes fixées par l’initialisation ou le pilotage, si le système ne détecte pas de sollicitation « continue et régulière » sur le lacet et/ou le tangage, le système décrit par le DOCUMENT D4, s’oppose à toute forme de perturbations afin de maintenir l’orientation de la caméra par rapport au repère terrestre.  
+\end{itemize}
+
+\subsection{Etude du Mode pilotage}
+
+Le but de cette partie est de justifier la présence d’un filtre passe bas en entrée du schéma bloc de commande.
+En mode pilotage et plus particulièrement à chaque changement de valeur de consigne sur le schéma du DOCUMENT D4, le concepteur a interposé un filtre passe bas avant le comparateur. Le but de ce filtre est d’améliorer le rendu des mouvements de caméra sur les films obtenus.
+
+En effet lors d’un mouvement de caméra, on peut quitter rapidement une scène pour rejoindre une autre. Par contre il est important d’arriver progressivement sur la scène finale et de s’arrêter sans choc ni oscillations mais avec précision (exigence 1.12 « Maitriser les déplacements »).
+On modélise par un échelon de déplacement la consigne du déplacement, et on étudie un traitement qui répond à l’exigence 1.12. 
+
+Nous allons comparer trois types de traitement de la consigne repéré par i variant de 1 à 3 :
+\begin{itemize}
+\item $[i=1]$ : aucun traitement ;
+\item $[i=2]$ : fonction rampe de pente $a = 1$ pour rejoindre la valeur finale ;
+\item $[i=3]$ : fonction de transfert du premier ordre de constante de temps $\tau$ (filtre passe bas).
+\end{itemize}
+
+\begin{center}
+\includegraphics[width=.25\linewidth]{fig_b}
+\end{center}
+
+%Question 21 : 
+\subparagraph{\label{q21}}\textit{Sachant que  $A_1(p) = 1$, proposer les deux fonctions de transfert $A_2(p)$ et $A_3(p)$ sur les schémas blocs du document réponse (extrait du DOCUMENT D4) et tracer $a^{\star}_a(t)$ pour $[i=3]$.} 
+
+\subsection{Etude du schéma bloc et du comportement de l’axe de tangage}
+
+Le DOCUMENT D4 présente le schéma global de commande asservie des trois axes de la CAMGYR. Le schéma bloc ci-après Modèle 1 est une modélisation de l’axe de tangage.
+On cherche à justifier la forme ainsi que les valeurs numériques du schéma de modélisation de l’axe de tangage.
+
+\subsubsection{Etude en mode pilotage}
+
+On considère un modèle de l’axe de tangage sans perturbation et qui reçoit des consignes assez rapides modélisées par des échelons.
+L’ensemble \{moteur, charge\} ne présente pas de réducteur. Il est modélisé par un ensemble en série de deux fonctions de transfert :
+\begin{itemize}
+\item un gain pur de valeur $K_m$ (La valeur $K_{mT}$ du DOCUMENT D4 est notée $K_m$ dans cette partie) ;
+\item une fonction de transfert du premier ordre de gain statique $A$ et de constante de temps $\tau_m$.
+\end{itemize}
+Cet ensemble présente comme entrée la commande du moteur $Com(t)$ et comme sortie la vitesse angulaire de rotation du moteur $\omega_m(t)$. Le réglage retenu est tel que $K_m A = 1$.
+Le retour $K_D$ agit par un sommateur.
+
+\begin{center}
+\includegraphics[width=\linewidth]{fig_c}
+
+Modèle 1 de l'axe de tangage
+\end{center}
+
+
+%Question 22 : 
+\subparagraph{\label{q22}}\textit{En identifiant le schéma ci dessus au schéma du DOCUMENT D4, compléter le tableau donné sur le document réponse. Préciser le lien entre $g_1(t)$ présent sur le « Modèle 1 de l’axe de tangage » et $\varphi(t)$. }
+
+%Question 23 : 
+\subparagraph{\label{q23}}\textit{Avec $K_m A = 1$,  calculer la fonction de transfert en boucle ouverte (FTBO) et la fonction de transfert en boucle fermée (FTBF) du schéma (modèle 1).}
+
+Dans un premier temps en mode pilotage, on s’intéresse au comportement de l’axe de tangage sans le filtre passe bas : $A_1(p)=1$. 
+
+%Question 24 : 
+\subparagraph{\label{q24}}\textit{Quelle est la valeur maximale de $K_D$ pour que la commande de l’axe de tangage soit strictement stable ? Préciser le(s) critère(s) de stabilité appliqué(s).}
+
+En accord avec les résultats précédents, on fixe $K_D = 0,5$ et$\tau_m=\SI{0,2}{s}$.
+Dans un premier temps on impose  $K_P = \SI{10}{s^{-1}}$.
+
+%Question 25 : 
+\subparagraph{\label{q25}}\textit{En cas de consigne en échelon, l’axe de tangage ainsi réglé présente-t-il des dépassements et/ou des oscillations ? Justifier votre réponse.}
+
+
+La figure temporelle ci-contre propose une réponse du système avec un filtre passe bas de constante de temps 2 secondes et de gain égal à 1 $[i=3]$.
+
+\begin{center}
+\includegraphics[width=.5\linewidth]{fig_d}
+
+\end{center}
+
+
+
+
+%Question 26 : 
+\subparagraph{\label{q26}}\textit{Montrer que le comportement est alors compatible avec l’exigence 1.12 « maitriser les déplacements » du DOCUMENT D5-a.}
+
+Dans un second temps on se place en mode stabilisation. On s’intéresse toujours au comportement de l’axe de tangage mais sans le filtre passe bas ($A_1(p)=1$).
+On considère ici que la consigne est constante donc $\varphi^{\star}_a(t)=0$. Une perturbation $Pe(p)$ agit au niveau de l’ensemble (moteur, charge) modélisée sur le schéma bloc (Modèle 2). On appelle $Com(p)$ la transformée de Laplace de la commande du moteur $\text{com}(t)$.
+
+\begin{center}
+\includegraphics[width=\linewidth]{fig_e}
+
+Modèle 2 de l'axe de tangage
+\end{center}
+
+
+%Question 27 : 
+\subparagraph{\label{q27}}\textit{Avec le « modèle 2 » calculer la Fonction de transfert $\text{Stab}(p)=\dfrac{Com(p)}{\text{Pe}(p)}$  qui lie la commande du moteur à la perturbation.}
+
+Conseil de résolution : calculer $\varepsilon_1(p)$ en fonction de $Pe(p)$, Com(p) et des fonctions de transfert utiles, puis
+calculer $\varepsilon_2(p)$
+en fonction de $\varepsilon_1(p)$
+et des fonctions de transfert utiles, 
+puis $\varepsilon_3(p)$
+en fonction de $\varepsilon_1(p)$, $\varepsilon_2(p)$ et des fonctions de transfert utiles et enfin en déduire 
+ $\text{Stab}(p)=\dfrac{\text{Com}(p)}{\text{Pe}(p)}$.
+
+%Question 28 : 
+\subparagraph{\label{q28}}\textit{Avec le « modèle 2 » et une entrée $Pe(p)$ échelon unitaire, déterminer la limite quand $t$ tend vers l’infini de la commande : $\text{com}(t)$. Quel sens physique donner à ce résultat ?}
+
+%Question 29 : 
+\subparagraph{\label{q29}}\textit{Avec le « modèle 2 » déterminer la FTBO :  $\dfrac{\text{Mes}\varphi(p)}{\varepsilon_2(p)}$ de ce schéma puis calculer la fonction de transfert liant la perturbation et la sortie $\text{Pert}(p)=\dfrac{\varphi(p)}{\text{Pe}(p)}$  .}
+
+%Question 30 : 
+\subparagraph{\label{q30}}\textit{Déterminer la valeur lorsque $t$ tend vers l’infini de la réponse temporelle de ce système à une perturbation de type échelon unitaire. Quel sens physique donner à ce résultat ?}
+
+
+%Question 31 : 
+\subparagraph{\label{q31}}\textit{On désire une marge de gain de $M_\text{G} \geq \SI{5}{dB}$ et une marge de phase $M_{\varphi}\geq 20\degres$ (exigence 1.14 « stabilité de la commande » du DOCUMENT D5-a). Déterminer la valeur maximale de $K_P$ en utilisant les données ci-dessous :}
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$\omega (\si{rad.s^{-1}})$ & 1 & 2 & 5 & 7 & 10 \\ \hline
+$\arg\left( \dfrac{1}{j\omega} \cdot \dfrac{2}{1+0,4 j\omega}\right)$&  $-112\degres$&$-135\degres$&$-153\degres$&$-160\degres$&$-166\degres$ \\ \hline
+$20\log \left| \dfrac{1}{j\omega} \cdot \dfrac{2}{1+0,4 j\omega}\right|$&
+\SI{5,4}{dB} & $\SI{3}{dB}$ & $-\SI{1}{dB}$ & $-\SI{3}{dB}$ & $-\SI{6,2}{dB}$ \\ \hline
+\end{tabular}
+\end{center}
+
+On rappelle que $20\log(2)=6$, $20\log(3)=9,5$, $20\log(5)=14$.
+
+Le document réponse présente la réponse temporelle de l’axe de tangage à une perturbation sinusoïdale (due par exemple au vent qui crée un balancement de la GYRCAM).
+
+
+%Question 32 : 
+\subparagraph{\label{q32}}\textit{Analyser ce tracé par rapport à l’exigence 1.13 « Perturbations » du DOCUMENT D5-a et justifier le tracé de $\text{Com}(t)$ relativement à $\text{Pe}(t)$ en utilisant le résultat de la question \ref{q28}.}
+
+Afin d’améliorer le comportement, un autre réglage a été effectué, ce qui donne sur le document réponse un nouveau tracé. 
+
+%Question 33 : 
+\subparagraph{\label{q33}}\textit{Analyser comparativement ce nouveau tracé. Quel(s) réglage(s) ont été fait(s) ? Quelle est l’amélioration principale obtenue ?}
+
+\includepdf{DOCUMENT_D1.pdf}
+
+\includepdf[angle=90]{DOCUMENT_D2-D3.pdf}
+
+\includepdf[angle=90]{Document4.pdf}
+
+\includepdf[angle=90]{Document_D5_Exigences.pdf}
+
+\includepdf{DOCUMENT_D6.pdf}
+
+\end{document}
+
+
+
