@@ -1,0 +1,936 @@
+\documentclass[10pt,fleqn]{article} % Default font size and left-justified equations
+\usepackage[%
+    pdftitle={Modélisation systèmes multiphysiques : Modélisation linéaire et non linéaire},
+    pdfauthor={Xavier Pessoles}]{hyperref}
+    
+\input{style/new_style}
+\input{style/macros_SII}
+\usepackage{multicol}
+\usepackage{standalone}
+\standaloneconfig{mode=buildnew}
+\usepackage{siunitx}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{listings}
+\lstset{language=Python,
+  inputencoding=utf8,
+  breaklines=true,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+  upquote = true,
+  columns=fullflexible,
+  backgroundcolor=\color{gray!10},frame=leftline,rulecolor=\color{gray}}  
+  
+\definecolor{mygreen}{rgb}{0,0.6,0}
+
+
+\lstset{
+     literate=%
+         {é}{{\'e}}1    
+         {è}{{\è}}1    
+         {ê}{{\^e}}1    
+         {à}{{\à}}1    
+         {ô}{{\^o}}1    
+         {ù}{{\`u}}1    
+}
+
+\graphicspath{{images/}{png/}}
+
+\fichetrue
+
+%\fichefalse
+
+\proftrue
+\proffalse
+
+\tdtrue
+%\tdfalse
+
+\courstrue
+\coursfalse
+
+\def\discipline{Sciences \\Industrielles de \\ l'Ingénieur}
+\def\xxtete{Sciences Industrielles de l'Ingénieur}
+
+\def\classe{PSI$\star$}
+\def\xxnumpartie{{DS 3}}%\textsf{\textsf{Cy. 4, 6 \& 7}}}
+\def\xxpartie{Devoir Surveillé 3}
+
+
+\def\xxnumchapitre{22 novembre 2021 \vspace{.2cm} $\;$ }
+\def\xxchapitre{\hspace{.12cm} }%Performances des systèmes asservis}
+
+
+\def\xxtitreexo{\noindent Table Azalée}
+\def\xxsourceexo{\hspace{.2cm} Banque PT -- SIA 2019}
+
+
+\def\xxposongletx{2}
+\def\xxposonglettext{1.45}
+\def\xxposonglety{20}
+%\def\xxonglet{Part. 1 -- Ch. 3}
+\def\xxonglet{\textsf{DS 3}}%\textsf{\textsf{Cy. 4, 6 \& 7}}}
+\def\xxactivite{\textsf{DS 3}}
+\def\xxauteur{\textsl{Xavier Pessoles}}
+
+\def\xxcompetences{%
+\textsl{%
+%\textbf{Savoirs et compétences :}\\
+%Les sources sont associées par un \emph{hacheur série}. La détermination des grandeurs électriques associées à ce montage permet de conclure vis à vis du cahier des charges.
+%\noindent \textbf{Résoudre :} à partir des modèles retenus :
+%\begin{itemize}[label=\ding{112},font=\color{ocre}] 
+%\item choisir une méthode de résolution analytique, graphique, numérique;
+%\item mettre en \oe{}uvre une méthode de résolution.
+%\end{itemize}
+%\begin{itemize}[label=\ding{112},font=\color{ocre}] 
+%\item \textit{Rés -- C1.1 :} Loi entrée sortie géométrique et cinématique -- Fermeture géométrique.
+%\end{itemize}
+%
+%\noindent \textit{Mod2 -- C4.1 :} Représentation par schéma-blocss.
+}}
+
+\def\xxfigures{
+%\includegraphics[width=.55\linewidth]{fig_00}
+}%figues de la page de garde
+
+
+\def\xxpied{%
+%Cycle 01 -- Modéliser le comportement des systèmes multiphysiques\\
+\xxactivite%
+}
+
+\setcounter{secnumdepth}{5}
+%---------------------------------------------------------------------------
+
+\usepackage{pgfplots}
+\begin{document}
+%\defimages{images}
+%\chapterimage{png/Fond_Cin}
+\input{style/new_pagegarde}
+\vspace{4.5cm}
+\pagestyle{fancy}
+\thispagestyle{plain}
+
+\def\columnseprulecolor{\color{white}}
+\setlength{\columnseprule}{0.4pt} 
+
+%\defimages2{images}
+
+%\begin{multicols}{2}
+
+\section{Présentation}
+
+Le laboratoire EMSI (Etudes de Mécanique SIsmique) du CEA (Commissariat à l’Energie Atomique) dispose
+depuis 1990 de la plus grande table vibrante d’Europe : la table AZALEE (\autoref{fig_01}). Avec ses dimensions de
+\SI{6}{m}$\times$\SI{6}{m}, cette table est utilisée pour tester des spécimens de grandes dimensions et de masse importante
+(jusqu’à 100 tonnes). Huit vérins hydrauliques, pouvant développer chacun une force maximale dynamique de
+100 tonnes, permettent de réaliser des excitations tridimensionnelles.
+
+\begin{multicols}{2}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{fig_01}
+\caption{Table vibrante AZALEE \label{fig_01}}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{fig_02}
+\caption{Enregistrement d’un séisme à Kobe, au Japon (accélération dans une des trois directions, exprimée en~g) \label{fig_02}}
+\end{figure}
+
+\end{multicols}
+
+L’étude des effets d’un séisme sur une structure est encore trop complexe pour pouvoir être abordée sans
+un appui expérimental dédié, qui vient en renfort des simulations numériques. La table AZALEE permet de
+reproduire expérimentalement le mouvement du sol ou du plancher d’un bâtiment sur lequel repose la structure.
+Ce mouvement est issu d’enregistrements de séismes réels qui ont eu lieu dans les zones sismiques un peu
+partout dans le monde (exemple d’un séisme à Kobe, au Japon, \autoref{fig_02}). La \autoref{fig_03} représente la table avec une maquette de bâtiment en béton armé, qui va subir une reproduction de séisme à l’aide des vérins. L’ensemble
+est, entre autres, muni de 92 accéléromètres, 50 capteurs de déplacement et 43 jauges de déformations, qui
+serviront pour l’analyse de la réponse. Une étude de ce type nécessite environ 3 années de travail (depuis
+la préparation de la campagne d’essais jusqu’à l’évacuation de la maquette), auxquelles s’additionne tout le
+dépouillement des données !
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{fig_03}
+\caption{Table AZALEE avec une << maquette >> de \SI{9}{m} de haut d’un bâtiment en béton armé \label{fig_03}}
+\end{figure}
+
+
+\section{Etude de l’exigence << Fournir à la table les mouvements caractéristiques d’un séisme~>>}
+
+\begin{obj}
+On s’intéresse à l’exigence << Fournir à la table des mouvements caractéristiques d’un séisme~>>.
+Plus précisément, on va s’intéresser à la cinématique de la table AZALEE assurant des mouvements représentatifs de ceux d’un sol (exigence << Permettre un mouvement libre >>), ainsi qu’aux actions mécaniques que doivent pouvoir développer les vérins pour assurer des accélérations compatibles avec des essais sismiques (exigence << Fournir la puissance nécessaire >>). Le tableau suivant précise les critères et niveaux associés à ces exigences (le $g$ est ici l’unité d’accélération : $\SI{1}{g} = \SI{9, 81}{m.s^{-2}}$).
+\end{obj}
+
+\subsection{Modélisation simplifiée d’une structure soumise à un séisme}
+
+Pour comprendre les phénomènes mis en jeu lors d’un séisme, on se propose d’utiliser le modèle très simplifié
+de la \autoref{fig_05}. La structure (le bâtiment de la \autoref{fig_03}) est modélisée par 4 poutres, encastrées au niveau du sol (fondations) et supportant un toit. Les poutres sont supposées pouvoir fléchir sous l’effet des vibrations du sol, tandis que le toit est infiniment rigide.
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{fig_05}
+\caption{Modèle de la structure testée, au repos et en mouvement sous l’influence des
+déplacements du sol \label{fig_05}}
+\end{figure}
+
+
+On s’intéresse maintenant à la structure de la \autoref{fig_06} (droite), constituée de 4 poutres identiques à la
+précédente (seules les deux poutres au premier plan sont représentées), supportant le toit indéformable de
+masse $m$. On néglige les effets d’inertie sur les poutres devant la dynamique du toit, dont la position est repérée à l’aide du paramètre y par rapport au sol, considéré comme un reférentiel galiléen.
+
+On note $\vect{F}=-F\vect{y} = -ky  \vect{y}$ l'action  d'une poutre sur la table, $k$ étant la raideur en flexion d'une poutre.
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\linewidth]{fig_06}
+\caption{Etude de la flexion d’une des 4 poutres, puis de l’ensemble \label{fig_06}}
+\end{figure}
+
+
+
+\subparagraph{\label{q_02}}\textit{Donner l’équation du mouvement qui régit la dynamique de la table dans son mouvement par rapport au sol lorsqu’elle n’est soumise à aucune sollicitation extérieure.}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+On suppose maintenant que le sol est en mouvement, du fait d’un séisme, et le référentiel associé ne peut
+donc plus être considéré comme galiléen. La \autoref{fig_07} introduit cette distinction entre le référentiel terrestre
+(repère associé $\left(O,\vect{x_0},\vect{y_0},\vect{z_0}\right)$), supposé galiléen, et le référentiel lié au sol (repère associé $\left(A,\vect{x},\vect{y},\vect{z}\right)$). Le sol
+est animé d’un mouvement de translation par rapport au référentiel galiléen, mais non uniforme car $\vect{OA}$ est régi
+par des signaux du type de celui représenté sur la \autoref{fig_02}.
+Pour fixer les idées, on suppose un signal simple, tel que $\vect{OA}=Y_s(t)\vect{y_0}$ avec 
+$Y_s (t) = A_s \sin\left(\omega_s t\right)$ où $A_s$ est
+l’amplitude et $\omega_s$ la pulsation du signal sismique.
+
+\subparagraph{\label{q_03}}\textit{Donner l’équation du mouvement qui régit la dynamique de la table dans son mouvement par rapport au sol lorsqu’elle n’est soumise à aucune sollicitation extérieure. On exprimera cette relation sous l a forme $\dfrac{\dd^2 y(t)}{\dd t}+\omega^2 y(t) = f(t)$ et on précisera les expressions de $\omega$ et $f(t)$ en fonction des données du problème.}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.5\linewidth]{fig_07}
+\caption{Mouvement du sol dû à un séisme\label{fig_07}}
+\end{figure}
+
+
+\section{Modélisation du comportement temporel des éléments de la chaîıne de transmission de puissance}
+
+\begin{obj}
+L’objectif de cette partie est de définir un modèle permettant d’appréhender suffisamment
+précisément le comportement dynamique de la chaîne de transmission de puissance afin de définir dans la partie
+suivante les correcteurs permettant de valider les crirères de comportement imposés par le cahier des charges.
+Afin de simplifier les calculs, un modèle de vérin équivalent aux quatre vérins verticaux sera mis en place.
+\end{obj}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{req_01}
+%\caption{TABLEAU EXIGENCES \label{req_01}}
+\end{figure}
+
+\subsection{Analyse préliminaire}
+
+\subsubsection{Description du cadre de l’étude et hypothèses}
+
+On s’intéresse uniquement dans cette partie au déplacement vertical de la table sismique. L’architecture
+simplifiée du système dans ce cadre particulier est précisée sur le schéma (\autoref{fig_13}). Le calculateur détermine
+le signal de consigne en accélération verticale $a_c (t)$ en fonction de la sollicitation que l’on souhaite donner à
+la structure. Ce signal est converti en une tension de consigne $u_c (t)$. À partir de cette tension de consigne et
+de la mesure des accéléromètres placés sur la table sismique, un régulateur électronique génère une tension
+d’alimentation des servo-valves qui délivrent alors un débit $q(t)$ aux quatre vérins verticaux. Le mouvement des
+tiges des vérins est alors transmis à la table sismique via les rotules.
+
+La table sismique est supposée infiniment rigide dans toute la suite du sujet. $P_e(t)$ correspond aux efforts
+pouvant perturber le mouvement vertical de la table lors de l’essai.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{fig_13}
+\caption{Architecture simplifiée du système -- cas d’un mouvement vertical \label{fig_13}}
+\end{figure}
+
+
+\subsubsection{Détermination du comportement attendu du système}
+
+Les signaux de consigne correspondant à un tremblement de terre (\autoref{fig_02}) ont un contenu fréquentiel
+situé entre 1 et \SI{50}{Hz}. Il est donc indispensable que le système soit en mesure de transmettre à un point de
+la table sismique un mouvement correspondant à ce type de consigne et ce, sur toute la gamme de fréquence
+nécessaire.
+
+\subparagraph{\label{q_}}\textit{Proposer un modèle pour le comportement souhaité de l’ensemble du système (comprenant l’ensemble de la partie hydraulique, des pièces mécaniques et des contrôleurs électroniques).
+Préciser si c’est un filtre <<~passe ~>>,  <<~passe ~>> ou <<~passe bande~>> et donner les
+caractéristiques de ce filtre.}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+
+On considère le schéma-blocs de la \autoref{fig_13}.
+
+\subparagraph{\label{q_}}\textit{À partir des caractéristiques du filtre proposé, donner, en la justifiant, la valeur de la pulsation à \SI{0}{dB} de la FTBO (telle que $M(p) = \text{FTBO}(p)\varepsilon(p)$) de l’asservissement proposé.}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+
+Quelle que soit la valeur proposée, on prendra pour la suite $\omega_{\SI{0}{dB}} = \SI{1000}{rad.s^{-1}}$.
+
+\subsection{Modélisation du comportement dynamique des composants}
+
+\subsubsection{Détermination des fonctions de transfert des servo-valves}
+
+Les servo-valves utilisées sont relativement complexes. Elles sont composées de 3 étages et l’étude de leur
+comportement dépasse largement le cadre de ce sujet. Aussi, dans un premier temps, nous allons considérer
+que leur dynamique est suffisante pour modéliser leur comportement par des gains purs $K_{\text{sv}}$ avec :
+$K_{\text{sv}} = \SI{2e-4}{m^3s^{-1}V^{-1}}$.
+
+
+\subparagraph{\label{q_}}\textit{En considérant les débits maximum des vérins verticaux et des servo-valves précisés en Annexe
+B, déterminer le nombre de servo-valves nécessaires pour alimenter chaque vérin puis préciser
+l’expression de la fonction de transfert $H_{\text{sv 1}}(p)$ en fonction de $K_{\text{sv}}$ (\autoref{fig_14}).}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{fig_14}
+\caption{n servo-valves alimentant 1 vérin \label{fig_14}}
+\end{figure}
+
+
+\subsubsection{Détermination d’un modèle équivalent au comportement des 4 vérins}
+
+Dans cette partie, nous allons nous attacher à déterminer le modèle d’un unique vérin équivalent au comportement
+des quatre vérins verticaux.
+
+\paragraph{Modélisation du comportement avec un seul vérin}
+
+On considère dans un premier temps que la table n’est déplacée qu’avec un seul vérin vertical (\autoref{fig_15}).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\linewidth]{fig_15}
+\caption{Table déplacée par 1 seul vérin - Schémas-blocs dans le domaine temporel et dans
+le domaine symbolique \label{fig_15}}
+\end{figure}
+
+\paragraph{Equations caractéristiques avec un modèle de fluide compressible}
+
+La compressibilité du fluide étant prise en compte dans le modèle, l’évolution du débit est une fonction du
+déplacement de la tige du vérin mais aussi de la pression du fluide sous la forme de la relation (1). L’effort
+exercé par le vérin en sortie de tige est décrit par la relation (2) :
+$$q(t)=S\dfrac{\dd \lambda(t)}{\dd t}+\dfrac{V_0}{2B}\dfrac{\dd p_r(t)}{\dd t} \quad (1) 
+\quad \quad  \text{et} \quad \quad
+F_v(t)=Sp_r(t) \quad (2) $$
+
+où :
+\begin{itemize}
+\item $p_r(t)$ : pression utile dans le vérin;
+\item $V_0$ : volume caractéristique moyen de fluide contenu dans le vérin et les durites, $V_0 = \SI{5e-3}{m^3}$ ;
+\item $B$ : coefficient de compressibilité du fluide, $B = \SI{0,5e9}{Pa}$ ;
+\item $F_v (t)$ : effort développé par le vérin en sortie de tige ;
+\item $S$ : section utile du vérin, $S = \SI{500}{cm^2}$ ;
+\item $\lambda(t)$ : déplacement vertical de la table.
+\end{itemize}
+On a de plus $a_t(t) = \dfrac{\dd^2 \lambda(t)}{\dd t^2}$.
+
+
+
+
+\subparagraph{\label{q_20}}\textit{Appliquer la transformation de Laplace aux équations précédentes. Recopier et remplir les cases grisées du schéma-blocs ci-dessous.}
+%et compléter les parties grisées du schéma-blocs du Cahier Réponses.}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\linewidth]{q_20}
+\end{figure}
+\fi
+
+
+
+\paragraph{Modélisation du comportement dynamique de la table}
+
+On considère uniquement le cas d’un mouvement de translation verticale dans le cas d’une charge maximale
+fixée sur la table sismique.
+
+\subparagraph{\label{q_}}\textit{Déterminer l’expression de l’équation de mouvement de la table et la mettre sous la forme $Ma_t(t) = F_v (t) + P_e(t)$. Compléter la case blanche du schéma-blocs ci-dessus 
+%Compléter la partie grisée du schéma-blocs du Cahier Réponses
+caractérisant le comportement d’un vérin hydraulique en mentionnant les expressions de la
+masse $M$ et de la perturbation $P_e(p)$ en fonction des masses de la table $M_t$ et du spécimen
+$M_s$.}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+\paragraph{Détermination des fonctions de transfert d’un vérin}
+
+\subparagraph{\label{q_}}\textit{Déterminer les expressions des fonctions de transfert en boucle fermée du vérin $H_{\text{vq}}$ et $H_{\text{vp}}$ (telles que $A_t(p)=H_{\text{vq}}(p) Q(p)+H_{\text{vp}}(p) P_e(p)$) et préciser les expressions des coefficients $K_v$ , $K_p$ et $\omega_v$ de leurs formes canoniques : $H_{\text{vq}}(p)=\dfrac{K_v p}{1+\dfrac{p^2}{\omega_v^2}}$ et $H_{\text{vp}}(p)=\dfrac{K_p p^2}{1+\dfrac{p^2}{\omega_v^2}}$.}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+\paragraph{Modélisation du comportement équivalent à deux vérins}
+
+On considère ici que la table est soumise à l’action de deux vérins (\autoref{fig_16}). Pour chaque vérin $i$ , nous
+avons les équations suivantes :
+$q_i(t)=S\dfrac{\dd \lambda(t)}{\dd t}+\dfrac{V_0}{2B}\dfrac{\dd p_{r_i}(t)}{\dd t} \quad (1) 
+\quad \quad  \text{et} \quad \quad
+F_{v_i}(t)=Sp_{r_i}(t) \quad (2) $
+où :
+\begin{itemize}
+\item $p_{r_i} (t)$ : pression utile dans le vérin $i$;
+\item $F_{v_i} (t)$ : effort développé par le vérin $i$ en sortie de tige.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\linewidth]{fig_16}
+\caption{Table déplacée par 2 vérins - Schémas-blocs dans le domaine temporel et dans le
+domaine symbolique \label{fig_16}}
+\end{figure}
+
+\subparagraph{\label{q_23}}\textit{En utilisant les équations précédentes, compléter les parties grisées du schéma-blocs du Document Réponses.}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+\paragraph{Modélisation du comportement dynamique de la table}
+On considère uniquement le cas d’un mouvement de translation verticale dans le cas d’une charge maximale
+fixée sur la table sismique. On considère de plus que les mouvements des 2 vérins verticaux sont parfaitement
+synchronisés.
+
+
+\subparagraph{\label{q_24}}\textit{Déterminer l’expression de l’équation de mouvement de la table. Compléter la partie blanche à la droite du schéma-blocs du Document Réponses caractérisant le comportement de deux vérins hydrauliques
+en mentionnant les expressions de la masse $M$ et de la perturbation $P_e(p)$ en fonction des
+masses de la table $M_t$ et du spécimen $M_s$.}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+\paragraph{Détermination des fonctions de transfert avec 2 vérins}
+
+\subparagraph{\label{q_25}}\textit{Déterminer les expressions des fonctions de transfert en boucle fermée du vérin $H_{\text{vq1}}$, $H_{\text{vq2}}$ et $H_{\text{vp}}$ telles que $A_t(p)=H_{\text{vq1}}(p) Q_1(p)+H_{\text{vq2}}(p) Q_2(p)+H_{\text{vp}}(p) P_e(p)$.}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+
+\subparagraph{\label{q_26}}\textit{En supposant que les débits $q_1(t)$ et $q_2(t)$ sont identiques ($q_1(t)=q_2(t)=q(t)$) déterminer les expressions des fonctions de transfert $H_{2vq}$ telle que $A_t(p)=H_{2\text{vq}}(p) Q(p)+H_{\text{2\text{vp}}}(p) P_e(p)$. Préciser les expressions des coefficients $K_{2v}$ , $K_{2p}$ et $\omega_{2v}$ de leurs formes canoniques : $H_{\text{2\text{vq}}}(p)=\dfrac{K_{2v} p}{1+\dfrac{p^2}{\omega_{2v}^2}}$ et $H_{\text{2\text{vp}}}(p)=\dfrac{K_{2p} p^2}{1+\dfrac{p^2}{\omega_{2v}^2}}$. 
+Donner les expressions de $S_{\text{eq}_{2v}}$ et de $M_{eq_{2v}}$ de telle sorte que les expressions de $K_{2v}$ et 
+$\omega_{2v}$ en fonction $S_{\text{eq}_{2v}}$ et $M_{eq_{2v}}$ 
+correspondent à celles de $K_v$ et $\omega_v$ en fonction de $S$ et $M$.} 
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+
+
+\subparagraph{\label{q_27}}\textit{Déterminer l’expression de la fonction de transfert $H_{\text{sv}2}(p)$ en fonction de $K_{\text{sv}}$, $H_{\text{sv}2}(p)$ représentant la fonction de transfert modélisant le comportement des servo-valves nécessaires à l’alimentation en fluide des 2 vérins.}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+\paragraph{Détermination des fonctions de transfert avec 4 vérins}
+
+\subparagraph{\label{q_28}}\textit{Par extension, donner les expressions de $S_{\text{eq4v}}$ , de $M_{\text{eq4v}}$ et de $H_{\text{sv4}}(p)$.}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+\subsubsection{Fonction de transfert de l’adaptateur électronique d’entrée}
+
+L’accéléromètre est supposé avoir un temps de réponse suffisamment petit afin de modéliser son comportement
+par un gain pur : $H_{\text{ac}} (p) = C$ avec $C = \SI{0,2}{Vm^{-1} s^2}$.
+
+Le temps de réponse de l’adaptateur électronique est suffisamment faible comparativement aux temps
+caractéristiques des autres systèmes pour que l’on puisse modéliser son comportement temporel par un gain
+pur $H_{\text{ae}} (p)=K_{\text{ae}}$.
+
+
+\subparagraph{\label{q_29}}\textit{À l’aide de la \autoref{fig_17}, donner l’expression de $K_{\text{ae}}$ pour qu’une erreur nulle en régime
+permanent conduise à un écart nul en régime permanent.}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{fig_17}
+\caption{Architecture générale du contrôle du mouvement de la table \label{fig_17}}
+\end{figure}
+
+
+Quels que soient les résultats obtenus précédemment, on considèrera dans la suite de cette partie :
+$$
+H_{\text{4vq}}(p)=\dfrac{K_{\text{4v}}p}{1+\dfrac{p^2}{\omega^2_{\text{4v}}}} 
+\quad \quad
+H_{\text{4vp}}(p)=\dfrac{K_{\text{4p}}p^2}{1+\dfrac{p^2}{\omega^2_{\text{4v}}}} 
+\quad \quad
+H_{\text{sv4}}(p)=K_s.
+$$
+
+Avec 
+$K_{\text{4v}}=\SI{2}{m^{-2}}$,
+$\omega_{\text{4v}}=\SI{1500}{rad.s^{-1}}$
+et $K_s = \SI{25e-4}{m^3s^{-1}V^{-1}}$.
+
+
+Afin de vérifier dans un premier temps les critères de précision du cahier des charges, on place un premier
+correcteur de type intégral : $H_{\text{CO}}(p)=\dfrac{K_{\text{CO}}}{p^\alpha}$.
+
+
+\subparagraph{\label{q_30}}\textit{Préciser, en la justifiant, la valeur minimale de $\alpha$ qui permet de vérifier les critères d’erreur en poursuite et d’erreur vis à vis de la perturbation.}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+\subparagraph{\label{q_31}}\textit{En prenant $K_{\text{CO}}=1$, donner l’expression de la Fonction de Transfert en Boucle Ouverte de
+l’asservissement proposé, puis représenter son diagramme de Bode asymptotique sur le document réponse.}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+\subparagraph{\label{q_32}}\textit{Déterminer la valeur minimale de $K_{\text{CO}}$ qui permet de vérifier le critère sur la pulsation à \SI{0}{dB} de la FTBO.}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+\subparagraph{\label{q_33}}\textit{Sur le diagramme de Bode du Document Réponse de la question \ref{q_31}, représenter l’allure du
+diagramme de Bode réel de la FTBO. Préciser, en le justifiant, si le comportement est stable.}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+\subsubsection{Comportement dynamique avec prise en compte d’un débit de fuite}
+
+On considère ici le modèle équivalent aux quatre vérins obtenus précédemment. Pour pallier le problème de
+stabilité du modèle précédemment établi, une solution possible consiste à introduire un débit de fuite au niveau
+des vérins. Celui-ci a pour effet de réduire artificiellement le débit réel entrant dans les vérins en fonction de la
+pression utile. L’expression du débit est alors :
+$q(t)=S_{\text{eq4v}}\dfrac{\dd \lambda(t)}{\dd t}+\dfrac{V_0}{2B}\dfrac{\dd p_{r}(t)}{\dd t} +\delta p_{r}(t)$ où $\delta$ représente le coefficient de débit de fuite.
+
+
+\subparagraph{\label{q_34}}\textit{Proposer une modification du schéma-blocs suivant
+%donné sur le Cahier Réponses 
+afin de prendre en compte le débit de fuite.
+Déterminer l’expression de la fonction de transfert $H_{\text{4v2}}$ (telle que $A_t(p) = H_{\text{4v2}}(p) Q(p)$)
+associée au comportement dynamique du vérin équivalent ainsi modélisé. On donnera le
+résultat sous la forme suivante : $H_{\text{4v2}}(p)=\dfrac{K_{\text{4v}}p}{1+a_1 p + \dfrac{p^2}{\omega_{4v}^2}}$.
+Donner l’expression de $a_1$ en fonction de $M_{\text{eq4v}}$, $\delta$ et $S_{\text{eq4v}}$, et déterminer l’expression du coefficient d’amortissement $\xi_v$ ($a_1 =\dfrac{2\xi_v}{\omega_{4v}}$) du second ordre du dénominateur de $H_{\text{4v2}}(p)$ en
+fonction de $M_{\text{eq4v}}$ , $\delta$, $S_{\text{eq4v}}$ , $B$ et $V_0$.
+}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{q_34}
+%\caption{Architecture générale du contrôle du mouvement de la table \label{fig_17}}
+\end{figure}
+
+\fi
+
+\subsubsection{Analyse du comportement global et détermination de la valeur limite du coefficient
+de débit de fuite}
+
+L’objectif de cette partie est d’analyser le comportement dynamique prévu par le modèle développé précédemment.
+Pour cela, on considère le système modélisé par le schéma-blocs de la \autoref{fig_17}.
+
+\subparagraph{\label{q_35}}\textit{Déterminer la valeur limite de $\xi_v$ assurant le critère de stabilité imposé dans le cahier des
+charges. En déduire la valeur numérique limite du coefficient de débit de fuite $\delta$ puis celle du
+débit de fuite à pression maximale. Conclure quant à la capacité des servo-valves à permettre
+le débit total lors d’un déplacement à vitesse maximale de la tige du vérin.}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+Le problème de fond ici est lié au fait que la pulsation propre $\omega_{4v}$ du mode de second ordre de la fonction
+de transfert du vérin est trop proche de la pulsation à \SI{0}{dB} souhaitée de la FTBO pour garantir une dynamique
+suffisante du système bouclé. On souhaite donc augmenter la valeur de la pulsation propre $\omega_{4v}$ afin de garantir
+au moins une décade d’écart avec la pulsation à \SI{0}{dB} de la Fonction de Transfert en Boucle Ouverte du système.
+
+\subparagraph{\label{q_36}}\textit{Quelle valeur de diamètre du vérin permet de vérifier la condition précédente. Cette valeur
+est-elle réaliste ?}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+\section{Validation des critères principaux
+de l’exigence << Contrôler les
+mouvements de la table >>}
+\begin{obj}
+L’objectif de cette partie est de définir la correction complète et de déterminer les valeurs
+numériques des paramètres caractéristiques des différents correcteurs, afin d’obtenir un asservissement de
+l’accélération de la table validant les critères de la fonction technique << Contrôler les mouvements de la table>>.
+Le tableau suivant précise les critères et niveaux associés à cette exigence.
+\end{obj}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{fig_17}
+\caption{Exigences \label{req_02}}
+\end{figure}
+
+\subsection{Synthèse des résultats obtenus précédemment}
+
+On considère le schéma-blocss de la \autoref{fig_18} avec :
+
+$$
+H_{\text{ac}}(p)=C
+\quad \quad
+H_{\text{sv4}}(p)=K_s
+\quad \quad
+H_{\text{4vq}}(p)=\dfrac{K_{\text{4v}}p}{1+2\dfrac{\xi_v}{\omega_{\text{4v}}}p+\dfrac{p^2}{\omega^2_{\text{4v}}}}.
+$$
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{fig_18}
+\caption{Architecture générale du contrôle du mouvement de la table \label{fig_18}}
+\end{figure}
+
+Quels que soient les résultats obtenus précédemment, on prendra les valeurs numériques suivantes
+$K_{\text{4v}}=\SI{2}{m^{-2}}$,
+et $K_s = \SI{25e-4}{m^3s^{-1}V^{-1}}$.
+
+\subsection{Détermination des caractéristiques d’un filtre de second ordre}
+
+
+Nous avons vu dans la partie précédente qu'il n'était pas perinent de régler le problème de comportement du système en jouant sur les caractéristiques matérielles telles que le diamètre des pistons des vérins ou le débit de fuite des vérins. Nous nous tournons donc vers l’utilisation de filtres électroniques afin d’éloigner la pulsation
+propre du système du second ordre de la pulsation à \SI{0}{dB} précisée dans le cahier des charges. On souhaite donc
+augmenter la valeur de la pulsation propre du système du second ordre afin de garantir au moins deux décades
+d’écart avec la pulsation à \SI{0}{dB} de la Fonction de Transfert en Boucle Ouverte du système. On considère alors
+un filtre électronique du second ordre de type Notch de fonction de transfert : $H_N(p)=\dfrac{1+\dfrac{2\xi_n}{\omega_n}p+\dfrac{p^2}{\omega_n^2}}{1+\dfrac{2\xi_d}{\omega_d}p+\dfrac{p^2}{\omega_d^2}}$.
+
+Le réglalge optimum du correcteur doit compenser parfaitement le mode de second ordre de la fonction de
+transfert du vérin. Pour cela, on effectue un essai afin d’identifier les caractéristiques de ce mode. Aucun
+réglage spécifique du debit de fuite n’a été réalisé, la compensation du mode rendant inutile cette étape.
+
+Une tension de commande $u_{\text{sv}} (t) = e_0u(t)$ (avec $u(t)$ l’échelon unitaire) est envoyée en entrée des servovalves.
+La tension délivrée par l’accéleromètre vertical est numérisée. Afin d’identifier les caractéristiques du second
+ordre on décide d’intégrer numériquement les mesures données par l’accéléromètre afin de tracer l’évolution
+la vitesse verticale de la table en fonction du temps. L’obtention de la vitesse à partir de l’accélération
+ecessite donc la réalisation d’une intégration numérique. Les données obtenues lors de l’essai sont stockées
+dans 2 listes de flottants de même longueur : $U_{\text{acc}}$ pour la tension image de l'accélération de la table et $T$ pour le temps.
+
+Le résultat obtenu après intégration numérique est donné sur la \autoref{fig_19}.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.55\linewidth]{fig_19}
+\caption{Image de la vitesse de la table après intégration numérique \label{fig_19}}
+\end{figure}
+
+
+
+\subparagraph{\label{q_39}}\textit{À l’aide du graphe de la \autoref{fig_19} et de l’annexe A, déterminer les valeurs numériques
+expérimentales de $\omega_{\text{4v}}$ et $\xi_v$ . Vous effectuerez les tracés utiles, avec le plus grand soin, sur
+les graphes du Document Réponses.}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+\subparagraph{\label{q_40}}\textit{Quels inconvénients sur le comportement réel du système peuvent découler de cette méthode
+consistant à vouloir compenser le mode de second ordre de la fonction de transfert du vérin
+par ce type de filtre électronique ? Que cela implique-t-il sur la méthodologie de réalisation
+des essais sur différentes structures ?}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+\subsection{Détermination complète de la correction}
+On suppose que le numérateur du filtre Notch compense parfaitement le mode de second ordre de la fonction
+de transfert du vérin. On adopte les caractéristiques suivantes pour le dénominateur :
+\begin{itemize}
+\item $\omega_d = \SI{100 000}{rad.s^{-1}}$ ;
+\item $\xi_d = 1$.
+\end{itemize}
+On ne s’intéresse par la suite qu’à l’étude du comportement vis à vis de la consigne. On obtient alors le
+schéma de la \autoref{fig_20}, schéma qui donne celui de la \autoref{fig_21} après simplification.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{fig_20}
+\caption{ Architecture simplifiée du contrôle du mouvement de la table \label{fig_20}}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{fig_21}
+\caption{Schéma-blocs simplifié du contrôle du mouvement de la table \label{fig_21}}
+\end{figure}
+
+
+Afin de satisfaire le critère de précision en poursuite du cahier des charges on place un premier correcteur
+de type double intégrateur non unitaire de fonction de transfert : $H_{\text{CO}}(p)=\dfrac{K_{i2}}{p^2}$
+
+La valeur de $K_{i2}$ est déterminée afin d’obtenir une pulsation à \SI{0}{dB} de la Fonction de Transfert en Boucle
+Ouverte de $\SI{1000}{rad.s^{-1}}$.
+
+\subparagraph{\label{q_41}}\textit{Donner la Fonction de Transfert en Boucle Ouverte de l’asservissement et préciser son mode
+dominant.}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+Le diagramme de Bode de cette Fonction de Transfert en Boucle Ouverte simplifiée est donné sur la
+\autoref{fig_22}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{fig_22}
+\caption{Diagramme de Bode de la FTBO simplifiée \label{fig_22}}
+\end{figure}
+
+
+\subparagraph{\label{q_42}}\textit{Quels sont les critères du cahier des charges validés actuellement ?}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+Un essai est réalisé sur le système. Une entrée en rampe d’accélération est imposée en entrée du système.
+L’évolution temporelle de tension délivrée par l’accéléromètre est donnée sur la \autoref{fig_23}.
+
+\subparagraph{\label{q_43}}\textit{Quel critère n’est pas vérifié sur le système réel ? En regardant attentivement le début de
+la courbe de la \autoref{fig_19}, identifier le phénomène en cause et préciser la valeur de son
+coefficient caractéristique. Préciser quels peuvent être les sous-systèmes pouvant provoquer
+l’apparition de ce phénomène. Quel terme doit-on ajouter à la Fonction de Transfert en
+Boucle Ouverte du système afin de prendre en compte ce phénomène.}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+Afin de corriger l’effet de ce phénomène, on place un intégrateur supplémentaire de gain $K_{i3}$ :
+$H_\text{CO}(p)=\dfrac{K_{i2}K_{i3}}{p^3}$.
+
+\subparagraph{\label{q_44}}\textit{Préciser la valeur de $K_{i3}$ qui permet de retrouver la bande passante à \SI{1000}{rad.s^{-1}}.}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\linewidth]{fig_23}
+\caption{Réponse à une rampe unitaire \label{fig_23}}
+\end{figure}
+
+On donne sur le Document Réponses le diagramme de Bode du gain de la FTBO ainsi corrigée.
+
+
+\subparagraph{\label{q_45}}\textit{Déterminer la valeur de la phase pour les pulsations 10, 100, 1 000 et \SI{10 000}{rad.s^{-1}} et tracer
+à main levée, mais avec soin, le diagramme de la phase.}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+Afin de vérifier le critère sur la marge de phase du Cahier des Charges, on ajoute un correcteur à avance de
+phase de fonction de transfert : $H_{\text{ap}}(p) = K_{\text{ap}}\dfrac{1+\tau_{\text{ap}}}{1+a_{\text{ap}}\tau_{\text{ap}}p}$ avec $a_{\text{ap}}<1$.
+
+\subparagraph{\label{q_46}}\textit{À partir des documents donnés en annexes, déterminer les valeurs approximatives des paramètres $a_{\text{ap}}$, $\tau_{\text{ap}}$ et $K_{\text{ap}}$ qui permettent de satisfaire le critère de marge de phase du cahier
+des charges tout en conservant une pulsation à \SI{0}{dB} de \SI{1 000}{rad.s^{-1}}.}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+Le régulateur étant a priori optimisé, on réalise un essai de validation du comportement temporel de la
+table. Le calculateur envoie un signal de consigne correspondant à une rampe de pente unitaire. L’accélération
+de la table obtenue à partir de la mesure de l’accéléromètre est représentée sur la \autoref{fig_24}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\linewidth]{fig_24}
+\caption{Essai de validation \label{fig_24}}
+\end{figure}
+
+\subparagraph{\label{q_47}}\textit{Conclure quant au comportement observé.}
+\ifprof
+\begin{corrige} ~\\
+
+\end{corrige}
+\else
+\fi
+
+\section{Annexe A}
+\subsection{Système du second ordre}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.6\linewidth]{fig_25}
+\caption{Graphe donnant le premier d´epassement relatif à la valeur finale de la réponse
+indicielle d’une FT du second ordre en fonction du coefficient d’amortissement
+ \label{fig_25}}
+\end{figure}
+
+\subsection{Correcteur à avance de phase}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.6\linewidth]{fig_26}
+\caption{Diagramme de Bode d’un correcteur à avance de phase  \label{fig_26}}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.6\linewidth]{fig_27}
+\caption{Graphe donnant $a_{ap}$ en fonction de $\varphi_m$ \label{fig_27}}
+\end{figure}
+
+
+\section{Annexe B}
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{ann_b_01}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{ann_b_02}
+\end{figure}
+\newpage
+
+
+
+
+
+\textbf{Questions \ref{q_23} et \ref{q_24}}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{q_23}
+\end{figure}
+
+
+
+
+\textbf{Questions \ref{q_31} et \ref{q_33}}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{q_31}
+\end{figure}
+
+\newpage
+
+\textbf{Question \ref{q_45} }
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{q_45}
+\end{figure}
+
+
+\end{document}
+
+
+
