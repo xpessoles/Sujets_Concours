@@ -179,7 +179,7 @@ Le mécanisme est constitué :
  \item du vérin \textbf{6} non représenté car ayant le même comportement que le vérin \textbf{5}.
 \end{itemize}
 
-Paramétrage : 
+\textbf{Paramétrage :}
 \begin{itemize}
  \item $\vect{O_1 A}=d_4\vect{y_3}$, $\vect{AB}=\lambda\vect{y_5}$, $\vect{O_1 B}=d_1\vect{y_1}+h_1\vect{z_1}$.
 \end{itemize}
@@ -279,7 +279,147 @@ Roue arrière gauche & $R_{2g}$ & $C_{2g}$ & $I_{2g}$ & & nulle \\ \hline
 \caption{Paramétrage des roues en contact avec le sol \label{img:05}}
 \end{figure}
 
+\textbf{Caractéristiques géométriques et d’inertie des solides}
+
+\begin{itemize}
+\item Le mouvement de roulis étant nul et le mouvement de tangage étant fixé à une valeur constante, il est possible de
+définir l’ensemble rigide $\Sigma$ constitué des trois podes \textbf{1}, \textbf{2} et \textbf{3}, des deux roues avant, des deux roues arrière et des
+bras d’articulation \textbf{4} et \textbf{4’}. Pour chaque constituant de cet ensemble, la masse est supposée répartie
+uniformément.
+\end{itemize}
+
+\begin{center}
+\begin{tabular}{|p{4cm}|p{4cm}|p{8cm}|}
+\hline
+Centre de gravité de $\Sigma$ 
+
+$G$ tel que $\vect{C_1G}=a_G\vect{z_1}$
+$a_G =\SI{85}{mm}$
+& 
+Masse de $\Sigma$ $m_{\Sigma}=\SI{152}{kg}$
+& 
+Matrice d'inertie de $\Sigma$ en $C_1$ 
+
+$\inertie{C_1}{\Sigma}=
+\begin{pmatrix} 
+A & 0 & 0 \\ 0 & B & 0 \\ 0 & 0 & C 
+\end{pmatrix}_{\base{x_1}{y_1}{z_1}}
+\quad 
+\begin{array}{l}
+A =\SI{30,2}{kg.m^2} \\
+B =\SI{8,2}{kg.m^2} \\
+C =\SI{32,3}{kg.m^2} \\
+\end{array}$ \\
+\hline
+\end{tabular}
+\end{center}
 
 
+\begin{itemize}
+\item Roue droite ou gauche + axe de roue : $R_{\text{i d ou g}}$ ($i$ correspond au numéro du pode).
+\end{itemize}
+
+\begin{center}
+\begin{tabular}{|p{4cm}|p{4cm}|p{8cm}|}
+\hline
+Centre de gravité de $R_{\text{i d ou g}}$ $C_{\text{i d ou g}}$ tel que l'entraxe
+
+$C_{ig}=C_{id}=2e$ 
+
+$\vect{C_i C_{id}}=e\vect{x_L}$ et 
+
+$\vect{C_i C_{ig}}=-e\vect{x_L}$ 
+
+$e=\SI{340}{mm}$ 
+&
+Masse de $R_{\text{i d ou g}}$ $m_r = \SI{4}{kg}$
+Rayon d'une roue $R=\SI{225}{mm}$
+& 
+Matrice d'inertie de $R_{\text{i d ou g}}$ respectivement en  $C_{\text{i d ou g}}$ 
+
+$\inertie{C_{\text{i d ou g}}}{R_{\text{i d ou g}}}=
+\begin{pmatrix} 
+A_r & 0 & 0 \\ 0 & B_r & 0 \\ 0 & 0 & B_r 
+\end{pmatrix}_{\base{x_L}{-}{-}}$
+
+Valable dans toute base orthonormée directe qui contient $\vect{x_L}$
+$
+\begin{array}{l}
+A_r =\SI{0,1}{kg.m^2} \\
+B_r =\SI{0,04}{kg.m^2} \\
+\end{array}$\\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+\item Axe des moteurs du pode central.
+\end{itemize}
+
+Les deux motoréducteurs centraux sont constitués chacun d’un moteur à courant continu alimenté en \SI{48}{V} associé à
+un réducteur épicycloïdal de rapport de réduction $k = +1/ 25$. La matrice d’inertie en $C_1$ d’un axe moteur droit $M_{1d}$ ou
+gauche $M_{1g}$  (en rotation suivant $\axe{C_1}{x_L}$) est :
+
+$\inertie{C_1}{M_{\text{i d}} \text{ ou } M_{\text{i g}}}=
+\begin{pmatrix} 
+A_m & 0 & 0 \\ 0 & B_m & 0 \\ 0 & 0 & B_m 
+\end{pmatrix}_{\base{x_L}{-}{-}}$
+avec 
+$\begin{array}{l}
+A_m =\SI{795e-7}{kg.m^2} \\
+B_m =\SI{8e-3}{kg.m^2} \\
+\end{array}$.
+
+\begin{itemize}
+\item Les masses et inerties des autres pièces seront négligées.
+\end{itemize}
+
+\textbf{Modélisation du contact roue / sol}
+
+\begin{itemize}
+\item Les roues centrales $R_{id}$ et $R_{ig}$ sont motrices, elles roulent sans glisser aux points de contact $I_{1d}$ et $I_{1g}$. On pose $\vect{C_{1d}I_{1d}}=-R\vect{z_L}$ et $\vect{C_{1g}I_{1g}}=-R\vect{z_L}$. Le contact avec le sol \textbf{0} est modélisé par le torseur suivant :
+
+$\torseurstat{T}{0}{R_{1d}}=\torseurl{\vectf{0}{R_{1d}}=Y_{1d}\vect{y_L}+Z_{1d}\vect{z_L}}{\vect{0}}{I_{1d}}$
+et
+$\torseurstat{T}{0}{R_{1g}}=\torseurl{\vectf{0}{R_{1g}}=Y_{1g}\vect{y_L}+Z_{1g}\vect{z_L}}{\vect{0}}{I_{1g}}$.
+
+\item Les roues arrière $R_{2d}$ et $R_{2g}$ sont bloquées, leur vitesse de rotation par rapport au pode arrière \textbf{2} est nulle. Le
+contact avec le sol \textbf{0} est modélisé par le torseur suivant :
+$\torseurstat{T}{0}{R_{2d}}=\torseurl{\vectf{0}{R_{2d}}=T_{2d}\vect{n_d}+Z_{2d}\vect{z_L}}{\vect{0}}{I_{2d}}$
+et
+$\torseurstat{T}{0}{R_{2g}}=\torseurl{\vectf{0}{R_{2g}}=Y_{2g}\vect{n_g}+Z_{2g}\vect{z_L}}{\vect{0}}{I_{2g}}$
+avec $\vect{n_d}$ $\vect{n_g}$ deux vecteurs unitaires opposés aux vitesses de glissement des roues $R_{2d}$ et $R_{2g}$ par rapport au sol \textbf{0}
+respectivement en $I_{2d}$ et $I_{2g}$. On pose $\vect{C_{2d}I_{2d}}=-R\vect{z_L}$ et 
+$\vect{C_{2g}I_{2g}}=-R\vect{z_L}$. $T_{2d}=fZ_{2d}$ et $T_{2g}=fZ_{2g}$; $f$ est le facteur de frottement constant au contact roue/sol; $f = 0,6$.
+\end{itemize}
 
 
+\textbf{Autres liaisons}
+Toutes les autres liaisons de la plate-forme sont supposées parfaites (sans jeu, sans frottement).
+
+\textbf{Motoréducteur centraux}
+\begin{itemize}
+\item L'action mécanique développée par la motoréducteur sur la roue centrale droite $R_{1d}$ est notée : 
+$\torseurstat{T}{\text{moteur}}{R_{1d}} = \torseurl{\vect{0}}{-C_m\vect{x_L}}{C_1}$.
+\item L'action mécanique développée par la motoréducteur sur la roue centrale gauche $R_{1g}$ est notée : 
+$\torseurstat{T}{\text{moteur}}{R_{1g}} = \torseurl{\vect{0}}{C_m\vect{x_L}}{C_1}$.
+\end{itemize}
+
+\question{Justifier la forme de la matrice d’inertie de l’ensemble $\Sigma$ au point $C_1$ dans la base $\base{x_1}{y_1}{z_1}$.}
+
+Dans un premier temps, l’objectif est de déterminer la somme des efforts normaux $Z_{2d}+Z_{2g}$ s’exerçant sur les roues
+arrière. Isolons l’ensemble de la plate-forme PF , soit l’ensemble $\Sigma$ , les roues centrales et les motoréducteurs.
+Plaçons nous dans le plan médian $\left(C_1;\vect{y_L};\vect{z_L}\right)$ de la plate-forme PF. Nous définissons le projeté $I_1$ des points de contact $I_{1d}$ et $I_{1g}$ dans ce plan. $I_1$ est défini par le vecteur : $\vect{C_1I_1}=-R\vect{z_L}$. 
+D’autre part, nous avons 
+$\vect{C_2I_1} = b\vect{y_L}-R\vect{z_L}$
+$\vect{C_3I_1} = -b\vect{y_3}-R\vect{z_L}$.
+Nous ferons l’hypothèse que le moment dynamique $\vectmd{I_1}{PF}{0}\cdot \vect{x_L}$
+est négligeable devant les actions mécaniques.
+
+\question{En appliquant le théorème du moment dynamique à la plate-forme PF en mouvement par rapport au
+référentiel galiléen $R_0$ en $I_1$ en projection sur $\vect{x_L}$, déterminer l’expression littérale de la somme des efforts normaux de contact $Z_{2d}+Z_{2g}$, entre les roues arrière et le sol. Réaliser l’application numérique et
+comparer la valeur obtenue à la somme des efforts normaux s’exerçant sur les roues arrière lorsque la plateforme
+est immobile en appui sur ses six roues sur un sol plan, à savoir $\left(Z_{2d}+Z_{2g}\right)_{\text{Repos}} = \left(m_2+2m_r\right)g$ avec $m_2=\SI{52}{kg}$ la masse du pode arrière \textbf{2}.}
+
+L’objectif est dans un second temps de valider l’aptitude des moteurs à suivre la loi de vitesse en lacet exigée. Il est
+proposé de déterminer l’expression du couple moteur $C_m$ par une approche énergétique.
