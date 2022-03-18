@@ -1,10 +1,12 @@
+\begin{wrapfigure}{r}{7cm}
+%\begin{figure}[H]
+\centering
+\includegraphics[width=.95\linewidth]{img_01}
+\caption{RobuROC 6 \label{fig:01}}
+%\end{figure}
+\end{wrapfigure}
 Le robuROC 6 (\autoref{fig:01}) est un robot mobile développé par la société ROBOSOFT. Cette plate-forme robotisée a été conçue pour des applications de recherche et d’exploration en milieu extérieur. Elle est équipée de 6 roues motrices indépendantes, de même diamètre, montées par paires sur 3 podes articulés en tangage et en roulis (\autoref{img:03}). La cinématique permet à la plate-forme de se conformer au relief parcouru et de franchir des obstacles du type trottoirs, escaliers… Le robuROC 6 a été conçu pour se déplacer en zones urbaines et peut aussi s’adapter à tous types de milieux.  Afin d’explorer la zone géographique à risques, les 3 podes peuvent être équipés, selon les besoins de l’utilisateur, de caméras d’observation haute définition à 360\degres, de systèmes infrarouges de visualisation nocturne, ainsi que de bras de robot articulés pour manipuler des éléments de la zone à explorer. Les diagrammes SADT A-0 (figure 1) et FAST (annexe 1) recensent les fonctions remplies par la plate-forme.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=.5\linewidth]{img_01}
-\caption{RobuROC 6 \label{fig:01}}
-\end{figure}
 
 Les déplacements de la plate-forme sont coordonnés par l’intermédiaire de deux microcontrôleurs placés dans les podes avant et arrière. Ces microcontrôleurs communiquent entre eux et dialoguent avec l’extérieur suivant deux modes de conduite : 
 \begin{itemize}
@@ -13,21 +15,21 @@ Les déplacements de la plate-forme sont coordonnés par l’intermédiaire de d
 \end{itemize}
 
 Pour se repérer dans l’espace, la plate-forme est équipée de capteurs relatifs positionnés sur chacune des six roues, d’inclinomètres et d’un système de positionnement absolu par GPS. Des capteurs à ultrasons et des « bumpers » (détecteurs de collision) participent à la sécurité matérielle et à la détection des obstacles.
-La motorisation principale est assurée par six moteurs électriques équipés de réducteurs épicycloïdaux permettant de transmettre l’énergie mécanique aux six roues. Le franchissement des obstacles est facilité par un système hydraulique permettant le soulèvement des podes avant et arrière. Ce système est constitué de quatre vérins disposés de part et d’autre du pode central (\autoref{fig:03}) et d’une centrale hydraulique alimentée par une pompe à engrenage (annexe 2). La plate-forme peut se déplacer, sous conditions, en mode 6 roues ou 4 roues pour certaines applications particulières (\autoref{fig:02}). L’énergie électrique nécessaire au fonctionnement est stockée dans des batteries occupant la plus grande partie du volume interne des trois podes. Une unité de gestion électrique optimise la consommation d’énergie. 
+La motorisation principale est assurée par six moteurs électriques équipés de réducteurs épicycloïdaux permettant de transmettre l’énergie mécanique aux six roues. Le franchissement des obstacles est facilité par un système hydraulique permettant le soulèvement des podes avant et arrière. Ce système est constitué de quatre vérins disposés de part et d’autre du pode central (\autoref{img:03}) et d’une centrale hydraulique alimentée par une pompe à engrenage (annexe 2). La plate-forme peut se déplacer, sous conditions, en mode 6 roues ou 4 roues pour certaines applications particulières (\autoref{fig:02}). L’énergie électrique nécessaire au fonctionnement est stockée dans des batteries occupant la plus grande partie du volume interne des trois podes. Une unité de gestion électrique optimise la consommation d’énergie. 
 
 \begin{figure}[H]
 \centering
-\begin{subfigure}{0.3\textwidth}
+\begin{subfigure}{0.25\textwidth}
     \includegraphics[width=\linewidth]{img_02_a}
     \caption{Mode 6 roues}
     \label{fig:02a}
-\end{subfigure}
-\begin{subfigure}{0.3\textwidth}
+\end{subfigure} \hfill
+\begin{subfigure}{0.25\textwidth}
     \includegraphics[width=\linewidth]{img_02_b}
     \caption{Mode 4 roues -- Déplacement}
     \label{fig:02a}
-\end{subfigure}
-\begin{subfigure}{0.3\textwidth}
+\end{subfigure} \hfill
+\begin{subfigure}{0.25\textwidth}
     \includegraphics[width=\linewidth]{img_02_c}
     \caption{Mode 4 roues -- Observation}
     \label{fig:02a}
@@ -37,7 +39,7 @@ La motorisation principale est assurée par six moteurs électriques équipés d
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.85\linewidth]{img_03}
+\includegraphics[width=.6\linewidth]{img_03}
 \caption{Roue centrale et roue avant droite supprimées pour plus de visibilité \label{img:03}}
 \end{figure}
 
@@ -45,12 +47,12 @@ Les trois podes sont articulés en tangage et en roulis (\autoref{fig:03}). Le m
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|p{5cm}|p{5cm}|l|l|}
+\begin{tabular}{|p{4cm}|p{6cm}|l|l|}
 \hline
 Fonctions & Critères & Niveaux & Flexibilité \\ 
 \hline
 \hline
-\multirow{7}{*}{FT3 : Assurer le déplacement}
+\multirow{7}{4cm}{FT3 : Assurer le déplacement}
  & Vitesse de déplacement de la plate-forme & $\SI{13,7}{km/h}$ & Valeur maximale \\ \cline{2-4}
  & Hauteur de franchissement d’un obstacle de type « trottoir » ($D_{\text{max}}$) & \SI{40}{cm} & Valeur minimale  \\ \cline{2-4}
  & Pente du relief à vide & 45\degres & Valeur maximale  \\ \cline{2-4}
@@ -59,8 +61,8 @@ Fonctions & Critères & Niveaux & Flexibilité \\
  & Débattement angulaire en roulis du pode avant 3 par rapport au bras 4 & de $-45\degres$ à $+45\degres$ & ----- \\ \cline{2-4}
  & Débattement angulaire en roulis du pode arrière 2 par rapport au bras 4’ & de $+45\degres$ à $-45\degres$ & ----- \\
  \hline
- \multirow{2}{*}{FT4 : Analyser la zone géographique à explorer}
- & Charge utile répartie sur les trois podes & \SI{100}{kg} & Valeur maximale \\ \hline
+ \multirow{2}{4cm}{FT4 : Analyser la zone géographique à explorer}
+ & Charge utile répartie sur les trois podes & \SI{100}{kg} & Valeur maximale \\ \cline{2-4}
  & Hauteur d’observation ($H_{\text{obs}}$) & \SI{85}{cm} & Valeur minimale \\ \hline
 FT6 : Fournir l’énergie électrique & Autonomie d’utilisation $\SI{4}{h} $ & $\pm \SI{1}{h}$ &Selon les conditions \\ \hline
 \end{tabular}
@@ -76,12 +78,8 @@ FT6 : Fournir l’énergie électrique & Autonomie d’utilisation $\SI{4}{h} $ 
 
 \begin{hypo}~\\
 \begin{itemize}
-\item Dans toute la partie II, le mouvement de roulis est fixé à une valeur nulle. Ainsi le bras d’articulation avant \textbf{4} et
-le pode avant \textbf{3} sont solidaires et de la même manière, le bras d’articulation arrière \textbf{4’} et le pode arrière \textbf{2} sont
-aussi solidaires. D’autre part, le mouvement de lacet n’est pas considéré.
-\item Les éléments hydrauliques placés du côté gauche (vérins \textbf{6} et \textbf{6’}) agissent exactement de la même manière
-que les éléments placés du côté droit (vérins \textbf{5} et \textbf{5’}). L’étude suivante du circuit hydraulique sera donc
-réalisée uniquement du côté droit.
+\item Dans toute la partie II, le mouvement de roulis est fixé à une valeur nulle. Ainsi le bras d’articulation avant \textbf{4} et le pode avant \textbf{3} sont solidaires et de la même manière, le bras d’articulation arrière \textbf{4’} et le pode arrière \textbf{2} sont aussi solidaires. D’autre part, le mouvement de lacet n’est pas considéré.
+\item Les éléments hydrauliques placés du côté gauche (vérins \textbf{6} et \textbf{6’}) agissent exactement de la même manière que les éléments placés du côté droit (vérins \textbf{5} et \textbf{5’}). L’étude suivante du circuit hydraulique sera donc réalisée uniquement du côté droit.
 \end{itemize}
 \end{hypo}
 
@@ -107,19 +105,11 @@ Un schéma cinématique du montage des vérins est fourni en annexe 3 et est com
 principales fonctionnalités du répartiteur hydraulique droit.
 
 
-\question{\label{q_02}Sur le document-réponse (questions 2 et 3), indiquer en hachurant, les chambres des vérins qui sont en
-communication ainsi que le flexible permettant de les relier. Vous adopterez un type de hachures par volume
-d’huile en communication.}
+\question{\label{q_02}Sur le document-réponse (questions \ref{q_02} et \ref{q_03}), indiquer en hachurant, les chambres des vérins qui sont en communication ainsi que le flexible permettant de les relier. Vous adopterez un type de hachures par volume d’huile en communication.}
 
-À partir d’une position plane de la plate-forme (position du document-réponse questions 2 et 3), considérons que le
-pode avant \textbf{3} commence un mouvement de CABRAGE (montée du pode avant \textbf{3} et du bras d’articulation \textbf{4} par rapport
-au pode central \textbf{1}) suite à un obstacle. On note $\beta$ l’angle de tangage entre le bras d’articulation \textbf{4} et le pode central \textbf{1}
-engendré par ce mouvement.
+À partir d’une position plane de la plate-forme (position du document-réponse questions \ref{q_02} et \ref{q_03}), considérons que le pode avant \textbf{3} commence un mouvement de CABRAGE (montée du pode avant \textbf{3} et du bras d’articulation \textbf{4} par rapport au pode central \textbf{1}) suite à un obstacle. On note $\beta$ l’angle de tangage entre le bras d’articulation \textbf{4} et le pode central \textbf{1} engendré par ce mouvement.
 
-\question{\label{q_03}Sur le document-réponse (questions 2 et 3), indiquer par des flèches le sens de circulation de l’huile dans
-les flexibles au cours de ce mouvement de CABRAGE. Indiquer quel est le mouvement engendré entre
-l’ensemble \{pode arrière \textbf{2} + bras d’articulation \textbf{4’}\} et le pode central \textbf{1}, ainsi que son amplitude suite au
-mouvement de CABRAGE du pode avant d’un angle $\beta$.}
+\question{\label{q_03}Sur le document-réponse (questions \ref{q_02} et \ref{q_03}), indiquer par des flèches le sens de circulation de l’huile dans les flexibles au cours de ce mouvement de CABRAGE. Indiquer quel est le mouvement engendré entre l’ensemble \{pode arrière \textbf{2} + bras d’articulation \textbf{4’}\} et le pode central \textbf{1}, ainsi que son amplitude suite au mouvement de CABRAGE du pode avant d’un angle $\beta$.}
 
 \subsubsection{Piloter les mouvements de tangage}
 Le système hydraulique est conçu de telle sorte que les angles de tangage entre le pode central \textbf{1} d’une part et les
@@ -129,32 +119,21 @@ $\beta$
 varie entre $- 45\degres$ et $+30\degres$. Les valeurs négatives correspondent à un mouvement de PLONGEE du pode avant, les
 valeurs positives à un mouvement de CABRAGE.
 
-Afin de piloter l’angle de tangage $\beta$ conformément aux consignes des microcontrôleurs, la centrale hydraulique est
-activée. Un schéma de principe de cette centrale est fourni sur le document-réponse (question \ref{q_04}). La circulation
-d’huile est générée par une pompe à engrenage entraînée par un moteur électrique. Les consignes électriques de
-CABRAGE ou de PLONGEE agissent sur un distributeur 4/3 (4 orifices et 3 positions) afin de réaliser le mouvement
-attendu au niveau des vérins (description du fonctionnement et de la normalisation d’un distributeur 4/3 disponible en
-annexe 4).
+Afin de piloter l’angle de tangage $\beta$ conformément aux consignes des microcontrôleurs, la centrale hydraulique est activée. Un schéma de principe de cette centrale est fourni sur le document-réponse (question \ref{q_04}). La circulation d’huile est générée par une pompe à engrenage entraînée par un moteur électrique. Les consignes électriques de CABRAGE ou de PLONGEE agissent sur un distributeur 4/3 (4 orifices et 3 positions) afin de réaliser le mouvement attendu au niveau des vérins (description du fonctionnement et de la normalisation d’un distributeur 4/3 disponible en annexe 4).
 
 \question{\label{q_04} Sur le document-réponse (question \ref{q_04}), relier les orifices de sortie du distributeur 4/3 aux flexibles
 d’alimentation des vérins afin de respecter les ordres de PLONGEE et de CABRAGE.}
 
 \subsection{Validation des performances du circuit hydraulique}
 
-La position de PLONGEE maximale, permet au pode central \textbf{1} d’atteindre son point culminant par rapport au sol. Seuls
-les podes avant \textbf{3} / arrière \textbf{2} sont alors en contact avec le sol horizontal. Cette position, appelée « Mode 4 roues
-Observation » (\autoref{fig:02}), permet à l’utilisateur d’observer le milieu environnant à l’aide d’une caméra placée sur le plan
-supérieur du pode central. La position de CABRAGE maximale, permet quant à elle de soulever le pode avant le plus
-haut possible afin de franchir un obstacle (« Mode 4 roues Déplacement » (\autoref{fig:02})). Dans cette position, seuls le
-pode arrière \textbf{2} et le pode central \textbf{2} sont en contact avec le sol.
+La position de PLONGEE maximale, permet au pode central \textbf{1} d’atteindre son point culminant par rapport au sol. Seuls les podes avant \textbf{3} / arrière \textbf{2} sont alors en contact avec le sol horizontal. Cette position, appelée « Mode 4 roues Observation » (\autoref{fig:02}), permet à l’utilisateur d’observer le milieu environnant à l’aide d’une caméra placée sur le plan supérieur du pode central. La position de CABRAGE maximale, permet quant à elle de soulever le pode avant le plus haut possible afin de franchir un obstacle (« Mode 4 roues Déplacement » (\autoref{fig:02})). Dans cette position, seuls le pode arrière \textbf{2} et le pode central \textbf{2} sont en contact avec le sol.
 
 \subsubsection{Etude du CABRAGE}
 
-Sur le document-réponse (question \ref{q_05}), le pode central \textbf{1} est représenté en « Mode 4 roues Déplacement ». Les
-podes \textbf{2} et \textbf{3} ont été représentés en pointillés dans leur position initiale pour un angle de tangage nul. Les points $C_{3i}$
-et $C_{2i}$ définissent respectivement les positions initiales du centre de la roue avant et du centre de la roue arrière.
+Sur le document-réponse (question \ref{q_05}), le pode central \textbf{1} est représenté en « Mode 4 roues Déplacement ». Les podes \textbf{2} et \textbf{3} ont été représentés en pointillés dans leur position initiale pour un angle de tangage nul. Les points $C_{3i}$ et $C_{2i}$ définissent respectivement les positions initiales du centre de la roue avant et du centre de la roue arrière.
 
-\question{\label{q_05}Représenter, sur le document-réponse (question \ref{q_05}), pour la position de CABRAGE maximal ($\beta_{\text{max}}=30\degres$) :\begin{itemize}
+\question{\label{q_05}Représenter, sur le document-réponse (question \ref{q_05}), pour la position de CABRAGE maximal ($\beta_{\text{max}}=30\degres$) :
+\begin{itemize}
 \item les positions du centre de la roue avant, appelé $C_{3C}$ et du centre de la roue arrière, appelé $C_{2C}$;
 \item les cercles représentant les roues avant et arrière ainsi qu’une droite représentant le sol ;
 \item la hauteur de franchissement maximal $D_{\text{max}}$ mesurée perpendiculairement au sol jusqu’au bas de la roue avant.
@@ -163,12 +142,7 @@ Mesurer $D_{\text{max}}$ et comparer cette valeur au cahier des charges.}
 
 \subsubsection{Dimensionnement des vérins}
 Le choix des vérins assurant le mouvement de tangage est délicat. En effet, l’encombrement très réduit oblige le
-concepteur à positionner l’axe de fixation des vérins avec les bras \textbf{4} et \textbf{4’} très près de l’axe de rotation en
-tangage $\axe{O_1}{x_L}$. L’objectif de cette partie est de déterminer la course des vérins en fonction de l’amplitude du
-mouvement ainsi que la pression maximale $p_{\text{maxi}}$ dans le circuit hydraulique. Pour cette étude, nous considèrerons la
-configuration d’essai suivante où le pode central \textbf{1} est fixe et placé parallèlement au sol. L’ensemble E=\{bras
-d’articulation avant \textbf{4} + pode avant \textbf{3} + roues avant\} est soulevé par les vérins avant \textbf{5} et \textbf{6} placés de part et d’autre du
-pode central \textbf{1}. Le modèle cinématique retenu est défini sur l’annexe 6.
+concepteur à positionner l’axe de fixation des vérins avec les bras \textbf{4} et \textbf{4’} très près de l’axe de rotation en tangage $\axe{O_1}{x_L}$. L’objectif de cette partie est de déterminer la course des vérins en fonction de l’amplitude du mouvement ainsi que la pression maximale $p_{\text{maxi}}$ dans le circuit hydraulique. Pour cette étude, nous considèrerons la configuration d’essai suivante où le pode central \textbf{1} est fixe et placé parallèlement au sol. L’ensemble E=\{bras d’articulation avant \textbf{4} + pode avant \textbf{3} + roues avant\} est soulevé par les vérins avant \textbf{5} et \textbf{6} placés de part et d’autre du pode central \textbf{1}. Le modèle cinématique retenu est défini sur l’annexe 6.
 
 Le mécanisme est constitué : 
 \begin{itemize}
@@ -197,47 +171,40 @@ L’objectif suivant est d’évaluer les pressions maximales s’exerçant dans
 d’essai décrite précédemment à savoir :
 \begin{itemize}
 \item le pode central \textbf{1} est fixe et placé parallèlement au sol ;
-\item les podes avant \textbf{3} et arrière \textbf{2} ne sont pas en contact avec le sol et un angle de tangage est alors imposé aux
-podes avant et arrière par rapport au pode central.
+\item les podes avant \textbf{3} et arrière \textbf{2} ne sont pas en contact avec le sol et un angle de tangage est alors imposé aux podes avant et arrière par rapport au pode central.
 \end{itemize}
-Sur l’annexe 8, l’évolution du rapport entre les efforts exercés par les vérins avant \textbf{5} et \textbf{6} et le poids de l’ensemble E a
-été tracée en fonction de l’angle de tangage $\beta$. La masse de l’ensemble E est $m_E = \SI{60}{kg}$.
+Sur l’annexe 8, l’évolution du rapport entre les efforts exercés par les vérins avant \textbf{5} et \textbf{6} et le poids de l’ensemble E a été tracée en fonction de l’angle de tangage $\beta$. La masse de l’ensemble E est $m_E = \SI{60}{kg}$.
 
 \question{À partir du tracé de l’annexe 8 et du plan du vérin annexe 7, déterminer la valeur de la différence de
 pression maximale $\Delta P_{\text{max}}$ entre les deux chambres des vérins avant \textbf{5} et \textbf{6}.}
 
-La pression minimale dans le circuit hydraulique est supposée constante et égale à $p_0$ ( $p_0 = \SI{1}{bar}$). Des limiteurs de
-pression tarés à \SI{150}{bars} sont placés en sortie du distributeur 4/3.
+La pression minimale dans le circuit hydraulique est supposée constante et égale à $p_0$ ( $p_0 = \SI{1}{bar}$). Des limiteurs de pression tarés à \SI{150}{bars} sont placés en sortie du distributeur 4/3.
 
-\question{Déterminer l’expression de la pression maximale $p_{\text{maxi}}$ dans le circuit hydraulique en fonction de $p_0$ et
-$\Delta P_{\text{max}}$. Réaliser l’application numérique et comparer cette valeur à la pression de tarage des limiteurs.}
+\question{Déterminer l’expression de la pression maximale $p_{\text{maxi}}$ dans le circuit hydraulique en fonction de $p_0$ et $\Delta P_{\text{max}}$. Réaliser l’application numérique et comparer cette valeur à la pression de tarage des limiteurs.}
 
 \section{\label{sec:3}Fonction technique FT31 : Assurer le mouvement de lacet}
 
 \begin{hypo}%Hypothèses :
 
 \begin{itemize}
-\item De la même manière que dans la partie \ref{sec:2}, dans toute la partie \ref{sec:3}, le mouvement de roulis n’est pas considéré.
-Il est fixé à une valeur nulle.
+\item De la même manière que dans la partie \ref{sec:2}, dans toute la partie \ref{sec:3}, le mouvement de roulis n’est pas considéré. Il est fixé à une valeur nulle.
 \end{itemize}
 \end{hypo}
 
 Les 6 roues de la plate-forme (notée $PF$) sont motorisées permettant ainsi de se déplacer sur des reliefs très
 accidentés. Cependant, la plate-forme ne comporte pas de systèmes spécifiques de direction. Le changement de
-direction est imposé par une rotation différentielle des roues du pode central \textbf{1}. Les roues avant et arrière doivent alors
-avoir des vitesses de rotation compatibles avec celles du pode central \textbf{1}. Lorsque le rayon de courbure de la trajectoire
-suivie par la plate-forme devient inférieur à 4 mètres, le groupe hydraulique est actionné pour passer en « Mode 2
-roues instable ». La plate-forme ne tenant pas en équilibre sur 2 roues, elle retombe dès le début du mouvement sur
-les roues arrière ou les roues avant, passant donc en « Mode 4 roues Déplacement ». Cette intervention du groupe
-hydraulique permet ainsi de soulager le contact entre les roues des podes avant / arrière et le sol. Pour cette étude,
-nous considèrerons que la plate-forme retombe sur les roues arrière (annexe 9) et nous nous placerons dans le cas
-d’un rayon de courbure nul. Le mouvement de lacet étudié est donc une rotation autour de l’axe $\axe{C_1}{z_0}$ d’angle $\varphi$,
-appelé angle de lacet.
+direction est imposé par une rotation différentielle des roues du pode central \textbf{1}. Les roues avant et arrière doivent alors avoir des vitesses de rotation compatibles avec celles du pode central \textbf{1}. Lorsque le rayon de courbure de la trajectoire suivie par la plate-forme devient inférieur à 4 mètres, le groupe hydraulique est actionné pour passer en « Mode 2 roues instable ». La plate-forme ne tenant pas en équilibre sur 2 roues, elle retombe dès le début du mouvement sur les roues arrière ou les roues avant, passant donc en « Mode 4 roues Déplacement ». Cette intervention du groupe hydraulique permet ainsi de soulager le contact entre les roues des podes avant / arrière et le sol. Pour cette étude, nous considèrerons que la plate-forme retombe sur les roues arrière (annexe 9) et nous nous placerons dans le cas d’un rayon de courbure nul. Le mouvement de lacet étudié est donc une rotation autour de l’axe $\axe{C_1}{z_0}$ d’angle $\varphi$, appelé angle de lacet.
 
 Ce mouvement est défini par le torseur cinématique suivant : 
 $\torseurcin{V}{\text{PF}}{0} = \torseurl{\vecto{\text{PF}}{0}=\varphip \vect{z_0}}{\vect{0}}{C_1}$.
 
-L’objectif de cette partie est de valider l’aptitude du système à respecter la
+\begin{wrapfigure}{r}{5.5cm}
+%\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{img_04}
+\caption{Loi de commande de vitesse \label{img:04}}
+%\end{figure}
+\end{wrapfigure}L’objectif de cette partie est de valider l’aptitude du système à respecter la
 loi de vitesse de la \autoref{img:04}.
 Le modèle cinématique retenu est représenté sur l’annexe 9.
 Les roues centrales et les roues arrière sont en contact avec le sol. Dans ce
@@ -245,13 +212,9 @@ mode, seules les roues centrales $R_{1d}$ et $R_{1g}$ sont motrices. Elles roule
 sans glisser sur le sol en $I_{1d}$ et $I_{1g}$. Les roues du pode avant \textbf{3} et du pode
 arrière \textbf{2} sont bloquées (\autoref{img:05}).
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=.35\linewidth]{img_04}
-\caption{Loi de commande de vitesse \label{img:04}}
-\end{figure}
 
-Paramétrage : (annexe 9)
+
+Paramétrage (annexe 9) : 
 \begin{itemize}
 \item $\rep{0}=\repere{O_0}{x_0}{y_0}{z_0}$ lié au sol \textbf{0} et supposé << galiléen >>;
 \item $\rep{L}=\repere{C_1}{x_L}{y_L}{z_L}$ lié à la plateforme PF tel que $\varphi=\angl{x_0}{x_L}=\angl{y_0}{y_L}$ appelé angle de lacet ;
@@ -282,20 +245,16 @@ Roue arrière gauche & $R_{2g}$ & $C_{2g}$ & $I_{2g}$ & & nulle \\ \hline
 \caption{Paramétrage des roues en contact avec le sol \label{img:05}}
 \end{figure}
 
-\textbf{Caractéristiques géométriques et d’inertie des solides}
+\subsection*{Caractéristiques géométriques et d’inertie des solides}
 
 \begin{itemize}
-\item Le mouvement de roulis étant nul et le mouvement de tangage étant fixé à une valeur constante, il est possible de
-définir l’ensemble rigide $\Sigma$ constitué des trois podes \textbf{1}, \textbf{2} et \textbf{3}, des deux roues avant, des deux roues arrière et des
-bras d’articulation \textbf{4} et \textbf{4’}. Pour chaque constituant de cet ensemble, la masse est supposée répartie
-uniformément.
+\item Le mouvement de roulis étant nul et le mouvement de tangage étant fixé à une valeur constante, il est possible de définir l’ensemble rigide $\Sigma$ constitué des trois podes \textbf{1}, \textbf{2} et \textbf{3}, des deux roues avant, des deux roues arrière et des bras d’articulation \textbf{4} et \textbf{4’}. Pour chaque constituant de cet ensemble, la masse est supposée répartie uniformément.
 \end{itemize}
 
 \begin{center}
 \begin{tabular}{|p{4cm}|p{4cm}|p{8cm}|}
 \hline
 Centre de gravité de $\Sigma$ 
-
 $G$ tel que $\vect{C_1G}=a_G\vect{z_1}$
 $a_G =\SI{85}{mm}$
 & 
@@ -377,7 +336,7 @@ B_m =\SI{8e-3}{kg.m^2} \\
 \item Les masses et inerties des autres pièces seront négligées.
 \end{itemize}
 
-\textbf{Modélisation du contact roue / sol}
+\subsection*{Modélisation du contact roue / sol}
 
 \begin{itemize}
 \item Les roues centrales $R_{id}$ et $R_{ig}$ sont motrices, elles roulent sans glisser aux points de contact $I_{1d}$ et $I_{1g}$. On pose $\vect{C_{1d}I_{1d}}=-R\vect{z_L}$ et $\vect{C_{1g}I_{1g}}=-R\vect{z_L}$. Le contact avec le sol \textbf{0} est modélisé par le torseur suivant :
@@ -386,8 +345,7 @@ $\torseurstat{T}{0}{R_{1d}}=\torseurl{\vectf{0}{R_{1d}}=Y_{1d}\vect{y_L}+Z_{1d}\
 et
 $\torseurstat{T}{0}{R_{1g}}=\torseurl{\vectf{0}{R_{1g}}=Y_{1g}\vect{y_L}+Z_{1g}\vect{z_L}}{\vect{0}}{I_{1g}}$.
 
-\item Les roues arrière $R_{2d}$ et $R_{2g}$ sont bloquées, leur vitesse de rotation par rapport au pode arrière \textbf{2} est nulle. Le
-contact avec le sol \textbf{0} est modélisé par le torseur suivant :
+\item Les roues arrière $R_{2d}$ et $R_{2g}$ sont bloquées, leur vitesse de rotation par rapport au pode arrière \textbf{2} est nulle. Le contact avec le sol \textbf{0} est modélisé par le torseur suivant : 
 $\torseurstat{T}{0}{R_{2d}}=\torseurl{\vectf{0}{R_{2d}}=T_{2d}\vect{n_d}+Z_{2d}\vect{z_L}}{\vect{0}}{I_{2d}}$
 et
 $\torseurstat{T}{0}{R_{2g}}=\torseurl{\vectf{0}{R_{2g}}=Y_{2g}\vect{n_g}+Z_{2g}\vect{z_L}}{\vect{0}}{I_{2g}}$
@@ -397,10 +355,10 @@ $\vect{C_{2g}I_{2g}}=-R\vect{z_L}$. $T_{2d}=fZ_{2d}$ et $T_{2g}=fZ_{2g}$; $f$ es
 \end{itemize}
 
 
-\textbf{Autres liaisons}
+\subsection*{Autres liaisons}
 Toutes les autres liaisons de la plate-forme sont supposées parfaites (sans jeu, sans frottement).
 
-\textbf{Motoréducteur centraux}
+\subsection*{Motoréducteur centraux}
 \begin{itemize}
 \item L'action mécanique développée par la motoréducteur sur la roue centrale droite $R_{1d}$ est notée : 
 $\torseurstat{T}{\text{moteur}}{R_{1d}} = \torseurl{\vect{0}}{-C_m\vect{x_L}}{C_1}$.
@@ -419,10 +377,7 @@ $\vect{C_3I_1} = -b\vect{y_3}-R\vect{z_L}$.
 Nous ferons l’hypothèse que le moment dynamique $\vectmd{I_1}{PF}{0}\cdot \vect{x_L}$
 est négligeable devant les actions mécaniques.
 
-\question{\label{q_11}En appliquant le théorème du moment dynamique à la plate-forme PF en mouvement par rapport au
-référentiel galiléen $R_0$ en $I_1$ en projection sur $\vect{x_L}$, déterminer l’expression littérale de la somme des efforts normaux de contact $Z_{2d}+Z_{2g}$, entre les roues arrière et le sol. Réaliser l’application numérique et
-comparer la valeur obtenue à la somme des efforts normaux s’exerçant sur les roues arrière lorsque la plateforme
-est immobile en appui sur ses six roues sur un sol plan, à savoir $\left(Z_{2d}+Z_{2g}\right)_{\text{Repos}} = \left(m_2+2m_r\right)g$ avec $m_2=\SI{52}{kg}$ la masse du pode arrière \textbf{2}.}
+\question{\label{q_11}En appliquant le théorème du moment dynamique à la plate-forme PF en mouvement par rapport au référentiel galiléen $R_0$ en $I_1$ en projection sur $\vect{x_L}$, déterminer l’expression littérale de la somme des efforts normaux de contact $Z_{2d}+Z_{2g}$, entre les roues arrière et le sol. Réaliser l’application numérique et comparer la valeur obtenue à la somme des efforts normaux s’exerçant sur les roues arrière lorsque la plateforme est immobile en appui sur ses six roues sur un sol plan, à savoir $\left(Z_{2d}+Z_{2g}\right)_{\text{Repos}} = \left(m_2+2m_r\right)g$ avec $m_2=\SI{52}{kg}$ la masse du pode arrière \textbf{2}.}
 
 L’objectif est dans un second temps de valider l’aptitude des moteurs à suivre la loi de vitesse en lacet exigée. Il est
 proposé de déterminer l’expression du couple moteur $C_m$ par une approche énergétique.
@@ -445,11 +400,7 @@ désiré.}
 
 \subsection{La commande de la plate-forme}
 
-Pour coordonner les déplacements, la
-plate-forme est équipée de deux parties
-commandes supportées par deux
-microcontrôleurs placés respectivement
-dans les podes avant et arrière (\autoref{img:06}).
+Pour coordonner les déplacements, la plate-forme est équipée de deux parties commandes supportées par deux microcontrôleurs placés respectivement dans les podes avant et arrière (\autoref{img:06}).
 
 \begin{figure}[H]
 \centering
@@ -457,19 +408,12 @@ dans les podes avant et arrière (\autoref{img:06}).
 \caption{Loi de commande de vitesse \label{img:06}}
 \end{figure}
 
-Chaque microcontrôleur commande trois
-roues et l’un des deux génère les ordres
-envoyés à la centrale hydraulique afin de
-piloter les mouvements de tangage.
-Ces 2 microcontrôleurs communiquent
-entre eux et dialoguent avec l’extérieur
-suivant deux modes de conduite :
+Chaque microcontrôleur commande trois roues et l’un des deux génère les ordres envoyés à la centrale hydraulique afin de piloter les mouvements de tangage. Ces 2 microcontrôleurs communiquent entre eux et dialoguent avec l’extérieur suivant deux modes de conduite :
 \begin{itemize}
-\item le mode joystick : l’utilisateur
-pilote manuellement la plate-forme par l’intermédiaire d’une télécommande ;
-\item le mode automatique : La plate-forme traite les commandes du logiciel de supervision.
+\item le mode joystick : l’utilisateur pilote manuellement la plate-forme par l’intermédiaire d’une télécommande ;
+\item le mode automatique : la plate-forme traite les commandes du logiciel de supervision.
 \end{itemize}
-Le pilotage en mode automatique est prioritaire sur le mode joystick.
+Le pilotage en mode automatique est prioritaire sur le mode joystick. 
 Les principales fonctions à remplir par la partie commande sont :
 \begin{itemize}
 \item communiquer avec l’utilisateur ou le superviseur ;
@@ -479,9 +423,7 @@ Les principales fonctions à remplir par la partie commande sont :
 
 \subsection{Gérer le pilotage séquentiel du CABRAGE en << Mode 2 roues instable >>}
 Lorsque le rayon de courbure est inférieur à 4 mètres et que la vitesse de la plate-forme est inférieure à une vitesse
-limite, la partie commande de la plate-forme active le << Mode 2 roues instable >> (Rotation 2 roues=1). En << Mode 2
-roues instable >>, la partie commande génère les lois de pilotage à appliquer aux roues centrales et pilote la centrale
-hydraulique afin de CABRER les podes avant et arrière suivant une séquence prédéfinie.
+limite, la partie commande de la plate-forme active le << Mode 2 roues instable >> (Rotation 2 roues=1). En << Mode 2 roues instable >>, la partie commande génère les lois de pilotage à appliquer aux roues centrales et pilote la centrale hydraulique afin de CABRER les podes avant et arrière suivant une séquence prédéfinie.
 L’objectif de cette partie est de proposer un GRAFCET de gestion de la
 séquence CABRAGE en << Mode 2 roues instable >>. La table des
 entrées-sorties de cette séquence est la suivante.
@@ -495,25 +437,15 @@ entrées-sorties de cette séquence est la suivante.
 \textbf{Description de la séquence associée au CABRAGE en « Mode 2 roues instable »}
 
 \begin{enumerate}
-\item Lorsque Rotation 2 roues=1, une consigne CABRER est envoyée à la centrale hydraulique pendant 1
-seconde (temps nécessaire pour imposer un angle de tangage de l’ordre de 2\ieme aux podes avant et arrière par
-rapport au pode central).
-\item Le système hydraulique actuel ne permet pas de bloquer en permanence les podes avant et arrière en position
-CABRER. En effet, les pressions importantes présentes dans le circuit pour maintenir les podes en position
-génèrent un débit de fuite interne qui ramène progressivement les podes en position initiale. Il a été mesuré
-qu’au bout de 5 secondes (temps nécessaire pour effectuer de 1 à 2 tours sur place en fonction de la nature
-du sol), les podes avant et arrière sont à nouveau pleinement en contact avec le sol.
-\item Si le « Mode 2 roues instable » (Rotation 2 roues=1) est maintenu pendant plus de 5 secondes (à partir de
-son activation) alors la séquence prévoit de rétablir à nouveau la consigne CABRER (retour à l’étape 1).
-\item À tout moment, le « Mode 2 roues instable » peut être désactivé (Rotation 2 roues=0). Si une consigne
-CABRER est en cours, elle est immédiatement arrêtée et la séquence de gestion de la centrale hydraulique en
-« Mode 2 roues instable » est réinitialisée. Le débit de fuite dans le circuit assure le retour progressif en
+\item Lorsque Rotation 2 roues=1, une consigne CABRER est envoyée à la centrale hydraulique pendant 1 seconde (temps nécessaire pour imposer un angle de tangage de l’ordre de 2\ieme aux podes avant et arrière par rapport au pode central).
+\item Le système hydraulique actuel ne permet pas de bloquer en permanence les podes avant et arrière en position CABRER. En effet, les pressions importantes présentes dans le circuit pour maintenir les podes en position génèrent un débit de fuite interne qui ramène progressivement les podes en position initiale. Il a été mesuré qu’au bout de 5 secondes (temps nécessaire pour effectuer de 1 à 2 tours sur place en fonction de la nature du sol), les podes avant et arrière sont à nouveau pleinement en contact avec le sol.
+\item Si le « Mode 2 roues instable » (Rotation 2 roues=1) est maintenu pendant plus de 5 secondes (à partir de son activation) alors la séquence prévoit de rétablir à nouveau la consigne CABRER (retour à l’étape 1).
+\item À tout moment, le « Mode 2 roues instable~» peut être désactivé (Rotation 2 roues=0). Si une consigne CABRER est en cours, elle est immédiatement arrêtée et la séquence de gestion de la centrale hydraulique en «~Mode 2 roues instable~» est réinitialisée. Le débit de fuite dans le circuit assure le retour progressif en
 position initiale des podes avant et arrière.
 \end{enumerate}
 
-\question{\label{q:15}Réaliser un (ou plusieurs) GRAFCET(s) correspondant à la séquence de fonctionnement associée au
-CABRAGE en «Mode 2 roues instable ». Un début de GRAFCET est fourni sur le document-réponse
-(question 15). Vous veillerez en particulier à :}
+\question{\label{q_15}Réaliser un (ou plusieurs) GRAFCET(s) correspondant à la séquence de fonctionnement associée au CABRAGE en «~Mode 2 roues instable~». Un début de GRAFCET est fourni sur le document-réponse
+(question \ref{q_15}). Vous veillerez en particulier à :}
 \textit{
 \begin{itemize}
 \item respecter les normes de construction d’un GRAFCET ;
@@ -527,27 +459,19 @@ CABRAGE en «Mode 2 roues instable ». Un début de GRAFCET est fourni sur le do
 Les déplacements de la plate-forme sont contrôlés de la manière suivante :
 \begin{itemize}
 \item au niveau de chacun des 6 moteurs, des boucles de vitesse assurent l’asservissement dit « bas niveau » ;
-\item à partir d’informations sur la position absolue de la plate-forme via le système GPS par exemple, un
-asservissement en position de la plate-forme peut être mis en place (asservissement dit « haut niveau »).
+\item à partir d’informations sur la position absolue de la plate-forme via le système GPS par exemple, un asservissement en position de la plate-forme peut être mis en place (asservissement dit « haut niveau »).
 \end{itemize}
-L’objectif dans cette partie est de déterminer les paramètres de réglage de chacune des boucles d’asservissement en
-vitesse de la plate-forme par rapport au sol.
+L’objectif dans cette partie est de déterminer les paramètres de réglage de chacune des boucles d’asservissement en vitesse de la plate-forme par rapport au sol.
 
-\textbf{Hypothèses et modélisation :}
+\begin{hypo}
 Afin de régler l’asservissement en vitesse de la plate-forme par rapport au sol :
 \begin{itemize}
 \item un déplacement en ligne droite de la plate-forme est considéré (consigne de vitesse $V_C(t)$, les paramètres
 angulaires de lacet, tangage et roulis restent nuls) ;
 \item le contact entre chaque pneumatique et le sol est considéré avec roulement sans glissement ;
-\item pour la modélisation du fonctionnement des moteurs, nous supposerons une équi-répartition de la charge
-extérieure sur chacun des six moteurs. Ainsi, pour une vitesse $V (t)$ de la plate-forme, les six moteurs tourneront à
-la même vitesse $\Omega_{\text{Mot}}(t)$. Ils seront alimentés par une même tension de commande $U(t)$ et devront fournir un
-même couple moteur $C_{\text{Mot}}(t)$ ;
-\item les efforts de perturbations (action mécanique de la pesanteur sur une pente…) seront répartis sur chacun des
-axes des six moteurs et seront donc modélisés par un même couple de perturbation équivalent $C_{\text{equ}}(t)$ appliqué
-sur chacun des axes moteurs ;
-\item les caractéristiques inertielles de la plate-forme seront représentées au niveau de chaque axe moteur par un
-moment d’inertie équivalent $\dfrac{J_{\text{equ}}}{6}$;
+\item pour la modélisation du fonctionnement des moteurs, nous supposerons une équi-répartition de la charge extérieure sur chacun des six moteurs. Ainsi, pour une vitesse $V (t)$ de la plate-forme, les six moteurs tourneront à la même vitesse $\Omega_{\text{Mot}}(t)$. Ils seront alimentés par une même tension de commande $U(t)$ et devront fournir un même couple moteur $C_{\text{Mot}}(t)$ ;
+\item les efforts de perturbations (action mécanique de la pesanteur sur une pente…) seront répartis sur chacun des axes des six moteurs et seront donc modélisés par un même couple de perturbation équivalent $C_{\text{equ}}(t)$ appliqué sur chacun des axes moteurs ;
+\item les caractéristiques inertielles de la plate-forme seront représentées au niveau de chaque axe moteur par un moment d’inertie équivalent $\dfrac{J_{\text{equ}}}{6}$;
 \item le comportement individuel d’un des six moteurs peut donc être approché par celui d’un moteur à courant continu avec les équations électromécaniques suivantes :
 \begin{itemize}
 \item équation électrique : $U(t)=E(t)+RI(t)+L\dfrac{\dd i(t)}{\dd t}$,
@@ -555,7 +479,7 @@ moment d’inertie équivalent $\dfrac{J_{\text{equ}}}{6}$;
 \item équation de couplage $E(t)=k_e\Omega_{\text{Mot}}(t)$ et $C_{\text{Mot}}(t) = k_c I(t)$.
 \end{itemize}
 \end{itemize}
-
+\end{hypo}
 
 
 
@@ -582,11 +506,7 @@ $J_{\text{equ}}$		& Inertie équivalente de la plate-forme ramenée sur l’axe 
 
 \textbf{Description de l’asservissement en vitesse de la plate-forme par rapport au sol (\autoref{img:07} et \autoref{img:08})}
 
-Pour une vitesse de consigne $V_C (t)$ en \si{m/s}, les microcontrôleurs de pilotage génèrent une vitesse de rotation de consigne à appliquer à chaque moteur $\Omega_{\text{C Mot}}(t)$ \si{rad/s} qui est convertie en une tension de consigne $U_C (t)$ en \si{V}. Un
-capteur de vitesse monté sur l’axe de chaque moteur fournit une tension mesurée $U_m (t)$ en \si{V}, image de la vitesse de
-rotation réelle $\Omega_{\text{Mot}}(t)$. Un correcteur (défini par la suite) adapte le signal écart entre la tension de consigne et la tension mesurée, ce qui permet après amplification de
-définir la tension d’alimentation $U(t)$ à appliquer aux moteurs. La vitesse réelle de la plate-forme
-$V (t)$ est déterminée à partir de $\Omega_{\text{Mot}}(t)$ en l’absence de glissement.
+Pour une vitesse de consigne $V_C (t)$ en \si{m/s}, les microcontrôleurs de pilotage génèrent une vitesse de rotation de consigne à appliquer à chaque moteur $\Omega_{\text{C Mot}}(t)$ \si{rad/s} qui est convertie en une tension de consigne $U_C (t)$ en \si{V}. Un capteur de vitesse monté sur l’axe de chaque moteur fournit une tension mesurée $U_m (t)$ en \si{V}, image de la vitesse de rotation réelle $\Omega_{\text{Mot}}(t)$. Un correcteur (défini par la suite) adapte le signal écart entre la tension de consigne et la tension mesurée, ce qui permet après amplification de définir la tension d’alimentation $U(t)$ à appliquer aux moteurs. La vitesse réelle de la plate-forme $V (t)$ est déterminée à partir de $\Omega_{\text{Mot}}(t)$ en l’absence de glissement.
 
 \begin{figure}[H]
 \centering
@@ -633,12 +553,9 @@ Stabilité & \\ %\cline{2-3}
 \end{tabular}
 \end{center}
 
-
 \question{\label{q_16}Déterminer les valeurs numériques et unités des gains associés au générateur de consigne (noté $K_G$), au rapport cinématique ($K_R$) et au convertisseur ($K_{\text{conv}}$) en sachant, que lorsque la vitesse réelle de la plateforme $V (t)$ est égale à la vitesse de consigne de la plate-forme $V_C (t)$ , l’écart $\varepsilon(t)$ doit être nul.}
 
-\question{\label{q_17}Compléter le schéma-blocs sur le document-réponse (question 17) en y faisant figurer les fonctions de
-transfert sous forme littérale dans le domaine de Laplace avec des conditions initiales nulles, ainsi que les
-signes des sommateurs.}
+\question{\label{q_17} Compléter le schéma-blocs sur le document-réponse (question \ref{q_17}) en y faisant figurer les fonctions de transfert sous forme littérale dans le domaine de Laplace avec des conditions initiales nulles, ainsi que les signes des sommateurs.}
 
 À partir de la modélisation des blocs, un schéma-blocs à retour unitaire est tracé.
 
@@ -663,42 +580,29 @@ Nous distinguerons dans la suite :
 \item l’étude en régulation : La vitesse de consigne de la plate-forme $V_c (t)$ est nulle. $C_{\text{equ}}(t)$ varie.
 \end{itemize}
 
-Les diagrammes de Bode de la Fonction de Transfert en Boucle Ouverte $\text{FTBO}( p)$ non corrigée sont fournis sur le
-document-réponse (Bode non corrigé page 12) pour $C( p) = 1$.
+Les diagrammes de Bode de la Fonction de Transfert en Boucle Ouverte $\text{FTBO}( p)$ non corrigée sont fournis sur le document-réponse (Bode non corrigé page 12) pour $C( p) = 1$.
 
 \question{Le système étudié est-il stable théoriquement ? Justifier vos réponses.}
 
-\question{Etudier l’aptitude du système sans correction à respecter les critères de précision. Vous déterminerez
-notamment les expressions littérales de l’erreur statique en poursuite pour une consigne de vitesse de la
-plate-forme $V_c (t)$ en échelon d’amplitude $V_{\text{CO}}$ : $V_C (t)=V_{\text{CO}} u(t)$ (avec $u(t)$ l’échelon unitaire) et de
-l’influence en régulation d’une perturbation $C_{\text{equ}} (t)$ en échelon d’amplitude $C_0$, sur la vitesse réelle $V (t)$ de
-la plate-forme en régime permanent.}
+\question{Etudier l’aptitude du système sans correction à respecter les critères de précision. Vous déterminerez notamment les expressions littérales de l’erreur statique en poursuite pour une consigne de vitesse de la plate-forme $V_c (t)$ en échelon d’amplitude $V_{\text{CO}}$ : $V_C (t)=V_{\text{CO}} u(t)$ (avec $u(t)$ l’échelon unitaire) et de l’influence en régulation d’une perturbation $C_{\text{equ}} (t)$ en échelon d’amplitude $C_0$, sur la vitesse réelle $V (t)$ de la plate-forme en régime permanent.}
 
 \subsubsection{Etude des performances avec un correcteur de fonction de transfert : $C(p)=\dfrac{K_I}{p}$}
 
-\question{\label{q_20}Indiquer quelle est la nature de la correction effectuée par ce correcteur (ou désignation du correcteur) ?
-Indiquer pour quelle(s) raison(s) principale(s) ce correcteur a été choisi. Valider ce choix vis à vis du cahier
-des charges. Sans calcul, donner l’influence de ce correcteur sur les autres performances attendues.}
+\question{\label{q_20}Indiquer quelle est la nature de la correction effectuée par ce correcteur (ou désignation du correcteur) ? Indiquer pour quelle(s) raison(s) principale(s) ce correcteur a été choisi. Valider ce choix vis à vis du cahier des charges. Sans calcul, donner l’influence de ce correcteur sur les autres performances attendues.}
 
-Reprenons le diagramme de Bode de la Fonction de Transfert en Boucle Ouverte $\text{FTBO( p)}$ non corrigée (Bode non
-corrigé page 12).
+Reprenons le diagramme de Bode de la Fonction de Transfert en Boucle Ouverte $\text{FTBO( p)}$ non corrigée (Bode non corrigé page 12).
 
-\question{\label{q_21}Compléter le document-réponse (Bode non corrigé page 12) en traçant les diagrammes de Bode du
-correcteur avec $K_I =\SI{1}{s^{-1}}$ . Déterminer alors la valeur de $K_I$ maximale notée $K_{\text{I max}}$ permettant de respecter les marges de stabilité énoncées dans le cahier des charges.}
+\question{\label{q_21}Compléter le document-réponse (Bode non corrigé page 12) en traçant les diagrammes de Bode du correcteur avec $K_I =\SI{1}{s^{-1}}$ . Déterminer alors la valeur de $K_I$ maximale notée $K_{\text{I max}}$ permettant de respecter les marges de stabilité énoncées dans le cahier des charges.}
 
 Afin d’évaluer analytiquement le temps de réponse à 5\%, Il est proposé d’adopter une modélisation simplifiée du
 comportement du moteur en conservant uniquement le mode associé au pôle «~dominant~». On donne $T_{\SI{5}{\%} \text{mini}}\cdot \omega_0 = 3$ avec $\omega_0$ la pulsation propre non amortie d’un système fondamental du second ordre.
 
-\question{\label{q_22}En analysant les valeurs numériques des pôles de la fonction de transfert du moteur en poursuite $H_U ( p)$,
-préciser quel est le pôle dominant et proposer alors un modèle simplifié de la fonction de transfert $H_U ( p)$.
-Déterminer alors la valeur numérique de $K_I$ notée $K_{I\SI{5}{\%}}$ minimisant le temps de réponse à \SI{5}{\%} pour une entrée échelon en poursuite. Calculer alors la valeur approchée du temps de réponse à \SI{5}{\%} minimale 
-$T_{\SI{5}{\%} \text{mini}}$ et comparer la au cahier des charges.}
+\question{\label{q_22}En analysant les valeurs numériques des pôles de la fonction de transfert du moteur en poursuite $H_U ( p)$, préciser quel est le pôle dominant et proposer alors un modèle simplifié de la fonction de transfert $H_U ( p)$. Déterminer alors la valeur numérique de $K_I$ notée $K_{I\SI{5}{\%}}$ minimisant le temps de réponse à \SI{5}{\%} pour une entrée échelon en poursuite. Calculer alors la valeur approchée du temps de réponse à \SI{5}{\%} minimale $T_{\SI{5}{\%} \text{mini}}$ et comparer la au cahier des charges.}
 
 
 \subsubsection{Etude des performances avec un correcteur proportionnel intégral : $C(p)={K_P}\left(1+\dfrac{1}{T_I p}\right)$}
 
-Le correcteur est remplacé par un correcteur proportionnel intégral. Des réponses temporelles du système corrigé sont
-tracées sur le document-réponse (question 23) avec :
+Le correcteur est remplacé par un correcteur proportionnel intégral. Des réponses temporelles du système corrigé sont tracées sur le document-réponse (question \ref{q_23}) avec :
 \begin{itemize}
 \item une consigne de vitesse unitaire de la plate-forme $V_c (t)= u(t)$ (avec $u(t)$ l’échelon unitaire) ;
 \item une perturbation sous la forme d’un échelon unitaire retardé de 5 secondes $C_{\text{equ}} (t) = u(t - 5)$;
@@ -706,34 +610,25 @@ tracées sur le document-réponse (question 23) avec :
 \item différentes valeurs de $T_I$.
 \end{itemize}
 
-\question{\label{q_23}Parmi les différentes valeurs de $T_I$, choisir celle qui assure le temps de réponse à 5\% le plus faible. Vous
-ferez apparaître ce temps de réponse sur la figure (question 23).}
+\question{\label{q_23}Parmi les différentes valeurs de $T_I$, choisir celle qui assure le temps de réponse à 5\% le plus faible. Vous ferez apparaître ce temps de réponse sur la figure (question \ref{q_23}).}
 
-La valeur de $T_I$ déterminée à la question précédente est retenue pour le réglage du correcteur proportionnel intégral.
-Il s’agit alors de choisir le gain du correcteur $K_P$ à partir des simulations proposées sur le document-réponse
-(question 24).
+La valeur de $T_I$ déterminée à la question précédente est retenue pour le réglage du correcteur proportionnel intégral. Il s’agit alors de choisir le gain du correcteur $K_P$ à partir des simulations proposées sur le document-réponse (question \ref{q_24}).
 
 \question{\label{q_24}Parmi les différentes valeurs de $K_P$, choisir la valeur qui assure un temps de réponse à 5\% au plus près de la valeur fournie dans le cahier des charges.}
 
-Avec le couple de valeurs ($T_I$ et $K_P$) obtenu, la réponse fréquentielle du système en boucle ouverte a été tracée sur
-le document réponse (question \ref{q_25}).
+Avec le couple de valeurs ($T_I$ et $K_P$) obtenu, la réponse fréquentielle du système en boucle ouverte a été tracée sur le document réponse (question \ref{q_25}).
 
 \question{\label{q_25} Conclure quant à la capacité de ce correcteur à respecter tous les critères du cahier des charges.}
 
 \section{Fonction technique FT33 : guider les podes en roulis}
 
-L’objet de cette partie est d’étudier les solutions constructives assurant le guidage des podes en roulis. Ce guidage est
-réalisé par deux liaisons identiques, une pour le pode avant \textbf{3} et une pour le pode arrière \textbf{2}. Dans la suite, une seule des deux liaisons sera détaillée.
+L’objet de cette partie est d’étudier les solutions constructives assurant le guidage des podes en roulis. Ce guidage est réalisé par deux liaisons identiques, une pour le pode avant \textbf{3} et une pour le pode arrière \textbf{2}. Dans la suite, une seule des deux liaisons sera détaillée.
 
 \subsection{Description de la première solution constructive (annexe 10)}
 
-Les podes sont constitués d’un caisson creux dans lequel l’ensemble des éléments techniques prend place. Les
-caissons sont réalisés par assemblage et collage de plaques de composites de type « sandwich ». L’utilisation de ce
+Les podes sont constitués d’un caisson creux dans lequel l’ensemble des éléments techniques prend place. Les caissons sont réalisés par assemblage et collage de plaques de composites de type « sandwich ». L’utilisation de ce
 type de matériau garantit une bonne résistance aux efforts tout en maîtrisant la masse.
-Pour des raisons d’encombrement (place à l’intérieur des podes), la liaison en roulis s’effectue uniquement sur
-l’épaisseur de la plaque en relation avec le bras d’articulation. Un insert métallique a été incorporé dans la plaque au
-niveau de la liaison avec le bras. Cette liaison réalisée par contact bilatéral direct peut être modélisée par l’association
-de deux liaisons en parallèle.
+Pour des raisons d’encombrement (place à l’intérieur des podes), la liaison en roulis s’effectue uniquement sur l’épaisseur de la plaque en relation avec le bras d’articulation. Un insert métallique a été incorporé dans la plaque au niveau de la liaison avec le bras. Cette liaison réalisée par contact bilatéral direct peut être modélisée par l’association de deux liaisons en parallèle.
 \begin{itemize}
 \item D’une part, une liaison appui plan réalisée par contact bilatéral entre l’insert lié au pode et deux rondelles liées
 au bras d’articulation ;
@@ -741,20 +636,13 @@ au bras d’articulation ;
 au pode et le palier de roulis lié au bras d’articulation.
 \end{itemize}
 
-\question{\label{q_26}Proposer un schéma cinématique représentant l’association des deux liaisons en parallèle. L’orientation des
-liaisons sera déterminée à partir de l’analyse technologique de la liaison. Montrer que la modélisation
-adoptée conduit alors à une liaison équivalente pivot isostatique.}
+\question{\label{q_26} Proposer un schéma cinématique représentant l’association des deux liaisons en parallèle. L’orientation des liaisons sera déterminée à partir de l’analyse technologique de la liaison. Montrer que la modélisation adoptée conduit alors à une liaison équivalente pivot isostatique.}
 
 
 \subsection{Amélioration de la solution constructive (annexe 11)}
 
-Lors des premiers essais, des détériorations localisées au niveau de l’insert métallique des plaques composites ont pu
-être observées, notamment en présence de moments importants dans la liaison autour de l’axe vertical. Afin de
-renforcer la liaison, Il a été décidé de rajouter sur chaque pode avant / arrière deux pistes circulaires métalliques et sur
-chaque bras deux plots venant glisser respectivement sur chacune des pistes et récupérer une partie des efforts.
-Dans un premier temps, chaque plot est considéré solidaire du bras d’articulation (liaison complète) et chaque contact
-entre un plot et une piste circulaire est modélisé par une liaison appui plan.
+Lors des premiers essais, des détériorations localisées au niveau de l’insert métallique des plaques composites ont pu être observées, notamment en présence de moments importants dans la liaison autour de l’axe vertical. Afin de
+renforcer la liaison, Il a été décidé de rajouter sur chaque pode avant / arrière deux pistes circulaires métalliques et sur chaque bras deux plots venant glisser respectivement sur chacune des pistes et récupérer une partie des efforts.
+Dans un premier temps, chaque plot est considéré solidaire du bras d’articulation (liaison complète) et chaque contact entre un plot et une piste circulaire est modélisé par une liaison appui plan.
 
-\question{\label{q_27} Déterminer le degré d’hyperstatisme de cette nouvelle solution. Proposer alors une solution modifiée sous la
-forme d’un schéma d’architecture (ou cinématique) permettant de réaliser les réglages géométriques
-nécessaires afin d’assurer un contact surfacique optimal entre chaque plot et la piste circulaire.}
+\question{\label{q_27} Déterminer le degré d’hyperstatisme de cette nouvelle solution. Proposer alors une solution modifiée sous la forme d’un schéma d’architecture (ou cinématique) permettant de réaliser les réglages géométriques nécessaires afin d’assurer un contact surfacique optimal entre chaque plot et la piste circulaire.}
