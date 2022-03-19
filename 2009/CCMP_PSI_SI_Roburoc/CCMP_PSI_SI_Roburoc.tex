@@ -6,6 +6,11 @@
 %\end{figure}
 \end{wrapfigure}
 Le robuROC 6 (\autoref{fig:01}) est un robot mobile développé par la société ROBOSOFT. Cette plate-forme robotisée a été conçue pour des applications de recherche et d’exploration en milieu extérieur. Elle est équipée de 6 roues motrices indépendantes, de même diamètre, montées par paires sur 3 podes articulés en tangage et en roulis (\autoref{img:03}). La cinématique permet à la plate-forme de se conformer au relief parcouru et de franchir des obstacles du type trottoirs, escaliers… Le robuROC 6 a été conçu pour se déplacer en zones urbaines et peut aussi s’adapter à tous types de milieux.  Afin d’explorer la zone géographique à risques, les 3 podes peuvent être équipés, selon les besoins de l’utilisateur, de caméras d’observation haute définition à 360\degres, de systèmes infrarouges de visualisation nocturne, ainsi que de bras de robot articulés pour manipuler des éléments de la zone à explorer. Les diagrammes SADT A-0 (figure 1) et FAST (annexe 1) recensent les fonctions remplies par la plate-forme.
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 
 Les déplacements de la plate-forme sont coordonnés par l’intermédiaire de deux microcontrôleurs placés dans les podes avant et arrière. Ces microcontrôleurs communiquent entre eux et dialoguent avec l’extérieur suivant deux modes de conduite : 
@@ -71,6 +76,11 @@ FT6 : Fournir l’énergie électrique & Autonomie d’utilisation $\SI{4}{h} $ 
 
 \section{Analyse fonctionnelle \label{sec:1}}
 \question{\label{q_01} Compléter le diagramme FAST de la plate-forme d’exploration présenté en annexe 1 en indiquant les solutions techniques associées aux fonctions techniques référencées dans le tableau du document-réponse.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 
 
@@ -106,10 +116,22 @@ principales fonctionnalités du répartiteur hydraulique droit.
 
 
 \question{\label{q_02}Sur le document-réponse (questions \ref{q_02} et \ref{q_03}), indiquer en hachurant, les chambres des vérins qui sont en communication ainsi que le flexible permettant de les relier. Vous adopterez un type de hachures par volume d’huile en communication.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 À partir d’une position plane de la plate-forme (position du document-réponse questions \ref{q_02} et \ref{q_03}), considérons que le pode avant \textbf{3} commence un mouvement de CABRAGE (montée du pode avant \textbf{3} et du bras d’articulation \textbf{4} par rapport au pode central \textbf{1}) suite à un obstacle. On note $\beta$ l’angle de tangage entre le bras d’articulation \textbf{4} et le pode central \textbf{1} engendré par ce mouvement.
 
 \question{\label{q_03}Sur le document-réponse (questions \ref{q_02} et \ref{q_03}), indiquer par des flèches le sens de circulation de l’huile dans les flexibles au cours de ce mouvement de CABRAGE. Indiquer quel est le mouvement engendré entre l’ensemble \{pode arrière \textbf{2} + bras d’articulation \textbf{4’}\} et le pode central \textbf{1}, ainsi que son amplitude suite au mouvement de CABRAGE du pode avant d’un angle $\beta$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 \subsubsection{Piloter les mouvements de tangage}
 Le système hydraulique est conçu de telle sorte que les angles de tangage entre le pode central \textbf{1} d’une part et les
@@ -123,6 +145,13 @@ Afin de piloter l’angle de tangage $\beta$ conformément aux consignes des mic
 
 \question{\label{q_04} Sur le document-réponse (question \ref{q_04}), relier les orifices de sortie du distributeur 4/3 aux flexibles
 d’alimentation des vérins afin de respecter les ordres de PLONGEE et de CABRAGE.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
 
 \subsection{Validation des performances du circuit hydraulique}
 
@@ -139,6 +168,12 @@ Sur le document-réponse (question \ref{q_05}), le pode central \textbf{1} est r
 \item la hauteur de franchissement maximal $D_{\text{max}}$ mesurée perpendiculairement au sol jusqu’au bas de la roue avant.
 \end{itemize}
 Mesurer $D_{\text{max}}$ et comparer cette valeur au cahier des charges.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 \subsubsection{Dimensionnement des vérins}
 Le choix des vérins assurant le mouvement de tangage est délicat. En effet, l’encombrement très réduit oblige le
@@ -164,8 +199,22 @@ Valeurs numériques :
 \end{itemize}
 
 \question{Exprimer $\lambda$ en fonction de $d_4$, $h_1$, $d_1$ et $\beta$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
 
 \question{Calculer les valeurs numériques d’élongation minimale $\lambda_{\text{min}}$, maximale $\lambda_{\text{max}}$ ainsi que la course du vérin \textbf{5}.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
 
 L’objectif suivant est d’évaluer les pressions maximales s’exerçant dans le circuit hydraulique dans la configuration
 d’essai décrite précédemment à savoir :
@@ -177,10 +226,23 @@ Sur l’annexe 8, l’évolution du rapport entre les efforts exercés par les v
 
 \question{À partir du tracé de l’annexe 8 et du plan du vérin annexe 7, déterminer la valeur de la différence de
 pression maximale $\Delta P_{\text{max}}$ entre les deux chambres des vérins avant \textbf{5} et \textbf{6}.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
 
 La pression minimale dans le circuit hydraulique est supposée constante et égale à $p_0$ ( $p_0 = \SI{1}{bar}$). Des limiteurs de pression tarés à \SI{150}{bars} sont placés en sortie du distributeur 4/3.
 
 \question{Déterminer l’expression de la pression maximale $p_{\text{maxi}}$ dans le circuit hydraulique en fonction de $p_0$ et $\Delta P_{\text{max}}$. Réaliser l’application numérique et comparer cette valeur à la pression de tarage des limiteurs.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 \section{\label{sec:3}Fonction technique FT31 : Assurer le mouvement de lacet}
 
@@ -367,6 +429,12 @@ $\torseurstat{T}{\text{moteur}}{R_{1g}} = \torseurl{\vect{0}}{C_m\vect{x_L}}{C_1
 \end{itemize}
 
 \question{\label{q_10}Justifier la forme de la matrice d’inertie de l’ensemble $\Sigma$ au point $C_1$ dans la base $\base{x_1}{y_1}{z_1}$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 Dans un premier temps, l’objectif est de déterminer la somme des efforts normaux $Z_{2d}+Z_{2g}$ s’exerçant sur les roues
 arrière. Isolons l’ensemble de la plate-forme PF , soit l’ensemble $\Sigma$ , les roues centrales et les motoréducteurs.
@@ -378,6 +446,12 @@ Nous ferons l’hypothèse que le moment dynamique $\vectmd{I_1}{PF}{0}\cdot \ve
 est négligeable devant les actions mécaniques.
 
 \question{\label{q_11}En appliquant le théorème du moment dynamique à la plate-forme PF en mouvement par rapport au référentiel galiléen $R_0$ en $I_1$ en projection sur $\vect{x_L}$, déterminer l’expression littérale de la somme des efforts normaux de contact $Z_{2d}+Z_{2g}$, entre les roues arrière et le sol. Réaliser l’application numérique et comparer la valeur obtenue à la somme des efforts normaux s’exerçant sur les roues arrière lorsque la plateforme est immobile en appui sur ses six roues sur un sol plan, à savoir $\left(Z_{2d}+Z_{2g}\right)_{\text{Repos}} = \left(m_2+2m_r\right)g$ avec $m_2=\SI{52}{kg}$ la masse du pode arrière \textbf{2}.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 L’objectif est dans un second temps de valider l’aptitude des moteurs à suivre la loi de vitesse en lacet exigée. Il est
 proposé de déterminer l’expression du couple moteur $C_m$ par une approche énergétique.
@@ -385,15 +459,32 @@ proposé de déterminer l’expression du couple moteur $C_m$ par une approche �
 
 \question{\label{q_12}Déterminer l’énergie cinétique galiléenne de l’ensemble des solides en mouvement. Le résultat sera mis
 sous la forme $\dfrac{1}{2}=J\varphip^2$ où $J$ est à exprimer sous forme littérale en fonction des données du problème.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 \question{\label{q_13}Mettre en \oe{}uvre le théorème de l’énergie cinétique afin de déterminer l’expression du couple moteur. Vous
 donnerez le résultat sous la forme $C_m = k_2\left( J\varphipp +k_1\left(T_{2d}+T_{2g}\right)\right)$ où $k_1$ et $k_2$ sont à exprimer sous forme littérale en fonction des données du problème.
 Vous veillerez à bien faire apparaître les différentes étapes de votre raisonnement et à fournir des expressions littérales.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 Pour la question \ref{q_14}, vous prendrez $J =\SI{34}{kg.m^2}$, $k_1 =\SI{0,65}{m}$ et $k_2 = \num{1,3e-2}$.
 
-\question{\label{q_14} Calculer le couple moteur maximal : $C_m$ maxi. À partir du graphe de fonctionnement du moteur (document réponse question 14), conclure quand à l’aptitude de la motorisation à générer le mouvement de lacet
-désiré.}
+\question{\label{q_14} Calculer le couple moteur maximal : $C_m$ maxi. À partir du graphe de fonctionnement du moteur (document réponse question 14), conclure quand à l’aptitude de la motorisation à générer le mouvement de lacet désiré.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 
 \section{Fonction technique FT2 : gérer le fonctionnent}
@@ -453,6 +544,12 @@ position initiale des podes avant et arrière.
 \item mettre en place les temporisations nécessaires ;
 \item ajouter des commentaires aux étapes qui ne pilotent pas directement une action afin de définir leur rôle.
 \end{itemize}}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 
 \subsection{Asservir les déplacements de la plate-forme}
@@ -554,8 +651,20 @@ Stabilité & \\ %\cline{2-3}
 \end{center}
 
 \question{\label{q_16}Déterminer les valeurs numériques et unités des gains associés au générateur de consigne (noté $K_G$), au rapport cinématique ($K_R$) et au convertisseur ($K_{\text{conv}}$) en sachant, que lorsque la vitesse réelle de la plateforme $V (t)$ est égale à la vitesse de consigne de la plate-forme $V_C (t)$ , l’écart $\varepsilon(t)$ doit être nul.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 \question{\label{q_17} Compléter le schéma-blocs sur le document-réponse (question \ref{q_17}) en y faisant figurer les fonctions de transfert sous forme littérale dans le domaine de Laplace avec des conditions initiales nulles, ainsi que les signes des sommateurs.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 À partir de la modélisation des blocs, un schéma-blocs à retour unitaire est tracé.
 
@@ -583,21 +692,51 @@ Nous distinguerons dans la suite :
 Les diagrammes de Bode de la Fonction de Transfert en Boucle Ouverte $\text{FTBO}( p)$ non corrigée sont fournis sur le document-réponse (Bode non corrigé page 12) pour $C( p) = 1$.
 
 \question{Le système étudié est-il stable théoriquement ? Justifier vos réponses.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 \question{Etudier l’aptitude du système sans correction à respecter les critères de précision. Vous déterminerez notamment les expressions littérales de l’erreur statique en poursuite pour une consigne de vitesse de la plate-forme $V_c (t)$ en échelon d’amplitude $V_{\text{CO}}$ : $V_C (t)=V_{\text{CO}} u(t)$ (avec $u(t)$ l’échelon unitaire) et de l’influence en régulation d’une perturbation $C_{\text{equ}} (t)$ en échelon d’amplitude $C_0$, sur la vitesse réelle $V (t)$ de la plate-forme en régime permanent.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 \subsubsection{Etude des performances avec un correcteur de fonction de transfert : $C(p)=\dfrac{K_I}{p}$}
 
 \question{\label{q_20}Indiquer quelle est la nature de la correction effectuée par ce correcteur (ou désignation du correcteur) ? Indiquer pour quelle(s) raison(s) principale(s) ce correcteur a été choisi. Valider ce choix vis à vis du cahier des charges. Sans calcul, donner l’influence de ce correcteur sur les autres performances attendues.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 Reprenons le diagramme de Bode de la Fonction de Transfert en Boucle Ouverte $\text{FTBO( p)}$ non corrigée (Bode non corrigé page 12).
 
 \question{\label{q_21}Compléter le document-réponse (Bode non corrigé page 12) en traçant les diagrammes de Bode du correcteur avec $K_I =\SI{1}{s^{-1}}$ . Déterminer alors la valeur de $K_I$ maximale notée $K_{\text{I max}}$ permettant de respecter les marges de stabilité énoncées dans le cahier des charges.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 Afin d’évaluer analytiquement le temps de réponse à 5\%, Il est proposé d’adopter une modélisation simplifiée du
 comportement du moteur en conservant uniquement le mode associé au pôle «~dominant~». On donne $T_{\SI{5}{\%} \text{mini}}\cdot \omega_0 = 3$ avec $\omega_0$ la pulsation propre non amortie d’un système fondamental du second ordre.
 
 \question{\label{q_22}En analysant les valeurs numériques des pôles de la fonction de transfert du moteur en poursuite $H_U ( p)$, préciser quel est le pôle dominant et proposer alors un modèle simplifié de la fonction de transfert $H_U ( p)$. Déterminer alors la valeur numérique de $K_I$ notée $K_{I\SI{5}{\%}}$ minimisant le temps de réponse à \SI{5}{\%} pour une entrée échelon en poursuite. Calculer alors la valeur approchée du temps de réponse à \SI{5}{\%} minimale $T_{\SI{5}{\%} \text{mini}}$ et comparer la au cahier des charges.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 
 \subsubsection{Etude des performances avec un correcteur proportionnel intégral : $C(p)={K_P}\left(1+\dfrac{1}{T_I p}\right)$}
@@ -611,14 +750,32 @@ Le correcteur est remplacé par un correcteur proportionnel intégral. Des répo
 \end{itemize}
 
 \question{\label{q_23}Parmi les différentes valeurs de $T_I$, choisir celle qui assure le temps de réponse à 5\% le plus faible. Vous ferez apparaître ce temps de réponse sur la figure (question \ref{q_23}).}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 La valeur de $T_I$ déterminée à la question précédente est retenue pour le réglage du correcteur proportionnel intégral. Il s’agit alors de choisir le gain du correcteur $K_P$ à partir des simulations proposées sur le document-réponse (question \ref{q_24}).
 
 \question{\label{q_24}Parmi les différentes valeurs de $K_P$, choisir la valeur qui assure un temps de réponse à 5\% au plus près de la valeur fournie dans le cahier des charges.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 Avec le couple de valeurs ($T_I$ et $K_P$) obtenu, la réponse fréquentielle du système en boucle ouverte a été tracée sur le document réponse (question \ref{q_25}).
 
 \question{\label{q_25} Conclure quant à la capacité de ce correcteur à respecter tous les critères du cahier des charges.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 \section{Fonction technique FT33 : guider les podes en roulis}
 
@@ -637,6 +794,12 @@ au pode et le palier de roulis lié au bras d’articulation.
 \end{itemize}
 
 \question{\label{q_26} Proposer un schéma cinématique représentant l’association des deux liaisons en parallèle. L’orientation des liaisons sera déterminée à partir de l’analyse technologique de la liaison. Montrer que la modélisation adoptée conduit alors à une liaison équivalente pivot isostatique.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 
 \subsection{Amélioration de la solution constructive (annexe 11)}
@@ -646,3 +809,9 @@ renforcer la liaison, Il a été décidé de rajouter sur chaque pode avant / ar
 Dans un premier temps, chaque plot est considéré solidaire du bras d’articulation (liaison complète) et chaque contact entre un plot et une piste circulaire est modélisé par une liaison appui plan.
 
 \question{\label{q_27} Déterminer le degré d’hyperstatisme de cette nouvelle solution. Proposer alors une solution modifiée sous la forme d’un schéma d’architecture (ou cinématique) permettant de réaliser les réglages géométriques nécessaires afin d’assurer un contact surfacique optimal entre chaque plot et la piste circulaire.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
