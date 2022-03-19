@@ -6,11 +6,7 @@
 %\end{figure}
 \end{wrapfigure}
 Le robuROC 6 (\autoref{fig:01}) est un robot mobile développé par la société ROBOSOFT. Cette plate-forme robotisée a été conçue pour des applications de recherche et d’exploration en milieu extérieur. Elle est équipée de 6 roues motrices indépendantes, de même diamètre, montées par paires sur 3 podes articulés en tangage et en roulis (\autoref{img:03}). La cinématique permet à la plate-forme de se conformer au relief parcouru et de franchir des obstacles du type trottoirs, escaliers… Le robuROC 6 a été conçu pour se déplacer en zones urbaines et peut aussi s’adapter à tous types de milieux.  Afin d’explorer la zone géographique à risques, les 3 podes peuvent être équipés, selon les besoins de l’utilisateur, de caméras d’observation haute définition à 360\degres, de systèmes infrarouges de visualisation nocturne, ainsi que de bras de robot articulés pour manipuler des éléments de la zone à explorer. Les diagrammes SADT A-0 (figure 1) et FAST (annexe 1) recensent les fonctions remplies par la plate-forme.
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
+
 
 
 Les déplacements de la plate-forme sont coordonnés par l’intermédiaire de deux microcontrôleurs placés dans les podes avant et arrière. Ces microcontrôleurs communiquent entre eux et dialoguent avec l’extérieur suivant deux modes de conduite : 
@@ -48,7 +44,7 @@ La motorisation principale est assurée par six moteurs électriques équipés d
 \caption{Roue centrale et roue avant droite supprimées pour plus de visibilité \label{img:03}}
 \end{figure}
 
-Les trois podes sont articulés en tangage et en roulis (\autoref{fig:03}). Le mouvement de tangage est guidé par deux liaisons pivot (d’axe de direction  $\vect{x_L}$), respectivement entre le bras d’articulation avant \textbf{4} et le pode central \textbf{1} et entre le bras d’articulation arrière \textbf{4’} et le pode central \textbf{1}. Le système hydraulique de suspension permet l’amortissement (mode passif) et la motorisation de ce mouvement (mode actif). Les vérins \textbf{5} (côté droit) et \textbf{6} (côté gauche) sont en liaison avec le bras d’articulation avant \textbf{4} et le pode central \textbf{1}. Les vérins \textbf{5’} (côté droit) et \textbf{6’} (côté gauche) sont en liaison avec le bras d’articulation arrière \textbf{4’} et le pode central \textbf{1}. Le mouvement de roulis est assuré par deux liaisons pivot entre le pode avant \textbf{3} et le bras d’articulation avant \textbf{4} (liaison d’axe de direction $\vect{y_3}$) d’une part, et entre le pode arrière \textbf{2} et le bras d’articulation arrière \textbf{4’}  (liaison d’axe de direction $\vect{y_2}$) d’autre part. Ce mouvement n’est pas motorisé. 
+Les trois podes sont articulés en tangage et en roulis (\autoref{img:03}). Le mouvement de tangage est guidé par deux liaisons pivot (d’axe de direction  $\vect{x_L}$), respectivement entre le bras d’articulation avant \textbf{4} et le pode central \textbf{1} et entre le bras d’articulation arrière \textbf{4’} et le pode central \textbf{1}. Le système hydraulique de suspension permet l’amortissement (mode passif) et la motorisation de ce mouvement (mode actif). Les vérins \textbf{5} (côté droit) et \textbf{6} (côté gauche) sont en liaison avec le bras d’articulation avant \textbf{4} et le pode central \textbf{1}. Les vérins \textbf{5’} (côté droit) et \textbf{6’} (côté gauche) sont en liaison avec le bras d’articulation arrière \textbf{4’} et le pode central \textbf{1}. Le mouvement de roulis est assuré par deux liaisons pivot entre le pode avant \textbf{3} et le bras d’articulation avant \textbf{4} (liaison d’axe de direction $\vect{y_3}$) d’une part, et entre le pode arrière \textbf{2} et le bras d’articulation arrière \textbf{4’}  (liaison d’axe de direction $\vect{y_2}$) d’autre part. Ce mouvement n’est pas motorisé. 
 
 \begin{table}[H]
 \centering
@@ -177,7 +173,7 @@ Mesurer $D_{\text{max}}$ et comparer cette valeur au cahier des charges.}
 
 \subsubsection{Dimensionnement des vérins}
 Le choix des vérins assurant le mouvement de tangage est délicat. En effet, l’encombrement très réduit oblige le
-concepteur à positionner l’axe de fixation des vérins avec les bras \textbf{4} et \textbf{4’} très près de l’axe de rotation en tangage $\axe{O_1}{x_L}$. L’objectif de cette partie est de déterminer la course des vérins en fonction de l’amplitude du mouvement ainsi que la pression maximale $p_{\text{maxi}}$ dans le circuit hydraulique. Pour cette étude, nous considèrerons la configuration d’essai suivante où le pode central \textbf{1} est fixe et placé parallèlement au sol. L’ensemble E=\{bras d’articulation avant \textbf{4} + pode avant \textbf{3} + roues avant\} est soulevé par les vérins avant \textbf{5} et \textbf{6} placés de part et d’autre du pode central \textbf{1}. Le modèle cinématique retenu est défini sur l’annexe 6.
+concepteur à positionner l’axe de fixation des vérins avec les bras \textbf{4} et \textbf{4’} très près de l’axe de rotation en tangage $\axe{O_1}{x_L}$. L’objectif de cette partie est de déterminer la course des vérins en fonction de l’amplitude du mouvement ainsi que la pression maximale $p_{\text{maxi}}$ dans le circuit hydraulique. Pour cette étude, nous considèrerons la configuration d’essai suivante où le pode central \textbf{1} est fixe et placé parallèlement au sol. L’ensemble E=\{bras d’articulation avant \textbf{4} + pode avant \textbf{3} + roues avant\} est soulevé par les vérins avant \textbf{5} et \textbf{6} placés de part et d’autre du pode central \textbf{1}. Le modèle cinématique retenu est défini sur \textbf{l’annexe 6}.
 
 Le mécanisme est constitué : 
 \begin{itemize}
@@ -201,6 +197,31 @@ Valeurs numériques :
 \question{Exprimer $\lambda$ en fonction de $d_4$, $h_1$, $d_1$ et $\beta$.}
 \ifprof
 \begin{corrige}
+\begin{itemize}
+\item On commence par écrire la fermeture géométrique : $\vect{O_1A}+\vect{AB}+\vect{BO_1} = \vect{0}$ 
+$ \Leftrightarrow d_4\vect{y_3} +\lambda\vect{y_5} - d_1\vect{y_1}-h_1\vect{z_1} = \vect{0}$.
+\item On projette la relation vectorielle dans le repère $\rep{1}$ :
+$\left\{
+\begin{array}{l}
+d_4\cos\beta +\lambda\cos(\beta+\gamma) - d_1= {0}  \\
+d_4\sin\beta +\lambda\sin(\beta+\gamma) - h_1= {0}  \\
+\end{array}
+\right.$
+\item On cherche à éliminer $\gamma$ :
+$\left\{
+\begin{array}{l}
+\lambda\cos(\beta+\gamma) =d_1 - d_4\cos\beta  \\
+\lambda\sin(\beta+\gamma)  = h_1  - d_4\sin\beta \\
+\end{array}
+\right.$ 
+$ \Rightarrow \left\{
+\begin{array}{l}
+\lambda^2\cos^2(\beta+\gamma) =\left(d_1 - d_4\cos\beta \right)^2 \\
+\lambda^2\sin^2(\beta+\gamma)  =\left( h_1  - d_4\sin\beta\right)^2 \\
+\end{array}
+\right.$ 
+\item Au final \fbox{$\Rightarrow \lambda^2  =\left(d_1 - d_4\cos\beta \right)^2 + \left( h_1  - d_4\sin\beta\right)^2$}.
+\end{itemize}
 \end{corrige}
 \else
 \fi
@@ -210,6 +231,14 @@ Valeurs numériques :
 \question{Calculer les valeurs numériques d’élongation minimale $\lambda_{\text{min}}$, maximale $\lambda_{\text{max}}$ ainsi que la course du vérin \textbf{5}.}
 \ifprof
 \begin{corrige}
+\begin{figure}[H]
+\centering
+\includegraphics[width=.6\linewidth]{cor_07.png}
+%\caption{Loi de commande de vitesse \label{img:04}}
+\end{figure}
+On observe que le maximum de la course est pour $\beta=-45\degres$ et le minimum $\beta=30\degres$.
+
+On a $\text{Course} = \lambda_{\text{max}}-\lambda_{\text{min}} = 342,5 - 257,5 = \SI{85}{mm}$.
 \end{corrige}
 \else
 \fi
@@ -228,7 +257,25 @@ Sur l’annexe 8, l’évolution du rapport entre les efforts exercés par les v
 pression maximale $\Delta P_{\text{max}}$ entre les deux chambres des vérins avant \textbf{5} et \textbf{6}.}
 \ifprof
 \begin{corrige}
+\begin{figure}[H]
+\centering
+\includegraphics[width=.5\linewidth]{cor_09.png}
+%\caption{Loi de commande de vitesse \label{img:04}}
+\end{figure}
+
+%On a dans la chambre de gauche, $p_1 = \dfrac{F_1}{S_1}$. Dans la chambre de droite, $p_2 = \dfrac{F_2}{S_2}$. On a donc $\Delta P_{\text{max}} = |p_1 - p_2| = \left| \dfrac{F_1}{S_1} - \dfrac{F_2}{S_2} \right|$
+% $= \left| \dfrac{F_1}{\dfrac{\pi D^2}{4}} - \dfrac{F_2}{\dfrac{\pi\left( D^2-d^2\right)}{4}} \right|$
+% $= \dfrac{4}{\pi}\left| \dfrac{F_1}{ D^2} - \dfrac{F_2}{\left( D^2-d^2\right)} \right|$
+% $= \dfrac{4}{\pi}\left| \dfrac{F_1}{ D^2} - \dfrac{F_2}{D^2-d^2} \right|$
+%  $= 4\dfrac{\left| F_1\left( D^2-d^2\right) - F_2D^2\right|}{\pi\left( D^2-d^2\right)D^2}$
+%$ = p_1 \dfrac{\pi D^2}{4}$.
+%
+%$= p_2 \dfrac{\pi\left( D^2-d^2\right)}{4}$.
+
+
 \end{corrige}
+
+
 \else
 \fi
 
