@@ -256,13 +256,24 @@ Sur l’annexe 8, l’évolution du rapport entre les efforts exercés par les v
 \question{À partir du tracé de l’annexe 8 et du plan du vérin annexe 7, déterminer la valeur de la différence de
 pression maximale $\Delta P_{\text{max}}$ entre les deux chambres des vérins avant \textbf{5} et \textbf{6}.}
 \ifprof
-\begin{corrige}
+\begin{corrige}~\\
 \begin{figure}[H]
 \centering
 \includegraphics[width=.5\linewidth]{cor_09.png}
 %\caption{Loi de commande de vitesse \label{img:04}}
 \end{figure}
-
+ 
+ On a $F_{\text{max}}=\Delta P_{\text{max}}\dfrac{\pi\left( D^2-d^2\right)}{4}$ et 
+ $\Delta P_{\text{max}} = F_{\text{max}} \dfrac{4}{\pi\left( D^2-d^2\right)}$.
+ D'aprés l'annexe, lorsque $\beta = -45\degres$, $\dfrac{F_{v5}+F_{v6}}{m_E g}=8,4$.
+ 
+ En faisant l'hypothèse que la masse à lever se répartit équitablement sur les deux vérins, 
+ $\dfrac{2F_{\text{max}}}{m_E g}=8,4$ et donc 
+ $\Delta P_{\text{max}} = 8,4\cdot m_E g \dfrac{4}{2\pi\left( D^2-d^2\right)}=  \dfrac{16,8 m_E g}{\pi\left( D^2-d^2\right)}$.
+ 
+ 
+ \textit{Application numérique }
+  $\Delta P_{\text{max}} = \SI{60}{MPa} = \SI{600}{bar}$.
 %On a dans la chambre de gauche, $p_1 = \dfrac{F_1}{S_1}$. Dans la chambre de droite, $p_2 = \dfrac{F_2}{S_2}$. On a donc $\Delta P_{\text{max}} = |p_1 - p_2| = \left| \dfrac{F_1}{S_1} - \dfrac{F_2}{S_2} \right|$
 % $= \left| \dfrac{F_1}{\dfrac{\pi D^2}{4}} - \dfrac{F_2}{\dfrac{\pi\left( D^2-d^2\right)}{4}} \right|$
 % $= \dfrac{4}{\pi}\left| \dfrac{F_1}{ D^2} - \dfrac{F_2}{\left( D^2-d^2\right)} \right|$
