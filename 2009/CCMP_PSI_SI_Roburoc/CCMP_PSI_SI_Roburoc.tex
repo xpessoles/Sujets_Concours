@@ -297,6 +297,8 @@ La pression minimale dans le circuit hydraulique est supposée constante et éga
 \question{Déterminer l’expression de la pression maximale $p_{\text{maxi}}$ dans le circuit hydraulique en fonction de $p_0$ et $\Delta P_{\text{max}}$. Réaliser l’application numérique et comparer cette valeur à la pression de tarage des limiteurs.}
 \ifprof
 \begin{corrige}
+D'après les questions précédentes, les deux vérins sont en série. On a donc $p_{\text{maxi}} - p_0 = 2 \Delta P_{\text{max}}$ soit 
+$p_{\text{maxi}} = 2 \Delta P_{\text{max}} + p_0 = \SI{1201}{bar}$... chercher l'erreur.
 \end{corrige}
 \else
 \fi
@@ -489,6 +491,8 @@ $\torseurstat{T}{\text{moteur}}{R_{1g}} = \torseurl{\vect{0}}{C_m\vect{x_L}}{C_1
 \question{\label{q_10}Justifier la forme de la matrice d’inertie de l’ensemble $\Sigma$ au point $C_1$ dans la base $\base{x_1}{y_1}{z_1}$.}
 \ifprof
 \begin{corrige}
+Si on considère que les plans  $\left(C_1,\vect{y_1},\vect{z_1}\right)$ et 
+$\left(C_1,\vect{z_1},\vect{x_1}\right)$ sont des plans de symétrie, alors $\inertie{\Sigma}{C_1}$ est diagonale.
 \end{corrige}
 \else
 \fi
