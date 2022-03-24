@@ -313,7 +313,7 @@ $p_{\text{maxi}} = 2 \Delta P_{\text{max}} + p_0 = \SI{1201}{bar}$... chercher l
 \end{itemize}
 \end{hypo}
 
-Les 6 roues de la plate-forme (notée $PF$) sont motorisées permettant ainsi de se déplacer sur des reliefs très
+Les 6 roues de la plate-forme (notée $\text{PF}$) sont motorisées permettant ainsi de se déplacer sur des reliefs très
 accidentés. Cependant, la plate-forme ne comporte pas de systèmes spécifiques de direction. Le changement de
 direction est imposé par une rotation différentielle des roues du pode central \textbf{1}. Les roues avant et arrière doivent alors avoir des vitesses de rotation compatibles avec celles du pode central \textbf{1}. Lorsque le rayon de courbure de la trajectoire suivie par la plate-forme devient inférieur à 4 mètres, le groupe hydraulique est actionné pour passer en « Mode 2 roues instable ». La plate-forme ne tenant pas en équilibre sur 2 roues, elle retombe dès le début du mouvement sur les roues arrière ou les roues avant, passant donc en « Mode 4 roues Déplacement ». Cette intervention du groupe hydraulique permet ainsi de soulager le contact entre les roues des podes avant / arrière et le sol. Pour cette étude, nous considèrerons que la plate-forme retombe sur les roues arrière (annexe 9) et nous nous placerons dans le cas d’un rayon de courbure nul. Le mouvement de lacet étudié est donc une rotation autour de l’axe $\axe{C_1}{z_0}$ d’angle $\varphi$, appelé angle de lacet.
 
@@ -360,8 +360,8 @@ l’exemple de la roue centrale droite $R_{1d}$.
 &        & gravité & avec le sol & pode central & \\ \hline\hline
 Roue centrale droite & $R_{1d}$ & $C_{1d}$ & $I_{1d}$ & $\dot{\theta}_{1d}$ & $\rep{1d}=\repere{C_{1d}}{x_L}{y_{1d}}{z_{1d}}$ \\ \hline
 Roue centrale gauche & $R_{1g}$ & $C_{1g}$ & $I_{1g}$ & $\dot{\theta}_{1g}$ & $\rep{1g}=\repere{C_{1g}}{x_L}{y_{1g}}{z_{1g}}$ \\ \hline
-Roue arrière droite & $R_{2d}$ & $C_{2d}$ & $I_{2d}$ & & nulle \\ \hline
-Roue arrière gauche & $R_{2g}$ & $C_{2g}$ & $I_{2g}$ & & nulle \\ \hline
+Roue arrière droite & $R_{2d}$ & $C_{2d}$ & $I_{2d}$ & nulle &  \\ \hline
+Roue arrière gauche & $R_{2g}$ & $C_{2g}$ & $I_{2g}$ & nulle &\\ \hline
 \end{tabular}
 
 \caption{Paramétrage des roues en contact avec le sol \label{img:05}}
@@ -510,6 +510,14 @@ est négligeable devant les actions mécaniques.
 \question{\label{q_11}En appliquant le théorème du moment dynamique à la plate-forme PF en mouvement par rapport au référentiel galiléen $R_0$ en $I_1$ en projection sur $\vect{x_L}$, déterminer l’expression littérale de la somme des efforts normaux de contact $Z_{2d}+Z_{2g}$, entre les roues arrière et le sol. Réaliser l’application numérique et comparer la valeur obtenue à la somme des efforts normaux s’exerçant sur les roues arrière lorsque la plateforme est immobile en appui sur ses six roues sur un sol plan, à savoir $\left(Z_{2d}+Z_{2g}\right)_{\text{Repos}} = \left(m_2+2m_r\right)g$ avec $m_2=\SI{52}{kg}$ la masse du pode arrière \textbf{2}.}
 \ifprof
 \begin{corrige}
+\begin{itemize}
+\item On isole la plate-forme PF. 
+\item Bilan des actions mécaniques : 
+\begin{itemize}
+\item 
+
+\end{itemize}
+\end{itemize}
 \end{corrige}
 \else
 \fi
