@@ -509,16 +509,58 @@ est négligeable devant les actions mécaniques.
 
 \question{\label{q_11}En appliquant le théorème du moment dynamique à la plate-forme PF en mouvement par rapport au référentiel galiléen $R_0$ en $I_1$ en projection sur $\vect{x_L}$, déterminer l’expression littérale de la somme des efforts normaux de contact $Z_{2d}+Z_{2g}$, entre les roues arrière et le sol. Réaliser l’application numérique et comparer la valeur obtenue à la somme des efforts normaux s’exerçant sur les roues arrière lorsque la plateforme est immobile en appui sur ses six roues sur un sol plan, à savoir $\left(Z_{2d}+Z_{2g}\right)_{\text{Repos}} = \left(m_2+2m_r\right)g$ avec $m_2=\SI{52}{kg}$ la masse du pode arrière \textbf{2}.}
 \ifprof
-\begin{corrige}
+\begin{corrige}~\\
+\begin{minipage}[c]{.47\linewidth}
 \begin{itemize}
 \item On isole la plate-forme PF. 
-\item Bilan des actions mécaniques : 
+\item Bilan des actions mécaniques extérieures : 
 \begin{itemize}
-\item 
+\item liaison sphère-plan en $I_{2g}$ : $\torseurstat{T}{0}{2_g}$ 
+$=\torseurl{Y_{2g}\vect{n_g}+Z_{2g}\vect{z_L}}{\vect{0}}{I_{2g}}$
 
+$=\torseurl{Y_{2g}\vect{n_g}+Z_{2g}\vect{z_L}}{\vect{I_1I_{2g}}\wedge \left( Y_{2g}\vect{n_g}+Z_{2g}\vect{z_L} \right)}{I_{1}}$
+
+$=\torseurl{Y_{2g}\vect{n_g}+Z_{2g}\vect{z_L}}{\left(-b\vect{y_L}-e\vect{x_L} \right)\wedge \left( Y_{2g}\vect{\pm y_L}+Z_{2g}\vect{z_L} \right)}{I_{1}}$.
+
+On a donc $\vectm{I_1}{0}{2_g}\cdot \vect{x_L}=\left( \left(-b\vect{y_L}-e\vect{x_L} \right)\wedge \left( Y_{2g}\vect{\pm y_L}+Z_{2g}\vect{z_L} \right)\right) \cdot \vect{x_L}$
+
+$= \left(-b\vect{y_L}\wedge \left( Y_{2g}\vect{\pm y_L}+Z_{2g}\vect{z_L} \right)-e\vect{x_L} \wedge \left( Y_{2g}\vect{\pm y_L}+Z_{2g}\vect{z_L} \right)\right) \cdot \vect{x_L}$
+
+$= \left(-b\vect{y_L}\wedge  Z_{2g}\vect{z_L} \right) \cdot \vect{x_L}$
+$= -b Z_{2g}$;
+
+%$=\torseurl{Y_{2g}\vect{n_g}+Z_{2g}\vect{z_L}}{-b\vect{x_L} \left( Y_{2g}+Z_{2g} \right)+e \vect{y_L}\left( Y_{2g}+Z_{2g} \right)}{I_{1}}$. On a donc $\vectm{I_1}{0}{2_g}\cdot \vect{x_L}=-b\left( Y_{2g}+Z_{2g} \right)$;
+\item liaison sphère-plan en $I_{2d}$ :
+ $\vectm{I_1}{0}{2_d}\cdot \vect{x_L}=-bZ_{2d} $;
+\item liaison sphère-plan en $I_{1g}$ :
+ $\vectm{I_1}{0}{2_d}\cdot \vect{x_L}=0$;
+  \item liaison sphère-plan en $I_{2d}$ :
+ $\vectm{I_1}{0}{2_d}\cdot \vect{x_L}=0$.
 \end{itemize}
+\end{itemize}
+\end{minipage} \hfill
+\begin{minipage}[c]{.47\linewidth}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{cor_q11}
+\end{figure}
+\end{minipage}
+
+\begin{itemize}
+\item $\quad$
+\begin{itemize}
+\item pesanteur sur la roue $2_g$ :  $\vectm{I_1}{\text{Pes}}{2_g}\cdot \vect{x_L}$
+$=\left(\left(-b\vect{y_L}-e\vect{x_L}  -R \vect{z_L}   \right) \wedge - m_r g \vect{z_L}\right)\cdot \vect{x_L}$
+$=b m_r g $;
+\item pesanteur sur la roue $2_d$ :  $\vectm{I_1}{\text{Pes}}{2_d}\cdot \vect{x_L}$ $=b m_r g $;
+\item pesanteur sur $1_g$, $1_d$ et le pode 1 :  $\vectm{I_1}{\text{Pes}}{1_d+1_g+1}\cdot \vect{x_L}=0$;
+\item pesanteur du pode 3 et des roues 3 :
+\end{itemize}
+\item le moment dynamique étant négligeable, le TMD appliqué à PF en $I_1$ en projection sur $\vect{x_L}$ s'exprime donc par 
+$  -b Z_{2g}-bZ_{2d} + 2b m_r g =0 $
 \end{itemize}
 \end{corrige}
+
 \else
 \fi
 
