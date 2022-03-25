@@ -567,7 +567,10 @@ $ = a_G  m_\Sigma g \sin \beta$
 $ a_G  m_\Sigma g \sin \beta -b Z_{2g}-bZ_{2d} =0 $
 \end{itemize}
 
-Au final, $Z_{2g}+ Z_{2d}= \dfrac{ a_G  m_\Sigma g \sin \beta  }{b} $.
+Au final, \fbox{$Z_{2g}+ Z_{2d}= \dfrac{ a_G  m_\Sigma g \sin \beta  }{b} $}.
+
+AN : $Z_{2g}+ Z_{2d}= \dfrac{ 85\times 152 \times  9,81 \times  \sin 2\degres  }{553}=\SI{8}{N} $.
+Au repos, $\left(Z_{2d}+Z_{2g}\right)_{\text{Repos}} \simeq \SI{590}{N}$. Dans cette phase, le train arrière (pode 2) est donc soulagé pour faciliter le mouvement. 
 
 \end{corrige}
 
@@ -580,7 +583,7 @@ proposé de déterminer l’expression du couple moteur $C_m$ par une approche �
 
 
 \question{\label{q_12}Déterminer l’énergie cinétique galiléenne de l’ensemble des solides en mouvement. Le résultat sera mis
-sous la forme $\dfrac{1}{2}=J\varphip^2$ où $J$ est à exprimer sous forme littérale en fonction des données du problème.}
+sous la forme $\dfrac{1}{2}J\varphip^2$ où $J$ est à exprimer sous forme littérale en fonction des données du problème.}
 \ifprof
 \begin{corrige}
 On a :
@@ -609,10 +612,18 @@ $ = \torseurl{\thetap_{1g}\vect{x_L}+\varphip\vect{z_0}}{e\vect{x_L}\wedge \varp
 $ = \torseurl{\thetap_{1g}\vect{x_L}+\varphip\vect{z_0}}{-e\varphip\vect{y_L}}{C_{1g}}$
 \item $\torseurci{1_g}{0}=\torseurl{m_{r}\vectv{G}{1_g}{0}}{\inertie{1g}{C_{1g}}\vecto{1_g}{0}}{C_{1g}}$ 
 $=\torseurl{m_{r}\vectv{C_{1g}}{1_g}{0}}{A_r \thetap_{1g} \vect{x_L}+ B_r \varphip\vect{z_0}  }{C_{1g}}$,
-\item $\ec{1_g}{0}= \dfrac{1}{2} \left(m_re^2\varphip^2 + A_r \thetap_{1g}^2 + B_r \varphip^2\right)$
+\item $\ec{1_g}{0}= \dfrac{1}{2} \left(m_re^2\varphip^2 + A_r \thetap_{1g}^2 + B_r \varphip^2\right)$. Par ailleurs, $\dot{\thetap}^2 = \dfrac{e^2 \dot{\varphip}^2}{R^2}$. On a donc 
+$\ec{1_g}{0}= \dfrac{1}{2} \left(m_re^2\varphip^2 + A_r \dfrac{e^2 \dot{\varphip}^2}{R^2} + B_r \varphip^2\right)$
+$= \dfrac{1}{2} \varphip^2\left(m_re^2 + A_r \dfrac{e^2}{R^2} + B_r \right)$.
 \end{itemize}
-\item $\ec{1_d}{0}$
+\item $\ec{1_d}{0}= \dfrac{1}{2} \varphip^2\left(m_re^2 + A_r \dfrac{e^2}{R^2} + B_r \right)$.
+
+\item $\ec{M1_g}{0}$ à la même forme que $\ec{1_g}{0}$ à ceci près qu'il faut prendre en compte le rapport de réduction du réducteur. On a donc $\ec{M1_g}{0}= \dfrac{1}{2} \varphip^2\left( A_m \dfrac{e^2}{k^2 R^2} + B_m \right)$.
 \end{itemize}
+
+Au final, $\ec{\Sigma}{0} =  \varphip^2\left(m_re^2 + A_r \dfrac{e^2}{R^2} + B_r +  A_m \dfrac{e^2}{k^2 R^2} + B_m \right)+\dfrac{1}{2}\varphip^2 \left(C\cos^2\beta +B\sin^2\beta\right)$.
+
+Dans ces conditions, \fbox{$J = 2\left(m_re^2 + A_r \dfrac{e^2}{R^2} + B_r +  A_m \dfrac{e^2}{k^2 R^2} + B_m \right)+\left(C\cos^2\beta +B\sin^2\beta\right)$}.
 \end{corrige}
 \else
 \fi
