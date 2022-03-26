@@ -612,7 +612,9 @@ $ = \torseurl{\thetap_{1g}\vect{x_L}+\varphip\vect{z_0}}{e\vect{x_L}\wedge \varp
 $ = \torseurl{\thetap_{1g}\vect{x_L}+\varphip\vect{z_0}}{-e\varphip\vect{y_L}}{C_{1g}}$
 \item $\torseurci{1_g}{0}=\torseurl{m_{r}\vectv{G}{1_g}{0}}{\inertie{1g}{C_{1g}}\vecto{1_g}{0}}{C_{1g}}$ 
 $=\torseurl{m_{r}\vectv{C_{1g}}{1_g}{0}}{A_r \thetap_{1g} \vect{x_L}+ B_r \varphip\vect{z_0}  }{C_{1g}}$,
-\item $\ec{1_g}{0}= \dfrac{1}{2} \left(m_re^2\varphip^2 + A_r \thetap_{1g}^2 + B_r \varphip^2\right)$. Par ailleurs, $\dot{\thetap}^2 = \dfrac{e^2 \dot{\varphip}^2}{R^2}$. On a donc 
+\item $\ec{1_g}{0}= \dfrac{1}{2} \left(m_re^2\varphip^2 + A_r \thetap_{1g}^2 + B_r \varphip^2\right)$. Par ailleurs, $\dot{\thetap}^2 = \dfrac{e^2 \dot{\varphip}^2}{R^2}$. 
+
+On a donc 
 $\ec{1_g}{0}= \dfrac{1}{2} \left(m_re^2\varphip^2 + A_r \dfrac{e^2 \dot{\varphip}^2}{R^2} + B_r \varphip^2\right)$
 $= \dfrac{1}{2} \varphip^2\left(m_re^2 + A_r \dfrac{e^2}{R^2} + B_r \right)$.
 \end{itemize}
@@ -634,11 +636,45 @@ donnerez le résultat sous la forme $C_m = k_2\left( J\varphipp +k_1\left(T_{2d}
 Vous veillerez à bien faire apparaître les différentes étapes de votre raisonnement et à fournir des expressions littérales.}
 \ifprof
 \begin{corrige}
+En appliquant le théorème de l'énergie cinétique à l'ensemble des solides en mouvement $E$ est donné par 
+$$
+\deriv{\ec{E}{0}}{}  = \mathcal{P}_{\text{int}}(E)+\pext{\overline{E}}{E}{0}.
+$$
+
+\textbf{Bilan des puissances extérieures}
+\begin{itemize}
+\item Puissance des actions de pesanteur : $\pext{g}{0}{0}=0$ car le mouvement est selon $\vect{x_0}$.
+\item Puissance des actions sur $1_g$ et $1_d$ : $\pext{0}{1_g}{0}=\pext{0}{1_d}{0}=0$ (contact ponctuel avec roulement sans glissement).
+\item Puissance des actions sur $2_g$ : $\pext{0}{2_g}{0} = \torseurstat{T}{0}{2_g} \otimes\torseurcin{V}{2_g}{0}$ 
+
+$=\torseurl{T_{2g}\vect{n_g}+Z_{2g}\vect{z_L}}{\vect{0}}{I_{2g}} \otimes \torseurl{*}{\vectv{I_{2g}}{2_g}{0}}{I_{2g}}$. On a alors 
+$\vectv{I_{2g}}{2_g}{0}=\underbrace{\vectv{I_{2g}}{2_g}{PF}}_{\vect{0}}+\vectv{I_{2g}}{PF}{0}$ 
+$=\vectv{C_1}{PF}{0} + \vect{I_{2g} C}\wedge \varphip \vect{z_0}$
+$= \left(R\vect{z_L}  +b\vect{y_L} +e\vect{x_L}\right)\wedge \varphip \vect{z_0}$
+$= b\varphip \vect{x_L} - e \varphip \vect{y_L}$.
+
+Au final, $\pext{0}{2_g}{0} = \left( -T_{2g}\vect{x_L}+Z_{2g}\vect{z_L} \right) \cdot\left( b\varphip \vect{x_L} - e \varphip \vect{y_L}\right)$
+$ = -T_{2g}\vect{x_L}\cdot\left( b\varphip \vect{x_L} - e \varphip \vect{y_L}\right)+Z_{2g}\vect{z_L} \cdot\left( b\varphip \vect{x_L} - e \varphip \vect{y_L}\right) $
+$ = -T_{2g} b\varphip $
+
+\item Puissance des actions sur $2_d$ : $\pext{0}{2_d}{0}= -T_{2d} b\varphip $
+\end{itemize}
+
+\textbf{Bilan des puissances intérieures}
+\begin{itemize}
+\item Puissance des moteurs : $\mathcal{P}_{\text{mot}} = 2 C_m \dfrac{e}{kR}\varphip$.
+\end{itemize}
+
+Au final, 
+$J\varphip\varphipp = 2 C_m \dfrac{e}{kR}\varphip -T_{2d} b\varphip-T_{2g} b\varphip$
+soit 
+$  C_m  =\dfrac{kR}{2e} \left(J\varphipp  +T_{2d} b+T_{2g} b\right) $
+
 \end{corrige}
 \else
 \fi
 
-\end{document}
+
 
 Pour la question \ref{q_14}, vous prendrez $J =\SI{34}{kg.m^2}$, $k_1 =\SI{0,65}{m}$ et $k_2 = \num{1,3e-2}$.
 
