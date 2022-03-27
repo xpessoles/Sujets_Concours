@@ -681,6 +681,18 @@ Pour la question \ref{q_14}, vous prendrez $J =\SI{34}{kg.m^2}$, $k_1 =\SI{0,65}
 \question{\label{q_14} Calculer le couple moteur maximal : $C_m$ maxi. À partir du graphe de fonctionnement du moteur (document réponse question 14), conclure quand à l’aptitude de la motorisation à générer le mouvement de lacet désiré.}
 \ifprof
 \begin{corrige}
+D'une part : $  C_m  =\dfrac{kR}{2e} \left(J\varphipp  +b\left( T_{2d} +T_{2g} \right)\right) $ 
+$=k_2 \left(J\varphipp  +k_1\left( T_{2d} +T_{2g} \right)\right) $.
+
+D'autre part : $Z_{2g}+ Z_{2d}= \dfrac{ a_G  m_\Sigma g \sin \beta  }{b} $.
+
+Enfin en utilisant les lois de Coulomb, on a $\left( T_{2d} +T_{2g} \right) = f\left( Z_{2d} +Z_{2g} \right)$.
+
+On a donc, $  C_m  =k_2 \left(J\varphipp  +k_1f\dfrac{ a_G  m_\Sigma g \sin \beta  }{b}\right) $.
+
+D'après la loi de commande $\varphipp = \SI{1,26}{rad.s^{-2}}$
+et donc $C_m = 1,3\times 10^{-2}\left(34\times 1,26 + 0,65 \times 0,6 \dfrac{ 85 \times 152 \times  9,81 \times  \sin 2 }{553}\right)$
+
 \end{corrige}
 \else
 \fi
