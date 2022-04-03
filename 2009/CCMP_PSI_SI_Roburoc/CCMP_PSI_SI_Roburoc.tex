@@ -1,3 +1,5 @@
+\ifprof
+\else
 \begin{wrapfigure}{r}{7cm}
 %\begin{figure}[H]
 \centering
@@ -70,6 +72,8 @@ FT6 : Fournir l’énergie électrique & Autonomie d’utilisation $\SI{4}{h} $ 
 \caption{Extrait du cahier des charges fonctionnel (d’après le diagramme FAST en annexe 1)}
 \end{table}
 
+\fi
+
 \section{Analyse fonctionnelle \label{sec:1}}
 \question{\label{q_01} Compléter le diagramme FAST de la plate-forme d’exploration présenté en annexe 1 en indiquant les solutions techniques associées aux fonctions techniques référencées dans le tableau du document-réponse.}
 \ifprof
@@ -90,15 +94,19 @@ FT6 : Fournir l’énergie électrique & Autonomie d’utilisation $\SI{4}{h} $ 
 \end{hypo}
 
 \subsection{Fonctionnement du circuit hydraulique}
-
+\ifprof
+\else
 Les fonctions à remplir par le circuit hydraulique (annexe 2) sont principalement de :
 \begin{itemize}
 \item synchroniser les mouvements de tangage des podes avant et arrière afin de se conformer au relief ;
 \item amortir les mouvements de tangage ;
 \item piloter les mouvements de tangage.
 \end{itemize}
+\fi
 
 \subsubsection{Synchroniser et amortir les mouvements de tangage des trois podes}
+\ifprof
+\else
 
 Dans un premier temps, la centrale hydraulique n’est pas activée (annexe 2). Il s’agit donc d’étudier le comportement
 de la plate-forme en mode passif (suivi du relief et amortissement des mouvements sans pilotage).
@@ -109,6 +117,7 @@ chambres des vérins avant et arrière.
 
 Un schéma cinématique du montage des vérins est fourni en annexe 3 et est complété par la représentation des
 principales fonctionnalités du répartiteur hydraulique droit.
+\fi
 
 
 \question{\label{q_02}Sur le document-réponse (questions \ref{q_02} et \ref{q_03}), indiquer en hachurant, les chambres des vérins qui sont en communication ainsi que le flexible permettant de les relier. Vous adopterez un type de hachures par volume d’huile en communication.}
@@ -118,8 +127,11 @@ principales fonctionnalités du répartiteur hydraulique droit.
 \else
 \fi
 
+\ifprof
+\else
 
 À partir d’une position plane de la plate-forme (position du document-réponse questions \ref{q_02} et \ref{q_03}), considérons que le pode avant \textbf{3} commence un mouvement de CABRAGE (montée du pode avant \textbf{3} et du bras d’articulation \textbf{4} par rapport au pode central \textbf{1}) suite à un obstacle. On note $\beta$ l’angle de tangage entre le bras d’articulation \textbf{4} et le pode central \textbf{1} engendré par ce mouvement.
+\fi
 
 \question{\label{q_03}Sur le document-réponse (questions \ref{q_02} et \ref{q_03}), indiquer par des flèches le sens de circulation de l’huile dans les flexibles au cours de ce mouvement de CABRAGE. Indiquer quel est le mouvement engendré entre l’ensemble \{pode arrière \textbf{2} + bras d’articulation \textbf{4’}\} et le pode central \textbf{1}, ainsi que son amplitude suite au mouvement de CABRAGE du pode avant d’un angle $\beta$.}
 \ifprof
@@ -130,6 +142,9 @@ principales fonctionnalités du répartiteur hydraulique droit.
 
 
 \subsubsection{Piloter les mouvements de tangage}
+\ifprof
+\else
+
 Le système hydraulique est conçu de telle sorte que les angles de tangage entre le pode central \textbf{1} d’une part et les
 podes avant / arrière d’autre part soient opposés à chaque instant. Ainsi, l’utilisateur n’a besoin de définir qu’un seul
 angle de tangage $\beta$ défini entre le pode central \textbf{1} et le pode avant \textbf{3} par $\beta=\angl{y_1}{y_3}=\angl{z_1}{z_3}$ (annexe 5). L’angle
@@ -138,6 +153,7 @@ varie entre $- 45\degres$ et $+30\degres$. Les valeurs négatives correspondent 
 valeurs positives à un mouvement de CABRAGE.
 
 Afin de piloter l’angle de tangage $\beta$ conformément aux consignes des microcontrôleurs, la centrale hydraulique est activée. Un schéma de principe de cette centrale est fourni sur le document-réponse (question \ref{q_04}). La circulation d’huile est générée par une pompe à engrenage entraînée par un moteur électrique. Les consignes électriques de CABRAGE ou de PLONGEE agissent sur un distributeur 4/3 (4 orifices et 3 positions) afin de réaliser le mouvement attendu au niveau des vérins (description du fonctionnement et de la normalisation d’un distributeur 4/3 disponible en annexe 4).
+\fi
 
 \question{\label{q_04} Sur le document-réponse (question \ref{q_04}), relier les orifices de sortie du distributeur 4/3 aux flexibles
 d’alimentation des vérins afin de respecter les ordres de PLONGEE et de CABRAGE.}
@@ -150,12 +166,19 @@ d’alimentation des vérins afin de respecter les ordres de PLONGEE et de CABRA
 
 
 \subsection{Validation des performances du circuit hydraulique}
+\ifprof
+\else
 
 La position de PLONGEE maximale, permet au pode central \textbf{1} d’atteindre son point culminant par rapport au sol. Seuls les podes avant \textbf{3} / arrière \textbf{2} sont alors en contact avec le sol horizontal. Cette position, appelée « Mode 4 roues Observation » (\autoref{fig:02}), permet à l’utilisateur d’observer le milieu environnant à l’aide d’une caméra placée sur le plan supérieur du pode central. La position de CABRAGE maximale, permet quant à elle de soulever le pode avant le plus haut possible afin de franchir un obstacle (« Mode 4 roues Déplacement » (\autoref{fig:02})). Dans cette position, seuls le pode arrière \textbf{2} et le pode central \textbf{2} sont en contact avec le sol.
+\fi
 
 \subsubsection{Etude du CABRAGE}
+\ifprof
+\else
+
 
 Sur le document-réponse (question \ref{q_05}), le pode central \textbf{1} est représenté en « Mode 4 roues Déplacement ». Les podes \textbf{2} et \textbf{3} ont été représentés en pointillés dans leur position initiale pour un angle de tangage nul. Les points $C_{3i}$ et $C_{2i}$ définissent respectivement les positions initiales du centre de la roue avant et du centre de la roue arrière.
+\fi
 
 \question{\label{q_05}Représenter, sur le document-réponse (question \ref{q_05}), pour la position de CABRAGE maximal ($\beta_{\text{max}}=30\degres$) :
 \begin{itemize}
@@ -172,6 +195,9 @@ Mesurer $D_{\text{max}}$ et comparer cette valeur au cahier des charges.}
 
 
 \subsubsection{Dimensionnement des vérins}
+\ifprof
+\else
+
 Le choix des vérins assurant le mouvement de tangage est délicat. En effet, l’encombrement très réduit oblige le
 concepteur à positionner l’axe de fixation des vérins avec les bras \textbf{4} et \textbf{4’} très près de l’axe de rotation en tangage $\axe{O_1}{x_L}$. L’objectif de cette partie est de déterminer la course des vérins en fonction de l’amplitude du mouvement ainsi que la pression maximale $p_{\text{maxi}}$ dans le circuit hydraulique. Pour cette étude, nous considèrerons la configuration d’essai suivante où le pode central \textbf{1} est fixe et placé parallèlement au sol. L’ensemble E=\{bras d’articulation avant \textbf{4} + pode avant \textbf{3} + roues avant\} est soulevé par les vérins avant \textbf{5} et \textbf{6} placés de part et d’autre du pode central \textbf{1}. Le modèle cinématique retenu est défini sur \textbf{l’annexe 6}.
 
@@ -193,6 +219,7 @@ Valeurs numériques :
 \begin{itemize}
  \item $d_4 =\SI{70}{mm}$; $h_1 =\SI{292}{mm}$; $d_1 =\SI{76}{mm}$; $\beta \in \left[ -45\degres;+30\degres\right]$.
 \end{itemize}
+\fi
 
 \question{Exprimer $\lambda$ en fonction de $d_4$, $h_1$, $d_1$ et $\beta$.}
 \ifprof
@@ -313,6 +340,9 @@ $p_{\text{maxi}} = 2 \Delta P_{\text{max}} + p_0 = \SI{1201}{bar}$... chercher l
 \end{itemize}
 \end{hypo}
 
+\ifprof
+\else
+
 Les 6 roues de la plate-forme (notée $\text{PF}$) sont motorisées permettant ainsi de se déplacer sur des reliefs très
 accidentés. Cependant, la plate-forme ne comporte pas de systèmes spécifiques de direction. Le changement de
 direction est imposé par une rotation différentielle des roues du pode central \textbf{1}. Les roues avant et arrière doivent alors avoir des vitesses de rotation compatibles avec celles du pode central \textbf{1}. Lorsque le rayon de courbure de la trajectoire suivie par la plate-forme devient inférieur à 4 mètres, le groupe hydraulique est actionné pour passer en « Mode 2 roues instable ». La plate-forme ne tenant pas en équilibre sur 2 roues, elle retombe dès le début du mouvement sur les roues arrière ou les roues avant, passant donc en « Mode 4 roues Déplacement ». Cette intervention du groupe hydraulique permet ainsi de soulager le contact entre les roues des podes avant / arrière et le sol. Pour cette étude, nous considèrerons que la plate-forme retombe sur les roues arrière (annexe 9) et nous nous placerons dans le cas d’un rayon de courbure nul. Le mouvement de lacet étudié est donc une rotation autour de l’axe $\axe{C_1}{z_0}$ d’angle $\varphi$, appelé angle de lacet.
@@ -366,8 +396,11 @@ Roue arrière gauche & $R_{2g}$ & $C_{2g}$ & $I_{2g}$ & nulle &\\ \hline
 
 \caption{Paramétrage des roues en contact avec le sol \label{img:05}}
 \end{figure}
+\fi
 
 \subsection*{Caractéristiques géométriques et d’inertie des solides}
+\ifprof
+\else
 
 \begin{itemize}
 \item Le mouvement de roulis étant nul et le mouvement de tangage étant fixé à une valeur constante, il est possible de définir l’ensemble rigide $\Sigma$ constitué des trois podes \textbf{1}, \textbf{2} et \textbf{3}, des deux roues avant, des deux roues arrière et des bras d’articulation \textbf{4} et \textbf{4’}. Pour chaque constituant de cet ensemble, la masse est supposée répartie uniformément.
@@ -457,8 +490,10 @@ B_m =\SI{8e-3}{kg.m^2} \\
 \begin{itemize}
 \item Les masses et inerties des autres pièces seront négligées.
 \end{itemize}
-
+\fi
 \subsection*{Modélisation du contact roue / sol}
+\ifprof
+\else
 
 \begin{itemize}
 \item Les roues centrales $R_{id}$ et $R_{ig}$ sont motrices, elles roulent sans glisser aux points de contact $I_{1d}$ et $I_{1g}$. On pose $\vect{C_{1d}I_{1d}}=-R\vect{z_L}$ et $\vect{C_{1g}I_{1g}}=-R\vect{z_L}$. Le contact avec le sol \textbf{0} est modélisé par le torseur suivant :
@@ -475,18 +510,22 @@ avec $\vect{n_d}$ $\vect{n_g}$ deux vecteurs unitaires opposés aux vitesses de 
 respectivement en $I_{2d}$ et $I_{2g}$. On pose $\vect{C_{2d}I_{2d}}=-R\vect{z_L}$ et 
 $\vect{C_{2g}I_{2g}}=-R\vect{z_L}$. $T_{2d}=fZ_{2d}$ et $T_{2g}=fZ_{2g}$; $f$ est le facteur de frottement constant au contact roue/sol; $f = 0,6$.
 \end{itemize}
-
+\fi
 
 \subsection*{Autres liaisons}
 Toutes les autres liaisons de la plate-forme sont supposées parfaites (sans jeu, sans frottement).
 
 \subsection*{Motoréducteur centraux}
+\ifprof
+\else
+
 \begin{itemize}
 \item L'action mécanique développée par la motoréducteur sur la roue centrale droite $R_{1d}$ est notée : 
 $\torseurstat{T}{\text{moteur}}{R_{1d}} = \torseurl{\vect{0}}{-C_m\vect{x_L}}{C_1}$.
 \item L'action mécanique développée par la motoréducteur sur la roue centrale gauche $R_{1g}$ est notée : 
 $\torseurstat{T}{\text{moteur}}{R_{1g}} = \torseurl{\vect{0}}{C_m\vect{x_L}}{C_1}$.
 \end{itemize}
+\fi
 
 \question{\label{q_10}Justifier la forme de la matrice d’inertie de l’ensemble $\Sigma$ au point $C_1$ dans la base $\base{x_1}{y_1}{z_1}$.}
 \ifprof
@@ -498,6 +537,8 @@ $\left(C_1,\vect{z_1},\vect{x_1}\right)$ sont des plans de symétrie, alors $\in
 \fi
 
 
+\ifprof
+\else
 Dans un premier temps, l’objectif est de déterminer la somme des efforts normaux $Z_{2d}+Z_{2g}$ s’exerçant sur les roues
 arrière. Isolons l’ensemble de la plate-forme PF , soit l’ensemble $\Sigma$ , les roues centrales et les motoréducteurs.
 Plaçons nous dans le plan médian $\left(C_1;\vect{y_L};\vect{z_L}\right)$ de la plate-forme PF. Nous définissons le projeté $I_1$ des points de contact $I_{1d}$ et $I_{1g}$ dans ce plan. $I_1$ est défini par le vecteur : $\vect{C_1I_1}=-R\vect{z_L}$. 
@@ -506,6 +547,8 @@ $\vect{C_2I_1} = b\vect{y_L}-R\vect{z_L}$
 $\vect{C_3I_1} = -b\vect{y_3}-R\vect{z_L}$.
 Nous ferons l’hypothèse que le moment dynamique $\vectmd{I_1}{PF}{0}\cdot \vect{x_L}$
 est négligeable devant les actions mécaniques.
+
+\fi
 
 \question{\label{q_11}En appliquant le théorème du moment dynamique à la plate-forme PF en mouvement par rapport au référentiel galiléen $R_0$ en $I_1$ en projection sur $\vect{x_L}$, déterminer l’expression littérale de la somme des efforts normaux de contact $Z_{2d}+Z_{2g}$, entre les roues arrière et le sol. Réaliser l’application numérique et comparer la valeur obtenue à la somme des efforts normaux s’exerçant sur les roues arrière lorsque la plateforme est immobile en appui sur ses six roues sur un sol plan, à savoir $\left(Z_{2d}+Z_{2g}\right)_{\text{Repos}} = \left(m_2+2m_r\right)g$ avec $m_2=\SI{52}{kg}$ la masse du pode arrière \textbf{2}.}
 \ifprof
@@ -703,6 +746,9 @@ et donc $C_m = 1,3\times 10^{-2}\left(34\times 1,26 + 0,65 \times 0,6 \dfrac{ 85
 
 \subsection{La commande de la plate-forme}
 
+\ifprof
+\else
+
 Pour coordonner les déplacements, la plate-forme est équipée de deux parties commandes supportées par deux microcontrôleurs placés respectivement dans les podes avant et arrière (\autoref{img:06}).
 
 \begin{figure}[H]
@@ -723,8 +769,13 @@ Les principales fonctions à remplir par la partie commande sont :
 \item gérer les séquences de pilotage, notamment celle de cabrage ;
 \item asservir les déplacements de la plate-forme.
 \end{itemize}
+\fi
 
 \subsection{Gérer le pilotage séquentiel du CABRAGE en << Mode 2 roues instable >>}
+
+\ifprof
+\else
+
 Lorsque le rayon de courbure est inférieur à 4 mètres et que la vitesse de la plate-forme est inférieure à une vitesse
 limite, la partie commande de la plate-forme active le << Mode 2 roues instable >> (Rotation 2 roues=1). En << Mode 2 roues instable >>, la partie commande génère les lois de pilotage à appliquer aux roues centrales et pilote la centrale hydraulique afin de CABRER les podes avant et arrière suivant une séquence prédéfinie.
 L’objectif de cette partie est de proposer un GRAFCET de gestion de la
@@ -746,6 +797,7 @@ entrées-sorties de cette séquence est la suivante.
 \item À tout moment, le « Mode 2 roues instable~» peut être désactivé (Rotation 2 roues=0). Si une consigne CABRER est en cours, elle est immédiatement arrêtée et la séquence de gestion de la centrale hydraulique en «~Mode 2 roues instable~» est réinitialisée. Le débit de fuite dans le circuit assure le retour progressif en
 position initiale des podes avant et arrière.
 \end{enumerate}
+\fi
 
 \question{\label{q_15}Réaliser un (ou plusieurs) GRAFCET(s) correspondant à la séquence de fonctionnement associée au CABRAGE en «~Mode 2 roues instable~». Un début de GRAFCET est fourni sur le document-réponse
 (question \ref{q_15}). Vous veillerez en particulier à :}
@@ -765,6 +817,9 @@ position initiale des podes avant et arrière.
 
 
 \subsection{Asservir les déplacements de la plate-forme}
+\ifprof
+\else
+
 Les déplacements de la plate-forme sont contrôlés de la manière suivante :
 \begin{itemize}
 \item au niveau de chacun des 6 moteurs, des boucles de vitesse assurent l’asservissement dit « bas niveau » ;
@@ -861,6 +916,7 @@ Stabilité & \\ %\cline{2-3}
 & Rapidité : temps de réponse à 5\% (à une entrée en échelon de vitesse) & \SI{0,5}{s} \\ \hline
 \end{tabular}
 \end{center}
+\fi
 
 \question{\label{q_16}Déterminer les valeurs numériques et unités des gains associés au générateur de consigne (noté $K_G$), au rapport cinématique ($K_R$) et au convertisseur ($K_{\text{conv}}$) en sachant, que lorsque la vitesse réelle de la plateforme $V (t)$ est égale à la vitesse de consigne de la plate-forme $V_C (t)$ , l’écart $\varepsilon(t)$ doit être nul.}
 \ifprof
