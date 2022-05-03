@@ -1,3 +1,8 @@
 
 compil/
 *.log
+*.pdf
+2022/Exemple/FichiersProf/Corrigé LaTeX/PT-SIB-2022-BancEssaiLamesTondeuse-Corrige.pdf
+*.aux
+*.out
+*.gz
