@@ -1,0 +1,300 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Corrigé UPSTI
+% Concours - Epreuve - Année
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% !TeX encoding = utf8
+% !TeX spellcheck = fr
+
+\documentclass[11pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Package UPSTI_Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\usepackage{UPSTI_Corrige_Concours}	% Squelette minimal
+%\usepackage[UPSTI]{UPSTI_Corrige_Concours} % Chargement des packages UPSTI  (téléchargeables ici: https://www.upsti.fr/documents-pedagogiques/upsti-kit-de-demarrage-latex)
+
+%---------------------------------%
+% Packages personnalisés
+%---------------------------------%
+% Insérez ici les packages que vous utilisez habituellement
+
+
+
+
+
+% ---
+
+%---------------------------------%
+% Paramètres du corrigé
+%---------------------------------%
+
+% ----------
+% Concours
+% ----------
+% 0: Custom*
+% 1: ATS
+% 2: Banque PT
+% 3: CCINP
+% 4: CCP
+% 5: CCS (par défaut)
+% 6: E3A
+% 7: ICNA
+% 8: Mines AADN
+% 9: Mines Ponts
+% 10: X-ENS
+% * Si on met la valeur 0, il faut décommenter la ligne suivante: 		
+%\newcommand{\UPSTIconcoursCustom}{Concours custom}
+\newcommand{\UPSTIidConcours}{2}
+
+% ----------
+% Filière
+% ----------
+% 0: Custom*
+% 1: ATS
+% 2: MP
+% 3: MPI
+% 4: PSI (par défaut)
+% 5: PT
+% 6: TSI
+% 7: MP2I
+% 8: MPSI
+% 9: PCSI
+% 10: PTSI
+% * Si on met la valeur 0, il faut décommenter la ligne suivante: 		
+%\newcommand{\UPSTIfiliereCustom}{Filière custom}
+\newcommand{\UPSTIidFiliere}{10}
+
+% ----------
+% Epreuve
+% ----------
+% 0: Custom*
+% 1: S2I (par défaut)
+% 2: Informatique
+% 3: Modélisation et informatique
+% 4: Modélisation
+% 5: Physique - SI
+% 6: SI A
+% 7: SI B
+% 8: SI C
+% 9: SI 1
+% 10: SI 2
+% * Si on met la valeur 0, il faut décommenter la ligne suivante: 		
+%\newcommand{\UPSTIepreuveCustom}{Epreuve custom}
+\newcommand{\UPSTIidEpreuve}{7}
+
+% ----------
+% Session
+% ----------
+\newcommand{\UPSTIsession}{2022}
+
+% ----------
+% Titre de l'épreuve (souvent, le nom du support)
+% ----------
+\newcommand{\UPSTItitreEpreuve}{Banc d'essai de lames de tondeuse à gazon}
+% Si le nom est trop long pour l'entête, on peu décommenter la ligne suivante:
+%\newcommand{\UPSTItitreEpreuveRaccourci}{Titre raccourci}      
+
+%----------------------------------------------- 
+\UPSTIprepareDocument		% "Compile" les variables
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+
+\usepackage{siunitx}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% Début du document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{document}
+\UPSTIpreambuleEpreuve	% Affichage du préambule de l'épreuve
+
+%---------------------------------%
+% DEBUT du contenu
+%---------------------------------%
+
+\UPSTItitrePartieCorrige{Détermination du couple transmissible par l'arbre}
+
+\section{Détermination du couple transmis par la lame sur l'arbre au moment de l'impact pieu/lame}
+
+\subsection{Couple transmis par adhérence}
+
+\UPSTIquestion* Sur le document réponse, cadre << question 1 >>, identifier par un trait de couleur bleue la surface de contact annulaire entre la lame et la rondelle fusible. 
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+\UPSTIquestion Donner l'expression de $C_{{adh}}$ en fonction de $F_{{vis}}$, $\mu_{{axier/acier}}$, $D_{{int}}$ et $D_{{ext}}$.
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+
+\UPSTIquestion Estimer la valeur de $C_{{adh}}$ (en \si{N.m}) à $\pm\SI{10}{\%}$.
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+\subsection{Couple transmis par les ergots}
+
+\UPSTIquestion* Sur le document réponse, cadre << question  4>>, identifier par un trait de couleur rouge la trace de la section cisaillée d'un ergot lors d'un choc sur la lame.
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+\UPSTIquestion Donner l'expression de $C_{cis}$ en fonction des données nécessaires. 
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+\UPSTIquestion Estimer la valeur de $C_{cis}$ à  $\pm\SI{10}{\%}$.
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+\subsection{Couple transmis à l'arbre par la rondelle fusible lors d'un chox sur la lame}
+\UPSTIquestion* 
+\begin{UPSTIcorrige}
+Parmi les cinq expressions proposées dans le document réponse, cocher l'expression correcte de $C_{rond}$ en fonction de 
+$C_{adh}$ et $C_{cis}$.
+\end{UPSTIcorrige}
+
+\UPSTIquestion Donner la valeur de $C_{rond}$.
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+\section{Détermination du couple transmis par le moteur électrique sur l'arbre au moment du démarrage}
+
+\UPSTIquestion* Afin de déterminer $C_{mot}$, préciser l'ensemble isolé, cocher le principe retenu, le théorème utilisé et l'axe sur lequel il sera projeté (voir fig. 15, annexe B). 
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+\UPSTIquestion Donner l'expression de $C_{mot}$ en fonction des données de $J_{lame}$, $N_{arbre}$ et $\Delta t_{acc}$. 
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+\UPSTIquestion Donner la référence de la lame (vour annexe C) qui est la plus exigeante pour dimensionner le couple moteur. 
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+
+\UPSTIquestion Calculer le couple minimal $C_{mot\_min}$ que doit exercer le moteur sur l'arbre pour respecter $\Delta t _{acc}  = \SI{10}{s}$ quelle que soit la lame testée. 
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+
+\section{Détermination du couple maximal transmssible par l'arbre}
+
+\UPSTIquestion* Parmi les expressions proposées dans le document réponse, cocher l'expression correcte de $C_{arbre\_max}$ en fonction de $C_{rond}$ et $C_{mot\_max}$.
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+\UPSTIquestion Donner la valeur de $C_{arbre\_max}$.
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+
+\UPSTItitrePartieCorrige{Prédimensionnement de l'arbre}
+\section{Etude de l'arbre en flexion exclusivement}
+
+
+\UPSTIquestion* Exprimer les composantes des forces des paliers B et C sur l'arbre en fonction des données.
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+\UPSTIquestion Calculer les valeurs de composantes des forces des paliers B et C sur l'arbre.
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+\UPSTIquestion Donner l'expression des moments de flexion $M_{fzAB}(x_a)$ et $M_{fzBC}(x_a)$ en fonction des données $B_x$, $B_y$, $C_x$ ou $C_z$.
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+\UPSTIquestion Calculer les valeurs des moments de flexion en B et C.
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+\UPSTIquestion Tracer l'évolution du moment de flexion $M_{fz}(x_a)$ dans l'abre en précisant les caleurs significatives. 
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+\UPSTIquestion Identifier le point où le moment de flexion est maximal et donner l'expression de $M_{fz-maxi}$.
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+\UPSTIquestion Donner l'expression de la contrainte normale maximale dans une section droite $\sigma_{max\_sect}$ en fonction de $M_{fz}(x_a)$ et de $d_{flexion}$.
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+\UPSTIquestion Exprimer le diamètre minimum de l'arbre de flexion $d_{flexion\_mini}$ en fonction de $s$, $R_e$ et des données identifiées précédemment. 
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+\UPSTIquestion Calculer le dimaètre minimum de l'arbre en flexion $d_{flexion\_mini}$. On pourra s'appuyer sur la figure 21 de l'annexe E. 
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+
+\section{Etude de l'arbre en torseion exclusivement}
+\UPSTIquestion* En isolant l'ensemble \{arbre, poulie réceptrice\}, écrire le théorème du moment dynamique en proection sur l'axe $\overrightarrow{x_a}$.
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+\UPSTIquestion En isolant uniquement l'arbre, écrire le théorème du moment dynamique en proection sur l'axe $\overrightarrow{x_a}$.
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+\UPSTIquestion En considérant que le moment d'inertie de l'arbre est négligeable devant les autres moments d'inertie, écrire la relation liant $C_{rond\rightarrow arbre}$ et $C_{poulie\rightarrow arbre}$ 
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+
+\UPSTIquestion* Sur le document réponse, cadre << question  4>>, 
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+\UPSTIquestion* 
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+\UPSTIquestion 
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+
+
+
+% -------------------------- 
+% Boite d'objectif 
+% -------------------------- 
+\UPSTIobjectif{
+Exemple d'objectif de partie...
+}
+% -------------------------- 
+
+\subsubsection{Test subsubsection}
+
+% -------------------------- 
+% Question (sans le saut de ligne qui la précède par défaut) + corrigé
+% -------------------------- 
+\UPSTIquestion* Question (sans ligne vide, car à la suite d'un titre) On utilise la commande étoilée UPSTIquestion*
+
+\begin{UPSTIcorrige}
+Corrigé de la question... Lorem ipsum dolor sit amet consectetuer Morbi Nunc lacus vitae gravida. Morbi ridiculus non interdum nibh consequat malesuada natoque tincidunt sed neque. Interdum felis quis ut id hendrerit semper natoque nisl Cum ipsum. 
+\end{UPSTIcorrige}
+% -------------------------- 
+
+
+% -------------------------- 
+% Question
+% -------------------------- 
+% -------------------------- 
+
+% -------------------------- 
+% Question sans intitulé... juste le numéro (déconseillé)
+% -------------------------- 
+\UPSTIquestion
+
+\begin{UPSTIcorrige}
+Ici on a une question sans intitulé....
+
+Lorem ipsum dolor sit amet consectetuer Morbi Nunc lacus vitae gravida. Morbi ridiculus non interdum nibh consequat malesuada natoque tincidunt sed neque. Interdum felis quis ut id hendrerit semper natoque nisl Cum ipsum. 
+\end{UPSTIcorrige}
+% -------------------------- 
+
+%---------------------------------%
+% FIN du contenu
+%---------------------------------%
+
+\end{document}

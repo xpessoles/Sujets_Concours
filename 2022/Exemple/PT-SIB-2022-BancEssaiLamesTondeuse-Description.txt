@@ -1,0 +1,9 @@
+Titre : Banc d'essai de lames de tondeuse à gazon
+
+La société ETESIA, implantée dans la région Grand Est, est spécialisée dans la conception, la fabrication et la vente de matériel dédié à l'entretien des espaces verts. ETESIA propose une gamme de 22 tondeuses différentes, équipées de lames différentes.
+
+Pour mettre sur le marché une nouvelle tondeuse, le modèle doit passer de nombreux tests normalisés. L'un d'entre eux a pour objectif de garantir l'intégrité de la lame lors d'un choc éventuel avec un objet enfoncé dans le sol : après un choc, la lame doit rester d'un seul tenant et aucun morceau ne doit être éjecté afin de ne pas blesser les personnes a proximité. Il s'agit d'un essai destructif réalisé sur une tondeuse prête à la vente. 
+
+La qualité d'une lame est susceptible de varier selon un grand nombre de paramètres (matériau, procédé de fabrication, traitements thermiques etc...). C'est pour cette raison que l'entreprise ETESIA réalise après chaque campagne de production de lames un essai d'impact sur un échantillon de lames. 
+
+Afin de ne pas détruire une tondeuse à chaque lot de lames fabriquées, ETESIA a décidé de réaliser un banc d'essai de lames seules basé sur le principe de l'essai normalisé. L'étude proposée répond à certains aspects de la conception de ce banc d'essai de lames.
