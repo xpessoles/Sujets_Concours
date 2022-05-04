@@ -6,3 +6,4 @@ compil/
 *.aux
 *.out
 *.gz
+*.synctex(busy)
