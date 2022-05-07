@@ -117,47 +117,75 @@
 \subsection{Couple transmis par adhérence}
 
 \UPSTIquestion* Sur le document réponse, cadre << question 1 >>, identifier par un trait de couleur bleue la surface de contact annulaire entre la lame et la rondelle fusible. 
+
 \begin{UPSTIcorrige}
-La surface de contact << annulaire >> entre la lame et le rondelle fusible correspond au centrage court. 
 
 ** image ** 
 \end{UPSTIcorrige}
 
 \UPSTIquestion Donner l'expression de $C_{{adh}}$ en fonction de $F_{{vis}}$, $\mu_{{acier/acier}}$, $D_{{int}}$ et $D_{{ext}}$.
+
 \begin{UPSTIcorrige}
 Le couple tranmissible par adhérence lorsque la zone de contact est une seule couronne est donné par 
 $C_{adh}=\frac{2}{3} \mu_{{acier/acier}}F_{{vis}} \frac{R^3-r^3}{R^2 - r^2}$.
- ou encore  $C_{adh}=\frac{2}{3} \mu_{{acier/acier}}F_{{vis}} \frac{2^2}{2^3}\frac{D_{{ext}}^3-D_{{int}}^3}{D_{{ext}}^2 - D_{{int}}^2}$.
+ ou encore  $C_{adh}=\frac{2}{3} \mu_{{acier/acier}}F_{{vis}} \frac{2^2}{2^3}\frac{D_{{ext}}^3-D_{{int}}^3}{D_{{ext}}^2 - D_{{int}}^2}=\frac{1}{3} \mu_{{acier/acier}}F_{{vis}} \frac{D_{{ext}}^3-D_{{int}}^3}{D_{{ext}}^2 - D_{{int}}^2}$.
 \end{UPSTIcorrige}
 
 
 \UPSTIquestion Estimer la valeur de $C_{{adh}}$ (en \si{N.m}) à $\pm\SI{10}{\%}$.
+
 \begin{UPSTIcorrige}
+$C_{adh}=\frac{0,15}{3} \times 30000 \times \frac{60^3-32,5^3}{60^2 - 32,5^2}$
+$\simeq 1500\times \frac{216000-27000}{3600 - 900}$
+$\simeq 1500\times \frac{2000}{30}$
+$\simeq 50\times 2000$
+$\simeq \SI{100 000}{Nmm}$
+soit $C_{adh}\simeq \SI{100}{Nm}$.
+
+\textit{AN : $C_{adh}\simeq \SI{107}{Nm}$.}
+
 \end{UPSTIcorrige}
 
 \subsection{Couple transmis par les ergots}
 
 \UPSTIquestion* Sur le document réponse, cadre << question  4>>, identifier par un trait de couleur rouge la trace de la section cisaillée d'un ergot lors d'un choc sur la lame.
+
 \begin{UPSTIcorrige}
+** image ** 
 \end{UPSTIcorrige}
 
 \UPSTIquestion Donner l'expression de $C_{cis}$ en fonction des données nécessaires. 
+
 \begin{UPSTIcorrige}
+La contrainte de cisaillement peut s'exprimer par $\sigma_c = \frac{F_c}{eb}$.
+D'une part, il y a rupture de l'ergot lorsque $\sigma_c \geq R_m$. Au moment de la rupture, on fait donc l'hypothèse que
+$R_m = \frac{F_c}{eb}$
+D'autre part, pour un seul ergot, $C_{cis1} = F_c \frac{d_{ergot}}{2}$.
+On a donc $C_{cis1} = R_m e b \frac{d_{ergot}}{2}$. 
+
+Pour 4 ergots, $C_{cis} = 2R_m e b d_{ergot}$. 
 \end{UPSTIcorrige}
 
 \UPSTIquestion Estimer la valeur de $C_{cis}$ à  $\pm\SI{10}{\%}$.
+
 \begin{UPSTIcorrige}
+On a dans ce cas, $C_{cis} = 2 \times 300 \times 1,5 \times  4 \times 42$
+$ \simeq 2 \times 300 \times 252$ $ \simeq \SI{150000}{Nmm}$ $\simeq \SI{150}{Nm}$ .
+
 \end{UPSTIcorrige}
 
 \subsection{Couple transmis à l'arbre par la rondelle fusible lors d'un chox sur la lame}
 \UPSTIquestion* Parmi les cinq expressions proposées dans le document réponse, cocher l'expression correcte de $C_{rond}$ en fonction de 
 $C_{adh}$ et $C_{cis}$.
-\begin{UPSTIcorrige}
 
+\begin{UPSTIcorrige}
+Lors d'un choc, on veut que les ergots soient cisaillés. Pour cela il faut donc qu'il y ait glissement entre la rondelle et la lame puis que le couple généré par le chox cisaille les ergots. 
+Nécessairement, on a donc $C_{rond}=MAX\left(C_{adh},C_{cis}\right)$.
 \end{UPSTIcorrige}
 
 \UPSTIquestion Donner la valeur de $C_{rond}$.
 \begin{UPSTIcorrige}
+En conséquence, $C_{rond} = MAX(120,200) = \SI{200}{Nm}$. 
 \end{UPSTIcorrige}
 
 \section{Détermination du couple transmis par le moteur électrique sur l'arbre au moment du démarrage}
