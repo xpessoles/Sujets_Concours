@@ -100,6 +100,7 @@
 
 
 \usepackage{siunitx}
+\input{macros_SII}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 % Début du document
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
@@ -194,22 +195,52 @@ En conséquence, $C_{rond} = MAX(120,200) = \SI{200}{Nm}$.
 \UPSTIquestion* Afin de déterminer $C_{mot}$, préciser l'ensemble isolé, cocher le principe retenu, le théorème utilisé et l'axe sur lequel il sera projeté (voir fig. 15, annexe B). 
 
 \begin{UPSTIcorrige}
-En utilisanat l'hypothèse que l’intégralité du couple est transmise à l'arbre, on choisit d'isoler l'arbre. 
+En utilisant l'hypothèse que l’intégralité du couple est transmise à l'arbre, on choisit d'isoler l'arbre de transmission, l'accouplement et la lame. 
 
 Pour déterminer le couple moteur, on choisit << naturellement >> d'isoler l'arbre, d'appliquer le Prinicipe Fondamental de la Dynamique et plus précisément le théorème du moment dynamique en $A$ en projection sur l'axe de rotation à savoir sur l'axe $\left(A,\overrightarrow{x_a}\right)$.
  \end{UPSTIcorrige}
 
 \UPSTIquestion Donner l'expression de $C_{mot}$ en fonction des données de $J_{lame}$, $N_{arbre}$ et $\Delta t_{acc}$. 
+
 \begin{UPSTIcorrige}
+On isole l'arbre.
+
+Bilan des actins mécaniques :
+\begin{itemize}
+\item action de la poulie sur l'arbre : $  C_{poulie\rightarrow arbre} = C_{mot}$ (en utilisant les hypothèses).
+\end{itemize}
+
+TMD sur l'axe $\left(A,\overrightarrow{x_a}\right)$ :
+$  C_{mot} = \left(J_{lame}+J_{arbre}+J_{eq}\right) \dot{\omega_{arbre}}$.
+
+Par ailleurs, $\omega_{arbre}  = N_{arbre} \frac{2\pi}{60}$ et  $\dot{\omega_{arbre}} = N_{arbre} \frac{2\pi}{60 \Delta t_{acc}}$.
+
+Au final, $  C_{mot} = \left(J_{lame}+J_{arbre}+J_{eq}\right) N_{arbre} \frac{\pi}{30 \Delta t_{acc}}$.
+
+Ne considérant que l'inertie de la lame, on a alors :$  C_{mot} = J_{lame} N_{arbre} \frac{\pi}{30 \Delta t_{acc}}$.
 \end{UPSTIcorrige}
 
 \UPSTIquestion Donner la référence de la lame (vour annexe C) qui est la plus exigeante pour dimensionner le couple moteur. 
+
 \begin{UPSTIcorrige}
+Au vu de l'expression précédente, la lame la plus exigeante est celle pour laquelle le produit 
+$J_{lame} N_{arbre}$ est le plus grand. 
+
+Pour la référence 37671 on a $J_{lame} N_{arbre} = 0,25 \times 2000 = \SI{500}{kg.m^2.tr.min^{-1}}$.
+
+Pour la référence 42614 on a $J_{lame} N_{arbre} = 0,18 \times 3000 = \SI{540}{kg.m^2.tr.min^{-1}}$.
+
+On choisit donc la référence 42614.
 \end{UPSTIcorrige}
 
 
 \UPSTIquestion Calculer le couple minimal $C_{mot\_min}$ que doit exercer le moteur sur l'arbre pour respecter $\Delta t _{acc}  = \SI{10}{s}$ quelle que soit la lame testée. 
+
 \begin{UPSTIcorrige}
+Dans les conditions précédentes, on aura donc 
+:$  C_{mot\_min} = J_{lame} N_{arbre} \frac{\pi}{30 \Delta t_{acc}} =  \frac{540 \times \pi}{30 \times 10}$
+$ \simeq \SI{5,4}{Nm}$ .
+
 \end{UPSTIcorrige}
 
 
@@ -217,10 +248,15 @@ Pour déterminer le couple moteur, on choisit << naturellement >> d'isoler l'arb
 
 \UPSTIquestion* Parmi les expressions proposées dans le document réponse, cocher l'expression correcte de $C_{arbre\_max}$ en fonction de $C_{rond}$ et $C_{mot\_max}$.
 \begin{UPSTIcorrige}
+Si le pieu est introduit à la fin de la phase d'accélération, il faut donc que l'arbre de transmission résiste à l'action conjointe du moteur et de la rondelle fusible. 
+
+En conséquence, $C_{arbre_max} = C_{mot\_max}+ C_{rond}$.
 \end{UPSTIcorrige}
 
 \UPSTIquestion Donner la valeur de $C_{arbre\_max}$.
+
 \begin{UPSTIcorrige}
+$C_{arbre_max} = 10+ 200 = \SI{210}{Nm}$.
 \end{UPSTIcorrige}
 
 
@@ -228,19 +264,60 @@ Pour déterminer le couple moteur, on choisit << naturellement >> d'isoler l'arb
 \section{Etude de l'arbre en flexion exclusivement}
 
 \UPSTIquestion* Exprimer les composantes des forces des paliers B et C sur l'arbre en fonction des données.
+
 \begin{UPSTIcorrige}
+On réalise le théorème de la résultante statique : 
+\begin{itemize}
+\item projection sur $\overrightarrow{x_a}$ : $B_x   = 0$;
+\item projection sur $\overrightarrow{y_a}$ : $F_{lame/arbre} + B_y + C_y - F_{courroie/arbre}  = 0$. 
+\end{itemize}
+On réalise le théorème du moment statique en B: 
+\begin{itemize}
+\item projection sur $\overrightarrow{z_a}$ : $-F_{lame/arbre} \ell_1 + C_y \ell_2 - F_{courroie/arbre}\left(\ell_3 + \ell_2\right)=0$.
+\end{itemize}
+
+Résolution :
+\begin{itemize}
+\item $B_x   = 0$;
+\item $ C_y = F_{courroie/arbre}\frac{\ell_3 + \ell_2}{\ell_2} + F_{lame/arbre} \frac{\ell_1}{\ell_2}$;
+\item $B_y = F_{courroie/arbre} -  C_y -  F_{lame/arbre} = F_{courroie/arbre} -F_{courroie/arbre}\frac{\ell_3 + \ell_2}{\ell_2} - F_{lame/arbre} \frac{\ell_1}{\ell_2}-  F_{lame/arbre} $
+$= F_{courroie/arbre}\left(1-\frac{\ell_3 + \ell_2}{\ell_2}\right) - F_{lame/arbre} \left(1+\frac{\ell_1}{\ell_2}\right) $.
+\end{itemize}
+
 \end{UPSTIcorrige}
 
 \UPSTIquestion Calculer les valeurs de composantes des forces des paliers B et C sur l'arbre.
+
 \begin{UPSTIcorrige}
-\end{UPSTIcorrige}
+\begin{itemize}
+\item $B_x   = 0$;
+\item $C_y = 300 \frac{100 + 200}{200} + 1200 \frac{100}{200}$ $= 450 + 600 = \SI{1050}{N}$;
+\item $B_y = 300\left(1-\frac{100+ 200}{200}\right) - 1200 \left(1+\frac{100}{200}\right) $ 
+$=-\frac{1}{2}300 - \frac{3}{2}1200 = -150 - 1800 = -\SI{1950}{N} $ .
+\end{itemize}\end{UPSTIcorrige}
 
 \UPSTIquestion Donner l'expression des moments de flexion $M_{fzAB}(x_a)$ et $M_{fzBC}(x_a)$ en fonction des données $B_x$, $B_y$, $C_x$ ou $C_z$.
+
 \begin{UPSTIcorrige}
+\begin{itemize}
+\item Pour $x_a \in [0,\ell_1]$, on isole $I$ : $\torseurstat{T}{II}{I} + \torseurstat{T}{lame}{arbre} = 0$.  On  a alors 
+$M_{fz AB}(x_a) = x_a  F_{lame/arbre}$. 
+\item Pour $x_a \in [\ell_1+\ell_2]$, on isole $I$ : $\torseurstat{T}{II}{I} + \torseurstat{T}{lame}{arbre} + \torseurstat{T}{0}{arbre} = 0$.
+On  a alors $M_{fz BC}(x_a) = x_a  F_{lame/arbre} + \left(x_a - \ell_1\right) B_y$. 
+\end{itemize}
 \end{UPSTIcorrige}
 
 \UPSTIquestion Calculer les valeurs des moments de flexion en B et C.
+
 \begin{UPSTIcorrige}
+\begin{itemize}
+\item $M_{fz AB}(\ell_1) = \ell_1  F_{lame/arbre}$ $=\SI{30}{Nm}$.
+\item $M_{fz BC}(\ell_1+\ell_2) =(\ell_1+\ell_2)  F_{lame/arbre} + \left(\ell_1+\ell_2 - \ell_1\right) B_y$
+$=(\ell_1+\ell_2)  F_{lame/arbre}  +\ell_2 B_y$
+$=300\times 1200+200 \times -1950$
+$= 360 000-390 000$
+$= -\SI{30}{Nm}$.
+\end{itemize}
 \end{UPSTIcorrige}
 
 \UPSTIquestion Tracer l'évolution du moment de flexion $M_{fz}(x_a)$ dans l'abre en précisant les caleurs significatives. 
@@ -274,6 +351,7 @@ Pour déterminer le couple moteur, on choisit << naturellement >> d'isoler l'arb
 \end{UPSTIcorrige}
 
 \UPSTIquestion En considérant que le moment d'inertie de l'arbre est négligeable devant les autres moments d'inertie, écrire la relation liant $C_{rond\rightarrow arbre}$ et $C_{poulie\rightarrow arbre}$.
+
 \begin{UPSTIcorrige}
 \end{UPSTIcorrige}
 
