@@ -305,6 +305,13 @@ $M_{fz AB}(x_a) = x_a  F_{lame/arbre}$.
 \item Pour $x_a \in [\ell_1+\ell_2]$, on isole $I$ : $\torseurstat{T}{II}{I} + \torseurstat{T}{lame}{arbre} + \torseurstat{T}{0}{arbre} = 0$.
 On  a alors $M_{fz BC}(x_a) = x_a  F_{lame/arbre} + \left(x_a - \ell_1\right) B_y$. 
 \end{itemize}
+
+\textbf{Non demandé}
+\begin{itemize}
+\item Pour $x_a \in [\ell_1+\ell_2,\ell_1+\ell_2+\ell_1]$, on isole $II$ : $\torseurstat{T}{I}{II} + \torseurstat{T}{courroie}{arbre} = 0$ soit $\torseurstat{T}{II}{I} =\torseurstat{T}{courroie}{arbre} $.  On  a alors 
+$M_{fz AB}(x_a) = -  F_{courroie/arbre} (\ell_1+\ell_2+\ell_1-x_A)$. 
+\end{itemize}
+
 \end{UPSTIcorrige}
 
 \UPSTIquestion Calculer les valeurs des moments de flexion en B et C.
@@ -318,10 +325,16 @@ $=300\times 1200+200 \times -1950$
 $= 360 000-390 000$
 $= -\SI{30}{Nm}$.
 \end{itemize}
+
 \end{UPSTIcorrige}
 
 \UPSTIquestion Tracer l'évolution du moment de flexion $M_{fz}(x_a)$ dans l'abre en précisant les caleurs significatives. 
+
 \begin{UPSTIcorrige}
+\textbf{A VERIFIER}
+\begin{center}
+\includegraphics[width=10cm]{Q_19}
+\end{center}
 \end{UPSTIcorrige}
 
 \UPSTIquestion Identifier le point où le moment de flexion est maximal et donner l'expression de $M_{fz-maxi}$.
@@ -329,30 +342,55 @@ $= -\SI{30}{Nm}$.
 \end{UPSTIcorrige}
 
 \UPSTIquestion Donner l'expression de la contrainte normale maximale dans une section droite $\sigma_{max\_sect}$ en fonction de $M_{fz}(x_a)$ et de $d_{flexion}$.
+
 \begin{UPSTIcorrige}
+La contrainte est donnée par $\sigma = -\frac{M_{fz}}{I_{Gz}}y$.
+
+On a, pour une poutre cylindrique, $I_{Gz} = \frac{\pi d_{flexion}^4}{64} $. 
+
+On a donc $\sigma_{max\_sect} = \frac{M_{fz}}{I_{Gz}} \frac{d_{flexion}}{2}$ 
+$= \frac{M_{fz}}{\frac{\pi d_{flexion}^4}{64}} \frac{d_{flexion}}{2}$
+$= \frac{32 M_{fz}}{\pi d_{flexion}^3} $.
 \end{UPSTIcorrige}
 
 \UPSTIquestion Exprimer le diamètre minimum de l'arbre de flexion $d_{flexion\_mini}$ en fonction de $s$, $R_e$ et des données identifiées précédemment. 
+
 \begin{UPSTIcorrige}
+En tenant compte du coeffient de sécurité, on souhaite nécessairement que 
+$\sigma_{max\_sect} < \frac{Re}{s}$ soit $ \frac{32 M_{fz}}{\pi d_{flexion}^3}  < \frac{Re}{s}$.
+
+Au final,  $d_{flexion}> \sqrt[3]{\frac{32 s M_{fz}}{Re \pi }} $.
+
 \end{UPSTIcorrige}
 
-\UPSTIquestion Calculer le dimaètre minimum de l'arbre en flexion $d_{flexion\_mini}$. On pourra s'appuyer sur la figure 21 de l'annexe E. 
+\UPSTIquestion Calculer le diamètre minimum de l'arbre en flexion $d_{flexion\_mini}$. On pourra s'appuyer sur la figure 21 de l'annexe E. 
+
 \begin{UPSTIcorrige}
+Avec $ M_{fz} = \SI{30}{Nm}$, $d_{flexion}> \sqrt[3]{\frac{32 \times 2 \times 30 000}{300 \times \pi }} $ 
+$ \Rightarrow d_{flexion}> \sqrt[3]{\frac{32 \times 2000 }{10 \times \pi }} $
+$ \Rightarrow d_{flexion}> \sqrt[3]{2200} $ au final $d_{flexion}> \SI{13}{mm}$.
+
 \end{UPSTIcorrige}
 
 
 \section{Etude de l'arbre en torsion exclusivement}
 \UPSTIquestion* En isolant l'ensemble \{arbre, poulie réceptrice\}, écrire le théorème du moment dynamique en proection sur l'axe $\overrightarrow{x_a}$.
+
 \begin{UPSTIcorrige}
+En reprenant un raisonnement précédent, 
+$  C_{mot}+C_{rond\rightarrow arbre} = \left(J_{lame}+J_{arbre}+J_{eq}\right) \dot{\omega}(t)$
 \end{UPSTIcorrige}
 
 \UPSTIquestion En isolant uniquement l'arbre, écrire le théorème du moment dynamique en proection sur l'axe $\overrightarrow{x_a}$.
 \begin{UPSTIcorrige}
+Dans ce cas, on a 
+$  C_{poulie \rightarrow arbre}+C_{rond\rightarrow arbre} = J_{arbre} \dot{\omega}(t)$
 \end{UPSTIcorrige}
 
 \UPSTIquestion En considérant que le moment d'inertie de l'arbre est négligeable devant les autres moments d'inertie, écrire la relation liant $C_{rond\rightarrow arbre}$ et $C_{poulie\rightarrow arbre}$.
 
 \begin{UPSTIcorrige}
+Dans ces conditions, on a donc $  C_{poulie \rightarrow arbre}+C_{rond\rightarrow arbre} =0$.
 \end{UPSTIcorrige}
 
 \section{Analyse des résultats}
