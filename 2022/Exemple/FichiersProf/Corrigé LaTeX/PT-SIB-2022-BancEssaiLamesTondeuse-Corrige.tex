@@ -396,27 +396,43 @@ Dans ces conditions, on a donc $  C_{poulie \rightarrow arbre}+C_{rond\rightarro
 \section{Analyse des résultats}
 
 \UPSTIquestion* Quelle proposition du document réponse retenez-vous pour déterminer le diamètre minimum de l'arbre ?
+
 \begin{UPSTIcorrige}
+Au vu des résultats précédents, on doit prendre $d_{mini\_arbre}=MAX\left(d_{flexion\_arbre};d_{torsion\_arbre}\right)$.
 \end{UPSTIcorrige}
 
 \UPSTIquestion Les dimensions du châssis et de l'abre ne sont pas figés à ce stade de l'étude. Il est encore possible de faire évoluer les longueurs $l_1$, $l_2$ et $l_3$. A-t-on intérêt à les augmenter ou les diminuer ? Compléter le document réponse en justifiant les choix effectués. 
+
 \begin{UPSTIcorrige}
+La sollicitation de torsion étant prépondérante, il n'ya aucun intérêt, du point de vue du dimensionnement de l'arbre, de modifier les longueurs $l_1$, $l_2$ et $l_3$.
 \end{UPSTIcorrige}
 
 
 \UPSTItitrePartieCorrige{Etude du ressort d'éjection du pieu}
 \section{Détermination de l'énergie nécessaire à l'éjection du pieu}
 
-\UPSTIquestion* Donner l'expression du la massu du pieu en fonction de son diamètre $D_{pieu}$, de sa longueur $L_{pieu}$ et de la masse volumique de l'acier $\rho_{acier}$. Précisez l'unité. 
+\UPSTIquestion* Donner l'expression de la masse du pieu en fonction de son diamètre $D_{pieu}$, de sa longueur $L_{pieu}$ et de la masse volumique de l'acier $\rho_{acier}$. Précisez l'unité. 
+
 \begin{UPSTIcorrige}
+On a  $m_{pieu} = \rho_{acier} \frac{\pi D^2_{pieu}}{4} L_{pieu}$ avec $\rho_{acier}$ en $\si{kg.m^{-3}}$. 
 \end{UPSTIcorrige}
 
 \UPSTIquestion Donner une valeur numérique pour la masse volumique (deux chiffres significatifs) d'un acier standard $\rho_{acier}$. Précisez l'unité. 
+
 \begin{UPSTIcorrige}
+Pour un acier standard, la masse voluimque est comprise entre \SI{7200}{kg.m^{-3}} et \SI{7800}{kg.m^{-3}}.
 \end{UPSTIcorrige}
 
 \UPSTIquestion Calculer la masse du pieu $m_{pieu}$. Précisez l'unité. 
+
 \begin{UPSTIcorrige}
+$m_{pieu} = 8000 \times \frac{3\times 25^2}{4} \times 360 \times 10^{-9}$
+$= 8000 \times \times 625\times 270 \times 10^{-9}$
+$\simeq 8 \times \times 625\times 27 \times 10^{-5}$
+$\simeq 5\times 27 \times 10^{-2}$
+$\simeq \SI{1,5}{kg}$.
+
+
 \end{UPSTIcorrige}
 
 
