@@ -447,8 +447,7 @@ $\simeq \SI{1,5}{kg}$.
 
 \begin{UPSTIcorrige}
 
-\textbf{*** A confirmer} 
-
+%\textbf{*** A confirmer} 
 La seule indication utilisable semble le figure 22 annexe F selon laquelle  $\Delta L_{finale} = 20 + 4 = \SI{24}{mm}$.
 
 \end{UPSTIcorrige}
@@ -456,9 +455,9 @@ La seule indication utilisable semble le figure 22 annexe F selon laquelle  $\De
 \UPSTIquestion Ecrire la relation littérale puis calculer $t_{\Delta finale}$, en secondes.
 \begin{UPSTIcorrige}
 Le pieu peut avancer lors de l'absence de la lame, c'est à dire pendant que la lame se déplace de \SI{105}{\degres}. 
-À une vitesse de $\SI{3500}{tr.min^{-1}} = 3500\times \frac{360}{60} \si{\degres.s^{-1}} =   \SI{21000}{\degres.s^{-1}}$. Pour parcourur \SI{105}{\degres} à cette viteses, il faut $\frac{105}{21000} \simeq \frac{100}{20000} \simeq \SI{0,5}{ms}$. 
+À une vitesse de $\SI{3500}{tr.min^{-1}} = 3500\times \frac{360}{60} \si{\degres.s^{-1}} =   \SI{21000}{\degres.s^{-1}}$. Pour parcourur \SI{105}{\degres} à cette viteses, il faut $\frac{105}{21000} \simeq \frac{100}{20000} \simeq \SI{5}{ms}$. 
 
-Au final, $t_{\Delta finale} = \SI{0,5}{ms} $
+Au final, $t_{\Delta finale} = \SI{5}{ms} $
 \end{UPSTIcorrige}
 
 \UPSTIquestion Ecrire la relation littérale puis calculer la vitesse du pieu $V_{finale}$, en $\si{m.s^{-1}}$.
@@ -466,7 +465,7 @@ Au final, $t_{\Delta finale} = \SI{0,5}{ms} $
 \begin{UPSTIcorrige}
 En faisant l'hypothèse que le pieu se déplace à vitesse constante, on a $V_{finale} = \frac{\Delta L_{finale}}{t_{\Delta finale}}$.
 
-On a donc $V_{finale} = \frac{24}{0,5 \times 10 ^{-3}}  = \SI{48}{m.s^{-1}}$. 
+On a donc $V_{finale} = \frac{24}{5 \times 10 ^{-3}}  = \SI{4,8}{m.s^{-1}}$. 
 
 
 \end{UPSTIcorrige}
@@ -475,9 +474,9 @@ On a donc $V_{finale} = \frac{24}{0,5 \times 10 ^{-3}}  = \SI{48}{m.s^{-1}}$.
 \begin{UPSTIcorrige}
 Pour un solide en translation, l'énergie cinétique est donnée par : $E_{finale tir} = \frac{1}{2}m_{pieu} V_{finale}^2$.
 
-On a donc $E_{finale tir} = \frac{1}{2} \times 1,5 \times 48^2 \simeq 0,75 \times 2500 = \SI{1875}{J}$.
+On a donc $E_{finale tir} = \frac{1}{2} \times 1,5 \times 4,8^2 \simeq 0,75 \times 25 = \SI{18,75}{J}$.
 
-\texitt{AN : $E_{finale tir} = \SI{1728}{J}$.
+%\textit{AN : $E_{finale tir} = \SI{1728}{J}$.}
 \end{UPSTIcorrige}
 
 \section{Dimensionnement du ressort propulseur}
@@ -485,10 +484,22 @@ On a donc $E_{finale tir} = \frac{1}{2} \times 1,5 \times 48^2 \simeq 0,75 \time
 
 \UPSTIquestion* Sur la figure 23 de l'annexe G, que représente l'aire grisée ?
 En déduire la course du tir $C_{poussée choix 1}$ correspondant à ce choix 1. Ecrire la relation littérale puis effectuer le calcul numérique. 
+
 \begin{UPSTIcorrige}
 Il s'agit de la zone dans laquelle on peut armer le ressort, sans dépasser l'effort acceptable que peut fournir l'opérateur. 
 
-**********
+On a $F_{op acc choix 1} = KC_{poussée choix 1}$ et donc $C_{poussée choix 1} = \frac{K}{F_{op acc choix 1}}$.
+
+Au final, $C_{poussée choix 1} = \frac{K}{F_{op acc choix 1}}$. On ne connait pas $K$.
+
+
+\textbf{Proposition}
+On note $W = F_{op acc choix 1}C_{poussée choix 1}$ le travail nécessaire pour comprimer le ressort. 
+Par ailleurs, on a $E_{ressort} = \SI{20}{J}$ l'énergie que doit restituer le ressort. 
+
+En conséquence,  $C_{poussée choix 1} = \frac{E_{ressort}}{F_{op acc choix 1}}$ 
+soit $C_{poussée choix 1} =\frac{20}{190}\simeq \frac{20}{200}\simeq \SI{0,1}{m}$.
+
 \end{UPSTIcorrige}
 
 
@@ -524,11 +535,28 @@ Donner le diamètre extérieur nominal $D_{ext nominal}$ et calculer le diamètr
 \subsection*{Identification des zones de contact}
 \UPSTIquestion* Sur le document réponse, compléter la cotation de la bague << glycodur >> et du pêne. Calculer le jeu $J_{max}$ en mm.
 \begin{UPSTIcorrige}
+
+
+\begin{center}
+\includegraphics[width=14cm]{Q_41}
+\end{center}
+
+Le jeu est maximum pour le moyen le plus grand (\SI{6,012}{mm}) et l'arbre le plus petit (\SI{5,978}{mm}). Le jeu maximal est donc de \SI{0,034}{mm}.
+
 \end{UPSTIcorrige}
 
 \UPSTIquestion Exprimer de façon littérale puis estimer en radian la valeur de l'angle de rotulage $\alpha_{max}$.
 Préciez l'hypothèse utilisée pour réaliser votre estimation d'angle. 
 \begin{UPSTIcorrige}
+
+\begin{center}
+\includegraphics[width=6cm]{Q_42}
+\end{center}
+
+Lorsque le pêne rotule, on peut donc exprimer l'angle de rotulage par $\tan \alpha_{\text{max}} = \frac{J_{\text{max}}}{L_{\text{bague}}}$.
+
+En faisant l'hypothèse que l'angle est petit, 
+$\tan \alpha_{\text{max}} \simeq \alpha_{\text{max}} \simeq  \frac{0,034}{16}\simeq  \frac{32}{16} \times 10^{-3}\simeq  \SI{2e-3}{rad}$.
 \end{UPSTIcorrige}
 
 \subsection*{Détermination de l'effort à fournir par l'actionneur électromagnétique.}
@@ -539,19 +567,40 @@ Préciez l'hypothèse utilisée pour réaliser votre estimation d'angle.
 \item en bleu, tracer $\overrightarrow{F_{sol tir}}$.
 \end{itemize}
 Donner la valeur numérique de $P_T$, $Q_T$ et $R_T$.
+
 \begin{UPSTIcorrige}
+\begin{center}
+\includegraphics[width=12cm]{Q_43}
+\end{center}
+
+En utilisant les lois de Coulomb à la limite du glissement, on a $P_T=\SI{12}{N}$, $Q_T=\SI{15}{N}$ et $R_T=\SI{3}{N}$.
 \end{UPSTIcorrige}
 
 \UPSTIquestion Ecrire l'expression littérale de la norme de $\overrightarrow{F_{sol tir}}$ et donner sa valeur numérique.
 \begin{UPSTIcorrige}
+
+$\overrightarrow{F_{sol tir}}$ s'obtient en isolant le pêne et en réalisant un thèorème de la résultante statique en projection  sur l'axe vertical. On a donc $F_{sol tir} = P_T + Q_T + R_T = 12+15+3 = \SI{30}{N}$.
+
 \end{UPSTIcorrige}
 
 \UPSTIquestion Sur le document réponse, cocher la case correspondant au taux d'utilisation des actionneurs électromagnétiques du banc d'essai.
+
 \begin{UPSTIcorrige}
+\textbf{Interprétation incertaine} : je pense que pour faire rentrer le pène et libérer le poussoir, le temps d'alimentation du solénoïde doit être très faible. J'aurais tendance à dire que l'alimentation doit être de courte durée. 
 \end{UPSTIcorrige}
 
 \UPSTIquestion Parmi les trois actionneurs proposés, choisir celui ou ceux qui conviennent en entourant sur chaque graphique la zone de la courbe qui justifie ce choix.
+
 \begin{UPSTIcorrige}
+Les \SI{40}{N} doivent être maintenus pendant 8 mm de de course, afin que le pène ne soit plus en contact avec le poussoir. Ainsi la courbe doit être compris dans le carré rouge afin de pouvoir maintenir un effort pendant une distance suffisamment grande. 
+
+On opte pour le ER 40/C.
+
+\begin{center}
+\includegraphics[width=6cm]{Q_42}
+\end{center}
+
+
 \end{UPSTIcorrige}
 
 
@@ -564,7 +613,7 @@ Donner la valeur numérique de $P_T$, $Q_T$ et $R_T$.
 \end{UPSTIcorrige}
 
 \UPSTIquestion Représenter votre proposition de solution pour la liaison complète entre la platine de fixation 16 et le bâti. Le maintien en position est déjà défini (6 vis et 6 écrous spéciaux pour profilé) Lorsque les vis ne sont pas serrées, le réglage de la position du canon par rapport au bâti doit être possible.
-
+ 
 Indiquer la valeur des ajustements normalisés nécessaires.
 \begin{UPSTIcorrige}
 \end{UPSTIcorrige}
