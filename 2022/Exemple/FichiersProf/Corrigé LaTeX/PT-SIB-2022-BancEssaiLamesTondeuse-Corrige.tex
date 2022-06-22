@@ -67,7 +67,7 @@
 % ----------
 % Epreuve
 % ----------
-% 0: Custom*
+% %0: Custom*
 % 1: S2I (par défaut)
 % 2: Informatique
 % 3: Modélisation et informatique
@@ -79,8 +79,8 @@
 % 9: SI 1
 % 10: SI 2
 % * Si on met la valeur 0, il faut décommenter la ligne suivante: 		
-%\newcommand{\UPSTIepreuveCustom}{Epreuve custom}
-\newcommand{\UPSTIidEpreuve}{7}
+\newcommand{\UPSTIepreuveCustom}{SIB}
+\newcommand{\UPSTIidEpreuve}{0}
 
 % ----------
 % Session
@@ -121,7 +121,10 @@
 
 \begin{UPSTIcorrige}
 
-** image ** 
+\begin{center}
+\includegraphics[width=14cm]{Q_01}
+\end{center}
+
 \end{UPSTIcorrige}
 
 \UPSTIquestion Donner l'expression de $C_{{adh}}$ en fonction de $F_{{vis}}$, $\mu_{{acier/acier}}$, $D_{{int}}$ et $D_{{ext}}$.
@@ -136,7 +139,7 @@ $C_{adh}=\frac{2}{3} \mu_{{acier/acier}}F_{{vis}} \frac{R^3-r^3}{R^2 - r^2}$.
 \UPSTIquestion Estimer la valeur de $C_{{adh}}$ (en \si{N.m}) à $\pm\SI{10}{\%}$.
 
 \begin{UPSTIcorrige}
-$C_{adh}=\frac{0,15}{3} \times 30000 \times \frac{60^3-32,5^3}{60^2 - 32,5^2}$
+$C_{adh}=\frac{0,15}{3} \times 30000 \times \frac{60^3-32,2^3}{60^2 - 32,2^2}$
 $\simeq 1500\times \frac{216000-27000}{3600 - 900}$
 $\simeq 1500\times \frac{2000}{30}$
 $\simeq 50\times 2000$
@@ -152,7 +155,10 @@ soit $C_{adh}\simeq \SI{100}{Nm}$.
 \UPSTIquestion* Sur le document réponse, cadre << question  4>>, identifier par un trait de couleur rouge la trace de la section cisaillée d'un ergot lors d'un choc sur la lame.
 
 \begin{UPSTIcorrige}
-** image ** 
+
+\begin{center}
+\includegraphics[width=10cm]{Q_04}
+\end{center}
 \end{UPSTIcorrige}
 
 \UPSTIquestion Donner l'expression de $C_{cis}$ en fonction des données nécessaires. 
@@ -170,9 +176,10 @@ Pour 4 ergots, $C_{cis} = 2R_m e b d_{ergot}$.
 \UPSTIquestion Estimer la valeur de $C_{cis}$ à  $\pm\SI{10}{\%}$.
 
 \begin{UPSTIcorrige}
-On a dans ce cas, $C_{cis} = 2 \times 300 \times 1,5 \times  4 \times 42$
+On a dans ce cas, $C_c = 2 \times 300 \times 1,5 \times  4 \times 42$
 $ \simeq 2 \times 300 \times 252$ $ \simeq \SI{150000}{Nmm}$ $\simeq \SI{150}{Nm}$ .
 
+\textit{AN : $C_{c}\simeq \SI{151}{Nm}$.}
 \end{UPSTIcorrige}
 
 \subsection{Couple transmis à l'arbre par la rondelle fusible lors d'un chox sur la lame}
@@ -205,15 +212,15 @@ Pour déterminer le couple moteur, on choisit << naturellement >> d'isoler l'arb
 \begin{UPSTIcorrige}
 On isole l'arbre.
 
-Bilan des actins mécaniques :
+Bilan des actions mécaniques :
 \begin{itemize}
 \item action de la poulie sur l'arbre : $  C_{poulie\rightarrow arbre} = C_{mot}$ (en utilisant les hypothèses).
 \end{itemize}
 
 TMD sur l'axe $\left(A,\overrightarrow{x_a}\right)$ :
-$  C_{mot} = \left(J_{lame}+J_{arbre}+J_{eq}\right) \dot{\omega_{arbre}}$.
+$  C_{mot} = \left(J_{lame}+J_{arbre}+J_{eq}\right) \dot{\omega}_{arbre}$.
 
-Par ailleurs, $\omega_{arbre}  = N_{arbre} \frac{2\pi}{60}$ et  $\dot{\omega_{arbre}} = N_{arbre} \frac{2\pi}{60 \Delta t_{acc}}$.
+Par ailleurs, $\omega_{arbre}  = N_{arbre} \frac{2\pi}{60}$ et  $\dot{\omega}_{arbre} = N_{arbre} \frac{2\pi}{60 \Delta t_{acc}}$.
 
 Au final, $  C_{mot} = \left(J_{lame}+J_{arbre}+J_{eq}\right) N_{arbre} \frac{\pi}{30 \Delta t_{acc}}$.
 
@@ -256,7 +263,7 @@ En conséquence, $C_{arbre_max} = C_{mot\_max}+ C_{rond}$.
 \UPSTIquestion Donner la valeur de $C_{arbre\_max}$.
 
 \begin{UPSTIcorrige}
-$C_{arbre_max} = 10+ 200 = \SI{210}{Nm}$.
+$C_{arbre\_max} = 10+ 200 = \SI{210}{Nm}$.
 \end{UPSTIcorrige}
 
 
@@ -427,8 +434,8 @@ Pour un acier standard, la masse voluimque est comprise entre \SI{7200}{kg.m^{-3
 
 \begin{UPSTIcorrige}
 $m_{pieu} = 8000 \times \frac{3\times 25^2}{4} \times 360 \times 10^{-9}$
-$= 8000 \times \times 625\times 270 \times 10^{-9}$
-$\simeq 8 \times \times 625\times 27 \times 10^{-5}$
+$= 8000 \times 625\times 270 \times 10^{-9}$
+$\simeq 8 \times625\times 27 \times 10^{-5}$
 $\simeq 5\times 27 \times 10^{-2}$
 $\simeq \SI{1,5}{kg}$.
 
@@ -439,16 +446,19 @@ $\simeq \SI{1,5}{kg}$.
 \UPSTIquestion Compte tenu des indications précédentes, donner la valeur numérique de la course $\Delta L_{finale}$. 
 
 \begin{UPSTIcorrige}
-Le pieu peut avancer lors de l'absence de la lame, c'est à dire pendant que la lame se déplace de \SI{105}{\degres}. 
-À une vitesse de $\SI{3500}{tr.min^{-1}} = 3500\times \frac{360}{60} \si{\degres.s^{-1}} =   \SI{21000}{\degres.s^{-1}}$,   \SI{105}{\degres} sont parcourus en  faut $\frac{105}{21000} \simeq \frac{100}{20000} \simeq \SI{0,5}{ms}$. 
 
-On a donc, ****
+\textbf{*** A confirmer} 
 
+La seule indication utilisable semble le figure 22 annexe F selon laquelle  $\Delta L_{finale} = 20 + 4 = \SI{24}{mm}$.
 
 \end{UPSTIcorrige}
 
 \UPSTIquestion Ecrire la relation littérale puis calculer $t_{\Delta finale}$, en secondes.
 \begin{UPSTIcorrige}
+Le pieu peut avancer lors de l'absence de la lame, c'est à dire pendant que la lame se déplace de \SI{105}{\degres}. 
+À une vitesse de $\SI{3500}{tr.min^{-1}} = 3500\times \frac{360}{60} \si{\degres.s^{-1}} =   \SI{21000}{\degres.s^{-1}}$. Pour parcourur \SI{105}{\degres} à cette viteses, il faut $\frac{105}{21000} \simeq \frac{100}{20000} \simeq \SI{0,5}{ms}$. 
+
+Au final, $t_{\Delta finale} = \SI{0,5}{ms} $
 \end{UPSTIcorrige}
 
 \UPSTIquestion Ecrire la relation littérale puis calculer la vitesse du pieu $V_{finale}$, en $\si{m.s^{-1}}$.
@@ -456,13 +466,18 @@ On a donc, ****
 \begin{UPSTIcorrige}
 En faisant l'hypothèse que le pieu se déplace à vitesse constante, on a $V_{finale} = \frac{\Delta L_{finale}}{t_{\Delta finale}}$.
 
-***
+On a donc $V_{finale} = \frac{24}{0,5 \times 10 ^{-3}}  = \SI{48}{m.s^{-1}}$. 
+
+
 \end{UPSTIcorrige}
 
 \UPSTIquestion Ecrire la relation littérale puis calculer l'énergie cinétique du pieu $E_{finale tir}$. 
 \begin{UPSTIcorrige}
 Pour un solide en translation, l'énergie cinétique est donnée par : $E_{finale tir} = \frac{1}{2}m_{pieu} V_{finale}^2$.
-***
+
+On a donc $E_{finale tir} = \frac{1}{2} \times 1,5 \times 48^2 \simeq 0,75 \times 2500 = \SI{1875}{J}$.
+
+\texitt{AN : $E_{finale tir} = \SI{1728}{J}$.
 \end{UPSTIcorrige}
 
 \section{Dimensionnement du ressort propulseur}
