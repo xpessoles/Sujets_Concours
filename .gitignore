@@ -8,3 +8,10 @@ compil/
 *.gz
 *.synctex(busy)
 2022/Exemple/FichiersProf/Corrigé LaTeX/images/~$Figures.pptx
+*.bcf
+*.bcf
+compil - Copie/SUJET.idx
+*.xml
+*.idx
+*.bcf
+*.idx
