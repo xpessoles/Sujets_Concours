@@ -2,11 +2,19 @@
 l’histoire de la planète Mars. Deux robots géologues, Spirit et Opportunity (figure 1), se sont posés sur cette
 planète, sur deux sites opposés, en janvier 2004. Leur mission est de rechercher et d’analyser différents types de
 roches et de sols qui peuvent contenir des indices sur la présence d’eau. 
-Ils sont équipés de six roues et d’une
-suspension spécialement conçue pour leur permettre de se déplacer quelle que soit la nature du terrain rencontré.
-Leur cahier des charges prévoyait une durée de vie de 90 jours martiens (le jour martien est environ 40 minutes
-plus long que le jour terrestre). Spirit a cessé d’émettre le 22 mars 2010, soit 2210 jours martiens après son
-arrivée sur la planète. Début 2017, Opportunity est toujours en activité et il a parcouru plus de 44 km sur Mars.
+%Ils sont équipés de six roues et d’une
+%suspension spécialement conçue pour leur permettre de se déplacer quelle que soit la nature du terrain rencontré.
+%Leur cahier des charges prévoyait une durée de vie de 90 jours martiens (le jour martien est environ 40 minutes
+%plus long que le jour terrestre). Spirit a cessé d’émettre le 22 mars 2010, soit 2210 jours martiens après son
+%arrivée sur la planète. Début 2017, Opportunity est toujours en activité et il a parcouru plus de 44 km sur Mars.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.5\linewidth]{fig_01}
+\caption{Vue d’artiste d’un robot géologue de la mission Mars Exploration Rovers (NASA/JPL – Caltech/
+Cornell) \label{fig_01}}
+\end{figure}
+
 
 
 Chaque robot est équipé de plusieurs instruments d’analyse (caméra, microscope, spectromètres) et d’un bras
@@ -24,21 +32,21 @@ une fois la liste des points d’intérêt reçue, le robot analyse le terrain a
 détermine le meilleur chemin lui permettant de visiter l’ensemble de ces points en dépensant le moins d’énergie
 possible.
 
-Après s’être intéressé à l’enregistrement des explorations, des points d’intérêts correspondants et des analyses
-à y mener, ce sujet aborde trois algorithmes qui peuvent être utilisés par le robot pour déterminer le meilleur
-parcours lui permettant de visiter chaque point d’intérêt une et une seule fois. Pour cela nous faisons quelques
-hypothèses simplificatrices.
-\begin{itemize}
-\item La zone d’exploration est dépourvue d’obstacle : le robot peut rejoindre directement en ligne droite n’importe
-quel point d’intérêt.
-\item Le sol est horizontal et de nature constante : l’énergie utilisé pour se déplacer entre deux points ne dépend
-que de leur distance, autrement dit le meilleur chemin est le plus court.
-\item La courbure de la planète est négligée compte tenu de la dimension réduite de la zone d’exploration : nous
-travaillerons en géométrie euclidienne et les points d’intérêts seront repérés par leurs coordonnées cartésiennes
-à l’intérieur de la zone d’exploration.
-\end{itemize}
+%Après s’être intéressé à l’enregistrement des explorations, des points d’intérêts correspondants et des analyses
+%à y mener, ce sujet aborde trois algorithmes qui peuvent être utilisés par le robot pour déterminer le meilleur
+%parcours lui permettant de visiter chaque point d’intérêt une et une seule fois. Pour cela nous faisons quelques
+%hypothèses simplificatrices.
+%\begin{itemize}
+%\item La zone d’exploration est dépourvue d’obstacle : le robot peut rejoindre directement en ligne droite n’importe
+%quel point d’intérêt.
+%\item Le sol est horizontal et de nature constante : l’énergie utilisé pour se déplacer entre deux points ne dépend
+%que de leur distance, autrement dit le meilleur chemin est le plus court.
+%\item La courbure de la planète est négligée compte tenu de la dimension réduite de la zone d’exploration : nous
+%travaillerons en géométrie euclidienne et les points d’intérêts seront repérés par leurs coordonnées cartésiennes
+%à l’intérieur de la zone d’exploration.
+%\end{itemize}
 
-Les seuls langages de programmation autorisés dans cette épreuve sont Python et SQL. 
+%Les seuls langages de programmation autorisés dans cette épreuve sont Python et SQL. 
 Toutes les questions
 sont indépendantes. Néanmoins, il est possible de faire appel à des fonctions ou procédures créées dans d’autres
 questions. Dans tout le sujet on suppose que les bibliothèques math, numpy et random ont été importées grâce
@@ -48,8 +56,8 @@ import math
 import numpy as np
 import random
 \end{lstlisting}
- Si les candidats font appel à des fonctions d’autres bibliothèques ils doivent préciser les instructions d’importation
- correspondantes.
+% Si les candidats font appel à des fonctions d’autres bibliothèques ils doivent préciser les instructions d’importation
+% correspondantes.
 
 Ce sujet utilise la syntaxe des annotations pour préciser le types des arguments et du résultat des fonctions à
 écrire. Ainsi
@@ -59,13 +67,16 @@ virgule flottante et le troisième une chaine de caractères et qu’elle renvoi
 Une liste de fonctions utiles est donnée à la fin du sujet.
 
 
-\section{Planification d’une exploration : première approche}
+\section{Création d’une exploration et gestion des points d’intérêt}
 
 Une exploration est un ensemble de points d’intérêts à l’intérieur d’une zone géographique limitée, une série
 d’analyses étant associée à chaque point d’intérêt. Chaque type d’analyse que le robot peut effectuer est codifié
 et référencé par un nombre entier. Un point d’intérêt est repéré par deux entiers, positifs ou nuls, correspondant
 à ses coordonnées cartésiennes en millimètres à l’intérieur de la zone d’exploration. L’ensemble des points
-d’intérêts d’une exploration qui en contient $n$ est représenté par un objet de type \texttt{numpy.ndarray}, à éléments
+d’intérêts d’une exploration qui en contient $n$ est représenté par un objet de type 
+%\texttt{numpy.ndarray}, 
+\texttt{list}, 
+à éléments
 entiers, à 2 colonnes et $n$ lignes, l’élément d’indice \texttt{i,0} correspondant à l’abscisse du point d’intérêt $i$ et l’élément
 d’indice \texttt{i,1} à son ordonnée.
 
@@ -81,6 +92,62 @@ d’indice \texttt{i,1} à son ordonnée.
 \end{tabular}
 \caption{Exemple d’exploration avec quatre points d’intérêt \label{fig_02}}
 \end{figure}
+
+\subsection{Génération d’une exploration d’essai}
+\subsubsection{Choix de points au hasard}
+\question{Afin de disposer de données pour tester les différents algorithmes de calcul de chemin qui seront développés plus tard, écrire une fonction qui construit une exploration au hasard. Cette fonction d’entête
+\texttt{def générer\_PI(n:int, cmax:int) -> np.ndarray}  
+prend en paramètres le nombre de points d’intérêts à générer et la largeur de la zone d’exploration (supposée
+carrée) et renvoie un objet de type \texttt{list} %numpy.ndarray 
+contenant les coordonnées de $n$ points deux à deux
+distincts choisis au hasard dans la zone d’exploration (\autoref{fig_02}).}
+
+\question{Quelles contraintes doivent vérifier les arguments de la fonction \texttt{générer\_PI} ?}
+
+\subsubsection{Calcul des distances}
+On dispose de la fonction d’entête \texttt{def position\_robot() -> tuple} qui renvoie un couple donnant les coordonnées actuelles du robot dans le système de coordonnées de l’exploration
+à planifier. Ainsi l’instruction \texttt{x, y = position\_robot()} permet de récupérer les coordonnées courantes du
+robot.
+Afin de faciliter l’application des différents algorithmes de recherche de chemin, on souhaite construire un tableau
+des distances entre les différents points d’intérêt d’une exploration et entre ceux-ci et la position courante du
+robot au moment du calcul.
+
+\question{Écrire une fonction d’entête \texttt{def calculer\_distances(PI:list) -> list:} %\texttt{def calculer\_distances(PI:np.ndarray) -> np.ndarray:}
+qui prend en paramètre un tableau de $n$ points d’intérêt tel que décrit précédemment et renvoie un tableau de
+nombres flottants, de dimension  $\left(n+1\right)\times\left(n+1\right)$ , tel que l’élément d’indice \texttt{i}, \texttt{j} fournit la distance entre les
+points d’intérêt $i$ et $j$, l’indice \texttt{n} désignant le point de départ du robot.}
+
+\subsection{Traitement d’image}
+On dispose de photographies d’une zone d’exploration effectuées à différentes longueur d’onde. Chaque photographie
+a été mises à l’échelle de la zone d’exploration puis stockée dans une liste
+% tableau numpy (np.ndarray) 
+à deux dimensions. Les dimensions correspondent aux coordonnées géographiques du point photographié, chaque
+élément est un entier, compris entre 0 et 255, donnant l’intensité du point considéré sur l’image. Ainsi l’élément
+d’indice \texttt{x,y} contient un entier, compris entre 0 et 255, correspondant à l’intensité sur la photographie considérée
+du point de coordonnées $(x,y)$. À partir de ces photographies, les géologues déterminent les endroits à analyser
+en filtrant ceux qui ont un profil d’émission caractéristique de certaines roches intéressantes.
+
+\subsubsection{Analyse d'une image}
+La fonction \texttt{F1} ci-dessous prend en paramètre une photographie représentée comme décrit plus haut. 
+\begin{lstlisting}
+def F1(photo:list) -> np.list:
+    n = photo.min()
+    b = photo.max()
+    h = np.zeros(b - n + 1, np.int64)
+    for p in photo.flat:
+        h[p - n] += 1
+    return h
+\end{lstlisting}
+\question{Expliquer ce que fait cette fonction et décrire son résultat.}
+
+\subsubsection{Sélection de points d’intérêts}
+
+\question{Écrire une fonction d’entête
+\texttt{def sélectionner\_PI(photo:np.ndarray, imin:int, imax:int) -> np.ndarray:}
+où \texttt{photo} est un tableau représentant une photographie. Le résultat de la fonction \texttt{sélectionner\_PI} est un
+tableau à deux dimensions, de structure similaire à celui décrit figure 2, contenant les coordonnées des points
+dont l’intensité sur la photographie est comprise entre \texttt{imin} et \texttt{imax}.}
+
 
 
 \section{Planification d’une exploration : première approche}
