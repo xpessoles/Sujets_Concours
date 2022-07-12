@@ -1,0 +1,396 @@
+% 
+% PARTIE 3
+% 
+\section{Étude du comportement sur terrain accidenté \label{sec_3}}
+
+Le terrain volcanique est en pratique très accidenté, avec la présence d'obstacles (roches) et de
+fortes pentes (\autoref{fig_10}). Par conséquent, le système de locomotion de ROBOVOLC doit être
+adapté à ce type de terrain.
+
+\begin{obj}
+L'objectif de cette partie est de valider les performances d'agilité et de franchissement
+d'obstacle du système sur des terrains non structurés avec difficultés topologiques
+(pentes, obstacles). On souhaite vérifier les critères suivants du cahier des charges :
+\begin{center}
+\begin{tabular}{ll}
+\hline
+\textbf{Critère} & \textbf{Valeur} \\ \hline \hline
+Masse maximale des composants modulaires & \SI{200}{kg}\\ \hline
+Pente maximale du sol & 40\degres \\ \hline
+Hauteur maximale d'un obstacle & \SI{400}{mm} \\ 
+\hline
+\end{tabular}
+\end{center}
+\end{obj}
+
+Dans toute cette partie, les effets dynamiques sont négligés et on se place en statique.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.45\linewidth]{fig_10.png}
+\caption{Illustration du comportement de ROBOVOLC sur terrain accidenté \label{fig_10}}
+\end{figure}
+
+
+
+%\subsection{Modélisation du châssis}
+%
+%\begin{obj}
+%Dans cette sous-partie, on établit un modèle statique du châssis de ROBOVOLC.
+%\end{obj}
+%
+%La mobilité sur terrain accidenté est obtenue, en plus de par la motorisation indépendante des
+%roues, par l'utilisation d'un châssis articulé. Celui-ci a une structure tubulaire avec des articulations
+%passives (non actionnées) permettant à ROBOVOLC de s'adapter à toute surface non plane. Une
+%illustration des cinq mouvements indépendants permis par les articulations est donnée sur la
+%\autoref{fig_11}.
+%
+%\begin{figure}[H]
+%\centering
+%\begin{tabular}{|p{.3\linewidth}|p{.3\linewidth}|p{.3\linewidth}|}
+%\hline
+%Châssis au repos & Mouvement 1 : rotation de l'essieu avant
+%autour de l'axe longitudinal & Mouvement 2 :
+%rotation de l'essieu central
+%autour de l'axe longitudinal \\ \hline
+%\begin{center}
+%\includegraphics[width=.9\linewidth]{fig_11_a.png}
+%\end{center}
+%&
+%\begin{center}
+%\includegraphics[width=.9\linewidth]{fig_11_b.png}
+%\end{center}
+%&
+%\begin{center}
+%\includegraphics[width=.9\linewidth]{fig_11_c.png}
+%\end{center} \\ \hline
+%Mouvement 3 :
+%rotation de l'essieu arrière
+%autour de l'axe longitudinal & 
+%Mouvement 4 :
+%rotation de l'arbre avant
+%autour de l'axe transversal &
+%Mouvement 5 :
+%rotation de l'arbre arrière
+%autour de l'axe transversal \\ \hline
+%\begin{center}
+%\includegraphics[width=.9\linewidth]{fig_11_d.png}
+%\end{center}
+%&
+%\begin{center}
+%\includegraphics[width=.9\linewidth]{fig_11_e.png}
+%\end{center}
+%&
+%\begin{center}
+%\includegraphics[width=.9\linewidth]{fig_11_f.png}
+%\end{center} \\ \hline
+%\end{tabular}
+%
+%\caption{Illustration des mouvements de déformation du châssis\label{fig_11}}
+%\end{figure}
+%
+%Le châssis est composé de cinq parties orientables les unes par rapport aux autres (\autoref{fig_12}) :
+%\begin{itemize}
+%\item l'essieu avant, noté EAV, reliant les roues avant 1 et 2 ;
+%\item l'essieu central, noté EC, reliant les roues centrales 3 et 4 ;
+%\item l'essieu arrière, noté EAR, reliant les roues arrière 5 et 6 ;
+%\item l'arbre avant, noté AAV, connectant les essieux EAV et EC ;
+%\item l'arbre arrière, noté AAR, connectant les essieux EC et EAR.
+%\end{itemize}
+%On rappelle que l'empattement entre deux essieux successifs est noté $a$, et que la distance entre
+%deux roues d'un même essieu est notée $2e$.
+%Les différentes parties sont reliées entre elles par des articulations possédant une raideur en
+%rotation imposée. Par la suite, on supposera cette raideur négligeable devant les autres actions
+%mécaniques mises en jeu.
+%Un schéma cinématique de la plateforme (châssis+roues) est présenté sur la \autoref{fig_12}.
+%
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=.45\linewidth]{fig_12.png}
+%\caption{Schéma cinématique de la plateforme\label{fig_12}}
+%\end{figure}
+%
+%Les deux articulations EC-AAV et EC-AAR, situées à une distance longitudinale $\pm b$ de l'essieu
+%EC, autorisent une rotation selon les directions $\vect{x}$ et $\vect{y}$; elles sont modélisées par des liaisons
+%rotule à doigt de centres respectifs $B$ et $C$. Les deux articulations EAV-AAV et EAR-AAR
+%autorisent une rotation selon la direction $\vect{x}$ seulement ; elles sont modélisées par des liaisons
+%pivot d'axe $\axe{O}{x}$.
+%
+%D'autre part, les six liaisons essieu-roue sont modélisées par des liaisons pivot d'axe $\axe{A}{y}$
+%(roues avant), $\axe{O}{y}$ (roues centrales) ou $\axe{D}{y}$ (roues arrière). De plus, le contact de chaque
+%roue i avec le sol est modélisé en première approche par une liaison ponctuelle de normale
+%$\axe{P_i}{z}$.
+%
+%On considère dans les questions \ref{q3.1} et \ref{q3.2} que les liaisons sont parfaites sans frottements.
+%
+%
+%\question{ \label{q3.1} Déterminer le nombre de mobilités du modèle du système.}
+%
+%\question{ \label{q3.2} Montrer que le modèle est isostatique. Conclure quant à la capacité du châssis à maintenir
+%les roues au contact du sol en toute circonstance.}
+%
+%\question{ \label{q3.3} Proposer un modèle de liaison parfaite pour le contact roue-sol qui permet de tenir compte,
+%dans une étude de statique sans glissement, du frottement longitudinal et transversal. Peut-on
+%calculer toutes les inconnues statiques de liaison dans ce cas ?}
+%
+%
+%On considère par la suite que le sol est horizontal dans la direction $\vect{y}$; on se ramène alors à un
+%problème dans le plan médian $\left(O,\vect{x},\vect{z}\right)$. Dans cette configuration plane, la plateforme est
+%constituée de trois ensembles articulés pour s'adapter au terrain accidenté (\autoref{fig_13}) :
+%\begin{itemize}
+%\item l'ensemble avant (noté ENSAV) constitué des pièces EAV, AAV et des roues 1 et 2 ;
+%\item l'ensemble central (noté ENSC) constitué de la pièce EC et des roues 3 et 4 ;
+%\item l'ensemble arrière (noté ENSAR) constitué des pièces EAR, AAR et des roues 5 et 6.
+%\end{itemize}
+%
+%On considère qu'il y a roulement sans glissement au contact roue-sol. Les actions mécaniques du
+%sol sur chaque ensemble sont schématisées sur la \autoref{fig_13}; elles sont modélisées par un effort
+%normal ($\indice{N}{AV}$, $\indice{N}{C}$ ou $\indice{N}{AR}$) et un effort tangentiel de traction ($\indice{T}{AV}$, $\indice{T}{C}$ ou $\indice{T}{AR}$) appliqués aux
+%points $\indice{P}{AV}$, $\indice{P}{C}$ ou $\indice{P}{AR}$ (projections des points de contact roue-sol $P_i$ dans le plan médian $\left(O,\vect{x},\vect{z}\right)$).
+%
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=.45\linewidth]{fig_13.png}
+%\caption{Configuration plane du châssis\label{fig_13}}
+%\end{figure}
+%
+%\question{Indiquer s'il est possible de déterminer, par une analyse statique globale, les différentes
+%actions $\indice{N}{AV}$, $\indice{T}{AV}$, $\indice{N}{C}$, $\indice{T}{C}$, $\indice{N}{AR}$, $\indice{T}{AR}$. Justifier la réponse.}
+%
+%La modélisation plane de la \autoref{fig_13} est considérée dans la suite de cette partie.
+
+
+On considère qu'il y a roulement sans glissement au contact roue-sol. Les actions mécaniques du
+sol sur chaque ensemble sont schématisées sur la \autoref{fig_13}; elles sont modélisées par un effort
+normal ($\indice{N}{AV}$, $\indice{N}{C}$ ou $\indice{N}{AR}$) et un effort tangentiel de traction ($\indice{T}{AV}$, $\indice{T}{C}$ ou $\indice{T}{AR}$) appliqués aux
+points $\indice{P}{AV}$, $\indice{P}{C}$ ou $\indice{P}{AR}$ (projections des points de contact roue-sol $P_i$ dans le plan médian $\left(O,\vect{x},\vect{z}\right)$).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.45\linewidth]{fig_13.png}
+\caption{Configuration plane du châssis\label{fig_13}}
+\end{figure}
+
+\subsection{Comportement en pente et stabilité}
+\begin{obj}
+Dans cette sous-partie, on analyse le comportement en pente et la stabilité statique de la
+plateforme.
+\end{obj}
+
+
+On considère ici un sol plan dans le plan $\left(O,\vect{x},\vect{z}\right)$ et incliné d'un angle $\alpha$ par rapport à
+l'horizontale (\autoref{fig_14}). La masse totale du système ROBOVOLC est répartie sur les trois
+ensembles de la plateforme; les ensembles ENSAV et ENSAR ont la même masse
+$\indice{m}{AV}=\indice{m}{AR}=m$ tandis que l'ensemble ENSC a une masse $m_C=M$. Les centres de gravité des
+trois ensembles sont notés respectivement $\indice{G}{AV}$, $\indice{G}{C}$ et $\indice{G}{AR}$ ; ils sont indiqués sur la \autoref{fig_14}.
+
+On a : $\vect{\indice{AG}{AV}}=\vect{\indice{OG}{C}}=\vect{\indice{DG}{AR}}=h\vect{z}$. 
+Toutes les roues ont le même diamètre noté $D$.
+On donne $D =\SI{300}{mm}$, $m =\SI{60}{kg}$, $M =\SI{80}{kg}$, $a =\SI{800}{mm}$, $b =\SI{200}{mm}$, $h =\SI{450}{mm}$.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.45\linewidth]{fig_14.png}
+\caption{Configuration en pente \label{fig_14}}
+\end{figure}
+
+\question{Dans la configuration $\alpha = 0\degres$ (pente nulle), justifier la répartition des efforts normaux
+suivante :  $\indice{N}{AV}= \indice{N}{AR}=mg$, $N_C=Mg$.}
+
+\question{Déterminer, en fonction des données géométriques, la hauteur $h$ limite des centres de
+gravité avant basculement du système sur une pente inclinée d'un angle $\alpha$. En déduire la valeur
+limite de $h$ à respecter pour satisfaire le cahier des charges, puis faire l'application numérique et
+conclure. On donne $\tan (50\degres)\simeq 1,2$ .}
+
+Dans la question suivante, on fait l'hypothèse (notée HYP1) de limite de glissement au contact
+entre le sol et la paire de roues de l'ensemble ENSC le plus chargé. On note $\mu$ le coefficient
+de frottement.
+
+\question{Montrer que l'hypothèse HYP1 permet de calculer l'ensemble des efforts de contact roue-sol
+ dans la configuration $\alpha \neq 0$ (le calcul n'est pas demandé). Quelle équation permet de
+démontrer que $\indice{N}{AV}\neq\indice{N}{AR}$ dans cette configuration ?}
+%
+%\subsection{Franchissement d'un obstacle}
+%
+%\begin{obj}
+%Dans cette sous-partie, on étudie le franchissement par ROBOVOLC d'un obstacle en
+%analysant les différentes phases du franchissement en terme d'efforts sur les roues.
+%\end{obj}
+%
+%L'obstacle est matérialisé par une marche (pente verticale) de hauteur $H$ dans le plan $\left(O,\vect{x},\vect{z}\right)$,
+%$\vect{z}$ correspondant à la verticale \autoref{fig_15}.
+%On s'intéresse particulièrement aux trois phases représentées sur la \autoref{fig_15}, correspondant à la
+%montée de chacun des trois ensembles (respectivement ENSAV pour la phase 1, ENSC pour la
+%phase 2 et ENSAR pour la phase 3) le long de l'obstacle.
+%
+%Les notations utilisées (géométrie, actions mécaniques) sont similaires à celles de la sous-partie
+%précédente.
+%
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=.45\linewidth]{fig_15.png}
+%\caption{Schématisation de l'obstacle et des phases de son franchissement\label{fig_15}}
+%\end{figure}
+%
+%
+%% Q3.8
+%\question{Pour chacune des trois phases, donner les deux équations obtenues par le théorème de la
+%résultante statique selon $\vect{x}$ et $\vect{z}$. Les autres équations de statique ne sont pas demandées.}
+%
+%Sous l'hypothèse (notée HYP2) de \textbf{limite de glissement pour la paire de roues montant le long
+%de l'obstacle}, l'ensemble des équations de statique donne accès aux valeurs des efforts de
+%contact roue-sol. On représente dans l'Annexe 2 les diagrammes d'évolution simulée de ces efforts
+%au cours du franchissement de l'obstacle, pour une hauteur de l'obstacle $H =\SI{400}{mm}$ et un
+%coefficient de frottement roue-sol $\mu = 0,5$ ou $\mu = 2$.
+%
+%% Q3.9
+%\question{Identifier les plages temporelles des diagrammes où ont lieu chacune des phases 1, 2 et 3.
+%Indiquer également à quoi correspondent les autres phases des diagrammes, et préciser l'origine
+%des sauts d'effort observés.}
+%
+%% Q3.10
+%\question{Expliquer pourquoi, sous l'hypothèse HYP2, il n'est pas possible de franchir l'obstacle
+%avec un coefficient de frottement $\mu = 0,5$.}
+%
+%
+%\subsection{Sélection des couples optimaux}
+%
+%\begin{obj}
+%Dans cette sous-partie, on met en place un algorithme de calcul des couples optimaux à
+%appliquer à chaque roue.
+%\end{obj}
+%
+%
+%Les actions extérieures exercées sur chaque roue (ou chaque paire de roues) sont représentées
+%sur la \autoref{fig_16} :
+%\begin{itemize}
+%\item $N$ est la composante d'effort normale au contact roue-sol ;
+%\item $T$ est la composante d'effort tangentielle au contact roue-sol ;
+%\item $C_m$ est le couple moteur ;
+%\item $M_r=k N$ est le couple résistant de frottement (résistance au roulement) avec $k$ un
+%coefficient constant dépendant de la géométrie de la surface de contact roue-sol et des
+%caractéristiques matériau de la roue et du sol.
+%\end{itemize}
+%
+%Chaque roue est supposée rigide et est assimilée à un cylindre parfait.
+%
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=.45\linewidth]{fig_16.png}
+%\caption{Schématisation des actions extérieures sur une roue\label{fig_16}}
+%\end{figure}
+%
+%\question{Donner la relation entre le couple moteur $C_m$ et les autres actions extérieures.}
+%
+%En lien avec l'évolution des efforts donnée dans l'Annexe 2, on trace sur la\autoref{fig_17} l'évolution
+%des couples $\indice{C}{m, AV}$, $\indice{C}{m,C}$ et $\indice{C}{m,AR}$ sur chaque paire de roues en fonction du temps lors du franchissement d'un obstacle de hauteur $H =\SI{400}{mm}$ et pour $\mu=2$.
+%
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=.45\linewidth]{fig_17.png}
+%\caption{Evolution du couple sur chaque paire de roues\label{fig_17}}
+%\end{figure}
+%
+%
+%% Q3.12
+%\question{Conclure sur la valeur de couple à retenir pour le dimensionnement des moteurs, et
+%remettre en cause l'utilisation de l'hypothèse HYP2 pour ce dimensionnement.}
+%
+%On cherche à présent la meilleure répartition du couple sur chaque roue, minimisant la puissance
+%motrice tout en évitant le glissement.
+%
+%% Q3.13
+%\question{Proposer un algorithme de répartition du couple sur chaque roue, qui serait une alternative
+%à l'hypothèse HYP2 et permettrait de sélectionner des couples optimaux.}
+
+
+\subsection{Asservissement en couple – contrôle de traction}
+
+\begin{obj}
+Dans cette sous-partie, on étudie l’asservissement en couple des moteurs utilisé pour
+limiter le glissement. Le cahier des charges à respecter est le suivant :
+
+\begin{center}
+\begin{tabular}{ll}
+\hline
+\textbf{Critère} & \textbf{Valeur} \\ \hline \hline
+Dépassement autorisé & inférieur à 5 \% \\ \hline
+Temps de réponse à 5 \% & inférieur à \SI{9}{ms} \\ \hline
+\end{tabular}
+\end{center}
+
+\end{obj}
+
+
+La structure d’asservissement proposée est composée de deux correcteurs utilisés simultanément :
+un correcteur de boucle de retour (nommé $C_{\text{fb}}( p)$) et un correcteur de boucle d'anticipation
+(nommé $C_{\text{ff}}( p)$ ). L’étude menée ici concerne le comportement du système avec cette structure
+de correction.
+Le schéma d'asservissement est donné sur la \autoref{fig_18}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.45\linewidth]{fig_18.png}
+\caption{Schématisation de l'asservissement en couple \label{fig_18}}
+\end{figure}
+
+
+Le bloc  $\indice{H}{mot} (p)$ représente un moteur ayant pour fonction de transfert
+$\indice{H}{mot} (p)=\dfrac{K_c}{K_c K_e+(R+Lp)( f +Jp)}$. Par identification, on trouve $\indice{H}{mot}= \dfrac{0,265}{0,4 p+200}$.
+
+
+% Q3.14
+\question{Énoncer, en justifiant, les hypothèses permettant de négliger les termes $L$ et $f$ pour
+cette modélisation du moteur par une fonction de transfert du premier ordre.}
+
+On néglige dans un premier temps la boucle d'anticipation ($\indice{C}{ff} =0$) et on prend
+$\indice{C}{fb}( p)=\indice{K}{fb}+\dfrac{\indice{I}{fb}}{p}$.
+
+% Q3.15
+\question{Déterminer la fonction de transfert en boucle fermée.}
+
+La \autoref{fig_19} représente l'évolution du dépassement et du temps de réponse à 5\% en fonction du
+coefficient d'amortissement $\zeta$.
+
+% Q3.16
+\question{En s'aidant de la \autoref{fig_19}, exprimer les conditions sur les paramètres $\indice{K}{fb}$ et $\indice{I}{fb}$
+permettant de respecter le cahier des charges.}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.45\linewidth]{fig_19_a.png}
+\includegraphics[width=.45\linewidth]{fig_19_b.png}
+\caption{Dépassement et temps de réponse à 5\% en fonction de $\zeta$ \label{fig_19}}
+\end{figure}
+
+
+
+
+Par une technique d’optimisation, un bon jeu de paramètres trouvé est : $\indice{K}{fb}=30$ et $\indice{I}{fb}=200\times10^{3}$.
+
+% Q3.17
+\question{Calculer la valeur du dépassement et le temps de réponse.}
+
+% Q3.18
+\question{Tracer sur le document réponse DR2 le diagramme de Bode asymptotique de la fonction
+de transfert en boucle ouverte. Discuter des marges de gain et de phase.}
+
+
+On considère à présent la structure d'asservissement complète, avec le correcteur $\indice{C}{ff} (p)$.
+
+% Q3.19
+\question{Exprimer la fonction de transfert en boucle fermée du système en fonction de $\indice{H}{mot}( p)$ ,
+$\indice{C}{fb} (p)$ et $\indice{C}{ff} (p)$.}
+
+% Q3.20
+\question{Que se passe-t-il si le correcteur vaut $\indice{C}{ff} (p)= \dfrac{1}{\indice{H}{mot} (p)}$ ? Quel est l’intérêt et le risque ?}
+
+Pour une fonction de transfert $\indice{C}{fb} (p)$ fixée, on considère le correcteur $\indice{C}{ff}(p)$ comme un gain
+proportionnel variable. Les courbes de réponse pour différentes valeurs de ce gain proportionnel
+sont données dans l'Annexe 3.
+
+% Q3.21
+\question{Quelles conclusions peut-on en tirer sur l'effet du correcteur $\indice{C}{ff} (p)$?}
+
