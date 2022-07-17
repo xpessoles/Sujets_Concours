@@ -146,7 +146,7 @@ $\simeq 50\times 2000$
 $\simeq \SI{100 000}{Nmm}$
 soit $C_{adh}\simeq \SI{100}{Nm}$.
 
-\textit{AN : $C_{adh}\simeq \SI{107}{Nm}$.}
+\textit{AN  -- Calculatrice : $C_{adh}\simeq \SI{107}{Nm}$.}
 
 \end{UPSTIcorrige}
 
@@ -179,16 +179,16 @@ Pour 4 ergots, $C_{cis} = 2R_m e b d_{ergot}$.
 On a dans ce cas, $C_c = 2 \times 300 \times 1,5 \times  4 \times 42$
 $ \simeq 2 \times 300 \times 252$ $ \simeq \SI{150000}{Nmm}$ $\simeq \SI{150}{Nm}$ .
 
-\textit{AN : $C_{c}\simeq \SI{151}{Nm}$.}
+\textit{AN -- Calculatrice : $C_{c}\simeq \SI{151}{Nm}$.}
 \end{UPSTIcorrige}
 
-\subsection{Couple transmis à l'arbre par la rondelle fusible lors d'un chox sur la lame}
+\subsection{Couple transmis à l'arbre par la rondelle fusible lors d'un choix sur la lame}
 \UPSTIquestion* Parmi les cinq expressions proposées dans le document réponse, cocher l'expression correcte de $C_{rond}$ en fonction de 
 $C_{adh}$ et $C_{cis}$.
 
 \begin{UPSTIcorrige}
 Lors d'un choc, on veut que les ergots soient cisaillés. Pour cela il faut donc qu'il y ait glissement entre la rondelle et la lame puis que le couple généré par le chox cisaille les ergots. 
-Nécessairement, on a donc $C_{rond}=MAX\left(C_{adh},C_{cis}\right)$.
+Nécessairement, on a donc $C_{rond}=C_{adh} + C_{cis}$.
 \end{UPSTIcorrige}
 
 \UPSTIquestion Donner la valeur de $C_{rond}$.
@@ -288,7 +288,8 @@ Résolution :
 \item $B_x   = 0$;
 \item $ C_y = F_{courroie/arbre}\frac{\ell_3 + \ell_2}{\ell_2} + F_{lame/arbre} \frac{\ell_1}{\ell_2}$;
 \item $B_y = F_{courroie/arbre} -  C_y -  F_{lame/arbre} = F_{courroie/arbre} -F_{courroie/arbre}\frac{\ell_3 + \ell_2}{\ell_2} - F_{lame/arbre} \frac{\ell_1}{\ell_2}-  F_{lame/arbre} $
-$= F_{courroie/arbre}\left(1-\frac{\ell_3 + \ell_2}{\ell_2}\right) - F_{lame/arbre} \left(1+\frac{\ell_1}{\ell_2}\right) $.
+$= F_{courroie/arbre}\left(1-\frac{\ell_3 + \ell_2}{\ell_2}\right) - F_{lame/arbre} \left(1+\frac{\ell_1}{\ell_2}\right) $
+$= -F_{courroie/arbre}\frac{\ell_3}{\ell_2} - F_{lame/arbre} \left(1+\frac{\ell_1}{\ell_2}\right) $.
 \end{itemize}
 
 \end{UPSTIcorrige}
@@ -299,8 +300,8 @@ $= F_{courroie/arbre}\left(1-\frac{\ell_3 + \ell_2}{\ell_2}\right) - F_{lame/arb
 \begin{itemize}
 \item $B_x   = 0$;
 \item $C_y = 300 \frac{100 + 200}{200} + 1200 \frac{100}{200}$ $= 450 + 600 = \SI{1050}{N}$;
-\item $B_y = 300\left(1-\frac{100+ 200}{200}\right) - 1200 \left(1+\frac{100}{200}\right) $ 
-$=-\frac{1}{2}300 - \frac{3}{2}1200 = -150 - 1800 = -\SI{1950}{N} $ .
+\item $B_y = -300\times \frac{100}{200} - 1200 \left(1+\frac{100}{200}\right) $ 
+$=-\frac{1}{2}\times 300 - \frac{3}{2}\times 1200 = -150 - 1800 = -\SI{1950}{N} $ .
 \end{itemize}\end{UPSTIcorrige}
 
 \UPSTIquestion Donner l'expression des moments de flexion $M_{fzAB}(x_a)$ et $M_{fzBC}(x_a)$ en fonction des données $B_x$, $B_y$, $C_x$ ou $C_z$.
@@ -309,7 +310,7 @@ $=-\frac{1}{2}300 - \frac{3}{2}1200 = -150 - 1800 = -\SI{1950}{N} $ .
 \begin{itemize}
 \item Pour $x_a \in [0,\ell_1]$, on isole $I$ : $\torseurstat{T}{II}{I} + \torseurstat{T}{lame}{arbre} = 0$.  On  a alors 
 $M_{fz AB}(x_a) = x_a  F_{lame/arbre}$. 
-\item Pour $x_a \in [\ell_1+\ell_2]$, on isole $I$ : $\torseurstat{T}{II}{I} + \torseurstat{T}{lame}{arbre} + \torseurstat{T}{0}{arbre} = 0$.
+\item Pour $x_a \in [\ell_1, \ell_1+\ell_2]$, on isole $I$ : $\torseurstat{T}{II}{I} + \torseurstat{T}{lame}{arbre} + \torseurstat{T}{0}{arbre} = 0$.
 On  a alors $M_{fz BC}(x_a) = x_a  F_{lame/arbre} + \left(x_a - \ell_1\right) B_y$. 
 \end{itemize}
 
@@ -321,7 +322,7 @@ $M_{fz AB}(x_a) = -  F_{courroie/arbre} (\ell_1+\ell_2+\ell_1-x_A)$.
 
 \end{UPSTIcorrige}
 
-\UPSTIquestion Calculer les valeurs des moments de flexion en B et C.
+\UPSTIquestion Calculer les valeurs des moments de flexion en $B$ et $C$.
 
 \begin{UPSTIcorrige}
 \begin{itemize}
@@ -338,14 +339,17 @@ $= -\SI{30}{Nm}$.
 \UPSTIquestion Tracer l'évolution du moment de flexion $M_{fz}(x_a)$ dans l'abre en précisant les caleurs significatives. 
 
 \begin{UPSTIcorrige}
-\textbf{A VERIFIER}
 \begin{center}
 \includegraphics[width=10cm]{Q_19}
 \end{center}
 \end{UPSTIcorrige}
 
 \UPSTIquestion Identifier le point où le moment de flexion est maximal et donner l'expression de $M_{fz-maxi}$.
+
 \begin{UPSTIcorrige}
+En $B$ et en $C$ la valeur du moment de flexion est identique, en valeur absolue. 
+
+On a vu précédemment que $M_{fz AB}(\ell_1) = \ell_1  F_{lame/arbre}$ $=\SI{30}{Nm}$.
 \end{UPSTIcorrige}
 
 \UPSTIquestion Donner l'expression de la contrainte normale maximale dans une section droite $\sigma_{max\_sect}$ en fonction de $M_{fz}(x_a)$ et de $d_{flexion}$.
@@ -389,6 +393,7 @@ $  C_{mot}+C_{rond\rightarrow arbre} = \left(J_{lame}+J_{arbre}+J_{eq}\right) \d
 \end{UPSTIcorrige}
 
 \UPSTIquestion En isolant uniquement l'arbre, écrire le théorème du moment dynamique en proection sur l'axe $\overrightarrow{x_a}$.
+
 \begin{UPSTIcorrige}
 Dans ce cas, on a 
 $  C_{poulie \rightarrow arbre}+C_{rond\rightarrow arbre} = J_{arbre} \dot{\omega}(t)$
@@ -405,13 +410,16 @@ Dans ces conditions, on a donc $  C_{poulie \rightarrow arbre}+C_{rond\rightarro
 \UPSTIquestion* Quelle proposition du document réponse retenez-vous pour déterminer le diamètre minimum de l'arbre ?
 
 \begin{UPSTIcorrige}
-Au vu des résultats précédents, on doit prendre $d_{mini\_arbre}=MAX\left(d_{flexion\_arbre};d_{torsion\_arbre}\right)$.
+Au vu des résultats précédents, on doit combiner les sollicitations de torsion et de flexion pour déterminer $dmini\_arbre$.
+En effet la flexion produit des contraintes normales et la torsion produit des contraintes tangentielles, on ne 
+connait pas le critère de plasticité retenu.
 \end{UPSTIcorrige}
 
 \UPSTIquestion Les dimensions du châssis et de l'abre ne sont pas figés à ce stade de l'étude. Il est encore possible de faire évoluer les longueurs $l_1$, $l_2$ et $l_3$. A-t-on intérêt à les augmenter ou les diminuer ? Compléter le document réponse en justifiant les choix effectués. 
 
 \begin{UPSTIcorrige}
-La sollicitation de torsion étant prépondérante, il n'ya aucun intérêt, du point de vue du dimensionnement de l'arbre, de modifier les longueurs $l_1$, $l_2$ et $l_3$.
+%La sollicitation de torsion étant prépondérante, il n'ya aucun intérêt, du point de vue du dimensionnement de l'arbre, de modifier les longueurs $l_1$, $l_2$ et $l_3$.
+La part de torsion est indépendante des longueurs, mais pas la flexion, il faut diminuer cette part en diminuant $l_1$ et $l_3$.
 \end{UPSTIcorrige}
 
 
@@ -471,6 +479,7 @@ On a donc $V_{finale} = \frac{24}{5 \times 10 ^{-3}}  = \SI{4,8}{m.s^{-1}}$.
 \end{UPSTIcorrige}
 
 \UPSTIquestion Ecrire la relation littérale puis calculer l'énergie cinétique du pieu $E_{finale tir}$. 
+
 \begin{UPSTIcorrige}
 Pour un solide en translation, l'énergie cinétique est donnée par : $E_{finale tir} = \frac{1}{2}m_{pieu} V_{finale}^2$.
 
@@ -488,17 +497,16 @@ En déduire la course du tir $C_{poussée choix 1}$ correspondant à ce choix 1.
 \begin{UPSTIcorrige}
 Il s'agit de la zone dans laquelle on peut armer le ressort, sans dépasser l'effort acceptable que peut fournir l'opérateur. 
 
-On a $F_{op acc choix 1} = KC_{poussée choix 1}$ et donc $C_{poussée choix 1} = \frac{K}{F_{op acc choix 1}}$.
+%On a $F_{op acc choix 1} = KC_{poussée choix 1}$ et donc $C_{poussée choix 1} = \frac{K}{F_{op acc choix 1}}$.
+%
+%Au final, $C_{poussée choix 1} = \frac{K}{F_{op acc choix 1}}$. On ne connait pas $K$.
 
-Au final, $C_{poussée choix 1} = \frac{K}{F_{op acc choix 1}}$. On ne connait pas $K$.
-
-
-\textbf{Proposition}
-On note $W = F_{op acc choix 1}C_{poussée choix 1}$ le travail nécessaire pour comprimer le ressort. 
+L'aire grisée représente le travail de l'opérateur pour comprimer le ressort. 
+On note $W = \frac{1}{2} F_{op acc choix 1}C_{poussée choix 1}$ ce travail. 
 Par ailleurs, on a $E_{ressort} = \SI{20}{J}$ l'énergie que doit restituer le ressort. 
 
-En conséquence,  $C_{poussée choix 1} = \frac{E_{ressort}}{F_{op acc choix 1}}$ 
-soit $C_{poussée choix 1} =\frac{20}{190}\simeq \frac{20}{200}\simeq \SI{0,1}{m}$.
+En conséquence,  $C_{poussée choix 1} = \frac{2 E_{ressort}}{F_{op acc choix 1}}$ 
+soit $C_{poussée choix 1} =\frac{2\times 20}{190}\simeq \frac{2\times 20}{200}\simeq \SI{0,2}{m}$.
 
 \end{UPSTIcorrige}
 
@@ -510,12 +518,17 @@ soit $C_{poussée choix 1} =\frac{20}{190}\simeq \frac{20}{200}\simeq \SI{0,1}{m
 \item $F_{fin\, poussee\, choix 2}$;
 \item le travail du ressort pendant la poussée.
 \end{itemize}
+
 \begin{UPSTIcorrige}
+\begin{center}
+\includegraphics[width=10cm]{Q_37}
+\end{center}
 \end{UPSTIcorrige}
 
 \UPSTIquestion De la figure précédente, déduire l'expression littérale de $F_{fin pouss\'ee choix 2}$ en fonction de $E_{ressort}$, $F_{op max choix 2}$ et $C_{pouss\'ee choix 2}$ puis effectuer le calcul numérique. 
 
 \begin{UPSTIcorrige}
+
 \end{UPSTIcorrige}
 
 
@@ -523,7 +536,14 @@ soit $C_{poussée choix 1} =\frac{20}{190}\simeq \frac{20}{200}\simeq \SI{0,1}{m
 \subsection*{Utilisation d'un configurateur en ligne}
 
 \UPSTIquestion* En tenant compte des données et des résultats de vos calculs (choix 2), sur le document réponse, compléter uniquement les cases nécessaires de la fiche de calcul du constructeur.
+
 \begin{UPSTIcorrige}
+Valeurs à saisir : 
+\begin{itemize}
+\item $D_e = \SI{50}{mm}$;
+\item $L_2 = \SI{100}{mm}$;
+\item $F_2 = \SI{240}{N}$.
+	\end{itemize}
 \end{UPSTIcorrige}
 
 \UPSTIquestion Donner l'expression puis calculer les efforts $F_{armée}$ du ressport proposé en position << armé >> et l'effort $F_{fin de tir}$ en position << fin de tir >>. 
@@ -586,7 +606,8 @@ $\overrightarrow{F_{sol tir}}$ s'obtient en isolant le pêne et en réalisant un
 \UPSTIquestion Sur le document réponse, cocher la case correspondant au taux d'utilisation des actionneurs électromagnétiques du banc d'essai.
 
 \begin{UPSTIcorrige}
-\textbf{Interprétation incertaine} : je pense que pour faire rentrer le pène et libérer le poussoir, le temps d'alimentation du solénoïde doit être très faible. J'aurais tendance à dire que l'alimentation doit être de courte durée. 
+%\textbf{Interprétation incertaine} : je pense que
+Pour faire rentrer le pène et libérer le poussoir, le temps d'alimentation du solénoïde doit être très faible. J'aurais tendance à dire que l'alimentation doit être de courte durée. 
 \end{UPSTIcorrige}
 
 \UPSTIquestion Parmi les trois actionneurs proposés, choisir celui ou ceux qui conviennent en entourant sur chaque graphique la zone de la courbe qui justifie ce choix.
