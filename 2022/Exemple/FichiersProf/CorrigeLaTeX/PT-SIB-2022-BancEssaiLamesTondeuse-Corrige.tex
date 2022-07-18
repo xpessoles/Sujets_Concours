@@ -130,7 +130,7 @@
 \UPSTIquestion Donner l'expression de $C_{{adh}}$ en fonction de $F_{{vis}}$, $\mu_{{acier/acier}}$, $D_{{int}}$ et $D_{{ext}}$.
 
 \begin{UPSTIcorrige}
-Le couple tranmissible par adhérence lorsque la zone de contact est une seule couronne est donné par 
+Le couple transmissible par adhérence lorsque la zone de contact est une seule couronne est donné par 
 $C_{adh}=\frac{2}{3} \mu_{{acier/acier}}F_{{vis}} \frac{R^3-r^3}{R^2 - r^2}$.
  ou encore  $C_{adh}=\frac{2}{3} \mu_{{acier/acier}}F_{{vis}} \frac{2^2}{2^3}\frac{D_{{ext}}^3-D_{{int}}^3}{D_{{ext}}^2 - D_{{int}}^2}=\frac{1}{3} \mu_{{acier/acier}}F_{{vis}} \frac{D_{{ext}}^3-D_{{int}}^3}{D_{{ext}}^2 - D_{{int}}^2}$.
 \end{UPSTIcorrige}
@@ -187,7 +187,7 @@ $ \simeq 2 \times 300 \times 252$ $ \simeq \SI{150000}{Nmm}$ $\simeq \SI{150}{Nm
 $C_{adh}$ et $C_{cis}$.
 
 \begin{UPSTIcorrige}
-Lors d'un choc, on veut que les ergots soient cisaillés. Pour cela il faut donc qu'il y ait glissement entre la rondelle et la lame puis que le couple généré par le chox cisaille les ergots. 
+Lors d'un choc, on veut que les ergots soient cisaillés. Pour cela il faut donc qu'il y ait glissement entre la rondelle et la lame puis que le couple généré par le choc cisaille les ergots. 
 Nécessairement, on a donc $C_{rond}=C_{adh} + C_{cis}$.
 \end{UPSTIcorrige}
 
@@ -204,7 +204,7 @@ En conséquence, $C_{rond} = MAX(120,200) = \SI{200}{Nm}$.
 \begin{UPSTIcorrige}
 En utilisant l'hypothèse que l’intégralité du couple est transmise à l'arbre, on choisit d'isoler l'arbre de transmission, l'accouplement et la lame. 
 
-Pour déterminer le couple moteur, on choisit << naturellement >> d'isoler l'arbre, d'appliquer le Prinicipe Fondamental de la Dynamique et plus précisément le théorème du moment dynamique en $A$ en projection sur l'axe de rotation à savoir sur l'axe $\left(A,\overrightarrow{x_a}\right)$.
+Pour déterminer le couple moteur, on choisit << naturellement >> d'isoler l'arbre, d'appliquer le Principe Fondamental de la Dynamique et plus précisément le théorème du moment dynamique en $A$ en projection sur l'axe de rotation à savoir sur l'axe $\left(A,\overrightarrow{x_a}\right)$.
  \end{UPSTIcorrige}
 
 \UPSTIquestion Donner l'expression de $C_{mot}$ en fonction des données de $J_{lame}$, $N_{arbre}$ et $\Delta t_{acc}$. 
@@ -251,7 +251,7 @@ $ \simeq \SI{5,4}{Nm}$ .
 \end{UPSTIcorrige}
 
 
-\section{Détermination du couple maximal transmssible par l'arbre}
+\section{Détermination du couple maximal transmissible par l'arbre}
 
 \UPSTIquestion* Parmi les expressions proposées dans le document réponse, cocher l'expression correcte de $C_{arbre\_max}$ en fonction de $C_{rond}$ et $C_{mot\_max}$.
 \begin{UPSTIcorrige}
@@ -268,7 +268,7 @@ $C_{arbre\_max} = 10+ 200 = \SI{210}{Nm}$.
 
 
 \UPSTItitrePartieCorrige{Prédimensionnement de l'arbre}
-\section{Etude de l'arbre en flexion exclusivement}
+\section{Étude de l'arbre en flexion exclusivement}
 
 \UPSTIquestion* Exprimer les composantes des forces des paliers B et C sur l'arbre en fonction des données.
 
@@ -336,7 +336,7 @@ $= -\SI{30}{Nm}$.
 
 \end{UPSTIcorrige}
 
-\UPSTIquestion Tracer l'évolution du moment de flexion $M_{fz}(x_a)$ dans l'abre en précisant les caleurs significatives. 
+\UPSTIquestion Tracer l'évolution du moment de flexion $M_{fz}(x_a)$ dans l'arbre en précisant les caleurs significatives. 
 
 \begin{UPSTIcorrige}
 \begin{center}
@@ -367,7 +367,7 @@ $= \frac{32 M_{fz}}{\pi d_{flexion}^3} $.
 \UPSTIquestion Exprimer le diamètre minimum de l'arbre de flexion $d_{flexion\_mini}$ en fonction de $s$, $R_e$ et des données identifiées précédemment. 
 
 \begin{UPSTIcorrige}
-En tenant compte du coeffient de sécurité, on souhaite nécessairement que 
+En tenant compte du coefficient de sécurité, on souhaite nécessairement que 
 $\sigma_{max\_sect} < \frac{Re}{s}$ soit $ \frac{32 M_{fz}}{\pi d_{flexion}^3}  < \frac{Re}{s}$.
 
 Au final,  $d_{flexion}> \sqrt[3]{\frac{32 s M_{fz}}{Re \pi }} $.
@@ -384,15 +384,15 @@ $ \Rightarrow d_{flexion}> \sqrt[3]{2200} $ au final $d_{flexion}> \SI{13}{mm}$.
 \end{UPSTIcorrige}
 
 
-\section{Etude de l'arbre en torsion exclusivement}
-\UPSTIquestion* En isolant l'ensemble \{arbre, poulie réceptrice\}, écrire le théorème du moment dynamique en proection sur l'axe $\overrightarrow{x_a}$.
+\section{Étude de l'arbre en torsion exclusivement}
+\UPSTIquestion* En isolant l'ensemble \{arbre, poulie réceptrice\}, écrire le théorème du moment dynamique en projection sur l'axe $\overrightarrow{x_a}$.
 
 \begin{UPSTIcorrige}
 En reprenant un raisonnement précédent, 
 $  C_{mot}+C_{rond\rightarrow arbre} = \left(J_{lame}+J_{arbre}+J_{eq}\right) \dot{\omega}(t)$
 \end{UPSTIcorrige}
 
-\UPSTIquestion En isolant uniquement l'arbre, écrire le théorème du moment dynamique en proection sur l'axe $\overrightarrow{x_a}$.
+\UPSTIquestion En isolant uniquement l'arbre, écrire le théorème du moment dynamique en projection sur l'axe $\overrightarrow{x_a}$.
 
 \begin{UPSTIcorrige}
 Dans ce cas, on a 
@@ -412,7 +412,7 @@ Dans ces conditions, on a donc $  C_{poulie \rightarrow arbre}+C_{rond\rightarro
 \begin{UPSTIcorrige}
 Au vu des résultats précédents, on doit combiner les sollicitations de torsion et de flexion pour déterminer $dmini\_arbre$.
 En effet la flexion produit des contraintes normales et la torsion produit des contraintes tangentielles, on ne 
-connait pas le critère de plasticité retenu.
+connaît pas le critère de plasticité retenu.
 \end{UPSTIcorrige}
 
 \UPSTIquestion Les dimensions du châssis et de l'abre ne sont pas figés à ce stade de l'étude. Il est encore possible de faire évoluer les longueurs $l_1$, $l_2$ et $l_3$. A-t-on intérêt à les augmenter ou les diminuer ? Compléter le document réponse en justifiant les choix effectués. 
@@ -423,7 +423,7 @@ La part de torsion est indépendante des longueurs, mais pas la flexion, il faut
 \end{UPSTIcorrige}
 
 
-\UPSTItitrePartieCorrige{Etude du ressort d'éjection du pieu}
+\UPSTItitrePartieCorrige{Étude du ressort d'éjection du pieu}
 \section{Détermination de l'énergie nécessaire à l'éjection du pieu}
 
 \UPSTIquestion* Donner l'expression de la masse du pieu en fonction de son diamètre $D_{pieu}$, de sa longueur $L_{pieu}$ et de la masse volumique de l'acier $\rho_{acier}$. Précisez l'unité. 
@@ -435,7 +435,7 @@ On a  $m_{pieu} = \rho_{acier} \frac{\pi D^2_{pieu}}{4} L_{pieu}$ avec $\rho_{ac
 \UPSTIquestion Donner une valeur numérique pour la masse volumique (deux chiffres significatifs) d'un acier standard $\rho_{acier}$. Précisez l'unité. 
 
 \begin{UPSTIcorrige}
-Pour un acier standard, la masse voluimque est comprise entre \SI{7200}{kg.m^{-3}} et \SI{7800}{kg.m^{-3}}.
+Pour un acier standard, la masse volumique est comprise entre \SI{7200}{kg.m^{-3}} et \SI{7800}{kg.m^{-3}}.
 \end{UPSTIcorrige}
 
 \UPSTIquestion Calculer la masse du pieu $m_{pieu}$. Précisez l'unité. 
@@ -460,15 +460,15 @@ La seule indication utilisable semble le figure 22 annexe F selon laquelle  $\De
 
 \end{UPSTIcorrige}
 
-\UPSTIquestion Ecrire la relation littérale puis calculer $t_{\Delta finale}$, en secondes.
+\UPSTIquestion Écrire la relation littérale puis calculer $t_{\Delta finale}$, en secondes.
 \begin{UPSTIcorrige}
 Le pieu peut avancer lors de l'absence de la lame, c'est à dire pendant que la lame se déplace de \SI{105}{\degres}. 
-À une vitesse de $\SI{3500}{tr.min^{-1}} = 3500\times \frac{360}{60} \si{\degres.s^{-1}} =   \SI{21000}{\degres.s^{-1}}$. Pour parcourur \SI{105}{\degres} à cette viteses, il faut $\frac{105}{21000} \simeq \frac{100}{20000} \simeq \SI{5}{ms}$. 
+À une vitesse de $\SI{3500}{tr.min^{-1}} = 3500\times \frac{360}{60} \si{\degres.s^{-1}} =   \SI{21000}{\degres.s^{-1}}$. Pour parcourir \SI{105}{\degres} à cette vitesse, il faut $\frac{105}{21000} \simeq \frac{100}{20000} \simeq \SI{5}{ms}$. 
 
 Au final, $t_{\Delta finale} = \SI{5}{ms} $
 \end{UPSTIcorrige}
 
-\UPSTIquestion Ecrire la relation littérale puis calculer la vitesse du pieu $V_{finale}$, en $\si{m.s^{-1}}$.
+\UPSTIquestion Écrire la relation littérale puis calculer la vitesse du pieu $V_{finale}$, en $\si{m.s^{-1}}$.
 
 \begin{UPSTIcorrige}
 En faisant l'hypothèse que le pieu se déplace à vitesse constante, on a $V_{finale} = \frac{\Delta L_{finale}}{t_{\Delta finale}}$.
@@ -478,7 +478,7 @@ On a donc $V_{finale} = \frac{24}{5 \times 10 ^{-3}}  = \SI{4,8}{m.s^{-1}}$.
 
 \end{UPSTIcorrige}
 
-\UPSTIquestion Ecrire la relation littérale puis calculer l'énergie cinétique du pieu $E_{finale tir}$. 
+\UPSTIquestion Écrire la relation littérale puis calculer l'énergie cinétique du pieu $E_{finale tir}$. 
 
 \begin{UPSTIcorrige}
 Pour un solide en translation, l'énergie cinétique est donnée par : $E_{finale tir} = \frac{1}{2}m_{pieu} V_{finale}^2$.
@@ -492,7 +492,7 @@ On a donc $E_{finale tir} = \frac{1}{2} \times 1,5 \times 4,8^2 \simeq 0,75 \tim
 \subsection*{Choix n°1}
 
 \UPSTIquestion* Sur la figure 23 de l'annexe G, que représente l'aire grisée ?
-En déduire la course du tir $C_{poussée choix 1}$ correspondant à ce choix 1. Ecrire la relation littérale puis effectuer le calcul numérique. 
+En déduire la course du tir $C_{poussée choix 1}$ correspondant à ce choix 1. Écrire la relation littérale puis effectuer le calcul numérique. 
 
 \begin{UPSTIcorrige}
 Il s'agit de la zone dans laquelle on peut armer le ressort, sans dépasser l'effort acceptable que peut fournir l'opérateur. 
@@ -523,12 +523,19 @@ soit $C_{poussée choix 1} =\frac{2\times 20}{190}\simeq \frac{2\times 20}{200}\
 \begin{center}
 \includegraphics[width=10cm]{Q_37}
 \end{center}
+Le travail du ressort correspond à l'aire du trapèze.
 \end{UPSTIcorrige}
 
 \UPSTIquestion De la figure précédente, déduire l'expression littérale de $F_{fin pouss\'ee choix 2}$ en fonction de $E_{ressort}$, $F_{op max choix 2}$ et $C_{pouss\'ee choix 2}$ puis effectuer le calcul numérique. 
 
 \begin{UPSTIcorrige}
+L'énergie à restituer correspond dès lors à l'aire du trapèze. On a donc 
 
+$E_{ressort} = \frac{1}{2}\left(F_{op max choix 2} + F_{fin pouss\'ee choix 2} \right)C_{pouss\'ee choix 2}$. 
+
+On a alors $ F_{fin pouss\'ee choix 2} = \frac{2 E_{ressort}}{C_{pouss\'ee choix 2}} - F_{op max choix 2}$.
+
+AN : $ F_{fin pouss\'ee choix 2} = \frac{2 \times 20}{100\times 10^{-3}} - 240 =\SI{160}{N} $
 \end{UPSTIcorrige}
 
 
@@ -546,10 +553,17 @@ Valeurs à saisir :
 	\end{itemize}
 \end{UPSTIcorrige}
 
-\UPSTIquestion Donner l'expression puis calculer les efforts $F_{armée}$ du ressport proposé en position << armé >> et l'effort $F_{fin de tir}$ en position << fin de tir >>. 
+\UPSTIquestion Donner l'expression puis calculer les efforts $F_{armée}$ du ressort proposé en position << armé >> et l'effort $F_{fin de tir}$ en position << fin de tir >>. 
 
 Donner le diamètre extérieur nominal $D_{ext nominal}$ et calculer le diamètre extérieur $D_{ext max}$. Conclure. 
+
 \begin{UPSTIcorrige}
+Le ressort a une raideur de \SI{0,8}{N/mm}. La longueur à vide est de \SI{400}{mm}. La longueur armée est de \SI{100}{mm}. On a donc $F_{armée} = 300 \times 0,8 = \SI{240}{N}$. 
+
+La course étant de $\SI{100}{mm}$, en fin de tir, on a donc $F_{fin de tir}= 200 \times 0,8 = \SI{160}{N}$
+
+On lit sur l'annexe  $D_{ext nominal} = \SI{44,5}{mm}$. Ce qui est inférieur aux \SI{50}{mm} requis.
+
 \end{UPSTIcorrige}
 
 \subsection*{Identification des zones de contact}
@@ -596,10 +610,10 @@ Donner la valeur numérique de $P_T$, $Q_T$ et $R_T$.
 En utilisant les lois de Coulomb à la limite du glissement, on a $P_T=\SI{12}{N}$, $Q_T=\SI{15}{N}$ et $R_T=\SI{3}{N}$.
 \end{UPSTIcorrige}
 
-\UPSTIquestion Ecrire l'expression littérale de la norme de $\overrightarrow{F_{sol tir}}$ et donner sa valeur numérique.
+\UPSTIquestion Écrire l'expression littérale de la norme de $\overrightarrow{F_{sol tir}}$ et donner sa valeur numérique.
 \begin{UPSTIcorrige}
 
-$\overrightarrow{F_{sol tir}}$ s'obtient en isolant le pêne et en réalisant un thèorème de la résultante statique en projection  sur l'axe vertical. On a donc $F_{sol tir} = P_T + Q_T + R_T = 12+15+3 = \SI{30}{N}$.
+$\overrightarrow{F_{sol tir}}$ s'obtient en isolant le pêne et en réalisant un théorème de la résultante statique en projection  sur l'axe vertical. On a donc $F_{sol tir} = P_T + Q_T + R_T = 12+15+3 = \SI{30}{N}$.
 
 \end{UPSTIcorrige}
 
@@ -607,13 +621,13 @@ $\overrightarrow{F_{sol tir}}$ s'obtient en isolant le pêne et en réalisant un
 
 \begin{UPSTIcorrige}
 %\textbf{Interprétation incertaine} : je pense que
-Pour faire rentrer le pène et libérer le poussoir, le temps d'alimentation du solénoïde doit être très faible. J'aurais tendance à dire que l'alimentation doit être de courte durée. 
+Pour faire rentrer le pêne et libérer le poussoir, le temps d'alimentation du solénoïde doit être très faible. J'aurais tendance à dire que l'alimentation doit être de courte durée. 
 \end{UPSTIcorrige}
 
 \UPSTIquestion Parmi les trois actionneurs proposés, choisir celui ou ceux qui conviennent en entourant sur chaque graphique la zone de la courbe qui justifie ce choix.
 
 \begin{UPSTIcorrige}
-Les \SI{40}{N} doivent être maintenus pendant 8 mm de de course, afin que le pène ne soit plus en contact avec le poussoir. Ainsi la courbe doit être compris dans le carré rouge afin de pouvoir maintenir un effort pendant une distance suffisamment grande. 
+Les \SI{40}{N} doivent être maintenus pendant 8 mm de de course, afin que le pêne ne soit plus en contact avec le poussoir. Ainsi la courbe doit être compris dans le carré rouge afin de pouvoir maintenir un effort pendant une distance suffisamment grande. 
 
 On opte pour le ER 40/C.
 
@@ -625,7 +639,7 @@ On opte pour le ER 40/C.
 \end{UPSTIcorrige}
 
 
-\UPSTItitrePartieCorrige{Dessin d'étute de Construction Mécanique}
+\UPSTItitrePartieCorrige{Dessin d'étude de Construction Mécanique}
 
 \section{Platine de fixation 16}
 
@@ -633,7 +647,7 @@ On opte pour le ER 40/C.
 \begin{UPSTIcorrige}
 \end{UPSTIcorrige}
 
-\UPSTIquestion Représenter votre proposition de solution pour la liaison complète entre la platine de fixation 16 et le bâti. Le maintien en position est déjà défini (6 vis et 6 écrous spéciaux pour profilé) Lorsque les vis ne sont pas serrées, le réglage de la position du canon par rapport au bâti doit être possible.
+\UPSTIquestion Représenter votre proposition de solution pour la liaison complète entre la platine de fixation 16 et le bâti. Le maintien en position est déjà défini (6 vis et 6 écrous spéciaux pour profilé). Lorsque les vis ne sont pas serrées, le réglage de la position du canon par rapport au bâti doit être possible.
  
 Indiquer la valeur des ajustements normalisés nécessaires.
 \begin{UPSTIcorrige}
@@ -647,20 +661,20 @@ Indiquer la valeur des ajustements normalisés nécessaires.
 
 \UPSTIquestion Représenter votre proposition de solution pour la liaison complète (appui-plan + centrage court) démontable entre le corps du propulseur 1 et la platine de fixation 16. Indiquer la valeur des ajustements normalisés nécessaires.
 
-Cette liaison doit peermettre également la mise et le maintien en position de la bague d'amortissement 15 entre la platine de fixation 16 et le corps du propulseur 1. 
+Cette liaison doit permettre également la mise et le maintien en position de la bague d'amortissement 15 entre la platine de fixation 16 et le corps du propulseur 1. 
 
 \begin{UPSTIcorrige}
 \end{UPSTIcorrige}
 
 \section{Gâchette}
 
-\UPSTIquestion* Représenter votre proposition de solution pour la liaison entre le pêne 10 et l'axe du solénoïde 13. Cette liaison ne doit permettre que la transmission de l'effort de dévérouillage. 
+\UPSTIquestion* Représenter votre proposition de solution pour la liaison entre le pêne 10 et l'axe du solénoïde 13. Cette liaison ne doit permettre que la transmission de l'effort de déverrouillage. 
 
 Les jeux permettant les degrés de liberté nécessaires au bon fonctionnement doivent être représentés (1mm minimum). 
 \begin{UPSTIcorrige}
 \end{UPSTIcorrige}
 
-\UPSTIquestion Représenter votre proposition de solution pour la forme extérieure du poussoir 7 ainsi que la forme de l'extrémité du pêne 10, permettant, lors de l'aménagement, de repousser l'axe du solénoïde pour rélaiser le vérouillage automatique du système. En position << armée >>, le contact linéique entre le pêne 10 et la bague << Glycodur >> 8 doit être de 2 mm au minimum.
+\UPSTIquestion Représenter votre proposition de solution pour la forme extérieure du poussoir 7 ainsi que la forme de l'extrémité du pêne 10, permettant, lors de l'aménagement, de repousser l'axe du solénoïde pour réaliser le verrouillage automatique du système. En position << armée >>, le contact linéique entre le pêne 10 et la bague << Glycodur >> 8 doit être de 2 mm au minimum.
 \begin{UPSTIcorrige}
 \end{UPSTIcorrige}
 
@@ -670,7 +684,7 @@ Les jeux permettant les degrés de liberté nécessaires au bon fonctionnement d
 \begin{UPSTIcorrige}
 \end{UPSTIcorrige}
 
-\UPSTIquestion Définir les formes de la clulasse 2 permettant de guider le ressort propulseur3.
+\UPSTIquestion Définir les formes de la culasse 2 permettant de guider le ressort propulseur3.
 \begin{UPSTIcorrige}
 \end{UPSTIcorrige}
 
