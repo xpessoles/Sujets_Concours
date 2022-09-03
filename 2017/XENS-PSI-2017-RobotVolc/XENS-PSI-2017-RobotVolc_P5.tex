@@ -72,13 +72,17 @@ L'objet à saisir est modélisé par un cylindre à base circulaire de rayon $R$
 rayon $R$ de l'objet et des données géométriques.}
 \ifprof
 \begin{corrige}
-Une fermeture géométrique angulaire dans le triangle $CEH$ donne immédiatement :  $\alpha + \beta α+β=π/2
+Une fermeture géométrique angulaire dans le triangle $CEH$ donne immédiatement :  $\alpha + \beta =\dfrac{\pi}{2}$.
 
-Une fermeture géométrique linéaire permet de déterminer la relation entre  α (ou β), R et les dimensions du mécanisme.
-On trouve (en projetant sur l’axe x ⃗) :
-R=d+l_4  cos⁡β-l_5-l_6
-R=d+l_4  sin⁡α-l_5-l_6
-
+Une fermeture géométrique linéaire permet de déterminer la relation entre  $\alpha$ (ou $\beta$), $R$ et les dimensions du mécanisme.
+On trouve (en projetant sur l’axe $\vect{x}$) :
+$\left\{
+\begin{array}{l}
+R = d + l_4 \cos\beta -l_5 - l_6 \\
+R = d + l_4 \sin\beta -l_5 - l_6 \\
+\end{array}
+\right.
+$.
 
 \end{corrige}
 \else
@@ -89,6 +93,21 @@ R=d+l_4  sin⁡α-l_5-l_6
 sera utilisée dans la suite de cette partie.}
 \ifprof
 \begin{corrige}
+Les liaisons étant en série, il est plus direct de passer par les torseurs cinématiques. Nous avons ici l’association d’une liaison rotule et d’une liaison appui plan en série
+$\torseurcin{V}{5}{\text{objet}} = \torseurcin{V}{5}{6} + \torseurcin{V}{6}{\text{objet}}$.
+
+$\torseurcin{V}{5}{\text{objet}} 
+= 
+\torseurl{\omega_{x56} \vect{x_P}+\omega_{y56} \vect{y_P}+\omega_{z56} \vect{z_P}}
+{\vect{0}}{Q}
++ \torseurl{\omega_{y60} \vect{y_P}}{V_x \vect{x_P}+V_z \vect{z_P}}{Q}
+= 
+\torseurl{\omega_{x} \vect{x_P}+\omega_{y} \vect{y_P}+\omega_{z} \vect{z_P}}
+{V_x \vect{x_P}+V_z \vect{z_P}}{Q}
+$.
+
+Il s’agit du torseur d’une liaison ponctuelle de normale $(Q,\vect{y_P})$,  la forme du torseur est maintenue sur la droite $(Q,\vect{y_P})$, la liaison peut donc s’exprimer également comme une ponctuelle de normale  $(S,\vect{y_P})$.
+
 \end{corrige}
 \else
 \fi
@@ -100,6 +119,7 @@ sera utilisée dans la suite de cette partie.}
 \question{Donner l'orientation de l'effort dans les liaisons pivot situées en $B$ et en $E$.}
 \ifprof
 \begin{corrige}
+Les solides 2 et 4 sont soumis chacun à 2 glisseurs, par conséquent, les directions des efforts  en $B$ et $E$ sont respectivement $\vect{AB}$ et $\vect{EH}$.
 \end{corrige}
 \else
 \fi
@@ -116,9 +136,14 @@ où $F_S^x$ est l'effort tangentiel et $F_S^y$ est l'effort normal (ou de serrag
 \question{Par une étude statique, montrer que les efforts $F_P$, $F_S^x$ et $F_S^y$ 
 y sont liés par la relation $F_P = K \left( \tan \beta F_S^y - F_S^x\right)$  
 où l'expression de la constante $K$ est à préciser en fonction de $\ell_2$ et $\ell_4$.
-Montrer également que cette relation est indépendante de la longueur $L_5$ et expliquer l'avantage technique de ce résultat.}
+Montrer également que cette relation est indépendante de la longueur $L_5$ et expliquer l'avantage technique de ce résultat. }
 \ifprof
-\begin{corrige}
+\begin{corrige}~\\
+\begin{figure}[H]
+\centering
+{\includegraphics[width=\linewidth]{PFS}}
+\end{figure}
+
 \end{corrige}
 \else
 \fi
@@ -136,6 +161,11 @@ On représente sur la \autoref{fig_24}  l'évolution de $\tan \beta$ en fonction
 \question{Commenter ce graphe, en particulier pour les valeurs extrêmes du rayon $R$.}
 \ifprof
 \begin{corrige}
+On remarque que :
+\begin{itemize}
+\item quand $R$ est grand, l’effort $F_P$est quasi-indépendant de l’effort normal $F_S^y$ de la pince sur l’objet. 
+\item quand $R$ est petit, l’effort $F_P$ dépend quasi-uniquement de l’effort normal $F_S^y$. La capacité de préhension est fortement diminuée pour des petits rayons.
+\end{itemize}
 \end{corrige}
 \else
 \fi
@@ -148,6 +178,12 @@ valeur pour $f =2$, et on commentera ce caractère particulier de la pince en do
 et un inconvénient.}
 \ifprof
 \begin{corrige}
+En supposant un modèle de frottement de Coulomb, on a à la limite de l'adhérence (action de l’objet 6 sur le cône de frottement)
+$|F_S^x |=f |F_S^y |$. L’effort $F_P$ est nul lorsque $\tan\beta =f$.
+Dans ces conditions, le rayon 
+$
+R=R_{\text{min}} = d+l_4 \sin \left (\tan^{-1} f \right) -l_5 -l_6$.
+
 \end{corrige}
 \else
 \fi
@@ -158,6 +194,16 @@ et un inconvénient.}
 l'effort de poussée maximal à fournir pour respecter le cahier des charges avec $f =2$.}
 \ifprof
 \begin{corrige}
+Dans le cas où $R<R_{\text{min}}$ on a :
+$F_P=\left(\dfrac{m_{\text{objet}}g}{3} \tan \beta -f \dfrac{m_{\text{objet}} g}{3}\right) \dfrac{l_4}{2l_2}$ 
+
+Le cahier des charges impose  $R_{\text{min}}=0,04$ soit  $\tan\beta =6$ d’après la figure 24 et  $m_{\text{maxi}}=\SI{2,5}{kg}$
+
+Dans ces conditions,
+$F_P=\left(\dfrac{2,5\times 10}{3} \times 6- \dfrac{2 \times 2,5\times 10}{3}\right)  \dfrac{3}{4}=\SI{25}{N}$.
+
+Pour les trois doigts, l’effort sera donc de \SI{75}{N}.
+
 \end{corrige}
 \else
 \fi
@@ -172,7 +218,7 @@ $F_s^y = K_{\beta} F_p$.
 
 
 La pince a un capteur d'effort pour mesurer et contrôler la force de serrage. Pour l'asservissement
-de la pince, une régulation en effort est faite. Le schéma bloc de la \autoref{fig_25} présente la structure
+de la pince, une régulation en effort est faite. Le schéma blocs de la \autoref{fig_25} présente la structure
 de contrôle de la pince.
 
 
@@ -185,8 +231,12 @@ de contrôle de la pince.
 
 %Q5.9 : 
 \question{Quel est l'intérêt pratique de la régulation mise en place ?}
-
-
+\ifprof
+\begin{corrige}
+La régulation en place permet de contrôler l’effort normal et donc de contrôler le non-glissement de l’objet par rapport à la pince.
+\end{corrige}
+\else
+\fi
 Pour l’étude en asservissement de la pince, on fixe $K_{\beta} = 2,2$.
 On donne les caractéristiques du système suivantes.
 
@@ -211,6 +261,15 @@ $\dfrac{F_S^y}{F_c}$ et la mettre sous la forme canonique $\dfrac{K}{1+Ap+Bp^2}$
 $A$ et $B$.}
 \ifprof
 \begin{corrige}
+
+$\dfrac{F_S^y (p)}{F_C (p)}=\dfrac{C_f K_t K_r K_{ve} K_{\beta}}{R+C_f K_t K_r K_{ve} K_{\beta} } \times \dfrac{1}{1+\dfrac{K_e K_t}{R+C_f K_t K_r K_{ve} K_{\beta} }p+\dfrac{RJ_{eq}}{R+C_f K_t K_r K_{ve} K_{\beta} } p^2}$.
+
+
+Par identification, on obtient :
+$K=\dfrac{C_f K_t K_r K_{ve} K_{\beta}}{R+C_f K_t K_r K_{ve} K_{\beta}}$
+$A=\dfrac{K_e K_t}{R+C_f K_t K_r K_{ve} K_{\beta} }$;
+$B=\dfrac{RJ_{\text{eq}}}{R+C_f K_t K_r K_ve K_{\beta} }$.
+
 \end{corrige}
 \else
 \fi
@@ -221,6 +280,13 @@ On souhaite une erreur de position inférieure à 1\%.
 \question{Calculer la valeur de $C_f$ permettant de respecter cette contrainte.}
 \ifprof
 \begin{corrige}
+L’erreur statique $\varepsilon_p$ pour une entrée en échelon d’amplitude $F_{\text{c0}}$ vaut :
+
+$\varepsilon_p=(1-K) F_{\text{c0}}=\dfrac{R}{R+C_f K_t K_r K_{ve} K_{\beta} } F_{\text{c0}}$.
+
+Pour obtenir une erreur inférieure à 1\%, il faut :
+$C_f>\dfrac{0,99R}{0,01K_t K_r K_{ve} K_{\beta} } \simeq 60370$.
+
 \end{corrige}
 \else
 \fi
@@ -229,6 +295,9 @@ On souhaite une erreur de position inférieure à 1\%.
 \question{Bien qu’il y ait un intégrateur dans la chaîne directe, indiquer pourquoi l’erreur statique est non-nulle.}
 \ifprof
 \begin{corrige}
+L’intégrateur est placé  après la perturbation (modélisée comme un couple résistant sur le moteur). L’erreur ne peut donc être nulle malgré la présence de l’intégrateur (il y a une perturbation inhérente à l’effort $F_S^y$).
+On peut aussi dire que la FTBO est de classe 0 (on ne retrouve pas l’intégrateur pur dans l’écriture de la FTBO).
+
 \end{corrige}
 \else
 \fi
@@ -237,12 +306,19 @@ On souhaite une erreur de position inférieure à 1\%.
 \question{En considérant une valeur du correcteur permettant de valider le critère d’erreur de
 position, ce critère sera-t-il toujours validé si on ne néglige plus les perturbations ? Comment le
 démontrer ?}
+\ifprof
+\begin{corrige}
+La perturbation agissant sur la valeur de l’erreur globale, en l’absence d’intégrateur pur en amont de la perturbation, le critère ne sera plus systématiquement validé. On peut le démontrer par le Théorème de la valeur Finale par exemple.
+\end{corrige}
+\else
+\fi
 
 %Q5.14: 
 \question{Le coefficient  $K_{\beta}$ a-t-il une influence sur l’asservissement ? Pourquoi ne peut-on pas
 considérer $K_{\beta}$ comme une constante ?}
 \ifprof
 \begin{corrige}
+Le coefficient $K_{\beta}$ représente la loi entrée-sortie du mécanisme reliant la position linéaire du vérin et la position de la pince. Cette relation est non-linéaire car elle fait intervenir des fonctions trigonométriques de l’angle ${\beta}$. Bien évidemment, ce coefficient a une influence sur le comportement de l’asservissement et un choix sera fait sur la zone de fonctionnement qui sera linéarisée.
 \end{corrige}
 \else
 \fi
@@ -254,6 +330,7 @@ Pour des raisons techniques, il n'est pas possible d'utiliser un capteur d'effor
 raisonnement.}
 \ifprof
 \begin{corrige}
+Bien qu’il ne soit pas possible de positionner un capteur d’effort, il est possible d’asservir cette grandeur. En effet, il est possible de trouver une grandeur image de l’effort normal par le biais par exemple de la mesure du courant électrique circulant dans l’induit du moteur. Ce courant est une image du couple moteur qui sera lui-même image de l’effort normal. Dans ce contexte, la relation non-linéaire du mécanisme sera une difficulté supplémentaire à surmonter si la mesure est indirecte.
 \end{corrige}
 \else
 \fi
@@ -267,6 +344,12 @@ glissement possible de l’objet si ces paramètres sont mal évalués.
 raisonnement.}
 \ifprof
 \begin{corrige}
+Afin de limiter le glissement, il faut :
+\begin{itemize}
+\item augmenter l’effort normal (et maitriser également le rayon de la pièce soulevée);
+\item jouer sur le couple de matériaux en contact afin de maximiser le coefficient d’adhérence.
+\end{itemize}
+
 \end{corrige}
 \else
 \fi
