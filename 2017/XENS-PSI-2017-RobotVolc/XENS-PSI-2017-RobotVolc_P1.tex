@@ -74,6 +74,15 @@ corrosive due aux composants acides, etc.
 \question{Dans la phase de conception de ROBOVOLC, une alternative à un système de locomotion
 à roues était un système volant. Donner deux inconvénients d'un tel système remettant en cause
 son utilisation dans l'environnement volcanique considéré.}
+\ifprof
+\begin{corrige}
+\begin{itemize}
+\item Environnement de vol mal maîtrisé à cause des gaz et des températures élevées qui vont engendrer des variations de pression importantes
+\item Non-maîtrise de la masse totale du robot qui dépend des outils, et de la prise d’échantillons. 
+\end{itemize}
+\end{corrige}
+\else
+\fi
 
 ROBOVOLC est piloté à distance depuis un poste de contrôle (\autoref{fig_03}). La position géographique
 du robot est obtenue par un système GPS et est envoyée au poste de contrôle par liaison radio.
@@ -86,7 +95,12 @@ l'autre pour l'équipement d'analyse. Ces batteries sont positionnées sur la pa
 
 %Q12
 \question{Citer un intérêt à mettre les batteries en position basse sur le système.}
-
+\ifprof
+\begin{corrige}
+ La raison principale est de positionner le centre le gravité le plus proche possible du sol afin d’éviter le basculement du robot, en raison probable de la forte densité massique des batteries. Il s’agit donc d’un problème de stabilité.
+\end{corrige}
+\else
+\fi
 
 \begin{figure}[H]
 \centering
@@ -117,6 +131,17 @@ Masse maximale des objets à saisir 				& \SI{2,5}{kg} \\ \hline
 
 %Q1.3 : 
 \question{Citer une phase de vie du système qui contraint sa taille maximale et son poids maximal.}
+\ifprof
+\begin{corrige}
+Les attendus du sujet ne sont pas clairs ici. La notion de phase de vie est liée à l’expression des fonctions de service dans la réalisation du cahier des charges (diagramme des interacteurs) et elle n’est pas inscrite explicitement dans le programme actuel. Les cas d’utilisation sont par contre explicités en annexe dans le sujet.
+
+\textbf{Solution 1:} par exemple, la phase de vie de transport du robot ou la phase de déplacement qui impose une masse et un encombrement limités (masse pour l’autonomie et encombrement pour permettre le contournement d’obstacle ou le franchissement).
+
+\textbf{Solution 2:}  en rapprochant la notion de phase de vie aux cas d’utilisation présentés dans le document, on peut proposer la phase de contournement d’obstacle.
+
+\end{corrige}
+\else
+\fi
 
 La suite du sujet est composée de quatre parties qui étudient quelques particularités de la
 structure mécanique du système ROBOVOLC :

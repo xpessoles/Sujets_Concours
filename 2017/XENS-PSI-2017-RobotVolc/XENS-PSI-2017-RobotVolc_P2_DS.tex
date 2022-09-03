@@ -121,6 +121,19 @@ moteur.
 \question{Citer deux composants permettant de réaliser la fonction $K_c$ en précisant les
 avantages/inconvénients et le type de signal (analogique ou numérique) en entrée/sortie de
 chacun. Indiquer, en justifiant, la technologie la plus probablement retenue ici.}
+\ifprof
+\begin{corrige}
+ On peut utiliser une génératrice tachymétrique (machine à courant continu fonctionnant en générateur) ou un codeur incrémental associé à une électronique de traitement (convertisseur fréquence-tension).
+
+L’entrée de ces 2 propositions est une vitesse angulaire de rotation.
+
+La sortie de la génératrice tachymétrique est une tension électrique analogique. La sortie du codeur incrémental est un signal numérique, qui après son traitement par l’électronique, délivrera une tension analogique.
+
+La technologie probablement utilisée sur le robot ROBOVOLC est une génératrice tachymétrique. Afin de mieux résister à l’environnement hostile (poussières, températures élevées).
+
+\end{corrige}
+\else
+\fi
 
 \subsubsection{Étude du convertisseur numérique-analogique (CNA)}
 
@@ -131,6 +144,14 @@ hexadécimal de 0000 à sa valeur maximale FFFF.
 %Q2.10 :
 \question{Donner la valeur numérique de $U (t)$ à appliquer pour obtenir une valeur nulle en sortie
 du CNA. À quelle consigne correspond la valeur hexadécimale d'entrée $U (t) =\text{A000}$?}
+\ifprof
+\begin{corrige}
+Pour obtenir une tension nulle en sortie du CNA il faut se placer à la moitié de la pleine échelle, soit 32 768 en décimal (moitié de $16\times 16\times  16\times  16$), soit 8000 en hexadécimal.
+Pour $U (t) = A000$ en hexadécimal, soit en décimal $40 960$, la consigne est de  $\dfrac{40960-32768}{65536}\times 20= \SI{2,5}{V}$.
+
+\end{corrige}
+\else
+\fi
 
 \subsubsection{Étude du convertisseur analogique-numérique (CAN)}
 
@@ -142,10 +163,32 @@ d'une linéarité de $+/-\SI{1}{bit}$. Le temps de conversion par canal est de 2
 
 %Q2.11 :
 \question{Calculer la résolution en \si{mV} du CAN.}
+\ifprof
+\begin{corrige}
+On suppose que l’étendue de mesure correspond à la variation maximale de la tension délivrée  
+par la dynamo-tachymétrique, soit \SI{1,22}{V}, ce qui semble une plage de variation faible.
+
+La résolution est donc de : $\dfrac{1.22}{2^{12}} \simeq \SI{298}{\mu V}$. 
+
+\end{corrige}
+\else
+\fi
 
 %Q2.12 :
 \question{Donner les deux hypothèses principales qu’il faut faire pour pouvoir utiliser un modèle de
 système linéaire continu invariant.}
+\ifprof
+\begin{corrige}
+\textit{Remarque :} on interprétera la question comme étant appliquée dans le contexte particulier du Robovolc.
+
+
+Il faut faire l’hypothèse que la période d’échantillonnage soit faible vis-à-vis de la rapidité de la grandeur à asservir (pour la validité du modèle système continu). De plus, il faut faire l’hypothèse que le pas de quantification est très faible par rapport à l’étendue de mesure de la grandeur à asservir (pour la validité du modèle linéaire).
+
+On peut également citer ici l’hypothèse que le système ne travaille pas en zone de saturation et qu’il n’y ait pas de seuils (frottement sec). 
+
+\end{corrige}
+\else
+\fi
 
 \subsubsection{Asservissement en vitesse}
 
@@ -168,18 +211,49 @@ envoyé en entrée.
 %Q2.13 : 
 \question{Exprimer par un modèle du premier ordre sous forme canonique la fonction de transfert
 $\indice{H}{moteur}( p)$ du moteur, et identifier ses paramètres.}
+\ifprof
+\begin{corrige}
+$$H_{\text{moteur}} (p)=\dfrac{K_m}{1+\tau_m p}=\dfrac{0,00406}{1+0,34p}$$ 
+\end{corrige}
+\else
+\fi
 
 %Q2.14 : 
 \question{Calculer la fonction de transfert $\dfrac{\indice{\Omega}{roue}( p)}{\Omega_c(p)}$ sous forme canonique.}
+\ifprof
+\begin{corrige}
+On obtient directement la fonction de transfert demandée en appliquant par exemple la formule de Black :
+
+
+$$ \dfrac{\indice{\Omega}{roue}(p)}{\indice{\Omega}{c}(p)} 
+= \indice{K}{red} \dfrac{K_v\dfrac{K_m}{1+\tau_m p}}{1+K_vK_c\dfrac{K_m}{1+\tau_m p}}
+= \dfrac{K_red K_v K_m}{1+K_v K_m K_c }\dfrac{1}{1+\dfrac{\tau_m}{1+K_v K_m K_c} p}
+$$
+Comme $K_c=1$, 
+$\dfrac{\indice{\Omega}{roue}(p)}{\indice{\Omega}{c} (p)}=\dfrac{\indice{K}{red} K_v K_m}{1+K_v K_m } \dfrac{1}{1+\dfrac{\tau_m}{1+K_v K_m}  p}$.
+
+\end{corrige}
+\else
+\fi
 
 %Q2.15 : 
 %\question{Exprimer les conditions pour avoir des valeurs d'erreur statique en position et en vitesse
 %inférieures à 1\%. Proposer un moyen d'obtenir ces erreurs statiques nulles.}
 %
 \question{Déterminer l'erreur statique.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 \question{À quelle condition sur $K_v$ l'écart statique peut être inférieur à 1\%. ?}
 %inférieures à 1\%. Proposer un moyen d'obtenir ces erreurs statiques nulles.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 
 %% Partie 2.5 TODO

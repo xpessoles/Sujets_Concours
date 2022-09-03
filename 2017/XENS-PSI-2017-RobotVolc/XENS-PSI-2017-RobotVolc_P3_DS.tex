@@ -198,11 +198,21 @@ On donne $D =\SI{300}{mm}$, $m =\SI{60}{kg}$, $M =\SI{80}{kg}$, $a =\SI{800}{mm}
 
 \question{Dans la configuration $\alpha = 0\degres$ (pente nulle), justifier la répartition des efforts normaux
 suivante :  $\indice{N}{AV}= \indice{N}{AR}=mg$, $N_C=Mg$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 \question{Déterminer, en fonction des données géométriques, la hauteur $h$ limite des centres de
 gravité avant basculement du système sur une pente inclinée d'un angle $\alpha$. En déduire la valeur
 limite de $h$ à respecter pour satisfaire le cahier des charges, puis faire l'application numérique et
 conclure. On donne $\tan (50\degres)\simeq 1,2$ .}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 Dans la question suivante, on fait l'hypothèse (notée HYP1) de limite de glissement au contact
 entre le sol et la paire de roues de l'ensemble ENSC le plus chargé. On note $\mu$ le coefficient
@@ -211,7 +221,12 @@ de frottement.
 \question{Montrer que l'hypothèse HYP1 permet de calculer l'ensemble des efforts de contact roue-sol
  dans la configuration $\alpha \neq 0$ (le calcul n'est pas demandé). Quelle équation permet de
 démontrer que $\indice{N}{AV}\neq\indice{N}{AR}$ dans cette configuration ?}
-%
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 %\subsection{Franchissement d'un obstacle}
 %
 %\begin{obj}
@@ -344,19 +359,33 @@ $\indice{H}{mot} (p)=\dfrac{K_c}{K_c K_e+(R+Lp)( f +Jp)}$. Par identification, o
 % Q3.14
 \question{Énoncer, en justifiant, les hypothèses permettant de négliger les termes $L$ et $f$ pour
 cette modélisation du moteur par une fonction de transfert du premier ordre.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 On néglige dans un premier temps la boucle d'anticipation ($\indice{C}{ff} =0$) et on prend
 $\indice{C}{fb}( p)=\indice{K}{fb}+\dfrac{\indice{I}{fb}}{p}$.
 
 % Q3.15
 \question{Déterminer la fonction de transfert en boucle fermée.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 La \autoref{fig_19} représente l'évolution du dépassement et du temps de réponse à 5\% en fonction du
 coefficient d'amortissement $\zeta$.
 
 % Q3.16
-\question{En s'aidant de la \autoref{fig_19}, exprimer les conditions sur les paramètres $\indice{K}{fb}$ et $\indice{I}{fb}$
-permettant de respecter le cahier des charges.}
+\question{En s'aidant de la \autoref{fig_19}, exprimer les conditions sur les paramètres $\indice{K}{fb}$ et $\indice{I}{fb}$ permettant de respecter le cahier des charges.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 \begin{figure}[H]
 \centering
@@ -372,10 +401,20 @@ Par une technique d’optimisation, un bon jeu de paramètres trouvé est : $\in
 
 % Q3.17
 \question{Calculer la valeur du dépassement et le temps de réponse.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 % Q3.18
 \question{Tracer sur le document réponse DR2 le diagramme de Bode asymptotique de la fonction
 de transfert en boucle ouverte. Discuter des marges de gain et de phase.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 
 On considère à présent la structure d'asservissement complète, avec le correcteur $\indice{C}{ff} (p)$.
@@ -383,9 +422,19 @@ On considère à présent la structure d'asservissement complète, avec le corre
 % Q3.19
 \question{Exprimer la fonction de transfert en boucle fermée du système en fonction de $\indice{H}{mot}( p)$ ,
 $\indice{C}{fb} (p)$ et $\indice{C}{ff} (p)$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 % Q3.20
 \question{Que se passe-t-il si le correcteur vaut $\indice{C}{ff} (p)= \dfrac{1}{\indice{H}{mot} (p)}$ ? Quel est l’intérêt et le risque ?}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 Pour une fonction de transfert $\indice{C}{fb} (p)$ fixée, on considère le correcteur $\indice{C}{ff}(p)$ comme un gain
 proportionnel variable. Les courbes de réponse pour différentes valeurs de ce gain proportionnel
@@ -393,4 +442,8 @@ sont données dans l'Annexe 3.
 
 % Q3.21
 \question{Quelles conclusions peut-on en tirer sur l'effet du correcteur $\indice{C}{ff} (p)$?}
-
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi

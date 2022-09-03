@@ -68,18 +68,41 @@ L'objet à saisir est modélisé par un cylindre à base circulaire de rayon $R$
 
 
 % Q5.1
-\question{Donner le lien entre les angles$\alpha$ et $\beta$, ainsi que l'expression de ces angles en fonction du
+\question{Donner le lien entre les angles $\alpha$ et $\beta$, ainsi que l'expression de ces angles en fonction du
 rayon $R$ de l'objet et des données géométriques.}
+\ifprof
+\begin{corrige}
+Une fermeture géométrique angulaire dans le triangle $CEH$ donne immédiatement :  $\alpha + \beta α+β=π/2
+
+Une fermeture géométrique linéaire permet de déterminer la relation entre  α (ou β), R et les dimensions du mécanisme.
+On trouve (en projetant sur l’axe x ⃗) :
+R=d+l_4  cos⁡β-l_5-l_6
+R=d+l_4  sin⁡α-l_5-l_6
+
+
+\end{corrige}
+\else
+\fi
 
 % Q5.2
 \question{Montrer que la liaison équivalente entre le mors 5 et l'objet à saisir est une liaison ponctulle de normale $\left(S,\vect{y_P}\right)$. Cette liaison équivalente
 sera utilisée dans la suite de cette partie.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 % Q5.3
 %\question{Calculer l'hyperstatisme du modèle plan du mécanisme global de la pince (\autoref{fig_23}).}
 
 % Q5.4
 \question{Donner l'orientation de l'effort dans les liaisons pivot situées en $B$ et en $E$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 
 L'ouverture/fermeture de la pince est réalisée par un moteur électrique et un système vis-écrou
@@ -94,6 +117,11 @@ où $F_S^x$ est l'effort tangentiel et $F_S^y$ est l'effort normal (ou de serrag
 y sont liés par la relation $F_P = K \left( \tan \beta F_S^y - F_S^x\right)$  
 où l'expression de la constante $K$ est à préciser en fonction de $\ell_2$ et $\ell_4$.
 Montrer également que cette relation est indépendante de la longueur $L_5$ et expliquer l'avantage technique de ce résultat.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 On représente sur la \autoref{fig_24}  l'évolution de $\tan \beta$ en fonction du rayon $R$ de l'objet à saisir sur la plage $R =[\SI{20}{mm}, \SI{165}{mm}]$.
 
@@ -106,6 +134,11 @@ On représente sur la \autoref{fig_24}  l'évolution de $\tan \beta$ en fonction
 
 %Q5.6 : 
 \question{Commenter ce graphe, en particulier pour les valeurs extrêmes du rayon $R$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 %Q5.7 : 
 \question{En supposant un modèle de frottement de Coulomb (le coefficient de frottement est noté $f$), 
@@ -113,12 +146,21 @@ montrer que l'objet peut être saisi et soulevé sans aucune action de poussée 
 lorsque le rayon de l'objet est tel que $R \geq R_{\text{min}}$. On précisera l'expression de $ R_{\text{min}}$ , on donnera sa
 valeur pour $f =2$, et on commentera ce caractère particulier de la pince en donnant un avantage
 et un inconvénient.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 %Q5.8 : 
 \question{Pour $R < R_{\text{min}}$, donner la relation entre l'effort de poussée $F_p$ et la masse $m_{\text{objet}}$ de l'objet
 à saisir, ainsi qu'entre l'effort de poussée $F_p$ et l'effort de serrage$F_S^y$ . En déduire la valeur de
 l'effort de poussée maximal à fournir pour respecter le cahier des charges avec $f =2$.}
-
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 \subsection{Asservissement de l'effort}
 
@@ -167,15 +209,29 @@ $K_{\text{ve}}$ & pas du système vis-écrou & $\SI{4}{mm}$  \\ \hline
 \question{En considérant $P_F=0$ (perturbation nulle) et $L=0$ (inductance nulle), calculer la fonction de transfert
 $\dfrac{F_S^y}{F_c}$ et la mettre sous la forme canonique $\dfrac{K}{1+Ap+Bp^2}$. Identifier les paramètres $K$,
 $A$ et $B$.}
-
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 On souhaite une erreur de position inférieure à 1\%.
 
 %Q5.11 : 
 \question{Calculer la valeur de $C_f$ permettant de respecter cette contrainte.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 %Q5.12: 
 \question{Bien qu’il y ait un intégrateur dans la chaîne directe, indiquer pourquoi l’erreur statique est non-nulle.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 %Q5.13: 
 \question{En considérant une valeur du correcteur permettant de valider le critère d’erreur de
@@ -185,12 +241,22 @@ démontrer ?}
 %Q5.14: 
 \question{Le coefficient  $K_{\beta}$ a-t-il une influence sur l’asservissement ? Pourquoi ne peut-on pas
 considérer $K_{\beta}$ comme une constante ?}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 Pour des raisons techniques, il n'est pas possible d'utiliser un capteur d'effort en bout de pince.
 
 %Q5.15 : 
 \question{Est-il techniquement possible d'asservir le système sans ce capteur d'effort ? Expliquer le
 raisonnement.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 Dans l'étude précédente, la masse de l'objet et le coefficient de frottement entre la pince et l'objet
 sont supposés connus. Cependant, ce n’est pas le cas en pratique et il peut en résulter un
@@ -199,4 +265,9 @@ glissement possible de l’objet si ces paramètres sont mal évalués.
 %Q5.16 : 
 \question{Quel moyen peut-on imaginer afin de limiter le glissement de l’objet ? Expliquer le
 raisonnement.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
