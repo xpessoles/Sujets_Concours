@@ -97,6 +97,9 @@ Vitesse de déplacement atteignable &   \SI{0,5}{m/s} \\\hline
 
 
 \subsection{Technologie et asservissement en vitesse}
+
+\ifprof
+\else
 Dans cette sous-partie, on étudie l'asservissement en vitesse des roues en analysant la
 technologie des composants et en déterminant les propriétés de comportement.
 Chacune des roues dispose d'une motorisation indépendante avec un asservissement en vitesse.
@@ -115,7 +118,7 @@ système est modélisé sur la \autoref{fig_07}.
 
 La fonction $K_c$ représente un capteur de vitesse permettant de mesurer la vitesse de rotation du
 moteur.
-
+\fi
 
 %Q2.9 :
 \question{Citer deux composants permettant de réaliser la fonction $K_c$ en précisant les
@@ -137,9 +140,13 @@ La technologie probablement utilisée sur le robot ROBOVOLC est une génératric
 
 \subsubsection{Étude du convertisseur numérique-analogique (CNA)}
 
+
+\ifprof
+\else
 La valeur $U (t)$ en entrée du CNA est codée sous forme d'un entier non signé sur 16 bits. Elle est
 ensuite convertie en grandeur analogique $\indice{U}{mot}$ entre $-\SI{10}{V}$ et $+\SI{10}{V}$ pour $U (t)$ évoluant en
 hexadécimal de 0000 à sa valeur maximale FFFF.
+\fi
 
 %Q2.10 :
 \question{Donner la valeur numérique de $U (t)$ à appliquer pour obtenir une valeur nulle en sortie
@@ -155,11 +162,15 @@ Pour $U (t) = A000$ en hexadécimal, soit en décimal $40 960$, la consigne est 
 
 \subsubsection{Étude du convertisseur analogique-numérique (CAN)}
 
+
+\ifprof
+\else
 Le capteur utilisé pour mesurer la vitesse de rotation est de type dynamo-tachymétrique, ce choix
 répondant aux exigences de tenue en température et robustesse. Le capteur fournit une tension
 directement proportionnelle à la vitesse de rotation de la roue, cette tension variant au maximum
 entre $-\SI{610}{mV}$ et $+\SI{650}{mV}$. Le CAN employé possède plusieurs canaux de conversion A/N 12 bits
 d'une linéarité de $+/-\SI{1}{bit}$. Le temps de conversion par canal est de 25 micro-secondes.
+\fi
 
 %Q2.11 :
 \question{Calculer la résolution en \si{mV} du CAN.}
@@ -192,6 +203,9 @@ On peut également citer ici l’hypothèse que le système ne travaille pas en 
 
 \subsubsection{Asservissement en vitesse}
 
+
+\ifprof
+\else
 On suppose dans la suite que :
 \begin{itemize}
 \item $C_v ( p)=K_v$ (constante) ;
@@ -207,6 +221,7 @@ envoyé en entrée.
 \includegraphics[width=.45\linewidth]{fig_08.png}
 \caption{Courbe de réponse du moteur pour un échelon unité\label{fig_08}}
 \end{figure}
+\fi
 
 %Q2.13 : 
 \question{Exprimer par un modèle du premier ordre sous forme canonique la fonction de transfert

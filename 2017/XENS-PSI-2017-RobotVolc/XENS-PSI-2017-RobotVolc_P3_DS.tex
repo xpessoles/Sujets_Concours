@@ -3,9 +3,13 @@
 % 
 \section{Étude du comportement sur terrain accidenté \label{sec_3}}
 
+\ifprof
+\else
+
 Le terrain volcanique est en pratique très accidenté, avec la présence d'obstacles (roches) et de
 fortes pentes (\autoref{fig_10}). Par conséquent, le système de locomotion de ROBOVOLC doit être
 adapté à ce type de terrain.
+\fi
 
 \begin{obj}
 L'objectif de cette partie est de valider les performances d'agilité et de franchissement
@@ -23,6 +27,10 @@ Hauteur maximale d'un obstacle & \SI{400}{mm} \\
 \end{center}
 \end{obj}
 
+
+\ifprof
+\else
+
 Dans toute cette partie, les effets dynamiques sont négligés et on se place en statique.
 
 
@@ -31,6 +39,7 @@ Dans toute cette partie, les effets dynamiques sont négligés et on se place en
 \includegraphics[width=.45\linewidth]{fig_10.png}
 \caption{Illustration du comportement de ROBOVOLC sur terrain accidenté \label{fig_10}}
 \end{figure}
+\fi
 
 
 
@@ -161,6 +170,9 @@ Dans toute cette partie, les effets dynamiques sont négligés et on se place en
 %La modélisation plane de la \autoref{fig_13} est considérée dans la suite de cette partie.
 
 
+
+\ifprof
+\else
 On considère qu'il y a roulement sans glissement au contact roue-sol. Les actions mécaniques du
 sol sur chaque ensemble sont schématisées sur la \autoref{fig_13}; elles sont modélisées par un effort
 normal ($\indice{N}{AV}$, $\indice{N}{C}$ ou $\indice{N}{AR}$) et un effort tangentiel de traction ($\indice{T}{AV}$, $\indice{T}{C}$ ou $\indice{T}{AR}$) appliqués aux
@@ -171,6 +183,7 @@ points $\indice{P}{AV}$, $\indice{P}{C}$ ou $\indice{P}{AR}$ (projections des po
 \includegraphics[width=.45\linewidth]{fig_13.png}
 \caption{Configuration plane du châssis\label{fig_13}}
 \end{figure}
+\fi
 
 \subsection{Comportement en pente et stabilité}
 \begin{obj}
@@ -178,6 +191,9 @@ Dans cette sous-partie, on analyse le comportement en pente et la stabilité sta
 plateforme.
 \end{obj}
 
+
+\ifprof
+\else
 
 On considère ici un sol plan dans le plan $\left(O,\vect{x},\vect{z}\right)$ et incliné d'un angle $\alpha$ par rapport à
 l'horizontale (\autoref{fig_14}). La masse totale du système ROBOVOLC est répartie sur les trois
@@ -195,6 +211,7 @@ On donne $D =\SI{300}{mm}$, $m =\SI{60}{kg}$, $M =\SI{80}{kg}$, $a =\SI{800}{mm}
 \includegraphics[width=.45\linewidth]{fig_14.png}
 \caption{Configuration en pente \label{fig_14}}
 \end{figure}
+\fi
 
 \question{Dans la configuration $\alpha = 0\degres$ (pente nulle), justifier la répartition des efforts normaux
 suivante :  $\indice{N}{AV}= \indice{N}{AR}=mg$, $N_C=Mg$.}
@@ -214,9 +231,13 @@ conclure. On donne $\tan (50\degres)\simeq 1,2$ .}
 \else
 \fi
 
+
+\ifprof
+\else
 Dans la question suivante, on fait l'hypothèse (notée HYP1) de limite de glissement au contact
 entre le sol et la paire de roues de l'ensemble ENSC le plus chargé. On note $\mu$ le coefficient
 de frottement.
+\fi
 
 \question{Montrer que l'hypothèse HYP1 permet de calculer l'ensemble des efforts de contact roue-sol
  dans la configuration $\alpha \neq 0$ (le calcul n'est pas demandé). Quelle équation permet de
@@ -339,6 +360,9 @@ Temps de réponse à 5 \% & inférieur à \SI{9}{ms} \\ \hline
 \end{obj}
 
 
+\ifprof
+\else
+
 La structure d’asservissement proposée est composée de deux correcteurs utilisés simultanément :
 un correcteur de boucle de retour (nommé $C_{\text{fb}}( p)$) et un correcteur de boucle d'anticipation
 (nommé $C_{\text{ff}}( p)$ ). L’étude menée ici concerne le comportement du système avec cette structure
@@ -354,6 +378,7 @@ Le schéma d'asservissement est donné sur la \autoref{fig_18}.
 
 Le bloc  $\indice{H}{mot} (p)$ représente un moteur ayant pour fonction de transfert
 $\indice{H}{mot} (p)=\dfrac{K_c}{K_c K_e+(R+Lp)( f +Jp)}$. Par identification, on trouve $\indice{H}{mot}= \dfrac{0,265}{0,4 p+200}$.
+\fi
 
 
 % Q3.14
@@ -361,6 +386,19 @@ $\indice{H}{mot} (p)=\dfrac{K_c}{K_c K_e+(R+Lp)( f +Jp)}$. Par identification, o
 cette modélisation du moteur par une fonction de transfert du premier ordre.}
 \ifprof
 \begin{corrige}
+Le modèle de connaissance est du second ordre. Or il nous est fourni un modèle du premier ordre. Cela signifie que le coefficient d’amortissement $\xi$ est supérieur à 1. Par conséquent la fonction de transfert du second ordre peut s’écrire comme un produit de 2 premiers ordres.
+On a alors :
+
+$\indice{H}{mot} (p)=\dfrac{K_c}{K_c K_e+Rf}\dfrac{1}{1+\dfrac{RJ+Lf}{K_c K_e+Rf} p+\dfrac{LJ}{K_c K_e+Rf} p^2}$.
+ 
+Si le coefficient de frottement est très faible (le couple dû aux frottements visqueux est très faible devant le couple électromagnétique), alors on peut considérer $f \simeq 0$.
+On a alors :
+$\indice{H}{mot} (p)=\dfrac{1}{K_e} \dfrac{1}{1+\dfrac{RJ}{K_c K_e} p+\dfrac{LJ}{K_c K_e} p^2}$
+
+L’inductance $L$ étant généralement faible (la tension aux bornes de l’inductance faible vis-à-vis des tensions électriques présentes dans le montage), on peut considérer $L \simeq 0$.
+Donc, on retrouve bien un modèle simplifié du 1er ordre tel que proposé.
+ 
+
 \end{corrige}
 \else
 \fi

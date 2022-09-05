@@ -4,8 +4,8 @@
 \section{Contexte et présentation du système}
 \subsection{Contexte}
 
-
-
+\ifprof
+\else
 Les éruptions volcaniques peuvent avoir un impact important sur l'activité humaine, provoquant à
 la fois des déplacements de population, des dégâts matériels, ainsi que des changements de
 topographie et de climat. On considère qu'actuellement 10\% de la population terrestre vit sous la
@@ -39,7 +39,7 @@ mobile pour l'exploration volcanique. Ce robot devait être capable de :
 \item collecter des échantillons gazeux ;
 \item collecter d'autres données physiques et chimiques.
 \end{itemize}
-
+\fi
 
 \begin{obj}
 Le sujet propose d'étudier quelques parties structurelles du système ROBOVOLC et de
@@ -48,7 +48,8 @@ valider plusieurs performances (liées à la mobilité et au prélèvement) de c
 
 \subsection{Présentation du système}
 
-
+\ifprof
+\else
 Le système ROBOVOLC est représenté sur la \autoref{fig_02}. Il se divise en plusieurs sous-systèmes
 (liés à la navigation, au prélèvement et à la communication) qui sont détaillés dans les
 diagrammes SysML fournis dans l'Annexe 1. 
@@ -69,7 +70,7 @@ fortes pentes, températures très élevées près des zones éruptives (les gaz
 basses ailleurs à cause de l'altitude, présence de poussières de cendre très fines, ambiance
 corrosive due aux composants acides, etc.
 
-
+\fi
 %Q1.1 : 
 \question{Dans la phase de conception de ROBOVOLC, une alternative à un système de locomotion
 à roues était un système volant. Donner deux inconvénients d'un tel système remettant en cause
@@ -84,6 +85,8 @@ son utilisation dans l'environnement volcanique considéré.}
 \else
 \fi
 
+\ifprof
+\else
 ROBOVOLC est piloté à distance depuis un poste de contrôle (\autoref{fig_03}). La position géographique
 du robot est obtenue par un système GPS et est envoyée au poste de contrôle par liaison radio.
 De plus, l’opérateur peut visualiser en permanence les actions du système grâce aux images
@@ -92,6 +95,7 @@ transmises par une caméra embarquée.
 L'énergie électrique nécessaire au système est apportée par une unité de puissance avec quatre
 batteries couplées pour constituer deux unités de 24 V. La première est utilisée pour la plateforme,
 l'autre pour l'équipement d'analyse. Ces batteries sont positionnées sur la partie basse du châssis.
+\fi
 
 %Q12
 \question{Citer un intérêt à mettre les batteries en position basse sur le système.}
@@ -102,13 +106,16 @@ l'autre pour l'équipement d'analyse. Ces batteries sont positionnées sur la pa
 \else
 \fi
 
+
+\ifprof
+\else
 \begin{figure}[H]
 \centering
 \includegraphics[width=.45\linewidth]{fig_03.png}
 \caption{Illustration du pilotage à distance du système ROBOVOLC\label{fig_03}}
 \end{figure}
 
-Un cahier des charges partiel est donné ci-dessous :
+Un cahier des charges partiel est donné ci-dessous.
 
 \begin{center}
 \begin{tabular}{ll}
@@ -127,7 +134,7 @@ Masse maximale des objets à saisir 				& \SI{2,5}{kg} \\ \hline
 \end{tabular}
 \end{center}
 
-
+\fi
 
 %Q1.3 : 
 \question{Citer une phase de vie du système qui contraint sa taille maximale et son poids maximal.}
@@ -143,6 +150,8 @@ Les attendus du sujet ne sont pas clairs ici. La notion de phase de vie est lié
 \else
 \fi
 
+\ifprof
+\else
 La suite du sujet est composée de quatre parties qui étudient quelques particularités de la
 structure mécanique du système ROBOVOLC :
 \begin{itemize}
@@ -154,5 +163,5 @@ terrain accidenté ;
 les performances du bras manipulateur tandis que la partie \ref{sec_5} vise à valider les
 performances de la pince.
 \end{itemize}
-
+\fi
 
