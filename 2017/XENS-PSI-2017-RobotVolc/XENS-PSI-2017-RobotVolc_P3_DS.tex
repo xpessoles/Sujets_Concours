@@ -410,6 +410,9 @@ $\indice{C}{fb}( p)=\indice{K}{fb}+\dfrac{\indice{I}{fb}}{p}$.
 \question{Déterminer la fonction de transfert en boucle fermée.}
 \ifprof
 \begin{corrige}
+$\indice{H}{mot} (p)=\dfrac{0,265}{0,4p+200}=\dfrac{\dfrac{0,265}{200}}{1+\dfrac{0,4}{200} p}=\dfrac{K}{1+\tau p}$.
+
+$\dfrac{C_S (p)}{C_C (p)} = \dfrac{\indice{C}{fb} (p) \indice{H}{mot} (p)}{1+\indice{C}{fb} (p) \indice{H}{mot} (p) }=\dfrac{1+\dfrac{\indice{K}{fb}}{\indice{I}{fb}}  p}{1+\dfrac{K\indice{K}{fb}+1}{K\indice{I}{fb}} p+\dfrac{\tau}{K\indice{I}{fb}} p^2}$.
 \end{corrige}
 \else
 \fi
@@ -421,10 +424,27 @@ coefficient d'amortissement $\zeta$.
 \question{En s'aidant de la \autoref{fig_19}, exprimer les conditions sur les paramètres $\indice{K}{fb}$ et $\indice{I}{fb}$ permettant de respecter le cahier des charges.}
 \ifprof
 \begin{corrige}
+Les paramètres du modèle élaboré en question précédente sont les suivants :
+$\xi=\dfrac{1}{2} \dfrac{K\indice{K}{fb}+1}{K\indice{I}{fb}} \sqrt{\dfrac{K\indice{I}{fb}}{\tau}}$
+et
+$\omega_0=\sqrt{K\indice{I}{fb}}{\tau}$ 
+Pour respecter le cahier des charges, il faut que $\xi \geq 0,7$ et $\omega_0\geq \SI{333}{rad/s}$.
+
+\begin{center}
+\includegraphics[width=.8\linewidth]{fig_19_cor.png}
+\end{center}
+
+Les conditions traduites sur $\indice{I}{fb}$ et sur $\indice{K}{fb}$ donnent :
+$\dfrac{K}{\tau} \omega_0^2 \leq  \indice{I}{fb}$ soit $\indice{I}{fb} \geq 16,7 \times 10^5$
+$\dfrac{\dfrac{2\xi \indice{I}{fb}}-1}{K}\geq \indice{K}{fb}$ relation dont le résultat dépend de la valeur choisie pour $\indice{I}{fb}$.
+
+
 \end{corrige}
 \else
 \fi
 
+\ifprof
+\else
 \begin{figure}[H]
 \centering
 \includegraphics[width=.45\linewidth]{fig_19_a.png}
@@ -433,14 +453,21 @@ coefficient d'amortissement $\zeta$.
 \end{figure}
 
 
-
-
 Par une technique d’optimisation, un bon jeu de paramètres trouvé est : $\indice{K}{fb}=30$ et $\indice{I}{fb}=200\times10^{3}$.
+\fi
 
 % Q3.17
 \question{Calculer la valeur du dépassement et le temps de réponse.}
 \ifprof
 \begin{corrige}
+Dans le cas avec le jeu de paramètre correct, on a : $\omega_0 \simeq \SI{365}{rad/s}$ et  $\xi \simeq 0,701$.
+
+\begin{center}
+\includegraphics[width=.8\linewidth]{q19_cor.png}
+\end{center}
+
+Donc, d’après les courbes précédentes, on trouve : $t_{5\%} = \SI{8}{ms}$.
+
 \end{corrige}
 \else
 \fi
@@ -450,6 +477,21 @@ Par une technique d’optimisation, un bon jeu de paramètres trouvé est : $\in
 de transfert en boucle ouverte. Discuter des marges de gain et de phase.}
 \ifprof
 \begin{corrige}
+La fonction de transfert en Boucle Ouverte s’exprime ainsi :
+
+$\text{FTBO}(p)=\indice{C}{fb} (p) \indice{H}{mot} (p)=\left(30+\dfrac{200\times 10^3}{p}\right)\dfrac{0,265}{0,4p+200}$ 
+$=265\left(1+\dfrac{p}{6667}\right) \left(\dfrac{1}{1+\dfrac{p}{500}}\right)$.
+
+\begin{center}
+\includegraphics[width=.8\linewidth]{q19_bode.png}
+\end{center}
+
+La marge de gain est infinie (ou non définie) car la phase n’atteint jamais $-180\degres$.
+
+La marge de phase est nécessairement positive, car la phase est strictement supérieure à $-180\degres$. Donc le système est bien stable en boucle fermée.
+ 
+
+
 \end{corrige}
 \else
 \fi
@@ -462,6 +504,9 @@ On considère à présent la structure d'asservissement complète, avec le corre
 $\indice{C}{fb} (p)$ et $\indice{C}{ff} (p)$.}
 \ifprof
 \begin{corrige}
+$$
+\dfrac{C_S (p)}{C_C (p)}= \left(1+\dfrac{\indice{C}{ff} (p)}{\indice{C}{fb} (p)}\right) \left(\dfrac{\indice{H}{mot}(p) \indice{C}{fb} (p)}{1+\indice{H}{mot} (p)\indice{C}{fb} (p) }\right)
+$$
 \end{corrige}
 \else
 \fi
@@ -470,6 +515,23 @@ $\indice{C}{fb} (p)$ et $\indice{C}{ff} (p)$.}
 \question{Que se passe-t-il si le correcteur vaut $\indice{C}{ff} (p)= \dfrac{1}{\indice{H}{mot} (p)}$ ? Quel est l’intérêt et le risque ?}
 \ifprof
 \begin{corrige}
+En admettant que l’on puisse réaliser un tel système (en fait, le système étant composé d’un gain et d’un dérivateur pur, il faudrait rajouter du filtrage afin d’avoir un système causal), on obtient après simplification :
+ 
+$\dfrac{C_S (p)}{C_C (p)}=\left(1+\dfrac{1}{\indice{H}{mot}\indice{C}{fb} (p)}\right)\left(\dfrac{\indice{H}{mot} (p)\indice{C}{fb} (p))}{1+\indice{H}{mot} (p)\indice{C}{fb} (p)}\right)=1$
+
+L’intérêt théorique d’un tel système est donc évident puisqu’il s’agit d’un système dont la réponse correspond parfaitement à la consigne.
+Cependant, pour y parvenir, il faut parfaitement maîtriser les paramètres du modèle du moteur $\indice{H}{mot} (p)$.
+
+Un risque est donc de ne pas avoir un modèle suffisamment précis de $\indice{H}{mot} (p)$ et donc d’avoir des réactions imprévisibles et non désirées du correcteur.
+
+Un autre  écart entre la théorie et la réalisation pratique du correcteur  est lié à la saturation de la commande. Un tracé de la réponse du système à un échelon de commande réalisé avec le correcteur théorique (modèle fourni dans ce dossier) montre la commande théorique du système (ci-dessous).
+
+\begin{center}
+\includegraphics[width=.8\linewidth]{q21_cor.png}
+\end{center}
+
+
+
 \end{corrige}
 \else
 \fi
@@ -482,6 +544,7 @@ sont données dans l'Annexe 3.
 \question{Quelles conclusions peut-on en tirer sur l'effet du correcteur $\indice{C}{ff} (p)$?}
 \ifprof
 \begin{corrige}
+ Ce correcteur à tendance à améliorer la rapidité sans trop dégrader la stabilité. Les critères de rapidité (temps de réponse à 5\%) et de stabilité (dépassement autorisé) sont respectés, voire même améliorés pour $\indice{C}{ff}  = 100$.
 \end{corrige}
 \else
 \fi
