@@ -220,7 +220,8 @@ sous-partie précédente, on se place dans la configuration $R < R_{\text{min}}$
 $F_s^y = K_{\beta} F_p$.
 \end{obj}
 
-
+\ifprof
+\else
 La pince a un capteur d'effort pour mesurer et contrôler la force de serrage. Pour l'asservissement
 de la pince, une régulation en effort est faite. Le schéma blocs de la \autoref{fig_25} présente la structure
 de contrôle de la pince.
@@ -232,6 +233,7 @@ de contrôle de la pince.
 \caption{Schéma d'asservissement \label{fig_25}}
 \end{figure}
 
+\fi
 
 %Q5.9 : 
 \question{Quel est l'intérêt pratique de la régulation mise en place ?}
@@ -244,6 +246,8 @@ La régulation en place permet de contrôler l’effort normal et donc de contr�
 Pour l’étude en asservissement de la pince, on fixe $K_{\beta} = 2,2$.
 On donne les caractéristiques du système suivantes.
 
+\ifprof
+\else
 \begin{table}[H]
 \centering
 \begin{tabular}{lll}
@@ -257,6 +261,7 @@ $Kr$ &  rapport du réducteur 	& $54/33=1,636$ \\ \hline
 $K_{\text{ve}}$ & pas du système vis-écrou & $\SI{4}{mm}$  \\ \hline
 \end{tabular}
 \end{table}
+\fi
 
 
 %Q5.10 : 

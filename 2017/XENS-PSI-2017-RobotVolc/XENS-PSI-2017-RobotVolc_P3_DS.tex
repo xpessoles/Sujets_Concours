@@ -427,16 +427,19 @@ coefficient d'amortissement $\zeta$.
 Les paramètres du modèle élaboré en question précédente sont les suivants :
 $\xi=\dfrac{1}{2} \dfrac{K\indice{K}{fb}+1}{K\indice{I}{fb}} \sqrt{\dfrac{K\indice{I}{fb}}{\tau}}$
 et
-$\omega_0=\sqrt{K\indice{I}{fb}}{\tau}$ 
+$\omega_0=\sqrt{\dfrac{K\indice{I}{fb}}{\tau}}$ .
 Pour respecter le cahier des charges, il faut que $\xi \geq 0,7$ et $\omega_0\geq \SI{333}{rad/s}$.
 
 \begin{center}
 \includegraphics[width=.8\linewidth]{fig_19_cor.png}
 \end{center}
 
-Les conditions traduites sur $\indice{I}{fb}$ et sur $\indice{K}{fb}$ donnent :
-$\dfrac{K}{\tau} \omega_0^2 \leq  \indice{I}{fb}$ soit $\indice{I}{fb} \geq 16,7 \times 10^5$
-$\dfrac{\dfrac{2\xi \indice{I}{fb}}-1}{K}\geq \indice{K}{fb}$ relation dont le résultat dépend de la valeur choisie pour $\indice{I}{fb}$.
+Par une technique d’optimisation, un bon jeu de paramètres trouvé est $\indice{K}{fb} = 30$ et $\indice{I}{fb} = 200\times 10^3$.
+
+
+%Les conditions traduites sur $\indice{I}{fb}$ et sur $\indice{K}{fb}$ donnent :
+%$\dfrac{K}{\tau} \omega_0^2 \leq  \indice{I}{fb}$ soit $\indice{I}{fb} \geq 16,7 \times 10^5$
+%$\dfrac{\dfrac{2\xi \indice{I}{fb}}-1}{K}\geq \indice{K}{fb}$ relation dont le résultat dépend de la valeur choisie pour $\indice{I}{fb}$.
 
 
 \end{corrige}
