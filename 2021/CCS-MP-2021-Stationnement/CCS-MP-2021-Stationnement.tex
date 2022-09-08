@@ -323,12 +323,44 @@ $\alpha$ désigne l’angle que fait la roue intérieure au virage (côté trott
 un repère orthonormé direct défini au point $C$, centre de la roue intérieure, et tel que $\axe{C}{y_r}$ est confondu avec l’axe de cette roue (\autoref{fig_09}) et $\rep{v}\repere{F}{x_v}{y_v}{z_v}$ un repère
 orthonormé défini au point $F$ et lié au véhicule (\autoref{fig_09}).
 
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=.45\linewidth]{fig_09.png}
 \caption{Paramétrage lors de la manoeuvre \label{fig_09}}
 \end{figure}
 
+Données : $\vect{FO_1}=R\vect{y_v}$, $\vect{CF}=L_t\vect{x_v}-e_t\vect{y_v}$ où $C$ est le centre de rotation de la roue intérieure avant par rapport au véhicule.
+
+%Q9
+\question{Déterminer en projection dans la base $\base{x_v}{y_v}{z_v}$ l'expression de $\vectv{C}{V}{\rep{1}}$ en fonction de $R$ $e_t$, $L_t$, $\dot{\theta_1}$.}
+
+%Q10
+\question{On rappelle que $\vectv{C}{V}{\rep{1}} = v \vect{x_r}$. À partir du résultat de la question précédente, déterminer, en fonction de $R$, $e_t$ et $L_t$, l'expression de $\tan\alpha$ des roues directrices lors de la phase 1 de la manœuvre. Cet angle noté $\alpha_{c1}$ est constant puisque le point $F$ parcourt $C_1$. $\alpha_{c1}$ représente la consigne angulaire à imposer aux roues directrices
+lors de la phase 1.}
+
+Lors de la manœuvre de stationnement, l’angle des roues devra suivre une consigne de position angulaire notée $\alpha_c(t)$ à définir pour respecter les trois phases de l’insertion dans la place.
+
+%Q 11. 
+\question{Sous forme d’un graphique, proposer l’évolution temporelle de la consigne $\alpha_c(t)$ pour que le véhicule puisse s’insérer dans la place de stationnement selon les trois phases de manœuvre définies précédemment.
+Sur ce graphique devront apparaitre les ordonnées particulières que $\alpha$ devra atteindre ainsi que les durées des
+différentes phases de la manœuvre en fonction des données littérales du texte.}
+
+Dans cette deuxième partie il a été possible de définir la trajectoire du véhicule et la consigne angulaire d’orientation des roues afin que le véhicule puisse effectuer la manœuvre en créneau en une fois. Ceci étant, le suivi de la trajectoire dépend des performances du système d’orientation des roues directrices. Ce système appelé
+« direction » en automobile a son comportement défini par l’algorithme de stationnement lors de manœuvres
+automatiques. Il est donc nécessaire de vérifier que la commande en direction permet effectivement de suivre la
+trajectoire.
+
+\textit{Pour la suite du sujet le support technique utilisé est une voiture radio commandée comme expliqué en début de sujet.}
+
+\section{Modélisation de la commande de direction et validation des performances}
+Le choix d’une voiture radio commandée (voiture RC) est motivé par la nécessité d’identifier les composants (et
+leurs caractéristiques) intervenant dans la commande de direction, mais également par la nécessité de pouvoir
+analyser des résultats d’essais réalisés sur un support réel. Tout ceci n’est pas possible sur un véhicule réel du
+fait de la confidentialité des données des constructeurs automobiles, mais concernant un modèle réduit il n’y a
+plus ces difficultés.
+
+La \autoref{fig_10} représente le modèle de voiture RC choisi pour la suite de l’étude.
 
 \begin{figure}[H]
 \centering
@@ -336,24 +368,64 @@ orthonormé défini au point $F$ et lié au véhicule (\autoref{fig_09}).
 \caption{Tamiya M-05 Mazda \label{fig_10}}
 \end{figure}
 
+Le choix de la voiture radio commandée est pertinent pour les raisons suivantes :
+\begin{itemize}
+\item les résultats obtenus en première partie de sujet sont transposables à plus petite échelle ;
+\item la voiture RC possède des proportions identiques à un véhicule réel (échelle un dixième) et est de type
+traction comme dans la première partie ;
+\item compte tenu de la faible vitesse de déplacement du véhicule, les effets dynamiques dûs au déplacement du
+véhicule ne seront pris en compte dans les études suivantes ;
+\item à part l’actionneur, la structure de la direction est assimilable à celle des véhicules réels.
+\end{itemize}
+
+\begin{obj}
+La trajectoire d’insertion dans une place de stationnement est certes déterminée, mais il reste à évaluer
+la capacité du véhicule à suivre cette trajectoire. L’objectif de cette partie est donc de synthétiser la
+commande du système de direction du véhicule choisi permettant à ce dernier d’exécuter la manœuvre
+d’insertion en créneau telle que définie en première partie de sujet.
+\end{obj}
+
+\subsection{Modélisation de la direction du véhicule radio commandé}
+
+L’objectif est d’établir le modèle de la commande de direction du véhicule RC à implanter dans l’algorithme
+de stationnement afin de pouvoir déterminer les performances de cette commande et d’évaluer la nécessité ou
+non d’optimiser cette dernière. L’algorithme d’assistance au stationnement pilotant la direction du véhicule,
+cette dernière doit avoir des performances garantissant le suivi de la trajectoire calculée pour la manœuvre de
+stationnement.
+Les performances attendues pour cette commande sont recensées dans le \autoref{tab_02}.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lll}
+\hline
+Performance &Critère& Niveau \\
+\hline 
+Précision angulaire & Erreur &Nulle en régime permanent pour une entrée en échelon \\
+Rapidité &Temps de réponse à 5\% & $t_{r5\%}\leq \SI{0,4}{s}$ \\
+Stabilité &Dépassement &Aucun \\ \hline
+\end{tabular}
+\caption{Performances attendues de l’asservissement en position des roues directrices du véhicule RC
+ \label{tab_02}}
+\end{table}
+
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.45\linewidth]{fig_11.png}
+\includegraphics[width=\linewidth]{fig_11.png}
 \caption{Description chaine d’énergie / chaine d’information de la direction \label{fig_11}}
 \end{figure}
 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.45\linewidth]{fig_12.png}
+\includegraphics[width=\linewidth]{fig_12.png}
 \caption{Schéma blocs de la commande en position des roues directrices du véhicule RC \label{fig_12}}
 \end{figure}
 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.45\linewidth]{fig_13.png}
+\includegraphics[width=.6\linewidth]{fig_13.png}
 \caption{Schéma cinématique plan de la direction du véhicule radio commandé \label{fig_13}}
 \end{figure}
 
@@ -374,7 +446,7 @@ orthonormé défini au point $F$ et lié au véhicule (\autoref{fig_09}).
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.45\linewidth]{fig_16.png}
+\includegraphics[width=.55\linewidth]{fig_16.png}
 \caption{Schéma-blocs du servomoteur seul \label{fig_16}}
 \end{figure}
 
@@ -444,7 +516,7 @@ orthonormé défini au point $F$ et lié au véhicule (\autoref{fig_09}).
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.45\linewidth]{fig_26.png}
+\includegraphics[width=\linewidth]{fig_26.png}
 \caption{Extrait du diagramme des exigences du stationnement automatique \label{fig_26}}
 \end{figure}
 
