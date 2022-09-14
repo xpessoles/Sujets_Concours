@@ -258,6 +258,11 @@ $\dfrac{\indice{\Omega}{roue}(p)}{\indice{\Omega}{c} (p)}=\dfrac{\indice{K}{red}
 \question{Déterminer l'erreur statique.}
 \ifprof
 \begin{corrige}
+\textbf{Méthode 1}
+La FTBO du système est donnée par $\text{FTBO}(p)=K_v \dfrac{K_m}{1+\tau_m}$. Le gain de la FTBO est donc donné par $K_vK_m$. La classe est nulle. 
+
+On a donc une erreur statique de $\varepsilon_s = \dfrac{1}{1+K_vK_m}$.
+
 \end{corrige}
 \else
 \fi
@@ -266,6 +271,9 @@ $\dfrac{\indice{\Omega}{roue}(p)}{\indice{\Omega}{c} (p)}=\dfrac{\indice{K}{red}
 %inférieures à 1\%. Proposer un moyen d'obtenir ces erreurs statiques nulles.}
 \ifprof
 \begin{corrige}
+$\varepsilon_s < 0,01 \Rightarrow  \dfrac{1}{1+K_vK_m} < 0,01$
+$\Rightarrow  1 < 0,01(1+K_vK_m)$
+$\Rightarrow  \dfrac{99}{K_m}< K_v$ soit $K_v > 24384$.
 \end{corrige}
 \else
 \fi
