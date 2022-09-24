@@ -217,6 +217,14 @@ On donne $D =\SI{300}{mm}$, $m =\SI{60}{kg}$, $M =\SI{80}{kg}$, $a =\SI{800}{mm}
 suivante :  $\indice{N}{AV}= \indice{N}{AR}=mg$, $N_C=Mg$.}
 \ifprof
 \begin{corrige}
+Par symétrie du système, on peut commencer par remarquer que le centre de gravité du système est situé en $G_c$.
+On isole tout l’ensemble en équilibre et on applique le Principe Fondamental de Statique. 
+\begin{itemize}
+\item Le Théorème de la Résultante projeté sur $\vect{z}$ se traduit par : $\indice{N}{AV}+N_C+\indice{N}{AR}-(M+2m)g=0$.
+\item Le Théorème du Moment Statique est appliqué au point $P_c$ en projection sur $\vect{y}$ se traduit par : $a\indice{N}{AV} - a \indice{N}{AR}=0$.
+\end{itemize}
+Ensuite, par identification, on obtient $\indice{N}{AV}=\indice{N}{AR}=mg$ et $N_C = Mg$.
+
 \end{corrige}
 \else
 \fi
@@ -244,6 +252,10 @@ de frottement.
 démontrer que $\indice{N}{AV}\neq\indice{N}{AR}$ dans cette configuration ?}
 \ifprof
 \begin{corrige}
+Dans le cas où les 3 coefficients de frottement ne sont pas connus, on a démontré qu’il n’était pas possible de résoudre, car il nous manquait une équation.
+Avec l’HYP1, la résolution devient possible puisque l’on rajoute une équation de comportement.
+L’écriture du Théorème du Moment Statique appliqué au point $P_c$  permet de démontrer l’inégalité $\indice{N}{AV}\neq\indice{N}{AR}$.
+
 \end{corrige}
 \else
 \fi
