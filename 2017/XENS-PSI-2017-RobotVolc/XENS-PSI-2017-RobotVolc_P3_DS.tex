@@ -235,6 +235,45 @@ limite de $h$ à respecter pour satisfaire le cahier des charges, puis faire l'a
 conclure. On donne $\tan (50\degres)\simeq 1,2$ .}
 \ifprof
 \begin{corrige}
+On commence par étudier les configurations possibles de basculement. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.85\linewidth]{q13.png}
+\end{figure}
+
+Le basculement débutera donc obligatoirement par le basculement de la partie avant du véhicule.
+A l’aide de considérations graphiques, il est possible de dire que le basculement débutera lorsque les efforts de pesanteur sur ENSAV seront « à droite » de B.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.45\linewidth]{q13_02.png}
+\end{figure}
+
+
+La situation limite de basculement est tracée ci-contre (l’effort de pesanteur passe par le point $B$).
+On lit directement sur la figure en utilisant les données du schéma : $\tan\alpha = \dfrac{AB}{\indice{AG}{AV}}= \dfrac{a-b}{h}$
+
+La hauteur limite des centres de gravité avant basculement dans une pente $\alpha$ est donc :
+$\indice{h}{lim}=\dfrac{a-b}{\tan \alpha}$.
+
+Le cahier des charges impose de monter des pentes de 50\degres, on obtient donc une hauteur limite $h$ après application numérique : $\indice{h}{lim} = \dfrac{0,6}{1,2}=\SI{0,5}{m}$.
+
+
+Deuxième méthode : 
+En isolant ENSAV et en appliquant le Principe Fondamental de la Statique, on pourra résoudre sachant qu’à la limite du basculement, $\indice{N}{AV}$ est connu et vaut 0.
+ 
+
+\begin{itemize}
+\item Théorème de la résultante sur $\vect{x}$: $\indice{T}{AV}+\indice{X}{ensc-ensav}-mg \sin \alpha=0$
+\item Théorème de la résultante sur $\vect{z}$: $\indice{N}{AV}+\indice{Y}{ensc-ensav}-mg \cos \alpha=0$
+\item Théorème du Moment sur $\vect{y}$ au point B : $-mgh \sin\alpha+mg(a-b)\cos\alpha -\indice{N}{AV} (a-b)-\indice{T}{AV} h=0$.
+\end{itemize}
+
+A la limite du basculement, les efforts sur la roue avant sont nuls et l’équation de moment devient :
+$-mg\indice{h}{lim}  \sin\alpha + mg(a-b) \cos \alpha =0$ soit encore $\indice{h}{lim} = \dfrac{a-b}{\tan \alpha}$.
+
+
 \end{corrige}
 \else
 \fi
