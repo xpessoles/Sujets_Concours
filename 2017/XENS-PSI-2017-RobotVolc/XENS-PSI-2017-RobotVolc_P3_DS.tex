@@ -534,7 +534,15 @@ de transfert en boucle ouverte. Discuter des marges de gain et de phase.}
 La fonction de transfert en Boucle Ouverte s’exprime ainsi :
 
 $\text{FTBO}(p)=\indice{C}{fb} (p) \indice{H}{mot} (p)=\left(30+\dfrac{200\times 10^3}{p}\right)\dfrac{0,265}{0,4p+200}$ 
-$=265\left(1+\dfrac{p}{6667}\right) \left(\dfrac{1}{1+\dfrac{p}{500}}\right)$.
+$=\dfrac{265}{p}\left(1+\dfrac{p}{6667}\right) \left(\dfrac{1}{1+\dfrac{p}{500}}\right)$.
+
+On dresse alors le tableau des pentes.
+
+\begin{center}
+\includegraphics[width=.8\linewidth]{q19_cor_02.png}
+\end{center}
+
+Lorsque $\omega$ tend vers 0, $\text{FTBO}(p)\simeq \dfrac{265}{p}$. En $\omega=1$ le gain est alors d'environ $20\log 265 \simeq \SI{48}{dB}$.
 
 \begin{center}
 \includegraphics[width=.8\linewidth]{q19_bode.png}
