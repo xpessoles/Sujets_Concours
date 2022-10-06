@@ -39,7 +39,7 @@ est possible par un voyant lumineux situé sur son tableau de bord. Le conducteu
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.45\linewidth]{fig_02.png}
+\includegraphics[width=.9\linewidth]{fig_02.png}
 \caption{Manoeuvre d’insertion en créneau dans une place de stationnement \label{fig_02}}
 \end{figure}
 
@@ -107,6 +107,24 @@ l’algorithme de stationnement et ceux dont le signal sera exploité pour la s�
 usagers de la route et des piétons lors de la manœuvre du véhicule).
 
 \question{À partir du diagramme des exigences (\autoref{fig_26}) et de la \autoref{fig_02}, identifier le ou les capteurs à ultrasons pouvant participer au respect de l’exigence 1.4. Faire de même pour l’exigence 1.6.1.}
+\ifprof
+\begin{corrige}
+Pour trouver une place de stationnement à droite, seuls les capteurs positionnés à droite sont nécessaires. 
+\begin{itemize}
+\item Exigence 1.4 :
+\begin{itemize}
+\item $L_p \geq L_v + 2 \times 0,5 $ (Longueurs) : capteurs b et d;
+\item $l_p \geq l_v + 2 \times 0,15 $ (largeurs) : a et c. 
+\end{itemize} 
+\end{itemize}
+
+\begin{itemize}
+\item Exigence 1.6.1 : l'utilisateur doit contrôler le déplacement du véhicule tous les capteurs ultrasons doivent être utilisés.
+\end{itemize}
+
+\end{corrige}
+\else
+\fi
 
 Dans la réalité, le signal du capteur latéral côté passager (capteur a \autoref{fig_03}) est suffisant pour détecter une
 place de stationnement suffisamment spacieuse. Le signal fourni par le capteur a va permettre de savoir si la
@@ -156,6 +174,13 @@ paramètres géométriques du véhicule.
 Le fait de relever $\Delta T_p = T_b - T_a$ au niveau du capteur \textbf{a} permet de déterminer la longueur de la place et de vérifier qu’elle est compatible avec la manœuvre.
 
 \question{Déterminer la condition que la grandeur $\Delta T_p$ doit vérifier pour que la longueur $L$ d’une place de stationnement respecte l’exigence 1.4. Cette condition est fonction de $V_d$ et $L_v$.}
+\ifprof
+\begin{corrige}
+À vitesse constante, $V_d = \dfrac{L}{\Delta T_p}$. Or d'après l'exigence 1.4, $L \geq L_v + 2\times 0,5$ soit 
+$V_dT_p \geq L_v + 1$ et $T_p \geq\dfrac{ L_v + 1}{V_d}$.
+\end{corrige}
+\else
+\fi
 
 Lorsque la voiture longe la place libre (entre les repères A et B \autoref{fig_03}), c’est la valeur maximale de $T_e$ relevée
 lors du déplacement qui permet de savoir si la largeur de la place est suffisante pour la manœuvre. Cette largeur
@@ -163,6 +188,17 @@ est notée $e$ (\autoref{fig_03}) et la largeur du véhicule est notée $e_v$. L
 
 \question{Déterminer la condition sur le temps $T_e$ pour que la largeur d’une place de stationnement respecte
 l’exigence 1.4.}
+\ifprof
+\begin{corrige}
+D'après l'exigence 1.4, $e>e_v + 0,15$.
+Dans ces conditions, $T_e = \dfrac{2e}{V_s}$.
+On a donc $\dfrac{T_e V_s}{2}>e_v + 0,15$ et $T_e>2\dfrac{e_v + 0,15}{V_s}$.
+
+
+\end{corrige}
+\else
+\fi
+
 
 Les conditions de longueur et de largeur d’une place de stationnement étant vérifiées, les distances $L$ et $e$ étant déduites des mesures, ces deux dernières grandeurs sont désormais des données implantables dans l’algorithme de stationnement. Le fait de connaitre en temps réel la vitesse du véhicule donne aussi la possibilité de connaitre la position du véhicule à partir d’un instant de référence tel que $T_a$. Il est donc maintenant considéré que la
 position du point $A$ par rapport au véhicule est une donnée.
@@ -183,7 +219,7 @@ véhicule déjà stationné (point $B$ \autoref{fig_06}). Toujours en recul, il 
 puis l’autre) pour l’insertion dans la place libre.
 
 La trajectoire du véhicule est définie par celle du point $F$, centre du train arrière (\autoref{fig_06}). La trajectoire
-« idéale » de $F$ est donc une portion linéaire jusqu’au point $O$ suivie de deux arcs de cercles identiques (sur les cercles $C_1$ et $C_2$) tangents en un point $P$. Ce dernier est le point où le véhicule fait un angle de 45\degres par rapport
+« idéale~» de $F$ est donc une portion linéaire jusqu’au point $O$ suivie de deux arcs de cercles identiques (sur les cercles $C_1$ et $C_2$) tangents en un point $P$. Ce dernier est le point où le véhicule fait un angle de 45\degres par rapport
 au trottoir.
 
 Le point $O$ est défini à partir de la longueur $L$  de la place de stationnement, des dimensions du véhicule et de
@@ -194,6 +230,11 @@ Le \autoref{tab_01} précise les paramètres géométriques qui caractérisent l
 \question{Parmi tous les paramètres géométriques définis dans le \autoref{tab_01} ainsi que sur la \autoref{fig_06}, identifier
 ceux qui sont propres au véhicule et ceux qui se déduisent directement des informations des capteurs à ultrasons.
 Que reste-t-il donc à déterminer afin que la géométrie de la trajectoire du point $F$ soit définie ?}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 \begin{figure}[H]
 \centering
@@ -242,9 +283,31 @@ $\repere{O_1}{x_0}{y_0}{z_0}$ et par un angle $\theta_2(t)$ (\autoref{fig_07}) d
 \question{Les coordonnées du point $P$ dans le repère $\rep{0}$ sont notées $x_p$
 et $y_p$ : $\vect{OP}=x_P\vect{x_0}+y_P\vect{y_0}$. Déterminer
 l’expression de $x_P$ et $y_P$ en fonction des paramètres géométriques $L$, $e$, $L_F$, $d_r$, $L_a$ et $D$. Le rayon $R$ n’étant pas encore déterminé, il ne doit pas apparaitre dans les expressions de $x_P$ et $y_P$.}
+\ifprof
+\begin{corrige}
+On a $x_P = \dfrac{1}{2} \vect{OF_f}\cdot \vect{x_0} = \dfrac{1}{2}\left(L-L_a - L_f\right)$.
+
+De plus $y_P = \dfrac{1}{2} \vect{OF_f}\cdot \vect{y_0} = \dfrac{1}{2}\left(\dfrac{e_v}{2}+D+e - d_r - \dfrac{e_v}{2} \right)=\dfrac{1}{2}\left(D+e - d_r \right)$ .
+\end{corrige}
+\else
+\fi
 
 %Q6
 \question{Déterminer l’expression de $R$ en fonction de $L$, $L_a$ et $L_F$ qui permettra de définir le cercle $C_1$ (et donc le cercle $C_2$).}
+\ifprof
+\begin{corrige}
+On a $\vect{OP}=\vect{OO_1}+\vect{O_1P}$. 
+%En projetant sur $\vect{y}$, on a 
+%$y_P = R - R\dfrac{\sqrt{2}}{2}$ soit 
+%$\dfrac{1}{2}\left(D+e - d_r \right)= R\dfrac{2-\sqrt{2}}{2}$ soit $R=\dfrac{D+e - d_r }{2-\sqrt{2}}$.
+
+En projetant sur $\vect{x_0}$, on a $x_P =R\sqrt{2}{2}$ soit
+$\dfrac{1}{2}\left(L-L_a - L_f\right)=R\dfrac{\sqrt{2}}{2}$ et $L-L_a - L_f=R\sqrt{2}$.
+
+Au final, $R = \dfrac{L-L_a - L_f}{\sqrt{2}}$.
+\end{corrige}
+\else
+\fi
 
 Le cercle $C_1$ (et donc $C_2$ par symétrie) est maintenant défini, donc la trajectoire que le point $F$ devra suivre l’est également.
 
@@ -253,6 +316,11 @@ Afin de vérifier en simulation la validité de la trajectoire déterminée, il 
 \subsubsection{ Simulation et validation de la trajectoire à suivre}
 %Q7
 \question{Exprimer dans $\rep{0}$ les coordonnées $x$ et $y$ du point $F$ parcourant la portion de cercle $C_2$ en fonction de $R$ et $\theta_2$ : $\vect{OF}=x\vect{x_0}+y\vect{y_0}$. Préciser l’intervalle dans lequel $\theta_2$ doit varier.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 Le rayon $R$ et les coordonnées du point $F$ étant déterminés, il est maintenant possible d’implanter dans l’algorithme de stationnement le modèle de la trajectoire à suivre. Il est cependant nécessaire de valider la trajectoire
 déterminée en prenant en compte l’ensemble du véhicule avant de poursuivre par l’étude de la direction du
@@ -274,6 +342,11 @@ manœuvre. La trajectoire a été déterminée à partir des relations trouvées
 %Q8
 \question{Quelles sont les exigences dimensionnelles vérifiées par la simulation (\autoref{fig_08}) et permettant de valider
 la trajectoire ? Justifier les réponses apportées.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 La simulation a permis de valider la trajectoire à suivre. Cependant il faut encore établir le lien entre l’orientation
 des roues directrices du véhicule et la trajectoire à suivre puisque le système de stationnement automatique agit
@@ -334,10 +407,20 @@ Données : $\vect{FO_1}=R\vect{y_v}$, $\vect{CF}=L_t\vect{x_v}-e_t\vect{y_v}$ o�
 
 %Q9
 \question{Déterminer en projection dans la base $\base{x_v}{y_v}{z_v}$ l'expression de $\vectv{C}{V}{\rep{1}}$ en fonction de $R$ $e_t$, $L_t$, $\dot{\theta_1}$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 %Q10
 \question{On rappelle que $\vectv{C}{V}{\rep{1}} = v \vect{x_r}$. À partir du résultat de la question précédente, déterminer, en fonction de $R$, $e_t$ et $L_t$, l'expression de $\tan\alpha$ des roues directrices lors de la phase 1 de la manœuvre. Cet angle noté $\alpha_{c1}$ est constant puisque le point $F$ parcourt $C_1$. $\alpha_{c1}$ représente la consigne angulaire à imposer aux roues directrices
 lors de la phase 1.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 Lors de la manœuvre de stationnement, l’angle des roues devra suivre une consigne de position angulaire notée $\alpha_c(t)$ à définir pour respecter les trois phases de l’insertion dans la place.
 
@@ -345,6 +428,12 @@ Lors de la manœuvre de stationnement, l’angle des roues devra suivre une cons
 \question{Sous forme d’un graphique, proposer l’évolution temporelle de la consigne $\alpha_c(t)$ pour que le véhicule puisse s’insérer dans la place de stationnement selon les trois phases de manœuvre définies précédemment.
 Sur ce graphique devront apparaitre les ordonnées particulières que $\alpha$ devra atteindre ainsi que les durées des
 différentes phases de la manœuvre en fonction des données littérales du texte.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 Dans cette deuxième partie il a été possible de définir la trajectoire du véhicule et la consigne angulaire d’orientation des roues afin que le véhicule puisse effectuer la manœuvre en créneau en une fois. Ceci étant, le suivi de la trajectoire dépend des performances du système d’orientation des roues directrices. Ce système appelé
 « direction » en automobile a son comportement défini par l’algorithme de stationnement lors de manœuvres
@@ -412,6 +501,11 @@ Stabilité &Dépassement &Aucun \\ \hline
 \question{À partir des documents relatifs à la direction du véhicule RC fournis \autoref{fig_27} à \autoref{fig_29} 
 identifier à quoi correspondent les numéros figurant sur la description chaine d’énergie / chaine d’information
 \autoref{fig_11}.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 \begin{figure}[H]
 \centering
@@ -490,6 +584,11 @@ bielle de renvoi \textbf{3}.
 
 %Q13
 \question{En exploitant la fermeture géométrique de la chaine \{0, 1, 2, 3, 0\} et en faisant l’hypothèse que l’angle $\alpha_2$ varie très peu $\alpha_2\simeq 90\degres$, montrer que $\sin\alpha_3 = k\sin\alpha_1$ et préciser l’expression de $k$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 La \autoref{fig_15} représente l’évolution de $\alpha_3$  en fonction de $\alpha_1$ pour un seul des deux sens de rotation des roues ($\alpha_3$ varie de $0\degres$ à $-45\degres$). Lorsque les roues sont parallèles au véhicule $\alpha_1 = 0\degres$ et $\alpha_3 = 0\degres$.
 
@@ -498,6 +597,11 @@ La \autoref{fig_15} représente l’évolution de $\alpha_3$  en fonction de $\a
 en précisant la valeur de la constante $K_{31}$.
 En raisonnant de façon similaire, l’étude de la chaine fermée \{0, 3, 4, 6, 0\} permet de montrer que $\alpha$ est
 proportionnel à $\alpha_3$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 Ainsi, pour la suite de l’étude il est considéré que $\alpha=\lambda\alpha_1$, avec $\lambda$ une constante supposée connue. Ainsi pour la suite de l’étude $H_t(p)=\lambda$.
 
@@ -553,15 +657,35 @@ sur le modèle RC puisque l’ensemble \{3, 3’, 5\} forme un parallélogramme 
 
 %Q15
 \question{Faire un inventaire des puissances des actions mécaniques extérieures et intérieures mises en jeu dans le théorème de l’énergie cinétique appliqué à $\Sigma$ fournissant l’équation différentielle précédente. Une attention particulière sera portée à la classification, au caractère lisible, compréhensible et justifié de l’inventaire. L’expression des puissances des actions mécaniques extérieures et intérieures est exigée.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 %Q16
 \question{Déterminer l’expression de $\vectv{E}{3}{0}$ et de $\vectv{E}{5}{0}$ en fonction de $\dot{\alpha_1}(t)$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 %Q 17. 
 \question{Déterminer l’expression des énergies cinétiques $\ec{S}{0}$ ($S$ désignant l’ensemble \{axe moteur + réducteur\} du servomoteur), $\ec{5}{0}$, $\ec{6}{0}$ et $\ec{6'}{0}$ en fonction de $\alphap(t)$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 %Q 18. 
 \question{Écrire l’expression de l’énergie cinétique $\ec{\Sigma}{0}$ en fonction de $\alphap(t)$ et en déduire l’expression de l’inertie équivalente $\indice{J}{eq}$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 Pour finaliser la modélisation de la commande, il est nécessaire d’identifier toutes les caractéristiques du servomoteur dont $J_m$.
 
@@ -606,9 +730,19 @@ Il est possible de mettre $H_m(p)$ sous la forme $H_m(p) = \ordreunopt{K_m}{\tau
 avec $K_m = \dfrac{1}{k_e}$ et $\tau_m =\dfrac{R J_m}{k_e^2}$.
 
 \question{À partir de l’expression temporelle de $\indice{u}{mes}(t)$ donnée précédemment, déduire de l’essai \autoref{fig_17} les valeurs numériques des constantes $K_m$ et $\tau_m$. Il est rappelé que $K_c = \SI{1,05}{V.rad^{-1}}$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 %Q20
 \question{Déduire la valeur numérique de $k_e$ et de $RJ_m$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 La \autoref{fig_18} représente l’évolution de l’intensité moteur pour un échelon de tension $u_m(t)=\SI{3}{V}$ avec le rotor du moteur bloqué.
 
@@ -620,9 +754,19 @@ La \autoref{fig_18} représente l’évolution de l’intensité moteur pour un 
 
 %Q21
 \question{Exprimer la fonction de transfert $\dfrac{I(p)}{U_m(p)}$ sous forme canonique lorsque le rotor est bloqué.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 %Q22
 \question{Déduire de la \autoref{fig_18} la valeur numérique de $R$ et celle de $L$. À partir des résultats obtenus par l’exploitation de la \autoref{fig_17}, déduire également la valeur numérique de $J_m$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 $J_m$étant identifié, avec la connaissance des moments d’inertie des solides constituant la direction il est possible
 d’en déduire l’inertie équivalente $J_{\text{eq}}$.
@@ -643,16 +787,31 @@ Pour la suite $K_m =\SI{256}{rad.s^{-1}V^{-1}}$ et $\tau_m = \SI{0,03}{s}$ et il
 
 %Q23
 \question{Afin que l’asservissement soit de qualité il est nécessaire que l’écart $\varepsilon(t)$ soit nul quand $\alpha(t)=\alpha_c(t)$ en régime permanent et pour une entrée type échelon. Déterminer la relation entre $K_a$ et $K_c$ permettant un asservissement de qualité.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 Les différentes fonctions de transfert du modèle \autoref{fig_12} étant identifiées, il est maintenant possible d’établir la fonction de transfert $H(p)=\dfrac{A(p)}{A_c(p)}$.
 
 %Q 24. 
 \question{Déterminer l’expression de $H(p)$, fonction de transfert de la commande des roues. Mettre $H(p)$ sous
 forme canonique, préciser l’ordre de $H(p)$ et l’expression de ses paramètres caractéristiques. Faire les applications numériques.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 %Q 25. 
 \question{À partir des résultats de la question précédente et en se référant au \autoref{tab_02}, conclure sur
 les performances de précision angulaire et d’amortissement du modèle théorique de la commande des roues.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 La figure 19 montre, pour une entrée en échelon  $\alpha_c(t)$ d’amplitude $\pi/4 \si{rad}$ :
 \begin{itemize}
@@ -670,6 +829,11 @@ La figure 19 montre, pour une entrée en échelon  $\alpha_c(t)$ d’amplitude $
 \question{Conclure sur la validité du modèle théorique de la commande des roues vis-à-vis du comportement
 réel observable \autoref{fig_19}. Qu’il s’agisse du modèle théorique ou du comportement réel de la commande des roues,
 conclure sur la performance en rapidité.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 Un modèle théorique de la commande des roues ayant été établi, il va permettre de synthétiser une correction
 pour l’asservissement en position des roues afin d’en améliorer les performances qui ne sont pas encore respectées
@@ -697,6 +861,11 @@ homogène à des \si{V.rad^{-1}}. L’objectif est donc de déterminer le param�
 
 %Q27
 \question{Après avoir donné l’expression de $H(p) = \dfrac{A(p)}{A_c(p)}$, déterminer l’expression de $K_p$ pour que la commande soit la plus rapide possible sans dépassement pour une consigne de type échelon. Faire l’application numérique.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 La \autoref{fig_21} représente la réponse temporelle théorique $\alpha(t)$ de la commande des roues pour une consigne $\alpha_c(t)$ en échelon d’amplitude $\pi/4$ et pour la valeur de $K_p$ déterminée précédemment.
 
@@ -709,6 +878,11 @@ La \autoref{fig_21} représente la réponse temporelle théorique $\alpha(t)$ de
 
 %Q 28.
 \question{À partir de la \autoref{fig_21}, conclure sur l’effet de la correction choisie vis-à-vis des performances attendues pour la commande des roues du véhicule RC.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 \subsection{Performances dans le domaine réel et amélioration de la correction}
 
@@ -729,6 +903,11 @@ les deux cas le véhicule est à l’arrêt et la consigne $\alpha_c(t)$ en éch
 
 \question{Conclure sur la performance en précision de la commande des roues en expliquant la cause possible
 de l’écart observé entre les deux courbes expérimentales de la \autoref{fig_22}.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 Afin de rendre la direction insensible aux perturbations, une action de type intégrale en complément de l’action
 proportionnelle est envisagée pour le correcteur. La \autoref{fig_23} représente les diagrammes de Bode en boucle ouverte de la commande théorique des roues directrices pour $C(p)=\dfrac{K_p}{p}$ 
@@ -742,6 +921,11 @@ proportionnelle est envisagée pour le correcteur. La \autoref{fig_23} représen
 
 %Q 30. 
 \question{Quel correcteur choisir pour que le système soit stable ? Justifier la réponse.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 L’étude précédente a permis de caractériser un correcteur assurant à la commande des roues les performances
 attendues et une robustesse vis-à-vis de perturbations. Le modèle de l’asservissement corrigé peut être implanté
@@ -760,6 +944,11 @@ La \autoref{fig_24} représente une mesure de l’angle $\alpha(t)$ des roues di
 
 %Q 31
 \question{À partir de la  \autoref{fig_24}, conclure sur le comportement de la commande des roues vis-à-vis des performances de précision, de stabilité et de rapidité attendues.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 Un essai d’insertion du véhicule RC dans une place libre a été réalisé permettant d’obtenir la  \autoref{fig_25}. Sur
 cette figure sont représentés :
@@ -774,6 +963,11 @@ cette figure sont représentés :
 \question{Expliquer la cause des écarts observés entre la trajectoire théorique et la trajectoire réelle.
 Comme le montre la  \autoref{fig_25}, la manœuvre d’insertion est réussie. Dans le cadre de l’essai avec le véhicule RC,
 aucun capteur de proximité n’a été utilisé.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 %Q 33
 \question{En extrapolant pour un véhicule réel le comportement expérimental obtenu avec le véhicule RC ( \autoref{fig_25}), répondre aux questions suivantes en justifiant les réponses apportées :}
@@ -782,6 +976,11 @@ aucun capteur de proximité n’a été utilisé.}
 \item l’insertion dans la place de parking en une fois semble-t-elle possible en respectant les exigences dimensionnelles ?
 \item si tel n’est pas le cas, la possibilité de garer le véhicule est-elle compromise ? Faire une proposition.
 \end{enumerate}}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 \begin{figure}[H]
 \centering
