@@ -207,7 +207,7 @@ où $\left(x,y,z\right)$ sont les coordonnées dans $\rep{0}$ d’un point $M$ d
 
 %Q05
 \question{\label{q:05} Déterminer l’équation cartésienne dans $\rep{0}$ du plan de la plateforme mobile $S$ à l’aide des six degrés
-de liberté $\left( x_G,y_G,z_G, \psi, \theta, \phi \right)$de cette dernière. Pour cela, on calculera le produit scalaire 
+de liberté $\left( x_G,y_G,z_G, \psi, \theta, \phi \right)$ de cette dernière. Pour cela, on calculera le produit scalaire 
 $\vect{GM}\cdot \vect{n}$, où $\vect{n}$ est le
 vecteur normal unitaire à la plateforme mobile que l’on exprimera à l’aide des vecteurs de la base $\base{x}{y}{z}$. En
 déduire qu’il est possible de relier les degrés de liberté $\left( x_G,y_G,z_G, \psi, \theta\right)$ de la plateforme mobile $S$ aux constantes
@@ -221,8 +221,101 @@ demandée ?}
 \fi
 
 
-%Q
-\question{\label{q:}}
+Ces relations permettent de déterminer les valeurs des degrés de liberté de la plateforme mobile $S$ pour lesquels
+cette dernière se positionne dans le plan ($\Pi$), caractérisant ainsi l’essai effectué sur la colonne vertébrale. Pour
+fixer ces degrés de liberté, il faut déterminer quelles consignes de longueurs doivent être appliquées aux six
+vérins de la plateforme mobile.
+Les trois sommets du support fixe $S_0$ vérifient les relations suivantes :
+\begin{itemize}
+\item $\vect{OD}=-\dfrac{\sqrt{3}R}{2}\vect{x_0}+\dfrac{R}{2}\vect{y_0}$;
+\item $\vect{OE}=-R\vect{y_0}$;
+\item $\vect{OF}=\dfrac{\sqrt{3}R}{2}\vect{x_0}+\dfrac{R}{2}\vect{y_0}$.
+\end{itemize}
+
+Les trois sommets de la plateforme mbil $S_0$ vérifient les relations suivantes :
+\begin{itemize}
+\item $\vect{GA}=R\vect{y}$;
+\item $\vect{GB}=-\dfrac{\sqrt{3}R}{2}\vect{x}-\dfrac{R}{2}\vect{y}$;
+\item $\vect{GC}=\dfrac{\sqrt{3}R}{2}\vect{x}-\dfrac{R}{2}\vect{y}$.
+\end{itemize}
+
+
+On supposera dans toute la suite de cette étude que $x_G = y_G = 0$ et $\phi=0$.
+
+%Q6
+\question{\label{q:06} Déterminer littéralement la longueur $L_1 = D1$ de l’axe motorisé 1, en fonction de $\left(z_G,\psi,\theta\right)$.
+Les autres longueurs de vérins peuvent être déterminées de façon analogue. L’ensemble des relations obtenues
+constitue ce que l’on appelle le modèle de cinématique inverse de la plateforme Hexapode, dont la connaissance
+est nécessaire pour élaborer la commande en position de la plateforme mobile $S$ en vue de la réalisation de
+l’essai sur la colonne vertébrale.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+%Q07
+\question{\label{q:07} Donner les expressions littérales des degrés de liberté  $\left( x_G,y_G,z_G, \psi, \theta, \phi \right)$ de la plateforme mobile $S$
+lorsque l’on impose que la longueur de chaque axe motorisé $i$ est identique ($L_i = L, \forall i$). On pourra recourir à des arguments de symétrie pour justifier ce positionnement. Sachant que $R=\SI{0,65}{m}$, faire les applications numériques pour $L=L_{\text{min}}=\SI{0,75}{m}$
+et $L=L_{\text{max}}=\SI{1,5}{m}$; en déduire l’amplitude du mouvement de translation
+verticale de la plateforme mobile $S$. Vérifier si l’exigence correspondante du cahier des charges, donné \autoref{fig:03},
+est validée.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\section{Précision en position de la plateforme mobile}
+\begin{obj}
+Le but de cette partie est de proposer un modèle d’axe motorisé permettant de quantifier les phénomènes qui dégradent la précision en position de la plateforme mobile
+\end{obj}
+
+On rappelle que l’architecture d’un axe motorisé est détaillée sur la \autoref{fig_04}. On y voit notamment que la mesure
+de la position angulaire de l’axe de l’actionneur électrique (1) se fait grâce à une roue codée (11), entrainée
+par l’intermédiaire d’un dispositif \{roue (12) + vis sans fin (3)\} dont la vis est montée sur l’arbre de sortie du
+réducteur (2) ; le rapport de transmission associé est $\dfrac{\omega_{12}}{\omega_{3}}= \dfrac{1}{10}$.
+
+
+%Q08
+\question{\label{q:08} Étant donné que l’information de la roue (12) est codée sur 15 bits et que le pas (par tour) de la liaison
+hélicoïdale \{vis (4) + écrou (5)\} est de \SI{5}{mm}, quelle est la résolution théorique en translation d’un axe motorisé ?
+Comparer avec les exigences de la \autoref{fig_03}.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\subsection{Détermination des efforts sur les axes motorisés}
+\begin{obj}
+L’objectif de cette sous-partie est de déterminer, pour une position donnée de la plateforme mobile, les
+efforts appliqués sur les différents axes motorisés, qui auront une influence sur la précision en position
+de ces derniers.
+\end{obj}
+
+
+Les différents éléments de la plateforme Hexapode sont soumis aux actions mécaniques suivantes :
+\begin{itemize}
+\item l’action de la colonne vertébrale testée sur la plateforme mobile $S$ est modélisée par 
+$\torseurstat{T}{\text{colonne vertébrale}}{S} = 
+\torseurl{\vect{F}=F_X\vect{x_0}+F_Y\vect{y_0}+F_Z\vect{z_0}}
+{\vect{C}=C_X\vect{x_0}+C_Y\vect{y_0}+C_Z\vect{z_0}}{G}$;
+\item l’action de la pesanteur sur la plateforme mobile $S$ est modélisée par 
+$\torseurstat{T}{\text{pesanteur}}{S} = \torseurl{\vect{P}=-mg\vect{z_0}}{\vect{0}}{G}$;
+\item l'action de la plateforme mobile $S$ sur un axe $i$, transmise par la liaison sphérique correspondante (supposée parfaite), est modélisée par
+$\torseurstat{T}{S}{\text{axe } i} = \torseurl{\vect{F_i}}{\vect{0}}{\text{centre de la liaison sphérique}}$;
+\item l'action de la plateforme mobile $S_0$ sur un axe $i$, transmise par la liaison sphérique correspondante (supposée parfaite), est modélisée par
+$\torseurstat{T}{S_0}{\text{axe } i} = \torseurl{\vect{F_i^0}}{\vect{0}}{\text{centre de la liaison sphérique}}$;
+\end{itemize}
+
+On négligera la masse des différents constituants des axes motorisés, et on supposera que les mouvements de la
+plateforme Hexapode sont suffisamment lents pour que l’on puisse négliger dans les équations tous les termes
+d’inertie.
+
+%Q09
+\question{\label{q:09} On considère ici l’axe motorisé 1, qui est tel que $\vect{DA}=L_1(t) \vect{u_1}(t)$. En isolant l’ensemble de ses pièces constitutives, situées entre la rotule supérieure (8) (de centre $A$) et la rotule inférieure (14) (de centre $D$), déterminer la direction des résultantes $\vect{F}$ et  $\vect{F_1^0}$ des actions de liaison sur l’axe motorisé 1.}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -231,33 +324,24 @@ demandée ?}
 
 
 %Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
+\question{\label{q:10} Montrer que les intensités $F_i$ des résultantes $\vect{F_i}$ ($1\leq i \leq 6$) vérifient le système matriciel suivant :}
+$$
+\begin{pmatrix}
+M_{11} & ... & M_{16} \\
+\vdots    &     & \vdots \\
+M_{61} & ... & M_{66} \\
+\end{pmatrix}
+\begin{pmatrix}
+F_1 \\ F_2 \\ F_3 \\ F_4 \\ F_5 \\ F_6 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+F_X \\ F_Y \\ F_Z-mg \\ C_X \\ C_Y \\ C_Z \\
+\end{pmatrix}
+$$
+\textit{où les composantes $M_{ij}$ de la matrice $M$ de dimension $6\times 6$ sont des fonctions scalaires des degrés de liberté
+de la plateforme mobile $S$; on donnera notamment l’expression des termes $M_{k1,1\leq k \leq 6}$ de la première colonne
+de $M$ sous la forme de produits scalaires et de produits mixtes que l’on ne cherchera pas à développer.}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -265,179 +349,221 @@ demandée ?}
 \fi
 
 
-%Q
-\question{\label{q:}}
+%Q11
+\question{\label{q:11}En adoptant pour chaque axe le modèle de liaison équivalente déterminé dans la question \ref{q:02}, montrer,
+par une méthode à choisir, qu’il est possible de déterminer l’ensemble des efforts de liaison agissant dans une
+position donnée de la plateforme mobile $S$, et par conséquent, que la matrice $M$ est inversible.
+On obtient ainsi, pour une position donnée de la plateforme mobile $S$, et un chargement fixé sur la colonne
+vertébrale, les efforts subis par chaque axe motorisé. Ces efforts seront utilisés dans la suite pour estimer la
+précision en position d’un axe motorisé.}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
 
+\subsection{Prise en compte de la rigidité du dispositif vis-écrou}
+\begin{obj}
+L’objectif de cette sous-partie est de prendre en compte les imperfections du système vis-écrou qui
+affectent la précision en position d’un axe motorisé, et de quantifier cette dernière.
+\end{obj}
 
-%Q
-\question{\label{q:}}
+La liaison hélicoïdale est réalisée par un dispositif vis-écrou à billes avec un écrou précontraint. On estime que
+la source majeure d’imprécision dans le positionnement d’un axe motorisé provient de la rigidité globale de
+ce dispositif qui est soumis à une charge axiale $F_a$ : plus cette rigidité est élevée, meilleure est la précision
+en position d’un axe motorisé. Afin de modéliser cette rigidité globale, on suppose que le comportement de
+déformation axiale de chacun des constituants peut être modélisé par un ressort de traction-compression
+\begin{itemize}
+\item un ressort de raideur $K_e$ pour modéliser la déformation axiale de l’écrou provoquée par la charge axiale
+$F_a$ : $F_a = K_e \Delta L_e$,  où $\Delta L_e$ est la variation de longueur axiale de l’écrou ;
+\item un ressort de raideur $K_v$ pour modéliser la déformation axiale de la vis provoquée par la charge axiale $F_a$ : $F_v = K_v \Delta L_v$,  où $\Delta L_v$ est la variation de longueur axiale de la vis ;
+\item n ressort de raideur $K_b$ pour modéliser la déformation axiale de l’ensemble des billes en contact, provoquée par la charge axiale $F_a$ : $F_a = K_b \Delta L_b$,  où $\Delta L_b$ est la variation de longueur axiale des billes.
+\end{itemize}
+
+%Q12
+\question{\label{q:12}Donner l’expression littérale de la rigidité globale $K_g$ de l’ensemble \{vis -- écrou\}, définie comme le quotient de la charge axiale $F_a$  appliquée à l’ensemble et de la variation de longueur axiale $\Delta L_a = \Delta L_e + \Delta L_v + \Delta L_b$ de l’ensemble.}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
 
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-
-
-
-
+La \autoref{fig:07} représente les courbes caractéristiques \{charge -- déplacement\} du dispositif vis-écrou selon que l’écrou utilisé est précontraint ou non ; à l’aide de celles-ci, il est en particulier possible d’estimer, pour une
+valeur donnée de la charge axiale $F_a$, la raideur $K_b$ définie plus haut comme la pente de la tangente à la courbe considérée au point correspondant à la charge $F_a$.
 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.8\linewidth]{fig_07}
-\caption{\label{fig:07}  }
+\includegraphics[width=.6\linewidth]{fig_07}
+\caption{\label{fig:07}  Courbe \{charge axiale -- déplacement axial\} d’un dispositif vis-écrou liée à la
+déformation des billes.}
 \end{figure}
+
+
+%Q13
+\question{\label{q:13}À l’aide de la \autoref{fig:07}, expliquer pourquoi il est plus avantageux d’utiliser un écrou précontraint pour améliorer la précision en position d’un axe motorisé.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+On cherche maintenant à estimer l’erreur de positionnement de la plateforme 𝑆 dans une situation donnée :
+\begin{itemize}
+\item la longueur de chaque axe motorisé est égale à $L$;
+\item chaque axe motorisé subit une charge axiale de compression $\vect{F}_i=F_a \vect{u_i}$ avec $F_a = \SI{1}{kN}$.
+\end{itemize}
+
+Dans cette situation, les raideurs $K_e$ et $K_b$ sont constantes et identiques pour les six axes, tandis que la raideur associée à la vis seule peut s’exprimer comme $K_v = \dfrac{E_v A_v}{L_v}$ où :
+\begin{itemize}
+\item $E_v$ est le module de Young qui caractérise la rigidité du matériau constitutif de la vis ;
+\item $A_v$ est l’aire de la section de la vis ;
+\item $L_v$ est la longueur de vis sollicitée en compression, qui varie selon la position de l’écrou de $\indice{L}{v min}= \SI{0}{mm}$ (quand la tige du vérin est complètement rentrée) à $\indice{L}{v max}= \SI{750}{mm}$ (quand la tige du vérin est complètement
+sortie).
+\end{iteimize}
+
+%Q14
+\question{\label{q:14}}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+%Q
+\question{\label{q:}}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+%Q
+\question{\label{q:}}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+%Q
+\question{\label{q:}}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+%Q
+\question{\label{q:}}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+%Q
+\question{\label{q:}}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+%Q
+\question{\label{q:}}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+%Q
+\question{\label{q:}}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+%Q
+\question{\label{q:}}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+%Q
+\question{\label{q:}}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+%Q
+\question{\label{q:}}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+%Q
+\question{\label{q:}}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+%Q
+\question{\label{q:}}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+%Q
+\question{\label{q:}}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+%Q
+\question{\label{q:}}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+
+
+
+
+
+
 
 
 \begin{figure}[H]
