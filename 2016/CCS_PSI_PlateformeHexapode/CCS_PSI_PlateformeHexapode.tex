@@ -409,7 +409,7 @@ déformation des billes.}
 \fi
 
 
-On cherche maintenant à estimer l’erreur de positionnement de la plateforme 𝑆 dans une situation donnée :
+On cherche maintenant à estimer l’erreur de positionnement de la plateforme $S$ dans une situation donnée :
 \begin{itemize}
 \item la longueur de chaque axe motorisé est égale à $L$;
 \item chaque axe motorisé subit une charge axiale de compression $\vect{F}_i=F_a \vect{u_i}$ avec $F_a = \SI{1}{kN}$.
@@ -421,10 +421,12 @@ Dans cette situation, les raideurs $K_e$ et $K_b$ sont constantes et identiques 
 \item $A_v$ est l’aire de la section de la vis ;
 \item $L_v$ est la longueur de vis sollicitée en compression, qui varie selon la position de l’écrou de $\indice{L}{v min}= \SI{0}{mm}$ (quand la tige du vérin est complètement rentrée) à $\indice{L}{v max}= \SI{750}{mm}$ (quand la tige du vérin est complètement
 sortie).
-\end{iteimize}
+\end{itemize}
 
 %Q14
-\question{\label{q:14}}
+\question{\label{q:14} Donner l’expression littérale, puis numérique (en unités SI) des valeurs maximale et minimale de la raideur $K_g$. On utilisera pour cela : $K_e = \SI{734}{N.\mu m^{-1}}$, 
+$K_b = \SI{970}{N.\mu m^{-1}}$, $E_v = \SI{210}{GPa}$
+ et $A_v = \SI{3200}{mm^2}$.} 
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -432,8 +434,10 @@ sortie).
 \fi
 
 
-%Q
-\question{\label{q:}}
+%Q15
+\question{\label{q:15} Dans les cas successifs d’un vérin entièrement rentré ($L_v = L_{v\text{ min}}=\SI{0}{mm}$) et d’un vérin entièrement
+sorti ($L_v = L_{v\text{ max}}=\SI{750}{mm}$), calculer la variation de longueur de l’axe motorisé due à la charge de compression axiale $-F_a$. Comparer ces variations avec la résolution théorique d’un axe motorisé, déterminée à la question \ref{q:08}.
+Conclure vis-à-vis du diagramme des exigences de la \autoref{fig:03}.}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -441,169 +445,367 @@ sortie).
 \fi
 
 
-%Q
-\question{\label{q:}}
+%Q16
+\question{\label{q:16}Déduire de la question précédente l’écart de positionnement maximal 
+ $\left(\Delta x_G, \Delta y_G, \Delta z_G, \Delta\psi, \Delta\theta, \Delta\phi\right)$, dû
+à la rigidité globale des dispositifs \{vis -- écrou\}, de la plateforme mobile $S$ lorsque celle-ci est dans les deux
+positions définies à la question \ref{q:07}. Conclure vis-à-vis du diagramme des exigences de la \autoref{fig:03}.}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
 
+\section{\label{sec:03} Asservissement par traitement d’images}
+\begin{obj}
+L’objectif de cette partie est d’une part de définir une mesure du positionnement de la plateforme
+mobile à l’aide d’un algorithme de traitement d’images, et d’autre part de concevoir une loi de commande permettant d’asservir la position de la colonne vertébrale, liée à la plateforme, à une position
+de référence.
+\end{obj}
 
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
+\subsection{Construction de l’algorithme d’estimation par traitement d’images}
 
+\begin{obj}
+L’objet de cette sous-partie est la construction d’un algorithme permettant d’obtenir la position de la
+colonne vertébrale exprimée dans un repère absolu.
+\end{obj}
 
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-%Q
-\question{\label{q:}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-
-
-
-
-
-
+Le positionnement de la plateforme mobile est déterminé à l’aide d’images fixes capturées par plusieurs caméras
+placées autour de la plateforme Hexapode (voir \autoref{fig:01}). Par souci de simplification, on ne s’intéressera dans
+la suite qu’au traitement des images d’une seule de ces caméras.
+Une image peut être représentée sous la forme d’un tableau de valeurs, chaque case correspondant à un pixel de
+l’image ; les caméras étant monochromatiques, chaque valeur du tableau représente le niveau de gris codé sur 8
+bits du pixel correspondant (pour information : $0=$noir, $255=$blanc). Pour simplifier le problème, on admet que
+chaque image peut être représentée par une fonction continue des variables continues de l’espace 2D :
+\begin{itemize}
+\item $f(X,Y)$ désigne l’image de référence, associée à la plateforme en position nominale supposée connue (comme
+illustré à titre d’exemple sur la \autoref{fig:08}) ;
+\item $g(X,Y)$ désigne une image prise à un instant donné (voir \autoref{fig:08}) ;
+où $X$ et $Y$ désignent respectivement l’abscisse et l’ordonnée d’un point $M$ de l’image (voir \autoref{fig:09}).
+\end{itemize}
 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.8\linewidth]{fig_08}
-\caption{\label{fig:08}  }
+\includegraphics[width=\linewidth]{fig_08}
+\caption{\label{fig:08}  Images en position nominale et décalée}
 \end{figure}
 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.8\linewidth]{fig_09}
-\caption{\label{fig:09}  }
+\includegraphics[width=.4\linewidth]{fig_09}
+\caption{\label{fig:09}  Repère image}
 \end{figure}
 
+L’objet de l’algorithme de traitement d’images est de trouver le déplacement $\vect{U}(X,Y)$, de composantes $U_X(X,Y)$ et 
+$U_Y(X,Y)$ dans le repère de l’image, qui permet de relier l’image de référence à l’image actuelle :
+$$g\left( X + U_X(X,Y),Y + U_Y(X,Y)\right) = f(X,Y)+n(X,Y)$$
+où $n(X,Y)$ désigne un « bruit de mesure » (ce terme modélise, entre autres, des erreurs dans la prise d’images et
+dans la discrétisation des signaux). Le principe de l’algorithme est de minimiser la fonction « cout » suivante 
+$$J\left( U_X(X,Y),Y + U_Y(X,Y)\right) = \iint n(X,Y)^2 \dd X \dd Y.$$
+
+%Q17
+\question{\label{q:17} Interpréter physiquement sur un plan qualitatif ce principe de minimisation.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+Afin de résoudre ce problème, on cherche une solution de la forme :
+$$
+\vect{U}\left(X,Y\right)=\sum\limits_{i=1}^{6}\alpha_i \vect{\varphi}_i \left(X,Y\right).
+$$
+où les vecteurs $\vect\varphi_i \left(X,Y\right)$ désignent les six mouvements élémentaires de corps rigide (3 translations élémentaires et 3 rotations élémentaires, supposées connues) de la plateforme $S$ par rapport au support $S_0$.
+
+%Q18
+\question{\label{q:18}En introduisant dans l’expression de la fonction cout le développement en série de Taylor à l’ordre un
+de$g\left( X + U_X(X,Y),Y + U_Y(X,Y)\right) $ en $(X,Y)$, donner l’expression de la fonction cout en fonction de $f(X,Y)$, $g(X,Y)$, $\vect{\Delta} g  (X,Y)$, $\alpha_i$ et $\vect{\varphi}_i(X,Y)$ où $\vect{\Delta} g$ désigne le gradient spatial de $g$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+%Q19
+\question{\label{q:19}Écrire les équations vérifiées par les coefficients $\alpha_i$, qui correspondent à la minimisation de la fonction cout obtenue à la question \ref{q:18}, et qui permettent ainsi d’obtenir l’expression du déplacement mesuré.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+%Q20
+\question{\label{q:20}Montrer que la détermination des coefficients $\alpha_i$ peut être obtenue par la résolution d’un système linéaire 
+de la forme :}
+$$
+\begin{pmatrix}
+R_{11} & ... & R_{16} \\
+\vdots  &     &  \vdots \\
+R_{61} & ... & R_{66} \\
+\end{pmatrix}
+\begin{pmatrix}
+\alpha_1 \\
+\vdots \\
+\alpha_6
+\end{pmatrix}
+=
+\begin{pmatrix}
+\left( f(X,Y)-g(X,Y)\right)\vect{\varphi}_1(X,Y)\cdot \nabla_g(X,Y) \dd X \dd Y \\
+\vdots \\
+\left( f(X,Y)-g(X,Y)\right)\vect{\varphi}_6(X,Y)\cdot \nabla_g(X,Y) \dd X \dd Y \\
+\end{pmatrix}
+$$
+\textit{et donner l’expression générique du terme $R_{ij}$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+%Q21
+\question{\label{q:21} En vue d’une implantation numérique, proposer une méthode d’approximation numérique du gradient 
+$\vect{\nabla} g(X,Y)$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+Cette étude montre que l’on peut formuler le problème de la détermination du positionnement de la plateforme
+mobile comme la résolution d’un système d’équations linéaires. En raison de la prise d’images et de la résolution
+de ce calcul, l’estimation de la position réelle est obtenue avec un retard pur $\tau = \SI{0,04}{s}$.
+
+\subsection{Conception de la loi d'asservissement en position de l'Hexapode}
+\begin{obj}
+En vue d’asservir la position de la colonne vertébrale à une position de référence, une structure de
+commande à partir de l’estimation de la position réelle est mise en place. Après la définition des
+modèles nécessaires à la synthèse des lois de commande, l’objet de cette partie est de concevoir le
+régulateur de cette architecture de commande.
+\end{obj}
+
+
+Pour la synthèse des régulateurs de la boucle externe, on adopte le modèle du procédé représenté par le schéma
+bloc de la \autoref{fig:10}. On suppose :
+\begin{itemize}
+\item qu’une première structure de commande « rapprochée » assure l’asservissement en vitesse des axes et que
+les caractéristiques dynamiques des six axes asservis sont identiques ;
+\item pour un axe donné, que les efforts dus à sa rigidité, à la charge et les couplages avec les autres axes sont
+modélisés sous la forme d’un signal externe perturbateur unique, ramené en entrée du procédé et don $F_u(p)$
+est la transformée de Laplace ;
+\item que les jeux dans les liaisons sont modélisés sous la forme d’un signal perturbateur externe, dont $D(p)$ est
+la transformée de Laplace, traduisant l’écart de déplacement de la position de l’axe ;
+\item pour l’axe considéré que $L^m(p)$, $L^d(p)$ et $L^{de}(p)$ sont respectivement les transformées de Laplace de la
+position non déformée, de la position de l’axe après déformation et de l’estimation de la position réelle issue
+de l’évaluation au moyen de l’algorithme de traitement d’images (la grandeur $L^m$  est obtenue au moyen
+d’une mesure issue d’un capteur placé directement sur l’axe de l’actionneur) ;
+\item que $U(p)$ représente la transformée de Laplace de la grandeur de commande (homogène à une tension) de
+la chaine de motorisation de l’axe considéré.
+\end{itemize}
+La chaine de motorisation est modélisée par la fonction de transfert $H(p) = \dfrac{L^m(p)}{U(p)} = \dfrac{0,5}{p\left(1+0,01 p\right)}$, la chaine
+d’acquisition et le système de traitement d’images sont modélisés en temps continu comme un retard pur $\tau =\SI{0,04}{s}$. Pour la chaine d’asservissement, le cahier des charges partiel suivant, caractérisé par une pulsation
+de coupure en boucle ouverte et une marge de phase fixées à priori, est rappelé :
+\begin{itemize}
+\item pulsation de coupure $\omega_c$ à \SI{0}{dB} en boucle ouverte $\omega_c = \SI{60}{rad.s^{-1}}$;
+\item marge de phase $\Delta \phi \geq 45 \degres$.
+\end{itemize}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=.8\linewidth]{fig_10}
-\caption{\label{fig:10}  }
+\caption{\label{fig:10}  Modèle du procédé pour la conception de la loi de commande de la chaine d’asservissement}
 \end{figure}
+
+
+Pour la conception de la loi de commande, il s’agira :
+\begin{itemize}
+\item de montrer qu’une structure mono-boucle simple ne permet pas d’assurer le cahier des charges partiel ;
+\item d’analyser si une structure de commande adaptée aux systèmes à retard peut assurer les performances
+escomptées (permettant ainsi de s’affranchir du retard pur de la chaine de mesure par traitement d’images) ;
+\item de montrer qu’une structure adaptée aux systèmes à retard complétée par une boucle interne sur la mesure
+de position d’un axe non déformé permet de vérifier l’ensemble du cahier des charges.
+\end{itemize}
+
+\subsubsection{Analyse d’une structure mono-boucle}
+
+Une solution simple est d’envisager, dans un premier temps, une structure de commande réalisée directement à
+partir de l’estimation $L^{de}(t)$ de la position réelle de l’axe considéré. Cette structure, dont le correcteur est noté
+$C_1(p)$ et la consigne $L^{\star}(p)$, est représentée par le schéma de la \autoref{fig:11}.
 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=.8\linewidth]{fig_11}
-\caption{\label{fig:11}  }
+\caption{\label{fig:11}  Structure de commande à une boucle}
 \end{figure}
+
+En raison de la présence de bruits de mesure (signaux non représentés sur les schémas fournis), il n’est pas
+souhaitable d’introduire d’action dérivée dans le régulateur de cette boucle. Seuls des correcteurs de type
+proportionnel intégral seront envisagés.
+
+%Q
+\question{\label{q:22} La figure B du document réponse montre le diagramme de Bode de la fonction $H(p)$. Tracer directement
+sur cette figure le diagramme de Bode (tracés réels des module et phase) de la fonction de transfert en boucle
+ouverte non corrigée (soit en prenant $C_1(p)=1$).}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+
+%Q
+\question{\label{q:23}Au regard des tracés de la question \ref{q:22} et des performances souhaitées par le cahier des charges :}
+\textit{
+\begin{itemize}
+\item compte tenu de la pulsation de coupure et de la marge de phase souhaitées, déterminer les deux contraintes
+(sur le module et l’argument) que le correcteur $C_1(j\omega)$ doit vérifier pour les deux cas : procédé sans retard
+pur et procédé avec la présence du retard pur $\tau$;
+\item en argumentant la réponse à l’aide du tracé des allures des diagrammes de Bode (directement sur la copie)
+d’un correcteur de type proportionnel intégral $C_1(p)=K_1\left(1+\dfrac{1}{T_{i1}p}\right)$, justifier qu’un correcteur de ce type :
+\begin{itemize}
+\item ne permet pas d’atteindre les performances exigées en présence du retard de mesure ;
+\item peut être toutefois envisagé en absence du retard dans la chaine de mesure.
+\end{itemize}
+\end{itemize}}
+
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\subsubsection{\label{sec:3b2} Structure de commande adaptée à un système avec retard}
+
+Pour remédier au problème mis en évidence à la question \ref{q:23}, il est envisagé d’utiliser une structure de commande
+adaptée aux systèmes comportant des retards. La \autoref{fig:12} montre deux structures de commande correspondant
+d’une part au schéma réel $(a)$ représentant la réalisation de la commande ($X(p)$ est la transformée de Laplace
+d’une grandeur $x(t)$ interne au régulateur), d’autre part un schéma fictif (b).
+
+%Q
+\question{\label{q:24}Montrer qu’en l’absence de perturbations ($F_u(p)=D(p)=0$) les deux structures (a) et (b) sont
+équivalentes du point de vue entrée-sortie, c’est-à-dire qu’elles ont la même fonction de transfert en boucle
+fermée $\dfrac{L^d(p)}{L^{\star}(p)}$}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+Ainsi, la réalisation de la loi de commande selon la structure de la \autoref{fig:12}.(a) , équivalente du point de vue
+entrée-sortie à la structure virtuelle sans retard de la figure \autoref{fig:12}.(b), permet d’envisager un correcteur $C(p)$ de
+type proportionnel intégral (ce que ne permet pas de faire une structure série simple comme celle représentée à
+la \autoref{fig:11})
+
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=.8\linewidth]{fig_12}
-\caption{\label{fig:12}  }
+\caption{\label{fig:12}  Structure de commande adaptée aux systèmes à retard}
 \end{figure}
+
+
+%Q
+\question{\label{q:25} En utilisant le schéma fictif (b) et le diagramme de Bode de la figure B du document réponse, déterminer le correcteur de type proportionnel intégral $C(p)=K\left(1+\dfrac{1}{T_i p}\right)$ permettant d’assurer les performances exprimées par le cahier des charges partiel. Pour concevoir ce régulateur, la démarche suivante pourra être suivie :}
+\textit{
+\begin{itemize}
+\item déterminer la condition en phase, soit $\arg\left(C(j\omega)\right)$, que doit vérifier le correcteur au regard de la marge de phase souhaitée. En déduire alors la valeur numérique du temps d’action intégrale $T_i$;
+\item pour la valeur de $T_i$ obtenue, déterminer alors la valeur du gain $K$ permettant d’assurer le cahier des charges partiel.
+\end{itemize}}
+
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+%Q
+\question{\label{q:26}Pour une consigne nulle $L^{\star}(t) = 0$, une perturbation en sortie nulle $d(t)=0$ et un échelon de perturbation en entrée $f_u(t)=F_0\Gamma(t)$ où $\Gamma$ est l’échelon d’Heaviside :}
+\textit{\begin{itemize}
+\item déterminer la valeur en régime permanent de la grandeur de commande $\lim\limits_{t\to +\infty} u(t)$
+(ce calcul sera effectué en utilisant la structure de la \autoref{fig:12}(a));
+\item compte tenu de la forme de $H(p)$, en déduire alors le comportement de la grandeur $x(t)$ lorsque $t$ tend vers
+l’infini ;
+\item  au regard de ce comportement, discuter alors des performances de cette structure de commande et conclure
+quant à sa pertinence sur l’asservissement de l’Hexapode.
+\end{itemize}}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\subsubsection{Analyse d’une structure de commande à deux boucles}
+Pour remédier au problème mis en évidence à la question \ref{q:26}, il est envisagé une structure à deux boucles définies
+ainsi :
+\begin{itemize}
+\item une boucle interne réalisée à partir de la mesure de la position non déformée de l’axe $L^m(t)$ permet d’asservir
+cette grandeur à une consigne de référence $L^{m\star}(t)$. Le calcul du correcteur de la boucle interne est hors du
+cadre de cette étude, et on note $T(p)=\dfrac{L^{m}(p)}{L^{m\star}(p)}$ la fonction de transfert en boucle fermée de la boucle interne ;
+\item la boucle externe, réalisée à partir de la grandeur estimée $L^{de}(t)$.
+\end{itemize}
+La nouvelle structure de commande est représentée par le schéma de la \autoref{fig:13} où la représentation de la
+boucle interne est limitée à sa fonction de transfert en boucle fermée $T(p)$ où :
+\begin{itemize}
+\item $T(p)=\dfrac{L^{m}(p)}{L^{m\star}(p)}=\dfrac{1}{(1+0,005p)^2}$
+est la fonction de transfert en boucle fermée de l’asservissement
+de position de l’axe non déformée (elle est ainsi la fonction de transfert de la boucle interne non représentée
+sur la figure) ;
+\item $L^{m\star}$ est la consigne de l’asservissement de la boucle interne ;
+\item l’effet de la perturbation $F_u(p)$ est réduit par la boucle interne, et son influence peut être négligée ;
+\item les seules perturbations se limitent alors à celles dues aux jeux, soit le signal de transformée de Laplace $D(p)$.
+\end{itemize}
+Pour la conception de la loi de commande :
+\begin{itemize}
+\item une approche identique à celle de la \autoref{sec:3b2} adaptée au cas des systèmes présentant des retards est
+utilisée ;
+\item on synthétise dans ce cas un correcteur $C_2(p)=K\left(1+\dfrac{1}{T_{i2} p}\right)$ de type PI sans prendre en compte le retard
+et le régulateur $R_e(p)$ est réalisé en utilisant $C_2(p)$ selon une structure identique à celle de la \autoref{fig:12}(a) ;
+\item le calcul du régulateur $C_2(p)$ ne fait pas partie de cette étude, on suppose cependant qu’il permet d’assurer
+les exigences du cahier des charges.
+\end{itemize}
+
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=.8\linewidth]{fig_13}
-\caption{\label{fig:13}  }
+\caption{\label{fig:13}  Modèle de commande avec une boucle interne integrée}
 \end{figure}
+
+%Q27
+\question{\label{q:27} En utilisant la même démarche que celle de la question \ref{q:26}, déterminer la valeur de la grandeur $L^{m\star}(t)$ en
+régime permanent, soit $\lim\limits_{t \to +\infty} L^{m\star}(t)$, en réponse à une perturbation $d(t)$ en échelon
+$d(t)=D_0 \Gamma(t)$. Au regard des différents éléments constitutifs de la boucle de régulation, justifier qualitativement que la réalisation du
+régulateur $R_e(p)$ selon le schéma de la \autoref{fig:12}(a) reste stable du point vue interne.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+%Q28
+\question{\label{q:28}La \autoref{fig:14} montre les évolutions temporelles de la position $L^d(t)$ en réponse
+à une consigne en échelon $L^{\star}(t)=L_0 \Gamma(t)(t-0,02)$ avec $L_0 = \SI{10}{mm}$ et à une perturbation en échelon $D^{\star}(t)= D_0 \Gamma(t-0,02)$ avec $D_0 = \SI{10}{\mu m}$. Commenter ces courbes et, en justifiant le résultat obtenu, valider les exigences
+vérifiées. Conclure alors sur la pertinence de l’approche utilisée et sur la structure de correction retenue.
+}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+
+
+
+
 
 \begin{figure}[H]
 \centering
