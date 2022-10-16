@@ -9,9 +9,9 @@ par exemple.
 
 Cependant, la validation de ces modèles nécessite la mise en place d’essais expérimentaux. Un dispositif expérimental
 étudié par certaines équipes de recherche est organisé autour d’un Hexapode piloté en position. Ce
-dispositif est représenté sur la \autoref{fig:01} Le pilotage de la plateforme supérieure est souvent réalisé en asservissant
-directement les positions des différents axes. Ce choix technique permet une réalisation facile de la chaine de
-commande mais possède un inconvénient : il entraine un manque de précision en raison de la souplesse des vérins
+dispositif est représenté sur la \autoref{fig:01}. Le pilotage de la plateforme supérieure est souvent réalisé en asservissant
+directement les positions des différents axes. Ce choix technique permet une réalisation facile de la chaîne de
+commande mais possède un inconvénient : il entraîne un manque de précision en raison de la souplesse des vérins
 et des jeux dans les liaisons de l’Hexapode.
 
 \begin{figure}[H]
@@ -35,7 +35,7 @@ deux solutions possibles :
 \begin{itemize}
 \item la première solution utilise une loi de commande exploitant les seules mesures $L_i^m$ issues des capteurs montés
 sur les vérins et entachées d’erreurs dues à la souplesse des tiges et aux jeux éventuels ;
-\item une deuxième solution, plus évoluée, exploite une estimation des positions réelles $L_i^{de}$ des extrémités des tiges
+\item une deuxième solution, plus évoluée, exploite une estimation des positions réelles $L_i^{\text{de}}$ des extrémités des tiges
 des vérins. Une méthode permettant d’obtenir cette estimation est d’utiliser une caméra et un algorithme
 de traitement d’images.
 \end{itemize}
@@ -96,7 +96,7 @@ Chaque axe motorisé présente l’architecture illustrée sur la \autoref{fig:0
 \begin{itemize}
 \item un ensemble \{support moteur (13) + corps de vérin (10)\}, relié au support fixe par l’intermédiaire d’une
 liaison que l’on peut modéliser par une liaison sphérique (rotule inférieure (14)) ;
-\item un ensemble \{actionneur électrique (1) + réducteur (2)\}, fixé au corps de vérin (10) et entrainant la vis (4)
+\item un ensemble \{actionneur électrique (1) + réducteur (2)\}, fixé au corps de vérin (10) et entraînant la vis (4)
 en rotation autour de son axe ;
 \item un écrou (5) en liaison par rapport au corps de vérin (10) modélisable par une liaison glissière et en liaison
 hélicoïdale par rapport à la vis (4) ;
@@ -108,15 +108,15 @@ d’une liaison que l’on peut modéliser comme une liaison sphérique (rotule 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.8\linewidth]{fig_04}
-\caption{\label{fig:04}  }
+\includegraphics[width=.4\linewidth]{fig_04}
+\caption{\label{fig:04} Vue écorchée de l’architecture d’un axe motorisé }
 \end{figure}
 
 
 %Q01
 \question{\label{q:01}À l’aide des informations précédentes, compléter sur le document réponse (figure A) le schéma cinématique
 (plan) d’un axe motorisé, en repérant, à l’aide de plusieurs couleurs, l’ensemble \{corps de vérin (10) +
-support moteur (13)\}, l’ensemble \{tige de vérin (7) + ecrou (5)\} et la vis (4). On ne tiendra pas compte du
+support moteur (13)\}, l’ensemble \{tige de vérin (7) + écrou (5)\} et la vis (4). On ne tiendra pas compte du
 système \{roue (12) + vis sans fin (3)\} associé au capteur (11).}
 \ifprof
 \begin{corrige}
@@ -225,6 +225,8 @@ Ces relations permettent de déterminer les valeurs des degrés de liberté de l
 cette dernière se positionne dans le plan ($\Pi$), caractérisant ainsi l’essai effectué sur la colonne vertébrale. Pour
 fixer ces degrés de liberté, il faut déterminer quelles consignes de longueurs doivent être appliquées aux six
 vérins de la plateforme mobile.
+
+\begin{multicols}{2}
 Les trois sommets du support fixe $S_0$ vérifient les relations suivantes :
 \begin{itemize}
 \item $\vect{OD}=-\dfrac{\sqrt{3}R}{2}\vect{x_0}+\dfrac{R}{2}\vect{y_0}$;
@@ -232,13 +234,13 @@ Les trois sommets du support fixe $S_0$ vérifient les relations suivantes :
 \item $\vect{OF}=\dfrac{\sqrt{3}R}{2}\vect{x_0}+\dfrac{R}{2}\vect{y_0}$.
 \end{itemize}
 
-Les trois sommets de la plateforme mbil $S_0$ vérifient les relations suivantes :
+Les trois sommets de la plateforme mobile $S$ vérifient les relations suivantes :
 \begin{itemize}
 \item $\vect{GA}=R\vect{y}$;
 \item $\vect{GB}=-\dfrac{\sqrt{3}R}{2}\vect{x}-\dfrac{R}{2}\vect{y}$;
 \item $\vect{GC}=\dfrac{\sqrt{3}R}{2}\vect{x}-\dfrac{R}{2}\vect{y}$.
 \end{itemize}
-
+\end{multicols}
 
 On supposera dans toute la suite de cette étude que $x_G = y_G = 0$ et $\phi=0$.
 
@@ -267,13 +269,13 @@ est validée.}
 \else
 \fi
 
-\section{Précision en position de la plateforme mobile}
+\section{\label{sec:02}Précision en position de la plateforme mobile}
 \begin{obj}
 Le but de cette partie est de proposer un modèle d’axe motorisé permettant de quantifier les phénomènes qui dégradent la précision en position de la plateforme mobile
 \end{obj}
 
-On rappelle que l’architecture d’un axe motorisé est détaillée sur la \autoref{fig_04}. On y voit notamment que la mesure
-de la position angulaire de l’axe de l’actionneur électrique (1) se fait grâce à une roue codée (11), entrainée
+On rappelle que l’architecture d’un axe motorisé est détaillée sur la \autoref{fig:04}. On y voit notamment que la mesure
+de la position angulaire de l’axe de l’actionneur électrique (1) se fait grâce à une roue codée (11), entraînée
 par l’intermédiaire d’un dispositif \{roue (12) + vis sans fin (3)\} dont la vis est montée sur l’arbre de sortie du
 réducteur (2) ; le rapport de transmission associé est $\dfrac{\omega_{12}}{\omega_{3}}= \dfrac{1}{10}$.
 
@@ -281,7 +283,7 @@ réducteur (2) ; le rapport de transmission associé est $\dfrac{\omega_{12}}{\o
 %Q08
 \question{\label{q:08} Étant donné que l’information de la roue (12) est codée sur 15 bits et que le pas (par tour) de la liaison
 hélicoïdale \{vis (4) + écrou (5)\} est de \SI{5}{mm}, quelle est la résolution théorique en translation d’un axe motorisé ?
-Comparer avec les exigences de la \autoref{fig_03}.}
+Comparer avec les exigences de la \autoref{fig:03}.}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -487,7 +489,7 @@ où $X$ et $Y$ désignent respectivement l’abscisse et l’ordonnée d’un po
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{fig_08}
+\includegraphics[width=.8\linewidth]{fig_08}
 \caption{\label{fig:08}  Images en position nominale et décalée}
 \end{figure}
 
@@ -520,8 +522,8 @@ $$
 où les vecteurs $\vect\varphi_i \left(X,Y\right)$ désignent les six mouvements élémentaires de corps rigide (3 translations élémentaires et 3 rotations élémentaires, supposées connues) de la plateforme $S$ par rapport au support $S_0$.
 
 %Q18
-\question{\label{q:18}En introduisant dans l’expression de la fonction cout le développement en série de Taylor à l’ordre un
-de$g\left( X + U_X(X,Y),Y + U_Y(X,Y)\right) $ en $(X,Y)$, donner l’expression de la fonction cout en fonction de $f(X,Y)$, $g(X,Y)$, $\vect{\Delta} g  (X,Y)$, $\alpha_i$ et $\vect{\varphi}_i(X,Y)$ où $\vect{\Delta} g$ désigne le gradient spatial de $g$.}
+\question{\label{q:18}En introduisant dans l’expression de la fonction coût le développement en série de Taylor à l’ordre un
+de$g\left( X + U_X(X,Y),Y + U_Y(X,Y)\right) $ en $(X,Y)$, donner l’expression de la fonction coût en fonction de $f(X,Y)$, $g(X,Y)$, $\vect{\Delta} g  (X,Y)$, $\alpha_i$ et $\vect{\varphi}_i(X,Y)$ où $\vect{\Delta} g$ désigne le gradient spatial de $g$.}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -530,7 +532,7 @@ de$g\left( X + U_X(X,Y),Y + U_Y(X,Y)\right) $ en $(X,Y)$, donner l’expression 
 
 
 %Q19
-\question{\label{q:19}Écrire les équations vérifiées par les coefficients $\alpha_i$, qui correspondent à la minimisation de la fonction cout obtenue à la question \ref{q:18}, et qui permettent ainsi d’obtenir l’expression du déplacement mesuré.}
+\question{\label{q:19}Écrire les équations vérifiées par les coefficients $\alpha_i$, qui correspondent à la minimisation de la fonction coût obtenue à la question \ref{q:18}, et qui permettent ainsi d’obtenir l’expression du déplacement mesuré.}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -599,15 +601,15 @@ modélisés sous la forme d’un signal externe perturbateur unique, ramené en 
 est la transformée de Laplace ;
 \item que les jeux dans les liaisons sont modélisés sous la forme d’un signal perturbateur externe, dont $D(p)$ est
 la transformée de Laplace, traduisant l’écart de déplacement de la position de l’axe ;
-\item pour l’axe considéré que $L^m(p)$, $L^d(p)$ et $L^{de}(p)$ sont respectivement les transformées de Laplace de la
+\item pour l’axe considéré que $L^m(p)$, $L^d(p)$ et $L^{\text{de}}(p)$ sont respectivement les transformées de Laplace de la
 position non déformée, de la position de l’axe après déformation et de l’estimation de la position réelle issue
 de l’évaluation au moyen de l’algorithme de traitement d’images (la grandeur $L^m$  est obtenue au moyen
 d’une mesure issue d’un capteur placé directement sur l’axe de l’actionneur) ;
 \item que $U(p)$ représente la transformée de Laplace de la grandeur de commande (homogène à une tension) de
-la chaine de motorisation de l’axe considéré.
+la chaîne de motorisation de l’axe considéré.
 \end{itemize}
-La chaine de motorisation est modélisée par la fonction de transfert $H(p) = \dfrac{L^m(p)}{U(p)} = \dfrac{0,5}{p\left(1+0,01 p\right)}$, la chaine
-d’acquisition et le système de traitement d’images sont modélisés en temps continu comme un retard pur $\tau =\SI{0,04}{s}$. Pour la chaine d’asservissement, le cahier des charges partiel suivant, caractérisé par une pulsation
+La chaîne de motorisation est modélisée par la fonction de transfert $H(p) = \dfrac{L^m(p)}{U(p)} = \dfrac{0,5}{p\left(1+0,01 p\right)}$, la chaîne
+d’acquisition et le système de traitement d’images sont modélisés en temps continu comme un retard pur $\tau =\SI{0,04}{s}$. Pour la chaîne d’asservissement, le cahier des charges partiel suivant, caractérisé par une pulsation
 de coupure en boucle ouverte et une marge de phase fixées à priori, est rappelé :
 \begin{itemize}
 \item pulsation de coupure $\omega_c$ à \SI{0}{dB} en boucle ouverte $\omega_c = \SI{60}{rad.s^{-1}}$;
@@ -616,8 +618,8 @@ de coupure en boucle ouverte et une marge de phase fixées à priori, est rappel
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.8\linewidth]{fig_10}
-\caption{\label{fig:10}  Modèle du procédé pour la conception de la loi de commande de la chaine d’asservissement}
+\includegraphics[width=.65\linewidth]{fig_10}
+\caption{\label{fig:10}  Modèle du procédé pour la conception de la loi de commande de la chaîne d’asservissement}
 \end{figure}
 
 
@@ -625,7 +627,7 @@ Pour la conception de la loi de commande, il s’agira :
 \begin{itemize}
 \item de montrer qu’une structure mono-boucle simple ne permet pas d’assurer le cahier des charges partiel ;
 \item d’analyser si une structure de commande adaptée aux systèmes à retard peut assurer les performances
-escomptées (permettant ainsi de s’affranchir du retard pur de la chaine de mesure par traitement d’images) ;
+escomptées (permettant ainsi de s’affranchir du retard pur de la chaîne de mesure par traitement d’images) ;
 \item de montrer qu’une structure adaptée aux systèmes à retard complétée par une boucle interne sur la mesure
 de position d’un axe non déformé permet de vérifier l’ensemble du cahier des charges.
 \end{itemize}
@@ -633,7 +635,7 @@ de position d’un axe non déformé permet de vérifier l’ensemble du cahier 
 \subsubsection{Analyse d’une structure mono-boucle}
 
 Une solution simple est d’envisager, dans un premier temps, une structure de commande réalisée directement à
-partir de l’estimation $L^{de}(t)$ de la position réelle de l’axe considéré. Cette structure, dont le correcteur est noté
+partir de l’estimation $L^{\text{de}}(t)$ de la position réelle de l’axe considéré. Cette structure, dont le correcteur est noté
 $C_1(p)$ et la consigne $L^{\star}(p)$, est représentée par le schéma de la \autoref{fig:11}.
 
 
@@ -648,7 +650,7 @@ souhaitable d’introduire d’action dérivée dans le régulateur de cette bou
 proportionnel intégral seront envisagés.
 
 %Q
-\question{\label{q:22} La figure B du document réponse montre le diagramme de Bode de la fonction $H(p)$. Tracer directement
+\question{\label{q:22} La figure B du document réponse montre le diagramme de Bode de la fonction $H(p)$. Justifier puis tracer directement
 sur cette figure le diagramme de Bode (tracés réels des module et phase) de la fonction de transfert en boucle
 ouverte non corrigée (soit en prenant $C_1(p)=1$).}
 \ifprof
@@ -670,7 +672,7 @@ pur et procédé avec la présence du retard pur $\tau$;
 d’un correcteur de type proportionnel intégral $C_1(p)=K_1\left(1+\dfrac{1}{T_{i1}p}\right)$, justifier qu’un correcteur de ce type :
 \begin{itemize}
 \item ne permet pas d’atteindre les performances exigées en présence du retard de mesure ;
-\item peut être toutefois envisagé en absence du retard dans la chaine de mesure.
+\item peut être toutefois envisagé en absence du retard dans la chaîne de mesure.
 \end{itemize}
 \end{itemize}}
 
@@ -748,7 +750,7 @@ ainsi :
 \item une boucle interne réalisée à partir de la mesure de la position non déformée de l’axe $L^m(t)$ permet d’asservir
 cette grandeur à une consigne de référence $L^{m\star}(t)$. Le calcul du correcteur de la boucle interne est hors du
 cadre de cette étude, et on note $T(p)=\dfrac{L^{m}(p)}{L^{m\star}(p)}$ la fonction de transfert en boucle fermée de la boucle interne ;
-\item la boucle externe, réalisée à partir de la grandeur estimée $L^{de}(t)$.
+\item la boucle externe, réalisée à partir de la grandeur estimée $L^{\text{de}}(t)$.
 \end{itemize}
 La nouvelle structure de commande est représentée par le schéma de la \autoref{fig:13} où la représentation de la
 boucle interne est limitée à sa fonction de transfert en boucle fermée $T(p)$ où :
