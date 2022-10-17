@@ -245,7 +245,7 @@ Les trois sommets de la plateforme mobile $S$ vérifient les relations suivantes
 On supposera dans toute la suite de cette étude que $x_G = y_G = 0$ et $\phi=0$.
 
 %Q6
-\question{\label{q:06} Déterminer littéralement la longueur $L_1 = D1$ de l’axe motorisé 1, en fonction de $\left(z_G,\psi,\theta\right)$.
+\question{\label{q:06} Déterminer littéralement la longueur $L_1 = DA$ de l’axe motorisé 1, en fonction de $\left(z_G,\psi,\theta\right)$.
 Les autres longueurs de vérins peuvent être déterminées de façon analogue. L’ensemble des relations obtenues
 constitue ce que l’on appelle le modèle de cinématique inverse de la plateforme Hexapode, dont la connaissance
 est nécessaire pour élaborer la commande en position de la plateforme mobile $S$ en vue de la réalisation de
@@ -308,7 +308,7 @@ $\torseurstat{T}{\text{colonne vertébrale}}{S} =
 $\torseurstat{T}{\text{pesanteur}}{S} = \torseurl{\vect{P}=-mg\vect{z_0}}{\vect{0}}{G}$;
 \item l'action de la plateforme mobile $S$ sur un axe $i$, transmise par la liaison sphérique correspondante (supposée parfaite), est modélisée par
 $\torseurstat{T}{S}{\text{axe } i} = \torseurl{\vect{F_i}}{\vect{0}}{\text{centre de la liaison sphérique}}$;
-\item l'action de la plateforme mobile $S_0$ sur un axe $i$, transmise par la liaison sphérique correspondante (supposée parfaite), est modélisée par
+\item l'action de la plateforme fixe $S_0$ sur un axe $i$, transmise par la liaison sphérique correspondante (supposée parfaite), est modélisée par
 $\torseurstat{T}{S_0}{\text{axe } i} = \torseurl{\vect{F_i^0}}{\vect{0}}{\text{centre de la liaison sphérique}}$;
 \end{itemize}
 
@@ -317,7 +317,7 @@ plateforme Hexapode sont suffisamment lents pour que l’on puisse négliger dan
 d’inertie.
 
 %Q09
-\question{\label{q:09} On considère ici l’axe motorisé 1, qui est tel que $\vect{DA}=L_1(t) \vect{u_1}(t)$. En isolant l’ensemble de ses pièces constitutives, situées entre la rotule supérieure (8) (de centre $A$) et la rotule inférieure (14) (de centre $D$), déterminer la direction des résultantes $\vect{F}$ et  $\vect{F_1^0}$ des actions de liaison sur l’axe motorisé 1.}
+\question{\label{q:09} On considère ici l’axe motorisé 1, qui est tel que $\vect{DA}=L_1(t) \vect{u_1}(t)$. En isolant l’ensemble de ses pièces constitutives, situées entre la rotule supérieure (8) (de centre $A$) et la rotule inférieure (14) (de centre $D$), déterminer la direction des résultantes $\vect{F_1}$ et  $\vect{F_1^0}$ des actions de liaison sur l’axe motorisé 1.}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -378,8 +378,8 @@ déformation axiale de chacun des constituants peut être modélisé par un ress
 \begin{itemize}
 \item un ressort de raideur $K_e$ pour modéliser la déformation axiale de l’écrou provoquée par la charge axiale
 $F_a$ : $F_a = K_e \Delta L_e$,  où $\Delta L_e$ est la variation de longueur axiale de l’écrou ;
-\item un ressort de raideur $K_v$ pour modéliser la déformation axiale de la vis provoquée par la charge axiale $F_a$ : $F_v = K_v \Delta L_v$,  où $\Delta L_v$ est la variation de longueur axiale de la vis ;
-\item n ressort de raideur $K_b$ pour modéliser la déformation axiale de l’ensemble des billes en contact, provoquée par la charge axiale $F_a$ : $F_a = K_b \Delta L_b$,  où $\Delta L_b$ est la variation de longueur axiale des billes.
+\item un ressort de raideur $K_v$ pour modéliser la déformation axiale de la vis provoquée par la charge axiale $F_a$ : $F_a = K_v \Delta L_v$,  où $\Delta L_v$ est la variation de longueur axiale de la vis ;
+\item un ressort de raideur $K_b$ pour modéliser la déformation axiale de l’ensemble des billes en contact, provoquée par la charge axiale $F_a$ : $F_a = K_b \Delta L_b$,  où $\Delta L_b$ est la variation de longueur axiale des billes.
 \end{itemize}
 
 %Q12
@@ -505,7 +505,7 @@ $U_Y(X,Y)$ dans le repère de l’image, qui permet de relier l’image de réf�
 $$g\left( X + U_X(X,Y),Y + U_Y(X,Y)\right) = f(X,Y)+n(X,Y)$$
 où $n(X,Y)$ désigne un « bruit de mesure » (ce terme modélise, entre autres, des erreurs dans la prise d’images et
 dans la discrétisation des signaux). Le principe de l’algorithme est de minimiser la fonction « cout » suivante 
-$$J\left( U_X(X,Y),Y + U_Y(X,Y)\right) = \iint n(X,Y)^2 \dd X \dd Y.$$
+$$J\left( U_X(X,Y) + U_Y(X,Y)\right) = \iint n(X,Y)^2 \dd X \dd Y.$$
 
 %Q17
 \question{\label{q:17} Interpréter physiquement sur un plan qualitatif ce principe de minimisation.}
@@ -523,7 +523,7 @@ où les vecteurs $\vect\varphi_i \left(X,Y\right)$ désignent les six mouvements
 
 %Q18
 \question{\label{q:18}En introduisant dans l’expression de la fonction coût le développement en série de Taylor à l’ordre un
-de$g\left( X + U_X(X,Y),Y + U_Y(X,Y)\right) $ en $(X,Y)$, donner l’expression de la fonction coût en fonction de $f(X,Y)$, $g(X,Y)$, $\vect{\Delta} g  (X,Y)$, $\alpha_i$ et $\vect{\varphi}_i(X,Y)$ où $\vect{\Delta} g$ désigne le gradient spatial de $g$.}
+de$g\left( X + U_X(X,Y),Y + U_Y(X,Y)\right) $ en $(X,Y)$, donner l’expression de la fonction coût en fonction de $f(X,Y)$, $g(X,Y)$, $\vect{\nabla} g  (X,Y)$, $\alpha_i$ et $\vect{\varphi}_i(X,Y)$ où $\vect{\nabla} g$ désigne le gradient spatial de $g$.}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -556,9 +556,9 @@ R_{61} & ... & R_{66} \\
 \end{pmatrix}
 =
 \begin{pmatrix}
-\left( f(X,Y)-g(X,Y)\right)\vect{\varphi}_1(X,Y)\cdot \nabla_g(X,Y) \dd X \dd Y \\
+\left( f(X,Y)-g(X,Y)\right)\vect{\varphi}_1(X,Y)\cdot \vect{\nabla}_g(X,Y) \dd X \dd Y \\
 \vdots \\
-\left( f(X,Y)-g(X,Y)\right)\vect{\varphi}_6(X,Y)\cdot \nabla_g(X,Y) \dd X \dd Y \\
+\left( f(X,Y)-g(X,Y)\right)\vect{\varphi}_6(X,Y)\cdot \vect{\nabla}_g(X,Y) \dd X \dd Y \\
 \end{pmatrix}
 $$
 \textit{et donner l’expression générique du terme $R_{ij}$.}
@@ -596,8 +596,7 @@ bloc de la \autoref{fig:10}. On suppose :
 \begin{itemize}
 \item qu’une première structure de commande « rapprochée » assure l’asservissement en vitesse des axes et que
 les caractéristiques dynamiques des six axes asservis sont identiques ;
-\item pour un axe donné, que les efforts dus à sa rigidité, à la charge et les couplages avec les autres axes sont
-modélisés sous la forme d’un signal externe perturbateur unique, ramené en entrée du procédé et don $F_u(p)$
+\item pour un axe donné, que les efforts dus à sa rigidité, à la charge et les couplages avec les autres axes sont modélisés sous la forme d’un signal externe perturbateur unique, ramené en entrée du procédé et dont  $F_u(p)$
 est la transformée de Laplace ;
 \item que les jeux dans les liaisons sont modélisés sous la forme d’un signal perturbateur externe, dont $D(p)$ est
 la transformée de Laplace, traduisant l’écart de déplacement de la position de l’axe ;
