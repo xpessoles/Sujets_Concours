@@ -645,13 +645,10 @@ $C_1(p)$ et la consigne $L^{\star}(p)$, est représentée par le schéma de la \
 \caption{\label{fig:11}  Structure de commande à une boucle}
 \end{figure}
 
-En raison de la présence de bruits de mesure (signaux non représentés sur les schémas fournis), il n’est pas
-souhaitable d’introduire d’action dérivée dans le régulateur de cette boucle. Seuls des correcteurs de type
-proportionnel intégral seront envisagés.
+En raison de la présence de bruits de mesure (signaux non représentés sur les schémas fournis), il n’est pas souhaitable d’introduire d’action dérivée dans le régulateur de cette boucle. Seuls des correcteurs de type proportionnel intégral seront envisagés.
 
-%Q
-\question{\label{q:22} La figure B du document réponse montre le diagramme de Bode de la fonction $H(p)$. Justifier puis tracer directement
-sur cette figure le diagramme de Bode (tracés réels des module et phase) de la fonction de transfert en boucle
+%Q22
+\question{\label{q:22} La figure B du document réponse montre le diagramme de Bode de la fonction $H(p)$. Justifier puis tracer directement sur cette figure le diagramme de Bode (tracés réels des module et phase) de la fonction de transfert en boucle
 ouverte non corrigée (soit en prenant $C_1(p)=1$).}
 \ifprof
 \begin{corrige}
@@ -661,7 +658,7 @@ ouverte non corrigée (soit en prenant $C_1(p)=1$).}
 
 
 
-%Q
+%Q23
 \question{\label{q:23}Au regard des tracés de la question \ref{q:22} et des performances souhaitées par le cahier des charges :}
 \textit{
 \begin{itemize}
@@ -689,20 +686,18 @@ adaptée aux systèmes comportant des retards. La \autoref{fig:12} montre deux s
 d’une part au schéma réel $(a)$ représentant la réalisation de la commande ($X(p)$ est la transformée de Laplace
 d’une grandeur $x(t)$ interne au régulateur), d’autre part un schéma fictif (b).
 
-%Q
+%Q24
 \question{\label{q:24}Montrer qu’en l’absence de perturbations ($F_u(p)=D(p)=0$) les deux structures (a) et (b) sont
 équivalentes du point de vue entrée-sortie, c’est-à-dire qu’elles ont la même fonction de transfert en boucle
-fermée $\dfrac{L^d(p)}{L^{\star}(p)}$}
+fermée $\dfrac{L^d(p)}{L^{\star}(p)}$.}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
 
-Ainsi, la réalisation de la loi de commande selon la structure de la \autoref{fig:12}.(a) , équivalente du point de vue
-entrée-sortie à la structure virtuelle sans retard de la figure \autoref{fig:12}.(b), permet d’envisager un correcteur $C(p)$ de
-type proportionnel intégral (ce que ne permet pas de faire une structure série simple comme celle représentée à
-la \autoref{fig:11})
+Ainsi, la réalisation de la loi de commande selon la structure de la \autoref{fig:12}.(a), équivalente du point de vue entrée-sortie à la structure virtuelle sans retard de la figure \autoref{fig:12}.(b), permet d’envisager un correcteur $C(p)$ de type proportionnel intégral (ce que ne permet pas de faire une structure série simple comme celle représentée à
+la \autoref{fig:11}).
 
 
 \begin{figure}[H]
@@ -712,7 +707,7 @@ la \autoref{fig:11})
 \end{figure}
 
 
-%Q
+%Q25
 \question{\label{q:25} En utilisant le schéma fictif (b) et le diagramme de Bode de la figure B du document réponse, déterminer le correcteur de type proportionnel intégral $C(p)=K\left(1+\dfrac{1}{T_i p}\right)$ permettant d’assurer les performances exprimées par le cahier des charges partiel. Pour concevoir ce régulateur, la démarche suivante pourra être suivie :}
 \textit{
 \begin{itemize}
@@ -727,7 +722,7 @@ la \autoref{fig:11})
 \fi
 
 
-%Q
+%Q26
 \question{\label{q:26}Pour une consigne nulle $L^{\star}(t) = 0$, une perturbation en sortie nulle $d(t)=0$ et un échelon de perturbation en entrée $f_u(t)=F_0\Gamma(t)$ où $\Gamma$ est l’échelon d’Heaviside :}
 \textit{\begin{itemize}
 \item déterminer la valeur en régime permanent de la grandeur de commande $\lim\limits_{t\to +\infty} u(t)$
