@@ -1,0 +1,453 @@
+%Asservissement par traitement d’image d’une plateforme Hexapode
+
+\section{Performances attendues du sous-système FLIR intégré au système
+de vision en réalité augmentée}
+\subsection{Validation des performances simulées du FLIR}
+\subsection{Détermination des performances du FLIR}
+
+
+\question{}
+\ifprof
+\begin{corrige}
+Temps maximal disponible pour l'orientation des caméras : d'après la description fournie on peut écrire
+$\indice{t}{disponible} = \indice{t}{trait}+ \indice{t}{com}+ \indice{t}{ddp}+ \indice{t}{filtre}$
+ soit
+ $\indice{t}{disponible} = 50+5+20+5=\SI{80}{ms}<\SI{120}{ms}$ 
+ qui est le critère du cahier des charges à respecter.
+\end{corrige}
+\else
+\fi
+
+\question{}
+\ifprof
+\begin{corrige}
+L'image a pour dimension $1024 \times 768$ pixels. Le secteur angulaire correspondant au champ de vision le plus large possible permettant la reconnaissance des mots est de 40\degres, ce qui conduit, à une distance de \SI{50}{mm} des yeux du pilote, à une image de
+$\dfrac{50\times 40 \times \pi}{180} \si{mm}$. 
+Donc pour un pixel la largeur est de  
+$\dfrac{50\times 40 \times \pi}{180\times 1024}  \simeq \SI{0,034}{mm}$. 
+La résolution souhaitée étant de \SI{1}{m} pour un objet situé à \SI{1}{km} on peut en déduire qu'il faut distinguer à \SI{50}{mm} des yeux du pilote une taille de
+$\dfrac{50}{10^6}=\SI{0,05}{mm}$. La taille d'un pixel étant inférieure à cette valeur, l'objet sera décrit par au moins un pixel.
+\end{corrige}
+\else
+\fi
+
+\question{}
+\ifprof
+\begin{corrige}
+Il y a 1024 pixels pour un angle de 40\degres, soit pour 1 pixel un angle de 
+$\dfrac{40 \times \pi}{180\times 1024} \simeq \SI{1,14e-4}{rad}$. 
+\end{corrige}
+\else
+\fi
+
+\question{}
+\ifprof
+\begin{corrige}
+Il y a en série 2 liaisons pivot d'axe orthogonaux et concourants en $P$. Le torseur cinématique équivalent résulte de la somme des torseurs cinématiques exprimés au point $P$ soit $\axe{P}{y_a}$. C'est le torseur d'une liaison sphérique à doigt de centre P d'axe et de normale $\vect{z_a}$.
+\end{corrige}
+\else
+\fi
+
+
+\question{}
+\ifprof
+\begin{corrige}
+La tête du pilote dispose d'une mobilité supplémentaire il est donc nécessaire que l'algorithme du calculateur intègre les informations de position de la tête du pilote par rapport au porteur (en particulier la position angulaire suivant la mobilité supplémentaire) fournies par le sous système de détection des postures implanté dans le casque afin de reproduire cela au niveau de l'affichage de l'image.
+\end{corrige}
+\else
+\fi
+
+
+\question{}
+\ifprof
+\begin{corrige}
+Pour la commande de l'axe d'azimut, l'inertie du système suivant l'axe de la rotation est, d'après la répartition proposée (cylindre plein et homogène d'axe $\axe{P}{y_e}$), indépendante de la position angulaire de la charge. Il n'y a donc pas d'influence sur la commande de l'axe.
+\end{corrige}
+\else
+\fi
+
+
+\question{}
+\ifprof
+\begin{corrige}
+Il y a 2 liaisons sphériques en parallèle, la liaison équivalente est une liaison pivot d'axe $(C_1 C_2)$  hyperstatique de degré 1. Avantage : cela confère au système une rigidité plus importante qu'une solution isostatique et cela permet une réalisation identique pour chaque liaison élémentaire. Inconvénient : il faut gérer la contrainte géométrique de positionnement axial. La rigidité du montage permet d'être moins sensible aux perturbations extérieures et donc de conserver une précision d'orientation souhaitée malgré ces perturbations.
+\end{corrige}
+\else
+\fi
+
+
+%Q8
+\question{}
+\ifprof
+\begin{corrige}
+Les effets aérodynamiques les plus défavorables induisent un couple perturbateur de \SI{0,18}{Nm} soit \SI{180}{Nmm}. Le réglage pertinent semble être d'après l'abaque fourni, une précharge axiale pour un élément de guidage de \SI{900}{N} permettant un moment sur l'axe de \SI{90}{Nmm} soit \SI{180}{Nmm} pour les deux.
+\end{corrige}
+\else
+\fi
+
+%Q9
+\question{}
+\ifprof
+\begin{corrige}
+Pour pouvoir déterminer l'opérateur d'inertie de l'étage fin élévation au point $P$, il suffit d'additionner les matrices exprimées toutes deux au point $P$ et dans la même base. Pour cela on applique la relation d'Huygens à l'opérateur de la partie optique entre son centre de gravité $P_0$ et le point $P$  avec le vecteur  $\vect{PP_0}=d\vect{x_e}$. On obtient dans la base  $\base{x_e}{y_e}{z_e}$ :
+
+$
+\inertie{P}{fe}=
+\inertie{P}{\text{cyl}}+\inertie{P_0}{o}+m_0\matinertie{0}{d^2}{d^2}{0}{0}{0}{}
+=m_0\matinertie{\indice{A}{cyl}+A_o}{\indice{B}{cyl}+B_o+m_od^2}{\indice{A}{cyl}+B_o+m_od^2}{0}{0}{0}{}$
+
+La position du centre d'inertie noté $\indice{G}{fe}$ est donné par la relation : $\vect{PG_{\text{fe}}}=\dfrac{m_od}{m_o+\indice{m}{cyl}}\vect{x_e}$ (calcul du barycentre).
+
+\end{corrige}
+\else
+\fi
+
+% Q10
+\question{}
+\ifprof
+\begin{corrige}
+
+Le champ de vecteur vitesse du mouvement de l'ensemble fin élévation donne la relation :
+$\vectv{G}{fe}{\rep{0}} = \vectv{P}{fe}{\rep{0}} +\vecto{fe}{\rep{0}} \wedge \vect{PG_{\text{fe}}} $.
+
+Une relation de composition de mouvement conduit à : 
+$\vectv{P}{\text{porteur}}{\rep{0}} = 
+\vectv{P}{\text{porteur}}{\text{axe}} 
++\vectv{P}{\text{axe}}{\text{ge}} 
++\vectv{P}{\text{ge}}{\text{fe}} 
++\vectv{P}{\text{fe}}{\rep{0}} = v(t) \vect{Z_0} $
+ (le point $P$ ayant la particularité de se trouver à l'intersection des axes des deux rotations considérées).
+
+Ainsi la relation permet d'écrire :  
+$\vectv{G}{fe}{\rep{0}} 
+= v(t)\vect{Z_0} + \thetap_{\text{ea}}(t)\vect{y_a}\wedge \dfrac{m_o d}{m_o + m_{\text{cyl}}} \vect{x_e}
+=v(t)\vect{Z_0}-\thetap_{\text{ea}}(t) \dfrac{m_o d}{m_o+\indice{m}{cyl}} \vect{z_e}$
+
+soit dans la base souhaitée :  $\vectv{G}{fe}{\rep{0}} 
+=v(t)\vect{Z_0}-\thetap_{\text{ea}}(t) \dfrac{m_o d}{m_o+\indice{m}{cyl}} \left(\sin\theta_{eo}\vect{X_0}+\cos\theta_{eo}\vect{Z_0} \right)$.
+
+\end{corrige}
+\else
+\fi
+
+% Q11
+\question{}
+\ifprof
+\begin{corrige} ~\\
+\begin{minipage}[c]{.35\linewidth}
+\begin{center}
+\includegraphics[width=\linewidth]{images/cor_11}
+\end{center}
+\end{minipage}\hfill
+\begin{minipage}[c]{.6\linewidth}
+\begin{itemize}
+\item BAME : 
+\begin{itemize}
+\item pivot : $\torseurstat{T}{\text{ge}}{\text{fe}} = \torseurl{X\vect{x_e}+Y\vect{y_e}+Z\vect{z_e}}{L\vect{x_e}+N\vect{z_e}}{P}$;
+\item couple moteur : $\torseurstat{T}{\text{mot}}{\text{fe}} = \torseurl{\vect{0}}{C_m(t)\vect{y_e}}{P}$;
+\item pesanteur : $\torseurstat{T}{\text{pes}}{\text{fe}} = \torseurl{-\indice{m}{fe}g\vect{Z_0}}{\vect{0}}{\indice{G}{fe}}$. De plus, 
+$\vectm{P}{\text{pes}}{\text{fe}} = \vect{0} + \vect{P\indice{G}{fe}}\wedge -\indice{m}{fe}g\vect{Z_0} =  \dfrac{m_od}{m_o+\indice{m}{cyl}}\vect{x_e} \wedge -\indice{m}{fe}g\vect{Z_0} $  $= \dfrac{m_od}{m_o+\indice{m}{cyl}}\indice{m}{fe}g\cos\theta \vect{ye} $
+\end{itemize}
+\end{itemize}
+\end{minipage}
+
+\begin{itemize}
+\item Détermination du torseur dynamique en $\indice{G}{fe}$
+\end{itemize}
+
+Calcul de la résultante : $\vectrd{G}{fe}{\rep{0}} =m_{fe}\deriv{\vectv{G}{fe}{\rep{0}}}{\rep{0}}$ 
+
+$ = m_{fe}\left(
+ \dot{v}(t)\vect{Z_0}
+-\thetapp_{\text{ea}}(t) \dfrac{m_o d}{m_o+\indice{m}{cyl}} \left(\sin\theta_{eo}\vect{X_0}+\cos\theta_{eo}\vect{Z_0} \right)
+-\thetap^2_{\text{ea}}(t) \dfrac{m_o d}{m_o+\indice{m}{cyl}} \left(\cos\theta_{eo}\vect{X_0}-\sin\theta_{eo}\vect{Z_0} \right)\right)$ 
+
+
+$ = m_{fe}\left(
+ \dot{v}(t)\vect{Z_0}
+-\thetapp_{\text{ea}}(t) \dfrac{m_o d}{m_o+\indice{m}{cyl}}\vect{z_e}
+-\thetap^2_{\text{ea}}(t) \dfrac{m_o d}{m_o+\indice{m}{cyl}}\vect{x_e}\right)
+$ 
+
+
+%Calcul du moment : on calcul le moment dynamique en $G$ et on déplace en P :
+%$\vectmc{\indice{G}{fe}}{fe}{\rep{0}} = \inertie{\indice{G}{fe}}{fe} \vecto{fe}{\rep0}$
+
+Calcul du moment dynamique : la matrice d'inertie a été calculée en $P$. Faisons donc le calcul en $P$, point quelconque.
+
+Calcul du moment cinétique en un point quelconque : 
+
+$\vectmc{\indice{P}{fe}}{fe}{\rep{0}}= \inertie{\indice{P}{fe}}{fe} \vecto{fe}{\rep0} +\indice{m}{fe} \vect{P\indice{G}{fe}} \wedge \vectv{P}{}{\rep0}$
+$=\inertie{\indice{P}{fe}}{fe} \thetap \vect{y_e} +\indice{m}{fe} \dfrac{m_od}{m_o+\indice{m}{cyl}}\vect{x_e} \wedge {v}\vect{Z_0} $
+$ =\left( \indice{B}{cyl}+B_o+m_od^2\right) \thetap \vect{y_e}  + \indice{m}{fe} \dfrac{m_od}{m_o+\indice{m}{cyl}} {v} (-\cos \theta) \vect{y_e}$.
+
+Calcul du moment dynamique en un point quelconque : 
+
+$\vectmd{\indice{P}{fe}}{fe}{\rep{0}}= \deriv{\vectmc{\indice{P}{fe}}{fe}{\rep{0}}}{\rep{0}} + \vectv{P}{}{\rep{0}}\wedge  \indice{m}{fe}\vectv{G_{fe}}{fe}{\rep{0}} $
+ 
+$ =\left( \indice{B}{cyl}+B_o+m_od^2\right) \thetapp \vect{y_e}  + \indice{m}{fe} \dfrac{m_od}{m_o+\indice{m}{cyl}} \left( -\dot{v} \cos \theta+{v} \thetap \sin \theta \right) \vect{y_e}
++  \indice{m}{fe} {v}\vect{Z_0}\wedge \left( v(t)\vect{Z_0}-\thetap_{\text{ea}}(t) \dfrac{m_o d}{m_o+\indice{m}{cyl}} \vect{z_e} \right) $ 
+
+$ =\left( \indice{B}{cyl}+B_o+m_od^2\right) \thetapp \vect{y_e}  + \indice{m}{fe} \dfrac{m_od}{m_o+\indice{m}{cyl}} \left( -\dot{v} \cos \theta+{v} \thetap \sin \theta \right) \vect{y_e}
++  \indice{m}{fe} \dot{v}\left( -\thetap_{\text{ea}}(t) \dfrac{m_o d}{m_o+\indice{m}{cyl}}  \right) \sin\theta\vect{y_e} $
+
+$ =\left( \indice{B}{cyl}+B_o+m_od^2\right) \thetapp \vect{y_e}  - \indice{m}{fe} \dfrac{m_od}{m_o+\indice{m}{cyl}} \dot{v} \cos \theta  \vect{y_e}
+$
+
+
+En appliquant le théorème du moment dynamique au solide $\text{fe}$ au point $P$ en projection sur  $\vect{y_e}$, on a donc : 
+
+$$
+\left( \indice{B}{cyl}+B_o+m_od^2\right) \thetapp  - \indice{m}{fe} \dfrac{m_od}{m_o+\indice{m}{cyl}} \dot{v} \cos \theta 
+=  \dfrac{m_od}{m_o+\indice{m}{cyl}}\indice{m}{fe}g\cos\theta .
+$$
+\end{corrige}
+\else
+\fi
+
+% Q12
+\question{}
+\ifprof
+\begin{corrige}
+Le couple perturbateur dû au déport de masse contient le terme de gravité ainsi que le terme d'accélération soit 
+$\indice{C}{pert} = \gamma(t) m_o d \cos\theta_{eo}+m_o d g \cos\theta_{eo}$.
+
+Les conditions les plus défavorables sont quant le terme en cosinus vaut 1 soit après application numérique :
+$\indice{C}{pert} = 1,4 \times 0,01 \times 9,81 \times (1+1,8) \simeq \SI{0,385}{Nm}$.
+
+Cela reste de l'ordre du dixième du couple moteur  proposé ($\simeq{3}{Nm}$), on peut donc le considérer comme négligeable.
+\end{corrige}
+\else
+\fi
+
+%Q13
+\question{}
+\ifprof
+\begin{corrige}
+$\vectv{A}{\text{fe}}{\rep{0}} =
+\vectv{G_{\text{fe}}}{\text{fe}}{\rep{0}} \wedge \vect{G_{\text{fe}} A} = v(t) \vect{Z_0} + r\thetap_{\text{feo}}\vect{z_e}$ avec $\vect{AP}=\vect{AG_{\text{fe}}} = r\vect{x_e}$.
+
+Or par composition de mouvement  
+$\vectv{A}{\text{fe}}{\rep{0}}=
+\vectv{A}{\text{fe}}{\text{ge}} +\vectv{A}{\text{ge}}{\rep{0}} $ ce qui conduit à la relation  $\indice{v}{tige}(t)=r\thetap_{\text{feo}}$.
+\end{corrige}
+\else
+\fi
+
+%Q14
+\question{}
+\ifprof
+\begin{corrige}
+On applique le principe fondamental de la dynamique à l'étage fin d'élévation et on écrit l'équation du moment dynamique au point $P$ 
+(qui est considéré dans ce cas comme le centre d'inertie). 
+Par rapport au calcul précédent le couple moteur est remplacé par le moment de l'action du moteur linéaire soit  $r\indice{F}{mot} \vect{y_e}$, 
+le moment de la pesanteur est nul en $P$ et celui de l'action de la liaison pivot parfaite aussi. 
+Cela conduit à  
+$\vectmd{P}{fe}{\rep{0}}=r\indice{F}{mot} \vect{y_e}$.  
+Or le point $P$ étant le centre d'inertie, le moment dynamique est directement égal à la dérivée du moment cinétique exprimé en ce même point soit  $\vectmd{P}{fe}{\rep{0}} = \indice{B}{fe}\thetapp_{\text{feo}}=r\indice{F}{mot}$.
+L'équation du mouvement se réduit à  $\indice{B}{fe}\thetapp_{\text{feo}}=r\indice{F}{mot}$. On passe cette expression dans le domaine de Laplace (en considérant les conditions initiales nulles) ce qui conduit à : $\indice{B}{fe} p^2 \theta_{\text{feo}}(p)=r\indice{F}{mot}(p)$ 
+ d'où la fonction de transfert recherchée :  $\dfrac{\indice{\Omega}{fe}(p)}{\indice{F}{mot}(p)} = \dfrac{r}{\indice{B}{fe} p}$.
+
+La lecture du schéma bloc proposé permet d'écrire   $\dfrac{\indice{\Omega}{fe}(p)}{\indice{F}{mot}(p)} = \dfrac{K_1}{M_{\text{eq}} p}$  soit par identification (en prenant garde aux dimensions)  $K_1 = \dfrac{1}{r}$ (\si{m^{-1}}) et  $\indice{M}{eq} = \dfrac{\indice{B}{fe}}{r^2}$ (\si{kg}).
+
+
+\end{corrige}
+\else
+\fi
+
+% Q15
+\question{}
+\ifprof
+\begin{corrige}
+Le gyromètre étant modélisé par une fonction transfert d'ordre 1 et de gain 1, on a directement $\dfrac{1}{\indice{\tau}{gyro}}={2\pi f}$ soit $\indice{\tau}{gyro} = \dfrac{1}{2 \pi 100} \simeq \SI{1,6}{ms}$.
+\end{corrige}
+\else
+\fi
+
+% Q16
+\question{}
+\ifprof
+\begin{corrige}
+On a d'une part, 
+$F(p) = \dfrac{\dfrac{\indice{K}{fe}}{\indice{R}{fe}\indice{M}{eq}p}}{1+\dfrac{\indice{K}{fe}}{\indice{R}{fe}\indice{M}{eq}p}\indice{K}{fe}}$
+$= \dfrac{\indice{K}{fe}}{\indice{R}{fe}\indice{M}{eq}p+ \indice{K}{fe}^2}$
+
+
+D'autre part, 
+$\indice{H}{fe} (p)= \dfrac{\indice{H}{corfe}(p) F(p) K_1 }{1+\indice{H}{corfe}(p)\indice{H}{gyro}(p) F(p) K_1 }$
+$ = \dfrac{\indice{H}{corfe}(p) \dfrac{\indice{K}{fe}}{\indice{R}{fe}\indice{M}{eq}p+ \indice{K}{fe}^2} K_1 }{1+\indice{H}{corfe}(p)\indice{H}{gyro}(p) \dfrac{\indice{K}{fe}}{\indice{R}{fe}\indice{M}{eq}p+ \indice{K}{fe}^2} K_1 }$ 
+
+
+$ = \dfrac{\indice{H}{corfe}(p) \indice{K}{fe} K_1 }{\indice{R}{fe}\indice{M}{eq}p+ \indice{K}{fe}^2+\indice{H}{corfe}(p)\indice{H}{gyro}(p) \indice{K}{fe} K_1} $ 
+$ = \dfrac{\indice{H}{corfe}(p) \indice{K}{fe} K_1 }{\indice{R}{fe}\indice{M}{eq}p+ \indice{K}{fe}^2+\indice{H}{corfe}(p)\dfrac{1}{1+\indice{\tau}{gyro}p}\indice{K}{fe} K_1} $ 
+
+$ = \dfrac{\indice{H}{corfe}(p) \indice{K}{fe} K_1 \left(1+\indice{\tau}{gyro}p\right)}{ \left(1+\indice{\tau}{gyro}p\right) \indice{R}{fe}\indice{M}{eq}p+  \left(1+\indice{\tau}{gyro}p\right) \indice{K}{fe}^2+\indice{H}{corfe}(p)\indice{K}{fe} K_1} $.
+
+Avec $\indice{H}{corfe}(p) = 1$, 
+$ \indice{H}{fe} (p) = \dfrac{ \indice{K}{fe} K_1 \left(1+\indice{\tau}{gyro}p\right)}{ \left(1+\indice{\tau}{gyro}p\right) \indice{R}{fe}\indice{M}{eq}p+  \left(1+\indice{\tau}{gyro}p\right) \indice{K}{fe}^2+\indice{K}{fe} K_1} $ 
+
+$ = \dfrac{ \dfrac{\indice{K}{fe} K_1}{\indice{K}{fe} K_1+\indice{K}{fe}^2} \left(1+\indice{\tau}{gyro}p\right)}{ \dfrac{\left(1+\indice{\tau}{gyro}p\right)}{\indice{K}{fe} K_1+\indice{K}{fe}^2} \indice{R}{fe}\indice{M}{eq}p+  \indice{\tau}{gyro}p\dfrac{ \indice{K}{fe}^2}{\indice{K}{fe} K_1+\indice{K}{fe}^2}+1} $ 
+$ = \dfrac{ K_1}{ K_1+\indice{K}{fe}} \dfrac{ 1+\indice{\tau}{gyro}p}{ \dfrac{\indice{\tau}{gyro} \indice{R}{fe}\indice{M}{eq} }{\indice{K}{fe} K_1+\indice{K}{fe}^2} p^2+  p\dfrac{ \indice{R}{fe}\indice{M}{eq}+\indice{\tau}{gyro}\indice{K}{fe}^2}{\indice{K}{fe} K_1+\indice{K}{fe}^2}+1} $. 
+
+\end{corrige}
+
+\else
+\fi
+
+%Q17
+\question{}
+\ifprof
+\begin{corrige}
+D'après la fonction de transfert proposée, on peut déterminer la pulsation propre non amortie du 
+système $\omega_0 = \sqrt{\dfrac{1}{6\times 10^{-4}}}\simeq \SI{40,825}{rad.s^{-1}}$
+et l'amortissement $\xi=\dfrac{\omega_0}{2} \times 3,65 \times 10^{-1} \simeq 7,45$.
+
+Ce qui à l'aide de l'abaque permet de déterminer le temps de réponse réduit $t_{5\%} \omega_0= 45$ 
+d'où  $t_{5\%} \simeq \dfrac{45}{40,825}\simeq \SI{1,1}{s}$. Le critère du temps de réponse de $<\SI{40}{ms}$ n'est pas respecté. De plus 
+l'écart statique vaut $1-0,5\times 1=0,5 \neq 0$ ce qui ne respecte pas le cahier des charges.
+\end{corrige}
+\else
+\fi
+
+
+%Q18
+\question{}
+\ifprof
+\begin{corrige}~\\
+\begin{center}
+\includegraphics[width=.7\linewidth]{images/cor_18}
+\end{center}
+
+\begin{center}
+\includegraphics[width=.7\linewidth]{images/cor_18_bode}
+\end{center}
+\end{corrige}
+\else
+\fi
+
+
+%Q19
+\question{}
+\ifprof
+\begin{corrige}
+On a $\varphi(\omega)=-90 +\arctan \left( T_{ife} \omega \right)-\arctan \left( 0,75 \omega \right)-\arctan \left( 1,6\times 10^{-3} \omega \right)$.
+
+Entre 10 et 600 \si{rad/s}, la phase associée à $\dfrac{1}{1+0,75p}$ tend vers $-90\degres$.
+
+On cherche alors $\omega$ tel que $\varphi(\omega) = -120\degres$ soit 
+$-90 +\arctan \left( T_{ife} \omega \right)-90-\arctan \left( 1,6\times 10^{-3} \omega \right) = -120 $ et  
+$\arctan \left( T_{ife} \omega \right)-\arctan \left( 1,6\times 10^{-3} \omega \right) = 60 $.
+En passant à la tangente,
+$ \dfrac{ T_{ife} \omega - 1,6\times 10^{-3} \omega }{1+ T_{ife} \omega \times 1,6\times 10^{-3} \omega } = \tan 60$
+soit 
+$  T_{ife} \omega - 1,6\times 10^{-3} \omega = \tan 60+ \tan 60 T_{ife} \omega \times 1,6\times 10^{-3} \omega $
+puis
+$    27,7\times 10^{-5} \omega^2 -  0,0984 \omega  - \tan 60 = 0$.
+
+
+On a alors $\Delta= 0,0116$ et $\omega = \dfrac{0,0984\pm 0,198}{0,000554}\simeq \SI{535}{rad/s}$
+
+\end{corrige}
+\else
+\fi
+
+
+%Q20
+\question{}
+\ifprof
+\begin{corrige}
+Pour une marge de phase de 60\degres, il faut que la pulsation pour laquelle le gain s'annule soit celle 
+pour laquelle la phase vaut -120\degres. La lecture graphique donne $\omega \simeq \SI{160}{rad/s}$
+ et à cette 
+pulsation le gain harmonique vaut $\simeq -\SI{43}{dB}$. Il faut donc réaliser une translation de la courbe 
+de gain pour l'annuler à cette valeur de pulsation, soit $20\log \indice{K}{pfe}=\SI{43}{dB}$ ce qui donne
+$\indice{K}{pfe}=141,3$.
+\end{corrige}
+\else
+\fi
+
+
+%Q21
+\question{}
+\ifprof
+\begin{corrige}
+La figure permet de voir que la tension d'alimentation du moteur a été saturée pendant une durée 
+de 25(ms) environ, soit presque 2 fois plus que ce la commande aurait exigé. Pendant cette durée le 
+moteur n'est plus en régime asservi mais fonctionne en tout ou rien. Le fait d'avoir prolongé cette 
+durée de saturation de 13(ms) à 25 (ms) permet de limiter le dépassement et de ce fait de diminuer 
+le temps de réponse du système.
+ 
+Le correcteur ayant par ailleurs annulé l'erreur statique et assuré la marge de phase, les contraintes 
+du cahier des charges sont respectées : temps de réponse, marge de phase, erreur statique.
+
+\end{corrige}
+\else
+\fi
+
+
+%Q22
+\question{}
+\ifprof
+\begin{corrige}
+Le signal de consigne peut être représenté temporellement par trois signaux de type « rampe » :
+\begin{itemize}
+\item rampe 1 de pente $a=\dfrac{\pi}{0,26} \si{rad.s^{-2}}$ retardée de $\simeq \SI{0,71}{s}$ (par lecture graphique);
+\item rampe 2 de pente $-2a$ retardée de $\simeq \SI{0,71}{s}+\SI{0,26}{s}$;
+\item rampe 3 de pente $a$ retardée de  $\simeq \SI{0,71}{s}+2\times \SI{0,26}{s}$.
+\end{itemize}
+De ce fait le signal de consigne en position est constitué de branches de parabole avec un changement de concavité pour $t\simeq \SI{0,97}{s}$ et une valeur maximale obtenue pour  $\simeq \SI{0,82}{rad}$.
+
+\begin{center}
+\includegraphics[width=3cm]{images/cor_22}
+\end{center}
+
+\end{corrige}
+\else
+\fi
+
+
+%Q23
+\question{}
+\ifprof
+\begin{corrige}
+Le signal en rampe permet d'évaluer le retard de traînage, la consigne finale l'erreur statique donc la
+précision angulaire de positionnement et les éventuelles oscillations la stabilité de la ligne de visée.
+
+Tous les critères sont donc évaluables avec cette entrée. 
+
+\end{corrige}
+\else
+\fi
+
+
+%Q24
+\question{}
+\ifprof
+\begin{corrige}
+Dans le graphe ci-dessous, on constae que $\beta(t)_{\text{max}} \simeq \SI{0,08}{rad}$ or géométriquement on observe que l'angle $\angl{{u}}{{z_e}} <\angl{{z_{ge}}}{{z_e}}$
+soit $\angl{{u}}{{z_e}}<\beta(t)$. On peut donc conclure que $\vect{u}\simeq \vect{z_e}$ est justifiée.
+
+\begin{center}
+\includegraphics[width=3cm]{images/cor_24_01}
+\end{center}
+On peut lire sur le graphe : 
+\begin{itemize}
+\item le retard de traônage d'une valeur nettement inférieure à \SI{40}{ms} du cahier des charges : critère satisfait;
+\item l'erreur qui est nulle : critère de précision satisfait;
+\item le dépassement de \SI{3}{mrad} : critère non satisfait (\SI{340}{\mu rad} dans le cahier des charges). 
+\end{itemize}
+\begin{center}
+\includegraphics[width=6cm]{images/cor_24_02}
+\end{center}
+
+\end{corrige}
+\else
+\fi
+
+%
+%
+%\begin{figure}[H]
+%\centering
+%\includegraphics[width=.8\linewidth]{fig_14}
+%\caption{\label{fig:14}  }
+%\end{figure}
