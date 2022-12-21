@@ -165,9 +165,9 @@ On suppose que le référentiel terrestre
 associé à $\rep{G}$ peut être considéré galiléen. On pose de plus $\alpha = \angl{x_1}{\indice{x}{H1}}$ l’angle définissant
 l’orientation de l’hélice \textbf{H1} par rapport au bras \textbf{1}.
 
-La vitesse de rotation du bras \textbf{1} par rapport au corps \textbf{0} du drone, $\vecto{1}{\rep{0}}$, est telle que $\vecto{1}{\rep{0}} = \dot{\gamma}_1\vect{z_0}$. La valeur maximale de cette vitesse est obtenue par une rotation de 90\degres en \SI{300}{ms}.
+La vitesse de rotation du bras \textbf{1} par rapport au corps \textbf{0} du drone, $\vecto{1}{\rep{0}}$, est telle que $\vecto{1}{\rep{0}} = \dot{\gamma}_1\vz{0}$. La valeur maximale de cette vitesse est obtenue par une rotation de 90\degres en \SI{300}{ms}.
 La vitesse de rotation de l’hélice \textbf{H1} par rapport au bras \textbf{1}, $\vecto{H1}{\rep{1}}$, est telle que 
-$\vecto{H1}{\rep{1}} = \omega_1\vect{z_0} = \alphap \vect{z_0}$. 
+$\vecto{H1}{\rep{1}} = \omega_1\vz{0} = \alphap \vz{0}$. 
 On considérera que la vitesse de rotation de l’hélice est égale à
 \SI{13 400}{tr/min} pour assurer la portance et le déplacement horizontal du drone à $V_x = \SI{2,5}{m.s^{-1}}$.
 
@@ -215,6 +215,63 @@ donc $\gamma_1 \in ]0\degres, 90\degres]$,
 $\dot{\gamma}_1 \neq 0$ et  $\ddot{\gamma}_1 \neq 0$ pour le bras \textbf{1};
 idem pour les dérivées de l’angle $\gamma_2$ du bras \textbf{2}.
 \end{hypo}
+
+
+
+%Q06
+\question{\label{q:06}Déterminer l’expression littérale du moment dynamique du bras \textbf{1} calculé en $O$ selon $\vz{0}$ : $\vectmd{O}{1}{\rep{0}}\cdot \vz{0}$. En déduire l’expression littérale du moment dynamique du bras \textbf{2}
+calculé en $O$ selon $\vz{0}$ : $\vectmd{O}{2}{\rep{0}}\cdot \vz{0}$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+%Q07
+\question{\label{q:07} Déterminer l’expression littérale du moment dynamique de l'hélice \textbf{H1} calculé en $O$ selon $\vz{0}$ : $\vectmd{O}{H1}{\rep{0}}\cdot \vz{0}$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+%Q08
+\question{\label{q:08} En déduire l’expression littérale du moment dynamique de l'hélice \textbf{H2} calculé en $O$ selon $\vz{0}$ : $\vectmd{O}{H2}{\rep{0}}\cdot \vz{0}$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+On donne pour la suite l’expression littérale du moment dynamique de l’ensemble hélice \textbf{H3}
++ hélice \textbf{H4} calculé en $O$ selon $\vz{0}$ : $\vectmd{O}{H3+H4}{\rep{0}} \cdot \vz{0} = 2 I_{hz} \ddot{\gamma}_2 + 2m_h \left(\dfrac{L_1}{2}\right)^2 \ddot{\gamma}_2$.
+
+%Q09
+\question{\label{q:09} À partir des résultats des trois questions précédentes, montrer que l’expression du
+moment dynamique de l’ensemble $\Sigma$, calculé en $O$ selon $\vz{0}$, se met sous la forme  :
+$\vectmd{O}{\Sigma}{\rep{0}}\cdot \vz{0} = 2 \indice{I}{eq} \left(\gammapp_1+\gammapp_2\right)$ 
+où $\indice{I}{eq}$ est une constante dont l’expression est à préciser.}
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+La commande retenue pour le repliement et dépliement des bras du drone satisfait la relation
+suivante : $\gamma_2 = \pi - \gamma_1$.
+
+
+%Q10
+\question{\label{q:10}Expliquer en quoi ce choix de conception permet de vérifier l’exigence Id 1.1.1.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 
 \begin{obj}
