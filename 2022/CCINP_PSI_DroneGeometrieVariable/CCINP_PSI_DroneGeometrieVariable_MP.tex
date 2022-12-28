@@ -1,3 +1,4 @@
+%%SUJET MODIFIE POUR LES MP
 
 Drone à géométrie variable
 \textit{Inspiré de la thèse de Valentin RIVIERE,
@@ -468,7 +469,7 @@ cette configuration.}
 
 \section{\label{sec:02} Choix d’un mécanisme de modification de l’envergure}
 Afin de modifier la géométrie en vol, un premier mécanisme de repliement basé sur un système 4 barres a été retenu. Une modélisation de ce mécanisme est donnée en \autoref{fig:10}. La
-rotation du palonnier 5, entraîné par un servomoteur d’axe $\axe{O}{\vz{0}}$, permet la mise en rotation
+rotation du palonnier 5, entraîné par un servomoteur d’axe $\axe{O}{z_0}$, permet la mise en rotation
 des bras \textbf{1} et \textbf{2} par l’intermédiaire des bielles \textbf{3} et \textbf{4}.
 
 \begin{figure}[H]
@@ -477,37 +478,37 @@ des bras \textbf{1} et \textbf{2} par l’intermédiaire des bielles \textbf{3} 
 \caption{\label{fig:10} Modélisation cinématique en perspective et plane en vue de dessus du mécanisme de mise en mouvement des bras du drone basé sur un double système 4 barres}
 \end{figure}
 
-%Q17
-\question{\label{q:17} Calculer le degré d’hyperstaticité de la modélisation spatiale du mécanisme de repliement. Détailler votre analyse en précisant selon la méthode retenue : le nombre
-d’équations (cinématique ou statique), le nombre d’inconnues (cinématique ou statique) et le nombre de mobilités (utile et interne) en expliquant à quel(s) mouvement(s)
-et à quelle(s) pièce(s) ces mobilités sont associées.}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
+%%Q17
+%\question{\label{q:17} Calculer le degré d’hyperstaticité de la modélisation spatiale du mécanisme de repliement. Détailler votre analyse en précisant selon la méthode retenue : le nombre
+%d’équations (cinématique ou statique), le nombre d’inconnues (cinématique ou statique) et le nombre de mobilités (utile et interne) en expliquant à quel(s) mouvement(s)
+%et à quelle(s) pièce(s) ces mobilités sont associées.}
+%\ifprof
+%\begin{corrige}
+%\end{corrige}
+%\else
+%\fi
 
 Une telle hyperstaticité impose des contraintes géométriques de position et d’orientation des
 liaisons afin d’assurer l’assemblage du mécanisme.
 
-%Q18
-\question{\label{q:18} Préciser succinctement quelle(s) contrainte(s) géométrique(s) est(sont) à respecter
-pour assurer l’assemblage de ce mécanisme ?}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
+%%Q18
+%\question{\label{q:18} Préciser succinctement quelle(s) contrainte(s) géométrique(s) est(sont) à respecter
+%pour assurer l’assemblage de ce mécanisme ?}
+%\ifprof
+%\begin{corrige}
+%\end{corrige}
+%\else
+%\fi
 
-%Q19
-\question{\label{q:19} En modifiant la nature de certaine(s) liaison(s), proposer un modèle de mécanisme de
-repliement isostatique basé sur un double système 4 barres.
-Justifier votre proposition en reprenant le calcul du degré d’hyperstaticité.}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
+%%Q19
+%\question{\label{q:19} En modifiant la nature de certaine(s) liaison(s), proposer un modèle de mécanisme de
+%repliement isostatique basé sur un double système 4 barres.
+%Justifier votre proposition en reprenant le calcul du degré d’hyperstaticité.}
+%\ifprof
+%\begin{corrige}
+%\end{corrige}
+%\else
+%\fi
 
 Pour limiter les contraintes géométriques liées au mécanisme 4 barres et afin de réduire
 encore le poids, le mécanisme précédent a été modifié par un mécanisme à câbles piloté
