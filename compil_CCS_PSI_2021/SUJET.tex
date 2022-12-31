@@ -1,0 +1,58 @@
+\documentclass[10pt,fleqn]{article} % Default font size and left-justified equations
+\usepackage[%
+    pdftitle={Exercices de SII},
+    pdfauthor={Xavier Pessoles}]{hyperref}
+\usepackage{afterpage}
+\usepackage{subcaption}
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+    
+\newcommand{\repRel}{../..}
+\input{\repRel/Style/packages}
+\input{\repRel/Style/new_style}
+\input{\repRel/Style/macros_SII}
+\input{\repRel/Style/environment}
+
+
+\newcommand{\macrocomp}{macro_competences}
+\newcommand{\comp}{competences}
+\newcommand{\td}{fichier_td}
+\newcommand{\repExo}{dossier}
+\newcommand{\repStyle}{\repRel/Style}
+
+\def\xxYCartouche{-2.25cm}
+\def\xxYongletGarde{.5cm}
+\def\xxYOnget{.9cm}
+
+\def\xxnumchapitre{}
+\begin{document}
+
+\def\xxcompetences{}
+\def\xxfigures{}
+
+%\graphicspath{{\repStyle/png/}{\repRel/PSI_Cy_01_ModelisationSystemes/Ch_01_Generalites/Cours/images/}}
+
+%\setlength{\columnseprule}{.1pt}
+
+%% MODELISER
+% Page de garde
+
+\livrettrue
+\input{\repStyle/Cycle_05_Entete}
+
+
+\normaltrue
+\newpage
+\proffalse \colletrue
+
+\renewcommand{\repExo}{Cy_05_01_Application_03_AscBateau}
+\graphicspath{{\repStyle/png/}{../2021/CCS-PSI-2021-Stabilisateur/images/}}
+\input{../2021/CCS-PSI-2021-Stabilisateur/CCS-PSI-2021-Stabilisateur.tex}
+
+\end{document}
+
+
+

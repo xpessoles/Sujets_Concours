@@ -1,804 +1,495 @@
-\section{Introduction}
-\subsection{Présentation générale}
-Les manœuvres de stationnement pouvant être parfois difficiles pour certains conducteurs, les constructeurs
-automobiles proposent depuis maintenant quelques années une option de stationnement automatique sur leurs
-véhicules. Cette fonctionnalité est permise par un système embarqué qui permet l’automatisation d’une manœuvre de stationnement (pour des places en créneau, épi ou bataille).
+\section{Présentation}
+\subsection{Contexte}
+L'utilisation du mode vidéo, en haute définition sur les appareils photo réflex et légers, pose aux photographes le problème de la stabilisation de l'image car les vibrations engendrées y sont importantes et visibles. Des stabilisateurs installés à l'intérieur des appareils diminuent l'effet de ces vibrations mais ils restent très insuffisants pour assurer une bonne stabilisation notamment sur des sujets mobiles car ces systèmes ne sont efficaces que pour des temps de pose relativement longs. C'est pour cette raison que des systèmes de stabilisation externes ont été développés avec des supports et accessoires purement mécaniques ou motorisés.
+
+\subsection{Nacelles gyrostabilisées}
+Parmi les systèmes de stabilisation externes, les nacelles gyrostabilisées, installées sur une perche portée par les deux mains de l'utilisateur et sur lesquelles se fixe l'appareil photographique présentent l'avantage d'être légères, compactes et d'utilisation facile. Elles permettent de corriger les perturbations dues aux mouvements de l'utilisateur selon trois axes de rotations (figure 1). Néanmoins, elles ne permettent pas de réduire les perturbations verticales dues à la marche ou à la course de l'utilisateur.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.45\linewidth]{fig_00.png}
-%\caption{ \label{fig_}}
+\includegraphics[width=.5\textwidth]{fig_01}
+\caption{\label{fig:01} Nacelle gyrostabilisée}
 \end{figure}
 
-L’intervention du système de stationnement se fait sur la direction du véhicule : le système gère automatiquement l’orientation des roues avant du véhicule (et donc celle du volant). Quant au conducteur, il contrôle le
-déplacement du véhicule (marche avant ou arrière) et la vitesse du véhicule avec la pédale d’accélération. Cette
-vitesse est limitée et est supposée constante pendant la manœuvre.
-Ce type d’aide au stationnement permet une meilleure précision de la manœuvre et un stationnement dans un
-espace plus restreint en optimisant l’insertion du véhicule dans une place libre.
-Les principaux éléments technologiques entrant en jeu dans cette automatisation des manœuvres de stationnement sont : le calculateur du véhicule, la motorisation de la direction du véhicule et les capteurs à ultrasons (généralement entre 4 et 6 capteurs à l’avant et à l’arrière).
+
+\subsection{Stabilisateur vertical}
+Pour maitriser les perturbations verticales dues à la marche ou la course des photographes, un constructeur commercialise un stabilisateur vertical à installer entre la perche et la nacelle gyrostabilisée (figure 2).
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.45\linewidth]{fig_01.png}
-\caption{Détection par ultrasons (4 capteurs) \label{fig_01}}
+\includegraphics[width=.5\textwidth]{fig_02}
+\caption{\label{fig:02} Nacelle gyrostabilisée avec stabilisateur vertical}
 \end{figure}
 
-La procédure d’insertion automatisée du véhicule dans une place de stationnement, du point de vue du conducteur, est décrite par la \autoref{fig_02} dans le cas d’une insertion en créneau parfaitement exécuté. Sur la figure, le
-véhicule est équipé de 4 capteurs à ultrasons à l’avant et à l’arrière.
 
-Lorsque le conducteur voit une place libre devant lui, il active le stationnement automatique par l’appui d’un
-bouton dédié sur son tableau de bord. La voiture est parallèle au trottoir et se déplace dans le sens normal de
-la marche (repère 1 \autoref{fig_02}).
+Une analyse du besoin des photographes a permis de documenter le cahier des charges fonctionnel dont un extrait est donné figure A du document réponse. Le cadre de ce sujet porte plus spécifiquement sur l'évaluation des solutions retenues pour satisfaire les objectifs de maitrise de la position d'un appareil photo à l'équilibre et en mouvement. Le sujet est décomposé en quatre parties :
 
-Le déclenchement du stationnement automatique a pour conséquence la détection de l’emplacement libre par
-les capteurs ultrasons équipant la voiture lorsque celle-ci se déplace (repère 2 \autoref{fig_02}).
-Si la place de stationnement est suffisamment longue et profonde alors le conducteur est prévenu que la manœuvre
-est possible par un voyant lumineux situé sur son tableau de bord. Le conducteur doit alors arrêter son véhicule
-(repère 3 \autoref{fig_02}) et mettre la boite de vitesses au point mort (position neutre).
-
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.9\linewidth]{fig_02.png}
-\caption{Manoeuvre d’insertion en créneau dans une place de stationnement \label{fig_02}}
-\end{figure}
-
-Un signal sur le tableau de bord invite alors le conducteur à passer la marche arrière et à appuyer sur la pédale
-d’accélération afin que le véhicule commence la manœuvre (repères 4 et 5 \autoref{fig_02}). Pendant la manœuvre le
-conducteur ne touche pas le volant.
-Le processus d’automatisation de l’insertion du véhicule dans une place de stationnement en créneau suit un
-algorithme dont l’action dépend du type de manœuvre, de l’espace de stationnement et de la géométrie du
-véhicule. Cet algorithme gère :
 \begin{itemize}
-\item la détection d’une place libre suffisamment longue et profonde pour la manœuvre ;
-\item le calcul de la trajectoire à suivre ;
-\item la commande de la direction du véhicule.
-\end{itemize}
-Les exigences que le système de stationnement doit respecter sont décrites en figure \autoref{fig_26}.
+  \item dans la partie \ref{part:1}, une analyse des mouvements de marche et de course d'un utilisateur est effectuée et les critères chiffrés de l'exigence relative à la position de l'appareil photo en mouvement sont justifiés ;
+  \item la partie \ref{part:2} porte sur la vérification du respect de l'exigence relative à la position à l'équilibre de l'appareil photo ;
+  \item en partie \ref{part:3}, une étude dynamique met en évidence la nécessité d'ajouter une commande active au système pour assurer le respect de l'exigence relative à la position en mouvement de l'appareil photo ;
+  \item la partie \ref{part:4} porte sur la conception de la commande active du système en vue d'assurer la maitrise de la position de l'appareil photo avec le niveau de précision requis par le cahier des charges.
 
-\subsection{Problématique et organisation de l’étude}
-Lors d’un stationnement en créneau, c’est la phase d’insertion du véhicule dans la place envisagée qui va
-conditionner la réussite du stationnement et le nombre de manœuvres permettant d’atteindre une position
-correcte de stationnement.
-
-\begin{obj}
-L’étude proposée a pour objectif de définir et de valider les conditions et les modèles à implanter dans
-un algorithme de stationnement automatique afin qu’une manœuvre d’insertion de type créneau dans
-une place de stationnement soit réussie et qu’elle atteigne les niveaux de performance attendus.
-\end{obj}
-
-L’étude est limitée à une manœuvre en créneau dont la position finale est définie repère numéro 5 sur la \autoref{fig_02}.
-La manœuvre d’insertion en stationnement doit être réalisée en une fois. Si l’insertion est réussie alors la position
-finale de stationnement sera, dans un second temps, facilement atteinte par une légère avance du véhicule pour
-être centré dans la place de stationnement.
-
-Dans un premier temps l’étude portera sur le stationnement automatique d’un véhicule réel. Le travail mené en
-début de sujet pour un véhicule réel pouvant être transposé (à l’échelle près) à tout type de véhicule roulant,
-le support technique de l’étude sera dans un second temps une voiture radio commandée (elle sera présentée
-ultérieurement dans l’étude). Ce choix est justifié par le fait qu’il n’est pas possible de réaliser des essais sur un
-véhicule réel et que les choix technologiques de la commande de direction ne sont pas rendus accessibles par les
-constructeurs automobiles.
-
-
-\section{Détection de l’environnement et prédiction de la trajectoire de
-stationnement}
-
-La phase pendant laquelle le véhicule circule parallèlement à une place libre est primordiale car elle correspond
-à la phase de détection de l’emplacement de stationnement. Cette détection doit permettre de vérifier la compatibilité de l’emplacement détecté avec la manœuvre automatisée et d’identifier dans l’environnement du véhicule
-des repères géométriques à partir desquels l’algorithme pourra établir la trajectoire à suivre.
-Ces deux tâches sont possibles grâce aux capteurs de proximité à ultrasons équipant le véhicule (\autoref{fig_02}) et à
-l’exploitation de leurs signaux.
-
-\begin{obj}
-Les objectifs de cette partie sont de déterminer les conditions à implanter dans l’algorithme de stationnement pour la validation d’une place libre et de caractériser la géométrie de la trajectoire à
-suivre pour mener avec succès la manœuvre de stationnement. Cette trajectoire servira de consigne à
-l’algorithme pour son action sur la direction du véhicule.
-\end{obj}
-
-\subsection{Détection et caractérisation d’une place libre (exigence 1.4)}
-\begin{obj}
-L’objectif est de caractériser les conditions définissant une place compatible avec la manœuvre de
-stationnement.
-\end{obj}
-
-Lors du fonctionnement du véhicule tous les capteurs sont actifs, mais tous ne sont pas forcément exploités
-pour la manœuvre automatique. Ainsi on distingue les capteurs dont les signaux peuvent être exploités par
-l’algorithme de stationnement et ceux dont le signal sera exploité pour la sécurité (des passagers, des autres
-usagers de la route et des piétons lors de la manœuvre du véhicule).
-
-\question{À partir du diagramme des exigences (\autoref{fig_26}) et de la \autoref{fig_02}, identifier le ou les capteurs à ultrasons pouvant participer au respect de l’exigence 1.4. Faire de même pour l’exigence 1.6.1.}
-\ifprof
-\begin{corrige}
-Pour trouver une place de stationnement à droite, seuls les capteurs positionnés à droite sont nécessaires. 
-\begin{itemize}
-\item Exigence 1.4 :
-\begin{itemize}
-\item $L_p \geq L_v + 2 \times 0,5 $ (Longueurs) : capteurs b et d;
-\item $l_p \geq l_v + 2 \times 0,15 $ (largeurs) : a et c. 
-\end{itemize} 
 \end{itemize}
 
-\begin{itemize}
-\item Exigence 1.6.1 : l'utilisateur doit contrôler le déplacement du véhicule tous les capteurs ultrasons doivent être utilisés.
-\end{itemize}
+\section{\label{part:1}Analyse du mouvement de l'utilisateur et justification du cahier des charges }
+Pour réduire les perturbations verticales de l'appareil photo, la solution retenue est de filtrer les mouvements de translation verticale de la perche dont les fréquences sont précisées dans le cahier des charges (figure A). Pour justifier ces performances, on réalise des captures du mouvement vertical d'une perche tenue des deux mains par un utilisateur qui se déplace sur un sol plat.
 
-\end{corrige}
-\else
-\fi
-
-Dans la réalité, le signal du capteur latéral côté passager (capteur a \autoref{fig_03}) est suffisant pour détecter une
-place de stationnement suffisamment spacieuse. Le signal fourni par le capteur a va permettre de savoir si la
-place de stationnement envisagée par le conducteur est compatible avec la manœuvre, mais va aussi permettre
-de définir certains repères géométriques de l’environnement. Ces repères géométriques vont servir de référence
-pour l’élaboration de la trajectoire à suivre pour réaliser le stationnement en créneau.
+Cette capture de mouvement est réalisée à partir d'un système optoélectronique dont le principe est le suivant : des caméras projettent une lumière dans le spectre infrarouge et détectent la lumière réfléchie par des marqueurs réfléchissants placés sur l'utilisateur. À partir des focales des caméras, de leur position et de leur orientation, il est possible de reconstruire, à chaque instant, par triangulation, la position spatiale des marqueurs et d'en déduire le mouvement vertical des mains, en retenant la valeur moyenne de la position verticale des deux mains. Les graphes des enregistrements de deux passages, marche et course, sont donnés ainsi que leur analyse spectrale (figure 3). Le contenu spectral est estimé en utilisant un enregistrement sur une durée limitée et la relation utilisée permet d'obtenir directement les amplitudes des différentes composantes harmoniques. Le calcul du spectre est réalisé pour un ensemble de fréquences choisi selon une distribution linéaire.
 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.45\linewidth]{fig_03.png}
-\caption{Phase de détection d’une place libre \label{fig_03}}
+\includegraphics[width=.5\textwidth]{fig_03}
+\caption{\label{fig:03} Représentations temporelle et spectrale du déplacement vertical des mains de l'utilisateur lors de la capture du mouvement}
 \end{figure}
-
-Le type de capteur utilisé est un capteur de proximité à ultrasons (\autoref{fig_04}). Ce type de capteur possède une
-membrane qui émet une onde ultrasonore par vibrations. La distance $d$ entre un capteur et un obstacle est
-déduite du temps $T_e$ d’aller et retour de l’onde qui est réfléchie par l’obstacle puisque la vitesse du son dans
-l’air est connue : $V_s = \SI{340}{m.s^{-1}}$.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.7\linewidth]{fig_04.png}
-\caption{Principe du capteur de proximité \label{fig_04}}
-\end{figure}
-
-Ainsi au niveau du capteur de proximité, l’information exploitable est le temps $T_e$
-entre l’émission et la réception
-du signal (écho) émis par le capteur. C’est l’acquisition de $T_e$ qui servira dans l’algorithme pour l’identification
-d’une place libre et pour la caractérisation de la trajectoire à suivre.
-
-La \autoref{fig_05} représente le profil de vitesse du véhicule lorsque ce dernier longe une place libre. Le temps $T_a$
-représente l’instant où le temps $T_e$ augmente brusquement (ce qui correspondrait au point $A$ \autoref{fig_03}). Le temps
-$T_b$
-correspond au moment où $T_e$ diminue brusquement (ce qui correspondrait au point B \autoref{fig_03}).
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.7\linewidth]{fig_05.png}
-\caption{Profil de vitesse du véhicule lors des phases 1, 2 et 3 de la figure \ref{fig_05} \label{fig_05}}
-\end{figure}
-
-Lors de la phase de détection le véhicule avance à une vitesse $V_d$ constante et connue (information déduite de
-capteurs situé au niveau des roues). La longueur du véhicule notée $L_v$
-est également connue comme tous les
-paramètres géométriques du véhicule.
-
-Le fait de relever $\Delta T_p = T_b - T_a$ au niveau du capteur \textbf{a} permet de déterminer la longueur de la place et de vérifier qu’elle est compatible avec la manœuvre.
-
-\question{Déterminer la condition que la grandeur $\Delta T_p$ doit vérifier pour que la longueur $L$ d’une place de stationnement respecte l’exigence 1.4. Cette condition est fonction de $V_d$ et $L_v$.}
-\ifprof
-\begin{corrige}
-À vitesse constante, $V_d = \dfrac{L}{\Delta T_p}$. Or d'après l'exigence 1.4, $L \geq L_v + 2\times 0,5$ soit 
-$V_dT_p \geq L_v + 1$ et $T_p \geq\dfrac{ L_v + 1}{V_d}$.
-\end{corrige}
-\else
-\fi
-
-Lorsque la voiture longe la place libre (entre les repères A et B \autoref{fig_03}), c’est la valeur maximale de $T_e$ relevée
-lors du déplacement qui permet de savoir si la largeur de la place est suffisante pour la manœuvre. Cette largeur
-est notée $e$ (\autoref{fig_03}) et la largeur du véhicule est notée $e_v$. La grandeur $D$ désigne la distance latérale par rapport aux véhicules déjà stationnés (\autoref{fig_03}).
-
-\question{Déterminer la condition sur le temps $T_e$ pour que la largeur d’une place de stationnement respecte
-l’exigence 1.4.}
-\ifprof
-\begin{corrige}
-D'après l'exigence 1.4, $e>e_v + 0,15$.
-Dans ces conditions, $T_e = \dfrac{2e}{V_s}$.
-On a donc $\dfrac{T_e V_s}{2}>e_v + 0,15$ et $T_e>2\dfrac{e_v + 0,15}{V_s}$.
-
-
-\end{corrige}
-\else
-\fi
-
-
-Les conditions de longueur et de largeur d’une place de stationnement étant vérifiées, les distances $L$ et $e$ étant déduites des mesures, ces deux dernières grandeurs sont désormais des données implantables dans l’algorithme de stationnement. Le fait de connaitre en temps réel la vitesse du véhicule donne aussi la possibilité de connaitre la position du véhicule à partir d’un instant de référence tel que $T_a$. Il est donc maintenant considéré que la
-position du point $A$ par rapport au véhicule est une donnée.
-
-Une place de stationnement libre étant acceptée pour la manœuvre et sa géométrie (longueur, largeur, position
-des obstacles) étant connue, il reste à caractériser la trajectoire à suivre pour la manœuvre.
-
-\subsection{Trajectoire à suivre pour le stationnement (exigence 1.2)}
-
-\begin{obj}
-L’objectif est de déterminer les paramètres géométriques à implanter dans l’algorithme de stationnement afin d’y définir la trajectoire à suivre pour le stationnement.
-\end{obj}
-
-\subsubsection{Caractérisation de la trajectoire à suivre}
-Une fois que le véhicule a longé une place et qu’il est à l’arrêt (position 3 \autoref{fig_02}) la manœuvre de type créneau
-débute par une phase de recul rectiligne jusqu’à ce que le train arrière soit au niveau de l’extrémité arrière du
-véhicule déjà stationné (point $B$ \autoref{fig_06}). Toujours en recul, il s’en suit le braquage des roues (dans un sens
-puis l’autre) pour l’insertion dans la place libre.
-
-La trajectoire du véhicule est définie par celle du point $F$, centre du train arrière (\autoref{fig_06}). La trajectoire
-« idéale~» de $F$ est donc une portion linéaire jusqu’au point $O$ suivie de deux arcs de cercles identiques (sur les cercles $C_1$ et $C_2$) tangents en un point $P$. Ce dernier est le point où le véhicule fait un angle de 45\degres par rapport
-au trottoir.
-
-Le point $O$ est défini à partir de la longueur $L$  de la place de stationnement, des dimensions du véhicule et de
-la distance $D$ de ce dernier avec le véhicule déjà stationné en amont de la place libre.
-
-Le \autoref{tab_01} précise les paramètres géométriques qui caractérisent la trajectoire du véhicule pendant la manœuvre de stationnement.
-
-\question{Parmi tous les paramètres géométriques définis dans le \autoref{tab_01} ainsi que sur la \autoref{fig_06}, identifier
-ceux qui sont propres au véhicule et ceux qui se déduisent directement des informations des capteurs à ultrasons.
-Que reste-t-il donc à déterminer afin que la géométrie de la trajectoire du point $F$ soit définie ?}
+ 
+%Q 1
+\question{\label{q:01} Associer chacune des courbes (a) ou (b) à l'enregistrement du mouvement pendant la marche ou la course de l'utilisateur. Il est conseillé d'analyser les caractéristiques de l'harmonique de plus grande amplitude.}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
 
+%Q 2. 
+\question{\label{q:02} Proposer une méthode de filtrage pour atténuer les perturbations dues à la marche ou à la course de l'utilisateur tout en conservant les mouvements de translation verticale souhaités.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\section{\label{part:2} Vérification du respect de l'exigence relative à la position d'équilibre }
+Le cahier des charges précise que le stabilisateur peut être utilisé avec des appareils photo de masse comprise entre 0,350 kg et 1,550 kg (figure A). L'objectif de cette partie est de vérifier que la conception est assez robuste vis-à-vis du facteur de masse de l'appareil photo pour satisfaire l'exigence $1.1$ relative à la position d'équilibre du système.
+
+
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{fig_06.png}
-\caption{Trajectoire à suivre pour la manoeuvre \label{fig_06}}
+\includegraphics[width=.5\textwidth]{fig_04}
+\caption{\label{fig:04} Schéma cinématique plan et paramétrage du mécanisme}
 \end{figure}
 
-\begin{table}
-\begin{itemize}
-\item Paramètres de la place de stationnement :
-\begin{itemize}
-\item $L$ longueur de la place libre ;
-\item $e$ largeur de la place libre.
-\end{itemize}
-\item Autres paramètres géométriques :
-\begin{itemize}
-\item $D$ distance latérale par rapport au véhicule déjà stationné ;
-\item $L_F$ distance train arrière/extrémité arrière du véhicule ;
-\item $R$ rayon des cercles $C_1$ et $C_2$ composant la trajectoire ;
-\item $L_a$ distance entre l’arrière du véhicule en manœuvre et du véhicule placé derrière ;
-\item $e_v$ largeur du véhicule en manœuvre ;
-\item $d_r$ distance latérale entre le véhicule stationné et tout obstacle limitant la largeur de la place de stationnement.
-\end{itemize}
-\end{itemize}
-\caption{Définition des paramètres géométriques qui caractérisent la trajectoire \label{tab_01}}
-\end{table}
+
+
+Le mécanisme étudié dont la modélisation retenue est donnée (figure 4) est principalement constitué de quatre solides $\left\{(1),(2),\left(2^{\prime}\right),(3)\right\}$ formant un parallélogramme et guidés deux à deux en rotation par des liaisons modélisées par des pivots aux points A, A', B et B'. La nacelle gyrostabilisée est schématisée par la barre (3). Le support (1), faisant l'objet d'une liaison encastrement avec la perche, est supposé être en mouvement de translation par rapport au sol (0) autorisé par une glissière fictive. Ce modèle est paramétré par:
 
 \begin{itemize}
-\item $\rep{0} \repere{O}{x_0}{y_0}{z_0}$ est un repère défini au point $O$. 
-\item Les points $O_1$ et $O_2$ sont respectivement les centres des cercles $C_1$ et $C_2$.
-\item Le point $P$ est milieu de $[O_1 O_2]$.
-\item Les cercles $C_1$ et $C_2$ sont de même rayon $R$.
-\item La position du point $F$ est repérée par un angle $\theta_1(t)$ (\autoref{fig_07}) dans le repère
-$\repere{O_1}{x_0}{y_0}{z_0}$ et par un angle $\theta_2(t)$ (\autoref{fig_07}) dans le repère $\repere{O_2}{x_0}{y_0}{z_0}$.
-\item Le point $F_0$ correspond à la position initiale du point $F$ et $F_f$ à celle de la position finale lors de la phase d’insertion.
+  \item le repère terrestre $\mathcal{R}_{0}\left(\mathrm{O}, \vec{x}_{0}, \vec{y}_{0}, \vec{z}_{0}\right)$ supposé galiléen avec $\vec{z}_{0}$ vertical ascendant ;
+
+  \item le repère $\mathcal{R}_{1}\left(\mathrm{~A}, \vec{x}_{0}, \vec{y}_{0}, \vec{z}_{0}\right)$ lié au support (1) avec $\overrightarrow{\mathrm{OA}}=y_{A} \vec{y}_{0}+z_{\text {pert }} \vec{z}_{0}$;
+
+  \item le repère $\mathcal{R}_{2}\left(\mathrm{~A}, \vec{x}_{0}, \vec{y}_{2}, \vec{z}_{2}\right)$ lié au bras (2) avec $\alpha=\left(\vec{y}_{0}, \vec{y}_{2}\right)=\left(\vec{z}_{0}, \vec{z}_{2}\right)$;
+
+  \item le repère $\mathcal{R}_{2}^{\prime}\left(\mathrm{A}^{\prime}, \vec{x}_{0}, \vec{y}_{2}, \vec{z}_{2}\right)$ lié au bras (2') avec $\overrightarrow{\mathrm{AA}^{\prime}}=l \vec{z}_{0}$;
+
+  \item le repère $\mathcal{R}_{3}\left(\mathrm{~B}, \vec{x}_{0}, \vec{y}_{0}, \vec{z}_{0}\right)$ lié à la nacelle gyrostabilisée (3) et à l'appareil photo (4) liés rigidement entre eux avec $\overrightarrow{\mathrm{AB}}=L \vec{y}_{2}$. Le centre d'inertie de l'ensemble $\{(3)+(4)\}$ est noté $\mathrm{G}$, avec $\overrightarrow{\mathrm{BG}}=y_{G} \vec{y}_{0}+z_{G} \vec{z}_{0} ;$
+
+  \item le repère $\mathcal{R}_{5}\left(\mathrm{~A}^{\prime}, \vec{x}_{0}, \vec{y}_{5}, \vec{z}_{5}\right)$ est défini tel que $\overrightarrow{\mathrm{A}^{\prime} \mathrm{B}}=L_{r} \vec{y}_{5}$ avec $\beta=\left(\vec{y}_{0}, \vec{y}_{5}\right)=\left(\vec{z}_{0}, \vec{z}_{5}\right)$.
+
+\end{itemize}
+
+La plage de fonctionnement du mécanisme est limitée par la géométrie des bras (2) et (2') avec $\alpha \in\left[-35^{\circ}, 45^{\circ}\right.$, $l=25 \mathrm{~mm}, L=52 \mathrm{~mm}, y_{G}=5 \mathrm{~mm}$ et $z_{G}=200 \mathrm{~mm}$.
+
+Le ressort de traction (5) de raideur $K_{r}$ et de longueur à vide $L_{r 0}$ possède une tension initiale $F_{r 0}$ lorsque $L_{r}=L_{r 0}$. Il est relié d'une part au support (1) et d'autre part au solide (3) aux points d'ancrage respectivement A' et B.
+
+Pour cette étude :
+
+\begin{itemize}
+  \item la nacelle gyrostabilisée (3) et l'appareil photo (4) sont considérés comme formant un seul solide ;
+  \item la masse et les inerties des solides sont négligées mis à part pour l'ensemble constitué de la nacelle gyrostabilisée (3) et de l'appareil photo (4) de masse $m_{34}=m_{3}+m_{4}$ avec $m_{3}=1,250 \mathrm{~kg}$ la masse de la nacelle gyrostabilisée (3) et $m_{4}$ la masse de l'appareil photo (4). La référence retenue pour décrire la position de l'appareil photo est le centre d'inertie $\mathrm{G}$ de l'ensemble constitué de la nacelle gyrostabilisée (3) et de l'appareil photo (4) dans le repère $\mathcal{R}_{0}$.
+
 \end{itemize}
 
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=.75\linewidth]{fig_07.png}
-\caption{Trajectoire du point $F$ lors de l’insertion dans la place vacante \label{fig_07}}
-\end{figure}
-
-%Q5
-\question{Les coordonnées du point $P$ dans le repère $\rep{0}$ sont notées $x_p$
-et $y_p$ : $\vect{OP}=x_P\vect{x_0}+y_P\vect{y_0}$. Déterminer
-l’expression de $x_P$ et $y_P$ en fonction des paramètres géométriques $L$, $e$, $L_F$, $d_r$, $L_a$ et $D$. Le rayon $R$ n’étant pas encore déterminé, il ne doit pas apparaitre dans les expressions de $x_P$ et $y_P$.}
-\ifprof
-\begin{corrige}
-On a $x_P = \dfrac{1}{2} \vect{OF_f}\cdot \vect{x_0} = \dfrac{1}{2}\left(L-L_a - L_f\right)$.
-
-De plus $y_P = \dfrac{1}{2} \vect{OF_f}\cdot \vect{y_0} = \dfrac{1}{2}\left(\dfrac{e_v}{2}+D+e - d_r - \dfrac{e_v}{2} \right)=\dfrac{1}{2}\left(D+e - d_r \right)$ .
-\end{corrige}
-\else
-\fi
-
-%Q6
-\question{Déterminer l’expression de $R$ en fonction de $L$, $L_a$ et $L_F$ qui permettra de définir le cercle $C_1$ (et donc le cercle $C_2$).}
-\ifprof
-\begin{corrige}
-On a $\vect{OP}=\vect{OO_1}+\vect{O_1P}$. 
-%En projetant sur $\vect{y}$, on a 
-%$y_P = R - R\dfrac{\sqrt{2}}{2}$ soit 
-%$\dfrac{1}{2}\left(D+e - d_r \right)= R\dfrac{2-\sqrt{2}}{2}$ soit $R=\dfrac{D+e - d_r }{2-\sqrt{2}}$.
-
-En projetant sur $\vect{x_0}$, on a $x_P =R\sqrt{2}{2}$ soit
-$\dfrac{1}{2}\left(L-L_a - L_f\right)=R\dfrac{\sqrt{2}}{2}$ et $L-L_a - L_f=R\sqrt{2}$.
-
-Au final, $R = \dfrac{L-L_a - L_f}{\sqrt{2}}$.
-\end{corrige}
-\else
-\fi
-
-Le cercle $C_1$ (et donc $C_2$ par symétrie) est maintenant défini, donc la trajectoire que le point $F$ devra suivre l’est également.
-
-Afin de vérifier en simulation la validité de la trajectoire déterminée, il est nécessaire de déterminer les coordonnées du point $F$ lors du déplacement du véhicule en insertion dans la place de stationnement.
-
-\subsubsection{ Simulation et validation de la trajectoire à suivre}
-%Q7
-\question{Exprimer dans $\rep{0}$ les coordonnées $x$ et $y$ du point $F$ parcourant la portion de cercle $C_2$ en fonction de $R$ et $\theta_2$ : $\vect{OF}=x\vect{x_0}+y\vect{y_0}$. Préciser l’intervalle dans lequel $\theta_2$ doit varier.}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-Le rayon $R$ et les coordonnées du point $F$ étant déterminés, il est maintenant possible d’implanter dans l’algorithme de stationnement le modèle de la trajectoire à suivre. Il est cependant nécessaire de valider la trajectoire
-déterminée en prenant en compte l’ensemble du véhicule avant de poursuivre par l’étude de la direction du
-véhicule.
-
-En se servant de l’expression de $R$ et de celle des coordonnées du point $F$ lors du mouvement du véhicule, il est
-possible de réaliser une simulation de la manœuvre d’insertion dans la place envisagée.
-La \autoref{fig_08} représente le résultat de cette simulation. Le nombre de positions du véhicule représentées a été limité
-à quatre par souci de clarté. La simulation a été réalisée pour une voiture dont les dimensions correspondent
-à la moyenne des véhicules vendus en France et en prenant une place de stationnement compatible avec la
-manœuvre. La trajectoire a été déterminée à partir des relations trouvées dans les études précédentes.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.9\linewidth]{fig_08.png}
-\caption{Simulation du stationnement \label{fig_08}}
-\end{figure}
-
-%Q8
-\question{Quelles sont les exigences dimensionnelles vérifiées par la simulation (\autoref{fig_08}) et permettant de valider
-la trajectoire ? Justifier les réponses apportées.}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-La simulation a permis de valider la trajectoire à suivre. Cependant il faut encore établir le lien entre l’orientation
-des roues directrices du véhicule et la trajectoire à suivre puisque le système de stationnement automatique agit
-directement sur les roues directrices du véhicule.
-
-\subsection{Direction du véhicule}
-
-\begin{obj}
-L’objectif est de déterminer la consigne angulaire des roues directrices du véhicule et sa vitesse de
-recul lors de la phase d’insertion dans la place de stationnement.
-\end{obj}
-
-
-Pour l’étude il est choisi de prendre un véhicule type traction (roues avant motrices) comme 90\% des véhicules
-vendus en France. De plus, la détermination de l’angle d’orientation des roues directrices (noté $\alpha$ sur la \autoref{fig_09})
-sera limitée à la première portion de cercle $C_1$ pour laquelle le véhicule est en rotation autour du point $O_1$. Du
-fait de la symétrie de la trajectoire, il n’est donc pas nécessaire de prolonger la détermination de $\alpha$ à la portion
-de cercle $C_2$.
-
-L’insertion du véhicule dans la place de stationnement peut se décomposer en trois phases à partir de l’instant
-$t_0$ où le véhicule est à l’arrêt après avoir longé la place de stationnement envisagée.
-
+Dans cette partie, l'étude est conduite avec les hypothèses suivantes :
 \begin{itemize}
-\item Phase 0 : recul rectiligne permettant au point $F$ d’atteindre le point $O$. La durée de cette phase est notée $\Delta T_0$.
-\item Phase 1 : recul avec braquage des roues directrices, l’objectif étant que le point $F$ parcoure la portion de
-cercle $C_1$ jusqu’au point $P$. La durée de cette phase est notée $\Delta T_1$.
-\item Phase 2 : recul avec contre-braquage des roues directrices, l’objectif étant que le point $F$ parcoure la portion
-de cercle $C_2$ jusqu’au moment où le véhicule est dans l’alignement de la place de stationnement. Comme la
-manœuvre de stationnement se fait à vitesse constante et que les portions de cercle $C_1$
-et $C_2$ sont symétriques, alors la durée de cette phase vaut également $\Delta T_1$.
+  \item les quatre liaisons pivots et la liaison glissière sont parfaites ;
+  \item la modélisation est plane ;
+  \item il n'y pas de perturbation $\left(z_{\text {pert }}=0\right)$.
 \end{itemize}
-Lors des phases de stationnement et entre chaque changement d’orientation des roues directrices du véhicule,
-le véhicule recule à une vitesse supposée constante $v$ telle que $\vectv{C}{V}{\rep{1}}=v\vect{x_r}$. Dans la notation
-$\vectv{C}{V}{\rep{1}}=v\vect{x_r}$. 
-Dans la notation $\vectv{C}{V}{\rep{1}}=v\vect{x_r}$ $V$ désigne le véhicule et $\rep{1}\repere{O_1}{x_0}{y_0}{z_0}$
-le repère galiléen défini au point $O_1$.
 
-Le paramètre angulaire $\theta_1 = \angl{x_0}{y_0}$ (\autoref{fig_07}) définit la position relative de la base $\base{x_v}{y_v}{z_v}$
-par rapport à la base $\base{x_0}{y_0}{z_0}$. Ainsi $\vecto{V}{\rep{1}} = \dot{\theta_1}\vect{z_0}$.
-
-La \autoref{fig_09} représente le véhicule lors de la phase 1 de la manœuvre de stationnement. Comme l’orientation des
-roues directrices (roues avant) sont liées entre elles, il n’est pas nécessaire de prendre en compte les deux roues.
-$\alpha$ désigne l’angle que fait la roue intérieure au virage (côté trottoir) par rapport au véhicule (\autoref{fig_09}).
-
- $\alpha = \angl{x_v}{x_r}=\angl{y_v}{y_r}$
- avec $\rep{r} \repere{C}{x_r}{y_r}{z_r}$ 
-un repère orthonormé direct défini au point $C$, centre de la roue intérieure, et tel que $\axe{C}{y_r}$ est confondu avec l’axe de cette roue (\autoref{fig_09}) et $\rep{v}\repere{F}{x_v}{y_v}{z_v}$ un repère
-orthonormé défini au point $F$ et lié au véhicule (\autoref{fig_09}).
-
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.45\linewidth]{fig_09.png}
-\caption{Paramétrage lors de la manoeuvre \label{fig_09}}
-\end{figure}
-
-Données : $\vect{FO_1}=R\vect{y_v}$, $\vect{CF}=L_t\vect{x_v}-e_t\vect{y_v}$ où $C$ est le centre de rotation de la roue intérieure avant par rapport au véhicule.
-
-%Q9
-\question{Déterminer en projection dans la base $\base{x_v}{y_v}{z_v}$ l'expression de $\vectv{C}{V}{\rep{1}}$ en fonction de $R$ $e_t$, $L_t$, $\dot{\theta_1}$.}
+%Q 3. 
+\question{\label{q:03} Exprimer les coordonnées du centre d'inertie $\mathrm{G}$ dans le repère $\mathcal{R}_{0}$ en fonction de l'angle $\alpha$ et des paramètres géométriques du système.}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
 
-%Q10
-\question{On rappelle que $\vectv{C}{V}{\rep{1}} = v \vect{x_r}$. À partir du résultat de la question précédente, déterminer, en fonction de $R$, $e_t$ et $L_t$, l'expression de $\tan\alpha$ des roues directrices lors de la phase 1 de la manœuvre. Cet angle noté $\alpha_{c1}$ est constant puisque le point $F$ parcourt $C_1$. $\alpha_{c1}$ représente la consigne angulaire à imposer aux roues directrices
-lors de la phase 1.}
+%Q 4. 
+\question{\label{q:04} En utilisant une fermeture géométrique, donner l'expression de l'angle $\beta$ en fonction de l'angle $\alpha$ et des paramètres géométriques $L$ et $l$ du système.}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
 
-Lors de la manœuvre de stationnement, l’angle des roues devra suivre une consigne de position angulaire notée $\alpha_c(t)$ à définir pour respecter les trois phases de l’insertion dans la place.
+%Q 5. 
+\question{\label{q:05}Exprimer la longueur $L_{r}$ du ressort de traction (5) en fonction de l'angle $\alpha$ et des paramètres géométriques du système.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\subsection{II.A - Vérification de l'exigence relative à la plage de fonctionnement}
+L'action mécanique du ressort de traction (5) sur la nacelle gyrostabilisée (3) est modélisée par le torseur $\left\{\mathcal{F}_{5 \rightarrow 3}\right\}:$
+
+$$
+\left\{\mathcal{F}_{5 \rightarrow 3}\right\}=\left\{\begin{array}{c}
+F_{r} \vec{y}_{5} \\
+\overrightarrow{0}
+\end{array}\right\}_{\mathrm{B}} .
+$$
+
+%Q 6.
+\question{\label{q:06}Exprimer la composante de résultante d'action mécanique $F_{r}$ en fonction de l'angle $\alpha$, des paramètres géométriques du système et des paramètres du ressort.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+%Q 7. 
+\question{\label{q:07}Déterminer la direction des actions mécaniques de liaison exercées par le bras (2) sur la nacelle (3) et par le bras (2') sur la nacelle (3).}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+%Q 8. 
+\question{\label{q:08}Afin de déterminer la position d'équilibre de l'ensemble $\{(3)+(4)\}$, proposer sans calcul, une démarche claire qui permette d'exprimer l'effort nécessaire du ressort de traction (5) sur la nacelle gyrostabilisée (3).}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+%Q 9. 
+\question{\label{q:09}Exprimer l'équation scalaire traduisant l'équilibre du mécanisme en fonction des angles $\alpha$, $\beta$, de la masse $m_{34}$ et de la composante de résultante d'action mécanique $F_{r}$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+À partir des relations déterminées précédemment, deux fonctions beta(alpha) et effort\_ressort(alpha) qui renvoient respectivement la valeur de l'angle $\beta$ et la valeur de la composante de résultante d'action mécanique $F_{r}$ sont implantées en Python. La bibliothèque numpy a été importée sous le nom abrégé np. Les variables globales $\mathrm{g}$ et $\mathrm{m} 3$ fournissent respectivement la valeur de l'accélération de la pesanteur terrestre et la valeur de la masse de la nacelle gyrostabilisée (3). Les positions d'équilibre pour différentes valeurs de la masse $m_{4}$ sont alors obtenues par une méthode de recherche de zéro par dichotomie.
+
+%Q 10. 
+\question{\label{q:10} Écrire en Python une fonction, fonction\_equilibre(m4, alpha), qui renvoie zéro lorsque, pour une valeur de masse $m_{4}$ de l'appareil photo donnée, la valeur de l'angle $\alpha$ vaut l'angle d'équilibre recherché.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+Une fonction angle\_equilibre(m4) qui renvoie la valeur de l'angle $\alpha=\alpha_{0}$ correspondant à la position d'équilibre avec une méthode de recherche de zéro par dichotomie est implantée en Python. La courbe obtenue à partir de la fonction angle\_equilibre(m4) représentant l'angle d'équilibre $\alpha_{0}$ en fonction de la masse de l'appareil photo $m_{4}$ est donnée (figure 5).
 
 %Q 11. 
-\question{Sous forme d’un graphique, proposer l’évolution temporelle de la consigne $\alpha_c(t)$ pour que le véhicule puisse s’insérer dans la place de stationnement selon les trois phases de manœuvre définies précédemment.
-Sur ce graphique devront apparaitre les ordonnées particulières que $\alpha$ devra atteindre ainsi que les durées des
-différentes phases de la manœuvre en fonction des données littérales du texte.}
+\question{\label{q:11} En donnant les valeurs des angles d'équilibre pour les deux valeurs extrêmes de masse, vérifier le respect de l'exigence 1.1.1. relative à la plage de fonctionnement.}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
 
-
-Dans cette deuxième partie il a été possible de définir la trajectoire du véhicule et la consigne angulaire d’orientation des roues afin que le véhicule puisse effectuer la manœuvre en créneau en une fois. Ceci étant, le suivi de la trajectoire dépend des performances du système d’orientation des roues directrices. Ce système appelé
-« direction » en automobile a son comportement défini par l’algorithme de stationnement lors de manœuvres
-automatiques. Il est donc nécessaire de vérifier que la commande en direction permet effectivement de suivre la
-trajectoire.
-
-\textit{Pour la suite du sujet le support technique utilisé est une voiture radio commandée comme expliqué en début de sujet.}
-
-\section{Modélisation de la commande de direction et validation des performances}
-Le choix d’une voiture radio commandée (voiture RC) est motivé par la nécessité d’identifier les composants (et
-leurs caractéristiques) intervenant dans la commande de direction, mais également par la nécessité de pouvoir
-analyser des résultats d’essais réalisés sur un support réel. Tout ceci n’est pas possible sur un véhicule réel du
-fait de la confidentialité des données des constructeurs automobiles, mais concernant un modèle réduit il n’y a
-plus ces difficultés.
-
-La \autoref{fig_10} représente le modèle de voiture RC choisi pour la suite de l’étude.
+\subsection{II.B - Vérification de l'exigence relative au mouvement de l'appareil photo autour des positions d'équilibre possibles}
+%Q 12. 
+\question{\label{q:12} En étudiant le comportement du système autour des deux positions d'équilibre extrêmes, vérifier le respect de l'exigence 1.1.2. de l'appareil photo autour des positions d'équilibre possibles. Conclure sur le respect de l'exigence 1.1.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.45\linewidth]{fig_10.png}
-\caption{Tamiya M-05 Mazda \label{fig_10}}
+\includegraphics[width=.5\textwidth]{fig_05}
+\caption{\label{fig:05} Angle d'équilibre $\alpha_{0}$ en fonction de la masse de l'appareil photo $m_{4}$}
 \end{figure}
 
-Le choix de la voiture radio commandée est pertinent pour les raisons suivantes :
-\begin{itemize}
-\item les résultats obtenus en première partie de sujet sont transposables à plus petite échelle ;
-\item la voiture RC possède des proportions identiques à un véhicule réel (échelle un dixième) et est de type
-traction comme dans la première partie ;
-\item compte tenu de la faible vitesse de déplacement du véhicule, les effets dynamiques dûs au déplacement du
-véhicule ne seront pris en compte dans les études suivantes ;
-\item à part l’actionneur, la structure de la direction est assimilable à celle des véhicules réels.
-\end{itemize}
 
+
+\section{\label{part:3}Détermination de la loi de mouvement du système perturbé }
 \begin{obj}
-La trajectoire d’insertion dans une place de stationnement est certes déterminée, mais il reste à évaluer
-la capacité du véhicule à suivre cette trajectoire. L’objectif de cette partie est donc de synthétiser la
-commande du système de direction du véhicule choisi permettant à ce dernier d’exécuter la manœuvre
-d’insertion en créneau telle que définie en première partie de sujet.
+Élaborer le modèle dynamique et déterminer la loi de mouvement du système perturbé afin de mettre en évidence la nécessité d'ajouter une commande active au système pour assurer le respect de l'exigence 1.2. relative à la position en mouvement du cahier des charges.
 \end{obj}
 
-\subsection{Modélisation de la direction du véhicule radio commandé}
+Dans cette partie, l'étude est conduite avec les hypothèses suivantes :
 
-L’objectif est d’établir le modèle de la commande de direction du véhicule RC à implanter dans l’algorithme
-de stationnement afin de pouvoir déterminer les performances de cette commande et d’évaluer la nécessité ou
-non d’optimiser cette dernière. L’algorithme d’assistance au stationnement pilotant la direction du véhicule,
-cette dernière doit avoir des performances garantissant le suivi de la trajectoire calculée pour la manœuvre de
-stationnement.
-Les performances attendues pour cette commande sont recensées dans le \autoref{tab_02}.
-
-\begin{table}[H]
-\centering
-\begin{tabular}{lll}
-\hline
-Performance &Critère& Niveau \\
-\hline 
-Précision angulaire & Erreur &Nulle en régime permanent pour une entrée en échelon \\
-Rapidité &Temps de réponse à 5\% & $t_{r5\%}\leq \SI{0,4}{s}$ \\
-Stabilité &Dépassement &Aucun \\ \hline
-\end{tabular}
-\caption{Performances attendues de l’asservissement en position des roues directrices du véhicule RC
- \label{tab_02}}
-\end{table}
-
-\subsubsection{Étude structurelle de la direction du véhicule radio commandé}
-\question{À partir des documents relatifs à la direction du véhicule RC fournis \autoref{fig_27} à \autoref{fig_29} 
-identifier à quoi correspondent les numéros figurant sur la description chaine d’énergie / chaine d’information
-\autoref{fig_11}.}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=\linewidth]{fig_11.png}
-\caption{Description chaine d’énergie / chaine d’information de la direction \label{fig_11}}
-\end{figure}
-
-\subsubsection{Commande angulaire des roues directrices}
-La commande angulaire des roues directrices est fournie \autoref{fig_12}. Cette commande permet d’imposer l’angle des roues directrices $\alpha(t)$ (\autoref{fig_09}) en fonction d’un angle de consigne $\alpha_c(t)$ (dont l’évolution a été caractérisée en fin de seconde partie).
-
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=\linewidth]{fig_12.png}
-\caption{Schéma blocs de la commande en position des roues directrices du véhicule RC \label{fig_12}}
-\end{figure}
-
-\textbf{Données et notations}
 \begin{itemize}
-\item $A_{c}(p)$, $A_{1c}(p)$, $A_{1}(p)$, $U_m(p)$, $U_{\text{mes}}(p)$, $U_c(p)$, $\Omega_m(p)$ et 
-$\Omega_1(p)$ sont respectivement les transformées de Laplace des grandeurs 
-$\alpha_{c}(t)$, $\alpha_{1c}(t)$, $\alpha_{1}(t)$, $u_m(t)$, $u_{\text{mes}}(t)$, $u_c(t)$, $\omega_m(t)$ et $\omega_1(t)$.
-\item Les conditions initiales sont supposées nulles.
-\item $K_c = \SI{1,05}{V.rad^{-1}}$ et $K_r=1/120$.
-\item À ce stade de l’étude la commande est étudiée sans correction $C(p)=1$.
-\end{itemize}
-Pour cette première étude de la commande de direction, le véhicule est maintenu horizontal mais n’est pas en
-contact avec le sol.
-
-La boucle d’asservissement est réalisée sur le servomoteur. L’angle de consigne $\alpha_{c}(t)$ est converti en angle de
-consigne $\alpha_{1c}(t)$ pour le servomoteur. Le bloc $H_t(p)$ modélise dans le domaine de Laplace la relation entre $\alpha(t)$ et $\alpha_1(t)$ l’angle de rotation en sortie du servomoteur. Ainsi le bloc $H_t(p)$ correspond à la modélisation de la transmission de mouvement dans la direction (ensemble des bielles et des bras composant la direction du véhicule).
-
-Le gain $K_a$ est un gain d’adaptation permettant de convertir l’angle de consigne $\alpha_{1c}(t)$ (en radians) en une tension de consigne $u_{c}(t)$ (en volts). La tension $u_{\text{mes}}(t)$ est l’image en volts de l’angle $\alpha_1(t)$ (en radians) du bras
-1 du servomoteur. Le gain $K_c$ 
-(en \si{V.rad^{-1}}) modélise le potentiomètre équipant le servomoteur.
-La tension de commande $u_{m}(t)$ du servomoteur est directement générée à partir de $u_{c}(t) -u_{\text{mes}}(t)$ par un
-correcteur de fonction de transfert $C(p)$. Le moteur du servomoteur est modélisé par le bloc $H_m(p)$. Le taux de rotation du moteur est noté $\omega_m(t)$. Le gain $K_r$ correspond au rapport de réduction du réducteur du servomoteur.
-
-Le bras \textbf{1} du servomoteur est monté sur l’axe de sortie du réducteur du servomoteur. $\omega_1(t)$ est le taux de rotation (en \si{rad.s^{-1}} du bras du servomoteur.
-Afin d’établir le modèle de la commande angulaire de la direction non corrigée et d’en déterminer les performances, il est nécessaire d’identifier les modèles et les caractéristiques des différents composants.
-
-\paragraph{Modélisation de la transmission de la direction et détermination de $H_t(p)$}
-
-\begin{obj}
-L’objectif est de déterminer l’expression de $H_t(p)=\dfrac{A(p)}{A_1(p)}$ 
-modélisant la transmission mécanique entre le bras \textbf{1} du servomoteur et la roue \textbf{6}.
-\end{obj}
-
-La \autoref{fig_13} représente le schéma cinématique de la direction dans le plan $\left(A,\vect{x},\vect{y}\right)$ avec $\rep{}\repere{A}{x}{y}{z}$ un repère
-galiléen dont le vecteur $\vect{z}$ est vertical ascendant. La direction est sans jeu et les liaisons sont supposées parfaites.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.6\linewidth]{fig_13.png}
-\caption{Schéma cinématique plan de la direction du véhicule radio commandé \label{fig_13}}
-\end{figure}
-
-
-$\rep{1}\repere{A}{x_1}{y_1}{z}$  est un repère orthonormé lié au bras \textbf{1},
-$\rep{6}\repere{P}{x_6}{y_6}{z}$  est un repère orthonormé lié à l’ensemble \textbf{6} \{fusée + roue\}.
- Ainsi $\alpha_1 = \angle{x}{x_1}$ et $\alpha = \angle{x}{x_6}$.
-
-Le bâti \textbf{0} représente le châssis du véhicule RC. Les deux roues sont orientées grâce à un seul actionneur.
-Afin de déterminer l’expression de $\alpha(t)$ en fonction de $\alpha_1(t)$, il est nécessaire d’étudier deux chaines fermées de
-solides et de liaisons : la chaine \{0, 1, 2, 3, 0\} et la chaine \{0, 3, 4, 6, 0\}.
-La \autoref{fig_14} présente le paramétrage lié aux solides 1, 2 et 3.
-
-\textbf{Paramétrage}
-\begin{itemize}
-\item $\rep{2}\repere{B}{x_2}{y_2}{z}$ est un repère orthonormé lié à la tige \textbf{2} et 
-$\rep{3}\repere{D}{x_3}{y_3}{z}$ un repère orthonormé lié à la
-bielle de renvoi \textbf{3}.
-\item $\vect{AB}=\ell_1\vect{x_1}$, $\vect{BC}=b\vect{x_2}$, $\vect{CD}=\left(a-\ell_1\right)\vect{x_3}$, $\vect{AD}=a\vect{x}+b\vect{y}$ et $\vect{DE}=\ell_3\vect{y_3}$.
-\item $\alpha_1=\angl{x}{x_1}$, $\alpha_2=\angl{x}{x_2}$, $\alpha_3=\angl{x}{x_3}$.
+  \item les quatre liaisons pivots et la liaison glissière sont parfaites ;
+  \item la modélisation est plane ;
+  \item le système est perturbé par l'utilisateur au niveau de la glissière (figure 4) et cette perturbation est modélisée par une fonction sinusoïdale $z_{\text {pert }}(t)=Z_{0} \sin (\omega t)$ avec l'amplitude $Z_{0}$ et la pulsation $\omega$ constantes ;
+  \item à l'instant initial de cette étude, la nacelle gyrostabilisée (figure 4) est à l'équilibre.
 \end{itemize}
 
-%Q13
-\question{En exploitant la fermeture géométrique de la chaine \{0, 1, 2, 3, 0\} et en faisant l’hypothèse que l’angle $\alpha_2$ varie très peu $\alpha_2\simeq 90\degres$, montrer que $\sin\alpha_3 = k\sin\alpha_1$ et préciser l’expression de $k$.}
+\subsection{III.A - Détermination de la loi de mouvement}
+%Q 13. 
+\question{\label{q:13} En isolant l'ensemble constitué de la nacelle gyrostabilisée (3) et de l'appareil photo (4) (formant un seul solide) et en traduisant une équation scalaire issue du principe fondamental de la dynamique, donner l'équation différentielle traduisant la loi de mouvement du système. Écrire l'équation différentielle sous la forme
+$
+\ddot{\alpha}=C_{1} \ddot{z}_{\text {pert }} \cos \alpha+C_{2} \cos \alpha+C_{3} F_{r} \sin (\beta-\alpha)
+$
+en précisant l'expression des trois constantes $C_{1}, C_{2}$ et $C_{3}$ en fonction de $m_{34}, L$ et $g$.}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
 
-La \autoref{fig_15} représente l’évolution de $\alpha_3$  en fonction de $\alpha_1$ pour un seul des deux sens de rotation des roues ($\alpha_3$ varie de $0\degres$ à $-45\degres$). Lorsque les roues sont parallèles au véhicule $\alpha_1 = 0\degres$ et $\alpha_3 = 0\degres$.
+L'équation différentielle traduisant la loi de mouvement du système est du second ordre. Pour résoudre numériquement une telle équation différentielle, elle peut être réécrite sous la forme d'une équation différentielle vectorielle du premier ordre. On définit pour cela, le vecteur $A(t)$ par
 
-%Q14
-\question{À partir de la \autoref{fig_15} justifier que $\alpha_3 = K_{31}\alpha_1$
-en précisant la valeur de la constante $K_{31}$.
-En raisonnant de façon similaire, l’étude de la chaine fermée \{0, 3, 4, 6, 0\} permet de montrer que $\alpha$ est
-proportionnel à $\alpha_3$.}
+$$
+A(t)=\left(\begin{array}{c}
+\alpha(t) \\
+\dot{\alpha}(t)
+\end{array}\right) .
+$$
+
+L'équation différentielle du mouvement peut alors se mettre sous la forme du problème de Cauchy
+
+$$
+\dot{A}(t)=\frac{\mathrm{d} A(t)}{\mathrm{d} t}=\left(\begin{array}{c}
+\dot{\alpha}(t) \\
+\ddot{\alpha}(t)
+\end{array}\right)=f(A(t), t) .
+$$
+
+dont une solution peut être calculée à l'aide de la fonction integrate. odeint de la bibliothèque Python scipy dont le mode d'emploi est précisé dans le document réponse. $\mathrm{AO}=.$. . \# à définir
+
+$\mathrm{t}=\mathrm{np}$.arange $(0,4,0.01)$
+
+$A=$ scipy.integrate.odeint(equation\_dynamique, $A 0, t$ )
+
+À partir des relations déterminées précédemment, les fonctions beta(alpha), effort\_ressort(alpha) et angle\_equilibre(m4) sont implantées en Python. Elles renvoient respectivement la valeur de l'angle $\beta$, la valeur de la composante de résultante d'action mécanique $F_{r}$ et la valeur de l'angle correspondant à la position d'équilibre. La bibliothèque numpy a été importée sous le nom abrégé np. Les variables globales C1, C2, C3, Z0 et w fournissent respectivement les valeurs des trois constantes $C_{1}, C_{2}$ et $C_{3}$, de l'amplitude $Z_{0}$ et la pulsation $\omega$.
+
+%Q 14. 
+\question{\label{q:14} Écrire en Python une fonction equation\_dynamique $(A, t)$ qui renvoie le vecteur dérivé $\dot{A}(t)$ en fonction du vecteur A et la date t correspondante.}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
 
-Ainsi, pour la suite de l’étude il est considéré que $\alpha=\lambda\alpha_1$, avec $\lambda$ une constante supposée connue. Ainsi pour la suite de l’étude $H_t(p)=\lambda$.
+%Q 15. 
+\question{\label{q:15} Écrire l'instruction Python permettant de définir la condition initiale A0.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
+La résolution de l'équation différentielle permet d'obtenir l'évolution de l'angle $\alpha$ au cours du temps. Le déplacement vertical de l'appareil photo est déterminé à partir de cette solution et des relations déterminées précédemment.
 
+\subsection{III.B - Validation expérimentale du modèle dynamique}
+Pour valider le modèle dynamique, le stabilisateur vertical est soumis à une perturbation sinusoïdale $z_{\text {pert }}(t)=$ $Z_{0} \sin (\omega t)$. Les courbes expérimentales (figure 6 en bas) ainsi obtenues sont à comparer avec les solutions issues de la résolution de l'équation différentielle (figure 6 en haut).
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.45\linewidth]{fig_14.png}
-\caption{Schéma cinématique plan de la direction du véhicule radio commandé \label{fig_14}}
+\includegraphics[width=.5\textwidth]{fig_06}
+\caption{\label{fig:06} Déplacement vertical de l'appareil photo pour une perturbation d'amplitude $25 \mathrm{~mm}$ et de fréquences $1 \mathrm{~Hz}$ et $2 \mathrm{~Hz}$ avec une masse $m_{4}=1 \mathrm{~kg}$}
 \end{figure}
 
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=.45\linewidth]{fig_15.png}
-\caption{Tracé de $\alpha_3(t)$ en fonction de $\alpha_1(t)$ \label{fig_15}}
-\end{figure}
 
-Toujours dans l’objectif de modéliser la commande de la direction il est nécessaire de s’intéresser à son comportement dynamique.
-
-\paragraph{Comportement dynamique de la direction et modélisation du servomoteur}
-
-\begin{obj}
-L’objectif est d’écrire l’équation comportementale de la direction permettant d’identifier le bloc $H_m(p)$.
-\end{obj}
-
-L’axe du moteur du servomoteur, dont le taux de rotation par rapport au châssis est noté $\omega_m(t)$, est soumis à un couple moteur défini pa
-$\torseurstat{T}{\text{moteur}}{1} =\torseurl{\vect{0}}{C_m\vect{z}}{A}$. 
-
-Le couple dû aux frottements visqueux présents dans la direction est modélisé par une action mécanique extérieure appliquée au bras 1 : $\torseurstat{T}{\text{ext}}{1} = \torseurl{\vect{0}}{-f\dot{\alpha}_1(t) \vect{z}}{A}$ avec $g = 8,87 \times 10^{-8} \si{Nms}$  le coefficient de viscosité.
-Pour cette étude le véhicule est à l’horizontale mais n’est pas en contact avec le sol. Une étude du comportement
-dynamique de la direction permet d’obtenir 
-$J_{\text{eq}}\dfrac{\dd\dot{\alpha}_1(t)}{\dd t} = C_m(t)-f\dot{\alpha_1}(t)$.
-
-Cette équation a été obtenue à partir du théorème de l’énergie cinétique appliqué à l’ensemble 
-$\Sigma =$\{réducteur et axe moteur du servomoteur,1, 2, 3, 3’, 4, 4’, 5, 6, 6’\} en mouvement par rapport au châssis du véhicule supposé galiléen.
-
-
-
-\textbf{Données et notations}
-\begin{itemize}
-\item Les solides 1, 2, 3, 3’, 4 et 4’ sont supposés de masse négligeable par rapport à la masse des autres solides
-de la direction.
-\item $J_m$ (inconnu) est le moment d’inertie équivalent de l’ensemble {axe moteur + réducteur} du servomoteur rapporté à l’axe $\axe{A}{z}$ de sortie du servomoteur.
-\item Le solide 5 est en mouvement de translation et sa masse est notée $m_5$.
-\item $J_6$ est le moment d’inertie de l’ensemble 6 selon l’axe $\axe{P}{z}$.
-\item $J'_6$ est le moment d’inertie de l’ensemble 6’ selon l’axe $\axe{P'}{z'}$ et $J_6 = J_6'$.
-\item $J_{\text{eq}}$ représente le moment d’inertie équivalent de tous les solides en mouvement lors de l’orientation des roues et rapporté à l’axe $\axe{A}{z}$ de sortie du servomoteur.
-\item Le rapport de réduction du réducteur du servomoteur est $K_r = \dfrac{1}{120}$.
-\item On considère que l’angle de direction $\alpha = \axe{x}{x_6}$ est égal pour les roues directrices (\autoref{fig_13}). C’est le cas
-sur le modèle RC puisque l’ensemble \{3, 3’, 5\} forme un parallélogramme déformable.
-\end{itemize}
-
-%Q15
-\question{Faire un inventaire des puissances des actions mécaniques extérieures et intérieures mises en jeu dans le théorème de l’énergie cinétique appliqué à $\Sigma$ fournissant l’équation différentielle précédente. Une attention particulière sera portée à la classification, au caractère lisible, compréhensible et justifié de l’inventaire. L’expression des puissances des actions mécaniques extérieures et intérieures est exigée.}
+%Q 16. 
+\question{\label{q:16} Comparer les performances mesurées et simulées (figure 6). Peut-on valider le modèle dynamique pour la vérification de l'exigence 1.2. relative à la position de l'appareil photo en mouvement ? Quel phénomène physique pourrait-on prendre en compte pour améliorer le modèle ?}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
 
-%Q16
-\question{Déterminer l’expression de $\vectv{E}{3}{0}$ et de $\vectv{E}{5}{0}$ en fonction de $\dot{\alpha_1}(t)$.}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
+\subsection{Conclusion}
+Pour analyser le respect de l'exigence 1.2. relative à la position en mouvement, des simulations sont réalisées dans plusieurs configurations (figure 7).
 
 %Q 17. 
-\question{[Pour les 5/2] Déterminer l’expression des énergies cinétiques $\ec{S}{0}$ ($S$ désignant l’ensemble \{axe moteur + réducteur\} du servomoteur), $\ec{5}{0}$, $\ec{6}{0}$ et $\ec{6'}{0}$ en fonction de $\alphap(t)$.}
+\question{\label{q:17} Conclure sur la satisfaction de l'exigence 1.2. relative à la position de l'appareil photo en mouvement à l'aide des résultats de simulation (figure 7).}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
 
-%Q 18. 
-\question{[Pour les 5/2] Écrire l’expression de l’énergie cinétique $\ec{\Sigma}{0}$ en fonction de $\alphap(t)$ et en déduire l’expression de l’inertie équivalente $\indice{J}{eq}$.}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-Pour finaliser la modélisation de la commande, il est nécessaire d’identifier toutes les caractéristiques du servomoteur dont $J_m$.
-
-\paragraph{Identification du servomoteur}
-
-Pour déterminer les caractéristiques du servomoteur, on procède à des mesures sur celui-ci, lorsqu’il n’est pas
-en liaison avec le reste de la direction. La figure 16 représente une modélisation sous forme de schéma-blocs du
-servomoteur.
+Une modification des caractéristiques du ressort pourrait permettre de respecter l'exigence 1.2. relative à la position de l'appareil photo en mouvement. Néanmoins, cette modification impacterait le comportement du système à l'équilibre et ne permettrait plus de respecter l'exigence 1.1. relative à la position d'équilibre. Pour cette raison, une solution technique avec une commande active est présentée et étudiée dans la partie suivante.
 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.55\linewidth]{fig_16.png}
-\caption{Schéma-blocs du servomoteur seul \label{fig_16}}
+\includegraphics[width=.5\textwidth]{fig_07}
+\caption{\label{fig:07} Simulations du déplacement vertical de l'appareil photo pour une perturbation d'amplitude $25 \mathrm{~mm}$ et de fréquences de $0,1 \mathrm{~Hz}, 1,5 \mathrm{~Hz}$ et $2,8 \mathrm{~Hz}$ avec des masses $m_{4}=0,350 \mathrm{~kg}$ et $m_{4}=1,550 \mathrm{~kg}$
+}
 \end{figure}
 
-Les équations disponibles pour la modélisation du fonctionnement du servomoteur sont :
+
+
+\section{\label{part:4} Étude d'avant-projet d'une solution technique avec une commande active }
+
+
+\begin{obj}
+Modéliser la commande et déterminer le réglage du correcteur. Spécifier la motorisation.
+\end{obj}
+
+Dans cette partie, la régulation en hauteur de l'ensemble constitué de la nacelle gyrostabilisée (3) et de l'appareil photo (4) est réalisée par un motoréducteur dont le stator est lié au support (1) et dont l'arbre de sortie entraine le bras (2) (figure 8). Le rendement de la chaine de motorisation est supposé parfait.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.5\textwidth]{fig_08}
+\caption{\label{fig:08} Modèle simplifié}
+\end{figure}
+
+ Les grandeurs utilisées dans cette partie sont:
+
 \begin{itemize}
-\item en notant $R$ la résistance aux bornes de l’induit, $L$ l’inductance aux bornes de l’induit, $i(t)$ l’intensité moteur et $e(t)$ la force contre-électromotrice, $L\dfrac{\dd i(t)}{\dd t} +Ri(t) =u_m(t)-e(t)$;
-\item avec $k_e$ la constante de vitesse du moteur en \si{V.s.rad^{-1}} et $\omega_m(t)$ le taux de rotation du moteur du servomoteur par rapport au châssis de la voiture, $e(t)=k_e\omega_m(t)$;
-\item avec $C_m(t)$ le couple moteur, $k_t$ la constante de couple en \si{N.m.A^{-1}} et $k_t=k_e$, 
-$C_m(t)=k_t i(t)$;
-\item en négligeant les autres actions mécaniques mises en jeu dans la direction par rapport au couple moteur
-$C_m(t)$, $J_m\dfrac{\dd \omega_1(t)}{\dd t} = C_m(t)$;
-\item enfin $\omega_1=\dfrac{\dd \alpha_1(t)}{\dd t}$.
+  \item $C_{m}$ le moment du couple qui modélise l'action du moteur sur l'arbre d'entrée du réducteur ;
+  \item $\omega_{m}$ la vitesse de rotation de l'arbre du moteur ;
+  \item $C_{s}$ le moment du couple qui modélise l'action exercée par l'arbre de sortie du réducteur sur le bras (2) ;
+  \item $\omega_{s}$ la vitesse de rotation de l'arbre de sortie du réducteur sur le bras (2);
+  \item $N$ le rapport de transmission du réducteur avec $N=\omega_{m} / \omega_{s}=100$;
+  \item $\alpha$ l'angle formé entre le bras (2) et le support (1) défini par $\alpha=\left(\vec{y}_{0}, \vec{y}_{2}\right)=\left(\vec{z}_{0}, \vec{z}_{2}\right)$;
+  \item $F_{z}$ le modèle de la composante verticale de l'effort exercé sur l'ensemble constitué de la nacelle gyrostabilisée (3) et de l'appareil photo (4) dû au couple moteur ;
+  \item $F_{p}$ le modèle de l'effort de perturbation, dû au poids de l'ensemble constitué de la nacelle gyrostabilisée (3) et de l'appareil photo (4) ;
+  \item $C_{m}^{*}$ la consigne en couple sur la machine à courant continu ;
+  \item $m_{34}$ la masse de l'ensemble constitué de la nacelle gyrostabilisée (3) et de l'appareil photo (4) ;
+  \item $L$ la longueur du bras (2).
 \end{itemize}
 
-Aucune donnée n’est accessible pour le moteur à courant continu utilisé ainsi que pour le servomoteur à part
-$K_r$ donné précédemment. Une série d’essais en boucle ouverte est réalisée afin de déterminer les caractéristiques $R$, $L$ et $J_m$ du servomoteur.
-La \autoref{fig_17} représente l’évolution de la tension $\indice{u}{mes}(t)$ fournie par le potentiomètre du servomoteur pour un échelon de tension $u_m(t) = u_0 = \SI{3}{V}$ en boucle ouverte.
+Un diagramme des exigences partiel du stabilisateur vertical avec la commande active est donné figure B du document réponse.
+
+Les effets de masse et d'inertie du solide (2) sont négligeables devant les autres actions mises en jeu.
+
+%Q 18. 
+\question{\label{q:18} En retenant le schéma simplifié (figure 8) et en modélisant par un glisseur dont la résultante est notée $\vec{F}_{2 \rightarrow 3}=F_{y} \vec{y}_{0}+F_{z} \vec{z}_{0}$ l'action mécanique exercée au point B par le bras (2) sur la nacelle gyrostabilisée (3), exprimer $C_{s}$ en fonction de $F_{z}, F_{y}, \alpha(t)$ et $L$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+En négligeant $F_{y}$ devant $F_{z}\left(F_{y} \approx 0\right)$ donner alors la relation entre $C_{m}, F_{z}, \alpha(t), L$ et $N$.
+XXXXXX
+
+
+
+La machine à courant continu est modélisée comme un générateur de couple parfait, en particulier instantané. Le schéma-bloc de la boucle ouverte non corrigée du système est donné (figure 9) en faisant l'approximation des petits angles.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.45\linewidth]{fig_17.png}
-\caption{Tension fournie par le potentiomètre du servomoteur pour un échelon de tension $u_m(t)=\SI{3}{V}$ \label{fig_17}}
+\includegraphics[width=.5\textwidth]{fig_09}
+\caption{\label{fig:09} Schéma-blocs de la boucle ouverte non corrigée}
 \end{figure}
 
-L’expression temporelle de $\indice{u}{mes}(t)$ correspondant au comportement observé \autoref{fig_17} est
 
-$$\indice{u}{mes}(t) = K_m K_c K_r u_0\left(t-\tau_m\right)+K_m K_c K_r\tau_m u_0 \text{e}^{-\dfrac{t}{\tau_m}}.$$
-
-Il est possible de mettre $H_m(p)$ sous la forme $H_m(p) = \ordreunopt{K_m}{\tau_m}$
-avec $K_m = \dfrac{1}{k_e}$ et $\tau_m =\dfrac{R J_m}{k_e^2}$.
-
-\question{À partir de l’expression temporelle de $\indice{u}{mes}(t)$ donnée précédemment, déduire de l’essai \autoref{fig_17} les valeurs numériques des constantes $K_m$ et $\tau_m$. Il est rappelé que $K_c = \SI{1,05}{V.rad^{-1}}$.}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-%Q20
-\question{Déduire la valeur numérique de $k_e$ et de $RJ_m$.}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-La \autoref{fig_18} représente l’évolution de l’intensité moteur pour un échelon de tension $u_m(t)=\SI{3}{V}$ avec le rotor du moteur bloqué.
+Pour réaliser un asservissement, un comparateur forme la différence entre une consigne en position notée $\Delta Z^{*}(p)$ et une mesure de la hauteur $\Delta Z(p)$ de l'appareil photo renvoyée par un capteur. Cette différence est corrigée par un correcteur de fonction de transfert notée $C(p)$. En pratique, $\Delta Z(p)$ correspond à l'écart par rapport à une position de référence non présentée ici. Le capteur est modélisé par un gain unitaire. Le schéma-bloc d'asservissement est donné (figure 10).
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.45\linewidth]{fig_18.png}
-\caption{Intensité moteur\label{fig_18}}
+\includegraphics[width=.5\textwidth]{fig_10}
+\caption{\label{fig:10} Schéma-blocs de l'asservissement de position avec un correcteur $C(p)$}
 \end{figure}
 
-%Q21
-\question{Exprimer la fonction de transfert $\dfrac{I(p)}{U_m(p)}$ sous forme canonique lorsque le rotor est bloqué.}
+
+
+\subsection{IV.A - Choix et réglage du correcteur}
+Dans cette sous-partie, après avoir mis en évidence la nécessité d'introduire un correcteur, l'objet est d'en régler les paramètres de manière à ce que les performances du système vérifient les exigences du cahier des charges (figure B).
+
+%Q 19. 
+\question{\label{q:19} Montrer qu'un correcteur proportionnel $C(p)=K$ ne permet pas d'assurer la stabilité du système en boucle fermée.}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
 
-%Q22
-\question{Déduire de la \autoref{fig_18} la valeur numérique de $R$ et celle de $L$. À partir des résultats obtenus par l’exploitation de la \autoref{fig_17}, déduire également la valeur numérique de $J_m$.}
+Le correcteur retenu est de la forme
+$
+C(p)=K\left(1+\frac{1}{T_{i} p}+T_{d} p\right) .
+$
+
+En prenant $T_{i}=2 T$ et $T_{d}=T / 2$ on obtient le correcteur sous la forme
+$
+C(p)=K \frac{(1+T p)^{2}}{2 T p} .
+$
+
+On pourra utiliser dans la suite la relation approximative $T_{m, \mathrm{BF}} \omega_{c, 0 \mathrm{~dB}} \approx 3$, où $T_{m, \mathrm{BF}}$ désigne le temps du premier maximum en boucle fermée et $\omega_{c, 0 \mathrm{~dB}}$ est la pulsation de coupure à $0 \mathrm{~dB}$ en boucle ouverte.
+
+La marge de phase minimale définie dans le cahier des charges est notée $\Delta \varphi$. On se place à la limite de la valeur exigée par le cahier des charges.
+
+%Q 20. 
+\question{\label{q:20} En déduire les expressions respectives de l'argument et du module de la fonction de transfert du correcteur pour $\omega=\omega_{c, 0 \mathrm{~dB}}$ notées respectivement $\arg \left(C\left(\mathrm{j} \omega_{c, 0 \mathrm{~dB}}\right)\right)$ et $\left|C\left(\mathrm{j} \omega_{c, 0 \mathrm{~dB}}\right)\right|$ afin de vérifier l'exigence 2.3.1 relative à la stabilité de la commande active en fonction de $\omega_{c, 0 \mathrm{~dB}}, m_{34}, L, N$ et $\Delta \varphi$.}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
 
-$J_m$étant identifié, avec la connaissance des moments d’inertie des solides constituant la direction il est possible
-d’en déduire l’inertie équivalente $J_{\text{eq}}$.
-
-Au vu des vitesses de déplacement des solides composant la direction, les actions mécaniques dues au frottement
-visqueux sont très petites vis-à-vis des autres actions mécaniques mises en jeu. Ainsi pour le modèle de l’ensemble
-de la commande en position des roues directrices $H_m(p) = \ordreunopt{K_m}{\tau_m}$ avec $K_m$ et $\tau_m = \dfrac{RJ_{\text{eq}}}{k_e^2}$ identifiés.
-À ce stade de l’étude, il reste à déterminer la fonction de transfert de la commande asservie d’orientation des
-roues. Cette dernière ne faisant pas encore intervenir de correction et il va être nécessaire de caractériser les
-performances de la commande afin d’identifier le besoin ou non d’une correction.
-
-\subsubsection{Modèle global et performances de la commande sans correction}
-\begin{obj}
-L’objectif de cette section est d’analyser les performances, caractérisées dans le \autoref{tab_02}, de
-la commande de direction sans correction : $C(p)=1$.
-\end{obj}
-Pour la suite $K_m =\SI{256}{rad.s^{-1}V^{-1}}$ et $\tau_m = \SI{0,03}{s}$ et il est rappelé que $K_c = \SI{1,05}{V.rad^{-1}}$ et $K_r = 1/120$.
-
-%Q23
-\question{Afin que l’asservissement soit de qualité il est nécessaire que l’écart $\varepsilon(t)$ soit nul quand $\alpha(t)=\alpha_c(t)$ en régime permanent et pour une entrée type échelon. Déterminer la relation entre $K_a$ et $K_c$ permettant un asservissement de qualité.}
+%Q 21. 
+\question{\label{q:21} Déterminer l'expression littérale du paramètre $T$ du correcteur. Effectuer l'application numérique.}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
 
-Les différentes fonctions de transfert du modèle \autoref{fig_12} étant identifiées, il est maintenant possible d’établir la fonction de transfert $H(p)=\dfrac{A(p)}{A_c(p)}$.
+%Q 22. 
+\question{\label{q:22} Déterminer l'expression littérale du paramètre $K$ du correcteur. Effectuer l'application numérique avec $m_{34}=2,8 \mathrm{~kg}, L=52 \mathrm{~mm}$ et $N=100$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\subsection{IV.B - Spécification de l'actionneur}
+Pour concevoir le prototype, il faut définir la chaine de motorisation. Dans ce but, l'actionneur est supposé asservi. La relation entre le couple de consigne et le couple moteur est modélisé par une fonction de transfert du premier ordre
+
+$$
+\Delta(p)=\frac{C_{m}(p)}{C_{m}^{*}(p)}=\frac{1}{1+\tau p} .
+$$
+
+L'objectif de cette sous-partie est de prendre en compte le retard induit par la chaine de motorisation et les conséquences sur la stabilité. Pour spécifier au concepteur de l'actionneur la constante de temps maximale admissible $\tau$, on réalise une étude sur la stabilité en approchant au premier ordre la fonction de transfert $\Delta(p)$ par $(1-\tau p)$. La prise en compte du modèle de l'actionneur asservi se traduit par un nouveau schéma-bloc (figure 11).
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.5\textwidth]{fig_11}
+\caption{\label{fig:11} Schéma d'analyse de la robustesse de l'asservissement}
+\end{figure}
+
+
+Un critère de choix de l'actionneur sera fondé sur une étude de robustesse par rapport à la valeur maximale de ce retard acceptable pour respecter les exigences liées à la stabilité du système.
+
+Dans cette sous-partie, l'effet de la perturbation générée par le poids sur le système n'est pas étudié.
+
+Le système est maintenant étudié en régulation, c'est-à-dire pour lequel l'entrée notée $\Delta Z^{*}(p)=0$. Un schémabloc équivalent est donné (figure 12) en introduisant une entrée virtuelle $W(p)=0$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.5\textwidth]{fig_12}
+\caption{\label{fig:12} Schéma modifié d'analyse de la robustesse de l'asservissement}
+\end{figure}
+
+
+
+%Q 23. 
+\question{\label{q:23} Donner l'expression de la fonction de transfert $H(p)$ présente dans la forme simplifiée du schéma-bloc (figure 13) en fonction de $N, L, m_{34}$ et $C(p)$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.5\textwidth]{fig_13}
+\caption{\label{fig:13} Schéma pour l'analyse de la stabilité}
+\end{figure}
+
+En pratique l'action dérivée est filtrée, l'étude du filtrage n'est pas détaillée. Les diagrammes de Bode de la fonction de transfert $H(p)$ ainsi filtrée sont donnés (figure $\mathrm{C}$ du document réponse). 
 
 %Q 24. 
-\question{Déterminer l’expression de $H(p)$, fonction de transfert de la commande des roues. Mettre $H(p)$ sous
-forme canonique, préciser l’ordre de $H(p)$ et l’expression de ses paramètres caractéristiques. Faire les applications numériques.}
+\question{\label{q:24} Compléter ces diagrammes sur le document réponse en représentant les diagrammes de Bode de la fonction $-\tau p$ puis tracer la fonction de transfert en boucle ouverte du système représenté en figure 13 . Pour les tracés, prendre $\tau=1 \mathrm{~s}$ et faire apparaitre clairement les points de construction pour les pulsations $\omega=1 \mathrm{rad} \cdot \mathrm{s}^{-1}$, $\omega=10 \mathrm{rad} \cdot \mathrm{s}^{-1}$ et $\omega=100 \mathrm{rad} \cdot \mathrm{s}^{-1}$.}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -806,213 +497,100 @@ forme canonique, préciser l’ordre de $H(p)$ et l’expression de ses paramèt
 \fi
 
 %Q 25. 
-\question{À partir des résultats de la question précédente et en se référant au \autoref{tab_02}, conclure sur
-les performances de précision angulaire et d’amortissement du modèle théorique de la commande des roues.}
+\question{\label{q:25} En exploitant le document réponse,}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
-
-La figure 19 montre, pour une entrée en échelon  $\alpha_c(t)$ d’amplitude $\pi/4 \si{rad}$ :
 \begin{itemize}
-\item l’évolution de l’angle $\alpha(t)$ obtenue avec le modèle théorique établi précédemment ;
-\item la courbe expérimentale de $\alpha(t)$ obtenue pour un essai réalisé avec la voiture RC à l’horizontale et sans contact avec le sol.
+  \item déterminer la valeur de $\tau$ qui assure la stabilité ;
+  \item déterminer la valeur de $\tau$ qui assure un amortissement correct en considérant qu'il est obtenu lorsque la marge de phase est d'au moins $60^{\circ}$;
 \end{itemize}
+
+— conclure sur une valeur de $\tau$ maximale admissible à spécifier pour le choix du motoréducteur.
+
+\subsection{Conclusion}
+Le système est sollicité avec une consigne en échelon d'amplitude $10 \mathrm{~mm}$ à la date $t=1 \mathrm{~s}$. Le graphe représentant l'évolution de $\Delta z^{*}(t)$ et $\Delta z(t)$ est donné pour les deux valeurs extrêmes de masse de l'appareil photo (figure 14).
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.45\linewidth]{fig_19.png}
-\caption{Acquisition de l’orientation des roues directrices \label{fig_19}}
+\includegraphics[width=.5\textwidth]{fig_14}
+\caption{\label{fig:14}  Réponse temporelle à un échelon pour les deux valeurs extrêmes de masse de l'appareil photo}
 \end{figure}
 
 %Q 26. 
-\question{Conclure sur la validité du modèle théorique de la commande des roues vis-à-vis du comportement
-réel observable \autoref{fig_19}. Qu’il s’agisse du modèle théorique ou du comportement réel de la commande des roues,
-conclure sur la performance en rapidité.}
+\question{\label{q:26} Conclure sur la capacité du système à satisfaire les exigences du cahier des charges (figure B).}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
 
-Un modèle théorique de la commande des roues ayant été établi, il va permettre de synthétiser une correction
-pour l’asservissement en position des roues afin d’en améliorer les performances qui ne sont pas encore respectées
-
-\section{Amélioration des performances  -- choix d’une correction de la
-commande}
+\section{\label{part:5}Synthèse}
 \begin{obj}
-L’objectif de cette partie est de choisir un correcteur à implanter dans la commande afin que cette
-dernière vérifie tous les critères de performance assurant le suivi de la trajectoire désirée (\autoref{tab_02})
+Analyser et comparer les deux solutions technologiques étudiées précédemment pour concevoir le stabilisateur
 \end{obj}
-
-Pour cette partie le schéma blocs de la commande des roues (véhicule hors sol) est donné \autoref{fig_20} et $G(p) = \dfrac{K}{p\left(1+\tau p\right)}$  avec $K = \SI{2,2}{rad.V^{-1}.s^{-1}}$ et $\tau = \SI{0,015}{s}$.$K$ et $\tau$ sont fonction des paramètres de la commande définis dans la partie précédente.
-
+Une simulation numérique a été effectuée afin d'analyser la capacité des deux solutions technologiques à vérifier l'exigence 1.2.1 relative au filtrage du mouvement. Pour cela, la réponse harmonique de la fonction $Z_{G}(p) / Z_{\text {pert }}(p)$ obtenue pour le système avec commande active est comparée à celle obtenue avec le système par filtrage passif dont le modèle a été linéarisé (figure 15).
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.45\linewidth]{fig_20.png}
-\caption{Schéma blocs de la commande en position des roues \label{fig_20}}
+\includegraphics[width=.5\textwidth]{fig_15}
+\caption{\label{fig:15}  Diagrammes de Bode de la fonction $Z_{G}(p) / Z_{\text {pert }}(p)$}
 \end{figure}
 
 
-\subsection{Amélioration et correction du modèle de l’asservissement en position des roues}
-Il est décidé, dans un premier temps, d’utiliser une action proportionnelle $C(p)=K_P$ avec $K_P$ une constante
-homogène à des \si{V.rad^{-1}}. L’objectif est donc de déterminer le paramètre $K_p$ afin d’améliorer la performance de rapidité du modèle théorique de la commande des roues.
 
-%Q27
-\question{Après avoir donné l’expression de $H(p) = \dfrac{A(p)}{A_c(p)}$, déterminer l’expression de $K_p$ pour que la commande soit la plus rapide possible sans dépassement pour une consigne de type échelon. Faire l’application numérique.}
+%Q 27. 
+\question{\label{q:27} En étudiant les réponses harmoniques (figure 15), analyser la pertinence de chacune des deux solutions technologiques étudiées à satisfaire l'exigence 1.2.1.}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
 
-La \autoref{fig_21} représente la réponse temporelle théorique $\alpha(t)$ de la commande des roues pour une consigne $\alpha_c(t)$ en échelon d’amplitude $\pi/4$ et pour la valeur de $K_p$ déterminée précédemment.
-
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.45\linewidth]{fig_21.png}
-\caption{Évolution temporelle de $\alpha(t)$ pour une correction proportionnelle \label{fig_21}}
-\end{figure}
-
-%Q 28.
-\question{À partir de la \autoref{fig_21}, conclure sur l’effet de la correction choisie vis-à-vis des performances attendues pour la commande des roues du véhicule RC.}
+ %Q 28. 
+\question{\label{q:28}En considérant des critères de respect des performances attendues, d'encombrement, de masse, de coût et de consommation d'énergie, établir un tableau comparatif et argumenter un choix entre les deux solutions.}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
 
-\subsection{Performances dans le domaine réel et amélioration de la correction}
-
-\begin{obj}
-L’objectif est de choisir et valider une forme définitive de correction à appliquer à la commande des
-roues.
-\end{obj}
-
-La \autoref{fig_22} représente deux essais avec la direction du véhicule RC en utilisant la correction proportionnelle.
-Un essai a été réalisé avec le véhicule ne touchant pas le sol et un second avec le véhicule posé sur le sol, dans
-les deux cas le véhicule est à l’arrêt et la consigne $\alpha_c(t)$ en échelon d’amplitude $\pi/4$.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.45\linewidth]{fig_22.png}
-\caption{Essais expérimentaux réalisés sur le véhicule RC \label{fig_22}}
-\end{figure}
-
-\question{Conclure sur la performance en précision de la commande des roues en expliquant la cause possible
-de l’écart observé entre les deux courbes expérimentales de la \autoref{fig_22}.}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-Afin de rendre la direction insensible aux perturbations, une action de type intégrale en complément de l’action
-proportionnelle est envisagée pour le correcteur. La \autoref{fig_23} représente les diagrammes de Bode en boucle ouverte de la commande théorique des roues directrices pour $C(p)=\dfrac{K_p}{p}$ 
-(intégrateur) et $C(p)=K_p\left(1+\dfrac{1}{T_i p}\right)$ (proportionel intégral) avec $T_i = \SI{0,8}{s}$.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.65\linewidth]{fig_23.png}
-\caption{Diagrammes de Bode de la FTBO corrigée \label{fig_23}}
-\end{figure}
-
-%Q 30. 
-\question{Quel correcteur choisir pour que le système soit stable ? Justifier la réponse.}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-L’étude précédente a permis de caractériser un correcteur assurant à la commande des roues les performances
-attendues et une robustesse vis-à-vis de perturbations. Le modèle de l’asservissement corrigé peut être implanté
-dans l’algorithme pour le suivi de trajectoire de stationnement.
+\begin{center}
+\includegraphics[max width=\textwidth]{2022_12_31_ed674c1a831ea1bff3a0g-12}
+\end{center}
 
 
-\section{Conclusion et synthèse}
 
-La \autoref{fig_24} représente une mesure de l’angle $\alpha(t)$ des roues directrices avec le correcteur précédemment déterminé implanté dans la commande des roues. Cet essai a été effectué avec le véhicule RC posé au sol et à l’arrêt.
+\begin{center}
+\includegraphics[max width=\textwidth]{2022_12_31_ed674c1a831ea1bff3a0g-12(1)}
+\end{center}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=.45\linewidth]{fig_24.png}
-\caption{Angle des roues directrices \label{fig_24}}
-\end{figure}
+Nom
 
-%Q 31
-\question{À partir de la  \autoref{fig_24}, conclure sur le comportement de la commande des roues vis-à-vis des performances de précision, de stabilité et de rapidité attendues.}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-Un essai d’insertion du véhicule RC dans une place libre a été réalisé permettant d’obtenir la  \autoref{fig_25}. Sur
-cette figure sont représentés :
-\begin{itemize}
-\item l’angle de consigne des roues directrices $\alpha_c(t)$ ;
-\item l’angle réel des roues directrices $\alpha(t)$;
-\item la trajectoire théorique du point $F$ pour la consigne $\alpha_c(t)$, le véhicule se déplaçant à vitesse constante ;
-\item la trajectoire réelle du point $F$.
-\end{itemize}
-
-%Q 32. 
-\question{Expliquer la cause des écarts observés entre la trajectoire théorique et la trajectoire réelle.
-Comme le montre la  \autoref{fig_25}, la manœuvre d’insertion est réussie. Dans le cadre de l’essai avec le véhicule RC,
-aucun capteur de proximité n’a été utilisé.}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-%Q 33
-\question{En extrapolant pour un véhicule réel le comportement expérimental obtenu avec le véhicule RC ( \autoref{fig_25}), répondre aux questions suivantes en justifiant les réponses apportées :}
-\textit{
-\begin{enumerate}
-\item l’insertion dans la place de parking en une fois semble-t-elle possible en respectant les exigences dimensionnelles ?
-\item si tel n’est pas le cas, la possibilité de garer le véhicule est-elle compromise ? Faire une proposition.
-\end{enumerate}}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=.45\linewidth]{fig_25.png}
-\caption{Résultat d’un essai de manoeuvre d’insertion avec l’algorithme d’aide au stationnement \label{fig_25}}
-\end{figure}
+\begin{center}
+\includegraphics[max width=\textwidth]{2022_12_31_ed674c1a831ea1bff3a0g-12(2)}
+\end{center}
 
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=\linewidth]{fig_26.png}
-\caption{Extrait du diagramme des exigences du stationnement automatique \label{fig_26}}
-\end{figure}
 
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=.45\linewidth]{fig_27.png}
-\caption{Extrait du diagramme des exigences du stationnement automatique \label{fig_27}}
-\end{figure}
+\begin{center}
+\includegraphics[max width=\textwidth]{2022_12_31_ed674c1a831ea1bff3a0g-12(3)}
+\end{center}
 
+Figure A Extrait du cahier des charges fonctionnel
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=.45\linewidth]{fig_28.png}
-\caption{Description de la direction du véhicule radio commandé \label{fig_28}}
-\end{figure}
+\begin{center}
+\includegraphics[max width=\textwidth]{2022_12_31_ed674c1a831ea1bff3a0g-13}
+\end{center}
 
+Figure B Diagramme des exigences partiel du stabilisateur vertical avec la commande active Questions 24 et 25
+\includegraphics[max width=\textwidth, center]{2022_12_31_ed674c1a831ea1bff3a0g-14}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=.45\linewidth]{fig_29.png}
-\caption{Composition du servomoteur \label{fig_29}}
-\end{figure}
+Figure C Diagrammes de Bode de la fonction $H(p)$ Extrait de l'aide sur la fonction Python scipy.integrate.odeint
+
+\begin{center}
+\includegraphics[max width=\textwidth]{2022_12_31_ed674c1a831ea1bff3a0g-15}
+\end{center}
