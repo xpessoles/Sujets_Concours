@@ -3,7 +3,7 @@
 L'utilisation du mode vidéo, en haute définition sur les appareils photo réflex et légers, pose aux photographes le problème de la stabilisation de l'image car les vibrations engendrées y sont importantes et visibles. Des stabilisateurs installés à l'intérieur des appareils diminuent l'effet de ces vibrations mais ils restent très insuffisants pour assurer une bonne stabilisation notamment sur des sujets mobiles car ces systèmes ne sont efficaces que pour des temps de pose relativement longs. C'est pour cette raison que des systèmes de stabilisation externes ont été développés avec des supports et accessoires purement mécaniques ou motorisés.
 
 \subsection{Nacelles gyrostabilisées}
-Parmi les systèmes de stabilisation externes, les nacelles gyrostabilisées, installées sur une perche portée par les deux mains de l'utilisateur et sur lesquelles se fixe l'appareil photographique présentent l'avantage d'être légères, compactes et d'utilisation facile. Elles permettent de corriger les perturbations dues aux mouvements de l'utilisateur selon trois axes de rotations (figure 1). Néanmoins, elles ne permettent pas de réduire les perturbations verticales dues à la marche ou à la course de l'utilisateur.
+Parmi les systèmes de stabilisation externes, les nacelles gyrostabilisées, installées sur une perche portée par les deux mains de l'utilisateur et sur lesquelles se fixe l'appareil photographique présentent l'avantage d'être légères, compactes et d'utilisation facile. Elles permettent de corriger les perturbations dues aux mouvements de l'utilisateur selon trois axes de rotations (figure \ref{fig:01}). Néanmoins, elles ne permettent pas de réduire les perturbations verticales dues à la marche ou à la course de l'utilisateur.
 
 \begin{figure}[H]
 \centering
@@ -13,7 +13,7 @@ Parmi les systèmes de stabilisation externes, les nacelles gyrostabilisées, in
 
 
 \subsection{Stabilisateur vertical}
-Pour maitriser les perturbations verticales dues à la marche ou la course des photographes, un constructeur commercialise un stabilisateur vertical à installer entre la perche et la nacelle gyrostabilisée (figure 2).
+Pour maitriser les perturbations verticales dues à la marche ou la course des photographes, un constructeur commercialise un stabilisateur vertical à installer entre la perche et la nacelle gyrostabilisée (figure \ref{fig:02}).
 
 \begin{figure}[H]
 \centering
@@ -22,7 +22,7 @@ Pour maitriser les perturbations verticales dues à la marche ou la course des p
 \end{figure}
 
 
-Une analyse du besoin des photographes a permis de documenter le cahier des charges fonctionnel dont un extrait est donné figure A du document réponse. Le cadre de ce sujet porte plus spécifiquement sur l'évaluation des solutions retenues pour satisfaire les objectifs de maitrise de la position d'un appareil photo à l'équilibre et en mouvement. Le sujet est décomposé en quatre parties :
+Une analyse du besoin des photographes a permis de documenter le cahier des charges fonctionnel dont un extrait est donné figure \ref{fig:A} du document réponse. Le cadre de ce sujet porte plus spécifiquement sur l'évaluation des solutions retenues pour satisfaire les objectifs de maitrise de la position d'un appareil photo à l'équilibre et en mouvement. Le sujet est décomposé en quatre parties :
 
 \begin{itemize}
   \item dans la partie \ref{part:1}, une analyse des mouvements de marche et de course d'un utilisateur est effectuée et les critères chiffrés de l'exigence relative à la position de l'appareil photo en mouvement sont justifiés ;
@@ -33,14 +33,14 @@ Une analyse du besoin des photographes a permis de documenter le cahier des char
 \end{itemize}
 
 \section{\label{part:1}Analyse du mouvement de l'utilisateur et justification du cahier des charges }
-Pour réduire les perturbations verticales de l'appareil photo, la solution retenue est de filtrer les mouvements de translation verticale de la perche dont les fréquences sont précisées dans le cahier des charges (figure A). Pour justifier ces performances, on réalise des captures du mouvement vertical d'une perche tenue des deux mains par un utilisateur qui se déplace sur un sol plat.
+Pour réduire les perturbations verticales de l'appareil photo, la solution retenue est de filtrer les mouvements de translation verticale de la perche dont les fréquences sont précisées dans le cahier des charges (\ref{fig:A}). Pour justifier ces performances, on réalise des captures du mouvement vertical d'une perche tenue des deux mains par un utilisateur qui se déplace sur un sol plat.
 
-Cette capture de mouvement est réalisée à partir d'un système optoélectronique dont le principe est le suivant : des caméras projettent une lumière dans le spectre infrarouge et détectent la lumière réfléchie par des marqueurs réfléchissants placés sur l'utilisateur. À partir des focales des caméras, de leur position et de leur orientation, il est possible de reconstruire, à chaque instant, par triangulation, la position spatiale des marqueurs et d'en déduire le mouvement vertical des mains, en retenant la valeur moyenne de la position verticale des deux mains. Les graphes des enregistrements de deux passages, marche et course, sont donnés ainsi que leur analyse spectrale (figure 3). Le contenu spectral est estimé en utilisant un enregistrement sur une durée limitée et la relation utilisée permet d'obtenir directement les amplitudes des différentes composantes harmoniques. Le calcul du spectre est réalisé pour un ensemble de fréquences choisi selon une distribution linéaire.
+Cette capture de mouvement est réalisée à partir d'un système optoélectronique dont le principe est le suivant : des caméras projettent une lumière dans le spectre infrarouge et détectent la lumière réfléchie par des marqueurs réfléchissants placés sur l'utilisateur. À partir des focales des caméras, de leur position et de leur orientation, il est possible de reconstruire, à chaque instant, par triangulation, la position spatiale des marqueurs et d'en déduire le mouvement vertical des mains, en retenant la valeur moyenne de la position verticale des deux mains. Les graphes des enregistrements de deux passages, marche et course, sont donnés ainsi que leur analyse spectrale (figure \ref{fig:03}). Le contenu spectral est estimé en utilisant un enregistrement sur une durée limitée et la relation utilisée permet d'obtenir directement les amplitudes des différentes composantes harmoniques. Le calcul du spectre est réalisé pour un ensemble de fréquences choisi selon une distribution linéaire.
 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.5\textwidth]{fig_03}
+\includegraphics[width=.8\textwidth]{fig_03}
 \caption{\label{fig:03} Représentations temporelle et spectrale du déplacement vertical des mains de l'utilisateur lors de la capture du mouvement}
 \end{figure}
  
@@ -60,19 +60,22 @@ Cette capture de mouvement est réalisée à partir d'un système optoélectroni
 \else
 \fi
 
-\section{\label{part:2} Vérification du respect de l'exigence relative à la position d'équilibre }
-Le cahier des charges précise que le stabilisateur peut être utilisé avec des appareils photo de masse comprise entre 0,350 kg et 1,550 kg (figure A). L'objectif de cette partie est de vérifier que la conception est assez robuste vis-à-vis du facteur de masse de l'appareil photo pour satisfaire l'exigence $1.1$ relative à la position d'équilibre du système.
+\section{\label{part:2} Vérification du respect de l'exigence relative à la position d'équilibre}
+\begin{obj}
+Vérifier du respect de l'exigence relative à la position d'équilibre.
+\end{obj}
+Le cahier des charges précise que le stabilisateur peut être utilisé avec des appareils photo de masse comprise entre \SI{0,350}{kg} et 1,550 kg (figure \ref{fig:A}). L'objectif de cette partie est de vérifier que la conception est assez robuste vis-à-vis du facteur de masse de l'appareil photo pour satisfaire l'exigence 1.1 relative à la position d'équilibre du système.
 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.5\textwidth]{fig_04}
+\includegraphics[width=.8\textwidth]{fig_04}
 \caption{\label{fig:04} Schéma cinématique plan et paramétrage du mécanisme}
 \end{figure}
 
 
 
-Le mécanisme étudié dont la modélisation retenue est donnée (figure 4) est principalement constitué de quatre solides $\left\{(1),(2),\left(2^{\prime}\right),(3)\right\}$ formant un parallélogramme et guidés deux à deux en rotation par des liaisons modélisées par des pivots aux points A, A', B et B'. La nacelle gyrostabilisée est schématisée par la barre (3). Le support (1), faisant l'objet d'une liaison encastrement avec la perche, est supposé être en mouvement de translation par rapport au sol (0) autorisé par une glissière fictive. Ce modèle est paramétré par:
+Le mécanisme étudié dont la modélisation retenue est donnée (figure \ref{fig:04}) est principalement constitué de quatre solides $\left\{(1),(2),\left(2^{\prime}\right),(3)\right\}$ formant un parallélogramme et guidés deux à deux en rotation par des liaisons modélisées par des pivots aux points A, A', B et B'. La nacelle gyrostabilisée est schématisée par la barre (3). Le support (1), faisant l'objet d'une liaison encastrement avec la perche, est supposé être en mouvement de translation par rapport au sol (0) autorisé par une glissière fictive. Ce modèle est paramétré par:
 
 \begin{itemize}
   \item le repère terrestre $\mathcal{R}_{0}\left(\mathrm{O}, \vec{x}_{0}, \vec{y}_{0}, \vec{z}_{0}\right)$ supposé galiléen avec $\vec{z}_{0}$ vertical ascendant ;
@@ -133,15 +136,15 @@ Dans cette partie, l'étude est conduite avec les hypothèses suivantes :
 \else
 \fi
 
-\subsection{II.A - Vérification de l'exigence relative à la plage de fonctionnement}
+\subsection{Vérification de l'exigence relative à la plage de fonctionnement}
 L'action mécanique du ressort de traction (5) sur la nacelle gyrostabilisée (3) est modélisée par le torseur $\left\{\mathcal{F}_{5 \rightarrow 3}\right\}:$
 
-$$
+$
 \left\{\mathcal{F}_{5 \rightarrow 3}\right\}=\left\{\begin{array}{c}
 F_{r} \vec{y}_{5} \\
 \overrightarrow{0}
 \end{array}\right\}_{\mathrm{B}} .
-$$
+$
 
 %Q 6.
 \question{\label{q:06}Exprimer la composante de résultante d'action mécanique $F_{r}$ en fonction de l'angle $\alpha$, des paramètres géométriques du système et des paramètres du ressort.}
@@ -175,17 +178,17 @@ $$
 \else
 \fi
 
-À partir des relations déterminées précédemment, deux fonctions beta(alpha) et effort\_ressort(alpha) qui renvoient respectivement la valeur de l'angle $\beta$ et la valeur de la composante de résultante d'action mécanique $F_{r}$ sont implantées en Python. La bibliothèque numpy a été importée sous le nom abrégé np. Les variables globales $\mathrm{g}$ et $\mathrm{m} 3$ fournissent respectivement la valeur de l'accélération de la pesanteur terrestre et la valeur de la masse de la nacelle gyrostabilisée (3). Les positions d'équilibre pour différentes valeurs de la masse $m_{4}$ sont alors obtenues par une méthode de recherche de zéro par dichotomie.
+À partir des relations déterminées précédemment, deux fonctions \texttt{beta(alpha)} et \texttt{effort\_ressort(alpha)} qui renvoient respectivement la valeur de l'angle $\beta$ et la valeur de la composante de résultante d'action mécanique $F_{r}$ sont implantées en Python. La bibliothèque \texttt{numpy} a été importée sous le nom abrégé \texttt{np}. Les variables globales $\mathrm{g}$ et $\mathrm{m} 3$ fournissent respectivement la valeur de l'accélération de la pesanteur terrestre et la valeur de la masse de la nacelle gyrostabilisée (3). Les positions d'équilibre pour différentes valeurs de la masse $m_{4}$ sont alors obtenues par une méthode de recherche de zéro par dichotomie.
 
 %Q 10. 
-\question{\label{q:10} Écrire en Python une fonction, fonction\_equilibre(m4, alpha), qui renvoie zéro lorsque, pour une valeur de masse $m_{4}$ de l'appareil photo donnée, la valeur de l'angle $\alpha$ vaut l'angle d'équilibre recherché.}
+\question{\label{q:10} Écrire en Python une fonction, \texttt{fonction\_equilibre(m4, alpha)}, qui renvoie zéro lorsque, pour une valeur de masse $m_{4}$ de l'appareil photo donnée, la valeur de l'angle $\alpha$ vaut l'angle d'équilibre recherché.}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
 
-Une fonction angle\_equilibre(m4) qui renvoie la valeur de l'angle $\alpha=\alpha_{0}$ correspondant à la position d'équilibre avec une méthode de recherche de zéro par dichotomie est implantée en Python. La courbe obtenue à partir de la fonction angle\_equilibre(m4) représentant l'angle d'équilibre $\alpha_{0}$ en fonction de la masse de l'appareil photo $m_{4}$ est donnée (figure 5).
+Une fonction \texttt{angle\_equilibre(m4)} qui renvoie la valeur de l'angle $\alpha=\alpha_{0}$ correspondant à la position d'équilibre avec une méthode de recherche de zéro par dichotomie est implantée en Python. La courbe obtenue à partir de la fonction \texttt{angle\_equilibre(m4)} représentant l'angle d'équilibre $\alpha_{0}$ en fonction de la masse de l'appareil photo $m_{4}$ est donnée (figure \ref{fig:05}).
 
 %Q 11. 
 \question{\label{q:11} En donnant les valeurs des angles d'équilibre pour les deux valeurs extrêmes de masse, vérifier le respect de l'exigence 1.1.1. relative à la plage de fonctionnement.}
@@ -195,7 +198,7 @@ Une fonction angle\_equilibre(m4) qui renvoie la valeur de l'angle $\alpha=\alph
 \else
 \fi
 
-\subsection{II.B - Vérification de l'exigence relative au mouvement de l'appareil photo autour des positions d'équilibre possibles}
+\subsection{Vérification de l'exigence relative au mouvement de l'appareil photo autour des positions d'équilibre possibles}
 %Q 12. 
 \question{\label{q:12} En étudiant le comportement du système autour des deux positions d'équilibre extrêmes, vérifier le respect de l'exigence 1.1.2. de l'appareil photo autour des positions d'équilibre possibles. Conclure sur le respect de l'exigence 1.1.}
 \ifprof
@@ -206,7 +209,7 @@ Une fonction angle\_equilibre(m4) qui renvoie la valeur de l'angle $\alpha=\alph
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.5\textwidth]{fig_05}
+\includegraphics[width=.75\textwidth]{fig_05}
 \caption{\label{fig:05} Angle d'équilibre $\alpha_{0}$ en fonction de la masse de l'appareil photo $m_{4}$}
 \end{figure}
 
@@ -222,8 +225,8 @@ Dans cette partie, l'étude est conduite avec les hypothèses suivantes :
 \begin{itemize}
   \item les quatre liaisons pivots et la liaison glissière sont parfaites ;
   \item la modélisation est plane ;
-  \item le système est perturbé par l'utilisateur au niveau de la glissière (figure 4) et cette perturbation est modélisée par une fonction sinusoïdale $z_{\text {pert }}(t)=Z_{0} \sin (\omega t)$ avec l'amplitude $Z_{0}$ et la pulsation $\omega$ constantes ;
-  \item à l'instant initial de cette étude, la nacelle gyrostabilisée (figure 4) est à l'équilibre.
+  \item le système est perturbé par l'utilisateur au niveau de la glissière (figure \ref{fig:04}) et cette perturbation est modélisée par une fonction sinusoïdale $z_{\text {pert }}(t)=Z_{0} \sin (\omega t)$ avec l'amplitude $Z_{0}$ et la pulsation $\omega$ constantes ;
+  \item à l'instant initial de cette étude, la nacelle gyrostabilisée (figure \ref{fig:04}) est à l'équilibre.
 \end{itemize}
 
 \subsection{III.A - Détermination de la loi de mouvement}
@@ -257,16 +260,18 @@ $$
 \end{array}\right)=f(A(t), t) .
 $$
 
-dont une solution peut être calculée à l'aide de la fonction integrate. odeint de la bibliothèque Python scipy dont le mode d'emploi est précisé dans le document réponse. $\mathrm{AO}=.$. . \# à définir
+dont une solution peut être calculée à l'aide de la fonction \texttt{integrate.odeint} de la bibliothèque \texttt{Python} \texttt{scipy} dont le mode d'emploi est précisé dans le document réponse. 
 
-$\mathrm{t}=\mathrm{np}$.arange $(0,4,0.01)$
+\begin{lstlisting}
+A0 =... # à  définir
+t = np.arange(0,4,0.01)
+A = scipy.integrate.odeint(equation_dynamique, A0, t)
+\end{lstlisting}
 
-$A=$ scipy.integrate.odeint(equation\_dynamique, $A 0, t$ )
-
-À partir des relations déterminées précédemment, les fonctions beta(alpha), effort\_ressort(alpha) et angle\_equilibre(m4) sont implantées en Python. Elles renvoient respectivement la valeur de l'angle $\beta$, la valeur de la composante de résultante d'action mécanique $F_{r}$ et la valeur de l'angle correspondant à la position d'équilibre. La bibliothèque numpy a été importée sous le nom abrégé np. Les variables globales C1, C2, C3, Z0 et w fournissent respectivement les valeurs des trois constantes $C_{1}, C_{2}$ et $C_{3}$, de l'amplitude $Z_{0}$ et la pulsation $\omega$.
+À partir des relations déterminées précédemment, les fonctions \texttt{beta(alpha)}, \texttt{effort\_ressort(alpha)} et \texttt{angle\_equilibre(m4)} sont implantées en Python. Elles renvoient respectivement la valeur de l'angle $\beta$, la valeur de la composante de résultante d'action mécanique $F_{r}$ et la valeur de l'angle correspondant à la position d'équilibre. La bibliothèque \texttt{numpy} a été importée sous le nom abrégé \texttt{np}. Les variables globales \texttt{C1}, \texttt{C2}, \texttt{C3}, \texttt{Z0} et \texttt{w} fournissent respectivement les valeurs des trois constantes $C_{1}, C_{2}$ et $C_{3}$, de l'amplitude $Z_{0}$ et la pulsation $\omega$.
 
 %Q 14. 
-\question{\label{q:14} Écrire en Python une fonction equation\_dynamique $(A, t)$ qui renvoie le vecteur dérivé $\dot{A}(t)$ en fonction du vecteur A et la date t correspondante.}
+\question{\label{q:14} Écrire en Python une fonction \texttt{equation\_dynamique(A, t)} qui renvoie le vecteur dérivé $\dot{A}(t)$ en fonction du vecteur A et la date t correspondante.}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -274,7 +279,7 @@ $A=$ scipy.integrate.odeint(equation\_dynamique, $A 0, t$ )
 \fi
 
 %Q 15. 
-\question{\label{q:15} Écrire l'instruction Python permettant de définir la condition initiale A0.}
+\question{\label{q:15} Écrire l'instruction Python permettant de définir la condition initiale \texttt{A0}.}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -284,18 +289,18 @@ $A=$ scipy.integrate.odeint(equation\_dynamique, $A 0, t$ )
 La résolution de l'équation différentielle permet d'obtenir l'évolution de l'angle $\alpha$ au cours du temps. Le déplacement vertical de l'appareil photo est déterminé à partir de cette solution et des relations déterminées précédemment.
 
 \subsection{III.B - Validation expérimentale du modèle dynamique}
-Pour valider le modèle dynamique, le stabilisateur vertical est soumis à une perturbation sinusoïdale $z_{\text {pert }}(t)=$ $Z_{0} \sin (\omega t)$. Les courbes expérimentales (figure 6 en bas) ainsi obtenues sont à comparer avec les solutions issues de la résolution de l'équation différentielle (figure 6 en haut).
+Pour valider le modèle dynamique, le stabilisateur vertical est soumis à une perturbation sinusoïdale $z_{\text {pert }}(t)=$ $Z_{0} \sin (\omega t)$. Les courbes expérimentales (figure \ref{fig:06} en bas) ainsi obtenues sont à comparer avec les solutions issues de la résolution de l'équation différentielle (figure \ref{fig:06} en haut).
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.5\textwidth]{fig_06}
+\includegraphics[width=.8\textwidth]{fig_06}
 \caption{\label{fig:06} Déplacement vertical de l'appareil photo pour une perturbation d'amplitude $25 \mathrm{~mm}$ et de fréquences $1 \mathrm{~Hz}$ et $2 \mathrm{~Hz}$ avec une masse $m_{4}=1 \mathrm{~kg}$}
 \end{figure}
 
 
 
 %Q 16. 
-\question{\label{q:16} Comparer les performances mesurées et simulées (figure 6). Peut-on valider le modèle dynamique pour la vérification de l'exigence 1.2. relative à la position de l'appareil photo en mouvement ? Quel phénomène physique pourrait-on prendre en compte pour améliorer le modèle ?}
+\question{\label{q:16} Comparer les performances mesurées et simulées (figure \ref{fig:06}). Peut-on valider le modèle dynamique pour la vérification de l'exigence 1.2. relative à la position de l'appareil photo en mouvement ? Quel phénomène physique pourrait-on prendre en compte pour améliorer le modèle ?}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -303,10 +308,10 @@ Pour valider le modèle dynamique, le stabilisateur vertical est soumis à une p
 \fi
 
 \subsection{Conclusion}
-Pour analyser le respect de l'exigence 1.2. relative à la position en mouvement, des simulations sont réalisées dans plusieurs configurations (figure 7).
+Pour analyser le respect de l'exigence 1.2. relative à la position en mouvement, des simulations sont réalisées dans plusieurs configurations (figure \ref{fig:07}).
 
 %Q 17. 
-\question{\label{q:17} Conclure sur la satisfaction de l'exigence 1.2. relative à la position de l'appareil photo en mouvement à l'aide des résultats de simulation (figure 7).}
+\question{\label{q:17} Conclure sur la satisfaction de l'exigence 1.2. relative à la position de l'appareil photo en mouvement à l'aide des résultats de simulation (figure \ref{fig:07}).}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -318,7 +323,7 @@ Une modification des caractéristiques du ressort pourrait permettre de respecte
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.5\textwidth]{fig_07}
+\includegraphics[width=.8\textwidth]{fig_07}
 \caption{\label{fig:07} Simulations du déplacement vertical de l'appareil photo pour une perturbation d'amplitude $25 \mathrm{~mm}$ et de fréquences de $0,1 \mathrm{~Hz}, 1,5 \mathrm{~Hz}$ et $2,8 \mathrm{~Hz}$ avec des masses $m_{4}=0,350 \mathrm{~kg}$ et $m_{4}=1,550 \mathrm{~kg}$
 }
 \end{figure}
@@ -332,7 +337,7 @@ Une modification des caractéristiques du ressort pourrait permettre de respecte
 Modéliser la commande et déterminer le réglage du correcteur. Spécifier la motorisation.
 \end{obj}
 
-Dans cette partie, la régulation en hauteur de l'ensemble constitué de la nacelle gyrostabilisée (3) et de l'appareil photo (4) est réalisée par un motoréducteur dont le stator est lié au support (1) et dont l'arbre de sortie entraine le bras (2) (figure 8). Le rendement de la chaine de motorisation est supposé parfait.
+Dans cette partie, la régulation en hauteur de l'ensemble constitué de la nacelle gyrostabilisée (3) et de l'appareil photo (4) est réalisée par un motoréducteur dont le stator est lié au support (1) et dont l'arbre de sortie entraine le bras (2) (figure \ref{fig:08}). Le rendement de la chaine de motorisation est supposé parfait.
 
 \begin{figure}[H]
 \centering
@@ -356,44 +361,44 @@ Dans cette partie, la régulation en hauteur de l'ensemble constitué de la nace
   \item $L$ la longueur du bras (2).
 \end{itemize}
 
-Un diagramme des exigences partiel du stabilisateur vertical avec la commande active est donné figure B du document réponse.
+Un diagramme des exigences partiel du stabilisateur vertical avec la commande active est donné figure \ref{fig:B} du document réponse.
 
 Les effets de masse et d'inertie du solide (2) sont négligeables devant les autres actions mises en jeu.
 
 %Q 18. 
-\question{\label{q:18} En retenant le schéma simplifié (figure 8) et en modélisant par un glisseur dont la résultante est notée $\vec{F}_{2 \rightarrow 3}=F_{y} \vec{y}_{0}+F_{z} \vec{z}_{0}$ l'action mécanique exercée au point B par le bras (2) sur la nacelle gyrostabilisée (3), exprimer $C_{s}$ en fonction de $F_{z}, F_{y}, \alpha(t)$ et $L$.}
+\question{\label{q:18} En retenant le schéma simplifié (figure \ref{fig:08}) et en modélisant par un glisseur dont la résultante est notée $\vec{F}_{2 \rightarrow 3}=F_{y} \vec{y}_{0}+F_{z} \vec{z}_{0}$ l'action mécanique exercée au point B par le bras (2) sur la nacelle gyrostabilisée (3), exprimer $C_{s}$ en fonction de $F_{z}, F_{y}, \alpha(t)$ et $L$. En négligeant $F_{y}$ devant $F_{z}\left(F_{y} \approx 0\right)$ donner alors la relation entre $C_{m}, F_{z}, \alpha(t), L$ et $N$.
+}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
 
-En négligeant $F_{y}$ devant $F_{z}\left(F_{y} \approx 0\right)$ donner alors la relation entre $C_{m}, F_{z}, \alpha(t), L$ et $N$.
-XXXXXX
 
 
 
-La machine à courant continu est modélisée comme un générateur de couple parfait, en particulier instantané. Le schéma-bloc de la boucle ouverte non corrigée du système est donné (figure 9) en faisant l'approximation des petits angles.
+
+La machine à courant continu est modélisée comme un générateur de couple parfait, en particulier instantané. Le schéma-bloc de la boucle ouverte non corrigée du système est donné (figure \ref{fig:09}) en faisant l'approximation des petits angles.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.5\textwidth]{fig_09}
+\includegraphics[width=.95\textwidth]{fig_09}
 \caption{\label{fig:09} Schéma-blocs de la boucle ouverte non corrigée}
 \end{figure}
 
 
-Pour réaliser un asservissement, un comparateur forme la différence entre une consigne en position notée $\Delta Z^{*}(p)$ et une mesure de la hauteur $\Delta Z(p)$ de l'appareil photo renvoyée par un capteur. Cette différence est corrigée par un correcteur de fonction de transfert notée $C(p)$. En pratique, $\Delta Z(p)$ correspond à l'écart par rapport à une position de référence non présentée ici. Le capteur est modélisé par un gain unitaire. Le schéma-bloc d'asservissement est donné (figure 10).
+Pour réaliser un asservissement, un comparateur forme la différence entre une consigne en position notée $\Delta Z^{*}(p)$ et une mesure de la hauteur $\Delta Z(p)$ de l'appareil photo renvoyée par un capteur. Cette différence est corrigée par un correcteur de fonction de transfert notée $C(p)$. En pratique, $\Delta Z(p)$ correspond à l'écart par rapport à une position de référence non présentée ici. Le capteur est modélisé par un gain unitaire. Le schéma-bloc d'asservissement est donné (figure \ref{fig:10}).
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.5\textwidth]{fig_10}
+\includegraphics[width=.95\textwidth]{fig_10}
 \caption{\label{fig:10} Schéma-blocs de l'asservissement de position avec un correcteur $C(p)$}
 \end{figure}
 
 
 
-\subsection{IV.A - Choix et réglage du correcteur}
-Dans cette sous-partie, après avoir mis en évidence la nécessité d'introduire un correcteur, l'objet est d'en régler les paramètres de manière à ce que les performances du système vérifient les exigences du cahier des charges (figure B).
+\subsection{Choix et réglage du correcteur}
+Dans cette sous-partie, après avoir mis en évidence la nécessité d'introduire un correcteur, l'objet est d'en régler les paramètres de manière à ce que les performances du système vérifient les exigences du cahier des charges (figure \ref{fig:B}).
 
 %Q 19. 
 \question{\label{q:19} Montrer qu'un correcteur proportionnel $C(p)=K$ ne permet pas d'assurer la stabilité du système en boucle fermée.}
@@ -441,19 +446,19 @@ La marge de phase minimale définie dans le cahier des charges est notée $\Delt
 \else
 \fi
 
-\subsection{IV.B - Spécification de l'actionneur}
+\subsection{Spécification de l'actionneur}
 Pour concevoir le prototype, il faut définir la chaine de motorisation. Dans ce but, l'actionneur est supposé asservi. La relation entre le couple de consigne et le couple moteur est modélisé par une fonction de transfert du premier ordre
 
 $$
 \Delta(p)=\frac{C_{m}(p)}{C_{m}^{*}(p)}=\frac{1}{1+\tau p} .
 $$
 
-L'objectif de cette sous-partie est de prendre en compte le retard induit par la chaine de motorisation et les conséquences sur la stabilité. Pour spécifier au concepteur de l'actionneur la constante de temps maximale admissible $\tau$, on réalise une étude sur la stabilité en approchant au premier ordre la fonction de transfert $\Delta(p)$ par $(1-\tau p)$. La prise en compte du modèle de l'actionneur asservi se traduit par un nouveau schéma-bloc (figure 11).
+L'objectif de cette sous-partie est de prendre en compte le retard induit par la chaine de motorisation et les conséquences sur la stabilité. Pour spécifier au concepteur de l'actionneur la constante de temps maximale admissible $\tau$, on réalise une étude sur la stabilité en approchant au premier ordre la fonction de transfert $\Delta(p)$ par $(1-\tau p)$. La prise en compte du modèle de l'actionneur asservi se traduit par un nouveau schéma-bloc (figure \ref{fig:11}).
 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.5\textwidth]{fig_11}
+\includegraphics[width=\textwidth]{fig_11}
 \caption{\label{fig:11} Schéma d'analyse de la robustesse de l'asservissement}
 \end{figure}
 
@@ -462,18 +467,18 @@ Un critère de choix de l'actionneur sera fondé sur une étude de robustesse pa
 
 Dans cette sous-partie, l'effet de la perturbation générée par le poids sur le système n'est pas étudié.
 
-Le système est maintenant étudié en régulation, c'est-à-dire pour lequel l'entrée notée $\Delta Z^{*}(p)=0$. Un schémabloc équivalent est donné (figure 12) en introduisant une entrée virtuelle $W(p)=0$.
+Le système est maintenant étudié en régulation, c'est-à-dire pour lequel l'entrée notée $\Delta Z^{*}(p)=0$. Un schémabloc équivalent est donné (figure \ref{fig:12}) en introduisant une entrée virtuelle $W(p)=0$.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.5\textwidth]{fig_12}
+\includegraphics[width=\textwidth]{fig_12}
 \caption{\label{fig:12} Schéma modifié d'analyse de la robustesse de l'asservissement}
 \end{figure}
 
 
 
 %Q 23. 
-\question{\label{q:23} Donner l'expression de la fonction de transfert $H(p)$ présente dans la forme simplifiée du schéma-bloc (figure 13) en fonction de $N, L, m_{34}$ et $C(p)$.}
+\question{\label{q:23} Donner l'expression de la fonction de transfert $H(p)$ présente dans la forme simplifiée du schéma-bloc (figure \ref{fig:13}) en fonction de $N, L, m_{34}$ et $C(p)$.}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -489,7 +494,7 @@ Le système est maintenant étudié en régulation, c'est-à-dire pour lequel l'
 En pratique l'action dérivée est filtrée, l'étude du filtrage n'est pas détaillée. Les diagrammes de Bode de la fonction de transfert $H(p)$ ainsi filtrée sont donnés (figure $\mathrm{C}$ du document réponse). 
 
 %Q 24. 
-\question{\label{q:24} Compléter ces diagrammes sur le document réponse en représentant les diagrammes de Bode de la fonction $-\tau p$ puis tracer la fonction de transfert en boucle ouverte du système représenté en figure 13 . Pour les tracés, prendre $\tau=1 \mathrm{~s}$ et faire apparaitre clairement les points de construction pour les pulsations $\omega=1 \mathrm{rad} \cdot \mathrm{s}^{-1}$, $\omega=10 \mathrm{rad} \cdot \mathrm{s}^{-1}$ et $\omega=100 \mathrm{rad} \cdot \mathrm{s}^{-1}$.}
+\question{\label{q:24} Compléter ces diagrammes sur le document réponse en représentant les diagrammes de Bode de la fonction $-\tau p$ puis tracer la fonction de transfert en boucle ouverte du système représenté en figure \ref{fig:13} . Pour les tracés, prendre $\tau=1 \mathrm{~s}$ et faire apparaitre clairement les points de construction pour les pulsations $\omega=1 \mathrm{rad} \cdot \mathrm{s}^{-1}$, $\omega=10 \mathrm{rad} \cdot \mathrm{s}^{-1}$ et $\omega=100 \mathrm{rad} \cdot \mathrm{s}^{-1}$.}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -497,30 +502,32 @@ En pratique l'action dérivée est filtrée, l'étude du filtrage n'est pas dét
 \fi
 
 %Q 25. 
-\question{\label{q:25} En exploitant le document réponse,}
+\question{\label{q:25} En exploitant le document réponse :}
+%\textit{
+\begin{itemize}
+  \item déterminer la valeur de $\tau$ qui assure la stabilité ;
+  \item déterminer la valeur de $\tau$ qui assure un amortissement correct en considérant qu'il est obtenu lorsque la marge de phase est d'au moins $60^{\circ}$;
+\item conclure sur une valeur de $\tau$ maximale admissible à spécifier pour le choix du motoréducteur.
+\end{itemize}
+%}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
-\begin{itemize}
-  \item déterminer la valeur de $\tau$ qui assure la stabilité ;
-  \item déterminer la valeur de $\tau$ qui assure un amortissement correct en considérant qu'il est obtenu lorsque la marge de phase est d'au moins $60^{\circ}$;
-\end{itemize}
 
-— conclure sur une valeur de $\tau$ maximale admissible à spécifier pour le choix du motoréducteur.
 
 \subsection{Conclusion}
-Le système est sollicité avec une consigne en échelon d'amplitude $10 \mathrm{~mm}$ à la date $t=1 \mathrm{~s}$. Le graphe représentant l'évolution de $\Delta z^{*}(t)$ et $\Delta z(t)$ est donné pour les deux valeurs extrêmes de masse de l'appareil photo (figure 14).
+Le système est sollicité avec une consigne en échelon d'amplitude $10 \mathrm{~mm}$ à la date $t=1 \mathrm{~s}$. Le graphe représentant l'évolution de $\Delta z^{*}(t)$ et $\Delta z(t)$ est donné pour les deux valeurs extrêmes de masse de l'appareil photo (figure \ref{fig:14}).
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.5\textwidth]{fig_14}
+\includegraphics[width=.8\textwidth]{fig_14}
 \caption{\label{fig:14}  Réponse temporelle à un échelon pour les deux valeurs extrêmes de masse de l'appareil photo}
 \end{figure}
 
 %Q 26. 
-\question{\label{q:26} Conclure sur la capacité du système à satisfaire les exigences du cahier des charges (figure B).}
+\question{\label{q:26} Conclure sur la capacité du système à satisfaire les exigences du cahier des charges (figure \ref{fig:B}).}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -531,18 +538,18 @@ Le système est sollicité avec une consigne en échelon d'amplitude $10 \mathrm
 \begin{obj}
 Analyser et comparer les deux solutions technologiques étudiées précédemment pour concevoir le stabilisateur
 \end{obj}
-Une simulation numérique a été effectuée afin d'analyser la capacité des deux solutions technologiques à vérifier l'exigence 1.2.1 relative au filtrage du mouvement. Pour cela, la réponse harmonique de la fonction $Z_{G}(p) / Z_{\text {pert }}(p)$ obtenue pour le système avec commande active est comparée à celle obtenue avec le système par filtrage passif dont le modèle a été linéarisé (figure 15).
+Une simulation numérique a été effectuée afin d'analyser la capacité des deux solutions technologiques à vérifier l'exigence 1.2.1 relative au filtrage du mouvement. Pour cela, la réponse harmonique de la fonction $Z_{G}(p) / Z_{\text {pert }}(p)$ obtenue pour le système avec commande active est comparée à celle obtenue avec le système par filtrage passif dont le modèle a été linéarisé (figure \ref{fig:15}).
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.5\textwidth]{fig_15}
+\includegraphics[width=.8\textwidth]{fig_15}
 \caption{\label{fig:15}  Diagrammes de Bode de la fonction $Z_{G}(p) / Z_{\text {pert }}(p)$}
 \end{figure}
 
 
 
 %Q 27. 
-\question{\label{q:27} En étudiant les réponses harmoniques (figure 15), analyser la pertinence de chacune des deux solutions technologiques étudiées à satisfaire l'exigence 1.2.1.}
+\question{\label{q:27} En étudiant les réponses harmoniques (figure \ref{fig:15}), analyser la pertinence de chacune des deux solutions technologiques étudiées à satisfaire l'exigence 1.2.1.}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -557,40 +564,29 @@ Une simulation numérique a été effectuée afin d'analyser la capacité des de
 \else
 \fi
 
-\begin{center}
-\includegraphics[max width=\textwidth]{2022_12_31_ed674c1a831ea1bff3a0g-12}
-\end{center}
 
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{fig_16}
+\caption{\label{fig:A}  Extrait du cahier des charges fonctionnel}
+\end{figure}
 
-\begin{center}
-\includegraphics[max width=\textwidth]{2022_12_31_ed674c1a831ea1bff3a0g-12(1)}
-\end{center}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{fig_17}
+\caption{\label{fig:B} Diagramme des exigences partiel du stabilisateur vertical avec la commande active}
+\end{figure}
 
-Nom
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{fig_18}
+\caption{\label{fig:C} Diagrammes de Bode de la fonction $H(p)$ Extrait de l'aide sur la fonction Python \texttt{scipy.integrate.odeint}}
+\end{figure}
 
-\begin{center}
-\includegraphics[max width=\textwidth]{2022_12_31_ed674c1a831ea1bff3a0g-12(2)}
-\end{center}
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\textwidth]{fig_19}
+%\caption{\label{fig:B} Diagramme des exigences partiel du stabilisateur vertical avec la commande active}
+\end{figure}
 
-
-
-
-\begin{center}
-\includegraphics[max width=\textwidth]{2022_12_31_ed674c1a831ea1bff3a0g-12(3)}
-\end{center}
-
-Figure A Extrait du cahier des charges fonctionnel
-
-\begin{center}
-\includegraphics[max width=\textwidth]{2022_12_31_ed674c1a831ea1bff3a0g-13}
-\end{center}
-
-Figure B Diagramme des exigences partiel du stabilisateur vertical avec la commande active Questions 24 et 25
-\includegraphics[max width=\textwidth, center]{2022_12_31_ed674c1a831ea1bff3a0g-14}
-
-Figure C Diagrammes de Bode de la fonction $H(p)$ Extrait de l'aide sur la fonction Python scipy.integrate.odeint
-
-\begin{center}
-\includegraphics[max width=\textwidth]{2022_12_31_ed674c1a831ea1bff3a0g-15}
-\end{center}
