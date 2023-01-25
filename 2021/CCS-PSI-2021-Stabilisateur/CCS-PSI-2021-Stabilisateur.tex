@@ -39,6 +39,13 @@ Une analyse du besoin des photographes a permis de documenter le cahier des char
 
 \ifprof
 \else
+\begin{obj}
+Analyser les mouvements de l’utilisateur lorsqu’il marche ou lorsqu’il court et justifier les critères
+chiffrés de l’exigence relative à la position de l’appareil photo en mouvement
+\end{obj}
+
+
+
 Pour réduire les perturbations verticales de l'appareil photo, la solution retenue est de filtrer les mouvements de translation verticale de la perche dont les fréquences sont précisées dans le cahier des charges (\ref{fig:A}). Pour justifier ces performances, on réalise des captures du mouvement vertical d'une perche tenue des deux mains par un utilisateur qui se déplace sur un sol plat.
 
 Cette capture de mouvement est réalisée à partir d'un système optoélectronique dont le principe est le suivant : des caméras projettent une lumière dans le spectre infrarouge et détectent la lumière réfléchie par des marqueurs réfléchissants placés sur l'utilisateur. À partir des focales des caméras, de leur position et de leur orientation, il est possible de reconstruire, à chaque instant, par triangulation, la position spatiale des marqueurs et d'en déduire le mouvement vertical des mains, en retenant la valeur moyenne de la position verticale des deux mains. Les graphes des enregistrements de deux passages, marche et course, sont donnés ainsi que leur analyse spectrale (figure~\ref{fig:03}). Le contenu spectral est estimé en utilisant un enregistrement sur une durée limitée et la relation utilisée permet d'obtenir directement les amplitudes des différentes composantes harmoniques. Le calcul du spectre est réalisé pour un ensemble de fréquences choisi selon une distribution linéaire.
@@ -109,7 +116,7 @@ Le mécanisme étudié dont la modélisation retenue est donnée (figure~\ref{fi
 
 \end{itemize}
 
-La plage de fonctionnement du mécanisme est limitée par la géométrie des bras (2) et (2') avec $\alpha \in\left[-35^{\circ}, 45^{\circ}\right.$, $l=25 \mathrm{~mm}, L=52 \mathrm{~mm}, y_{G}=5 \mathrm{~mm}$ et $z_{G}=200 \mathrm{~mm}$.
+La plage de fonctionnement du mécanisme est limitée par la géométrie des bras (2) et (2') avec $\alpha \in\left[-35^{\circ}, 45^{\circ}\right]$, $l=25 \mathrm{~mm}, L=52 \mathrm{~mm}, y_{G}=5 \mathrm{~mm}$ et $z_{G}=200 \mathrm{~mm}$.
 
 Le ressort de traction (5) de raideur $K_{r}$ et de longueur à vide $L_{r 0}$ possède une tension initiale $F_{r 0}$ lorsque $L_{r}=L_{r 0}$. Il est relié d'une part au support (1) et d'autre part au solide (3) aux points d'ancrage respectivement A' et B.
 
@@ -223,7 +230,7 @@ $$\boxed{F_r=-\left[F_{r0} + K_r\left(\sqrt{L^2+l^2-2Ll\sin\alpha}-L_{r0}\right)
 \fi
 
 %Q 7. 
-\question{\label{q:07}Déterminer la direction des actions mécaniques de liaison exercées par le bras (2) sur la nacelle (3) et par le bras (2') sur la nacelle (3).}
+\question{\label{q:07}Déterminer la direction des actions mécaniques de liaison exercées par le bras (2) sur la nacelle (3) et par le bras (2') sur la nacelle (3) \textbf{On pourra raisonner en statique)}.}
 \ifprof
 \begin{corrige}
 Il est fait l'hypothèse que le problème est plan dans le plan $\left(0,\vect{y_0},\vect{z_0}\right)$. Les torseurs d'actions mécaniques associés aux liaisons pivot d'axe $\vect{z_0}$ sont donc des glisseurs. 
@@ -244,7 +251,7 @@ De plus, $\boxed{\vect{F}_{23}=F_{23}\vect{y_2}}$ et $\boxed{\vect{F}_{2'3}=F_{2
 \fi
 
 %Q 8. 
-\question{\label{q:08}Afin de déterminer la position d'équilibre de l'ensemble $\{(3)+(4)\}$, proposer sans calcul, une démarche claire qui permette d'exprimer l'effort nécessaire du ressort de traction (5) sur la nacelle gyrostabilisée (3).}
+\question{\label{q:08}Afin de déterminer la position d'équilibre de l'ensemble $\{(3)+(4)\}$, proposer sans calcul, une démarche claire qui permette d'exprimer l'effort nécessaire du ressort de traction (5) sur la nacelle gyrostabilisée (3) \textbf{On pourra raisonner en statique)}.}
 \ifprof
 \begin{corrige}
 \begin{center}
@@ -306,7 +313,6 @@ $\boxed{F_r = -m_{34} g \dfrac{\cos\alpha}{\sin\left(\alpha-\beta \right)}}$.
 def fonction_equilibre(m4,alpha):
 # On donne alpha en radians
 # beta(alpha) retourne un angle en radians
-    def fonction_equilibre(m4, alpha):
     return(effort_ressort(alpha)+(m3+m4)*g*(np.cos(alpha)/np.sin(alpha-beta(alpha))))
 \end{lstlisting}
 
@@ -937,11 +943,11 @@ En conclusion, il semble que le dispositif passif aura des difficultés à stabi
 \begin{tabular}{p{3.5cm}ccp{7cm}}
 \cline{2-4}
  & Filtrage actif & Filtrage passif & Remarques \\ \hline \hline
- Performances CDC & \Smiley & \Sadey& \\ \hline
- Encombrement  & \Sadey& \Smiley&  La motorisation ajoute des composants qui peuvent nuire à l’encombrement. \\ \hline
- Masse  & \Sadey&\Smiley &La motorisation ajoute des composants qui vont augmenter la masse. \\ \hline
- Coût  &\Sadey & \Smiley& La motorisation ajoute des composants qui vont augmenter le coût. \\ \hline
- Consommation d'énergie  &\Sadey & \Smiley& La motorisation consommera davantage d'énergie qu'un système entièrement passif sans actionneur supplémentaire. \\ \hline
+ Performances CDC & \smiley &\frownie{}& \\ \hline
+ Encombrement  &\frownie{}& \smiley&  La motorisation ajoute des composants qui peuvent nuire à l’encombrement. \\ \hline
+ Masse  &\frownie{}&\smiley &La motorisation ajoute des composants qui vont augmenter la masse. \\ \hline
+ Coût  &\frownie{} & \smiley& La motorisation ajoute des composants qui vont augmenter le coût. \\ \hline
+ Consommation d'énergie  &\frownie{} & \smiley& La motorisation consommera davantage d'énergie qu'un système entièrement passif sans actionneur supplémentaire. \\ \hline
 \end{tabular}
 \end{center}
 
@@ -967,15 +973,29 @@ Si l'utilisateur est très exigeant sur les performances attendues du produit, i
 \caption{\label{fig:B} Diagramme des exigences partiel du stabilisateur vertical avec la commande active}
 \end{figure}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{fig_18.jpg}
-\caption{\label{fig:C} Diagrammes de Bode de la fonction $H(p)$ Extrait de l'aide sur la fonction Python \texttt{scipy.integrate.odeint}}
-\end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=.8\textwidth]{fig_19.jpg}
-%\caption{\label{fig:B} Diagramme des exigences partiel du stabilisateur vertical avec la commande active}
+\caption{\label{fig:D} Extrait de l’aide sur la fonction Python scipy.integrate.odeint}
 \end{figure}
+
+\newpage
+\section*{Document réponse}
+\begin{center}
+\begin{tabular}{p{0.15\textwidth}p{0.15\textwidth}|p{0.15\textwidth}p{0.15\textwidth}|p{0.15\textwidth}p{0.15\textwidth}}
+\textbf{Nom : } & &
+\textbf{Prénom : } &  &
+\textbf{Classe : } &  \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{fig_18.jpg}
+\caption{\label{fig:C} Diagrammes de Bode de la fonction $H(p)$ Extrait de l'aide sur la fonction Python \texttt{scipy.integrate.odeint} (Questions 24 et 25)}
+\end{figure}
+
+
 \fi
