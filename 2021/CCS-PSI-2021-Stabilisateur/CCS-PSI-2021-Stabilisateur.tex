@@ -601,6 +601,9 @@ Les effets de masse et d'inertie du solide (2) sont négligeables devant les aut
 %Q 18. 
 \question{\label{q:18} En retenant le schéma simplifié (figure~\ref{fig:08}) et en modélisant par un glisseur dont la résultante est notée $\vec{F}_{2 \rightarrow 3}=F_{y} \vec{y}_{0}+F_{z} \vec{z}_{0}$ l'action mécanique exercée au point B par le bras (2) sur la nacelle gyrostabilisée (3), exprimer $C_{s}$ en fonction de $F_{z}, F_{y}, \alpha(t)$ et $L$. En négligeant $F_{y}$ devant $F_{z}\left(F_{y} \approx 0\right)$ donner alors la relation entre $C_{m}, F_{z}, \alpha(t), L$ et $N$.
 }
+
+
+
 \ifprof
 \begin{corrige}
 On isole le bras (2), il est soumis à:
@@ -648,7 +651,7 @@ Dans cette sous-partie, après avoir mis en évidence la nécessité d'introduir
 \fi
 
 %Q 19. 
-\question{\label{q:19} Montrer qu'un correcteur proportionnel $C(p)=K$ ne permet pas d'assurer la stabilité du système en boucle fermée.}
+\question{\label{q:19} Montrer qu'un correcteur proportionnel $C(p)=K$ ne permet pas d'assurer la stabilité du système en boucle fermée. On pourra raisonner sur les critères de stabilité sur la fonction de transfert en boucle ouverte ou en boucle fermée.}
 \ifprof
 \begin{corrige}
 La fonction de transfert en poursuite s'écrit $\dfrac{\Delta Z(p)}{\Delta Z^*(p)}=\dfrac{\dfrac{KN}{Lm_{34}p^2}}{1+\dfrac{KN}{Lm_{34}p^2}}$
@@ -685,7 +688,7 @@ La marge de phase minimale définie dans le cahier des charges est notée $\Delt
 \fi
 
 %Q 20. 
-\question{\label{q:20} En déduire les expressions respectives de l'argument et du module de la fonction de transfert du correcteur pour $\omega=\omega_{c, 0 \mathrm{~dB}}$ notées respectivement $\arg \left(C\left(\mathrm{j} \omega_{c, 0 \mathrm{~dB}}\right)\right)$ et $\left|C\left(\mathrm{j} \omega_{c, 0 \mathrm{~dB}}\right)\right|$ afin de vérifier l'exigence 2.3.1 relative à la stabilité de la commande active en fonction de $\omega_{c, 0 \mathrm{~dB}}, m_{34}, L, N$ et $\Delta \varphi$.}
+\question{\label{q:20} En déduire les expressions respectives de l'argument et du module de la fonction de transfert du correcteur pour $\omega=\omega_{c, 0 \mathrm{~dB}}$ notées respectivement $\arg \left(C\left(\mathrm{j} \omega_{c, 0 \mathrm{~dB}}\right)\right)$ et $\left|C\left(\mathrm{j} \omega_{c, 0 \mathrm{~dB}}\right)\right|$ afin de vérifier l'exigence 2.3.1 relative à la stabilité de la commande active en fonction de $\omega_{c, 0 \mathrm{~dB}}, m_{34}, L, N$ et $\Delta \varphi$. On pourra raisonner sur les marges de stabilité du système.}
 \ifprof
 \begin{corrige}
 On note $F_{\text{nc}}$  la fonction de transfert en boucle ouverte non corrigée. On a $F_{\text{nc}}(p)=\dfrac{N}{Lm_{34}p^2}$.\\
@@ -702,7 +705,7 @@ soit $\boxed{\arg\left(C\left(j\omega_{c,\SI{0}{dB}}\right)\right)=\Delta\varphi
 \fi
 
 %Q 21. 
-\question{\label{q:21} Déterminer l'expression littérale du paramètre $T$ du correcteur. Effectuer l'application numérique.}
+\question{\label{q:21} Déterminer l'expression littérale du paramètre $T$ du correcteur. Effectuer l'application numérique. (On pourra raisonner sur la marge de phase et sur le calcul de l'argument de la fonction de transfert adéquate.}
 \ifprof
 \begin{corrige}
 $\arg\left(C\left(j\omega\right)\right)=\arg{\dfrac{K}{2T}}+2\arg\left(1+Tj\omega\right)-\arg(j\omega)=0+2\arctan\left(T\omega\right)-\dfrac{\pi}{2}$. En conséquence:
@@ -718,7 +721,7 @@ Application numérique : $\boxed{T \simeq 0,08\text{s}}$.
 \fi
 
 %Q 22. 
-\question{\label{q:22} Déterminer l'expression littérale du paramètre $K$ du correcteur. Effectuer l'application numérique avec $m_{34}=2,8 \mathrm{~kg}, L=52 \mathrm{~mm}$ et $N=100$.}
+\question{\label{q:22} Déterminer l'expression littérale du paramètre $K$ du correcteur. Effectuer l'application numérique avec $m_{34}=2,8 \mathrm{~kg}, L=52 \mathrm{~mm}$ et $N=100$. (Il s'agira d'ajuster $K$ pour assurer que le gain soit nul à la pulsation calculé précédemment.)}
 \ifprof
 \begin{corrige}
 $\left| C\left(j\omega\right)\right|= \dfrac{K}{2T}\cdot \dfrac{1+T^2\omega^2}{\omega}$. En conséquence:
@@ -823,7 +826,7 @@ Par formule de Black on déduit $\boxed{H(p) = \dfrac{N\cdot C(p)}{L\cdot m_{34}
 \caption{\label{fig:13} Schéma pour l'analyse de la stabilité}
 \end{figure}
 
-En pratique l'action dérivée est filtrée, l'étude du filtrage n'est pas détaillée. Les diagrammes de Bode de la fonction de transfert $H(p)$ ainsi filtrée sont donnés (figure $\mathrm{C}$ du document réponse). 
+En pratique l'action dérivée est filtrée, l'étude du filtrage n'est pas détaillée. Les diagrammes de Bode de la fonction de transfert $H(p)$ ainsi filtrée sont donnés (figure \ref{fig:C} du document réponse). 
 \fi
 
 %Q 24. 
@@ -867,7 +870,7 @@ On répond aux différents points dans l'ordre:
 \item le gain en dB est négatif pour une phase de -180$^{\circ}$, il faut d'après le diagramme de Bode baisser le gain de \SI{32}{dB} au minimum, soit $\tau \leq 10^{-\frac{32}{20}} = \SI{25}{ms}$;
 \item la phase est supérieure à -180$^{\circ}$ lorsque le gain est nul, c'est le cas quel que soit $\tau$;
 \end{itemize}
-\item pour avoir une marge de gain de 60$^{\circ}$, soit obtenir une phase de $-120^{\circ}$, il faut baisser le gain d'au moins \SI{35}{dB}. On veut donc $\tau \leq 10^{-\frac{35}{20}} = \SI{18}{ms}$;
+\item pour avoir une marge de phase de 60$^{\circ}$, soit obtenir une phase de $-120^{\circ}$, il faut baisser le gain d'au moins \SI{35}{dB}. On veut donc $\tau \leq 10^{-\frac{35}{20}} = \SI{18}{ms}$;
 \item Par conséquent la valeur maximale de $\tau$ admissible est \textbf{\SI{18}{ms}} pour répondre au cahier des charges.
 \end{itemize}
 
