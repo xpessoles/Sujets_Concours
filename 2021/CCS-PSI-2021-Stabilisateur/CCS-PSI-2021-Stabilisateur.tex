@@ -311,8 +311,8 @@ $\boxed{F_r = -m_{34} g \dfrac{\cos\alpha}{\sin\left(\alpha-\beta \right)}}$.
 \begin{corrige} $\quad$
 \begin{lstlisting}
 def fonction_equilibre(m4,alpha):
-# On donne alpha en radians
-# beta(alpha) retourne un angle en radians
+    # On donne alpha en radians
+    # beta(alpha) retourne un angle en radians
     return(effort_ressort(alpha)+(m3+m4)*g*(np.cos(alpha)/np.sin(alpha-beta(alpha))))
 \end{lstlisting}
 
