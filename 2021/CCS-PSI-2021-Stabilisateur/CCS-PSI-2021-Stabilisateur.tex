@@ -311,8 +311,8 @@ $\boxed{F_r = -m_{34} g \dfrac{\cos\alpha}{\sin\left(\alpha-\beta \right)}}$.
 \begin{corrige} $\quad$
 \begin{lstlisting}
 def fonction_equilibre(m4,alpha):
-# On donne alpha en radians
-# beta(alpha) retourne un angle en radians
+    # On donne alpha en radians
+    # beta(alpha) retourne un angle en radians
     return(effort_ressort(alpha)+(m3+m4)*g*(np.cos(alpha)/np.sin(alpha-beta(alpha))))
 \end{lstlisting}
 
@@ -533,9 +533,13 @@ D'après l’exigence 1.2.1.1, le système doit pouvoir << Filtrer les signaux d
 de fréquence inférieure à \SI{0,1}{Hz} avec une atténuation inférieure à \SI{3}{dB}. >>
 
 \begin{itemize}
-\item Pour une fréquence de \SI{0,1}{Hz}, le déplacement vertical mesuré est de \SI{24}{mm} soit une atténuation de $20\log \left( \dfrac{24}{25}\right) = -\SI{0,35}{dB}$. L'atténuation est donc inférieure à \SI{3}{dB}. L'exigence est validée.
+\item Pour une fréquence de \SI{0,1}{Hz}, le déplacement vertical mesuré est de \SI{24}{mm} soit une atténuation de 
 
-\item Pour une fréquence de \SI{1,5}{Hz}, le déplacement vertical mesuré est de \SI{30}{mm} soit une atténuation de $20\log \left( \dfrac{30}{25}\right) = \SI{1,58}{dB}$. Le signal est amplifié au lieu d'être atténue. L'exigence n'est pas validée.
+$20\log \left( \dfrac{24}{25}\right) = -\SI{0,35}{dB}$. L'atténuation est donc inférieure à \SI{3}{dB}. L'exigence est validée.
+
+\item Pour une fréquence de \SI{1,5}{Hz}, le déplacement vertical mesuré est de \SI{30}{mm} soit une atténuation de 
+
+$20\log \left( \dfrac{30}{25}\right) = \SI{1,58}{dB}$. Le signal est amplifié au lieu d'être atténue. L'exigence n'est pas validée.
 
 \item Pour une fréquence de \SI{2,8}{Hz}, le déplacement vertical mesuré est de \SI{60}{mm}. Le signal est amplifié au lieu d'être atténue. L'exigence n'est pas validée.
 
@@ -693,7 +697,9 @@ La marge de phase minimale définie dans le cahier des charges est notée $\Delt
 \begin{corrige}
 On note $F_{\text{nc}}$  la fonction de transfert en boucle ouverte non corrigée. On a $F_{\text{nc}}(p)=\dfrac{N}{Lm_{34}p^2}$.\\
 
-Comme on veut que le gain en boucle ouverte soit nul, on doit avoir $\left|  C(j\omega)\times \dfrac{N}{L\cdot m_{34}(j\omega)^2}\right| = 1$ donc $\boxed{\left| C\left(j\omega_{c,\SI{0}{dB}}\right)\right| = \dfrac{L\cdot m_{34}\omega_{c,\SI{0}{dB}}^2}{N}}$.\\
+Comme on veut que le gain en boucle ouverte soit nul, on doit avoir $\left|  C(j\omega)\times \dfrac{N}{L\cdot m_{34}(j\omega)^2}\right| = 1$ donc 
+
+$\boxed{\left| C\left(j\omega_{c,\SI{0}{dB}}\right)\right| = \dfrac{L\cdot m_{34}\omega_{c,\SI{0}{dB}}^2}{N}}$.\\
 
 La phase de la boucle ouverte non corrigée $F_{nc}$ est de $-180^{\circ}$ pour tout $\omega$.\\
 
