@@ -1,0 +1,7 @@
+Titre: Exosquelette Atalante
+
+Dans la volonté de rééducation à la marche des patients partiellement ou totalement paralysés au niveau des
+membres inférieurs, les exosquelettes de marche offrent une solution de plus en plus envisagée par les structures
+de soins. Si les technologies existantes permettent des séances de rééducation musculaire efficaces, elles n’offrent
+pour le moment que peu de possibilités d’amélioration dans la vie quotidienne des patients, du fait de la nécessité
+de la présence d’un personnel soignant formé à leur utilisation.
