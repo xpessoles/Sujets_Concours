@@ -117,12 +117,24 @@
 
 
 \UPSTIquestion Déterminer les expressions de $Y$ et $Z$, en fonction de $\theta_{1}, \theta_{2}, L_{2}$ et $L_{3}$.
+\begin{UPSTIcorrige}
+
+\end{UPSTIcorrige}
 
 \UPSTIquestion À l'aide du résultat de la question 1, écrit à la position $\left(Y_{0}, Z_{0}\right)$, puis à la position $\left(Y_{0}+\Delta_{Y}, Z_{0}+\Delta_{Z}\right)$, déterminer les expressions de $\Delta_{Y}$ et $\Delta_{Z}$, en fonction de $\theta_{1,0}, \theta_{2,0}, \Delta_{\theta}, L_{2}$ et $L_{3}$.
+\begin{UPSTIcorrige}
+
+\end{UPSTIcorrige}
 
 \UPSTIquestion Déterminer alors $\Delta_{Y Z}$, la norme de la variation de positionnement total du point $D$ dans le plan $\left(\vec{y}_{1}, \vec{z}_{1}\right)$, en fonction de $\theta_{2,0}, \Delta_{\theta}, L_{2}$ et $L_{3}$.
+\begin{UPSTIcorrige}
+
+\end{UPSTIcorrige}
 
 \UPSTIquestion À partir de la figure 5, déterminer, parmi les valeurs proposées, l'erreur maximale admissible sur les axes $S_{\theta, \max }$ de l'exosquelette Atalante afin d'éviter la chute du patient.
+\begin{UPSTIcorrige}
+
+\end{UPSTIcorrige}
 
 \UPSTIquestion À partir de la figure 6 et en justifiant la réponse, conclure sur la capacité des asservissements réalisés sans prise en compte du couplage entre les axes à respecter l'exigence 1.2.1.1.
 
@@ -134,18 +146,33 @@
 \subsection{Comportement dynamique de l'exosquelette}
 
 \UPSTIquestion Déterminer les expressions de $L_{0}$ et $\alpha$ en fonction de $l_{0}, L_{3}$ et $l_{3}$, puis calculer leurs valeurs numériques.
+\begin{UPSTIcorrige}
+
+\end{UPSTIcorrige}
 
 \UPSTIquestion Déterminer l'expression de l'accélération du point $G_{3}$ (cf. annexe B et question 6) appartenant à l'ensemble \{pied+tibia\} 3 dans son mouvement par rapport au buste 1 , en fonction de $L_{0}, L_{2}, \theta_{1}, \theta_{2}$ et leurs dérivées temporelles.
+\begin{UPSTIcorrige}
+
+\end{UPSTIcorrige}
 
 \UPSTIquestion Déterminer l'expression de la projection suivant $\vec{x}_{1}$ du moment dynamique en $A$ de l'ensemble $\{$ pied+tibia $\}$ 3 dans son mouvement par rapport au buste $1, \vec{\delta}_{A, 3 / 1} \cdot \vec{x}_{1}$, sous la forme :
 $$
 \vec{\delta}_{A, 3 / 1} \cdot \vec{x}_{1}=A_{1} \ddot{\theta}_{1}+A_{2} \ddot{\theta}_{2}+A_{3} \dot{\theta}_{1}^{2}+A_{4}\left(\dot{\theta}_{1}+\dot{\theta}_{2}\right)^{2}
 $$
 Préciser les expressions littérales de $A_{1}, A_{2}, A_{3}$ et $A_{4}$ en fonction des différentes caractéristiques géométriques, de masses et d'inerties de l'exosquelette.
+\begin{UPSTIcorrige}
+
+\end{UPSTIcorrige}
 
 \UPSTIquestion Proposer une démarche permettant de déterminer l'expression de $C_{1}$, l'action mécanique exercée sur la cuisse 2 par l'actionneur correspondant. Préciser le(les) ensemble(s) isolé(s), le(s) bilan(s) des actions mécaniques extérieurs, le(s) théorème(s) utilisé(s) et la(les) équation(s) utile(s).
+\begin{UPSTIcorrige}
+
+\end{UPSTIcorrige}
 
 \UPSTIquestion Déterminer l'expression de $C_{1}$ en fonction de $\theta_{1}, \theta_{2}$, leurs différentes dérivées, de $C_{\textrm {hanche }}$ et des différentes caractéristiques géométriques, de masses et d'inerties de l'exosquelette.
+\begin{UPSTIcorrige}
+
+\end{UPSTIcorrige}
 
 \UPSTIquestion  Déduire des deux équations précédentes que le modèle dynamique considéré peut s'écrire sous la forme matricielle suivante :
 
@@ -164,8 +191,15 @@ C_{\textrm {hanche }} \\
 C_{\textrm {genou }}
 \end{array}\right)
 $$
+\begin{UPSTIcorrige}
+
+\end{UPSTIcorrige}
+
 
 où $C$ est une matrice colonne et $M_{1}, M_{2}$ et $M_{3}$ sont des matrices $2 \times 2$. Donner l'expression littérale des coefficients de $C, M_{1}, M_{2}$ et $M_{3}$ par des relations non linéaires des paramètres de mouvement $\left(\theta_{1}, \theta_{2}\right)$, leurs dérivés premières et des différentes caractéristiques géométriques, de masses et d'inerties du problème.
+\begin{UPSTIcorrige}
+
+\end{UPSTIcorrige}
 
 
 \subsection{Analyse du modèle dynamique}
@@ -175,16 +209,27 @@ où $C$ est une matrice colonne et $M_{1}, M_{2}$ et $M_{3}$ sont des matrices $
 $$
 H_{L 4}(p)=\frac{a_{0}+a_{1} p+a_{2} p^{2}}{1+b_{1} p+b_{2} p^{2}+b_{3} p^{3}+b_{4} p^{4}}.
 $$
+\begin{UPSTIcorrige}
+
+\end{UPSTIcorrige}
+
 
 \UPSTIquestion Au regard de cette fonction de transfert, justifier le besoin de la mise en place d'un asservissement pour l'exosquelette.
+\begin{UPSTIcorrige}
+
+\end{UPSTIcorrige}
 
 \section{Conception et analyse de lois de commande de l’exosquelette}
 \subsection{Conception de l'asservissement en couple d'un actionneur}
 \UPSTIobjectif{Élaborer l'asservissement du couple généré par un actionneur, puis le valider par une analyse de son effet sur l'exosquelette.}
+
 \subsubsection{Modèle dynamique d'un axe}
 
 %Q 14.
 \UPSTIquestion Déterminer l'expression de l'accélération du point $G_{3}$ appartenant à l'ensemble \{pied+tibia\} 3 dans son mouvement par rapport à la cuisse 2 en fonction de $L_{0}, \theta_{2}$ et ses dérivées.
+\begin{UPSTIcorrige}
+
+\end{UPSTIcorrige}
 
 %Q 15.
 \UPSTIquestion Par application du théorème du moment dynamique à l'ensemble \{pied+tibia 3 au point B, projeté suivant la direction $\vec{x}_{1}$, donner l'expression de $C_{2}$ sous la forme :
@@ -194,81 +239,67 @@ C_{2}=A_{\mathrm{eq}} \ddot{\theta}_{2}+C_{r}
 $$
 
 Préciser les expressions de $A_{\textrm{eq}}$ en fonction de $I_{x 3}, m_{3}, L_{0}$ et de $C_{r}$ en fonction de $C_{\textrm{genou}}, m_{3}, L_{0}, \alpha$ et $\theta_{2}$. Faire l'application numérique pour $A_{e q}$.
+\begin{UPSTIcorrige}
+
+\end{UPSTIcorrige}
 
 
 \subsubsection{Élaboration de la commande en couple de l'actionneur}
 
 %Q 16
 \UPSTIquestion  Calculer, en donnant les expressions littérales de $K_{c}, T_{c}$, $\xi_{c}$ et $\omega_{c}$, l'expression de la fonction de transfert $H_{C}(p)=\frac{C_{m}(p)}{C_{r e f}(p)}$ sous la forme :
-
 $$
 H_{C}(p)=K_{c} \frac{1+T_{c} p}{1+2 \xi_{c} \frac{p}{\omega_{c}}+\left(\frac{p}{\omega_{c}}\right)^{2}}
 $$
+\begin{UPSTIcorrige}
+
+\end{UPSTIcorrige}
 
 %Q 17
 \UPSTIquestion Déterminer l'expression littérale, puis la valeur numérique, de $K$ afin de respecter le cahier des charges en termes de rapidité (rappel : $t_{r, 5 \%} \omega_{c} \approx 5$ pour un régime apériodique critique).
+\begin{UPSTIcorrige}
+
+\end{UPSTIcorrige}
 
 %Q 18
 \UPSTIquestion Déterminer l'expression littérale, puis la valeur numérique, de $T$ afin de respecter le cahier des charges en termes de stabilité.
+\begin{UPSTIcorrige}
+
+\end{UPSTIcorrige}
 
 %Q 19
 \UPSTIquestion  Déterminer l'expression littérale, puis la valeur numérique, de $K_{1}$ afin d'obtenir $K_{C}=r$ pour $H_{C}(p)$. Justifier la volonté d'obtenir cette valeur de gain pour $H_{C}(p)$.
+\begin{UPSTIcorrige}
+
+\end{UPSTIcorrige}
 
 %Q 20
 \UPSTIquestion À partir de la figure 10, discuter du respect des exigences de l'asservissement en couple.
+\begin{UPSTIcorrige}
+
+\end{UPSTIcorrige}
 
 \subsubsection{Vérification de la cohérence de la commande en couple sur l’exosquelette}
 
 %Q 21. 
 \UPSTIquestion À partir des figures 11 et 12, conclure sur la possibilité de considérer l'asservissement en couple comme amenant une action transparente pour le patient.
-
-
-
-% -------------------------- 
-% Boite d'objectif 
-% -------------------------- 
-\UPSTIobjectif{
-Exemple d'objectif de partie...
-}
-% -------------------------- 
-
-\subsubsection{Test subsubsection}
-
-% -------------------------- 
-% Question (sans le saut de ligne qui la précède par défaut) + corrigé
-% -------------------------- 
-\UPSTIquestion* Question (sans ligne vide, car à la suite d'un titre) On utilise la commande étoilée UPSTIquestion*
-
 \begin{UPSTIcorrige}
-Corrigé de la question... Lorem ipsum dolor sit amet consectetuer Morbi Nunc lacus vitae gravida. Morbi ridiculus non interdum nibh consequat malesuada natoque tincidunt sed neque. Interdum felis quis ut id hendrerit semper natoque nisl Cum ipsum. 
+
 \end{UPSTIcorrige}
-% -------------------------- 
 
+\subsection{Synthèse de la loi de commande de l'exosquelette}
 
-% -------------------------- 
-% Question
-% -------------------------- 
-
-
+\UPSTIobjectif{Élaborer une loi de commande en phase de rééducation à la proprioception de la verticalité et de la marche, et en phase de renforcement musculaire.}
 \begin{UPSTIcorrige}
-Corrigé de la question... Lorem ipsum dolor sit amet consectetuer Morbi Nunc lacus vitae gravida. Morbi ridiculus non interdum nibh consequat malesuada natoque tincidunt sed neque. Interdum felis quis ut id hendrerit semper natoque nisl Cum ipsum.
+
 \end{UPSTIcorrige}
-% -------------------------- 
 
-% -------------------------- 
-% Question sans intitulé... juste le numéro (déconseillé)
-% -------------------------- 
-\UPSTIquestion
-
+%Q 22. 
+\UPSTIquestion Préciser l'expression de la matrice $M$ introduite précédemment en fonction de $M_{1}$ et $M_{3}$.
 \begin{UPSTIcorrige}
-Ici on a une question sans intitulé....
 
-Lorem ipsum dolor sit amet consectetuer Morbi Nunc lacus vitae gravida. Morbi ridiculus non interdum nibh consequat malesuada natoque tincidunt sed neque. Interdum felis quis ut id hendrerit semper natoque nisl Cum ipsum. 
 \end{UPSTIcorrige}
-% -------------------------- 
 
-%---------------------------------%
-% FIN du contenu
-%---------------------------------%
+
 
 \end{document}
