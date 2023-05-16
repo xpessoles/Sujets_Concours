@@ -112,7 +112,7 @@ L'erreur de positionnement du talon est modélisée par une variation autour d'u
 
 Q 2. À l'aide du résultat de la question 1, écrit à la position $\left(Y_{0}, Z_{0}\right)$, puis à la position $\left(Y_{0}+\Delta_{Y}, Z_{0}+\Delta_{Z}\right)$, déterminer les expressions de $\Delta_{Y}$ et $\Delta_{Z}$, en fonction de $\theta_{1,0}, \theta_{2,0}, \Delta_{\theta}, L_{2}$ et $L_{3}$.
 
-Q 3. Déterminer alors $\Delta_{Y Z}$, la norme de la variation de positionnement total du point $D$ dans le plan $\left(\vec{y}_{1}, \vec{z}_{1}\right)$, en fonction de $\theta_{2,0}, \Delta_{\theta}, L_{2}$ et $L_{3}$
+Q 3. Déterminer alors $\Delta_{Y Z}$, la norme de la variation de positionnement total du point $D$ dans le plan $\left(\vec{y}_{1}, \vec{z}_{1}\right)$, en fonction de $\theta_{2,0}, \Delta_{\theta}, L_{2}$ et $L_{3}$.
 
 Le résultat de la question précédente permet alors de relier l'erreur de position du talon $S_{D}$ à l'erreur de position sur les axes $S_{\theta}$, en considérant $\Delta_{Y Z}=S_{D}$ et $\Delta_{\theta}=S_{\theta}$. La figure 5 donne les évolutions sur un pas de marche de $S_{D}$ pour plusieurs valeurs de $S_{\theta}$.
 
@@ -182,7 +182,9 @@ La conception de cette commande nécessite de disposer d'un modèle dynamique de
 La partie IV permettra une synthèse des études menées.
 
 \section{II Élaboration et analyse d'un modèle dynamique de l'exosquelette}
- sement.Afin d'élaborer une commande pour l'exosquelette, il est nécessaire au préalable de définir un modèle dynamique représentatif de son comportement. Seule la commande des articulations sagittales de hanche et de genou d'une jambe lorsqu'elle est décollée du sol (figure 7 et hypothèses associées) sera considérée ici (cas de la marche en ligne droite) avec les hypothèses et notations supplémentaires suivantes, en plus de celles énoncées à la partie précédente :
+Définir un modèle dynamique de l’exosquelette et montrer la nécessité de mettre en place un asservissement
+
+Afin d'élaborer une commande pour l'exosquelette, il est nécessaire au préalable de définir un modèle dynamique représentatif de son comportement. Seule la commande des articulations sagittales de hanche et de genou d'une jambe lorsqu'elle est décollée du sol (figure 7 et hypothèses associées) sera considérée ici (cas de la marche en ligne droite) avec les hypothèses et notations supplémentaires suivantes, en plus de celles énoncées à la partie précédente :
 
 \begin{itemize}
   \item la liaison pivot entre 1 et 2 est équipée d'un actionneur dont le couple de sortie (appliqué par 1 sur 2 ) est noté $C_{1}$;
