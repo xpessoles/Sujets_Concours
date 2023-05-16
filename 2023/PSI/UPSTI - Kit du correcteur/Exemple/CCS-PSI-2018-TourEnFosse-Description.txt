@@ -1,0 +1,5 @@
+Titre: Tour en fosse utilisé pour le reprofilage des roues ferroviaires
+
+La croissance des zones urbaines et le souhait des autorités publiques de réduire la pollution atmosphérique imposent le développement de réseaux de transports en commun fiables et performants tels que les réseaux ferrés (tramways, métropolitains ou trains) qui offrent une capacité de transport largement supérieure à celle des réseaux routiers (bus, taxis, covoiturage) et qui produisent des émissions de CO2 par passager beaucoup plus faibles.
+Afin de garantir la fiabilité d’un réseau ferré, la norme européenne EN-15313 préconise une maintenance régulière des trains, notamment de leurs roues. L’usure excessive d’une roue, due principalement aux frottements sur les rails, peut engendrer une rupture de celle-ci et paralyser pendant plusieurs heures le réseau ferré d’une ville.
+La solution retenue pour redonner une forme correcte à une roue usée est une opération de reprofilage, c’est-à-dire une opération d’enlèvement de matière réalisée par un outil coupant.
