@@ -17,7 +17,7 @@
 % Packages personnalisés
 %---------------------------------%
 % Insérez ici les packages que vous utilisez habituellement
-
+\input{macros_SII_v2}
 
 
 
@@ -117,7 +117,25 @@
 
 
 \UPSTIquestion Déterminer les expressions de $Y$ et $Z$, en fonction de $\theta_{1}, \theta_{2}, L_{2}$ et $L_{3}$.
+
 \begin{UPSTIcorrige}
+Ecrivons la fermeture géométrique dans le triangle $ABD$ : $\vect{AD}+ \vect{DB}+\vect{BA} = \vect{0}$ soit $Y\vect{y_1}+Z\vect{z_1}+ L_3 \vect{z_3}+ L_2 \vect{z_2} = \vect{0}$.
+
+Souhaitant les expressions de $Y$ et $Z$ projetons l'expression dans la base $\left(\vect{y_1},\vect{z_1}\right)$ :
+
+$Y\vect{y_1}+Z\vect{z_1}
++L_3 \left( \cos \left(\theta_1 + \theta_2 \right) \vect{z_1} - \sin \left(\theta_1 + \theta_2 \right) \vect{y_1}\right) 
++ L_2 \left( \cos \left(\theta_1 \right) \vect{z_1} - \sin \left(\theta_1  \right) \vect{y_1}\right)  = \vect{0}$.
+
+On alors :
+$$
+\left\{
+\begin{array}{l}
+Y =  L_3 \sin  \left(\theta_1 + \theta_2 \right)  + L_2 \sin \left(\theta_1  \right) \\
+Z =- L_3 \cos \left(\theta_1 + \theta_2 \right) - L_2 \cos \left(\theta_1 \right)  
+\end{array}.
+\right.
+$$
 
 \end{UPSTIcorrige}
 
