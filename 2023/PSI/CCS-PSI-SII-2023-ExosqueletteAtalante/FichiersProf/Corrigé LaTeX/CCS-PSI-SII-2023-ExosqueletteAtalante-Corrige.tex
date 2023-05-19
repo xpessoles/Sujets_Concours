@@ -116,6 +116,7 @@
 \UPSTIobjectif{Reformuler le cahier des charges global en termes de précision de façon à l'exprimer pour chacun des axes et mettre en évidence la nécessité de la prise en compte du couplage entre les axes dans la synthèse de la loi de commande.}
 
 
+% Q1
 \UPSTIquestion Déterminer les expressions de $Y$ et $Z$, en fonction de $\theta_{1}, \theta_{2}, L_{2}$ et $L_{3}$.
 
 \begin{UPSTIcorrige}
@@ -139,14 +140,98 @@ $$
 
 \end{UPSTIcorrige}
 
+%Q2
 \UPSTIquestion À l'aide du résultat de la question 1, écrit à la position $\left(Y_{0}, Z_{0}\right)$, puis à la position $\left(Y_{0}+\Delta_{Y}, Z_{0}+\Delta_{Z}\right)$, déterminer les expressions de $\Delta_{Y}$ et $\Delta_{Z}$, en fonction de $\theta_{1,0}, \theta_{2,0}, \Delta_{\theta}, L_{2}$ et $L_{3}$.
+
 \begin{UPSTIcorrige}
+D'une part : 
+$
+\left\{
+\begin{array}{l}
+Y_0 =  L_3 \sin  \left(\theta_{1,0}+ \theta_{2,0} \right)  + L_2 \sin \left(\theta_{1,0}  \right) \\
+Z_0 =- L_3 \cos \left(\theta_{1,0} + \theta_{2,0} \right) - L_2 \cos \left(\theta_{1,0} \right)  
+\end{array}.
+\right.
+$
+
+
+D'autre part : 
+$
+\left\{
+\begin{array}{l}
+Y_0 +\Delta_{Y}=  L_3 \sin  \left(\theta_{1,0}+ \theta_{2,0} + 2\Delta_{\theta} \right)  + L_2 \sin \left(\theta_{1,0} + \Delta_{\theta} \right) \\
+Z_0 +\Delta_{Z}=- L_3 \cos \left(\theta_{1,0} + \theta_{2,0}+ 2\Delta_{\theta} \right) - L_2 \cos \left(\theta_{1,0}+\Delta_{\theta} \right)  
+\end{array}.
+\right.
+$
+
+En faisant la différence :
+$
+\left\{
+\begin{array}{l}
+\Delta_{Y}=  L_3 \sin  \left(\theta_{1,0}+ \theta_{2,0} + 2\Delta_{\theta} \right)  + L_2 \sin \left(\theta_{1,0} + \Delta_{\theta} \right)  - L_3 \sin  \left(\theta_{1,0}+ \theta_{2,0} \right)  - L_2 \sin \left(\theta_{1,0}  \right)\\
+\Delta_{Z}=- L_3 \cos \left(\theta_{1,0} + \theta_{2,0}+ 2\Delta_{\theta} \right) - L_2 \cos \left(\theta_{1,0}+\Delta_{\theta} \right)   +  L_3 \cos \left(\theta_{1,0} + \theta_{2,0} \right) + L_2 \cos \left(\theta_{1,0} \right)
+\end{array}.
+\right.
+$
+
+Par suite : 
+
+$
+\left\{
+\begin{array}{ll}
+\Delta_{Y}=&   L_3 \left( \sin \left(\theta_{1,0}+ \theta_{2,0} \right) \cos \left( 2\Delta_{\theta} \right) + \cos \left(\theta_{1,0}+ \theta_{2,0}\right) \sin \left(2\Delta_{\theta} \right)\right) 
++ L_2 \left( \sin \left(\theta_{1,0} \right) \cos \left( \Delta_{\theta} \right) + \cos \left(\theta_{1,0}\right) \sin \left(\Delta_{\theta} \right)\right) \\
+& - L_3 \sin  \left(\theta_{1,0}+ \theta_{2,0} \right)  - L_2 \sin \left(\theta_{1,0}  \right)\\
+\Delta_{Z}=
+&- L_3 \left(\cos \left(\theta_{1,0} + \theta_{2,0}\right) \cos\left(2\Delta_{\theta} \right)
+- \sin \left(\theta_{1,0} + \theta_{2,0}\right) \sin\left(2\Delta_{\theta} \right) \right) \\
+&- L_2 \left(\cos \left(\theta_{1,0} \right) \cos\left(\Delta_{\theta} \right)
+- \sin \left(\theta_{1,0} \right) \sin\left(\Delta_{\theta} \right) \right)\\
+&  +  L_3 \cos \left(\theta_{1,0} + \theta_{2,0} \right) + L_2 \cos \left(\theta_{1,0} \right)
+\end{array}.
+\right.
+$
+
+et
+
+$
+\left\{
+\begin{array}{ll}
+\Delta_{Y}=&   L_3\cos \left(\theta_{1,0}+ \theta_{2,0}\right) \sin \left(2\Delta_{\theta} \right)
++ L_2 \cos \left(\theta_{1,0}\right) \sin \left(\Delta_{\theta} \right)\\
+\Delta_{Z}=& L_3  \sin \left(\theta_{1,0} + \theta_{2,0}\right) \sin\left(2\Delta_{\theta} \right) 
++L_2 \sin \left(\theta_{1,0} \right) \sin\left(\Delta_{\theta} \right)\\
+\end{array}.
+\right.
+$
+
+Par suite, 
+$
+\left\{
+\begin{array}{ll}
+\Delta_{Y}=&  2\Delta_{\theta}  L_3\cos \left(\theta_{1,0}+ \theta_{2,0}\right) 
++\Delta_{\theta}  L_2 \cos \left(\theta_{1,0}\right) \\
+\Delta_{Z}=& 2\Delta_{\theta} L_3  \sin \left(\theta_{1,0} + \theta_{2,0}\right)  
++L_2 \Delta_{\theta}\sin \left(\theta_{1,0} \right) \\
+\end{array}.
+\right.
+$
+
 
 \end{UPSTIcorrige}
 
 \UPSTIquestion Déterminer alors $\Delta_{Y Z}$, la norme de la variation de positionnement total du point $D$ dans le plan $\left(\vec{y}_{1}, \vec{z}_{1}\right)$, en fonction de $\theta_{2,0}, \Delta_{\theta}, L_{2}$ et $L_{3}$.
-\begin{UPSTIcorrige}
 
+\begin{UPSTIcorrige}
+ On a : 
+$\Delta_{Y}^2 + \Delta_{X}^2 = 4\Delta_{\theta}^2L_3^2 + \Delta_{\theta}^2L_2^2 
++ 2\Delta_{\theta}^2 L_2 L_3 \left( \cos \left(\theta_{1,0}+ \theta_{2,0}\right)  \cos \left(\theta_{1,0}\right)
++  \sin \left(\theta_{1,0}+ \theta_{2,0}\right)  \sin \left(\theta_{1,0}\right) \right)$
+
+soit 
+$\Delta_{YZ}^2 = \Delta_{\theta}^2 \left(4L_3^2 + L_2^2 
++ 2 L_2 L_3 \cos \left(\theta_{2,0} \right)\right)$
 \end{UPSTIcorrige}
 
 \UPSTIquestion À partir de la figure 5, déterminer, parmi les valeurs proposées, l'erreur maximale admissible sur les axes $S_{\theta, \max }$ de l'exosquelette Atalante afin d'éviter la chute du patient.
