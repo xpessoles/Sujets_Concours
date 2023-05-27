@@ -18,7 +18,8 @@
 %---------------------------------%
 % Insérez ici les packages que vous utilisez habituellement
 \input{macros_SII_v2}
-
+\usepackage{siunitx}
+\usepackage{amsmath}
 
 
 
@@ -235,11 +236,19 @@ $\Delta_{YZ}^2 = \Delta_{\theta}^2 \left(4L_3^2 + L_2^2
 \end{UPSTIcorrige}
 
 \UPSTIquestion À partir de la figure 5, déterminer, parmi les valeurs proposées, l'erreur maximale admissible sur les axes $S_{\theta, \max }$ de l'exosquelette Atalante afin d'éviter la chute du patient.
+
 \begin{UPSTIcorrige}
+D'après le cahier des charges, l'incertitude de la position du point
+$D$ par rapport au point  $A$  doit être au maximul de $\SI{5}{mm}$. Parmi les 4 figures, seule une incertitude $S_{\theta}=\SI{0,01}{rad}$ permet d'avoir une incertitude $S_D < \SI{5}{mm}$.
 
 \end{UPSTIcorrige}
 
 \UPSTIquestion À partir de la figure 6 et en justifiant la réponse, conclure sur la capacité des asservissements réalisés sans prise en compte du couplage entre les axes à respecter l'exigence 1.2.1.1.
+
+\begin{UPSTIcorrige}
+L'exigence indique que << Le talon doit être positionné à moins de
+\S{5}{mm} de la consigne >>. Pour cela on a vu que l'erreur maximale admissible sur chacun des axes doit être inférieure à \SI{0,01}{rad}. À tout stade de la marche, cette erreur est ici supérieure à \SI{0,01}{rad}. Les asservissments élaborés ne conviennent donc pas.
+\end{UPSTIcorrige}
 
 
 \section{Élaboration et analyse d'un modèle dynamique de l'exosquelette}
@@ -248,23 +257,121 @@ $\Delta_{YZ}^2 = \Delta_{\theta}^2 \left(4L_3^2 + L_2^2
 
 \subsection{Comportement dynamique de l'exosquelette}
 
+%\parametrageAngulaire{\alpha}{\vect{y_3}}{\vect{z_3}}{\vect{x_3}}{\vect{y_3}'}{\vect{z_3}'}
+
 \UPSTIquestion Déterminer les expressions de $L_{0}$ et $\alpha$ en fonction de $l_{0}, L_{3}$ et $l_{3}$, puis calculer leurs valeurs numériques.
+
 \begin{UPSTIcorrige}
+On a $\vect{DB}+\vect{BG_3}+\vect{G_3D} = \vect{0}$ soit $L_3\vect{z_3}-L_0\vect{z_3}'-l_0\vect{y_3}-l_3\vect{z_3} = \vect{0}$. 
+
+En projetant dans la base $\mathcal{B}_3$ on a 
+$L_3\vect{z_3}-L_0\left(\cos\alpha \vect{z_3} - \sin\alpha \vect{y_3} \right)-l_0\vect{y_3}-l_3\vect{z_3} = \vect{0}$ puis : 
+$
+\left\{ \begin{array}{l}
+L_0 \sin\alpha -l_0 = 0 \\
+L_3-L_0 \cos\alpha -l_3 = 0
+\end{array}
+\right.
+$
+
+$
+\Rightarrow 
+\left\{ \begin{array}{l}
+L_0 \sin\alpha = l_0  \\
+L_0 \cos\alpha  = L_3 - l_3 
+\end{array}
+\right.
+$.
+On a donc $L_0 =\sqrt{l_0 ^2 + \left(L_3- l_3\right)^2}$ et $\alpha = \arcsin \left(\dfrac{l_0}{L_0}\right)$.
+
+\textit{Applications numériques : } $L_0= \SI{0,32}{m}$ et $\alpha \simeq \SI{0,67}{rad} \simeq 39\degres$.
 
 \end{UPSTIcorrige}
 
-\UPSTIquestion Déterminer l'expression de l'accélération du point $G_{3}$ (cf. annexe B et question 6) appartenant à l'ensemble \{pied+tibia\} 3 dans son mouvement par rapport au buste 1 , en fonction de $L_{0}, L_{2}, \theta_{1}, \theta_{2}$ et leurs dérivées temporelles.
+\UPSTIquestion Déterminer l'expression de l'accélération du point $G_{3}$ (cf. annexe B et question 6) appartenant à l'ensemble \{pied+tibia\} 3 dans son mouvement par rapport au buste 1, en fonction de $L_{0}, L_{2}, \theta_{1}, \theta_{2}$ et leurs dérivées temporelles.
+
 \begin{UPSTIcorrige}
+\begin{tabular}{p{.68\linewidth}| p{.3\linewidth}}
+On cherche $\vectg{G_3}{3}{1} = \deriv{\vectv{G_3}{3}{1}}{\rep{1}}$.
+
+$\vectv{G_3}{3}{1} = \deriv{\vect{AB}+\vect{BG_3}}{\rep{1}}$
+$= \deriv{-L_2 \vect{z_2} -L_0 \vect{z_3}'}{\rep{1}}$
+
+$=L_2 \thetap_1\vect{y_2}  +L_0  \left(\thetap_1 + \thetap_2 \right)\vect{y_3}'$.
+&
+$\deriv{\vect{z_3}'}{\rep{1}} $ $=\vecto{3}{1}\wedge \vect{z_3}' $
+
+$= \left(\thetap_1 + \thetap_2 \right)\vect{x_3} \wedge \vect{z_3}' $
+
+$= - \left(\thetap_1 + \thetap_2 \right)\vect{y_3}' $ 
+\\
+\end{tabular}
+
+Par suite, 
+$\vectg{G_3}{3}{1} = L_2 \thetapp_1\vect{y_2}  +L_2 \thetap_1^2\vect{z_2}  + L_0  \left(\thetapp_1 + \thetapp_2 \right)\vect{y_3}'+ L_0  \left(\thetap_1 + \thetap_2 \right)^2\vect{z_3}'$.
+
 
 \end{UPSTIcorrige}
 
-\UPSTIquestion Déterminer l'expression de la projection suivant $\vec{x}_{1}$ du moment dynamique en $A$ de l'ensemble $\{$ pied+tibia $\}$ 3 dans son mouvement par rapport au buste $1, \vec{\delta}_{A, 3 / 1} \cdot \vec{x}_{1}$, sous la forme :
+\UPSTIquestion Déterminer l'expression de la projection suivant $\vec{x}_{1}$ du moment dynamique en $A$ de l'ensemble \{pied+tibia\} 3 dans son mouvement par rapport au buste $1, \vec{\delta}_{A, 3 / 1} \cdot \vec{x}_{1}$, sous la forme :
 $$
 \vec{\delta}_{A, 3 / 1} \cdot \vec{x}_{1}=A_{1} \ddot{\theta}_{1}+A_{2} \ddot{\theta}_{2}+A_{3} \dot{\theta}_{1}^{2}+A_{4}\left(\dot{\theta}_{1}+\dot{\theta}_{2}\right)^{2}
 $$
 Préciser les expressions littérales de $A_{1}, A_{2}, A_{3}$ et $A_{4}$ en fonction des différentes caractéristiques géométriques, de masses et d'inerties de l'exosquelette.
-\begin{UPSTIcorrige}
 
+\begin{UPSTIcorrige}
+On cherche $\vectmd{A}{3}{1} \cdot \vect{x_1}$.
+
+On a  $\vectmd{A}{3}{1} \cdot \vect{x_1}$  
+$= \left(\vectmd{G_3}{3}{1}  + \vect{AG_3} \wedge m_3 \vectg{G_3}{3}{1}\right)  \cdot \vect{x_1}$ 
+$= \left(\deriv{\vectmc{G_3}{3}{1}}{\rep{1}}  + \vect{AG_3} \wedge m_3 \vectg{G_3}{3}{1}\right)  \cdot \vect{x_1}$.
+
+Or, en $G_3$, centre d'inertie de 3, $\vectmc{G_3}{3}{1} = \inertie{G_3}{3}\vecto{3}{1}$
+$ = \matinertie{I_{x3}}{I_{y3}}{I_{z3}}{I_{yz3}}{0}{0}{\bas{3}} \cdot \left(\thetap_1 + \thetap_2 \right) \vect{x_3}$ $=I_{x3}\left(\thetap_1 + \thetap_2 \right) \vect{x_3} $.
+
+Par suite, $\vectmd{A}{3}{1} \cdot \vect{x_1}$  
+$= \left(\deriv{\vectmc{G_3}{3}{1}}{\rep{1}} \cdot \vect{x_1} + \left(\vect{AG_3} \wedge m_3 \vectg{G_3}{3}{1}\right)\cdot \vect{x_1} \right)  $
+
+$= \left(\deriv{\vectmc{G_3}{3}{1}\cdot \vect{x_1}}{\rep{1}} - \vectmc{G_3}{3}{1}\cdot \underbrace{\deriv{ \vect{x_1}}{\rep{1}}}_{0}   + \left(\vect{AG_3} \wedge m_3 \vectg{G_3}{3}{1}\right)\cdot \vect{x_1} \right)  $
+
+$= I_{x3}\left(\thetapp_1 + \thetapp_2 \right)     + \left(\left( -L_2 \vect{z_2}-L_0 \vect{z_3}' \right) \wedge m_3 \left( L_2 \thetapp_1\vect{y_2}  +L_2 \thetap_1^2\vect{z_2}  + L_0  \left(\thetapp_1 + \thetapp_2 \right)\vect{y_3}'+ L_0  \left(\thetap_1 + \thetap_2 \right)^2\vect{z_3}'\right)\right)\cdot \vect{x_1}  $
+
+
+$= I_{x3}\left(\thetapp_1 + \thetapp_2 \right)     
+-L_2  m_3  \left( \vect{z_2}  \wedge\left( L_2 \thetapp_1\vect{y_2}  +L_2 \thetap_1^2\vect{z_2}  + L_0  \left(\thetapp_1 + \thetapp_2 \right)\vect{y_3}'+ L_0  \left(\thetap_1 + \thetap_2 \right)^2\vect{z_3}'\right)\right)\cdot \vect{x_1} 
+$
+$
+ -L_0  m_3 \left(\left(\vect{z_3}' \right) \wedge \left( L_2 \thetapp_1\vect{y_2}  +L_2 \thetap_1^2\vect{z_2}  + L_0  \left(\thetapp_1 + \thetapp_2 \right)\vect{y_3}'+ L_0  \left(\thetap_1 + \thetap_2 \right)^2\vect{z_3}'\right)\right)\cdot \vect{x_1}  $
+
+
+$= I_{x3}\left(\thetapp_1 + \thetapp_2 \right)     
+-L_2  m_3  \left( \left( L_2 \thetapp_1\vect{z_2}  \wedge\vect{y_2}  +L_2 \thetap_1^2\vect{z_2}  \wedge\vect{z_2}  + L_0  \left(\thetapp_1 + \thetapp_2 \right)\vect{z_2}  \wedge\vect{y_3}'+ L_0  \left(\thetap_1 + \thetap_2 \right)^2\vect{z_2}  \wedge\vect{z_3}'\right)\right)\cdot \vect{x_1} 
+ -L_0  m_3 \left( \left( L_2 \thetapp_1\vect{z_3}'  \wedge\vect{y_2}  +L_2 \thetap_1^2\vect{z_3}'  \wedge\vect{z_2}  + L_0  \left(\thetapp_1 + \thetapp_2 \right)\vect{z_3}'  \wedge \vect{y_3}'+ L_0  \left(\thetap_1 + \thetap_2 \right)^2\vect{z_3}'  \wedge\vect{z_3}'\right)\right)\cdot \vect{x_1}  $
+ 
+$= I_{x3}\left(\thetapp_1 + \thetapp_2 \right)     
+-L_2  m_3   \left(- L_2 \thetapp_1  
+- L_0  \left(\thetapp_1 + \thetapp_2 \right) \cos\left( \theta_2+\alpha\right)
++ L_0  \left(\thetap_1 + \thetap_2 \right)^2\sin\left( \theta_2+\alpha\right)\right)
+ -L_0  m_3 \left( - L_2 \thetapp_1 \cos\left( \theta_2+\alpha \right)  
+ -L_2 \thetap_1^2\sin\left( \theta_2+\alpha\right)  
+ - L_0  \left(\thetapp_1 + \thetapp_2 \right)\right)  $
+
+
+$= 
+\thetapp_1\left(I_{x3} + m_3 L_2^2 +L_2  m_3 L_0   \cos\left( \theta_2+\alpha\right) +  m_3 L_0 L_2  \cos\left( \theta_2+\alpha \right) +   m_3 L_0^2 \right)
++\thetapp_2\left(I_{x3} +L_2  m_3 L_0  \cos\left( \theta_2+\alpha\right) +   m_3 L_0^2 \right)
++\thetap_1^2\left( m_3 L_0 L_2 \sin\left( \theta_2+\alpha\right)\right)
++\left(\thetap_1 + \thetap_2 \right)^2\left(-L_2  m_3 L_0  \sin\left( \theta_2+\alpha\right) \right) 
+$
+
+
+Soit : $ \left\{ \begin{array}{l}
+A_1 = I_{x3} + m_3 L_2^2 + m_3 L_0 L_2 \cos\left( \theta_2+\alpha\right) +  m_3 L_0 L_2  \cos\left( \theta_2+\alpha \right) +   m_3 L_0^2  \\
+B_1 = I_{x3} + m_3 L_0 L_2 \cos\left( \theta_2+\alpha\right) +   m_3 L_0^2  \\
+C_1 = m_3 L_0 L_2 \sin\left( \theta_2+\alpha\right) \\
+D_1 =-m_3 L_0L_2    \sin\left( \theta_2+\alpha\right)  \\
+\end{array}\right.
+$.
 \end{UPSTIcorrige}
 
 \UPSTIquestion Proposer une démarche permettant de déterminer l'expression de $C_{1}$, l'action mécanique exercée sur la cuisse 2 par l'actionneur correspondant. Préciser le(les) ensemble(s) isolé(s), le(s) bilan(s) des actions mécaniques extérieurs, le(s) théorème(s) utilisé(s) et la(les) équation(s) utile(s).

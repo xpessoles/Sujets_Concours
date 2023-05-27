@@ -1,0 +1,37 @@
+Gestion de versions de grands textes 
+
+Dans ce sujet, on s'intéresse à des textes de grande taille auxquels plusieurs auteurs apportent
+des modifications au cours du temps. Ces textes peuvent par exemple être des programmes
+informatiques développés par de multiples auteurs. Il est important de pouvoir efficacement
+gérer les différentes versions de ces programmes au cours de leur développement et limiter le
+stockage et la transmission d'informations redondantes. Nous allons pour cela nous intéresser à
+une notion de \textit{différentiels} entre textes. 
+
+\begin{defi}{Complexité}
+La complexité, ou le temps d'exécution, d'une fonction $P$ est le nombre d'opérations élémentaires (addition, multiplication, affectation, test, etc ...) nécessaires à l'exécution
+de $P$ dans le cas le pire. Lorsque la complexité dépend d'un ou plusieurs paramètres $\kappa_1$, ..., $\kappa_r$, on dit que $A$ a une complexité en $\mathcal{O}\left( f \left(\kappa_1, ..., \kappa_r  \right)\right)$ s'il existe une constante $C > 0$ telle que,
+pour toutes les valeurs de $\kappa_1$, ..., $\kappa_r$ suffisamment grandes (c'est-à-dire plus grandes qu'un certain seuil), pour toute instance du problème de paramètres $\kappa_1$, ..., $\kappa_r$, la complexité est au plus
+$C \cdot f \left(\kappa_1, ..., \kappa_r  \right)$.
+\end{defi}
+
+Lorsqu'il est demandé de donner la complexité d'un programme, le candidat devra justifier
+cette dernière si elle ne se déduit pas directement de la lecture du code. 
+
+\textbf{Rappels concernant le langage}  \texrttt{Python}
+Ce sujet utilise les types Python listes et dictionnaires, mais seules les opérations mentionnées ci-dessous sont autorisées dans vos réponses. Quand une complexité est indiquée avec un symbole (*), cela signifie que nous faisons une hypothèse
+simplificatrice sur sa complexité. La justification de cette simplification est hors-programme. 
+
+Si \lstinline{l}, \lstinline{l1}, \lstinline{l2} désignent des listes en \lstinline{Python} : 
+\begin{itemize}
+\item  \lstinline{len(l)} renvoie la longueur de la liste \lstinline{l}, c'est-à-dire le nombre d'éléments qu'elle contient.
+Complexité en $\mathcal{O}(1)$;
+\item  \lstinline{l1 == l2} teste l'égalité des listes \lstinline{l1} et \lstinline{l2}. Complexité en $\mathcal{O}(n)$ avec $n$ le minimum de \lstinline{len(l1)} et \lstinline{len(l2)};
+\item  \lstinline{l[i]} désigne le \lstinline{i}-ème élément de la liste \lstinline{l}, où l'indice \lstinline{i} est compris entre \lstinline{0} et \lstinline{len(l)-1}. Complexité en $\mathcal{O}(1)$.
+\item  \lstinline{l[i: j]} construit la sous-liste \lstinline{[l[i] , ... , l[j-1]]}. Complexité en $\mathcal{O}(j-i)$. L'usage d~
+variantes \lstinline{l[i:]} à la place de \lstinline{l[i:len(l)]}, et de \lstinline{l[:j]} à la place de \lstinline{l[0:j]} est aussi
+autorisé. 
+\item \lstinline{l.append(e)} modifie la liste \lstinline{l} en lui ajoutant l'élément e en dernière position. Complexité
+en $\mathcal{O}(1)$ (*).
+\item \lstinline{l.pop()} renvoie le dernier élément de la liste \lstinline{l} (supposée non vide) et supprime l'occurrence
+de cet élément en dernière position dans la liste. Complexité en $\mathcal{O}(1)$ (*).
+\end{itemize} 
