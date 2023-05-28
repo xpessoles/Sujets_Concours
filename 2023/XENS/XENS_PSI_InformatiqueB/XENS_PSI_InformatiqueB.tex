@@ -17,7 +17,7 @@ $C \cdot f \left(\kappa_1, ..., \kappa_r  \right)$.
 Lorsqu'il est demandé de donner la complexité d'un programme, le candidat devra justifier
 cette dernière si elle ne se déduit pas directement de la lecture du code. 
 
-\textbf{Rappels concernant le langage}  \texrttt{Python}
+\textbf{Rappels concernant le langage}  \texttt{Python}
 Ce sujet utilise les types Python listes et dictionnaires, mais seules les opérations mentionnées ci-dessous sont autorisées dans vos réponses. Quand une complexité est indiquée avec un symbole (*), cela signifie que nous faisons une hypothèse
 simplificatrice sur sa complexité. La justification de cette simplification est hors-programme. 
 
@@ -35,3 +35,137 @@ en $\mathcal{O}(1)$ (*).
 \item \lstinline{l.pop()} renvoie le dernier élément de la liste \lstinline{l} (supposée non vide) et supprime l'occurrence
 de cet élément en dernière position dans la liste. Complexité en $\mathcal{O}(1)$ (*).
 \end{itemize} 
+
+On pourra aussi utiliser la fonction range pour réaliser des itérations.
+Si d est un dictionnaire Python :
+\begin{itemize}
+\item \{\lstinline{key_1: v_1, ..., key_n: v_n}\} crée un nouveau dictionnaire en associant chaque valeur
+\lstinline{v_i} à une clé \lstinline{key_i}. Complexité en $\mathcal{O}(n)$ (*).
+\item \lstinline{d[key]} renvoie la valeur associée à la clé \lstinline{key} dans \lstinline{d} et lève une erreur si la clé key n`est
+pas présente. Complexité en $\mathcal{O}(1)$ (*).
+\item \lstinline{d[key] = v} modifie \lstinline{d} pour associer la valeur \lstinline{v} à la clé \lstinline{key}, même si la clé \lstinline{key} n`est pas
+présente dans \lstinline{d} initialement. Complexité en $\mathcal{O}(1)$ (*).
+\item \lstinline{key} in \lstinline{d} teste si la clé \lstinline{key} est présente dans \lstinline{d}. Complexité en $\mathcal{O}(1)$ (*).
+\end{itemize}
+
+Sauf mention contraire, les fonctions à écrire ne doivent pas modifier leurs entrées.
+
+
+
+La structure de données texte. Dans ce sujet, on appelle texte une liste de caractères. Par
+exemple, \lstinline{[`b`, `i`, `n`, `g`, `o`]} est un texte de longueur 5.
+
+
+\section*{Partie I : Différentiels par positions fixes}
+Dans cette partie, nous traitons le problème avec une hypothèse simplificatrice : les textes
+comparés ont toujours la même taille.
+
+%Question 1. 
+\question{Sans utiliser le test \lstinline{==} sur les listes, écrire une fonction 
+\lstinline{textes_égaux(texte1,texte2)} qui teste si deux textes sont égaux. Donner la complexité de cette fonction.}
+
+Exemples
+\begin{lstlisting}
+>>> textes_égaux([`v`, `i`, `s`, `a`], [`v`, `a`, `i`, `s`])
+False
+>>> textes_égaux([`v`, `i`, `s`, `a`], [`v`, `i`, `s`, `a`])
+True
+\end{lstlisting}
+
+Dans la suite de ce sujet, on pourra utiliser \lstinline{==} sur les listes plutôt que cette fonction.
+
+
+Si deux textes ne sont pas égaux mais ont la même longueur n, on souhaite compter le nombre
+de positions qui diffèrent, c`est à dire déterminer combien il existe de positions $i$ ($0\leq i < n$)
+telles que les caractères en position $i$ sont différents dans les deux textes.
+
+\question{Écrire une fonction \lstinline{distance(texte1, texte2)} qui calcule cette quantité. On
+supposera que les deux textes ont le même nombre de caractères. Donner la complexité de cette
+fonction.}
+
+Exemples
+\begin{lstlisting}
+>>> distance([`v`, `i`, `s`, `a`], [`v`, `a`, `i`, `s`])
+3
+>>> distance([`a`, `v`, `i`, `s`], [`v`, `i`, `s`, `a`])
+4
+\end{lstlisting}
+
+
+%Question 3. 
+\question{En vous aidant d`un dictionnaire dont les clés sont des caractères, écrire une fonction \lstinline{aucun_caractère_commun(texte1, texte2)} qui renvoie \lstinline{True} si et seulement si l`ensemble
+des caractères qui apparaissent dans \lstinline{texte1} est disjoint de l`ensemble des caractères qui apparaissent dans \lstinline{texte2}. Les deux textes peuvent avoir ici des longueurs différentes. Cette fonction devra avoir une complexité $\mathcal{O}\left(\text{len(texte1)} + \text{len(texte2)}\right)$.}
+
+Exemples
+\begin{lstlisting}
+>>> aucun_caractère_commun([`a`, `v`, `i`, `s`], [`v`, `i`, `s`, `a`])
+False
+>>> aucun_caractère_commun([`a`, `v`, `i`, `s`], [`u`, `r`, `n`, `e`])
+True
+\end{lstlisting}
+
+Nous introduisons maintenant une structure de données spécifique pour représenter un différentiel par positions fixes entre deux textes.
+La Figure 1 présente un exemple de couple de textes (texte1, texte2) qui diffèrent sur 4
+tranches (représentées par des zones grisées sur la figure). En dehors des tranches, les textes sont
+égaux.
+
+\begin{figure}[H]
+\caption{Exemple de couple (texte1, texte2) dont on veut calculer le différentiel (sur des
+positions fixes)}
+\end{figure}
+
+\textbf{La structure de données tranche.} Une tranche est un dictionnaire avec trois clés \lstinline{`début`},
+\lstinline{`avant`} et \lstinline{`après`}. La valeur associée à la clé \lstinline{`début`} est le premier indice de la tranche, les
+extes associés aux clés \lstinline{`avant`} et \lstinline{`après`} représentent les textes (de même longueur) de la
+tranche avant et après modification. Dans la suite de cette partie, on s`appuiera sur les fonctions
+suivantes pour manipuler cette structure.
+
+
+\begin{lstlisting}
+def tranche(arg_début, arg_avant, arg_après):
+    return {`début`: arg_début, `avant`: arg_avant, `après`: arg_après}
+
+def début(tr):
+    return tr[`début`]
+
+def après(tr):
+    return tr[`après`]
+
+def avant(tr):
+    return tr[`avant`]
+
+def fin(tr):
+    return début(tr) + len(après(tr))
+\end{lstlisting}
+
+Nous ne fournissons pas de fonction pour modifier une tranche car nous souhaitons traiter
+cette structure de données comme une structure immuable\footnote{On rappelle qu’une structure immuable est une structure qui n’est jamais modifiée. C’est par exemple le
+cas des chaînes et des tuples en Python.}.
+On peut représenter le différentiel de la Figure 1, par la liste suivante :
+
+\begin{lstlisting}
+[
+tranche(3, [`g`, `r`, `a`, `n`, `d`], [`p`, `e`, `t`, `i`, `t`]),
+tranche(11, [`â`, `t`, `e`, `a`, `u`], [`i`, `e`, `n`, ` `, `a`]),
+tranche(17, [`f`], [`s`]),
+tranche(19, [`r`, `t`], [`i`, `f`])
+]
+\end{lstlisting}
+
+\textbf{La structure de données \textit{différentiel}}. Un \textit{différentiel} est une liste (potentiellement vide)
+de tranches \lstinline{[tr1, ..., trk]} représentant des modifications touchant des zones distinctes d’un
+texte, telle que :
+\begin{itemize}
+\item \lstinline{début(tr1)} $<$ \lstinline{fin(tr1)} $<$ ... $<$ \lstinline{début(trk) < fin(trk)};
+\item pour tout $j \in [1, k]$, pour tout $i \in$ \lstinline{[0, len(avant(trj ))-1]}, \lstinline{avant(trj )[i]} $\neq$ \lstinline{après(trj)[i]}.  
+\end{itemize}
+
+\textbf{Existence et unicité d’un différentiel par positions fixes.} Pour deux textes \lstinline{texte1} et
+\lstinline{texte2} de même longueur $n$, il existe un unique différentiel \lstinline{[tr1, ..., trk]} tel que :
+\begin{itemize}
+\item si $k > 0$, alors $0 \leq$ \lstinline{début(tr1)} et \lstinline{fin(trk)} $\leq n $;
+\item pour tout $j \in [1, k]$, \lstinline{texte1[début(trj ) : fin(trj )] = avant(trj)};
+\item pour tout $j \in [1, k]$, \lstinline{texte2[début(trj ) : fin(trj )] = après(trj)};
+\item pour tout $i \in [0, n-1]$, si $i \notin \cup_{1\leq j \leq k}$
+\lstinline{[début(trj), fin(trj )-1]}, alors \lstinline{texte1[i] = texte2[i]}.
+\end{itemize}
