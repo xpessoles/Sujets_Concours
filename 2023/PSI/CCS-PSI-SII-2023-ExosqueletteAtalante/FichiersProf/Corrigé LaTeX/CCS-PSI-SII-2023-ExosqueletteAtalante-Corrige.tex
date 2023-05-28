@@ -382,7 +382,7 @@ $.
 \begin{itemize}
 \item liaison pivot en $A$ telle que $\vectm{A}{1}{2}\cdot \vect{x_1} = 0$;
 \item actionneur de 1 sur 2 tel que  $\vectm{A}{1}{2_m}\cdot \vect{x_1} = C_1$;
-\item actionneur du patien sur la hanche telle que  $\vectm{A}{1}{2_p}\cdot \vect{x_1} = \indice{C}{hanche}$;
+\item action du patient sur la hanche telle que  $\vectm{A}{1}{2_p}\cdot \vect{x_1} = \indice{C}{hanche}$;
 \item action de la pesanteur sur 2 en $G_2$;
 \item action de la pesanteur sur 3 en $G_3$.
 \end{itemize}
@@ -473,14 +473,93 @@ m_{3} g L_{0} \sin \left(\theta_{2}+\theta_{1}+\alpha\right) \\
 $$
 H_{L 4}(p)=\frac{a_{0}+a_{1} p+a_{2} p^{2}}{1+b_{1} p+b_{2} p^{2}+b_{3} p^{3}+b_{4} p^{4}}.
 $$
+
 \begin{UPSTIcorrige}
+On a $
+\begin{pmatrix}
+C_1 \\
+C_2
+\end{pmatrix}
+=\begin{pmatrix}
+3,4 & 2,6 \\
+2,6 & 1,9
+\end{pmatrix} \begin{pmatrix}
+\thetapp_1 \\
+\thetapp_2
+\end{pmatrix}
++
+\begin{pmatrix}
+-11,5 & -19,2 \\
+7,7 & 0
+\end{pmatrix} \begin{pmatrix}
+\thetap_1 \\
+\thetap_2
+\end{pmatrix}
++
+\begin{pmatrix}
+108,2 & 5,2 \\
+15,9 & 17,1
+\end{pmatrix} 
+\begin{pmatrix}
+\theta_1 \\
+\theta_2
+\end{pmatrix}-
+\begin{pmatrix}
+\indice{C}{hanche} \\
+\indice{C}{genou}
+\end{pmatrix}
+$; donc : 
+
+$C_1(p) = 3,4 p^2 \theta_1(p) + 2,6p^2\theta_2(p) - 11,5 p\theta_1(p) - 19,2p\theta_2(p) + 108,2\theta_1(p) + 5,2\theta_2(p) - \indice{C}{hanche}(p)$
+
+$C_2(p) = 2,6 p^2 \theta_1(p) + 1,9 p^2\theta_2(p) + 7,7 p\theta_1(p) + 15,9\theta_1(p) + 17,1\theta_2(p) - \indice{C}{genou}(p)$.
+
+En utilisant les hypothèses, on a :
+
+$\left\{
+\begin{array}{l} 
+0= 3,4 p^2 \theta_1(p) + 2,6p^2\theta_2(p) - 11,5 p\theta_1(p) - 19,2p\theta_2(p) + 108,2\theta_1(p) + 5,2\theta_2(p) \\
+C_2(p) = 2,6 p^2 \theta_1(p) + 1,9 p^2\theta_2(p) + 7,7 p\theta_1(p) + 15,9\theta_1(p) + 17,1\theta_2(p) \\
+\end{array}
+\right.$
+
+$\Rightarrow \left\{
+\begin{array}{l} 
+0= \left(3,4 p^2 - 11,5 p + 108,2\right) \theta_1(p) + \left(2,6p^2 - 19,2p + 5,2\right)\theta_2(p) \\
+C_2(p) = \left( 2,6 p^2 + 7,7 p + 15,9\right)\theta_1(p) + \left( 1,9 p^2+ 17,1\right)\theta_2(p) \\
+\end{array}
+\right.$.
+
+On a donc 
+$C_2(p) = - \left( 2,6 p^2 + 7,7 p + 15,9\right)\dfrac{2,6p^2 - 19,2p + 5,2}{3,4 p^2 - 11,5 p + 108,2}\theta_2(p) + \left( 1,9 p^2+ 17,1\right)\theta_2(p) $
+
+$\Rightarrow C_2(p) = \left( \left( 2,6 p^2 + 7,7 p + 15,9\right)\left(-2,6p^2 + 19,2p - 5,2\right) + \left(3,4 p^2 - 11,5 p + 108,2\right) \left( 1,9 p^2+ 17,1\right)\right)\dfrac{\theta_2(p)}{3,4 p^2 - 11,5 p + 108,2} $
+
+$\Rightarrow C_2(p) = 
+\left(p^4 \left( - 2,6 ^2 +3,4 \times 1,9 \right)
++p^3 \left( 1,6 \times 19,2 - 7,7 \times 2,6  -11,5 \times 1,9\right) 
++p^2 \left( -2,6 \times 5,2 +7,7 \times 19,2 - 2,6 \times 15,9 +3,4 \times 17,1 +108,2 \times 1,9 \right) 
++p \left( -7,7 \times 5,2 + 15,9 \times 19,2 -11,5 \times 17,1\right)
+- 15,9 \times 5,2 +108,2 \times 17,1\right)\dfrac{\theta_2(p)}{3,4 p^2 - 11,5 p + 108,2} $
+
+
+$\Rightarrow \dfrac{\theta_2(p)}{C_2(p)} =\dfrac{3,4 p^2 - 11,5 p + 108,2} {\left(p^4 \left( - 2,6 ^2 +3,4 \times 1,9 \right)
++p^3 \left( 1,6 \times 19,2 - 7,7 \times 2,6  -11,5 \times 1,9\right) 
++p^2 \left( -2,6 \times 5,2 +7,7 \times 19,2 - 2,6 \times 15,9 +3,4 \times 17,1 +108,2 \times 1,9 \right) 
++p \left( -7,7 \times 5,2 + 15,9 \times 19,2 -11,5 \times 17,1\right)
+- 15,9 \times 5,2 +108,2 \times 17,1\right)}$
+
+
+Par suite, $b_4 = -17 \times 10^{-5}$, $b_3 = -31 \times 10^{-5}$, $b_2=20 \times 10^{-2} $ et $b_1 = 39 \times 10^{-3}$.
+De plus, $a_0 = 192\times 10^{-5}$, $a_1=-650\times 10^{-5}$ $a_2 =  6122\times 10^{-5}$.
 
 \end{UPSTIcorrige}
 
 
 \UPSTIquestion Au regard de cette fonction de transfert, justifier le besoin de la mise en place d'un asservissement pour l'exosquelette.
-\begin{UPSTIcorrige}
 
+\begin{UPSTIcorrige}
+Pour qu'une fonction de transfert soit stable, ses zeros doivent être à partie réelle strictement négative, ce qui n'est pas le cas. Un asservissement est nécessaire pour stabiliser le système.
 \end{UPSTIcorrige}
 
 \section{Conception et analyse de lois de commande de l’exosquelette}
@@ -491,12 +570,16 @@ $$
 
 %Q 14.
 \UPSTIquestion Déterminer l'expression de l'accélération du point $G_{3}$ appartenant à l'ensemble \{pied+tibia\} 3 dans son mouvement par rapport à la cuisse 2 en fonction de $L_{0}, \theta_{2}$ et ses dérivées.
+
 \begin{UPSTIcorrige}
+On cherche $\vectg{G_3}{3}{2} = \deriv{\vectv{G_3}{3}{2}}{\rep{3}}$ $= \dderiv{-L_0 \vect{z_3}'}{\rep{3}}$
+$= \deriv{L_0 \thetap_2 \vect{y_3}'}{\rep{3}}$
+$= L_0 \thetapp_2 \vect{y_3}' +L_0 \thetap_2^2 \vect{z_3}' $.
 
 \end{UPSTIcorrige}
 
 %Q 15.
-\UPSTIquestion Par application du théorème du moment dynamique à l'ensemble \{pied+tibia 3 au point B, projeté suivant la direction $\vec{x}_{1}$, donner l'expression de $C_{2}$ sous la forme :
+\UPSTIquestion Par application du théorème du moment dynamique à l'ensemble \{pied+tibia\} 3 au point $B$, projeté suivant la direction $\vec{x}_{1}$, donner l'expression de $C_{2}$ sous la forme :
 
 $$
 C_{2}=A_{\mathrm{eq}} \ddot{\theta}_{2}+C_{r}
@@ -505,6 +588,35 @@ $$
 Préciser les expressions de $A_{\textrm{eq}}$ en fonction de $I_{x 3}, m_{3}, L_{0}$ et de $C_{r}$ en fonction de $C_{\textrm{genou}}, m_{3}, L_{0}, \alpha$ et $\theta_{2}$. Faire l'application numérique pour $A_{e q}$.
 \begin{UPSTIcorrige}
 
+Pour calculer $\vectmd{B}{3}{2} \cdot \vect{x_1}$, on reprend le raisonnement de la question 8 :  
+
+ $\vectmd{B}{3}{2} \cdot \vect{x_1}$  
+$= \left(\deriv{\vectmc{G_3}{3}{2}}{\rep{1}} \cdot \vect{x_1} + \left(\vect{BG_3} \wedge m_3 \vectg{G_3}{3}{1}\right)\cdot \vect{x_1} \right)  $
+
+$= \left(\deriv{\vectmc{G_3}{3}{2}\cdot \vect{x_1}}{\rep{1}} - \vectmc{G_3}{3}{2}\cdot \underbrace{\deriv{ \vect{x_1}}{\rep{1}}}_{0}   + \left(\vect{BG_3} \wedge m_3 \vectg{G_3}{3}{2}\right)\cdot \vect{x_1} \right)  $
+
+$=I_{x3}\thetapp_2 +\left( -L_0 \vect{z_3}'	 \wedge m_3  \left( L_0 \thetapp_2 \vect{y_3}' +L_0 \thetap_2^2 \vect{z_3}' \right)\right)\cdot \vect{x_1}$
+
+
+$=I_{x3}\thetapp_2 + m_3 L_0^2 \thetapp_2  $.
+
+Bilan des actions mécaniques : 
+\begin{itemize}
+\item liaison pivot en $B$ telle que $\vectm{B}{2}{3}\cdot \vect{x_1} = 0$;
+\item actionneur de 2 sur 3 tel que  $\vectm{B}{2}{3_m}\cdot \vect{x_1} = C_2$;
+\item action du patient sur le genou telle que  $\vectm{B}{2}{3_p}\cdot \vect{x_1} = \indice{C}{genou}$;
+\item action de la pesanteur sur 3 en $G_3$ : $\vectm{B}{Pes}{3} = \vect{BG_3}\wedge -m_3 g\vect{z_2}$ $= -L_0 \vect{z_3'}\wedge -m_3 g\vect{z_2}$
+$= - L_0 m_3 g \sin\left(\theta_2 + \alpha\right)\vect{x_1}$
+\end{itemize}
+
+Le TMD appliqué à 3 en $B$ projeté sur $\vect{x_1}$ se traduit donc par : 
+$C_2 +\indice{C}{genou} - L_0 m_3 g \sin\left(\theta_2 + \alpha\right)=I_{x3}\thetapp_2 + m_3 L_0^2 \thetapp_2  $.
+
+On a donc $C_2 = \left( I_{x3} + m_3 L_0^2 \right)\thetapp_2  - \indice{C}{genou} + L_0 m_3 g \sin\left(\theta_2 + \alpha\right) $.
+
+On a donc : $\indice{A}{eq} = I_{x3} + m_3 L_0^2$ et $C_r =  - \indice{C}{genou} + L_0 m_3 g \sin\left(\theta_2 + \alpha\right)$.
+
+\textit{Application numérique :} $\indice{A}{eq} =\SI{1,925}{kg.m^2}$.
 \end{UPSTIcorrige}
 
 
