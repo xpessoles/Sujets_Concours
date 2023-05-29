@@ -130,6 +130,19 @@ des caractères qui apparaissent dans \lstinline{texte1} est disjoint de l'ensem
 \begin{lstlisting}
 def aucun_caractère_commun(texte1, texte2) :
     # Création d'un dictionnaire listant les caractères
+    dico = {}
+
+    # On met dans dico l'ensemble des caractères de texte1
+    for lettre in texte1 : 
+        if lettre not in dico : 
+            dico[lettre]=True
+    
+    # On vérifie que les lettres de texte2 ne sont pas dans dico
+    for lettre in texte2 : 
+        if lettre in dico : 
+            return False
+    return True
+            
 \end{lstlisting}
 \end{corrige}
 \else
