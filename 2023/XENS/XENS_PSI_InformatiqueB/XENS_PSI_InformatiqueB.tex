@@ -73,8 +73,6 @@ def textes_égaux(texte1, texte2) :
 En notant $n$ la longueur de \lstinline{texte1} et \lstinline{texte2}, cette fonction a une complexite $\mathcal{O}(n)$.
 \end{corrige}
 \else
-
-\fi
 \begin{exemple}~\\ 
 \vspace{-.5cm}
 \begin{lstlisting}
@@ -84,6 +82,8 @@ False
 True
 \end{lstlisting}
 \end{exemple}
+\fi
+
 
 
 Dans la suite de ce sujet, on pourra utiliser \lstinline{==} sur les listes plutôt que cette fonction.
@@ -109,8 +109,6 @@ def distance(texte1, texte2) :
 En notant $n$ la longueur de \lstinline{texte1} et \lstinline{texte2}, cette fonction a une complexite $\mathcal{O}(n)$.
 \end{corrige}
 \else
-\fi
-
 \begin{exemple}~\\ 
 \vspace{-.5cm}
 \begin{lstlisting}
@@ -120,6 +118,9 @@ En notant $n$ la longueur de \lstinline{texte1} et \lstinline{texte2}, cette fon
 4
 \end{lstlisting}
 \end{exemple}
+\fi
+
+
 
 %Question 3. 
 \question{En vous aidant d'un dictionnaire dont les clés sont des caractères, écrire une fonction \lstinline{aucun_caractère_commun(texte1, texte2)} qui renvoie \lstinline{True} si et seulement si l'ensemble
@@ -146,9 +147,6 @@ def aucun_caractère_commun(texte1, texte2) :
 \end{lstlisting}
 \end{corrige}
 \else
-\fi
-
-
 \begin{exemple}~\\ 
 \vspace{-.5cm}
 \begin{lstlisting}
@@ -158,22 +156,25 @@ False
 True
 \end{lstlisting}
 \end{exemple}
+\fi
+
+
+
 
 Nous introduisons maintenant une structure de données spécifique pour représenter un différentiel par positions fixes entre deux textes.
-La Figure \ref{fig:01} présente un exemple de couple de textes (texte1, texte2) qui diffèrent sur 4
+La Figure \ref{fig:01} présente un exemple de couple de textes \lstinline{(texte1, texte2)} qui diffèrent sur 4
 tranches (représentées par des zones grisées sur la figure). En dehors des tranches, les textes sont
 égaux.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=.8\linewidth]{fig_01}
-\caption{Exemple de couple (texte1, texte2) dont on veut calculer le différentiel (sur des
+\caption{Exemple de couple \lstinline{(texte1, texte2)} dont on veut calculer le différentiel (sur des
 positions fixes) \label{fig:01}}
 \end{figure}
 
 \begin{defi}{La structure de données tranche.} Une tranche est un dictionnaire avec trois clés \lstinline{'début'},
-\lstinline{'avant'} et \lstinline{'après'}. La valeur associée à la clé \lstinline{'début'} est le premier indice de la tranche, les
-extes associés aux clés \lstinline{'avant'} et \lstinline{'après'} représentent les textes (de même longueur) de la tranche avant et après modification. Dans la suite de cette partie, on s'appuiera sur les fonctions
+\lstinline{'avant'} et \lstinline{'après'}. La valeur associée à la clé \lstinline{'début'} est le premier indice de la tranche, les textes associés aux clés \lstinline{'avant'} et \lstinline{'après'} représentent les textes (de même longueur) de la tranche avant et après modification. Dans la suite de cette partie, on s'appuiera sur les fonctions
 suivantes pour manipuler cette structure.
 \end{defi}
 
@@ -208,10 +209,10 @@ tranche(19, ['r', 't'], ['i', 'f'])
 ]
 \end{lstlisting}
 
-\begin{defi}{La structure de données \textit{différentiel}}. Un \textit{différentiel} est une liste (potentiellement vide)
+\begin{defi}{La structure de données \textit{différentiel.}} Un \textit{différentiel} est une liste (potentiellement vide)
 de tranches \lstinline{[tr1, ..., trk]} représentant des modifications touchant des zones distinctes d'un
 texte, telle que :
-\begin{itemize}
+\begin{itemize}[label=$\bullet$]
 \item \lstinline{début(tr1)} $<$ \lstinline{fin(tr1)} $<$ ... $<$ \lstinline{début(trk) < fin(trk)};
 \item pour tout $j \in [1, k]$, pour tout $i \in$ \lstinline{[0, len(avant(trj ))-1]}, \lstinline{avant(trj )[i]} $\neq$ \lstinline{après(trj)[i]}.  
 \end{itemize}
@@ -221,8 +222,8 @@ texte, telle que :
 \lstinline{texte2} de même longueur $n$, il existe un unique différentiel \lstinline{[tr1, ..., trk]} tel que :
 \begin{itemize}
 \item si $k > 0$, alors $0 \leq$ \lstinline{début(tr1)} et \lstinline{fin(trk)} $\leq n $;
-\item pour tout $j \in [1, k]$, \lstinline{texte1[début(trj ) : fin(trj )] = avant(trj)};
-\item pour tout $j \in [1, k]$, \lstinline{texte2[début(trj ) : fin(trj )] = après(trj)};
+\item pour tout $j \in [1, k]$, \lstinline{texte1[début(trj) : fin(trj)] = avant(trj)};
+\item pour tout $j \in [1, k]$, \lstinline{texte2[début(trj) : fin(trj)] = après(trj)};
 \item pour tout $i \in [0, n-1]$, si $i \notin \cup_{1\leq j \leq k}$
 \lstinline{[début(trj), fin(trj )-1]}, alors \lstinline{texte1[i] = texte2[i]}.
 \end{itemize}
@@ -288,11 +289,12 @@ inverse(diff)) = texte1} et \lstinline{inverse(inverse(diff)) = diff}. Donner sa
 \fi
 
 
-\textbf{La structure de données \textit{texte versionné}}. Nous représentons un texte versionné par un
+\begin{defi}{Structure de données \textit{texte versionné.}} Nous représentons un texte versionné par un
 dictionnaire contenant la version courante du texte, comme valeur associée à la clé \lstinline{'courant'},
 et l'historique des différentiels qui ont mené jusqu'à cette version dans une pile\footnote{Une pile est ici implémentée par une liste Python.} de différentiels
 associée à la clé \lstinline{historique}. Dans la suite de cette partie, on s'appuiera sur les fonctions suivantes
 pour manipuler cette structure.
+\end{defi}
 
 \begin{lstlisting}
 def versionne(texte):
