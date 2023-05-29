@@ -510,7 +510,7 @@ C_2
 \end{pmatrix}
 $; donc : 
 
-$C_1(p) = 3,4 p^2 \theta_1(p) + 2,6p^2\theta_2(p) - 11,5 p\theta_1(p) - 19,2p\theta_2(p) + 108,2\theta_1(p) + 5,2\theta_2(p) - \indice{C}{hanche}(p)$
+$C_i(p) = 3,4 p^2 \theta_1(p) + 2,6p^2\theta_2(p) - 11,5 p\theta_1(p) - 19,2p\theta_2(p) + 108,2\theta_1(p) + 5,2\theta_2(p) - \indice{C}{hanche}(p)$
 
 $C_2(p) = 2,6 p^2 \theta_1(p) + 1,9 p^2\theta_2(p) + 7,7 p\theta_1(p) + 15,9\theta_1(p) + 17,1\theta_2(p) - \indice{C}{genou}(p)$.
 
@@ -623,24 +623,68 @@ On a donc : $\indice{A}{eq} = I_{x3} + m_3 L_0^2$ et $C_r =  - \indice{C}{genou}
 \subsubsection{Élaboration de la commande en couple de l'actionneur}
 
 %Q 16
-\UPSTIquestion  Calculer, en donnant les expressions littérales de $K_{c}, T_{c}$, $\xi_{c}$ et $\omega_{c}$, l'expression de la fonction de transfert $H_{C}(p)=\frac{C_{m}(p)}{C_{r e f}(p)}$ sous la forme :
+\UPSTIquestion  Calculer, en donnant les expressions littérales de $K_{c}, T_{c}$, $\xi_{c}$ et $\omega_{c}$, l'expression de la fonction de transfert $H_{C}(p)=\frac{C_{m}(p)}{\indice{C}{ref}(p)}$ sous la forme :
 $$
-H_{C}(p)=K_{c} \frac{1+T_{c} p}{1+2 \xi_{c} \frac{p}{\omega_{c}}+\left(\frac{p}{\omega_{c}}\right)^{2}}
+H_{C}(p)=K_{c} \frac{1+T_{c} p}{1+2 \xi_{c} \frac{p}{\omega_{c}}+\left(\frac{p}{\omega_{c}}\right)^{2}}.
 $$
-\begin{UPSTIcorrige}
 
+\begin{UPSTIcorrige}
+On rappelle que $\indice{C}{pert} = 0$.	
+On a $C_m(p) = I_m(p) k_i $ 
+$=\left(\indice{C}{ref}(p)K_1- \Omega_m(p) \dfrac{k_e}{C_i(p)}\right) \dfrac{C_i(p)}{R_m + L_mp + C_i(p)\indice{K}{capi}}   k_i $ 
+$=\left(\indice{C}{ref}(p)K_1- C_m(p) \dfrac{1}{r\indice{A}{eq}p}\dfrac{k_e}{C_i(p)}\right) \dfrac{C_i(p) k_i}{R_m + L_mp + C_i(p)\indice{K}{capi}} $
+$=\left(\indice{C}{ref}(p)K_1- C_m(p) \dfrac{1}{r\indice{A}{eq}p}\dfrac{k_e}{C_i(p)}\right) F(p) $. 
+
+On a alors 
+$C_m(p) \left(1+\dfrac{F(p)}{r\indice{A}{eq}p}\dfrac{k_e}{C_i(p)}\right)=\indice{C}{ref}(p)K_1 F(p)$
+$ \Leftrightarrow \dfrac{C_m(p) }{\indice{C}{ref}(p)} =\dfrac{K_1 F(p)}{1+\dfrac{F(p)}{r\indice{A}{eq}p}\dfrac{k_e}{C_i(p)}} $
+
+$=\dfrac{K_1 \dfrac{C_i(p) k_i}{R_m + L_mp + C_i(p)\indice{K}{capi}}}{1+\dfrac{\dfrac{C_i(p) k_i}{R_m + L_mp + C_i(p)\indice{K}{capi}}}{r\indice{A}{eq}p}\dfrac{k_e}{C_i(p)}} $
+$=\dfrac{K_1 C_i(p) k_i}{R_m + L_mp + C_i(p)\indice{K}{capi}+\dfrac{k_e k_i}{r\indice{A}{eq}p}} $
+
+On remplace la fonction du transfert du correcteur :
+
+$\dfrac{C_m(p) }{\indice{C}{ref}(p)}=\dfrac{K_1 K\dfrac{1+Tp}{p} k_i}{R_m + L_mp + K\dfrac{1+Tp}{p}\indice{K}{capi}+\dfrac{k_e k_i}{r\indice{A}{eq}p}} $
+$=\dfrac{K_1 K\left(1+Tp\right) k_i}{R_mp + L_mp^2 + K\left(1+Tp\right)\indice{K}{capi}+\dfrac{k_e k_i}{r\indice{A}{eq}}} $
+
+$=\dfrac{K_1 K\left(1+Tp\right) k_i}{R_mp + L_mp^2 + K\left(1+Tp\right)\indice{K}{capi}+\dfrac{k_e k_i}{r\indice{A}{eq}}} $
+
+%$=\dfrac{K_1 Kk_i}{K\indice{K}{capi}+\dfrac{k_e k_i}{r\indice{A}{eq}}} \dfrac{1+Tp }{\alpha L_mp^2 + \alpha\left(R_m+  K\indice{K}{capi}T\right) p+1} $ avec $\dfrac{1}{\alpha} = K\indice{K}{capi}+\dfrac{k_e k_i}{r\indice{A}{eq}}$.
+
+$=\alpha K_1 Kk_i \dfrac{1+Tp }{\alpha L_mp^2 + \alpha\left(R_m+  K\indice{K}{capi}T\right) p+1} $ avec $\dfrac{1}{\alpha} = K\indice{K}{capi}+\dfrac{k_e k_i}{r\indice{A}{eq}}$.
+
+On a donc : 
+$
+\left\{
+\begin{array}{l}
+T_c = T \\
+K_c = \alpha K_1 Kk_i  \\
+\dfrac{1}{\omega_c^2} = \alpha L_m \Rightarrow  \omega_c = \sqrt{\dfrac{1}{\alpha L_m}} \\
+\dfrac{2 \xi_c}{\omega_c} = \alpha\left(R_m+  K\indice{K}{capi}T\right) 
+\Rightarrow  \xi_c = \dfrac{\omega_c}{2}\alpha\left(R_m+  K\indice{K}{capi}T\right) = \dfrac{1}{2}\sqrt{\dfrac{\alpha}{ L_m}} \left(R_m+  K\indice{K}{capi}T\right)  \\
+\end{array}
+\right.
+$
 \end{UPSTIcorrige}
 
 %Q 17
 \UPSTIquestion Déterminer l'expression littérale, puis la valeur numérique, de $K$ afin de respecter le cahier des charges en termes de rapidité (rappel : $t_{r, 5 \%} \omega_{c} \approx 5$ pour un régime apériodique critique).
-\begin{UPSTIcorrige}
 
+\begin{UPSTIcorrige}
+On souhaite un temps de réponse de \SI{0,1e-3}{s}. 
+
+$\omega_c^2  = \dfrac{K\indice{K}{capi}+\dfrac{k_e k_i}{r\indice{A}{eq}}}{L_m} $
+$\Rightarrow K = \dfrac{L_m\omega_c^2 - \dfrac{k_e k_i}{r\indice{A}{eq}}}{\indice{K}{capi}}$
+$\Rightarrow K = \dfrac{L_m\left(\dfrac{5}{0,1 \times 10^{-3}} \right)^2 - \dfrac{k_e k_i}{r\indice{A}{eq}}}{\indice{K}{capi}}$
+
+\textit{Application numérique : } $K=1224960$ [USI].
 \end{UPSTIcorrige}
 
 %Q 18
 \UPSTIquestion Déterminer l'expression littérale, puis la valeur numérique, de $T$ afin de respecter le cahier des charges en termes de stabilité.
-\begin{UPSTIcorrige}
 
+\begin{UPSTIcorrige}
+Afin que le régime soit apériodique critique, il faut que $\xi_c = 1$. 
 \end{UPSTIcorrige}
 
 %Q 19
@@ -650,6 +694,7 @@ $$
 \end{UPSTIcorrige}
 
 %Q 20
+
 \UPSTIquestion À partir de la figure 10, discuter du respect des exigences de l'asservissement en couple.
 \begin{UPSTIcorrige}
 

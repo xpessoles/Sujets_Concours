@@ -34,3 +34,17 @@ print("a0,a1,a2",a0,a1,a2)
 # Question 15
 Aeq = 0.08 + 18 * L_0 **2
 print("Aeq :",Aeq)
+
+
+# Question 17
+Lm  = 0.49e-3
+ke = 0.89
+ki = 0.89
+r = 1/100
+Aeq = 2
+Kcapt = 1
+xx = (5*10000)**2
+
+K = (Lm*xx)-(ke*ki/r/Aeq)
+K = K/Kcapt
+print(K)
