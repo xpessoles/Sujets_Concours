@@ -37,14 +37,21 @@ print("Aeq :",Aeq)
 
 
 # Question 17
+Rm = 2.28
 Lm  = 0.49e-3
 ke = 0.89
 ki = 0.89
 r = 1/100
 Aeq = 2
-Kcapt = 1
+Kcapi = 1
 xx = (5*10000)**2
 
 K = (Lm*xx)-(ke*ki/r/Aeq)
-K = K/Kcapt
+K = K/Kcapi
 print(K)
+
+# Question 18
+alpha = (K*Kcapi+(ke*ki/r/Aeq))**(-1)
+T = 2*m.sqrt(Lm/alpha)-Rm
+T = T/K/Kcapi
+print('T', T)
