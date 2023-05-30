@@ -700,7 +700,11 @@ Par suite, $    T = \dfrac{2\sqrt{\dfrac{ L_m}{\alpha}} - R_m }{K\indice{K}{capi
 
 \UPSTIquestion À partir de la figure 10, discuter du respect des exigences de l'asservissement en couple.
 \begin{UPSTIcorrige}
-
+\begin{itemize}
+\item Stabilité : régime apériodique critique : $\quad$ \textbf{critère validé}.
+\item Rapidité : temps de réponse à $\SI{5}{\%} =\SI{0,1}{ms}$ $\quad$ Mesure : \SI{0,055}{ms} --  \textbf{critère validé}.
+\item Précision : écart en régime permanent inférieur à $\SI{1}{\%}$ $\quad$ l'écart est nul -- \textbf{critère validé}.
+\end{itemize}
 \end{UPSTIcorrige}
 
 \subsubsection{Vérification de la cohérence de la commande en couple sur l’exosquelette}
@@ -724,6 +728,63 @@ Par suite, $    T = \dfrac{2\sqrt{\dfrac{ L_m}{\alpha}} - R_m }{K\indice{K}{capi
 
 \end{UPSTIcorrige}
 
+
+%Q 23. 
+\UPSTIquestion À partir du modèle précédent et de la transformée de Laplace, donner les deux relations permettant de relier $\ddot{\theta}_1(p)$, $\ddot{\theta}_2(p)$, $C_g(p)$, $U_1(p)$ et $U_2(p)$. Il n’est pas demandé d’établir les fonctions de transfert.
+
+\begin{UPSTIcorrige}
+En développant la linéarisation du modèle et réalisant la transformée de Laplace, on a :
+
+$
+\left\{
+\begin{array}{l}
+p^2 \tilde{\theta}_1(p) = 2338 \tilde{\theta}_2(p) + 9,93 C_g(p) + u_1(p) \\
+p^2 \tilde{\theta}_2(p) = -2921 \tilde{\theta}_2(p) + 12,9 C_g(p) + u_2(p) \\
+\end{array}
+\right.
+$
+\end{UPSTIcorrige}
+
+%Q 24.
+\UPSTIquestion Conclure sur la stabilité du système non corrigé.
+\begin{UPSTIcorrige}
+Le fait que les coefficients ne soient pas tous du même signe laisse à penser que le système non corrigé ne sera pas stable.
+\end{UPSTIcorrige}
+
+%Q 25. 
+\UPSTIquestion Justifier, sans calcul et en supposant que le système converge en boucle fermée, qu’une commande avec une action intégrale ne permettra pas d’obtenir un comportement de type raideur avec le coefficient de valeur désirée.
+
+\begin{UPSTIcorrige}
+\end{UPSTIcorrige}
+
+%Q 26. 
+\UPSTIquestion À partir du modèle linéarisé, et avec le correcteur proposé, déterminer les expressions de
+$\tilde{\theta}_1(p)$ et $\tilde{\theta}_2(p)$ sous la forme 
+$\tilde{\theta}_1(p)=\indice{H}{C1}(p)C_g(p)+\indice{H}{C2}(p)\tilde{\theta}_2(p)$ et
+$\tilde{\theta}_2(p)=\indice{H}{C3}(p)C_g(p)+\indice{H}{C2}(p)\tilde{\theta}_1(p)$.
+
+\begin{UPSTIcorrige}
+On a 
+
+$
+\left\{
+\begin{array}{l}
+u_1(p)=\indice{K}{p11} \tilde{\varepsilon}_1(p) +\indice{K}{p12} \tilde{\varepsilon}_2(p) + \indice{K}{v11} p \tilde{\varepsilon}_1(p) \\
+u_2(p)=\indice{K}{p21} \tilde{\varepsilon}_1(p) +\indice{K}{p22} \tilde{\varepsilon}_2(p) + \indice{K}{v22} p \tilde{\varepsilon}_2(p) \\
+\end{array}
+\right.
+$
+
+
+$
+\Rightarrow \left\{
+\begin{array}{l}
+u_1(p)=\indice{K}{p11} \tilde{\varepsilon}_1(p) +\indice{K}{p12} \tilde{\varepsilon}_2(p) + \indice{K}{v11} p \tilde{\varepsilon}_1(p) \\
+u_2(p)=\indice{K}{p21} \tilde{\varepsilon}_1(p) +\indice{K}{p22} \tilde{\varepsilon}_2(p) + \indice{K}{v22} p \tilde{\varepsilon}_2(p) \\
+\end{array}
+\right.
+$
+\end{UPSTIcorrige}
 
 
 \end{document}
