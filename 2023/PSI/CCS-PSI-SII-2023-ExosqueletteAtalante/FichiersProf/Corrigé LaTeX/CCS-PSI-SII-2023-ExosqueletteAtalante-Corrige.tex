@@ -764,26 +764,37 @@ $\tilde{\theta}_1(p)=\indice{H}{C1}(p)C_g(p)+\indice{H}{C2}(p)\tilde{\theta}_2(p
 $\tilde{\theta}_2(p)=\indice{H}{C3}(p)C_g(p)+\indice{H}{C2}(p)\tilde{\theta}_1(p)$.
 
 \begin{UPSTIcorrige}
-On a 
+On a :
+$u(p)=K_P\tilde{\varepsilon}(p)+K_v p \tilde{\varepsilon}(p)$
+$\Rightarrow u=\left( K_P+K_v p\right) \left(\indice{\tilde{\theta}}{ref}(p) -  \tilde{\theta}(p)\right)$
 
-$
-\left\{
-\begin{array}{l}
-u_1(p)=\indice{K}{p11} \tilde{\varepsilon}_1(p) +\indice{K}{p12} \tilde{\varepsilon}_2(p) + \indice{K}{v11} p \tilde{\varepsilon}_1(p) \\
-u_2(p)=\indice{K}{p21} \tilde{\varepsilon}_1(p) +\indice{K}{p22} \tilde{\varepsilon}_2(p) + \indice{K}{v22} p \tilde{\varepsilon}_2(p) \\
-\end{array}
-\right.
-$
+Par ailleurs, $u(p)=p^2 \tilde{\theta}(p)-A_1 \tilde{\theta}(p) - A_2 c_p(p)$. 
+
+En conséquences, 
+$p^2 \tilde{\theta}(p)-A_1 \tilde{\theta}(p) - A_2 c_p(p) =\left( K_P+K_v p\right) \left(\indice{\tilde{\theta}}{ref}(p) -  \tilde{\theta}(p)\right)$
+
+$\Rightarrow 
+\left(p^2 I_2 + K_P+K_v p-A_1\right) \tilde{\theta}(p)  =\left( K_P+K_v p\right) \indice{\tilde{\theta}}{ref}(p) + A_2 c_p(p)$
 
 
-$
-\Rightarrow \left\{
-\begin{array}{l}
-u_1(p)=\indice{K}{p11} \tilde{\varepsilon}_1(p) +\indice{K}{p12} \tilde{\varepsilon}_2(p) + \indice{K}{v11} p \tilde{\varepsilon}_1(p) \\
-u_2(p)=\indice{K}{p21} \tilde{\varepsilon}_1(p) +\indice{K}{p22} \tilde{\varepsilon}_2(p) + \indice{K}{v22} p \tilde{\varepsilon}_2(p) \\
-\end{array}
-\right.
-$
+%$
+%\left\{
+%\begin{array}{l}
+%u_1(p)=\indice{K}{p11} \tilde{\varepsilon}_1(p) +\indice{K}{p12} \tilde{\varepsilon}_2(p) + \indice{K}{v11} p \tilde{\varepsilon}_1(p) \\
+%u_2(p)=\indice{K}{p21} \tilde{\varepsilon}_1(p) +\indice{K}{p22} \tilde{\varepsilon}_2(p) + \indice{K}{v22} p \tilde{\varepsilon}_2(p) \\
+%\end{array}
+%\right.
+%$
+%
+%
+%$
+%\Rightarrow \left\{
+%\begin{array}{l}
+%u_1(p)= \left(\indice{K}{p11}+ \indice{K}{v11} p  \right)\tilde{\varepsilon}_1(p) +\indice{K}{p12} \tilde{\varepsilon}_2(p)  \\
+%u_2(p)=\indice{K}{p21} \tilde{\varepsilon}_1(p) +\left(\indice{K}{p22}  + \indice{K}{v22} p \right) \tilde{\varepsilon}_2(p) \\
+%\end{array}
+%\right.
+%$
 \end{UPSTIcorrige}
 
 
