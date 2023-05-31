@@ -606,6 +606,7 @@ Bilan des actions mécaniques :
 \item actionneur de 2 sur 3 tel que  $\vectm{B}{2}{3_m}\cdot \vect{x_1} = C_2$;
 \item action du patient sur le genou telle que  $\vectm{B}{2}{3_p}\cdot \vect{x_1} = \indice{C}{genou}$;
 \item action de la pesanteur sur 3 en $G_3$ : $\vectm{B}{Pes}{3} = \vect{BG_3}\wedge -m_3 g\vect{z_2}$ $= -L_0 \vect{z_3'}\wedge -m_3 g\vect{z_2}$
+
 $= - L_0 m_3 g \sin\left(\theta_2 + \alpha\right)\vect{x_1}$
 \end{itemize}
 
@@ -716,7 +717,7 @@ Par suite, $    T = \dfrac{2\sqrt{\dfrac{ L_m}{\alpha}} - R_m }{K\indice{K}{capi
 \end{UPSTIcorrige}
 
 \subsection{Synthèse de la loi de commande de l'exosquelette}
-
+\subsubsection{Formulation d’un modèle pour la synthèse de la loi de commande}
 \UPSTIobjectif{Élaborer une loi de commande en phase de rééducation à la proprioception de la verticalité et de la marche, et en phase de renforcement musculaire.}
 \begin{UPSTIcorrige}
 
@@ -726,11 +727,38 @@ Par suite, $    T = \dfrac{2\sqrt{\dfrac{ L_m}{\alpha}} - R_m }{K\indice{K}{capi
 \UPSTIquestion Préciser l'expression de la matrice $M$ introduite précédemment en fonction de $M_{1}$ et $M_{3}$.
 \begin{UPSTIcorrige}
 
+On a  :
+
+$
+M_{1}(\Theta, \dot{\Theta}) \ddot{\Theta}+M_{2}(\Theta, \dot{\Theta}) \dot{\Theta}+C(\Theta, \dot{\Theta})+M_{3}(\Theta, \dot{\Theta}) C_{p}=C_{\mathrm{ref}}
+$
+
+$\Leftrightarrow
+M_{1}(\Theta, \dot{\Theta}) \left(U+M(\Theta, \dot{\Theta}) C_{p}\right)   +M_{2}(\Theta, \dot{\Theta}) \dot{\Theta}+C(\Theta, \dot{\Theta})+M_{3}(\Theta, \dot{\Theta}) C_{p}=M_{1}(\Theta, \dot{\Theta}) U+M_{2}(\Theta, \dot{\Theta}) \dot{\Theta}+C(\Theta, \dot{\Theta})
+$
+
+
+$\Leftrightarrow
+M_{1}(\Theta, \dot{\Theta}) \left(U+M(\Theta, \dot{\Theta}) C_{p}\right)   +M_{3}(\Theta, \dot{\Theta}) C_{p}=M_{1}(\Theta, \dot{\Theta}) U+M_{2}(\Theta, \dot{\Theta}) \dot{\Theta}
+$
+
+$\Leftrightarrow
+M_{1}(\Theta, \dot{\Theta}) M(\Theta, \dot{\Theta}) C_{p}   =
+M_{2}(\Theta, \dot{\Theta}) \dot{\Theta} - M_{3}(\Theta, \dot{\Theta}) C_{p}
+$
+
+
+$\Leftrightarrow
+ M(\Theta, \dot{\Theta}) C_{p}   =
+M_{1}^{-1}(\Theta, \dot{\Theta}) M_{2}(\Theta, \dot{\Theta}) \dot{\Theta} - M_{1}^{-1}M_{3}(\Theta, \dot{\Theta}) C_{p}
+$
+
+Par identification, $M(\Theta, \dot{\Theta}) = - M_{1}^{-1}M_{3}(\Theta, \dot{\Theta}) $.
 \end{UPSTIcorrige}
 
 
 %Q 23. 
-\UPSTIquestion À partir du modèle précédent et de la transformée de Laplace, donner les deux relations permettant de relier $\ddot{\theta}_1(p)$, $\ddot{\theta}_2(p)$, $C_g(p)$, $U_1(p)$ et $U_2(p)$. Il n’est pas demandé d’établir les fonctions de transfert.
+\UPSTIquestion À partir du modèle précédent et de la transformée de Laplace, donner les deux relations permettant de relier $\tilde{\theta}_1(p)$, $\tilde{\theta}_2(p)$, $C_g(p)$, $U_1(p)$ et $U_2(p)$. Il n’est pas demandé d’établir les fonctions de transfert.
 
 \begin{UPSTIcorrige}
 En développant la linéarisation du modèle et réalisant la transformée de Laplace, on a :
@@ -747,10 +775,12 @@ $
 
 %Q 24.
 \UPSTIquestion Conclure sur la stabilité du système non corrigé.
+
 \begin{UPSTIcorrige}
 Le fait que les coefficients ne soient pas tous du même signe laisse à penser que le système non corrigé ne sera pas stable.
 \end{UPSTIcorrige}
 
+\subsubsection{Dimensionnement de la loi de commande pour le renforcement musculaire}
 %Q 25. 
 \UPSTIquestion Justifier, sans calcul et en supposant que le système converge en boucle fermée, qu’une commande avec une action intégrale ne permettra pas d’obtenir un comportement de type raideur avec le coefficient de valeur désirée.
 
@@ -776,26 +806,81 @@ $p^2 \tilde{\theta}(p)-A_1 \tilde{\theta}(p) - A_2 c_p(p) =\left( K_P+K_v p\righ
 $\Rightarrow 
 \left(p^2 I_2 + K_P+K_v p-A_1\right) \tilde{\theta}(p)  =\left( K_P+K_v p\right) \indice{\tilde{\theta}}{ref}(p) + A_2 c_p(p)$
 
+On a $P = \left(p^2 I_2 + K_P+K_v p-A_1\right) = 
+\begin{pmatrix}
+p^2 + \indice{K}{p11}+\indice{K}{v11}p  & \indice{K}{p12}-2338 \\
+\indice{K}{p21} & p^2 + \indice{K}{p22}+\indice{K}{v22}p +2921\\
+\end{pmatrix}$
 
-%$
-%\left\{
-%\begin{array}{l}
-%u_1(p)=\indice{K}{p11} \tilde{\varepsilon}_1(p) +\indice{K}{p12} \tilde{\varepsilon}_2(p) + \indice{K}{v11} p \tilde{\varepsilon}_1(p) \\
-%u_2(p)=\indice{K}{p21} \tilde{\varepsilon}_1(p) +\indice{K}{p22} \tilde{\varepsilon}_2(p) + \indice{K}{v22} p \tilde{\varepsilon}_2(p) \\
-%\end{array}
-%\right.
-%$
-%
-%
-%$
-%\Rightarrow \left\{
-%\begin{array}{l}
-%u_1(p)= \left(\indice{K}{p11}+ \indice{K}{v11} p  \right)\tilde{\varepsilon}_1(p) +\indice{K}{p12} \tilde{\varepsilon}_2(p)  \\
-%u_2(p)=\indice{K}{p21} \tilde{\varepsilon}_1(p) +\left(\indice{K}{p22}  + \indice{K}{v22} p \right) \tilde{\varepsilon}_2(p) \\
-%\end{array}
-%\right.
-%$
+On a alors en développant : 
+$\left\{
+\begin{array}{l}
+P_{11} \tilde{\theta}_1 + P_{12} \tilde{\theta}_2  =  \left(\indice{K}{p11}  +\indice{K}{v11}p\right) \tilde{\theta}_{1,\text{ref}}(p) +\indice{K}{p11}\tilde{\theta}_{2,\text{ref}}(p) + 9,93 c_g (p)\\
+P_{21} \tilde{\theta}_1 + P_{22} \tilde{\theta}_2  =  \indice{K}{p21}  \tilde{\theta}_{1,\text{ref}}(p) +\left(\indice{K}{p22} +\indice{K}{v22}p\right) \tilde{\theta}_{2,\text{ref}}(p) + 12,9 c_g (p)\\
+\end{array}
+\right.
+$
+
+J'ai l'impression que ce n'est pas la bonne direction...
 \end{UPSTIcorrige}
+
+
+%Q 27. 
+\UPSTIquestion Afin d’obtenir le découplage entre les axes, déterminer les valeurs des coefficients non diagonaux de
+$K_p$ permettant d’obtenir $\indice{H}{C2}(p)=\indice{H}{C4}(p)=0$.
+
+\begin{UPSTIcorrige}
+
+\end{UPSTIcorrige}
+
+%Q 28. 
+\UPSTIquestion Déterminer les coefficients diagonaux des matrices $K_p$ et $K_v$ afin que les fonctions de transfert $\indice{H}{C1}(p)$ et $\indice{H}{C3}(p)$ soient assimilables à des fonctions du deuxième ordre $\indice{H}{C1}(p) = \dfrac{K_1}{1+\dfrac{2\xi}{\omega_1}p + \dfrac{p^2}{\omega_1^2}}$
+et $\indice{H}{C3}(p) = \dfrac{K_3}{1+\dfrac{2\xi}{\omega_3}p + \dfrac{p^2}{\omega_3^2}}$ permettant d’obtenir des valeurs limites de raideurs respectant l’exigence 1.2.1.1. et ayant
+un coefficient d’amortissement $\xi=0,7$.
+
+\begin{UPSTIcorrige}
+
+\end{UPSTIcorrige}
+
+%Q 29. 
+\UPSTIquestion La rapidité de chacun des axes peut-elle être réglée indépendamment avec une telle commande ?
+
+\begin{UPSTIcorrige}
+
+\end{UPSTIcorrige}
+
+\subsubsection{ Analyse de la loi de commande pour la rééducation à la proprioception de la verticalité
+et de la marche}
+%Q 30. 
+\UPSTIquestion Justifier, sans calcul, que le correcteur élaboré précédemment ne permet pas à l’exosquelette de respecter le cahier des charges en termes de précision lors de la phase considérée ici.
+
+
+\begin{UPSTIcorrige}
+
+\end{UPSTIcorrige}
+
+%Q 31. 
+\UPSTIquestion Analyser les marges de stabilité de cette boucle avec cette loi de commande et conclure sur ses
+performances au regard des exigences liées à la rééducation de la proprioception de la verticalité et de la
+marche.
+
+\begin{UPSTIcorrige}
+Les marges de stabilité étant positives, la stabilité stricte du système est assurée. 
+\begin{center}
+\includegraphics{Q31}
+\end{center}
+\end{UPSTIcorrige}
+
+\section{Synthèse}
+
+%Q 32. 
+\UPSTIquestion Commenter les figures 14 et 15. Conclure sur le respect du cahier des charges avec les lois de commande
+considérées, vis-à-vis de la stabilité du patient et du type de comportement de rééducation de l’exosquelette.
+
+\begin{UPSTIcorrige}
+
+\end{UPSTIcorrige}
+
 
 
 \end{document}
