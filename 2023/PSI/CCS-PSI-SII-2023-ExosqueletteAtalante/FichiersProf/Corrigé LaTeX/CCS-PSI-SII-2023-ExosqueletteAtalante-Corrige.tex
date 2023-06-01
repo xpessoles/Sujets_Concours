@@ -145,6 +145,8 @@ $$
 \UPSTIquestion À l'aide du résultat de la question 1, écrit à la position $\left(Y_{0}, Z_{0}\right)$, puis à la position $\left(Y_{0}+\Delta_{Y}, Z_{0}+\Delta_{Z}\right)$, déterminer les expressions de $\Delta_{Y}$ et $\Delta_{Z}$, en fonction de $\theta_{1,0}, \theta_{2,0}, \Delta_{\theta}, L_{2}$ et $L_{3}$.
 
 \begin{UPSTIcorrige}
+
+
 D'une part : 
 $
 \left\{
@@ -155,6 +157,9 @@ Z_0 =- L_3 \cos \left(\theta_{1,0} + \theta_{2,0} \right) - L_2 \cos \left(\thet
 \right.
 $
 
+
+\begin{enumerate}
+\item \textbf{Méthode 1 : }
 
 D'autre part : 
 $
@@ -218,6 +223,27 @@ $
 \end{array}.
 \right.
 $
+
+\item \textbf{Méthode 2 : }
+
+On peut également utiliser le calcul différentiel : 
+
+\begin{align*}
+\Delta Y=d Y=\dfrac{\partial Y}{\partial \theta_1}\vert_{\theta_{1,0},\theta_{2,0}}d\theta_1+\dfrac{\partial Y}{\partial \theta_2}\vert_{\theta_{1,0},\theta_{2,0}}d\theta_2\\
+\\
+\Delta Z=d Z=\dfrac{\partial Z}{\partial \theta_1}\vert_{\theta_{1,0},\theta_{2,0}}d\theta_1+\dfrac{\partial Z}{\partial \theta_2}\vert_{\theta_{1,0},\theta_{2,0}}d\theta_2\\
+\end{align*}
+
+Avec $d\theta_1=d\theta_2=\Delta_{\theta}$
+
+On obtient donc : 
+
+\begin{align*}
+\Delta Y=\Delta_{\theta}\left[L_2\cos\theta_{10}+2L_3\cos(\theta_{20}+\theta_{10})\right]\\
+\\
+\Delta Z=\Delta_{\theta}\left[L_2\sin\theta_{10}+2L_3\sin(\theta_{20}+\theta_{10})\right]
+\end{align*}
+\end{enumerate}
 
 
 \end{UPSTIcorrige}
