@@ -48,6 +48,22 @@ q3_2 = aucun_caractère_commun(t1,t4)
 print(q3_1,q3_2)
 
 
+
+def tranche(arg_début, arg_avant, arg_après):
+    return {'début': arg_début, 'avant': arg_avant, 'après': arg_après}
+
+def début(tr):
+    return tr['début']
+
+def après(tr):
+    return tr['après']
+
+def avant(tr):
+    return tr['avant']
+
+def fin(tr):
+    return début(tr) + len(après(tr))
+
 ## Question 4
 def différentiel(texte1, texte2) :
     diff_i = []
@@ -70,6 +86,7 @@ def différentiel(texte1, texte2) :
 
     return diff
 
+<<<<<<< Updated upstream
 
 
 def tranche(arg_début, arg_avant, arg_après):
@@ -95,6 +112,8 @@ def applique(texte1,diff) :
             texte2[i]=texte1[i]
     return texte2
 
+=======
+>>>>>>> Stashed changes
 def différentiel(texte1, texte2):
     diff = []
     modif = False
@@ -114,10 +133,15 @@ def différentiel(texte1, texte2):
         diff.append(tranche(début, avant, après))
     return diff
 
+<<<<<<< Updated upstream
 texte1 = "Le grand château fort."
+=======
+texte1 = "vais."
+>>>>>>> Stashed changes
 texte1 = [lettre for lettre in texte1]
-texte2 = "Le petit chien a soif."
+texte2 = "voix."
 texte2 = [lettre for lettre in texte2]
+<<<<<<< Updated upstream
 diff = différentiel(texte1,texte2)
 
 def inverse(diff):
@@ -163,3 +187,7 @@ def annule(texte_versionné):
     remplace_courant(texte_versionné, texte2):
 
 
+=======
+print(différentiel(texte1,texte2))
+print(dddd)
+>>>>>>> Stashed changes
