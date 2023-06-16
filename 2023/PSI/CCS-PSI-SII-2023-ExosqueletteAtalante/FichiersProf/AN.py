@@ -21,3 +21,25 @@ B=D/D[0]
 print(A)
 
 print(B)
+
+Ix3=0.08
+m3=18
+g=9.81
+L0=0.3-0.55
+
+
+Aeq=Ix3+m3*L0**2
+
+#Q18
+Rm=2.28
+Lm=0.49*1E-3
+ki=0.89
+r=1e-2
+Aeq=2
+beta=25*1e8
+K=(beta-ki**2/(Lm*r*Aeq))*Lm
+alpha=r*Aeq/(ki**2+r*Aeq*K)
+T=(2*(alpha/Lm)**(-0.5)-Rm)/K
+
+#Q19
+K1=(ki**2+r*Aeq*K)/(ki*Aeq)

@@ -172,6 +172,7 @@ Z_0 +\Delta_{Z}=- L_3 \cos \left(\theta_{1,0} + \theta_{2,0}+ 2\Delta_{\theta} \
 $
 
 En faisant la différence :
+
 $
 \left\{
 \begin{array}{l}
@@ -681,7 +682,10 @@ On a donc $C_2 = \left( I_{x3} + m_3 L_0^2 \right)\thetapp_2  - \indice{C}{genou
 
 On a donc : $\indice{A}{eq} = I_{x3} + m_3 L_0^2$ et $C_r =  - \indice{C}{genou} + L_0 m_3 g \sin\left(\theta_2 + \alpha\right)$.
 
-\textit{Application numérique :} $\indice{A}{eq} =\SI{1,925}{kg.m^2}$.
+%\textit{Application numérique :} $\indice{A}{eq} =\SI{1,925}{kg.m^2}$.
+
+\textit{Application numérique :} $\indice{A}{eq} =\SI{1,205}{kg.m^2}$.
+
 \end{UPSTIcorrige}
 
 
@@ -758,7 +762,34 @@ Par suite, $    T = \dfrac{2\sqrt{\dfrac{ L_m}{\alpha}} - R_m }{K\indice{K}{capi
 %Q 19
 \UPSTIquestion  Déterminer l'expression littérale, puis la valeur numérique, de $K_{1}$ afin d'obtenir $K_{C}=r$ pour $H_{C}(p)$. Justifier la volonté d'obtenir cette valeur de gain pour $H_{C}(p)$.
 \begin{UPSTIcorrige}
+\begin{align*}
+Kc=r \Leftrightarrow \dfrac{K_1\cdot k_i\cdot r\cdot A_{eq}}{k_i\cdot k_e+r\cdot A_{eq\cdot K_{capi}\cdot K}}=r
+\end{align*}
 
+en simplifiant par $r$ et en inversant l'équation précédente, on obtient : 
+
+\begin{align*}
+K_1=\dfrac{k_i\cdot k_e+r\cdot A_{eq}\cdot K_{capi}\cdot K}{k_i\cdot A_{eq}}
+\end{align*}
+
+Obtenir un gain statique unitaire pour la fonction de transfert en boucle fermée de l'asservissement en couple assure d'avoir un écart statique nul sans perturbation.
+Soit $C_{ref}(p)=\dfrac{C_0}{p}$
+
+En effet : 
+
+\begin{align*}
+\varepsilon_s=\lim_{t\rightarrow+\infty}  \left(C_{ref}(t)-C_{m(t)}\right)=\lim_{p\rightarrow 0} p \left(C_{ref}(p)-C_{m(p)}\right)=\lim_{p\rightarrow 0} p \left(C_{ref}(p)-C_{m(p)}\right)\\
+\\
+=\lim_{p\rightarrow 0} p C_{ref}(p) \left(1-H_C\right)=\lim_{p\rightarrow 0} C_{0} \left(1-K_C\dfrac{1+T_c p}{1+2\xi_c\dfrac{p}{\omega_c}+\left(\dfrac{p}{\omega_c}\right)^2}\right)=0
+\end{align*}
+
+Cette dernière limite est bien nulle pour $K_c=1$.
+
+%L'application numérique donne : 
+%
+%\begin{align*}
+%K_1\SI{13,8e3}{s}
+%\end{align*}
 \end{UPSTIcorrige}
 
 %Q 20
@@ -777,6 +808,15 @@ Par suite, $    T = \dfrac{2\sqrt{\dfrac{ L_m}{\alpha}} - R_m }{K\indice{K}{capi
 %Q 21. 
 \UPSTIquestion À partir des figures 11 et 12, conclure sur la possibilité de considérer l'asservissement en couple comme amenant une action transparente pour le patient.
 \begin{UPSTIcorrige}
+
+
+\begin{itemize}
+\item La figure 11 montre que la différence entre modèle dynamique de l’exosquelette pris seul (noté Mod1) et le modèle dynamique de l’exosquelette associé à
+ses actionneurs avec l’asservissement en couple élaboré précédemment (noté Mod2) est minime. On relève au maximum $\Delta \theta_2$ de l'ordre de $\SI{3e-10}{rad}$ comparé au quelques $\SI{1e-6}{rad}$ c'est sans doute impérceptible.
+\item La figure 12 montre la différence entre dynamique de l’exosquelette associé à ses actionneurs avec l’asservissement en couple élaboré précédemment
+(Mod2) et pour le modèle dynamique de l’axe pris seul (noté Mod3). On relève au maximum $\Delta C_2$ de l'ordre de $\SI{1e-5}{N.m}$ comparé au quelques $\SI{1}{N.m}$ c'est sans doute impérceptible également.
+\end{itemize}
+ 
 
 \end{UPSTIcorrige}
 
@@ -830,18 +870,33 @@ En développant la linéarisation du modèle et réalisant la transformée de La
 $
 \left\{
 \begin{array}{l}
-p^2 \tilde{\theta}_1(p) = 2338 \tilde{\theta}_2(p) + 9,93 C_g(p) + u_1(p) \\
-p^2 \tilde{\theta}_2(p) = -2921 \tilde{\theta}_2(p) + 12,9 C_g(p) + u_2(p) \\
+p^2 \tilde{\theta}_1(p) = 2338 \tilde{\theta}_2(p) + 9,93 C_g(p) + U_1(p) \\
+p^2 \tilde{\theta}_2(p) = -2921 \tilde{\theta}_2(p) + 12,9 C_g(p) + U_2(p) \\
 \end{array}
 \right.
 $
+
+On obtient ainsi,
+
+\begin{align*}
+\tilde{\theta}_1(p)=\dfrac{ 9,93 C_g(p) + U_1(p)}{-2338+p^2}\\
+\\
+\tilde{\theta}_2(p)=\dfrac{ 12,9 C_g(p) + U_1(p)}{2921+p^2}
+\end{align*}
+
+
 \end{UPSTIcorrige}
 
 %Q 24.
 \UPSTIquestion Conclure sur la stabilité du système non corrigé.
 
 \begin{UPSTIcorrige}
-Le fait que les coefficients ne soient pas tous du même signe laisse à penser que le système non corrigé ne sera pas stable.
+
+Si on considère le système non corrigé (et non perturbé) caractérisé par les fonctions de transfert : $\dfrac{\tilde{\theta}_1(p)}{U_1(p)}$ et $\dfrac{\tilde{\theta}_2(p)}{U_2(p)}$.
+
+Il existe un pôle est à partie réelle strictement positive : $+\sqrt{2338}$. Il existe aussi deux pôles à partie réelle nulle.
+
+Ceci laisse à penser que le système non corrigé ne sera pas stable.
 \end{UPSTIcorrige}
 
 \subsubsection{Dimensionnement de la loi de commande pour le renforcement musculaire}
@@ -849,6 +904,7 @@ Le fait que les coefficients ne soient pas tous du même signe laisse à penser 
 \UPSTIquestion Justifier, sans calcul et en supposant que le système converge en boucle fermée, qu’une commande avec une action intégrale ne permettra pas d’obtenir un comportement de type raideur avec le coefficient de valeur désirée.
 
 \begin{UPSTIcorrige}
+Le système est instable en boucle fermée. Afin de garantir un asservissement correct, il faudrait déjà veiller à stabiliser le système et pour cela privilégié une action dérivée soit par un correcteur proportionnel dérivé (ou à avance de phase) soit par l'ajout d'une boucle interne tenant compte de la dérivée des grandeurs asservies (ce qui revient également à mettre en place une correction dérivée.
 \end{UPSTIcorrige}
 
 %Q 26. 
