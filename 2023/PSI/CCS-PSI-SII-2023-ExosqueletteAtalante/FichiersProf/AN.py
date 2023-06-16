@@ -1,4 +1,4 @@
-from math import cos, sin, atan, pi
+from math import cos, sin, atan, pi,sqrt
 from numpy import array
 L3=0.55
 l3=0.3
@@ -43,3 +43,12 @@ T=(2*(alpha/Lm)**(-0.5)-Rm)/K
 
 #Q19
 K1=(ki**2+r*Aeq*K)/(ki*Aeq)
+
+
+#Q28
+Kp11=5*9.93+2338
+Kp22=5*12.9-2921
+Kv11=2*0.7*sqrt(5*9.93)
+Kv22=2*0.7*sqrt(5*12.9)
+
+print(Kp11,Kp22,Kv11,Kv22)
