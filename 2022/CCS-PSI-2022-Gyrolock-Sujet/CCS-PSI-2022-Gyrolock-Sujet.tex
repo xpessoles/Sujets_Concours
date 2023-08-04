@@ -22,12 +22,13 @@
 %\includegraphics[max width=\textwidth]{2023_07_26_54f5e859400a10e656ddg-01}
 %\end{center}
 
+\section*{Contexte}
 Les recours aux opérations chirurgicales pour traiter les pathologies cardiaques sont de plus en plus courants. La plupart de ces opérations est actuellement réalisée après avoir arrêté le cœur du patient et mis en place une circulation et une oxygénation extérieures du sang. Cette procédure et les suites opératoires sont lourdes.
 
 Il est possible d'opérer sans arrêter le cœur, mais ce type d'opération à cœur battant est plus délicat pour le chirurgien à cause des mouvements de la zone à opérer dûs à la respiration et aux battements du cœur. Les battements cardiaques, contrairement aux mouvements respiratoires, ne sont pas cycliques et engendrent un déplacement rapide de la zone à opérer. Une intervention robotisée type maitre-esclave avec prise en compte des battements cardiaques pour le déplacement du robot esclave est compliquée et dangereuse.
 
 Lors d'une opération à cœur battant, un maintien mécanique de la zone à opérer est indispensable. Ce maintien en position est réalisé par un stabilisateur composé de deux doigts en contact avec la zone à opérer. Le déplacement de la zone à opérer est ainsi diminué. Le stabilisateur est lié à la table d'opération par une attache reconfigurable. La stabilisation (figure \ref{fig:01}) peut être active ou passive. Dans le cas d'une stabilisation active, un actionneur génère une action mécanique de compensation dans le but de diminuer le mouvement de la zone à opérer qui n'a pas été filtré par le stabilisateur passif. Ce mouvement constitue un déplacement résiduel.
-\begin{figure}{!h}
+\begin{figure}[!h]
 \centering
 \includegraphics[max width=\textwidth, center]{2023_07_26_54f5e859400a10e656ddg-01(1)}
 \caption{Stabilisations passive (à gauche) et active (à droite) \label{fig:01}}
@@ -36,11 +37,11 @@ Lors d'une opération à cœur battant, un maintien mécanique de la zone à op�
 
 Une équipe de chercheurs de l'Université de Strasbourg a mis au point un dispositif utilisant l'effet gyroscopique (figure \ref{fig:02}).
 
-\begin{figure}{!h}
+\begin{figure}[!h]
 \centering
 \includegraphics[max width=\textwidth, center]{2023_07_26_54f5e859400a10e656ddg-01(2)}
 %Figure 2 
-\caption{Photo du GyroLock installé sur un stabilisateur (à gauche) et son modèle volumique (à droite)\label{fig:02}}
+\caption{\label{fig:02}Photo du GyroLock installé sur un stabilisateur (à gauche) et son modèle volumique (à droite)}
 \end{figure}
 
 
@@ -55,11 +56,11 @@ Ce système, nommé GyroLock, présente deux avantages par rapport aux autres st
 
 Le GyroLock est muni de deux actionneurs. Le moteur de toupie met en rotation la toupie (3) par rapport à l'étrier (2) autour d'un axe initialement vertical. Un second moteur électrique, appelé moteur d'étrier, entraine en rotation l'étrier (2) par rapport au support lié au stabilisateur (1) autour d'un axe colinéaire à la direction du stabilisateur (1). Cette seconde rotation génère un effet dynamique appelé effet gyroscopique. Cet effet peut être considéré comme une action mécanique permettant d'atténuer le déplacement résiduel de la zone à opérer en contact avec les doigts du stabilisateur (1).
 
-\section{Exigences fonctionnelles}
+\subsection*{Exigences fonctionnelles}
 Le diagramme des exigences partiel de la stabilisation cardiaque est donné figure \ref{fig:03}.
 
 
-\begin{figure}{!h}
+\begin{figure}[!h]
 \centering
 \includegraphics[max width=\textwidth]{2023_07_26_54f5e859400a10e656ddg-02(1)}
 % Figure 3 
@@ -89,7 +90,7 @@ Un stabilisateur passif (sans système de stabilisation active) a été testé s
 
 Le système cardiovasculaire porcin étant similaire à celui d'un être humain, il est possible, grâce à une méthode non détaillée dans cette étude, d'estimer les valeurs équivalentes pour un homme de $90 \mathrm{~kg}$. La figure \ref{fig:04} donne l'évolution temporelle, pour un patient humain, du déplacement du point $P$ situé au bout du stabilisateur (figure~\ref{fig:05}).
 
-\begin{figure}{!h}
+\begin{figure}[!h]
 \centering
 \includegraphics[max width=\textwidth, center]{2023_07_26_54f5e859400a10e656ddg-02}
 %Figure 4 
@@ -109,9 +110,9 @@ La liaison entre le stabilisateur (1) et la table d'opération (0) sera modélis
 
 %% I.B
 \subsection{\label{sec:I.B}Formulation du modèle de la liaison entre la table d'opération et le stabilisateur}
-La modélisation retenue pour estimer le déplacement du point $P$ situé au bout du stabilisateur (1) est donnée figure 5 . La direction $\vec{y}_{0}$ correspond à la direction dorso-ventrale, le plan $\left(O_{0}, \vec{z}_{0}, \vec{x}_{0}\right)$ est le plan frontal et l'axe «pied-tête » du patient est représenté par le vecteur $\vec{x}_{0}$. Le point $O_{0}$ est un point de référence choisi, considéré comme fixe par rapport à la table d'opération (0).
+La modélisation retenue pour estimer le déplacement du point $P$ situé au bout du stabilisateur (1) est donnée figure \ref{fig:5}. La direction $\vec{y}_{0}$ correspond à la direction dorso-ventrale, le plan $\left(O_{0}, \vec{z}_{0}, \vec{x}_{0}\right)$ est le plan frontal et l'axe «pied-tête » du patient est représenté par le vecteur $\vec{x}_{0}$. Le point $O_{0}$ est un point de référence choisi, considéré comme fixe par rapport à la table d'opération (0).
 
-\begin{figure}{!h}
+\begin{figure}[!h]
 \centering
 \includegraphics[max width=\textwidth, center]{2023_07_26_54f5e859400a10e656ddg-03}
 %Figure 5 
@@ -147,7 +148,7 @@ Les figures de changement de base sont données figure \label{fig:05}. La positi
 \end{obj}
 
 \subsection{\label{sec:IIA} Étude de l'effet gyroscopique généré par le système GyroLock}
-Pour déterminer les actions mécaniques créées par le système GyroLock sur le stabilisateur (1), un modèle simplifié du mécanisme, donné figure 6, est utilisé. Ce modèle simplifié, dans lequel la liaison entre le stabilisateur (1) et la table d'opération (0) est modélisée par un encastrement, permet :
+Pour déterminer les actions mécaniques créées par le système GyroLock sur le stabilisateur (1), un modèle simplifié du mécanisme, donné figure \ref{fig:06}, est utilisé. Ce modèle simplifié, dans lequel la liaison entre le stabilisateur (1) et la table d'opération (0) est modélisée par un encastrement, permet :
 
 \begin{itemize}
   \item d'étudier l'effet gyroscopique $c_{x}(t)$ créé par le système GyroLock permettant de compenser l'effet de l'effort cardiaque, sans prendre en compte le mouvement du stabilisateur (1);
@@ -156,7 +157,7 @@ Pour déterminer les actions mécaniques créées par le système GyroLock sur l
 \end{itemize}
 
 
-\begin{figure}{!h}
+\begin{figure}[!h]
 \centering
 \includegraphics[max width=\textwidth, center]{2023_07_26_54f5e859400a10e656ddg-04}
 %Figure 6 
@@ -164,7 +165,7 @@ Pour déterminer les actions mécaniques créées par le système GyroLock sur l
 \end{figure}
 
 
-Le système GyroLock, dont la modélisation est donnée figure 6, est composé de trois solides :
+Le système GyroLock, dont la modélisation est donnée figure \ref{fig:06}, est composé de trois solides :
 
 \begin{itemize}
   \item le support, relié au stabilisateur (1) de repère associé $\mathcal{R}_{1}\left(O_{0}, \vec{x}_{1}, \vec{y}_{1}, \vec{z}_{1}\right)$, en liaison encastrement au point $O_{0}$ avec la table d'opération $(0)$;
@@ -175,7 +176,7 @@ Le système GyroLock, dont la modélisation est donnée figure 6, est composé d
 
 \end{itemize}
 
-Les figures de changement de base sont données figure 6 . Toutes les liaisons sont supposées parfaites et les caractéristiques inertielles des solides sont les suivantes :
+Les figures de changement de base sont données figure \ref{fig:06}. Toutes les liaisons sont supposées parfaites et les caractéristiques inertielles des solides sont les suivantes :
 \begin{itemize}
 \item étrier (2) : masse et inertie négligeables ;
 \item toupie (3) : masse $m_{3}$, centre d'inertie $G_{3}$ tel que $\overrightarrow{O_{0} G_{3}}=L_{G_{3}} \vec{z}_{1}+H_{G_{3}} \vec{y}_{1}$. L'axe $\left(G_{3}, \vec{y}_{3}=\vec{y}_{2}\right)$ étant un axe de symétrie de révolution de la toupie (3), sa matrice d'inertie au point $G_{3}$ s'exprime dans la base $\mathcal{B}_{2}$ sous la forme $\mathcal{J}\left(G_{3}, 3\right)=\left[\begin{array}{ccc}A_{3} & 0 & 0 \\ 0 & B_{3} & 0 \\ 0 & 0 & A_{3}\end{array}\right]_{\mathcal{B}_{2}}$.
@@ -215,7 +216,10 @@ où $c_{x}(t)=B_{3} \omega_{3} \dot{\theta}_{2}(t)=K_{3} \dot{\theta}_{2}(t)$ co
 
 L'action du cœur sur le stabilisateur est modélisée par un glisseur de résultante $\vec{R}_{c \rightarrow 1}=f_{c} \vec{y}_{1}$ au point $P$ tel que $\overrightarrow{O_{0} P}=L \vec{z}_{1}$.
 
-Les moments $L_{01}, M_{01}$ et $N_{01}$ doivent rester faibles afin de limiter les déformations de l'attache reconfigurable liant le stabilisateur (1) à la table d'opération (0). Q 8. En supposant que la toupie (3) tourne à vitesse constante par rapport à l'étrier (2), exprimer $\dot{\theta}_{2}$ en fonction de $K_{3}, \theta_{2}, f_{c}$ et $L-L_{G_{3}}$ permettant de garantir $L_{01}=0$ et de compenser l'effet de l'effort cardiaque $f_{c}$.
+Les moments $L_{01}, M_{01}$ et $N_{01}$ doivent rester faibles afin de limiter les déformations de l'attache reconfigurable liant le stabilisateur (1) à la table d'opération (0). 
+
+%Q 8. 
+\question{\label{q:08}En supposant que la toupie (3) tourne à vitesse constante par rapport à l'étrier (2), exprimer $\dot{\theta}_{2}$ en fonction de $K_{3}, \theta_{2}, f_{c}$ et $L-L_{G_{3}}$ permettant de garantir $L_{01}=0$ et de compenser l'effet de l'effort cardiaque $f_{c}$.}
 
 %Q 9. 
 \question{\label{q:09}Donner une condition sur l'angle $\theta_{2}$ et sur l'accélération angulaire $\ddot{\theta}_{2}$ afin que les moments $M_{01}$ et $N_{01}$ soient faibles.}
@@ -224,13 +228,13 @@ L'étrier (2) doit être piloté en vitesse de rotation pour que l'effet gyrosco
 
 La réponse de l'étrier (2) sera considérée comme suffisamment réactive si le temps de réponse à $5 \%$ de la vitesse $\dot{\theta}_{2}(t)=\omega_{2}(t)$ pour une consigne $\dot{\theta}_{c 2}(t)=\omega_{c 2}(t)$ en échelon est d'un ordre inférieur à la demi-période du signal perturbateur $f_{c}(t)$.
 
-La réponse expérimentale à un échelon de vitesse $\omega_{c 2}(t)$ d'amplitude $2000 \mathrm{deg} \cdot \mathrm{s}^{-1}$ est représentée figure 7.
+La réponse expérimentale à un échelon de vitesse $\omega_{c 2}(t)$ d'amplitude $2000 \mathrm{deg} \cdot \mathrm{s}^{-1}$ est représentée figure \ref{fig:07}.
 
-\begin{figure}{!h}
+\begin{figure}[!h]
 \centering
 \includegraphics[max width=\textwidth, center]{2023_07_26_54f5e859400a10e656ddg-05(1)}
 %Figure 7 
-Réponse expérimentale de l'étrier et consigne associée (à droite, zoom sur le régime transitoire)
+\caption{\label{fig:07}Réponse expérimentale de l'étrier et consigne associée (à droite, zoom sur le régime transitoire)}
 \end{figure}
 
 Les transformées de Laplace de $\omega_{2}(t), \omega_{c 2}(t), \theta_{2}(t)$ et $c_{x}(t)$ sont notées $\Omega_{2}(p), \Omega_{c 2}(p), \theta_{2}(p)$ et $C_{x}(p)$.
@@ -238,17 +242,17 @@ Les transformées de Laplace de $\omega_{2}(t), \omega_{c 2}(t), \theta_{2}(t)$ 
 %Q 10. 
 \question{\label{q:10}Vérifier que la condition de réactivité énoncée ci-dessus est respectée. Justifier que la fonction de transfert de l'étrier (2) $H_{2}(p)=\frac{\Omega_{2}(p)}{\Omega_{c 2}(p)}$ peut alors être approchée par un gain statique $K_{2}$ de valeur à préciser. Il faut s'assurer que la position $\theta_{2}$ de l'étrier (2) ne s'éloigne pas trop de sa position de référence $\theta_{2}^{*}=0$. Le non-respect de cette condition, appelé dérive de l'étrier, génère un moment parasite $M_{01}$ responsable d'un déplacement du point $P$ selon $\vec{x}_{1}$.}
 
-\subsection{\ref{sec:IIB} Réglage du correcteur de la chaine d'asservissement de l'étrier}
-La figure 8 montre la boucle d'asservissement sur la position $\theta_{2}(t) . C(p)$ est la fonction de transfert d'un correcteur appelé correcteur d'étrier. La dérive de l'étrier sera évitée si $\lim _{t \rightarrow+\infty} \theta_{2}(t)=0$ lorsque la commande de l'étrier $U(p)$ est un échelon.
+\subsection{\label{sec:II.B} Réglage du correcteur de la chaine d'asservissement de l'étrier}
+La figure \ref{fig:08} montre la boucle d'asservissement sur la position $\theta_{2}(t) . C(p)$ est la fonction de transfert d'un correcteur appelé correcteur d'étrier. La dérive de l'étrier sera évitée si $\lim\limits_{t \rightarrow+\infty} \theta_{2}(t)=0$ lorsque la commande de l'étrier $U(p)$ est un échelon.
 
-\begin{figure}{!h}
+\begin{figure}[!h]
 \centering
-\includegraphics[max width=\textwidth]{2023_07_26_54f5e859400a10e656ddg-05}
+\includegraphics[max width=.5\textwidth]{2023_07_26_54f5e859400a10e656ddg-05}
 %Figure 8 
-Asservissement de l'étrier
+\caption{\label{fig:08}Asservissement de l'étrier}
 \end{figure}
 
-Les deux cas suivants sont envisagés
+Les deux cas suivants sont envisagés :
 
 \begin{itemize}
   \item avec une correction proportionnelle : $C(p)=K_{10}$;
@@ -257,7 +261,7 @@ Les deux cas suivants sont envisagés
 
 
 %Q 11. 
-\question{\label{q:11}Exprimer sous forme canonique la fonction de transfert $H_{\theta_{2}}(p)=\frac{\theta_{2}(p)}{U(p)}$ en fonction de $C(p)$ et $K_{2}$. Après avoir déterminé $\lim _{t \rightarrow+\infty} \theta_{2}(t)$ lorsque $U(p)$ est un échelon unitaire dans les deux cas cités précédemment, justifier la pertinence d'une correction proportionnelle-intégrale au regard de la problématique de la dérive de l'étrier. Dans la suite de l'étude, le correcteur adopté est $C(p)=K_{10}+\frac{K_{11}}{p}$. L'effet gyroscopique $c_{x}(t)$ est lié à la vitesse de rotation $\omega_{2}(t)$ et la consigne $\theta_{2}^{*}(t)$ est maintenue à 0 pour éviter la dérive de l'étrier. La fonction de transfert utilisée pour modéliser le comportement de l'étrier (2) est notée $H_{m}(p)=\frac{\Omega_{2}(p)}{U(p)}$.}
+\question{\label{q:11}Exprimer sous forme canonique la fonction de transfert $H_{\theta_{2}}(p)=\frac{\theta_{2}(p)}{U(p)}$ en fonction de $C(p)$ et $K_{2}$. Après avoir déterminé $\lim\limits_{t \rightarrow+\infty} \theta_{2}(t)$ lorsque $U(p)$ est un échelon unitaire dans les deux cas cités précédemment, justifier la pertinence d'une correction proportionnelle-intégrale au regard de la problématique de la dérive de l'étrier. Dans la suite de l'étude, le correcteur adopté est $C(p)=K_{10}+\frac{K_{11}}{p}$. L'effet gyroscopique $c_{x}(t)$ est lié à la vitesse de rotation $\omega_{2}(t)$ et la consigne $\theta_{2}^{*}(t)$ est maintenue à 0 pour éviter la dérive de l'étrier. La fonction de transfert utilisée pour modéliser le comportement de l'étrier (2) est notée $H_{m}(p)=\frac{\Omega_{2}(p)}{U(p)}$.}
 
 %Q 12. 
 \question{\label{q:12}Exprimer sous forme canonique la fonction de transfert $H_{m}(p)$ en fonction de $K_{2}, K_{10}$ et $K_{11}$.}
@@ -267,20 +271,20 @@ Le calcul des gains $K_{10}$ et $K_{11}$ doit répondre aux deux exigences suiva
 %Q 13.
 \question{\label{q:13} Déterminer les valeurs numériques de $K_{10}$ et $K_{11}$ au regard de ces exigences.}
 
-La rotation du stabilisateur (1) étudiée en partie I n'est pas prise en compte figure 6. Il est indispensable de considérer la flexibilité de l'attache reconfigurable utilisée pour lier le stabilisateur (1) à la table d'opération (0).
+La rotation du stabilisateur (1) étudiée en partie \ref{sec:I} n'est pas prise en compte figure \ref{fig:6}. Il est indispensable de considérer la flexibilité de l'attache reconfigurable utilisée pour lier le stabilisateur (1) à la table d'opération (0).
 
-\subsection{\label{sec:II.C} - Comportement dynamique du stabilisateur}
+\subsection{\label{sec:II.C} Comportement dynamique du stabilisateur}
 
-\begin{figure}{!h}
+\begin{figure}[!h]
 \centering
 \includegraphics[max width=\textwidth]{2023_07_26_54f5e859400a10e656ddg-06}
 %Figure 9 
-Modèle cinématique du système GyroLock (représenté pour $\theta_{2}=\theta_{3}=0$ )
+\caption{\label{fig:09}Modèle cinématique du système GyroLock (représenté pour $\theta_{2}=\theta_{3}=0$)}
 \end{figure}
 
-Dans la modélisation retenue (figure 9), une liaison pivot non parfaite permet de représenter la flexibilité de l'attache reconfigurable. La table d'opération (0) est supposée fixe et le référentiel $\mathcal{R}_{0}\left(O_{0}, \vec{x}_{0}, \vec{y}_{0}, \vec{z}_{0}\right)$ lié à la table (0) est galiléen. Au stabilisateur (1) est associé le repère $\mathcal{R}_{1}\left(O_{0}, \vec{x}_{0}=\vec{x}_{1}, \vec{y}_{1}, \vec{z}_{1}\right)$ avec $\theta_{1}=\left(\vec{y}_{0}, \vec{y}_{1}\right)=\left(\vec{z}_{0}, \vec{z}_{1}\right)$. Le point $P$ tel que $O_{0} P=L$ représente le bout du stabilisateur (1) en contact avec la zone à opérer.
+Dans la modélisation retenue (figure \ref{fig:09}), une liaison pivot non parfaite permet de représenter la flexibilité de l'attache reconfigurable. La table d'opération (0) est supposée fixe et le référentiel $\mathcal{R}_{0}\left(O_{0}, \vec{x}_{0}, \vec{y}_{0}, \vec{z}_{0}\right)$ lié à la table (0) est galiléen. Au stabilisateur (1) est associé le repère $\mathcal{R}_{1}\left(O_{0}, \vec{x}_{0}=\vec{x}_{1}, \vec{y}_{1}, \vec{z}_{1}\right)$ avec $\theta_{1}=\left(\vec{y}_{0}, \vec{y}_{1}\right)=\left(\vec{z}_{0}, \vec{z}_{1}\right)$. Le point $P$ tel que $O_{0} P=L$ représente le bout du stabilisateur (1) en contact avec la zone à opérer.
 
-\section{Paramétrage, notations et hypothèses}
+\subsection*{Paramétrage, notations et hypothèses}
 \begin{itemize}
   \item La liaison pivot d'axe $\left(O_{0}, \vec{x}_{0}\right)$ entre les solides (0) et (1) possède une raideur $k$ et un coefficient de frottement visqueux $f$, d'où $\vec{M}\left(O_{0}, 0 \rightarrow 1\right) \cdot \vec{x}_{0}=-\left(k \theta_{1}+f \dot{\theta}_{1}\right)$;
 
@@ -317,19 +321,19 @@ $$
 J_{x} \ddot{\theta}_{1}(t)+f \dot{\theta}_{1}(t)+k \theta_{1}(t)=c_{x}(t)-L f_{c}(t)
 $$
 
-En supposant que $\theta_{1}$ reste proche de 0 , la relation $y(t)=L \theta_{1}(t)$ sera utilisée.
+En supposant que $\theta_{1}$ reste proche de 0, la relation $y(t)=L \theta_{1}(t)$ sera utilisée.
 
 Les transformées de Laplace de $y(t), c_{x}(t)$ et $f_{c}(t)$ sont notées $Y(p), C_{x}(p)$ et $F_{c}(p)$.
 
 %Q 19. 
-\question{\label{q:19}En déduire les expressions littérales des fonctions de transfert $H_{\text {pert }}(p)$ et $H_{1}(p)$ du schéma bloc figure 10 en fonction de $L, J_{x}, f$ et $k$.}
+\question{\label{q:19}En déduire les expressions littérales des fonctions de transfert $H_{\text {pert }}(p)$ et $H_{1}(p)$ du schéma bloc figure \ref{fig:10} en fonction de $L, J_{x}, f$ et $k$.}
 
 
-\begin{figure}{!h}
+\begin{figure}[!h]
 \centering
-\includegraphics[max width=\textwidth]{2023_07_26_54f5e859400a10e656ddg-07}
+\includegraphics[max width=.4\textwidth]{2023_07_26_54f5e859400a10e656ddg-07}
 %Figure 10 
-Schéma bloc du stabilisateur (1)
+\caption{\label{fig:10}Schéma bloc du stabilisateur (1)}
 \end{figure}
 
 On rappelle que $L=0,3 \mathrm{~m}$ et les valeurs retenues pour $J_{x}, f$ et $k$ sont :
@@ -347,7 +351,7 @@ $-k=95 \mathrm{~N} \cdot \mathrm{m} \cdot \mathrm{rad}^{-1}$.
 
 \section{Réglage de la loi de commande du stabilisateur}
 \begin{obj}
-Régler une loi de commande permettant de respecter les exigences figure 3.
+Régler une loi de commande permettant de respecter les exigences figure \ref{fig:3}.
 \end{obj}
 
 Le faible amortissement de la fonction de transfert $H_{1}(p)$ et la rapidité du système imposent la mise en place de deux boucles d'asservissement :
@@ -356,7 +360,7 @@ Le faible amortissement de la fonction de transfert $H_{1}(p)$ et la rapidité d
   \item un asservissement en position de la position $y(t)$.
 \end{itemize}
 
-Le schéma bloc global du système est donné figure 11, où :
+Le schéma bloc global du système est donné figure \ref{fig:11}, où :
 
 \begin{itemize}
   \item $H_{m}(p)$ est la fonction de transfert de l'étrier asservi ;
@@ -368,62 +372,70 @@ Le schéma bloc global du système est donné figure 11, où :
 \end{itemize}
 
 
-\begin{figure}{!h}
+\begin{figure}[!h]
 \centering
 \includegraphics[max width=\textwidth]{2023_07_26_54f5e859400a10e656ddg-07(1)}
 %Figure 11 
-Schéma bloc global du système GyroLock
+\caption{\label{fig:11}Schéma-blocs global du système GyroLock}
 \end{figure}
 
-\section{A - Valeur maximale de $K_{p}$}
+\section{\label{sec:III.A} Valeur maximale de $K_{p}$}
 %Q 21.
 
 \question{\label{q:21}Exprimer la fonction de transfert en boucle ouverte $H_{\mathrm{BO}}(p)=\frac{Y(p)}{\varepsilon(p)}$ en fonction de $K_{p}, K_{3}, K_{v}$, $H_{m}(p)$ et $H_{1}(p)$.}
 
-Un premier choix de conception de la commande a conduit à imposer $K_{v}=15$. Le diagramme de Bode de $H_{\mathrm{BO}}(p)$ pour $K_{p}=1$ est donné figure 12. Pour ce tracé, la fonction de transfert $H_{2}(p)=\frac{\omega_{0}^{2}}{p^{2}+2 \xi \omega_{0} p+\omega_{0}^{2}}$ non simplifiée est utilisée, avec $\omega_{0}=200 \mathrm{rad} \cdot \mathrm{s}^{-1}, \xi=0,7$, et les valeurs de $K_{10}, K_{11}$ sont celles obtenues avec le modèle simplifié de la question 13.
-\includegraphics[max width=\textwidth, center]{2023_07_26_54f5e859400a10e656ddg-08(1)}
+Un premier choix de conception de la commande a conduit à imposer $K_{v}=15$. Le diagramme de Bode de $H_{\mathrm{BO}}(p)$ pour $K_{p}=1$ est donné figure \ref{fig:12}. Pour ce tracé, la fonction de transfert $H_{2}(p)=\frac{\omega_{0}^{2}}{p^{2}+2 \xi \omega_{0} p+\omega_{0}^{2}}$ non simplifiée est utilisée, avec $\omega_{0}=200 \mathrm{rad} \cdot \mathrm{s}^{-1}, \xi=0,7$, et les valeurs de $K_{10}, K_{11}$ sont celles obtenues avec le modèle simplifié de la question \ref{q:13}.
 
-Figure 12 Diagramme de Bode de la boucle ouverte avec $K_{p}=1$
+
+\begin{figure}[!h]
+\centering
+\includegraphics[max width=\textwidth, center]{2023_07_26_54f5e859400a10e656ddg-08(1)}
+%Figure 12 
+\caption{\label{fig:12}Diagramme de Bode de la boucle ouverte avec $K_{p}=1$}
+\end{figure}
 
 %Q 22. 
-\question{\label{q:22}À partir de la figure 12, donner la valeur maximale de $K_{p}$ telle que le système soit stable en boucle fermée.}
+\question{\label{q:22}À partir de la figure \ref{fig:12}, donner la valeur maximale de $K_{p}$ telle que le système soit stable en boucle fermée.}
 
-\subsection{\label{sec:III.B} - Vérification de la valeur de $K_{p}$}
+\subsection{\label{sec:III.B} Vérification de la valeur de $K_{p}$}
 %Q 23. 
-\question{\label{q:23}Déterminer la valeur maximale $G_{\max }$ du gain de la fonction de transfert $\left|\frac{Y(j \omega)}{F_{c}(j \omega)}\right|$ qui permet de garantir le respect des exigences du diagramme figure 3 .}
+\question{\label{q:23}Déterminer la valeur maximale $G_{\max }$ du gain de la fonction de transfert $\left|\frac{Y(j \omega)}{F_{c}(j \omega)}\right|$ qui permet de garantir le respect des exigences du diagramme figure \ref{fig:3}.}
 
-La figure 13 donne, en fonction de la valeur de $K_{p}$, la valeur maximale du gain $\left|\frac{Y(j \omega)}{F_{c}(j \omega)}\right|$ pour les fréquences cardiaques précisées par l'exigence 1.1.1 de la figure 3.
+La figure \ref{fig:13} donne, en fonction de la valeur de $K_{p}$, la valeur maximale du gain $\left|\frac{Y(j \omega)}{F_{c}(j \omega)}\right|$ pour les fréquences cardiaques précisées par l'exigence 1.1.1 de la figure \ref{fig:3}.
 
-\begin{center}
+
+\begin{figure}[!h]
+\centering
 \includegraphics[max width=\textwidth]{2023_07_26_54f5e859400a10e656ddg-08}
-\end{center}
+%Figure 13 
+\caption{\label{fig:13}Gain maximal de la réponse fréquentielle de la fonction de transfert $\frac{Y(p)}{F_{c}(p)}$ en fonction de $K_{p}$}
+\end{figure}
 
-Figure 13 Gain maximal de la réponse fréquentielle de la fonction de transfert $\frac{Y(p)}{F_{c}(p)}$ en fonction de $K_{p}$ Q 24. À partir de la figure 13, déterminer la valeur minimale de $K_{p}$ permettant de respecter l'exigence 1.1. Vérifier la cohérence de cette valeur avec celle trouvée à la question 22 .
+\question{À partir de la figure \ref{fig:13}, déterminer la valeur minimale de $K_{p}$ permettant de respecter l'exigence 1.1. Vérifier la cohérence de cette valeur avec celle trouvée à la question \ref{q:22} .}
 
-\section{III.C - Amélioration des performances par compensation de l'effort cardiaque}
-Une solution pour améliorer la commande du système serait de compenser l'effet de l'effort cardiaque en complétant la commande $U(p)$ de l'étrier par une anticipation du type $C_{a}(p) F_{c}(p)$ avec $C_{a}(p)$ un correcteur à déterminer. Cependant, il n'est pas envisageable de mesurer l'effort cardiaque du patient. L'utilisation d'un observateur permet d'obtenir une estimation $\hat{f}_{c}(t)$ à partir des mesures de $y(t)$ et $v(t)=\dot{y}(t)$ (issues d'un accéléromètre lié au support du GyroLock). Cette structure de commande peut être représentée par le schéma bloc figure 14.
+\subsection{\label{sec:III.C} Amélioration des performances par compensation de l'effort cardiaque}
+Une solution pour améliorer la commande du système serait de compenser l'effet de l'effort cardiaque en complétant la commande $U(p)$ de l'étrier par une anticipation du type $C_{a}(p) F_{c}(p)$ avec $C_{a}(p)$ un correcteur à déterminer. Cependant, il n'est pas envisageable de mesurer l'effort cardiaque du patient. L'utilisation d'un observateur permet d'obtenir une estimation $\hat{f}_{c}(t)$ à partir des mesures de $y(t)$ et $v(t)=\dot{y}(t)$ (issues d'un accéléromètre lié au support du GyroLock). Cette structure de commande peut être représentée par le schéma bloc figure \ref{fig:14}.
 
-\begin{center}
+\begin{figure}[!h]
+\centering
 \includegraphics[max width=\textwidth]{2023_07_26_54f5e859400a10e656ddg-09(1)}
-\end{center}
-
-Figure 14 Schéma bloc de la commande avec estimation et compensation de l'effort cardiaque
+\caption{\label{fig:14}Schéma bloc de la commande avec estimation et compensation de l'effort cardiaque}
+\end{figure}
 
 En première approximation :
-
-— l'estimateur est modélisé par un premier ordre de constante de temps $\tau=5 \mathrm{~ms}$ et de gain unitaire ;
-
 \begin{itemize}
+\item l'estimateur est modélisé par un premier ordre de constante de temps $\tau=5 \mathrm{~ms}$ et de gain unitaire ;
   \item la fonction de transfert $H_{m}(p)$ est modélisée par la forme approchée $H_{m}(p)=\frac{p^{2}}{p^{2}+2 \xi_{m} \omega_{m} p+\omega_{m}^{2}}$.
 \end{itemize}
 
-La consigne virtuelle $Y^{*}(p)$ étant nulle, la structure de commande peut alors être représentée par le schéma bloc figure 15.
+La consigne virtuelle $Y^{*}(p)$ étant nulle, la structure de commande peut alors être représentée par le schéma bloc figure \ref{fig:15}.
 
-\begin{center}
+\begin{figure}[!h]
+\centering
 \includegraphics[max width=\textwidth]{2023_07_26_54f5e859400a10e656ddg-09}
-\end{center}
-
-Figure 15 Schéma bloc de la commande
+%Figure 15 
+\caption{\label{fig:15}Schéma bloc de la commande}
+\end{figure}
 
 %Q 25. 
 \question{\label{q:25}Exprimer la fonction de transfert $H_{F_{c}}^{\text {est }}(p)=\frac{Y(p)}{F_{c}(p)}$ en fonction de $K_{p}, K_{v}, K_{3}, H_{\text {pert }}(p), \tau, C_{a}(p)$, $H_{m}(p)$ et $H_{1}(p)$.}
@@ -434,38 +446,40 @@ Figure 15 Schéma bloc de la commande
 %Q 27.
 \question{\label{q:27}Analyser les problèmes éventuels liés à la réalisation de ce correcteur. Conclure sur la possibilité de son implantation dans le système de commande.}
 
-Le diagramme de Bode associé au correcteur $C_{a}(p)$, exprimé question 26, est donné figure 16. Pour des raisons de simplification, une forme approchée du correcteur $C_{a}(p)$ doit être déterminée.
+Le diagramme de Bode associé au correcteur $C_{a}(p)$, exprimé question \ref{q:26}, est donné figure \ref{fig:16}. Pour des raisons de simplification, une forme approchée du correcteur $C_{a}(p)$ doit être déterminée.
 
 %Q 28. 
-\question{\label{q:28}À partir de la figure 16 et de l'exigence 1.1.1, justifier qu'une approximation de $C_{a}(p)$ sous la forme d'un gain proportionnel $\widetilde{C_{a}}(p)=K_{a}$ est suffisante. Déterminer la valeur numérique de $K_{a}$.}
+\question{\label{q:28}À partir de la figure \ref{fig:16} et de l'exigence 1.1.1, justifier qu'une approximation de $C_{a}(p)$ sous la forme d'un gain proportionnel $\widetilde{C_{a}}(p)=K_{a}$ est suffisante. Déterminer la valeur numérique de $K_{a}$.}
 
-La figure 17 montre les gains des réponses fréquentielles de l'effort de perturbation $f_{c}$ vers la position $y$ pour différents cas : en boucle ouverte, en boucle fermée avec la structure de commande définie dans cette étude sans anticipation et en boucle fermée avec anticipation.
+La figure \ref{fig:17} montre les gains des réponses fréquentielles de l'effort de perturbation $f_{c}$ vers la position $y$ pour différents cas : en boucle ouverte, en boucle fermée avec la structure de commande définie dans cette étude sans anticipation et en boucle fermée avec anticipation.
 
-L'exploitation des modèles conduit en simulation numérique aux évolutions temporelles de $y(t)$ et de $\theta_{2}(t)$ (obtenues avec $K_{p}=500$ et une valeur de $K_{a}$ proche de celle déterminée à la question 28) présentées figure 18. Q 29. Analyser les courbes des figures 17 et 18 et les commenter en considérant des critères (non exhaustifs) comme les coefficients d'amortissement obtenus, les niveaux d'atténuation de la perturbation d'effort au regard du cahier des charges défini figure 3, la cohérence des résultats montrés par les figures 17 et 18, etc.
+L'exploitation des modèles conduit en simulation numérique aux évolutions temporelles de $y(t)$ et de $\theta_{2}(t)$ (obtenues avec $K_{p}=500$ et une valeur de $K_{a}$ proche de celle déterminée à la question \ref{q:28}) présentées figure \ref{fig:18}. 
 
-Conclure sur la capacité du système GyroLock, tel qu'il a été modélisé dans cette étude, à maintenir la zone à opérer lors d'une opération à cœur battant.
+%Q 29. 
+\question{\label{q:29}Analyser les courbes des figures \ref{fig:17} et \ref{fig:18} et les commenter en considérant des critères (non exhaustifs) comme les coefficients d'amortissement obtenus, les niveaux d'atténuation de la perturbation d'effort au regard du cahier des charges défini figure \ref{fig:03}, la cohérence des résultats montrés par les figures \ref{fig:17} et \ref{fig:18}, etc.
+Conclure sur la capacité du système GyroLock, tel qu'il a été modélisé dans cette étude, à maintenir la zone à opérer lors d'une opération à cœur battant.}
 
-\begin{figure}{!h}
+\begin{figure}[!h]
 \centering
 \includegraphics[max width=\textwidth, center]{2023_07_26_54f5e859400a10e656ddg-10(1)}
 %Figure 16 
-Diagramme de Bode du correcteur $C_{a}(p)$
+\caption{\label{fig:16}Diagramme de Bode du correcteur $C_{a}(p)$}
 \end{figure}
 
 
-\begin{figure}{!h}
+\begin{figure}[!h]
 \centering
 \includegraphics[max width=\textwidth]{2023_07_26_54f5e859400a10e656ddg-10(2)}
 %Figure 17 
-Réponses fréquentielles $\left|Y(j \omega) / F_{c}(j \omega)\right|$
+\caption{\label{fig:17}Réponses fréquentielles $\left|Y(j \omega) / F_{c}(j \omega)\right|$}
 \end{figure}
 
 
-\begin{figure}{!h}
+\begin{figure}[!h]
 \centering
 \includegraphics[max width=\textwidth, center]{2023_07_26_54f5e859400a10e656ddg-10}
 %Figure 18 
-Évolutions temporelles de $y(t)$ et $\theta_{2}(t)$ avec estimation et compensation de $f_{c}(t)$
+\caption{\label{fig:18}Évolutions temporelles de $y(t)$ et $\theta_{2}(t)$ avec estimation et compensation de $f_{c}(t)$}
 \end{figure}
 
 %\end{document}
