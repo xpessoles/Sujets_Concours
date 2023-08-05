@@ -326,7 +326,7 @@ En supposant que $\theta_{1}$ reste proche de 0, la relation $y(t)=L \theta_{1}(
 Les transformées de Laplace de $y(t), c_{x}(t)$ et $f_{c}(t)$ sont notées $Y(p), C_{x}(p)$ et $F_{c}(p)$.
 
 %Q 19. 
-\question{\label{q:19}En déduire les expressions littérales des fonctions de transfert $H_{\text {pert }}(p)$ et $H_{1}(p)$ du schéma bloc figure \ref{fig:10} en fonction de $L, J_{x}, f$ et $k$.}
+\question{\label{q:19}En déduire les expressions littérales des fonctions de transfert $H_{\text {pert }}(p)$ et $H_{1}(p)$ du schéma-blocs figure \ref{fig:10} en fonction de $L, J_{x}, f$ et $k$.}
 
 
 \begin{figure}[!h]
@@ -340,11 +340,11 @@ On rappelle que $L=0,3 \mathrm{~m}$ et les valeurs retenues pour $J_{x}, f$ et $
 
 \begin{itemize}
   \item $J_{x}=1,14 \times 10^{-2} \mathrm{~kg} \cdot \mathrm{m}^{2}$;
+
+  \item $-f=64 \times 10^{-3} \mathrm{~N} \cdot \mathrm{m} \cdot \mathrm{s} \cdot \mathrm{rad}^{-1}$;
+
+  \item $-k=95 \mathrm{~N} \cdot \mathrm{m} \cdot \mathrm{rad}^{-1}$.
 \end{itemize}
-
-$-f=64 \times 10^{-3} \mathrm{~N} \cdot \mathrm{m} \cdot \mathrm{s} \cdot \mathrm{rad}^{-1}$;
-
-$-k=95 \mathrm{~N} \cdot \mathrm{m} \cdot \mathrm{rad}^{-1}$.
 
 %Q 20. 
 \question{\label{q:20}Écrire $H_{1}(p)$ sous forme canonique, puis calculer les valeurs de ses paramètres caractéristiques : gain statique $K_{1}$, amortissement $\xi_{1}$ et pulsation propre $\omega_{1}$. Commenter le comportement associé (fréquentiel ou temporel).}
@@ -360,7 +360,7 @@ Le faible amortissement de la fonction de transfert $H_{1}(p)$ et la rapidité d
   \item un asservissement en position de la position $y(t)$.
 \end{itemize}
 
-Le schéma bloc global du système est donné figure \ref{fig:11}, où :
+Le schéma-blocs global du système est donné figure \ref{fig:11}, où :
 
 \begin{itemize}
   \item $H_{m}(p)$ est la fonction de transfert de l'étrier asservi ;
@@ -384,12 +384,12 @@ Le schéma bloc global du système est donné figure \ref{fig:11}, où :
 
 \question{\label{q:21}Exprimer la fonction de transfert en boucle ouverte $H_{\mathrm{BO}}(p)=\frac{Y(p)}{\varepsilon(p)}$ en fonction de $K_{p}, K_{3}, K_{v}$, $H_{m}(p)$ et $H_{1}(p)$.}
 
-Un premier choix de conception de la commande a conduit à imposer $K_{v}=15$. Le diagramme de Bode de $H_{\mathrm{BO}}(p)$ pour $K_{p}=1$ est donné figure \ref{fig:12}. Pour ce tracé, la fonction de transfert $H_{2}(p)=\frac{\omega_{0}^{2}}{p^{2}+2 \xi \omega_{0} p+\omega_{0}^{2}}$ non simplifiée est utilisée, avec $\omega_{0}=200 \mathrm{rad} \cdot \mathrm{s}^{-1}, \xi=0,7$, et les valeurs de $K_{10}, K_{11}$ sont celles obtenues avec le modèle simplifié de la question \ref{q:13}.
+Un premier choix de conception de la commande a conduit à imposer $K_{v}=15$. Le diagramme de Bode de $H_{\mathrm{BO}}(p)$ pour $K_{p}=1$ est donné figure \ref{fig:12}. Pour ce tracé, la fonction de transfert $H_{2}(p)=\frac{\omega_{0}^{2}}{p^{2}+2 \xi \omega_{0} p+\omega_{0}^{2}}$ non simplifiée est utilisée, avec $\omega_{0}=200 \mathrm{rad} \cdot \mathrm{s}^{-1}, \xi=0,7$, et les valeurs de $K_{10}, K_{11}$ sont celles obtenues avec le modèle simplifié de la question~\ref{q:13}.
 
 
 \begin{figure}[!h]
 \centering
-\includegraphics[max width=\textwidth, center]{2023_07_26_54f5e859400a10e656ddg-08(1)}
+\includegraphics[max width=.9\textwidth, center]{2023_07_26_54f5e859400a10e656ddg-08(1)}
 %Figure 12 
 \caption{\label{fig:12}Diagramme de Bode de la boucle ouverte avec $K_{p}=1$}
 \end{figure}
@@ -399,22 +399,22 @@ Un premier choix de conception de la commande a conduit à imposer $K_{v}=15$. L
 
 \subsection{\label{sec:III.B} Vérification de la valeur de $K_{p}$}
 %Q 23. 
-\question{\label{q:23}Déterminer la valeur maximale $G_{\max }$ du gain de la fonction de transfert $\left|\frac{Y(j \omega)}{F_{c}(j \omega)}\right|$ qui permet de garantir le respect des exigences du diagramme figure \ref{fig:3}.}
+\question{\label{q:23}Déterminer la valeur maximale $G_{\max }$ du gain de la fonction de transfert $\left|\frac{Y(j \omega)}{F_{c}(j \omega)}\right|$ qui permet de garantir le respect des exigences du diagramme figure \ref{fig:03}.}
 
-La figure \ref{fig:13} donne, en fonction de la valeur de $K_{p}$, la valeur maximale du gain $\left|\frac{Y(j \omega)}{F_{c}(j \omega)}\right|$ pour les fréquences cardiaques précisées par l'exigence 1.1.1 de la figure \ref{fig:3}.
+La figure \ref{fig:13} donne, en fonction de la valeur de $K_{p}$, la valeur maximale du gain $\left|\frac{Y(j \omega)}{F_{c}(j \omega)}\right|$ pour les fréquences cardiaques précisées par l'exigence 1.1.1 de la figure \ref{fig:03}.
 
 
 \begin{figure}[!h]
 \centering
-\includegraphics[max width=\textwidth]{2023_07_26_54f5e859400a10e656ddg-08}
+\includegraphics[max width=.9\textwidth]{2023_07_26_54f5e859400a10e656ddg-08}
 %Figure 13 
 \caption{\label{fig:13}Gain maximal de la réponse fréquentielle de la fonction de transfert $\frac{Y(p)}{F_{c}(p)}$ en fonction de $K_{p}$}
 \end{figure}
 
-\question{À partir de la figure \ref{fig:13}, déterminer la valeur minimale de $K_{p}$ permettant de respecter l'exigence 1.1. Vérifier la cohérence de cette valeur avec celle trouvée à la question \ref{q:22} .}
+\question{À partir de la figure \ref{fig:13}, déterminer la valeur minimale de $K_{p}$ permettant de respecter l'exigence~1.1. Vérifier la cohérence de cette valeur avec celle trouvée à la question \ref{q:22} .}
 
 \subsection{\label{sec:III.C} Amélioration des performances par compensation de l'effort cardiaque}
-Une solution pour améliorer la commande du système serait de compenser l'effet de l'effort cardiaque en complétant la commande $U(p)$ de l'étrier par une anticipation du type $C_{a}(p) F_{c}(p)$ avec $C_{a}(p)$ un correcteur à déterminer. Cependant, il n'est pas envisageable de mesurer l'effort cardiaque du patient. L'utilisation d'un observateur permet d'obtenir une estimation $\hat{f}_{c}(t)$ à partir des mesures de $y(t)$ et $v(t)=\dot{y}(t)$ (issues d'un accéléromètre lié au support du GyroLock). Cette structure de commande peut être représentée par le schéma bloc figure \ref{fig:14}.
+Une solution pour améliorer la commande du système serait de compenser l'effet de l'effort cardiaque en complétant la commande $U(p)$ de l'étrier par une anticipation du type $C_{a}(p) F_{c}(p)$ avec $C_{a}(p)$ un correcteur à déterminer. Cependant, il n'est pas envisageable de mesurer l'effort cardiaque du patient. L'utilisation d'un observateur permet d'obtenir une estimation $\hat{f}_{c}(t)$ à partir des mesures de $y(t)$ et $v(t)=\dot{y}(t)$ (issues d'un accéléromètre lié au support du GyroLock). Cette structure de commande peut être représentée par le schéma-blocs figure \ref{fig:14}.
 
 \begin{figure}[!h]
 \centering
@@ -428,7 +428,7 @@ En première approximation :
   \item la fonction de transfert $H_{m}(p)$ est modélisée par la forme approchée $H_{m}(p)=\frac{p^{2}}{p^{2}+2 \xi_{m} \omega_{m} p+\omega_{m}^{2}}$.
 \end{itemize}
 
-La consigne virtuelle $Y^{*}(p)$ étant nulle, la structure de commande peut alors être représentée par le schéma bloc figure \ref{fig:15}.
+La consigne virtuelle $Y^{*}(p)$ étant nulle, la structure de commande peut alors être représentée par le schéma-blocs figure~\ref{fig:15}.
 
 \begin{figure}[!h]
 \centering
@@ -461,7 +461,7 @@ Conclure sur la capacité du système GyroLock, tel qu'il a été modélisé dan
 
 \begin{figure}[!h]
 \centering
-\includegraphics[max width=\textwidth, center]{2023_07_26_54f5e859400a10e656ddg-10(1)}
+\includegraphics[max width=.9\textwidth, center]{2023_07_26_54f5e859400a10e656ddg-10(1)}
 %Figure 16 
 \caption{\label{fig:16}Diagramme de Bode du correcteur $C_{a}(p)$}
 \end{figure}
@@ -469,7 +469,7 @@ Conclure sur la capacité du système GyroLock, tel qu'il a été modélisé dan
 
 \begin{figure}[!h]
 \centering
-\includegraphics[max width=\textwidth]{2023_07_26_54f5e859400a10e656ddg-10(2)}
+\includegraphics[max width=.9\textwidth]{2023_07_26_54f5e859400a10e656ddg-10(2)}
 %Figure 17 
 \caption{\label{fig:17}Réponses fréquentielles $\left|Y(j \omega) / F_{c}(j \omega)\right|$}
 \end{figure}
@@ -477,7 +477,7 @@ Conclure sur la capacité du système GyroLock, tel qu'il a été modélisé dan
 
 \begin{figure}[!h]
 \centering
-\includegraphics[max width=\textwidth, center]{2023_07_26_54f5e859400a10e656ddg-10}
+\includegraphics[max width=.9\textwidth, center]{2023_07_26_54f5e859400a10e656ddg-10}
 %Figure 18 
 \caption{\label{fig:18}Évolutions temporelles de $y(t)$ et $\theta_{2}(t)$ avec estimation et compensation de $f_{c}(t)$}
 \end{figure}
