@@ -16,10 +16,18 @@ pour les applications vasculaires, l’oncologie et la cardiologie (figure 2) et
 
 \begin{figure}[!h]
 \centering
-\includegraphics[height=4cm]{fig_02_a}
-\includegraphics[height=4cm]{fig_02_b}
-\caption{\label{fig:02a} Système vasculaire du poumon.}
-\caption{\label{fig:02b} Système vasculaire général.}
+	\begin{subfigure}[b]{0.3\textwidth}
+	\centering
+	\includegraphics[height=4cm]{fig_02_a}
+	\caption{\label{fig:02a} Système vasculaire du poumon.}	
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+	\centering
+	\includegraphics[height=4cm]{fig_02_b}
+	\caption{\label{fig:02b} Système vasculaire général.}
+	\end{subfigure}
+
+
 \caption{\label{fig:02}  Images 3D obtenues avec le système d’imagerie du Discovery IGS 730.}
 \end{figure}
 
@@ -62,7 +70,7 @@ l’intersection de l’axe optique et de l’axe de la liaison pivot AGV/systè
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=\linewidth]{fig_05}
+\includegraphics[width=.6\linewidth]{fig_05}
 \caption{\label{fig:05}  Composants du Discovery IGS 730.}
 \end{figure}
 
@@ -72,7 +80,6 @@ La base motorisée AGV (figure 6) est constituée :
 \item de deux sous-ensembles roue motrice et motorisation associée (un motoréducteur d’orientation et un motoréducteur de propulsion pour chaque roue) ;
 \item de deux doubles roues « folles » non motorisées.
 \end{itemize}
-
 
 \begin{figure}[!h]
 \centering
@@ -143,3 +150,38 @@ L’AGV est animé d’un mouvement de rotation autour de l’axe $\axe{I}{z_0}$
 comme symétrique par rapport à l’axe $\axe{I}{y_c}$.
 Les dimensions utiles ont pour valeurs : $a = \SI{1 440}{mm}$, $e = \SI{800}{mm}$, $r = AI_D = \SI{115}{mm}$.
 
+\begin{figure}[!h]
+\centering
+\includegraphics[width=\linewidth]{fig_07}
+\caption{\label{fig:07} Modèle retenu pour l’étude géométrique (à gauche, vue du demi-système).}
+\end{figure}
+
+Les hypothèses suivantes sont adoptées :
+\begin{itemize}
+\item les contacts roue-sol sont modélisés par des contacts ponctuels (point $I_D$ pour la roue motrice
+droite) et les roues motrices roulent sans glisser sur le sol,
+\item les taux de rotation des roues motrices droite $\thetap_D$ et gauche $\thetap_G$ sont égaux.
+On notera que l’angle $\beta$ est négatif sur la figure 7.
+\end{itemize}
+
+\subsection*{Étude du positionnement angulaire des roues motrices}
+
+%Q1.
+\question{En exploitant la condition de roulement sans glissement au point $I_D$, déterminer l’expression
+du vecteur vitesse $\vectv{A}{\text{cadre}}{\rep{0}}$ dans la base du repère $\rep{P}$ en fonction de $\thetap_D$ et du rayon de roue $r$.}
+
+La figure 7 montre un décalage $\Delta y$ entre l’axe de rotation du cadre $\axe{I}{z_0}$ et l’axe vertical passant par 
+l’isocentre $\axe{I_C}{z_0}$. Lorsque l’isocentre $I_C$ est situé sur l’axe de rotation du mouvement du cadre par
+rapport à $\rep{0}$ (soit $\Delta y = 0$), la relation suivante est vérifiée :  $\vect{I_C A}\cdot \vectv{A}{\text{cadre}}{\rep{0}}=\vect{0}$.
+
+%Q2. 
+\question{En exploitant cette dernière relation, déterminer en fonction des paramètres géométriques
+utiles, l’expression de l’angle $\beta$ correspondant. Calculer sa valeur numérique en degrés.}
+
+Le constructeur du groupe motoréducteur dédié à l’orientation de la roue motrice garantit une précision 
+angulaire $\Delta \beta = \pm 10^{-3}$ degrés pour l’angle d’orientation $\beta$.
+
+%Q3. 
+\question{En prenant comme référence la configuration pour laquelle l’isocentre $I_C$ est situé sur l’axe
+de la rotation, déterminer la valeur de $\Delta y$ associée à une erreur angulaire 
+$\Delta \beta = \pm 10^{-3} $ degrés. Conclure quant au respect de l’exigence (Id. 1.1.2.1).}
