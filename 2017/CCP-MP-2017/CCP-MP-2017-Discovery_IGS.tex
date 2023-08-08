@@ -219,7 +219,7 @@ moteur à courant continu avec les équations électromécaniques suivantes :
 $u(t)=E(t)+Ri(t)+L\dfrac{\dd i(t)}{\dd t}$, $C_m(t)=K_c i(t)$, $e(t)=K_e \omega_m(t)$ et $C_m(t)-C_r(t)=\indice{J}{eq} \dfrac{\dd \omega_m(t)}{\dd t}  $. 
 \end{itemize}
 
-\begin{table}[!ht]
+\begin{table}[!h]
 \centering
 \begin{tabular}{lll}
 \hline
@@ -251,8 +251,8 @@ réponse DR1 par les transmittances manquantes.}
 
 %Q5. 
 \question{Déterminer les expressions littérales des fonctions de transfert du moteur en poursuite
-$H_1(p) =\dfrac{\Omega_m(p)}{U(p)}|_{C_r(p)=0}$ (sans perturbation) et en régulation 
-$H_2(p) =\dfrac{\Omega_m(p)}{C_r(p)}|_{U(p)=0}$, sous forme
+$H_1(p) =\left.\dfrac{\Omega_m(p)}{U(p)}\right|_{C_r(p)=0}$ (sans perturbation) et en régulation 
+$H_2(p) =\left.\dfrac{\Omega_m(p)}{C_r(p)}\right|_{U(p)=0}$, sous forme
 canonique. Par application du principe de superposition, en déduire l’expression de $\Omega_m(p)$ en
 fonction de $U(p)$ et de $C_r(p)$.}
 
@@ -261,3 +261,96 @@ Le système est étudié en l’absence de perturbation, $C_r(t) = 0$.
 %Q6. 
 \question{Réaliser l’application numérique de la fonction de transfert du moteur $\dfrac{\Omega_m(p)}{U(p)}$ et mettre le résultat sous la forme : $\dfrac{K}{\left(1+\tau_1 p \right)\left(1+\tau_2 p \right)}$
 .}
+
+
+
+\subsection*{Étude de l’asservissement en vitesse de la base motorisée AGV}
+
+Pour une consigne de vitesse $v_c(t)$ [m/s], les microcontrôleurs de pilotage génèrent une tension de
+consigne de rotation à appliquer à chaque moteur $u_c(t)$ [V]. Un traitement numérique de la vitesse
+relevée sur l’axe de chaque moteur fournit une tension mesurée $u_m(t)$ [V], image de la vitesse de
+rotation du moteur $\omega_m(t)$. Un correcteur (défini par la suite) adapte le signal écart entre la tension de
+consigne et la tension mesurée, ce qui permet après correction et amplification, de définir la tension
+d’alimentation $u(t)$ à appliquer aux moteurs.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=\linewidth]{fig_08}
+\caption{\label{fig:08}  Schéma-bloc fonctionnel de l’asservissement en vitesse d’un des deux moteurs.}
+\end{figure}
+
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{ll}
+\hline
+\textbf{Blocs} & \textbf{Fonctions de transfert} \\
+\hline
+Convertisseur 		& $\indice{K}{conv}$  (à déterminer)\\
+Correcteur		& $C(p)$ (réglé par la suite) \\
+Amplificateur		& $K_A = 7,9$ sans unité \\
+Traitement numérique de la vitesse 	& $\indice{K}{Vit} = \SI{1,3e-3}{V/(rad/s)}$ \\
+Réduction et roue 	& $K_R$ (à déterminer) \\
+\hline
+\end{tabular}
+\end{table}
+
+Indépendamment des résultats trouvés précédemment, la fonction de transfert du moteur brushless
+sera prise égale à : 
+$H_m(p)=\dfrac{K}{\left(1+\tau_1 p \right)\left(1+\tau_2 p \right)}$ avec $K_m = 8,85$, 
+$\tau_1 = \SI{0,027}{s}$ et $\tau_2 = \SI{0,0023}{s}$.
+
+
+
+Le moteur est suivi d’un réducteur à deux étages : le premier avec un rapport de réduction 
+$k_1 = \dfrac{1}{4}$ et le second avec un rapport de réduction $k_2 = \dfrac{1}{28,9}$.
+Le rayon $r$ des roues motrices est de \SI{115}{mm}.
+
+%Q7. 
+\question{Déterminer les valeurs numériques et unités SI des gains $K_R$ (ensemble réducteur et roue) et
+$\indice{K}{conv}$ (convertisseur) en sachant que lorsque la vitesse réelle de l’AGV $v(t)$ est égale à la vitesse de consigne $v_c(t)$, l’écart $\varepsilon(t)$ doit être nul.} 
+
+%Q8. 
+\question{Compléter le schéma-bloc sur le document réponse DR2 en y faisant figurer les fonctions de
+transfert sous forme littérale dans le domaine de Laplace avec des conditions initiales nulles,
+ainsi que les signes des sommateurs.}
+
+\subsection*{Étude du système non corrigé : $C(p) = 1$}
+
+%Q9. 
+\question{Déterminer, en fonction notamment de $K_m$, $K_R$, $\indice{K}{vit}$, $\tau_1$ et $\tau_2$, l’expression de la fonction
+de transfert de la boucle de vitesse sous la forme canonique d’un système du second ordre
+$H(p) = \dfrac{V(p)}{V_c(p)} = \dfrac{K}{1+\dfrac{2\xi}{\omega_0}p+\dfrac{p^2}{\omega_0^2}}$. Donner les expressions littérales et numériques de $K$, $\xi$ et
+$\omega_0$.}
+
+%Q10. 
+\question{Justifier que l’accélération maximum peut être approchée par $\indice{a}{max} = \dfrac{\indice{V}{max}}{t_{5\%}}$.}
+%Q11. 
+\question{À l’aide de l’abaque du document réponse DR3, déterminer le temps de réponse à 5 \% de la
+boucle de vitesse (faire apparaître les tracés sur le document réponse). Ce temps de réponse est-il satisfaisant vis-à-vis de l’exigence Id. 1.1.3.1.1 ? Sinon, comment satisfaire cette exigence ?}
+
+%Q12. 
+\question{Déterminer l’erreur en régime permanent de la boucle de vitesse pour une entrée en échelon.
+Permet-elle de satisfaire l’exigence Id. 1.1.3.2.1 ? Sinon, comment satisfaire cette exigence ?}
+
+\subsection*{Étude du système corrigé : $C(p) = K_p\left( 1+\dfrac{1}{T_i p}\right)$.}
+%Q13. 
+\question{Déterminer, en fonction notamment de $K_m$, $K_R$, $\indice{K}{vit}$, $\tau_1$ et $\tau_2$, l’expression de la fonction de transfert en boucle ouverte, sous la forme canonique suivante : 
+$\indice{H}{BO}(p) = \indice{K}{BO}\dfrac{Tip + 1}{p(1 + \tau_1 p)(1 + \tau_2 p)}$.
+Donner l’expression littérale de $\indice{K}{BO}$.}
+%Q14. 
+\question{On choisit $T_i$ de façon à compenser le << mode le plus lent >>. Donner la valeur de $T_i$.}
+
+L’exigence de stabilité Id. 1.1.3.3.1 impose une marge de phase de 45\degres.
+
+Indépendamment de la réponse à la question précédente, on prendra $\indice{K}{BO} = 37K_p$.
+
+%Q15. 
+\question{Ce correcteur permet-il de répondre à l’exigence de précision ? Tracer les asymptotes et les
+courbes réelles avec $K_p = 1$ dans le plan de Bode du document réponse DR4. Déterminer le
+gain $K_p$ du correcteur permettant de satisfaire l’exigence de stabilité en étant le plus rapide (on
+s’intéressera à la bande passante à \SI{0}{dB}).}
+
+La figure du document réponse DR5 présente sur un même graphe les réponses à une consigne en
+échelon d’amplitude \SI{0,3}{m/s} obtenues par simulation pour différentes valeurs de $K_p$.
+
