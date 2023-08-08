@@ -185,3 +185,79 @@ angulaire $\Delta \beta = \pm 10^{-3}$ degrés pour l’angle d’orientation $\
 \question{En prenant comme référence la configuration pour laquelle l’isocentre $I_C$ est situé sur l’axe
 de la rotation, déterminer la valeur de $\Delta y$ associée à une erreur angulaire 
 $\Delta \beta = \pm 10^{-3} $ degrés. Conclure quant au respect de l’exigence (Id. 1.1.2.1).}
+
+
+\subsection{Prévision des performances « l’asservissement en vitesse du mouvement de translation de
+l’AGV »}
+
+\begin{obj}
+Vérifier que l’exigence d’asservissement en vitesse du mouvement de translation de la base motorisée AGV (Id. 1.1.3) et ses sous-exigences sont respectées.
+\end{obj}
+
+Les déplacements de la base motorisée AGV sont contrôlés de la manière suivante : au niveau de
+chacun des 2 moteurs, des boucles de vitesse et de position assurent l’asservissement en vitesse et
+position du système. Nous ne nous intéresserons dans le sujet qu’à la boucle de vitesse. L’objectif de
+cette partie est de déterminer les paramètres de réglage de chacune des boucles d’asservissement en
+vitesse lors d’un mouvement de translation de l’AGV par rapport au sol.
+
+\subsection*{Étude préliminaire : moteurs brushless de propulsion}
+
+\subsection*{Hypothèses et modélisations}
+\begin{itemize}
+\item l’AGV se déplace en ligne droite (consigne de vitesse $v_c(t)$, les roues étant dans la même
+direction que l’axe de symétrie de l’AGV) ;
+\item les roues motrices roulent sans glisser sur le sol ;
+\item la charge extérieure est supposée équi-répartie sur chacun des deux moteurs. Ainsi, pour une
+vitesse $v(t)$ de la plateforme, les deux moteurs de propulsion tournent à la même vitesse angulaire $\omega_m(t)$, sont alimentés par une même tension de commande $u(t)$ et fournissent un même
+couple moteur $C_m(t)$ ;
+\item les perturbations sont réparties sur chacun des axes des deux moteurs et sont modélisées par
+un même couple de perturbation équivalent appliqué sur chacun des axes moteurs $C_r(t)$ ;
+\item les caractéristiques inertielles de la plateforme sont représentées au niveau de chaque axe
+moteur par un moment d’inertie équivalent $\indice{J}{eq}$ ;
+\item le comportement individuel d’un des deux moteurs brushless peut être approché par celui d’un
+moteur à courant continu avec les équations électromécaniques suivantes :
+$u(t)=E(t)+Ri(t)+L\dfrac{\dd i(t)}{\dd t}$, $C_m(t)=K_c i(t)$, $e(t)=K_e \omega_m(t)$ et $C_m(t)-C_r(t)=\indice{J}{eq} \dfrac{\dd \omega_m(t)}{\dd t}  $. 
+\end{itemize}
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{lll}
+\hline
+\textbf{Symbole} & \textbf{Désignation} & \textbf{Valeurs, unités} \\
+\hline
+$u(t)$ 		& Tension d’alimentation du moteur 		& [V] \\
+$e(t)$ 		& Tension contre-électromotrice dans un moteur 	&[V] \\
+$i(t)$	 	& Intensité du courant dans un moteur 		& [A] \\
+$v(t)$ 		& Vitesse de translation du système 		& [m/s] \\
+$\omega_m(t)$	& Vitesse angulaire de chacun des deux moteurs	& [rad/s]\\
+$C_m(t)$ 	& Couple moteur appliqué par chacun des deux moteurs & [N.m]\\
+$C_r(t)$	& Couple de perturbation équivalent appliqué à chacun des deux axes moteurs & [N.m] \\
+$R$ 		& Résistance de l’induit d’un moteur 		& \SI{0,07}{\Omega} \\
+$L$ 		& Inductance de l’induit d’un moteur 		& \SI{0,15}{mH} \\
+$K_e$ 		& Constante de vitesse d’un moteur 		& \SI{0,113}{V/(rad/s)}\\
+$K_c$ 		& Constante de couple d’un moteur 		& \SI{0,113}{N.m/A}\\
+$\indice{J}{eq}$& Inertie équivalente de la moitié du système ramenée sur l’axe d’un moteur 
+								& \SI{5,3e-3}{kg.m^2}\\\hline
+\end{tabular}
+\end{table}
+
+\subsection*{Fonction de transfert d’un moteur de propulsion}
+
+On note $\Omega_m(p)$, $U(p)$, $E(p)$, $I(p)$, $C_m(p)$ et $C_r(p)$ les transformées de Laplace respectives de $\omega_m(t)$,
+$u(t)$, $e(t)$, $i(t)$, $C_m(t)$ et $C_r(t)$.
+
+\question{Déterminer sur la copie les transformées de Laplace des équations (1) à (4) du moteur définies en considérant des conditions initiales nulles. Compléter le schéma-bloc du document
+réponse DR1 par les transmittances manquantes.}
+
+%Q5. 
+\question{Déterminer les expressions littérales des fonctions de transfert du moteur en poursuite
+$H_1(p) =\dfrac{\Omega_m(p)}{U(p)}|_{C_r(p)=0}$ (sans perturbation) et en régulation 
+$H_2(p) =\dfrac{\Omega_m(p)}{C_r(p)}|_{U(p)=0}$, sous forme
+canonique. Par application du principe de superposition, en déduire l’expression de $\Omega_m(p)$ en
+fonction de $U(p)$ et de $C_r(p)$.}
+
+Le système est étudié en l’absence de perturbation, $C_r(t) = 0$.
+
+%Q6. 
+\question{Réaliser l’application numérique de la fonction de transfert du moteur $\dfrac{\Omega_m(p)}{U(p)}$ et mettre le résultat sous la forme : $\dfrac{K}{\left(1+\tau_1 p \right)\left(1+\tau_2 p \right)}$
+.}
