@@ -279,7 +279,6 @@ d’alimentation $u(t)$ à appliquer aux moteurs.
 \caption{\label{fig:08}  Schéma-bloc fonctionnel de l’asservissement en vitesse d’un des deux moteurs.}
 \end{figure}
 
-
 \begin{table}[!h]
 \centering
 \begin{tabular}{ll}
@@ -354,3 +353,86 @@ s’intéressera à la bande passante à \SI{0}{dB}).}
 La figure du document réponse DR5 présente sur un même graphe les réponses à une consigne en
 échelon d’amplitude \SI{0,3}{m/s} obtenues par simulation pour différentes valeurs de $K_p$.
 
+%Q16. 
+\question{Choisir le gain $K_p$, parmi les trois valeurs proposées, satisfaisant l’exigence de stabilité et de
+rapidité (notamment l’accélération qui ne doit pas dépasser \SI{0,8}{m/s^2}. Appuyez votre réponse
+par des tracés sur le document réponse DR5.}
+
+\subsection*{SYNTHÈSE}
+%Q17. 
+\question{Les courbes du document réponse DR6 représentent la réponse réelle relevée sur la base
+motorisée AGV et le résultat obtenu par simulation numérique pour une entrée en échelon
+d’amplitude \SI{0,3}{m/s}. Comparer quantitativement les résultats au cahier des charges et conclure
+sur les écarts.}
+
+
+
+\subsection*{ Localisation de l’AGV : estimation de la position}
+\begin{obj}
+Mettre en place une stratégie pour répondre à l’exigence « Localiser la base motorisée AGV
+dans la salle d’intervention » (Id. 1.1.1) et développer les algorithmes de traitement numérique
+visant à estimer la position de l’AGV.
+\end{obj}
+
+
+Les questions d’informatique peuvent être traitées en langage Python ou langage Scilab. Il est
+demandé au candidat de bien préciser sur sa copie le choix du langage et de rédiger l’ensemble
+de ses réponses dans ce langage. L’annexe page 16 rappelle les principales commandes utiles à
+la manipulation des vecteurs et matrices.
+Dans tout le sujet, il sera supposé que les modules et bibliothèques sont déjà importés dans le
+programme.
+
+\subsection*{Localisation par odométrie}
+La gestion des déplacements du système au sein de
+la salle d’intervention (figure 9) nécessite de déterminer la position de la plateforme mobile, repérée
+par le vecteur position $p$, tel que
+$p 
+= 
+\begin{bmatrix}
+x(t)\\
+y(t)\\
+\theta(t)
+\end{bmatrix}
+$
+où $x(t)$, $y(t)$ et $\theta(t)$ sont les paramètres de position
+définis dans le repère global $\left(O, \vect{x_0}, \vect{y_0}\right)$ associé à la
+salle d’intervention.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.7\linewidth]{fig_09}
+\caption{\label{fig:09}  Paramétrage.}
+\end{figure}
+
+Une première stratégie de localisation a conduit à estimer les paramètres de position par odométrie :
+partant d’une position initiale connue, la position est actualisée au cours du mouvement en estimant le
+déplacement global du système à partir des mesures des déplacements angulaires des roues motrices
+délivrées par les codeurs de roue. Pour cette étude, l’orientation des roues motrices par rapport à la
+plateforme mobile suivant $\vect{z_0}$ est supposée fixée, dans la configuration de la figure 9.
+
+Soient $\Delta \theta_D$ et $\Delta \theta_G$ les déplacements angulaires des roues motrices droite et gauche et $\Delta \bm{p}$ le vecteur
+associé au déplacement global de la plateforme entre les instants $t$ et $(t + \Delta t)$, $\Delta t$ étant la durée d’une
+période d’échantillonnage séparant deux mesures. Il est admis ici que les composantes $\left(\Delta x, \Delta y, \Delta \theta \right)$
+du déplacement global $\Delta \bm{p}$ peuvent être estimées à partir de $\Delta \theta_D$ et $\Delta \theta_G$ selon :
+$$
+\left\{
+\begin{array}{l}
+\Delta x = r \dfrac{\Delta \theta_D+\Delta \theta_G}{2} \cos \left(\theta(t) + r \dfrac{\Delta \theta_D-\Delta \theta_G}{2e}\right) \\
+\Delta y = r \dfrac{\Delta \theta_D+\Delta \theta_G}{2} \sin \left(\theta(t) + r \dfrac{\Delta \theta_D-\Delta \theta_G}{2e}\right) \\
+\Delta \theta = r \dfrac{\Delta \theta_D-\Delta \theta_G}{e}
+\end{array}
+\right.
+$$
+
+où $r$ est le rayon d’une roue motrice et e la distance entre les deux roues motrices.
+Le vecteur position à l’instant $(t + \Delta t)$ noté $\bm{p'}$ est alors calculé suivant : $\bm{p'}=\bm{p}+\Delta \bm{p}$.
+Le traitement numérique repose sur une fonction \lstinline{position_odometrie(delta_d,delta_g, p0)}
+qui prend en arguments :
+\begin{itemize}
+\item \lstinline{delta_d} et \lstinline{delta_g}, déplacements angulaires des roues droite ($\Delta \theta_D$) et gauche ($\Delta \theta_D$) ;
+\item \lstinline{p0}, tableau de dimension 3 associé à la position à l’instant $t$ (vecteur $\bm{p}$).
+\end{itemize}
+La fonction renvoie le tableau \lstinline{p1} de dimension 3 associé à la position à l’instant $(t + \Delta t)$ (vecteur $\bm{p'}$). Les paramètres géométriques $r$ et $e$ sont déclarés comme variables globales dans le programme principal.
+
+%Q18. 
+\question{Écrire la fonction \lstinline{position_odometrie(delta_d,delta_g,p0)} renvoyant le tableau \lstinline{p1}.}
