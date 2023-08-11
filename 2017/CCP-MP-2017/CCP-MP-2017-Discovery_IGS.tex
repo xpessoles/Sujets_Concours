@@ -538,34 +538,36 @@ coordonnées locales $(r_j, \varphi_j)$, il est nécessaire d’établir une cor
 une cible $C_{i0}$ parmi les 12 cibles $C_i$, dont les positions ont été prédites à l’issue de l’étape 2. Il s’agit,
 pour une mesure donnée $(r_j, \varphi_j)$ de rechercher le plus proche voisin dans le tableau \lstinline{zpred}. Pour cela,
 un balayage du tableau \lstinline{zpred} est effectué, au cours duquel est calculée la distance $d_{i j}$ entre la cible
-$C_i$ et la cible $C_j$ détectée, permettant ainsi d’identifier la cible $C_{i0}$ la plus proche de Cj. Par souci de
+$C_i$ et la cible $C_j$ détectée, permettant ainsi d’identifier la cible $C_{i0}$ la plus proche de $C_j$. Par souci de
 simplification, la norme euclidienne sera utilisée ici pour le calcul de la distance.
-Q22. Montrer que la distance di j entre les cibles Ci et Cj s’exprime en fonction des coordonnées
+
+%Q22. 
+\question{Montrer que la distance $d_{i j}$ entre les cibles $C_i$ et $C_j$ s’exprime en fonction des coordonnées
 locales :
-di j =
-
-r2
-i + r2
-j − 2rirj cos(ϕj − ϕi).
-La fonction comparaison(zj,zpred) associée à cette troisième étape prend en arguments le tableau
-zj de dimension 2, contenant les coordonnées locales (rj, ϕj) de la cible détectée par le laser, le tableau
-zpred et renvoie le tableau vij associé au vecteur innovation vi j(k + 1).
-Q23. Écrire la suite d’instructions de la fonction comparaison(zj,zpred) conduisant à identifier
-dans le tableau zpred les coordonnées (r_pp,phi_pp) de la cible Ci0 plus proche voisin
-d’une cible Cj détectée par le laser.
-Dans un second temps, pour chaque correspondance (i0, j) établie entre une prédiction zˆi0(k + 1) et
-une observation laser zj(k + 1) et seulement lorsque la distance di0 j est inférieure à un seuil dmax, le
-vecteur innovation vi j(k + 1) =
-
-zj(k + 1) − zˆi0(k + 1)
+$d_{i j} = \sqrt{r_i^2 + r_j^2 - 2r_i r_j \cos \left(\varphi_j-\varphi_i\right)}$.} 
+
+La fonction \lstinline{comparaison(zj,zpred)} associée à cette troisième étape prend en arguments le tableau
+\lstinline{zj} de dimension 2, contenant les coordonnées locales $(r_j, \varphi_j)$ de la cible détectée par le laser, le tableau
+\lstinline{zpred} et renvoie le tableau \lstinline{vij} associé au vecteur innovation $\bm{v}_{ij}(k + 1)$.
+
+%Q23. 
+\question{Écrire la suite d’instructions de la fonction \lstinline{comparaison(zj,zpred)} conduisant à identifier
+dans le tableau \lstinline{zpred} les coordonnées \lstinline{(r_pp,phi_pp)} de la cible $C_{i0}$ plus proche voisin
+d’une cible $C_j$ détectée par le laser.}
+
+Dans un second temps, pour chaque correspondance $(i0, j)$ établie entre une prédiction $\hat{\bm{z}}_{i0}\left(k + 1)\right)$ et
+une observation laser ${\bm{z}}_{j}\left(k + 1)\right)$ et seulement lorsque la distance $d_{i0j}$ est inférieure à un seuil $\indice{d}{max}$, le
+vecteur innovation $\bm{v}_{ij}(k + 1) = \left(\bm{z}_{j}(k + 1) - \hat{\bm{z}}_{i0}(k + 1)\right)$
 est calculé.
-Q24. Compléter la fonction comparaison(zj,zpred) afin d’intégrer la prise en compte du seuil
-dmax, déclaré comme une variable globale dmax.
+
+%Q24. 
+\question{Compléter la fonction \lstinline{comparaison(zj,zpred)} afin d’intégrer la prise en compte du seuil
+$\indice{d}{max}$, déclaré comme une variable globale \lstinline{dmax}.}
 
 \subsection*{Étape 4 : correction}
 
-Cette étape consiste à déterminer une correction de l’estimation initiale de position pˆ(k + 1|k) à partir
-des vi j(k+1) permettant le calcul de pˆ(k+1|k+1), « meilleure » estimation au rang k+1. L’incertitude
-associée à pˆ(k+1|k+1) (représentée par la matrice de covariance Σp(k+1|k+1)) est là aussi quantifiée.
+Cette étape consiste à déterminer une correction de l’estimation initiale de position $\hat{\bm{p}}(k + 1|k)$  à partir
+des $\bm{v}_{ij}(k + 1)$ permettant le calcul de $\hat{\bm{p}}(k + 1|k+1)$, « meilleure » estimation au rang $k+1$. L’incertitude
+associée à $\hat{\bm{p}}(k + 1|k+1)$ (représentée par la matrice de covariance $\Sigma_p(k+1|k+1)$) est là aussi quantifiée.
 Cette dernière étape, qui repose sur la mise en œuvre d’un filtre de Kalman, n’est pas abordée ici.
 
