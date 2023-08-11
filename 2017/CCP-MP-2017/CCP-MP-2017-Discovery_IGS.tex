@@ -436,3 +436,92 @@ La fonction renvoie le tableau \lstinline{p1} de dimension 3 associé à la posi
 
 %Q18. 
 \question{Écrire la fonction \lstinline{position_odometrie(delta_d,delta_g,p0)} renvoyant le tableau \lstinline{p1}.}
+
+
+\subsection*{Modèle d’évolution de l’incertitude associée à l’estimation de la position}
+Une approche statistique permet de modéliser l’évolution de l’incertitude sur l’estimation de la position par odométrie au cours du déplacement de l’AGV. En considérant les estimations $x$, $y$ et $\theta$ comme
+des variables aléatoires continues et sous certaines hypothèses non détaillées ici, l’incertitude associée à l’estimation de la position $\bm{p'}$ peut être quantifiée par un ensemble de paramètres associés aux
+variables aléatoires telles que la variance et la covariance, constituant la matrice $\Sigma_{p'}$ :
+$$
+\Sigma_{p'}
+=
+\begin{bmatrix}
+\sigma_x^2 	& \sigma_{xy} 	& \sigma_{x\theta} \\
+\sigma_{yx} 	& \sigma_y^2 	& \sigma_{y\theta} \\
+\sigma_{zx} 	& \sigma_{zy} 	& \sigma_{\theta}^2
+\end{bmatrix}
+.$$
+
+Pour le calcul de ses termes, celle-ci est décomposée suivant : 
+$\Sigma_{p'} = \Sigma_1 + \Sigma_2$
+où :
+\begin{itemize}
+\item $\Sigma_1$ est une matrice associée aux incertitudes sur l’estimation du déplacement $\Delta \bm{p} $ entre $t$ et $t+\Delta t$ à partir des mesures codeurs,
+\item $\Sigma_2$ est une matrice associée aux incertitudes sur l’estimation de la position $\bm{p}$ à l’instant $t$,
+cumulées depuis l’instant initial et qui se propagent à l’instant $t+\Delta t$t. Il est admis ici que la
+matrice $\Sigma_2$ est obtenue à partir de la matrice de variance-covariance $\Sigma_p$  associée à la position $\bm{p}$ à l’instant $t$ par la relation :
+$\Sigma_2 = J_P \Sigma_p J_P^T$, la matrice $J_P$ (matrice jacbienne) a pour expression : 
+\end{itemize}
+
+$$
+J_P = 
+\begin{bmatrix}
+1 	& 0	& -r \dfrac{\Delta \theta_D+\Delta \theta_G}{2} \sin \left(\theta(t) + r \dfrac{\Delta \theta_D-\Delta \theta_G}{2e}\right) \\
+0 	& 1	& r \dfrac{\Delta \theta_D+\Delta \theta_G}{2} \cos \left(\theta(t) + r \dfrac{\Delta \theta_D-\Delta \theta_G}{2e}\right) \\
+0 & 0 & 1 \\
+\end{bmatrix}.
+$$
+
+\question{En utilisant les commandes documentées en annexe page 16**, écrire une fonction \lstinline{calcul_sigma_2(mat_sigmap,mat_jacob)} qui prend en arguments le tableau
+\lstinline{mat_sigmap de dimensions} $3 \times 3$ associé à la matrice de variance-covariance $\Sigma_p$ de la position $\bm{p}$ à l’instant $t$, le tableau \lstinline{mat_jacob} de dimensions $3\times 3$ associé à la matrice jacobienne $J_P$ et renvoie la matrice \lstinline{mat_sigma2} ($\Sigma_2$).}
+
+\subsection*{Localisation du système par fusion de données}
+En pratique, avec une approche basée uniquement sur l’odométrie, l’incertitude associée à l’estimation de position ne fait que croître au cours du déplacement. Une telle
+approche se révèle donc inadaptée pour satisfaire l’exigence de précision associée à la localisation du système.
+Une solution classique en robotique mobile consiste à
+réaliser une estimation de la position à partir de la fusion
+de mesures obtenues par des capteurs indépendants :
+\begin{itemize}
+\item des capteurs proprioceptifs, qui ont une perception locale du déplacement de la plateforme, les
+codeurs de roues ici ;
+\item des capteurs extéroceptifs, qui ont une perception globale du déplacement de la plateforme, le capteur laser ici, qui renvoie les positions $(r_i, \varphi_i)$ de $n \leq 12$ cibles réfléchissantes $C_i$ dans un repère local attaché à la plateforme (figure 9, page 10).
+\end{itemize}
+
+La procédure de localisation dont le principe est présenté en figure 10 se compose de 4 étapes
+décrites ci-après en adoptant un formalisme discret.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.5\linewidth]{fig_10}
+\caption{\label{fig:10}  Principe de localisation.}
+\end{figure}
+
+\subsection*{Étape 1 : estimation}
+Partant d’un rang $k$ associé à un instant $t$, cette étape consiste à estimer la position de la plateforme
+au rang $k + 1$ (associé à l’instant $t + \Delta t$). L’estimation, notée $\hat{\bm{p}}(k + 1 | k)$ est calculée à partir de $\hat{\bm{p}}(k | k)$,
+« meilleure » estimation au rang $k$ obtenue à l’issue de l’itération précédente et de l’intégration des
+variations angulaires des deux roues motrices $(\Delta \theta_G, \Delta \theta_D$) mesurées par les codeurs (odométrie). Cette
+étape conduit également à la détermination de l’incertitude associée à $\hat{\bm{p}}(k + 1 | k)$ (représentée par une
+matrice $\Sigma_p(k + 1 | k)$).
+
+Les traitements numériques sont ici similaires à ceux abordés dans la sous-partie 2.3 portant sur la
+localisation par odométrie (l’unique différence réside sur le fait que l’estimation au rang $k + 1$ fait à
+présent intervenir la « meilleure » estimation obtenue au rang $k$)
+
+
+\subsection*{Étape 2 : prédiction}
+Cette étape consiste à effectuer une \textit{prédiction de l’observation} associée au laser. Pour chaque cible
+$C_i$ de coordonnées globales $(x_i, y_i)$ répertoriée par la carte, les coordonnées $(r_i, \varphi_i)$ dans le repère local
+attaché à la plateforme, dont la position est celle estimée à l’étape précédente, sont calculées. Un
+vecteur $\hat{\bm{z}_i}(k + 1)$ est ainsi formé pour chaque cible, à partir des coordonnées locales calculées.
+
+\question{Après avoir explicité les relations de changement de repère, écrire une fonction
+\lstinline{global_local(xi,yi,p1)} prenant en arguments les coordonnées globales \lstinline{xi} ($x_i$), \lstinline{yi} ($y_i$)
+d’une cible $i$, le tableau \lstinline{p1} de dimension 3 associé à la position estimée (vecteur $\hat{\bm{p}}(k + 1|k)$) et
+renvoyant les coordonnées locales \lstinline{(ri,phii)} ($r_i, \varphi_i$) de la cible $i$.}
+Les coordonnées globales $(x_i, y_i)$ des 12 cibles sont regroupées dans un tableau \lstinline{cible_map} de dimensions $12 \times  2$.
+
+\question{Écrire une fonction \lstinline{prediction(p1,cible_map)} qui prend en arguments le tableau 
+\lstinline{p1} de dimension 3, associé à la position estimée (vecteur $\hat{\bm{p}}(k + 1|k)$), 
+le tableau \lstinline{cible_map} et renvoie le tableau \lstinline{zpred} de dimensions $12 \times  2$,
+contenant les coordonnées locales ($r_i, \varphi_i$) des 12 cibles (12 vecteurs $\hat{\bm{z}}_i(k + 1)$).}
