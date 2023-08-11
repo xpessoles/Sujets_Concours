@@ -524,4 +524,48 @@ Les coordonnées globales $(x_i, y_i)$ des 12 cibles sont regroupées dans un ta
 \question{Écrire une fonction \lstinline{prediction(p1,cible_map)} qui prend en arguments le tableau 
 \lstinline{p1} de dimension 3, associé à la position estimée (vecteur $\hat{\bm{p}}(k + 1|k)$), 
 le tableau \lstinline{cible_map} et renvoie le tableau \lstinline{zpred} de dimensions $12 \times  2$,
-contenant les coordonnées locales ($r_i, \varphi_i$) des 12 cibles (12 vecteurs $\hat{\bm{z}}_i(k + 1)$).}
+contenant les coordonnées locales $(r_i, \varphi_i)$ des 12 cibles (12 vecteurs $\hat{\bm{z}}_i(k + 1)$).}
+
+\subsection*{Étape 3 : comparaison}
+
+Cette étape consiste à réaliser une \textit{comparaison} entre la prédiction de l’observation et l’observation
+effective afin de former le vecteur \textit{innovation} $\bm{v}_{ij}(k + 1) = \left(\bm{z}_{j}(k + 1) - \hat{\bm{z}}_{i}(k + 1)\right)$
+qui permettra de
+déterminer la correction à appliquer.
+
+Dans un premier temps, lorsque le capteur laser détecte une cible $C_j$ donnée (l’indice $j$ est fixé), de
+coordonnées locales $(r_j, \varphi_j)$, il est nécessaire d’établir une correspondance entre la cible $C_j$ détectée et
+une cible $C_{i0}$ parmi les 12 cibles $C_i$, dont les positions ont été prédites à l’issue de l’étape 2. Il s’agit,
+pour une mesure donnée $(r_j, \varphi_j)$ de rechercher le plus proche voisin dans le tableau \lstinline{zpred}. Pour cela,
+un balayage du tableau \lstinline{zpred} est effectué, au cours duquel est calculée la distance $d_{i j}$ entre la cible
+$C_i$ et la cible $C_j$ détectée, permettant ainsi d’identifier la cible $C_{i0}$ la plus proche de Cj. Par souci de
+simplification, la norme euclidienne sera utilisée ici pour le calcul de la distance.
+Q22. Montrer que la distance di j entre les cibles Ci et Cj s’exprime en fonction des coordonnées
+locales :
+di j =
+
+r2
+i + r2
+j − 2rirj cos(ϕj − ϕi).
+La fonction comparaison(zj,zpred) associée à cette troisième étape prend en arguments le tableau
+zj de dimension 2, contenant les coordonnées locales (rj, ϕj) de la cible détectée par le laser, le tableau
+zpred et renvoie le tableau vij associé au vecteur innovation vi j(k + 1).
+Q23. Écrire la suite d’instructions de la fonction comparaison(zj,zpred) conduisant à identifier
+dans le tableau zpred les coordonnées (r_pp,phi_pp) de la cible Ci0 plus proche voisin
+d’une cible Cj détectée par le laser.
+Dans un second temps, pour chaque correspondance (i0, j) établie entre une prédiction zˆi0(k + 1) et
+une observation laser zj(k + 1) et seulement lorsque la distance di0 j est inférieure à un seuil dmax, le
+vecteur innovation vi j(k + 1) =
+
+zj(k + 1) − zˆi0(k + 1)
+est calculé.
+Q24. Compléter la fonction comparaison(zj,zpred) afin d’intégrer la prise en compte du seuil
+dmax, déclaré comme une variable globale dmax.
+
+\subsection*{Étape 4 : correction}
+
+Cette étape consiste à déterminer une correction de l’estimation initiale de position pˆ(k + 1|k) à partir
+des vi j(k+1) permettant le calcul de pˆ(k+1|k+1), « meilleure » estimation au rang k+1. L’incertitude
+associée à pˆ(k+1|k+1) (représentée par la matrice de covariance Σp(k+1|k+1)) est là aussi quantifiée.
+Cette dernière étape, qui repose sur la mise en œuvre d’un filtre de Kalman, n’est pas abordée ici.
+
