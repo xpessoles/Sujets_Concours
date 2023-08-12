@@ -571,3 +571,49 @@ des $\bm{v}_{ij}(k + 1)$ permettant le calcul de $\hat{\bm{p}}(k + 1|k+1)$, « m
 associée à $\hat{\bm{p}}(k + 1|k+1)$ (représentée par la matrice de covariance $\Sigma_p(k+1|k+1)$) est là aussi quantifiée.
 Cette dernière étape, qui repose sur la mise en œuvre d’un filtre de Kalman, n’est pas abordée ici.
 
+
+\section{\label{sec:03}Exigence de sécurité lors d’une procédure de freinage d’urgence}
+\begin{obj}
+Déterminer les valeurs de décélérations maximales en cas d’arrêt d’urgence garantissant la
+sécurité du patient et du personnel lors d’une manœuvre de translation.
+\end{obj}
+
+Une procédure de freinage d’urgence est prévue pour immobiliser le système au plus tôt lorsqu’un
+problème est rencontré au cours de son déplacement. Pour des raisons évidentes de sécurité, le système doit s’arrêter le plus rapidement possible sans toutefois que la décélération n’entraîne le basculement de l’engin ou encore du glissement au niveau des roues motrices.
+
+\subsection{Modèle retenu pour l’étude et paramétrage associé}
+
+Le problème est supposé plan et se ramène à l’étude
+du système $\Sigma$ (voir modèle sur la figure 11) composé
+des éléments :
+\begin{itemize}
+\item (1) : roue motrice ;
+\item (2) : roue folle ;
+\item (3) : cadre et arceau d’imagerie.
+\end{itemize}
+Le repère $\rep{}$ ayant pour origine le point $O$ et muni de la
+base $\base{x}{y}{z}$ est attaché à la salle d’intervention (0).
+Le référentiel associé est supposé galiléen.
+
+Le système est animé d’un mouvement de translation
+suivant $+\vect{x}$ (sens 1) tel que $\vectv{G}{\Sigma}{\rep{}} = u(t)\vect{x}$ , avec
+$u(t) > 0$.
+
+Lors de ce mouvement, les roues sont animées d’un
+mouvement de rotation. L’angle de rotation d’une roue
+par rapport à $\rep{}$ est défini par : $\theta_R =\angl{x}{x_R}=\angl{z}{z_R}$.
+
+
+
+\subsection*{Hypothèses}
+La roue motrice (1) roule sans glisser sur le sol (0) au point $I_1$.
+La résistance au roulement est négligée.
+
+\subsection*{Caractéristiques géométriques et d’inertie des solides}
+\begin{itemize}
+\item Ensemble du système $\Sigma$ : centre d’inertie $G$ tel que $\vect{I_1 G} = x_G\vect{x} + z_G\vect{z}$ , avec $z_g = \SI{450}{mm}$ et
+$z_g = \SI{950}{mm}$, masse $m_{\Sigma} = \SI{840}{kg}$ ;
+\item roue motrice (1) : rayon $r = \SI{115}{mm}, $J$ représente le moment d’inertie par rapport à l’axe
+$\axe{A}{y} ;
+\item empattement du système : $I_1I_2 =\ell = \SI{1}{m}$.
+\end{itemize}
