@@ -613,7 +613,103 @@ La résistance au roulement est négligée.
 \begin{itemize}
 \item Ensemble du système $\Sigma$ : centre d’inertie $G$ tel que $\vect{I_1 G} = x_G\vect{x} + z_G\vect{z}$ , avec $z_g = \SI{450}{mm}$ et
 $z_g = \SI{950}{mm}$, masse $m_{\Sigma} = \SI{840}{kg}$ ;
-\item roue motrice (1) : rayon $r = \SI{115}{mm}, $J$ représente le moment d’inertie par rapport à l’axe
-$\axe{A}{y} ;
+\item roue motrice (1) : rayon $r = \SI{115}{mm}$, $J$ représente le moment d’inertie par rapport à l’axe
+$\axe{A}{y}$ ;
 \item empattement du système : $I_1I_2 =\ell = \SI{1}{m}$.
 \end{itemize}
+
+\subsection*{Actions mécaniques}
+
+Le système $\Sigma$ est soumis aux actions mécaniques suivantes :
+\begin{itemize}
+\item action du sol sur la roue motrice (1) : 
+$\torseurstat{T}{0}{1} = \torseurl{\vectf{0}{1}=-X_{01}\vect{x}+Z_{01}\vect{z}}{\vect{0}}{I_1}$
+et sur la roue folle (2) : 
+$\torseurstat{T}{0}{2} = \torseurl{\vectf{0}{2}=Z_{02}\vect{z}}{\vect{0}}{I_2}$;
+\item action de la pesanteur : 
+$\torseurstat{T}{\text{pes}}{2} = \torseurl{\vectf{\text{pes}}{\Sigma}=-m_{\Sigma}g\vect{z}}{\vect{0}}{G}$;
+\item action de freinage sur la roue motrice (1) : 
+$\torseurstat{T}{\text{frein}}{1} = \torseurl{\vect{0}}{\vectm{A}{\text{frein}}{1}=-C_{f}\vect{y}}{A}$.
+\end{itemize}
+
+
+\subsection{Condition de non-basculement}
+Au cours du freinage, le système subit une décélération $ \vectg{G}{\Sigma}{\rep{}} = -\gamma \vect{x} = r \thetapp \vect{x}$ avec $\thetapp<0$.
+
+Afin de s’assurer du non-basculement du système, il est nécessaire de déterminer la valeur de décélération limite $\gamma_{NB}$ pour laquelle apparaît un décollement de la roue motrice.
+
+%Q25. 
+\question{\label{Q25}Par application du théorème de la résultante dynamique à l’ensemble $\Sigma$ suivant l’axe du mouvement, déterminer l’expression de la composante tangentielle $X_{01}$ appliquée à la roue motrice
+(1) en fonction de la décélération $\gamma$.}
+
+%Q26. 
+\question{Par application du théorème du moment dynamique à la roue motrice (1) suivant l’axe $\axe{A}{y}$ et en utilisant la relation établie à la question précédente, déterminer l’expression du couple de
+freinage $C_f$ en fonction de la décélération $\gamma$.}
+
+Dans la suite, le moment d’inertie $J$ est négligé devant le terme $m_{\Sigma} r^2$
+ associé à la masse de l’ensemble.
+
+%Q27. 
+\question{Simplifier alors l’expression établie à la question précédente.}
+
+%Q28. 
+\question{Déterminer l’expression du moment dynamique de l’ensemble $\Sigma$ par rapport à $\rep{}$ au point $I_2$.}
+
+%Q29. 
+\question{\label{Q29}Par application du théorème du moment dynamique en $I_2$, déterminer la relation liant l’accélération $\gamma$ et la composante normale $Z_{01}$. En déduire l’expression de la décélération limite $\gamma_{NB,1}$ 
+pour laquelle $Z_{01} = 0$. Réaliser l’application numérique.}
+
+\subsection{Condition de non-glissement}
+
+L’exigence de sécurité conduit également à prévenir le glissement au niveau des roues motrices. Il est
+pour cela nécessaire de déterminer la valeur de la décélération limite $\gamma_{NG}$ correspondant à une perte
+d’adhérence. Le facteur d’adhérence au niveau du contact roue motrice/sol (assimilé ici au facteur de
+frottement) est noté $\mu$.
+%Q30. 
+\question{En se plaçant à la limite du glissement, déterminer à partir des expressions établies aux questions \ref{Q25} et \ref{Q29} (avant la simplification $Z_{01} = 0$), l’expression de la décélération limite $\gamma_{NG,1}$. Réaliser l’application numérique pour un facteur d’adhérence $\mu = 0,5$.}
+
+\subsection{Synthèse}
+
+Une étude similaire à celle qui vient d’être menée conduit dans le cas d’une translation suivant $-\vect{x}$
+(sens 2) aux valeurs limites : $\gamma_{NB,2} = \SI{4,5}{m.s^{-2}}$ 
+et $\gamma_{NG,2} = \SI{5,5}{m.s^{-2}}$.
+
+
+%Q31. 
+\question{En réalisant la synthèse de l’ensemble de ces résultats, conclure sur la valeur de décélération
+limite à retenir pour satisfaire l’exigence de sécurité lors d’un mouvement de translation du
+système.}
+
+\section{Annexe}
+Remarque : sous Python, l’import du module \lstinline{numpy} permet de réaliser des opérations pratiques sur les tableaux : \lstinline{from numpy import *}. Les indices de ces tableaux commencent à 0.
+
+\begin{center}
+\begin{tabular}{ll}
+\hline
+Tableau à une dimension 	&  \texttt{L=[1,2,3]} (liste) \\
+				& \texttt{v=array([1,2,3])} \\
+\hline
+Accéder à un élément 		& \texttt{v[0]} renvoie \texttt{1} \\
+\hline
+Ajouter un élément 		& \texttt{L.append(5)} \\
+				& uniquement sur les listes \\
+\hline
+Tableau à deux dimensions (matrice) & \texttt{M=array(([1,2,3],[3,4,5]))} \\
+\hline
+Accéder à un élément 		& \texttt{M[1,2]} ou \texttt{M[1][2]} renvoie 5 \\
+\hline
+Produit matriciel ($A\times B$) de deux matrices $A$ et $B$  
+				& \texttt{dot(A,B)} \\
+\hline
+Transposée d’une matrice $M$ 	& \texttt{transpose(M)} \\
+\hline
+Extraire une portion de tableau 	& \texttt{M[:,0,2]} \\
+(2 premières colonnes) 		& 			\\
+\hline
+Tableau de 0 (2 lignes, 3 colonnes) & \texttt{zeros((2,3))} \\
+\hline
+Séquence équirépartie quelconque de 0 à 10.1 & \texttt{arange(0,10.1,0.1)}\\
+(exclus) par pas de 0.1 & \\
+\hline
+\end{tabular}
+\end{center}
