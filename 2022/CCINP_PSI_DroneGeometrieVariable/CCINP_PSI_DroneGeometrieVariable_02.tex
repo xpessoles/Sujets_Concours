@@ -1,0 +1,618 @@
+\section{\label{sec:01} Influence des mouvements des bras du drone sur son comportement}
+
+Indépendamment de la solution retenue pour mettre en mouvement les bras supportant les
+moteurs et hélices, nous nous intéressons dans cette partie aux conséquences des mouvements des bras sur le comportement dynamique du drone afin de valider les choix retenus
+par la suite.
+
+\subsection{Influence de la rotation des bras sur l’envergure ­ vérification des exigences Id 1
+et Id 1.1}
+
+Pour diminuer l’envergure, on choisit de replier les bras supportant les moteurs et hélices du
+drone. Le repliement doit être rapide et de courte durée. En effet, pour des raisons de contrôle
+et de stabilité, il est impossible d’utiliser un drone avec les bras repliés en permanence. La
+\autoref{fig:23} de l’annexe 2 présente un modèle géométrique simplifié du drone pour lequel le
+bras \textbf{1}, supportant les deux moteurs et hélices avant, peut tourner par rapport au corps \textbf{0} du
+drone. Le bras \textbf{2}, supportant les deux moteurs et hélices arrière, peut également tourner par
+rapport au corps \textbf{0}. Aussi pour cette étude d’envergure, l’analyse portera sur le bras \textbf{1} seul,
+le comportement du bras \textbf{2} étant identique. La \autoref{fig:23} précise le paramétrage associé à
+cette étude. L’angle de rotation du bras \textbf{1} par rapport au corps \textbf{0} du drone est noté $\gamma_1$ et peut
+atteindre n’importe quelle valeur dans l’intervalle $[0\degres, 90\degres]$.
+L’angle de rotation du bras \textbf{2} par rapport au corps \textbf{0} du drone est noté $\gamma_2$ et peut atteindre
+n’importe quelle valeur dans l’intervalle $[90\degres, 180\degres]$.
+
+%Q01
+\question{\label{q:01} À partir de la \autoref{fig:23} de l’annexe 2, déterminer l’expression de la largeur $\ell$ en fonction de $\gamma_1$ et des données de la géométrie du drone.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+%Q02
+\question{\label{q:02} En déduire la valeur de la réduction d’envergure $A =  1 - \dfrac{\indice{\ell}{min}}{\indice{\ell}{max}}$ et l’exprimer en \%.
+Conclure sur la performance liée à l’exigence de réduction d’envergure Id 1.1.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+Des essais expérimentaux ont été réalisés pour analyser le passage du drone au travers
+d’une ouverture carrée de taille de $\SI{20}{cm} \times \SI{20}{cm}$ et de profondeur de $\SI{1}{cm}$. L’ouverture est placée verticalement par rapport au sol et un de ses côtés est orienté horizontalement
+(parallèle au sol). Selon la \autoref{fig:02}, le repère $\rep{G}$ est associé à cette ouverture 
+(origine $\vect{O_G}$ centrée par rapport à l’ouverture). Pour la suite, la position 
+$\vect{O_G O} = x_G \vect{x_G}+y_G \vect{y_G}+z_G \vect{z_G}$
+ correspond à la position du centre d’inertie $O$ du drone par rapport au repère $\rep{G}$.
+
+On définit selon la \autoref{fig:03} et la \autoref{fig:04}, la longueur projetée $\indice{\ell}{proj}$ et la hauteur projetée $\indice{h}{proj}$ du
+drone dans le plan de l’ouverture. Les bords avant gauche et arrière droit du drone sont
+représentés respectivement par les points $\indice{\ell}{gauche}$ et $\indice{\ell}{droit}$. Les bords avant haut et arrière bas
+du drone sont représentés respectivement par les points $\indice{h}{haut}$ et $\indice{h}{bas}$.
+Ces grandeurs dépendent des dimensions du drone et de son orientation par rapport à $\rep{G}$. En
+première approximation et en considérant un angle de roulis $\indice{\theta}{R}$ (rotation autour de $\axe{O}{x_0}$) nul
+lors du passage de l’obstacle, la longueur projetée $\indice{\ell}{proj}$ dépend uniquement des dimensions
+du drone et de l’angle de lacet $\indice{\theta}{L}$ (rotation autour de $\axe{O}{z_0}$), et la hauteur projetée $\indice{h}{proj}$ dépend
+uniquement des dimensions du drone et de l’angle de tangage $\indice{\theta}{T}$ (rotation autour de $\axe{O}{y_0}$).
+
+
+\noindent
+\begin{minipage}[c]{.48\linewidth}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{fig_03}
+\caption{\label{fig:03} ­Définition de la longueur projetée $\indice{\ell}{proj}$ et de l’angle de lacet $\indice{\theta}{L}$}
+\end{figure}
+\end{minipage}\hspace{.5cm}
+\begin{minipage}[c]{.48\linewidth}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{fig_04}
+\caption{\label{fig:04} ­Définition de la longueur projetée $\indice{h}{proj}$ et de l’angle de lacet $\indice{\theta}{T}$}
+\end{figure}
+\end{minipage}
+
+\vspace{.25cm}
+
+Les relevés expérimentaux de 8 essais avec manœuvre de repliement des bras et passage de l’ouverture sont donnés en \autoref{fig:05}. La zone hachurée représente l’envergure de l’ouverture durant toutes les positions du robot où les collisions sont possibles, c’est­-à-­dire pour $x_G \in \left[-L/2, L/2 \right]$. L’aire grisée représente l’envergure maximale occupée par le drone durant les huit essais. Les positions des points extrêmes du drone de l’essai n°4 ($\indice{\ell}{gauche}$, $\indice{\ell}{droit}$, $\indice{h}{haut}$ et $\indice{h}{bas}$) sont représentées par les courbes avec le marqueur en forme de losange $\Diamond$. On
+peut observer sur ces figures la diminution de l’envergure horizontale du drone à partir de la
+consigne de repliement (représentée verticalement en pointillés à gauche). La consigne de
+dépliement de la structure (représentée verticalement en pointillés à droite) est donnée dès
+la sortie de la zone probable de collision afin de stabiliser le drone au plus vite.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{fig_05}
+\caption{\label{fig:05} Vues de dessus et de côté de l’envergure du drone durant huitpassages de l’ouverture}
+\end{figure}
+
+
+%Q03
+\question{\label{q:03}  Relever pour l’essai n°4, la valeur de $\indice{\ell}{proj}$ avant repliement (notée $\indice{\ell}{proj}^{\text{max}}$) et la comparer
+à $\indice{\ell}{max}$ de la question précédente. De même pour la valeur après repliement (notée
+$\indice{\ell}{proj}^{\text{min}}$) à comparer à $\indice{\ell}{min}$.
+Si des écarts sont constatés entre les valeurs expérimentales et les valeurs théoriques,
+expliquer l’(les) origine(s) de ces écarts.
+Conclure sur la vérification de l’exigence liée au passage d’ouverture Id 1.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\subsection{Influence de la rotation des bras sur la vitesse maximale en bout de pale ­-- Vérification de l’exigence Id 4}
+
+On considère que le drone se déplace en ligne droite à la vitesse de déplacement $V_x\vect{x_0}$
+selon $\vect{x_0} = \vect{x_G}$ telle que $V_x = \SI{2,5}{m.s^{-1}}$. Cette vitesse correspond à la vitesse retenue pour négocier
+le passage de l’ouverture. Elle est suffisamment lente pour que le drone ait le temps d’interpréter la taille de l’ouverture et de décider si elle est franchissable ou non (dans ce cas
+le drone doit avoir le temps de réaliser un freinage d’urgence avant collision). Par ailleurs,
+cette vitesse est suffisamment rapide pour conserver un minimum <<~d’inertie~>> lors du franchissement et permettre sa stabilisation une fois l’ouverture franchie et les bras dépliés.
+
+La \autoref{fig:23} et la \autoref{fig:24} complètent le paramétrage. 
+On suppose que le référentiel terrestre
+associé à $\rep{G}$ peut être considéré galiléen. On pose de plus $\alpha = \angl{x_1}{\indice{x}{H1}}$ l’angle définissant
+l’orientation de l’hélice \textbf{H1} par rapport au bras \textbf{1}.
+
+La vitesse de rotation du bras \textbf{1} par rapport au corps \textbf{0} du drone, $\vecto{1}{\rep{0}}$, est telle que $\vecto{1}{\rep{0}} = \dot{\gamma}_1\vz{0}$. La valeur maximale de cette vitesse est obtenue par une rotation de 90\degres en \SI{300}{ms}.
+La vitesse de rotation de l’hélice \textbf{H1} par rapport au bras \textbf{1}, $\vecto{H1}{\rep{1}}$, est telle que 
+$\vecto{H1}{\rep{1}} = \omega_1\vz{0} = \alphap \vz{0}$. 
+On considérera que la vitesse de rotation de l’hélice est égale à
+\SI{13 400}{tr/min} pour assurer la portance et le déplacement horizontal du drone à $V_x = \SI{2,5}{m.s^{-1}}$.
+
+%Q04
+\question{\label{q:04} Déterminer l’expression littérale de $\vectv{P}{H1}{\rep{G}}$, la vitesse en bout de pale de l’hélice
+\textbf{H1} par rapport à $\rep{G}$, en fonction des données et notamment de $\dot{\gamma}$ et de $\omega_1$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+%Q05
+\question{\label{q:05} Dans quelle configuration du bras et de la pale cette vitesse en bout de pale est­elle
+maximale ?
+Déterminer dans ce cas l’expression maximale de la norme, notée $\indice{V}{max}$. Réaliser l’application numérique en déterminant au préalable la valeur numérique de chacun des
+termes de l’expression de $\indice{V}{max}$.
+Commenter l’influence de la vitesse de rotation des bras du drone sur la valeur de
+$\indice{V}{max}$ et sur la vérification de l’exigence Id 4}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\subsection{Influence de la rotation des bras sur le comportement dynamique du drone selon
+l’axe de lacet ­ vérification de l’exigence Id 1.1.1}
+
+On cherche à déterminer la relation à donner entre les rotations $\gamma_1$ et $\gamma_2$ des deux bras du
+drone de manière à limiter les perturbations sur le comportement dynamique en vol du drone
+lors des phases de repliement et dépliement. L’objectif est d’avoir un moment dynamique du
+drone selon l’axe de lacet (axe $\axe{O}{z_0}$) en $O$, centre d’inertie du drone, indépendant de $\gamma_1$
+et $\gamma_2$ (et de leurs dérivées successives). Les matrices d’inerties des principaux éléments du
+drone, dont la géométrie a été simplifiée pour cette étude, sont données en annexe 3.
+
+\begin{hypo}
+On suppose le drone en vol rectiligne à vitesse constante et à altitude constante. Le référentiel associé au repère $\rep{0}$ lié au corps du drone peut être considéré galiléen.
+Les vitesses de rotation des hélices sont telles que :
+\begin{itemize}
+\item $|\omega_1|=|\omega_2|=\omega$ constante,
+\item $|\omega_3|=|\omega_4|=\omega'$ constante.
+\end{itemize}
+Les bras sont en phase de repliement ou dépliement, 
+donc $\gamma_1 \in ]0\degres, 90\degres]$, 
+$\dot{\gamma}_1 \neq 0$ et  $\ddot{\gamma}_1 \neq 0$ pour le bras \textbf{1};
+idem pour les dérivées de l’angle $\gamma_2$ du bras \textbf{2}.
+\end{hypo}
+
+
+
+%Q06
+\question{\label{q:06}Déterminer l’expression littérale du moment dynamique du bras \textbf{1} calculé en $O$ selon $\vz{0}$ : $\vectmd{O}{1}{\rep{0}}\cdot \vz{0}$. En déduire l’expression littérale du moment dynamique du bras \textbf{2}
+calculé en $O$ selon $\vz{0}$ : $\vectmd{O}{2}{\rep{0}}\cdot \vz{0}$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+%Q07
+\question{\label{q:07} Déterminer l’expression littérale du moment dynamique de l'hélice \textbf{H1} calculé en $O$ selon $\vz{0}$ : $\vectmd{O}{H1}{\rep{0}}\cdot \vz{0}$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+%Q08
+\question{\label{q:08} En déduire l’expression littérale du moment dynamique de l'hélice \textbf{H2} calculé en $O$ selon $\vz{0}$ : $\vectmd{O}{H2}{\rep{0}}\cdot \vz{0}$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+On donne pour la suite l’expression littérale du moment dynamique de l’ensemble hélice \textbf{H3}
++ hélice \textbf{H4} calculé en $O$ selon $\vz{0}$ : $\vectmd{O}{H3+H4}{\rep{0}} \cdot \vz{0} = 2 I_{hz} \ddot{\gamma}_2 + 2m_h \left(\dfrac{L_1}{2}\right)^2 \ddot{\gamma}_2$.
+
+%Q09
+\question{\label{q:09} À partir des résultats des trois questions précédentes, montrer que l’expression du
+moment dynamique de l’ensemble $\Sigma$, calculé en $O$ selon $\vz{0}$, se met sous la forme  :
+$\vectmd{O}{\Sigma}{\rep{0}}\cdot \vz{0} = 2 \indice{I}{eq} \left(\gammapp_1+\gammapp_2\right)$ 
+où $\indice{I}{eq}$ est une constante dont l’expression est à préciser.}
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+La commande retenue pour le repliement et dépliement des bras du drone satisfait la relation
+suivante : $\gamma_2 = \pi - \gamma_1$.
+
+
+%Q10
+\question{\label{q:10}Expliquer en quoi ce choix de conception permet de vérifier l’exigence Id 1.1.1.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+
+\subsection{Influence de la rotation des bras sur l’inertie du drone ­ analyse de l’exigence Id 1.2}
+On se propose de déterminer les variations, dues à la rotation des bras, de la matrice d’inertie
+totale du drone en $O$ exprimée dans la base $\base{x_0}{y_0}{z_0}$. On considère pour ceci une géométrie
+simplifiée du drone (\autoref{fig:06}) composée du châssis intégrant la caméra et la batterie, des
+deux bras et des 4 sous­ensembles \{moteurs brushless + hélice\} modélisés par des masses
+ponctuelles, de masse $m_E = \indice{m}{moteur}+m_h$ (dans cette sous­partie les inerties des axes moteurs
+et hélices sont négligées devant les autres grandeurs). On rappelle que $\gamma_2 = \pi - \gamma_1$.
+En additionnant les matrices d’inertie du corps \textbf{0}, du drone et des bras \textbf{1} et \textbf{2} exprimées en $O$
+dans la base $\bas{0}$, l’inertie de l’ensemble, en tenant compte également des moteurs brushless
+et des hélices, se met sous la forme : $\inertie{O}{\Sigma} = \matinertie{I_{\Sigma X}}{I_{\Sigma Y}}{I_{\Sigma Z}}{I_{\Sigma yz}}{I_{\Sigma xz}}{I_{\Sigma xy}}{O,\bas{0}}$
+où les termes $I_{\Sigma X}$, $I_{\Sigma Y}$ sont des fonctions de $\gamma_1$ et de la géométrie et $I_{\Sigma Z}$ est uniquement
+fonction de la géométrie (et donc indépendant de $\gamma_1$).
+
+%Q11
+\question{\label{q:11} Compte tenu de la géométrie retenue, simplifier la forme de la matrice d’inertie totale  $\inertie{O}{\Sigma}$. Justifier vos simplifications.}
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+
+La relation entre $\gamma_1$ et $\gamma_2$ permet finalement d’avoir une matrice d’inertie de l’ensemble du
+drone qui est quasiment diagonale pour toutes valeurs de $\gamma_1$, ce qui évite le couplage des
+équations de roulis, tangage et lacet et facilite ainsi le contrôle du drone. Cela permet également d’avoir un moment d’inertie selon l’axe de lacet  $I_{\Sigma Z}$ indépendant de la position des
+bras.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{fig_06}
+\caption{\label{fig:06}  Figure simplifiée de la géométrie du drone}
+\end{figure}
+
+On note pour la suite $\Delta I_{\Sigma Z} (\gamma_1)$ et $\Delta I_{\Sigma Y} (\gamma_1)$  les variations d’inertie en roulis, respectivement en tangage, fonctions de $\gamma_1$, 
+telles que : $I_{\Sigma X} = \Delta I_{\Sigma X} (\gamma_1) + I_{\Sigma X}^{\text{cte}}$ 
+et 
+$I_{\Sigma Y} = \Delta I_{\Sigma Y} (\gamma_1) + I_{\Sigma Y}^{\text{cte}}$ 
+où $I_{\Sigma X}^{\text{cte}}$ et $I_{\Sigma Y}^{\text{cte}}$
+représentent les termes constants des moments d’inertie indépendants de $\gamma_1$.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\linewidth]{fig_07}
+\caption{\label{fig:07}  Évolution de $\Delta I_{\Sigma X}$ et de $\Delta I_{\Sigma Y}$ en fonction de $\gamma_1$. Les bras sont dépliés pour $\gamma_1 = 90\degres$
+et pliés (c’est-­-à­dire alignés avec le corps du drone) pour $\gamma_1 = 0\degres$}
+\end{figure}
+
+Les évolutions de $\Delta I_{\Sigma X} (\gamma_1)$ et de $\Delta I_{\Sigma Y} (\gamma_1)$ en fonction de $\gamma_1$ sont données \autoref{fig:07}. On donne
+de plus ci-­dessous les valeurs numériques, en \si{kg.m^2}, de la matrice d’inertie de la géométrie
+simplifiée du drone pour la position bras dépliés ($\gamma_1 = 90\degres$) :
+$\inertie{O}{\Sigma}_{\gamma_1 = 90\degres} = \matinertie{\num{5,3e-4}}{\num{1,96e-3}}{\num{1,72e-3}}{0}{0}{0}{O,\bas{0}}$.
+
+%Q12
+\question{\label{q:12} En déduire, en \%, les variations maximales d’inertie en roulis, définie par 
+$\dfrac{\Delta I_{\Sigma X}}{I_{\Sigma X}\left(\gamma_1 = 90\degres\right)}$
+et en tangage, définie par 
+$\dfrac{\Delta I_{\Sigma Y}}{I_{\Sigma Y}\left(\gamma_1 = 90\degres\right)}$. Conclure sur la différence de comportement
+en vol du drone en roulis et en tangage une fois les bras pliés.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\subsection{Influence du sens de rotation des hélices sur le comportement dynamique du
+drone ­ analyse de l’exigence Id 1.2}
+
+Le fait d’entraîner en rotation une pale d’hélice à la vitesse de rotation $\omega_i$ crée une vitesse
+relative entre la pale et l’air. Ce phénomène génère ainsi un effort élémentaire $\vect{\dd F}$ qui peut
+être projeté (\autoref{fig:08}) sur l’axe de rotation (composante $\vect{\dd P}$) et dans le plan de rotation (composante $\vect{\dd T}$).
+En sommant ces efforts sur un tour d’hélice et en intégrant sur toute la longueur de la pale,
+il en résulte une force résultante $\vect{T}$, perpendiculaire au plan de rotation (la poussée), ainsi
+qu’un moment résultant $\vect{Q}$ s’exerçant à l’opposé du sens de rotation (le couple de traînée).
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\linewidth]{fig_08}
+\caption{\label{fig:08}  Représentation de l’action élémentaire de l’air sur une section de pale et de ses
+projections lors de sa rotation}
+\end{figure}
+
+L’action mécanique de l’air sur l’hélice H1 peut donc être modélisée par l’action mécanique
+résultante suivante, pour une rotation du rotor dans le sens positif : 
+$\torseurstat{T}{\text{Air}}{H1} = \torseurl{\vect{T}=T\vect{z_0}}{\vect{Q}=-Q\vect{z_0}}{I_1}$
+avec $T = c_T \omega_i^2$ et $Q=c_Q \omega_i^2$.
+
+
+Ces actions, retrouvées au niveau de chacune des hélices, permettent de générer les forces
+et moments s’exerçant sur le drone en vue de son contrôle.
+
+Afin de limiter l’influence des moments de traînée de chaque hélice sur le comportement
+dynamique du drone en vol stationnaire (cas où les hélices tournent toutes à la même vitesse
+et génèrent une poussée résultante compensant le poids du drone), on souhaite déterminer
+le sens de rotation de chacun des rotors
+
+
+\begin{hypo}
+On suppose que, quel que soit le sens de rotation du rotor, la portance s’oppose toujours à
+l’action du poids (les hélices sont choisies dans ce but).
+\end{hypo}
+
+%Q13
+\question{\label{q:13} Sur la figure du DR, représenter les actions mécaniques $\vect{T}$ et $\vect{Q}$ pour chacune des
+hélices (en trait plein pour les résultantes et en pointillés pour les moments).
+En déduire si le drone est à l’équilibre ou non.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+Pour la suite, les hélices génèrent une poussée résultante compensant le poids du drone.
+Les sens des vitesses de rotation des hélices s’opposent deux à deux selon la représentation
+de la \autoref{fig:09} et ce qu’elle que soit la position des bras. Les hélices \textbf{H1} et \textbf{H3} tournent dans
+le sens trigonométrique et les hélices \textbf{H2} et \textbf{H4} dans le sens horaire.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{fig_09}
+\caption{\label{fig:09} ­Sens de rotation des hélices du drone}
+\end{figure}
+
+%Q14
+\question{\label{q:14} Quel est alors le comportement du drone dans le cas où $|\omega_1| = |\omega_2|$ et $|\omega_3| = |\omega_4|$ avec
+$|\omega_1| < |\omega_3|$ ?
+Vous pouvez vous aider d’un schéma pour représenter les actions et justifier votre
+réponse.}
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+Pour la question suivante, on considérera que les hélices tournent toutes à la même vitesse
+et génèrent une poussée résultante compensant le poids du drone.
+
+%Q15
+\question{\label{q:15} Déterminer l’expression du torseur de l’action de l’air sur l’hélice H1 (défini par l’équation (1)) calculé au point $O$, centre d’inertie du drone. Les composantes du torseur
+seront données dans la base $\bas{0}$ en fonction des grandeurs géométriques, de $\gamma_1$, de
+$c_T$, $c_Q$ et de $\omega_1$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+On donne pour la suite la matrice $\Gamma (\gamma_1)$ permettant de relier les carrés des vitesses de rotation
+des hélices à la poussée résultante et aux moments résultants exprimés en $O$ selon les axes
+du drone (respectivement roulis selon $\vx{0}$, tangage selon $\vy{0}$ et lacet selon $\vz{0}$).
+
+$$
+\begin{pmatrix}
+\sum\limits_{i=1}^{4} \vectf{\text{air}}{H_i} \cdot\vz{0} \\
+\sum\limits_{i=1}^{4} \vectm{O}{\text{air}}{H_i} \cdot\vx{0} \\
+\sum\limits_{i=1}^{4} \vectm{O}{\text{air}}{H_i} \cdot\vy{0} \\
+\sum\limits_{i=1}^{4} \vectm{O}{\text{air}}{H_i} \cdot\vz{0} 
+\end{pmatrix}
+=
+\underbrace{\begin{pmatrix}
+\cdots & c_T & C_T & c_T  \\
+\cdots & c_t \dfrac{L_1}{2} \sin \gamma_1 & c_t \dfrac{L_1}{2} \sin \gamma_1 & - c_t \dfrac{L_1}{2} \sin \gamma_1 \\
+\cdots 
+& - \left(\dfrac{L_0}{2} + \dfrac{L_1}{2} \cos \gamma_1 \right) 
+& \left(\dfrac{L_0}{2}   + \dfrac{L_1}{2} \cos \gamma_1 \right) 
+& \left(\dfrac{L_0}{2}   - \dfrac{L_1}{2} \cos \gamma_1 \right) \\ 
+\end{pmatrix}}_{\Gamma(\gamma_1)}
+\cdot
+\begin{pmatrix}
+\omega_1^2 \\
+\omega_2^2 \\
+\omega_3^2 \\
+\omega_4^2 \\
+\end{pmatrix}
+$$
+
+où les termes de la 1\iere colonne ont été déterminés à la question précédente.
+
+%Q16
+\question{\label{q:16} Que dire de l’action des hélices dans la position bras repliés $\gamma_1 = 0\degres$ pour le moment
+résultant en $O$ selon l’axe de roulis ? Conclure sur le respect de l’exigence Id 1.2 dans
+cette configuration.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+\section{\label{sec:02} Choix d’un mécanisme de modification de l’envergure}
+Afin de modifier la géométrie en vol, un premier mécanisme de repliement basé sur un système 4 barres a été retenu. Une modélisation de ce mécanisme est donnée en \autoref{fig:10}. La
+rotation du palonnier 5, entraîné par un servomoteur d’axe $\axe{O}{\vz{0}}$, permet la mise en rotation
+des bras \textbf{1} et \textbf{2} par l’intermédiaire des bielles \textbf{3} et \textbf{4}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{fig_10}
+\caption{\label{fig:10} Modélisation cinématique en perspective et plane en vue de dessus du mécanisme de mise en mouvement des bras du drone basé sur un double système 4 barres}
+\end{figure}
+
+%Q17
+\question{\label{q:17} Calculer le degré d’hyperstaticité de la modélisation spatiale du mécanisme de repliement. Détailler votre analyse en précisant selon la méthode retenue : le nombre
+d’équations (cinématique ou statique), le nombre d’inconnues (cinématique ou statique) et le nombre de mobilités (utile et interne) en expliquant à quel(s) mouvement(s)
+et à quelle(s) pièce(s) ces mobilités sont associées.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+Une telle hyperstaticité impose des contraintes géométriques de position et d’orientation des
+liaisons afin d’assurer l’assemblage du mécanisme.
+
+%Q18
+\question{\label{q:18} Préciser succinctement quelle(s) contrainte(s) géométrique(s) est(sont) à respecter
+pour assurer l’assemblage de ce mécanisme ?}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+%Q19
+\question{\label{q:19} En modifiant la nature de certaine(s) liaison(s), proposer un modèle de mécanisme de
+repliement isostatique basé sur un double système 4 barres.
+Justifier votre proposition en reprenant le calcul du degré d’hyperstaticité.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+Pour limiter les contraintes géométriques liées au mécanisme 4 barres et afin de réduire
+encore le poids, le mécanisme précédent a été modifié par un mécanisme à câbles piloté
+par un servomoteur (\autoref{fig:11}). De plus, du fait de la dimension des bielles et des liaisons
+avec les bras, le mécanisme 4 barres ne permettait pas l’alignement complet des bras le
+long du corps (position $\gamma_1 = 0\degres$), ce qu’autorise désormais le mécanisme à câbles.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{fig_11}
+\caption{\label{fig:11} Mécanisme de repliement avec servomoteur, poulie, 2 câbles métalliques et un
+élastique.}
+\end{figure}
+
+Ce mécanisme à câbles permet de réduire la masse du mécanisme de repliement à 6\% de
+la masse totale du drone (exigence Id 1.1.2). Le servomoteur est placé au centre du drone
+et permet de positionner les bras à l’angle désiré. La transmission du mouvement se fait
+grâce aux deux câbles métalliques. 
+
+Selon la \autoref{fig:25} de l’annexe 4, le câble métallique \textbf{1}
+est accroché d’un côté à la poulie, elle­-même liée à l’axe du servomoteur, et de l’autre côté
+au bras \textbf{1} au point $B_1$; 
+le câble métallique 2 est accroché d’un côté à la poulie et de l’autre
+au bras \textbf{2} au point $B_2$.
+
+
+Afin de verrouiller la structure pour n’importe quelle position des bras, un élastique relie les
+bras entre eux. Cet élastique est fixé aux bras du côté opposé aux points d’accroche des
+câbles métalliques et est guidé par l’intermédiaire d’une gorge au niveau de la poulie. La
+tension de l’élastique est ajustée afin de trouver un bon compromis entre le temps de repliement/dépliement des bras et la rigidité de la structure (c’est­à­dire l’absence de mouvement
+des bras durant le vol en position $\gamma_1 = 90\degres$).
+
+L’étude suivante porte sur l’analyse de la loi entrée / sorties de ce mécanisme de repliement
+des bras présenté en \autoref{fig:25} de l’annexe 4. La loi entrée / sorties correspond à la relation
+entre la rotation du servomoteur et les rotations des bras du drone. L’analyse va permettre
+de déterminer la course angulaire à donner au servomoteur pour passer de la position bras
+dépliés ($\gamma_1 = 90\degres$) à la position bras alignés ($\gamma_1 = 0\degres$), mais également les dimensions géométriques nécessaires au bon fonctionnement du mécanisme. Le paramétrage nécessaire
+à cette étude est donné en annexe 4.
+
+\begin{hypo}
+\begin{itemize}
+\item On suppose les câbles métalliques suffisamment rigides pour pouvoir être considérés
+inextensibles en traction, compte tenu d’une part des efforts nécessaires pour mettre
+en mouvement les bras et d’autre part de l’action de l’élastique.
+­\item Les câbles s’enroulent sur la poulie sans glisser.
+\item On considère le câble non enroulé sur la poulie entre les points $C_1$ et $B_1$. Mais en réalité
+il l’est sur une faible portion et en toute rigueur $C_1B_1$ ne peut être considéré rectiligne.
+Cette approximation permet de simplifier la géométrie du mécanisme et n’engendre
+pas de grandes différences sur la valeur de la longueur du câble entre les points $C_1$ et
+$B_1$.
+\end{itemize}
+\end{hypo}
+
+
+%Q20
+\question{\label{q:20} À partir du paramétrage et des hypothèses retenues, écrire la fermeture vectorielle
+liée à la chaîne de solides \{corps 0, bras 1, câble 1 et poulie 5\}.
+La mettre sous la forme $L_{c1}(\theta) \vx{1} = ...$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+%Q21
+\question{\label{q:21} En déduire une relation du type : $L_{c1}^2 = A\cos\gamma_1 + B\sin\gamma_1 + C$.
+Exprimer les constantes $A$, $B$ et $C$ en fonction des données géométriques.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+Si besoin, on donne pour la suite : $A = -\SI{11200}{mm^2}$, 
+$B = \SI{2400}{mm^2}$ et 
+$C = \SI{22100}{mm^2}$.
+
+%Q22
+\question{\label{q:22} Déterminer approximativement la valeur numérique de $L_{c1}^{\text{init}}$
+obtenue pour $\gamma_1 = 90\degres$ et $\theta=0\degres$.
+Déterminer approximativement la valeur numérique de $L_{c1}^{\text{final}}$ obtenue pour $\gamma_1 = 0\degres$ et $\theta=\Delta\theta$.
+En déduire la valeur approchée en degrés de la course angulaire $\Delta\theta$ nécessaire pour
+assurer le repliement du bras 1, lorsque $\gamma_1$ passe de 90\degres à 0\degres.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+Avec la géométrie retenue et les positions des points d’accroche des câbles métalliques sur
+les bras, il est nécessaire que le câble métallique \textbf{2} soit enroulé sur la poulie avec un rayon
+d’enroulement $R_2$ différent de $R_1$ pour assurer que le bras \textbf{2} tourne bien de 90\degres lorsque la
+poulie tourne de $\Delta \theta$. La fermeture vectorielle de la chaîne de solides corps \textbf{0}, bras \textbf{2}, câble \textbf{2}
+et poulie \textbf{5} permet d’obtenir le système de deux équations suivantes pour lesquelles $R_2$ et
+$L_{c2}^{\text{final}}$ restent inconnues :
+$$
+\left\{
+\begin{array}{l}
+\left(L_{c2}^{\text{init}}\right)^2 = \left(a_2 -R_2\right)^2 + \left(\dfrac{L_0}{2}\right)^2 \\
+\left(L_{c2}^{\text{init}} + R_2 \Delta \theta \right)^2 = \left(\dfrac{L_0}{2} + a_2\right)^2 + R_2^2
+\end{array}
+\right. .
+$$
+
+
+En reliant ces deux équations à l’aide du terme $L_{c2}^{\text{init}}$, on montre que $R_2$ vérifie une équation
+du type $f(R_2) = 0$. La \autoref{fig_12} donne l’évolution de $f(R_2)$ pour $R_2 \in \left [\SI{10}{mm}, \SI{40}{ mm}\right]$.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{fig_12}
+\caption{\label{fig:12} Évolution de $f(R_2)$}
+\end{figure}
+
+%Q23
+\question{\label{q:23}Déterminer à l’aide de la courbe de la \autoref{fig:12} une valeur approchée de $R_2$ solution
+du système d'équation précédent. La valeur numérique de $L_{c2}^{\text{init}}$ correspondante est alors $L_{c2}^{\text{init}} \simeq \SI{141}{mm}$. }
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+Des essais à vide (hélices et drone à l’arrêt) ont été réalisés pour l’étude des performances
+du système de repliement/dépliement avec les dimensions déterminées précédemment. Les
+résultats de ces essais sont donnés en \autoref{fig:13} pour la phase de repliement et en \autoref{fig:14}
+pour la phase de dépliement. Sur ces courbes, le trait fort représente la valeur moyenne des
+positions angulaires des différents essais
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{fig_13}
+\caption{\label{fig:13} Relevés des angles $\gamma_1$ et $\gamma_2$ pour la phase de repliement}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{fig_14}
+\caption{\label{fig:14} Relevés des angles $\gamma_1$ et $\gamma_2$ pour la phase de dépliement}
+\end{figure}
+
+%Q24
+\question{\label{q:24} Les critères de performance de l’exigence Id 1.1.2 liés au mécanisme de repliement/­
+dépliement sont­ils respectés ?}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+%Q25
+\question{\label{q:25} Expliquer l’origine physique des oscillations observées sur la position angulaire du
+bras \textbf{1} et dans une moindre mesure sur la position angulaire du bras \textbf{2} lors du dépliement des bras.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
