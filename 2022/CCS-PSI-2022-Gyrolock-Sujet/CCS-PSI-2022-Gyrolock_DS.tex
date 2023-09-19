@@ -99,6 +99,17 @@ Le système cardiovasculaire porcin étant similaire à celui d'un être humain,
 
 
 \question{Déterminer, à partir de la figure \ref{fig_ccspsi2022:04}, les valeurs minimales et maximales de déplacement du point $P$ dans la direction dorso-ventrale, notées $u_{d}^{\max }$ et $u_{d}^{\min }$, et dans le plan frontal, notées $u_{f}^{\max }$ et $u_{f}^{\min }$. Déterminer laquelle des deux stabilisations (passive ou active) est nécessaire pour respecter le diagramme des exigences figure \ref{fig_ccspsi2022:03}.}
+\ifprof
+\begin{corrige}
+Dans la direction dorso-ventrale, à l'imprécision de mesure près et par rapport à la référence 0 en ordonnée sur le graphe de la figure 4, le déplacement maximal du point $P$ est $u_d^{\text{max}} \approx 3,5$mm et le déplacement minimum est  $u_d^{\text{min}} \approx -2,3$mm.\\
+
+De même dans le plan frontal, on mesure $u_f^{\text{max}} \approx 0,2$mm et $u_f^{\text{min}} \approx -0,3$mm.\\
+
+L'exigence 1.1 stipule que le déplacement en bout de stabilisateur ne dépasse pas $\pm 2$mm en régime permanent. Or le déplacement dans la direction dorso-ventrale est supérieur à la valeur imposée par cette exigence avec un stabilisateur passif. Une stabilisation active est alors nécessaire pour cette direction.
+\end{corrige}
+\else
+\fi
+
 
 La liaison entre le stabilisateur (1) et la table d'opération (0) sera modélisée de trois façons différentes selon la finalité :
 
@@ -132,14 +143,55 @@ Les figures de changement de base sont données figure \label{fig_ccspsi2022:05}
 
 %Q 2. 
 \question{\label{q:02}Exprimer le vecteur $\overrightarrow{P_{0} P}$ dans la base $\mathcal{B}_{0}$. En déduire l'expression de $u_{d}=\vec{P}_{0} P \cdot \vec{y}_{0}$ correspondant au déplacement en bout de stabilisateur dans la direction dorso-ventrale et $u_{f}=\left\|\overrightarrow{P_{0} P}-u_{d} \vec{y}_{0}\right\|$ traduisant le déplacement en bout de stabilisateur dans le plan frontal.}
+\ifprof
+\begin{corrige}
+On a $\overrightarrow{P_0P} = \overrightarrow{P_0 O_0} + \overrightarrow{O_0 P} = L \overrightarrow{z}_1 - L \overrightarrow{z}_0$. Or:
+
+$$ \overrightarrow{z}_1 = \cos(\theta_{1y})\overrightarrow{z}_1' + \sin(\theta_{1y})\overrightarrow{x}_1' = \cos(\theta_{1y})\cos(\theta_{1x})\overrightarrow{z}_0 - \cos(\theta_{1y})\sin(\theta_{1x})\overrightarrow{y}_0 + \sin(\theta_{1y})\overrightarrow{x}_0  $$
+
+Donc:
+
+$$ \boxed{\overrightarrow{P_0P} = L\left[ \sin(\theta_{1y})\overrightarrow{x}_0 - \cos(\theta_{1y})\sin(\theta_{1x})\overrightarrow{y}_0 + \left( \cos(\theta_{1y})\cos(\theta_{1x}) - 1 \right)\overrightarrow{z}_0 \right]} $$
+
+Donc $\boxed{u_d = \overrightarrow{P_0P}\cdot \overrightarrow{y}_0 = -L \cos(\theta_{1y})\sin(\theta_{1x})}$ et $\boxed{u_f = \left\|\overrightarrow{P_0P}-u_d\overrightarrow{y}_0\right\| = L\sqrt{\sin^2(\theta_{1y}) + \left( \cos(\theta_{1y})\cos(\theta_{1x}) - 1 \right)^2}}$.
+
+\end{corrige}
+\else
+\fi
 
 
 %Q 3. 
 \question{\label{q:03}Déterminer les expressions linéarisées à l'ordre 1 de $u_{d}$ et $u_{f}\left(\theta_{1 x}\right.$ et $\theta_{1 y}$ sont proches de 0$)$. En utilisant le résultat de la question 1, donner la valeur numérique (en radian) des débattements angulaires $\Delta \theta_{1 x}=$ $\max \left(\theta_{1 x}\right)-\min \left(\theta_{1 x}\right)$ et $\Delta \theta_{1 y}$ du stabilisateur. En déduire qu'une rotation peut être négligée (en précisant laquelle). En supposant que la rotation d'axe $\left(O_{0}, \vec{z}_{0}\right)$ est également négligeable, proposer une « nouvelle » liaison (en précisant ses caractéristiques géométriques) modélisant le mouvement du stabilisateur (1) par rapport à la table d'opération (0).}
+\ifprof
+\begin{corrige}
+On suppose $\cos(\theta_{i}) \approx 1$ et $\sin(\theta_{i}) \approx \theta_{i}$ pour $\theta_i = \theta_{1x}$ ou $\theta_i = \theta_{1y}$.\\
+
+Par conséquent $\overrightarrow{P_0P} \approx L\left[ \theta_{1y}\overrightarrow{x}_0 - \theta_{1x}\overrightarrow{y}_0 \right]$ donc:
+
+$$ \boxed{u_d \approx -L \theta_{1x}} \quad ; \quad \boxed{u_f \approx L|\theta_{1y}|} $$
+
+En s'appuyant sur la question 1:
+
+$$ \boxed{\Delta \theta_{1x} = \dfrac{u_d^{\text{min}} - u_d^{\text{max}}}{L} \approx \dfrac{-2,3 - 3,5}{0,3\cdot 10^{3}} \approx -1,9\cdot 10^{-2}\text{rad}} \quad ; \quad \boxed{\Delta \theta_{1y} = \dfrac{u_f^{\text{max}} - u_f^{\text{min}}}{L} \approx \dfrac{0,2 + 0,3}{0,3\cdot 10^{3}} \approx 1,7\cdot 10^{-3}\text{rad}} $$
+
+\textbf{Remarque:} en toute rigueur on devrait redéfinir $u_f$ pour autoriser les valeurs négatives, c'est ce qu'on a fait dans l'application numérique pour le calcul du débattement.\\
+
+Le débattement $\Delta \theta_{1y}$ est \textbf{un ordre de grandeur inférieur} au débattement $\Delta \theta_{1x}$. On peut donc supposer que la rotation autour de l'axe $\left( O_0,\overrightarrow{y}_1 \right)$ est négligeable par rapport à celle autour de l'axe $\left( O_0,\overrightarrow{x}_0 \right)$.\\
+
+Si on néglige aussi la rotation d'axe $\left( O_0,\overrightarrow{z}_0 \right)$, on peut alors simplifier la liaison sphérique en $O_0$ et supposer que c'est un \textbf{pivot d'axe $\left( O_0,\overrightarrow{x}_0 \right)$}.
+\end{corrige}
+\else
+\fi
 
 
 %Q 4. 
 \question{\label{q:04}Préciser alors la direction du moment de compensation que devra générer le système GyroLock afin de réduire le déplacement du point $P$.}
+\ifprof
+\begin{corrige}
+Puisqu'on veut compenser les mouvements dans la direction dorso-ventrale générant la rotation d'axe $\left( O_0,\overrightarrow{x}_0 \right)$, il faut un moment de compensation selon ce même axe.
+\end{corrige}
+\else
+\fi
 
 \section{Effet gyroscopique et modélisation du stabilisateur}
 %\section{— Objectif}
@@ -241,6 +293,18 @@ Les transformées de Laplace de $\omega_{2}(t), \omega_{c 2}(t), \theta_{2}(t)$ 
 
 %Q 10. 
 \question{\label{q:10}Vérifier que la condition de réactivité énoncée ci-dessus est respectée. Justifier que la fonction de transfert de l'étrier (2) $H_{2}(p)=\frac{\Omega_{2}(p)}{\Omega_{c 2}(p)}$ peut alors être approchée par un gain statique $K_{2}$ de valeur à préciser. Il faut s'assurer que la position $\theta_{2}$ de l'étrier (2) ne s'éloigne pas trop de sa position de référence $\theta_{2}^{*}=0$. Le non-respect de cette condition, appelé dérive de l'étrier, génère un moment parasite $M_{01}$ responsable d'un déplacement du point $P$ selon $\vec{x}_{1}$.}
+\ifprof
+\begin{corrige}
+La période du signal perturbateur est $T_c = \dfrac{1}{f_c}$, donc la demi période est $\dfrac{T_c}{2} = \dfrac{1}{2f_c} = 0,33$s.\\
+
+Si on veut respecter la condition de réactivité il faut donc que le temps de réponse à 5\% soit inférieur à $0,033$s.\\
+
+On lit sur le graphe de droite en figure 7 que la valeur finale est atteinte avant 0,03s donc le temps de réponse à 5\% est d'autant plus petit et \textbf{la condition de réactivité est respectée}.\\
+
+Si on considère le système très réactif, comme celui-ci est précis on peut supposer que $\boxed{H_2(p) = \dfrac{\Omega_2(p)}{\Omega_{c2}(p)} = K_2 = 1}$.
+\end{corrige}
+\else
+\fi
 
 \subsection{\label{sec:II.B} Réglage du correcteur de la chaine d'asservissement de l'étrier}
 La figure \ref{fig_ccspsi2022:08} montre la boucle d'asservissement sur la position $\theta_{2}(t) . C(p)$ est la fonction de transfert d'un correcteur appelé correcteur d'étrier. La dérive de l'étrier sera évitée si $\lim\limits_{t \rightarrow+\infty} \theta_{2}(t)=0$ lorsque la commande de l'étrier $U(p)$ est un échelon.
@@ -261,15 +325,54 @@ Les deux cas suivants sont envisagés :
 
 
 %Q 11. 
-\question{\label{q:11}Exprimer sous forme canonique la fonction de transfert $H_{\theta_{2}}(p)=\frac{\theta_{2}(p)}{U(p)}$ en fonction de $C(p)$ et $K_{2}$. Après avoir déterminé $\lim\limits_{t \rightarrow+\infty} \theta_{2}(t)$ lorsque $U(p)$ est un échelon unitaire dans les deux cas cités précédemment, justifier la pertinence d'une correction proportionnelle-intégrale au regard de la problématique de la dérive de l'étrier. Dans la suite de l'étude, le correcteur adopté est $C(p)=K_{10}+\frac{K_{11}}{p}$. L'effet gyroscopique $c_{x}(t)$ est lié à la vitesse de rotation $\omega_{2}(t)$ et la consigne $\theta_{2}^{*}(t)$ est maintenue à 0 pour éviter la dérive de l'étrier. La fonction de transfert utilisée pour modéliser le comportement de l'étrier (2) est notée $H_{m}(p)=\frac{\Omega_{2}(p)}{U(p)}$.}
+\question{\label{q:11}Exprimer sous forme canonique la fonction de transfert $H_{\theta_{2}}(p)=\frac{\theta_{2}(p)}{U(p)}$ en fonction de $C(p)$ et $K_{2}$. Après avoir déterminé $\lim\limits_{t \rightarrow+\infty} \theta_{2}(t)$ lorsque $U(p)$ est un échelon unitaire dans les deux cas cités précédemment, justifier la pertinence d'une correction proportionnelle-intégrale au regard de la problématique de la dérive de l'étrier. Dans la suite de l'étude, le correcteur adopté est $C(p)=K_{10}+\frac{K_{11}}{p}$. L'effet gyroscopique $c_{x}(t)$ est lié à la vitesse de rotation $\omega_{2}(t)$ et la consigne $\theta_{2}^{*}(t)$ est maintenue à 0 pour éviter la dérive de l'étrier. }
+\ifprof
+\begin{corrige}
+En prenant $\theta^*_2(p) = 0$ et par méthode directe:
+
+$$ \Omega_{c2}(p) = U(p) - C(p)\cdot \dfrac{K_2}{p}\Omega_{c2}(p) $$
+
+Or $\Omega_{c2}(p) = \dfrac{p}{K_2}\theta_2(p)$ donc:
+$ \dfrac{p}{K_2}\theta_2(p) = U(p) - C(p)\theta_2(p) \quad \Rightarrow \quad \boxed{H_{\theta_2}(p) = \dfrac{K_2}{p + K_2 C(p)}} $.
+
+En appliquant le théorème de la valeur finale: 
+
+\begin{itemize}
+\item[•] avec une correction proportionnelle: $\displaystyle\lim_{t\to +\infty}\theta_2(t) = \lim_{p\to 0}p\theta_2(p) = \lim_{p\to 0} p\cdot H_{\theta_2}(p)\dfrac{1}{p} = \dfrac{1}{K_{10}}$;
+\item[•] avec une correction proportionnelle-intégrale: $\displaystyle\lim_{t\to +\infty}\theta_2(t) = \lim_{p\to 0}p\theta_2(p) = \lim_{p\to 0}\dfrac{K_2 p}{p^2 + K_2K_{10}p + K_2K_{11}} = 0$.
+\end{itemize}
+
+La dérive de l'étrier sera évitée si une correction proportionnelle-intégrale est appliquée.
+\end{corrige}
+\else
+\fi
+La fonction de transfert utilisée pour modéliser le comportement de l'étrier (2) est notée $H_{m}(p)=\frac{\Omega_{2}(p)}{U(p)}$.
 
 %Q 12. 
 \question{\label{q:12}Exprimer sous forme canonique la fonction de transfert $H_{m}(p)$ en fonction de $K_{2}, K_{10}$ et $K_{11}$.}
+\ifprof
+\begin{corrige}
+Par formule de Black:
+
+$$ H_{m}(p) = \dfrac{H_2(p)}{1+ H_2(p)\dfrac{C(p)}{p}} = \dfrac{\dfrac{1}{K_{11}}p^2}{1 + \dfrac{K_{10}}{K_{11}}p + \dfrac{p^2}{K_2K_{11}}} $$
+\end{corrige}
+\else
+\fi
 
 Le calcul des gains $K_{10}$ et $K_{11}$ doit répondre aux deux exigences suivantes: permettre d'éviter la dérive de l'étrier (2) et ne pas ralentir le système, d'où le choix d'une fonction de transfert $H_{m}(p)$ caractérisée par un amortissement $\xi_{m}=0,37$ et une pulsation propre $\omega_{m}=2,45 \mathrm{rad} \cdot \mathrm{s}^{-1}$.
 
 %Q 13.
 \question{\label{q:13} Déterminer les valeurs numériques de $K_{10}$ et $K_{11}$ au regard de ces exigences.}
+\ifprof
+\begin{corrige}
+On a $H_{m}(p) = \dfrac{\dfrac{1}{K_{11}}p^2}{1 + \dfrac{2\xi_m}{\omega_m}p + \dfrac{p^2}{\omega_m^2}}$. On identifie alors:
+$ \omega_m = \sqrt{K_2 K_{11}} \quad ; \quad \xi_m = \dfrac{1}{2}K_{10}\sqrt{\dfrac{K_{2}}{K_{11}}} $.
+
+Avec $K_2 = 1$ trouvé en question 10, on calcule:
+$ \boxed{K_{11} = \dfrac{\omega_m^2}{K_2} = 6,00\text{rad}^2.\text{s}^{-2}} \quad ; \quad \boxed{K_{10} = \dfrac{2\xi_m}{\omega_m}K_{11} = 1,81\text{rad}.\text{s}^{-1}} $.
+\end{corrige}
+\else
+\fi
 
 %La rotation du stabilisateur (1) étudiée en partie \ref{sec:I} n'est pas prise en compte figure \ref{fig_ccspsi2022:6}. Il est indispensable de considérer la flexibilité de l'attache reconfigurable utilisée pour lier le stabilisateur (1) à la table d'opération (0).
 
@@ -333,6 +436,15 @@ Les transformées de Laplace de $y(t), c_{x}(t)$ et $f_{c}(t)$ sont notées $Y(p
 
 %Q 19. 
 \question{\label{q:19}En déduire les expressions littérales des fonctions de transfert $H_{\text {pert }}(p)$ et $H_{1}(p)$ du schéma-blocs figure \ref{fig_ccspsi2022:10} en fonction de $L, J_{x}, f$ et $k$.}
+\ifprof
+\begin{corrige}
+Le schéma-bloc donne $\dfrac{Y(p)}{H_1(p)} = C_x(p) - H_{\text{pert}}(p)F_c(p)$. L'équation différentielle précédente rapportée dans le domaine de Laplace (\textbf{conditions initiales nulles}) s'écrit (avec $Y(p) = L \theta_1(p)$):
+$ \left( J_x p^2 + f p + k \right)\dfrac{Y(p)}{L} = C_x(p) - L F_c(p) $.
+
+On identifie $\boxed{H_1(p) = \dfrac{L}{J_x p^2 + f p + k}}$ et $\boxed{H_{\text{pert}}(p) = L}$.
+\end{corrige}
+\else
+\fi
 
 
 \begin{figure}[!h]
@@ -354,6 +466,34 @@ On rappelle que $L=0,3 \mathrm{~m}$ et les valeurs retenues pour $J_{x}, f$ et $
 
 %Q 20. 
 \question{\label{q:20}Écrire $H_{1}(p)$ sous forme canonique, puis calculer les valeurs de ses paramètres caractéristiques : gain statique $K_{1}$, amortissement $\xi_{1}$ et pulsation propre $\omega_{1}$. Commenter le comportement associé (fréquentiel ou temporel).}
+\ifprof
+\begin{corrige}
+On a $H_1(p) = \dfrac{\dfrac{L}{k}}{1 + \dfrac{f}{k}p + \dfrac{J_x}{k}p^2}$, on identifie alors:
+\begin{itemize}
+\item[•] le gain statique $K_1 = \dfrac{L}{k} = \dfrac{0,3}{95} = 3,2\cdot 10^{-3}$rad/N;
+\item[•] la pulsation propre $\omega_1 = \sqrt{\dfrac{k}{J_x}} = \sqrt{\dfrac{95}{1,14\cdot 10^{-2}}} = 91,3$rad/s;
+\item[•] l'amortissement $\xi_1 = \dfrac{1}{2}\cdot \dfrac{f}{\sqrt{k J_x}} = \dfrac{1}{2}\cdot \dfrac{64\cdot 10^{-3}}{\sqrt{95 \times 1,14\cdot 10^{-2}}} = 0,03$. 
+\end{itemize} 
+
+On choisit de décrire le comportement dans le domaine fréquentiel. On a un système d'ordre 2 avec résonance (car $\xi_1 < \dfrac{\sqrt{2}}{2}$) à la pulsation $\omega_r = \omega_1\sqrt{1 - 2\xi_1^2}$. Le diagramme de Bode associé est le suivant:
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+% Images
+\node[inner sep=0pt] (Bode) at (0,0)
+    {\includegraphics[scale=0.86]{Q20_V2.pdf}};
+
+\node[text width=2cm,text badly centered, minimum height=1cm] (gain) at (-3.5,3.5) {$20\log(K_1)$};
+\node[text width=2.5cm,text badly centered, minimum height=1cm,rotate=-20] (pente) at (4.5,2.2) {-40dB/décade};
+\node[text width=2.5cm,text badly centered, minimum height=1cm] (pulsation) at (0.2,1.1) {$\omega_1$};
+\node[text width=5cm,text badly centered, minimum height=1cm] (max) at (3.5,4) {\footnotesize{gain max: $20\log\left( \dfrac{K_1}{2\xi_1\sqrt{1-\xi_1^2}} \right)$}};
+
+\end{tikzpicture}
+\end{figure}
+\end{corrige}
+\else
+\fi
 
 \section{Réglage de la loi de commande du stabilisateur}
 \begin{obj}
@@ -387,8 +527,13 @@ Le schéma-blocs global du système est donné figure \ref{fig_ccspsi2022:11}, o
 
 \section{\label{sec:III.A} Valeur maximale de $K_{p}$}
 %Q 21.
-
 \question{\label{q:21}Exprimer la fonction de transfert en boucle ouverte $H_{\mathrm{BO}}(p)=\frac{Y(p)}{\varepsilon(p)}$ en fonction de $K_{p}, K_{3}, K_{v}$, $H_{m}(p)$ et $H_{1}(p)$.}
+\ifprof
+\begin{corrige}
+On suppose $F_c(p) = 0$, alors: $\boxed{H_{\text{BO}}(p) = \dfrac{K_p}{p} \cdot \dfrac{p\cdot K_3 H_m(p) H_1(p)}{1+p\cdot K_vK_3 H_m(p) H_1(p)}}$. 
+\end{corrige}
+\else
+\fi
 
 Un premier choix de conception de la commande a conduit à imposer $K_{v}=15$. Le diagramme de Bode de $H_{\mathrm{BO}}(p)$ pour $K_{p}=1$ est donné figure \ref{fig_ccspsi2022:12}. Pour ce tracé, la fonction de transfert $H_{2}(p)=\frac{\omega_{0}^{2}}{p^{2}+2 \xi \omega_{0} p+\omega_{0}^{2}}$ non simplifiée est utilisée, avec $\omega_{0}=200 \mathrm{rad} \cdot \mathrm{s}^{-1}, \xi=0,7$, et les valeurs de $K_{10}, K_{11}$ sont celles obtenues avec le modèle simplifié de la question~\ref{q:13}.
 
@@ -402,10 +547,32 @@ Un premier choix de conception de la commande a conduit à imposer $K_{v}=15$. L
 
 %Q 22. 
 \question{\label{q:22}À partir de la figure \ref{fig_ccspsi2022:12}, donner la valeur maximale de $K_{p}$ telle que le système soit stable en boucle fermée.}
+\ifprof
+\begin{corrige}
+On suppose que $H_{\text{BO}}(p)$ possède des pôles à partie réelle négative, par conséquent le critère du revers stipule qu'on est à la limite de l'instabilité si lorsque la phase est à -180$^\circ$, le gain est nul.\\
+
+Par lecture graphique pour la phase de -180$^\circ$ on lit qu'on peut monter le gain de $+65$dB pour atteindre la limite de l'instabilité.\\
+
+Par conséquent $20\log(K_p^{\text{max}}) = +65$ donc $\boxed{K_p^{\text{max}} = 10^{65/20} = 1778,3\text{rad}.(\text{s.m})^{-1}}$.
+
+\textbf{Remarque:} d'après le schéma de la figure 8, $U(p)$ doit être en rad/s d'où l'unité de $K_p$.
+\end{corrige}
+\else
+\fi
 
 \subsection{\label{sec:III.B} Vérification de la valeur de $K_{p}$}
 %Q 23. 
 \question{\label{q:23}Déterminer la valeur maximale $G_{\max }$ du gain de la fonction de transfert $\left|\frac{Y(j \omega)}{F_{c}(j \omega)}\right|$ qui permet de garantir le respect des exigences du diagramme figure \ref{fig_ccspsi2022:03}.}
+\ifprof
+\begin{corrige}
+L'exigence 1.1.1 fournit $f_c(t) = F \sin(\omega t)$, donc le déplacement s'écrit pour ce système linéaire 
+
+$y(t) = F \left| \dfrac{Y(j\omega)}{F_c(j\omega)} \right| \sin(\omega t + \varphi(\omega))$.\\ 
+
+Or l'exigence 1.1 demande $F \left| \dfrac{Y(j\omega)}{F_c(j\omega)} \right|\leq 2\cdot 10^{-3}$m. Avec $F = 5$N on trouve: $\boxed{G_{\text{max}} = \dfrac{2\cdot 10^{-3}}{5} = 4\cdot 10^{-4}\text{m}.\text{N}^{-1}}$.
+\end{corrige}
+\else
+\fi
 
 La figure \ref{fig_ccspsi2022:13} donne, en fonction de la valeur de $K_{p}$, la valeur maximale du gain $\left|\frac{Y(j \omega)}{F_{c}(j \omega)}\right|$ pour les fréquences cardiaques précisées par l'exigence 1.1.1 de la figure \ref{fig_ccspsi2022:03}.
 
@@ -418,6 +585,15 @@ La figure \ref{fig_ccspsi2022:13} donne, en fonction de la valeur de $K_{p}$, la
 \end{figure}
 
 \question{À partir de la figure \ref{fig_ccspsi2022:13}, déterminer la valeur minimale de $K_{p}$ permettant de respecter l'exigence~1.1. Vérifier la cohérence de cette valeur avec celle trouvée à la question \ref{q:22} .}
+\ifprof
+\begin{corrige}
+Sur le graphe de la figure 13 on lit $K_p = 2800 \text{rad}.(\text{s.m})^{-1}$ pour le gain maximal $G_{\text{max}} = 4\cdot 10^{-4}\text{m}.\text{N}^{-1}$. Cette valeur de $K_p$ est une valeur minimale sinon on ne respecte plus le cahier des charges.\\
+
+C'est incohérent avec la valeur trouvée en question \label{q:22}: il faut ajouter au schéma-bloc une boucle de compensation. C'est ce qui est proposé dans la suite du sujet.
+\end{corrige}
+\else
+\fi
+
 
 \subsection{\label{sec:III.C} Amélioration des performances par compensation de l'effort cardiaque}
 Une solution pour améliorer la commande du système serait de compenser l'effet de l'effort cardiaque en complétant la commande $U(p)$ de l'étrier par une anticipation du type $C_{a}(p) F_{c}(p)$ avec $C_{a}(p)$ un correcteur à déterminer. Cependant, il n'est pas envisageable de mesurer l'effort cardiaque du patient. L'utilisation d'un observateur permet d'obtenir une estimation $\hat{f}_{c}(t)$ à partir des mesures de $y(t)$ et $v(t)=\dot{y}(t)$ (issues d'un accéléromètre lié au support du GyroLock). Cette structure de commande peut être représentée par le schéma-blocs figure \ref{fig_ccspsi2022:14}.
@@ -445,17 +621,61 @@ La consigne virtuelle $Y^{*}(p)$ étant nulle, la structure de commande peut alo
 
 %Q 25. 
 \question{\label{q:25}Exprimer la fonction de transfert $H_{F_{c}}^{\text {est }}(p)=\frac{Y(p)}{F_{c}(p)}$ en fonction de $K_{p}, K_{v}, K_{3}, H_{\text {pert }}(p), \tau, C_{a}(p)$, $H_{m}(p)$ et $H_{1}(p)$.}
+\ifprof
+\begin{corrige}
+Par méthode directe:
+$ \boxed{H_{F_c}^{\text{est}}(p) = \dfrac{H_m(p) K_3 \dfrac{C_a(p)}{1+\tau p} - H_{\text{pert}}(p)}{\dfrac{1}{H_1(p)} + (K_p + p K_v)H_m(p) K_3}} $.
+\end{corrige}
+\else
+\fi
 
 %Q 26. 
 \question{\label{q:26}En déduire l'expression de $C_{a}(p)$ permettant de rejeter la perturbation $F_{c}(p)$, en fonction de $H_{\text {pert }}(p)$, $\tau, K_{3}$ et $H_{m}(p)$, puis en fonction de $L, \tau, \xi_{m}, \omega_{m}$ et $K_{3}$.}
+\ifprof
+\begin{corrige}
+Pour rejeter la perturbation on veut $H_{F_c}^{\text{est}}(p) = 0$, soit $\boxed{C_a(p) = \dfrac{H_{\text{pert}}(p)(1+\tau p)}{K_3 H_m(p)}}$, ou 
+
+$\boxed{C_a(p) = \dfrac{L(1+\tau p)(p^2 + 2\xi_m \omega_m p + \omega_m^2)}{K_3 p^2}}$.
+\end{corrige}
+\else
+\fi
 
 %Q 27.
 \question{\label{q:27}Analyser les problèmes éventuels liés à la réalisation de ce correcteur. Conclure sur la possibilité de son implantation dans le système de commande.}
+\ifprof
+\begin{corrige}
+La réalisation d'un tel correcteur met en évidence 2 problèmes notables:
+\begin{itemize}
+\item[•] les constantes qui interviennent doivent être parfaitement connues au risque de dégrader les performances du système;
+\item[•] le degré du polynôme au numérateur est supérieur au degré du dénominateur, ce correcteur présente donc l'inconvénient d'amplifier les signaux en hautes fréquences (sensibilité au bruit).
+\end{itemize}
 
+L'implantation d'un tel correcteur est donc risquée.
+\end{corrige}
+\else
+\fi
 Le diagramme de Bode associé au correcteur $C_{a}(p)$, exprimé question \ref{q:26}, est donné figure \ref{fig_ccspsi2022:16}. Pour des raisons de simplification, une forme approchée du correcteur $C_{a}(p)$ doit être déterminée.
 
 %Q 28. 
 \question{\label{q:28}À partir de la figure \ref{fig_ccspsi2022:16} et de l'exigence 1.1.1, justifier qu'une approximation de $C_{a}(p)$ sous la forme d'un gain proportionnel $\widetilde{C_{a}}(p)=K_{a}$ est suffisante. Déterminer la valeur numérique de $K_{a}$.}
+\ifprof
+\begin{corrige}
+L'exigence 1.1.1 indique que la pulsation $\omega$ se situe entre 6,3rad/s et 23rad/s. Sur cette plage:
+\begin{itemize}
+\item[•] le gain varie entre 4dB et 6dB;
+\item[•] la phase varie entre -20$^\circ$ et 0$^\circ$.
+\end{itemize}
+
+Sur cette plage de pulsations et à l'erreur de mesure près il est raisonnable de penser que le gain peut être assimilé à une constante. Toutefois la variation de phase de 20$^\circ$ pose problème. \\
+
+Si on regarde l'expression obtenue précédemment pour $C_a(p)$ on peut deviner au diagramme de Bode qu'en basse fréquence c'est l'intégration en $\dfrac{1}{p^2}$ qui domine. Puis on a un méplat sur la bande de pulsation qui nous intéresse. Alors le terme $p^2 + 2\xi_m \omega_m p + \omega_m^2$ est venu compenser le $\dfrac{1}{p^2}$ tandis que le terme $1+\tau p$ reste équivalent à 1. Enfin en haute fréquence le terme $1+\tau p$ intervient enfin.\\
+
+Donc sur la plage de pulsation d'intérêt on a une asymptote horizontale en gain à $\sim 5$dB et une asymptote horizontale en phase à 0$^\circ$.\\
+
+L'approximation $\boxed{\widetilde{C_a}(p) = K_a = 10^{\frac{5}{20}} = 1,8}$ convient.
+\end{corrige}
+\else
+\fi
 
 La figure \ref{fig_ccspsi2022:17} montre les gains des réponses fréquentielles de l'effort de perturbation $f_{c}$ vers la position $y$ pour différents cas : en boucle ouverte, en boucle fermée avec la structure de commande définie dans cette étude sans anticipation et en boucle fermée avec anticipation.
 
@@ -464,6 +684,31 @@ L'exploitation des modèles conduit en simulation numérique aux évolutions tem
 %Q 29. 
 \question{\label{q:29}Analyser les courbes des figures \ref{fig_ccspsi2022:17} et \ref{fig_ccspsi2022:18} et les commenter en considérant des critères (non exhaustifs) comme les coefficients d'amortissement obtenus, les niveaux d'atténuation de la perturbation d'effort au regard du cahier des charges défini figure \ref{fig_ccspsi2022:03}, la cohérence des résultats montrés par les figures \ref{fig_ccspsi2022:17} et \ref{fig_ccspsi2022:18}, etc.
 Conclure sur la capacité du système GyroLock, tel qu'il a été modélisé dans cette étude, à maintenir la zone à opérer lors d'une opération à cœur battant.}
+\ifprof
+\begin{corrige}
+Sur le graphe montrant l'évolution temporelle de $y(t)$:
+\begin{itemize}
+\item[•] la pulsation relevée est $\omega = \dfrac{2\pi}{T} = \dfrac{2\pi}{1} \approx 6,3$rad/s (borne inférieure des pulsations autorisées par le cahier des charges);
+\item[•] le déplacement maximal par rapport à la référence 0 du stabilisateur est de 2mm.
+\end{itemize}
+
+\textbf{On déduit qu'avec compensation le cahier des charges est respecté pour une pulsation de 6,3rad/s.}\\
+
+Si on regarde le diagramme de gain en boucle fermée, pour la plage de pulsations entre 6,3rad/s et 23rad/s du cahier des charges, on a:
+
+\begin{itemize}
+\item[•] avec anticipation/compensation on a une atténuation d'environ -70dB;
+\item[•] sans anticipation/compensation on a une atténuation de -60dB.
+\end{itemize}
+
+\textbf{On a vu grâce au tracé temporel qu'avec anticipation on validait tout juste le cahier des charges, donc sans anticipation on devine que le système ne convient pas.}\\
+
+\textbf{Par contre il a été supposé en question 17 que $\theta_2 \approx 0$, or on voit qu'il varie sur $\pm 45^\circ = \pm \dfrac{\pi}{4}$rad. L'hypothèse des petits mouvements n'est pas validée.}\\
+
+Pour conclure le système GyroLock tel qu'il a été modélisé dans cette étude permet de valider le cahier des charges mais une une autre étude devrait être menée pour vérifier que l'hypothèse $\theta_2 \approx 0$ ne dégrade pas trop la qualité du modèle.
+\end{corrige}
+\else
+\fi
 
 \begin{figure}[!h]
 \centering

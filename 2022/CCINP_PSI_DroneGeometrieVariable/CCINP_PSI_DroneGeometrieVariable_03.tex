@@ -175,7 +175,7 @@ $H_S (p)$. Cette réponse est donnée sur la figure du DR de la question \ref{q_
 gain $G_{HS}(\omega) = 20 \log |H_S (j\omega)|$ et de la phase $\Phi_{HS} (\omega) = \arg\left(H_S (j\omega)\right)$ en fonction de la pulsation $\omega$.
 
 Compte tenu de la réponse fréquentielle de $H_S (p)$, on propose le modèle suivant pour $H_S (p)$ :
-$H_S(p)=\dfrac{K_S}{1+\dfrac{2z_S}{\omega_{0S}}p+\dfrac{1}{\omega_{0S}^2}p^2}$.
+$H_S(p)=\dfrac{K_S}{1+\dfrac{2z_S}{\omega_{0S}}p+\dfrac{p^2}{\omega_{0S}^2}}$.
 
 
 %Q29
@@ -246,7 +246,17 @@ pose $C(p) = K_P$.
 \question{\label{q_ccinppsi2022:32} Déterminer graphiquement la valeur à donner à $K_P$ pour vérifier le critère de stabilité.}
 \ifprof
 \begin{corrige}
-Poou avoir une marge de gain de \SI{10}{dB} 
+Pour avoir une marge de gain de \SI{10}{dB}, il est nécessaire « d’abaisser » la courbe d’au moins \SI{20}{dB} (\SI{10}{dB} pour annuler la marge de gain et \SI{10}{dB} pour avoir la marge de gain). Soit un gain $K_P$ tel que :
+
+$20 \log K_P = \SI{-20}{dB}$ $K_P = 0,1$.
+
+Cette valeur est alors un maximum. Le fait de « baisser » la courbe de gain permet aussi d’augmenter la marge de phase :  $M_{\varphi}=90\degres$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.5\linewidth]{cor_32}
+\end{figure}
+
 \end{corrige}
 \else
 \fi
@@ -270,6 +280,14 @@ de roulis $P(p)$, modélisée par la suite comme une perturbation de type échel
  et de $P(p)$. On rappelle que $C(p) = K_P$ et $H_S (p)$ est définie par l’équation (2).}
 \ifprof
 \begin{corrige}
+$\theta_R (p)=\left(\left( \theta_R^C (p)-\theta_R (p)\right) .K_P.K_E.\dfrac{K_S}{1+\dfrac{2.z_S}{\omega_{0S}} p+\dfrac{p^2}{\omega_{0S}^2} }-P(p)\right) \dfrac{1}{p}$.
+
+$\theta_R (p) \left(1+\dfrac{K_P.K_E.K_S}{p\left(1+\dfrac{2.z_S}{\omega_{0S}} .p+\dfrac{p^2}{\omega_{0S}^2} \right) }\right)= \dfrac{K_P.K_E.K_S}{p\left(1+\dfrac{2 z_S}{\omega_{0S}}p+\dfrac{1}{\omega_{0S}^2} p^2 \right) }.\theta_R^C (p)-\dfrac{1}{p} P(p)$
+
+$\theta_R (p)
+= \dfrac{K_P.K_E.K_S}{K_P.K_E.K_S+p.\left(1+\dfrac{2 z_S}{\omega_{0S}}p+\dfrac{p^2}{\omega_{0S}^2} \right)}\theta_R^C (p)
+-\dfrac{1+\dfrac{2z_S}{\omega_{0S}}p+\dfrac{1}{\omega_{0S}^2}.p^2}{K_P.K_E.K_S+p.\left(1+\dfrac{2z_S}{\omega_{0S}}p+\dfrac{p^2}{\omega_{0S}^2} \right)}P(p)$
+
 \end{corrige}
 \else
 \fi
@@ -278,6 +296,10 @@ de roulis $P(p)$, modélisée par la suite comme une perturbation de type échel
 \question{\label{q_ccinppsi2022:34} Déterminer l’expression de la contribution de la perturbation de type échelon d’amplitude $P_0$ sur la valeur de $\theta_R(t)$ en régime établi dans le cas où la consigne est nulle $\theta_R^C(t)=0\degres$.}
 \ifprof
 \begin{corrige}
+$\theta_R(\infty)=\lim\limits_{t \to \infty}  \theta_R (t) $
+$=\lim\limits_{p \to 0}  \theta_R (p)$
+$=\lim\limits_{p \to 0} p \dfrac{P_0}{p} \left (-\dfrac{1+\dfrac{2 z_S}{\omega_{0S}}p+\dfrac{p^2}{\omega_{0S}^2}}{K_P.K_E.K_S+p\left(1+\dfrac{2 z_S}{\omega_{0S}}p+\dfrac{p^2}{\omega_{0S}^2}\right)} \right) $
+$=-\dfrac{P_0}{K_P.K_E.K_S}$
 \end{corrige}
 \else
 \fi
@@ -286,6 +308,12 @@ de roulis $P(p)$, modélisée par la suite comme une perturbation de type échel
 \question{\label{q_ccinppsi2022:35} Quelle valeur donner à $K_P$ pour respecter le critère de précision vis-­à-­vis de la perturbation ? Conclure sur les limites de la correction proportionnelle.}
 \ifprof
 \begin{corrige}
+$\theta_R(\infty)=-\dfrac{P_0}{K_P.K_E.K_S }>-0,5\degres$ 
+$\Rightarrow \dfrac{P_0}{K_P.K_E.K_S }<0,5\degres$
+$\Rightarrow K_P>\dfrac{10}{0,5\times 150\times 1}$
+$\Rightarrow K_P>0,13$.
+Or pour la stabilité, il faut $K_P<0,1$. Les deux valeurs ne sont pas compatibles.
+
 \end{corrige}
 \else
 \fi
@@ -298,6 +326,9 @@ avec $C(p) = K_P\left(\dfrac{1+T_i p}{T_i p}\right)$. On fixe pour la suite $K_P
 consigne et sur la perturbation.}
 \ifprof
 \begin{corrige}
+Le fait de mettre un intégrateur en amont de la perturbation permet d’annuler l’erreur due à un échelon de perturbation.
+De plus, la classe de la FTBO sera 2. Donc l’erreur de position et l’erreur de vitesse seront nulles.
+
 \end{corrige}
 \else
 \fi
@@ -314,6 +345,24 @@ de la FTBO avec correction. Faire apparaître les constructions sur les figures 
 Conclure sur le réglage et le choix d’un correcteur PI.}
 \ifprof
 \begin{corrige}
+En observant le diagramme temporel, la sortie tend vers l’entrée, l’erreur pour une entrée en échelon est donc nulle. De plus, après l’apparition d’une perturbation, la sortie revient vers la valeur initiale.
+Les exigences de précision (écart par rapport à la consigne et robustesse vis-à-vis d’une perturbation) sont donc respectées.
+De plus, le temps à 5\%, $t_{r5\%}=\SI{0,5}{s}<\SI{600}{ms}$, le critère de rapidité est aussi respecté.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.45\linewidth]{cor_37a}
+\hfill
+\includegraphics[width=.45\linewidth]{cor_37b}
+\end{figure}
+
+La mesure des marges donne : 
+$M_{\varphi}=80\degres >60 \degres$, $M_G=\SI{10}{dB}$.
+Les deux marges respectent le critère de stabilité.
+Le correcteur PI permet de respecter les critères de l’exigence Id 2.
+
+
 \end{corrige}
 \else
 \fi
@@ -337,6 +386,10 @@ déclenchement de la procédure de repliement des bras, l’ouverture est traver
 \question{\label{q_ccinppsi2022:38} Conclure sur l’influence de la phase de repliement des bras et du passage de l’ouverture sur le comportement en roulis du drone avec la correction retenue.}
 \ifprof
 \begin{corrige}
+La phase de repliement induit une erreur sur $\theta_R$ qui a tendance à diminuer lorsque le repliement est terminé. Le drone semble « vouloir » récupérer sa position initiale. 
+De plus, l’évolution de la vitesse de roulis confirme l’erreur sur l’angle $\theta_R$.
+Le correcteur n’est pas assez rapide réellement. Le modèle retenu de la perturbation est peut-être trop simpliste.
+
 \end{corrige}
 \else
 \fi
