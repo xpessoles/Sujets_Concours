@@ -51,6 +51,20 @@ U(p)}$ la fonction de transfert du moteur.
 les tracés permettant de déterminer les caractéristiques de $\indice{H}{mot}(p)$.}
 \ifprof
 \begin{corrige}
+
+La tangente à l’origine est non nulle et il n'y a pas de dépassement. La réponse à un échelon peut donc être celle d’une fonction du premier ordre :
+$\indice{H}{mot}(p)=\dfrac{K_m}{1+\tau_m p}$. Suivant la méthode d'identication utilisée, on peut obtenir : 
+$\tau_{95\%}=\SI{0,05}{s}$, 
+$\tau_{63\%}=\SI{0,065}{s}$,
+$\indice{\tau}{tangente}  =\SI{0,06}{s}$.
+
+De plus, $0,4 K_m=10000$; donc $K_m=\SI{25000}{tr.min^{-1}} \simeq \SI{2620}{rad.s^{-1}}$.
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{cor_26}
+%\caption{\label{fig_ccinppsi2022:cor26} Structure de commande du drone}
+\end{figure}
+
 \end{corrige}
 \else
 \fi
@@ -71,6 +85,9 @@ $C1$ d’une distance $d_y$ et en déduire quel capteur d’effort $C1$ ou $C2$ 
 quelle composante de l’action (effort de poussée $T$ ou moment de traînée $Q$).}
 \ifprof
 \begin{corrige}
+Il est nécessaire de décaler un des deux capteurs de l’axe de l’hélice afin d’avoir un bras de levier et de mesurer le moment de trainée.
+
+Le capteur décalé est le capteur C1 : il permet donc de mesurer le moment de traînée Q et le capteur C2 mesure l’effort de poussée T.
 \end{corrige}
 \else
 \fi
@@ -111,6 +128,15 @@ fonctionnement étudié ($\omega_1 \simeq \SI{1400}{rad.s^{-1}}$) et valable dan
 $\pm \SI{500}{rad.s^{-1}}$ considéré. Laisser apparents sur les courbes du DR les tracés permettant de justifier votre démarche.}
 \ifprof
 \begin{corrige}
+$\Delta T=\dfrac{3,6-0,6}{1000} \Delta \omega_1 =3\times 10^{-3} \Delta \omega_1$ et
+$\Delta Q=\dfrac{0,032-0,006}{1000} \Delta \omega_1 =26\times 10^{-6} \Delta \omega_1$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{cor_28}
+%\caption{\label{fig_ccinppsi2022:cor26} Structure de commande du drone}
+\end{figure}
+
 \end{corrige}
 \else
 \fi
@@ -157,6 +183,22 @@ $H_S(p)=\dfrac{K_S}{1+\dfrac{2z_S}{\omega_{0S}}p+\dfrac{1}{\omega_{0S}^2}p^2}$.
 valeurs numériques et unités des paramètres caractéristiques $K_S$ , $z_S$ et $\omega_{0S}$ . Faire apparaître sur la figure du DR, les constructions permettant de justifier les valeurs proposées.}
 \ifprof
 \begin{corrige}
+Quand $\omega$ tend vers 0, la phase tend vers 0\degres et la courbe de gain a une asymptote à 0 dB.
+Quand $\omega$ tend vers $+\infty$, la phase tend vers $-180\degres$, la courbe de gain a une asymptote de pente de $-\SI{40}{dB/décade}$.
+Le modèle choisi pour la fonction $H_S (p)$ est donc correct.
+La courbe de gain a une asymptote à \SI{0}{dB} quand $\omega$ tend vers 0, on a donbc  $K_S=1$.
+Pour $\varphi=-135\degres$, $\omega_{0S}=\SI{900}{rad.s^{-1}}$.
+
+Il y a une résonnance donc $z_S<\dfrac{\sqrt{2}}{2}$ et à la résonnance le gain de la réponse est de \SI{25}{dB}. Donc d’après l’abaque, $z_S\simeq 0,03$.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.45\linewidth]{cor_29a}
+\hfill
+\includegraphics[width=.45\linewidth]{cor_29b}
+\end{figure}
+
 \end{corrige}
 \else
 \fi
@@ -167,6 +209,14 @@ valeurs numériques et unités des paramètres caractéristiques $K_S$ , $z_S$ e
 non corrigée, c’est-à-dire pour $C(p) = 1$. Justifier vos tracés.}
 \ifprof
 \begin{corrige}
+$\indice{H}{BO} (p)=\dfrac{\theta_R^{\text{mes}} (p)}{\varepsilon(p)} =C(p) H_S (p) \dfrac{1}{p} K_E=\dfrac{H_S (p)K_E}{p}$.
+
+Il faut  ajouter $\dfrac{K_E}{p}$ à la courbe précédente : la phase est donc décalée de -90° et une pente de -20 dB/décade à la courbe de gain.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{cor_30}
+\end{figure}
 \end{corrige}
 \else
 \fi
@@ -177,6 +227,13 @@ elles sont définies. Conclure sur les performances de l’asservissement en rou
 correction (exigence Id 2).}
 \ifprof
 \begin{corrige}
+La pulsation la plus grande pour laquelle le gain en décibel est égal à \SI{0}{dB} est environ \SI{950}{rad.s^{-1}}. Pour cette pulsation $\varphi_{\text{FTBO}} (\omega_{\SI{0}{dB}} )=-250\degres$.
+$M_{\varphi}=180-250=-70\degres$. La marge de phase est négative. 
+
+La pulsation pour laquelle la phase est égale à $-180\degres$ est environ $\SI{900}{rad.s^{-1}}$. Pour cette pulsation $\indice{GdB}{FTBO}(\omega_{-180\degres} )=\SI{10}{dB}$ et $M_G=-\SI{10}{dB}$
+La marge de gain est négative
+Les deux marges sont négatives, le système est instable sans correction et ne satisfait pas l’exigence Id 1.2
+
 \end{corrige}
 \else
 \fi
@@ -189,6 +246,7 @@ pose $C(p) = K_P$.
 \question{\label{q_ccinppsi2022:32} Déterminer graphiquement la valeur à donner à $K_P$ pour vérifier le critère de stabilité.}
 \ifprof
 \begin{corrige}
+Poou avoir une marge de gain de \SI{10}{dB} 
 \end{corrige}
 \else
 \fi
