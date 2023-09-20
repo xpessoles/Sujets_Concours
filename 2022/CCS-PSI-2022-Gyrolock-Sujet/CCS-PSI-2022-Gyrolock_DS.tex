@@ -23,6 +23,8 @@
 %\end{center}
 
 \section*{Contexte}
+\ifprof
+\else
 Les recours aux opérations chirurgicales pour traiter les pathologies cardiaques sont de plus en plus courants. La plupart de ces opérations est actuellement réalisée après avoir arrêté le cœur du patient et mis en place une circulation et une oxygénation extérieures du sang. Cette procédure et les suites opératoires sont lourdes.
 
 Il est possible d'opérer sans arrêter le cœur, mais ce type d'opération à cœur battant est plus délicat pour le chirurgien à cause des mouvements de la zone à opérer dûs à la respiration et aux battements du cœur. Les battements cardiaques, contrairement aux mouvements respiratoires, ne sont pas cycliques et engendrent un déplacement rapide de la zone à opérer. Une intervention robotisée type maitre-esclave avec prise en compte des battements cardiaques pour le déplacement du robot esclave est compliquée et dangereuse.
@@ -55,8 +57,12 @@ Ce système, nommé GyroLock, présente deux avantages par rapport aux autres st
 \end{itemize}
 
 Le GyroLock est muni de deux actionneurs. Le moteur de toupie met en rotation la toupie (3) par rapport à l'étrier (2) autour d'un axe initialement vertical. Un second moteur électrique, appelé moteur d'étrier, entraine en rotation l'étrier (2) par rapport au support lié au stabilisateur (1) autour d'un axe colinéaire à la direction du stabilisateur (1). Cette seconde rotation génère un effet dynamique appelé effet gyroscopique. Cet effet peut être considéré comme une action mécanique permettant d'atténuer le déplacement résiduel de la zone à opérer en contact avec les doigts du stabilisateur (1).
+\fi
 
 \subsection*{Exigences fonctionnelles}
+
+\ifprof
+\else
 Le diagramme des exigences partiel de la stabilisation cardiaque est donné \autoref{fig_ccspsi2022:03}.
 
 
@@ -79,12 +85,15 @@ L'objectif de ce sujet est de montrer que l'utilisation d'un actionneur à effet
   \item enfin, la partie III traitera du choix d'une loi de commande permettant de respecter les exigences figure \ref{fig_ccspsi2022:03}.
 
 \end{itemize}
+\fi
 
 \section{Résultats expérimentaux et modélisation du mécanisme}
 \begin{obj}
 Exploiter les résultats d'une campagne expérimentale afin de modéliser la liaison entre la table d'opération et le stabilisateur, puis exprimer le déplacement en bout de stabilisateur.
 \end{obj}
 
+\ifprof
+\else
 \subsection{\label{sec:I.A} Mesure du déplacement en bout de stabilisateur}
 Un stabilisateur passif (sans système de stabilisation active) a été testé sur un sujet porcin de $40 \mathrm{~kg}$ sous assistance respiratoire et anesthésie générale. Les volume et fréquence respiratoires sont respectivement de $300 \mathrm{~mL}$ et 15,6 respirations par minute. Une mesure du déplacement et de l'effort cardiaque au bout du stabilisateur passif a été effectuée.
 
@@ -96,7 +105,7 @@ Le système cardiovasculaire porcin étant similaire à celui d'un être humain,
 %Figure 4 
 \caption{Plans anatomiques, déplacements résiduels dans le plan frontal et dans la direction dorso-ventrale\label{fig_ccspsi2022:04}}
 \end{figure}
-
+\fi
 
 \question{Déterminer, à partir de la figure \ref{fig_ccspsi2022:04}, les valeurs minimales et maximales de déplacement du point $P$ dans la direction dorso-ventrale, notées $u_{d}^{\max }$ et $u_{d}^{\min }$, et dans le plan frontal, notées $u_{f}^{\max }$ et $u_{f}^{\min }$. Déterminer laquelle des deux stabilisations (passive ou active) est nécessaire pour respecter le diagramme des exigences figure \ref{fig_ccspsi2022:03}.}
 \ifprof
@@ -110,7 +119,8 @@ L'exigence 1.1 stipule que le déplacement en bout de stabilisateur ne dépasse 
 \else
 \fi
 
-
+\ifprof
+\else
 La liaison entre le stabilisateur (1) et la table d'opération (0) sera modélisée de trois façons différentes selon la finalité :
 
 \begin{itemize}
@@ -118,9 +128,12 @@ La liaison entre le stabilisateur (1) et la table d'opération (0) sera modélis
   \item par un encastrement (partie \label{sec:IIA}) afin d'étudier l'effet gyroscopique sans prendre en compte le mouvement du stabilisateur ;
   \item par une liaison non parfaite (partie \label{sec:IIC}) modélisant la flexibilité de l'attache reconfigurable.
 \end{itemize}
+\fi
 
 %% I.B
 \subsection{\label{sec:I.B}Formulation du modèle de la liaison entre la table d'opération et le stabilisateur}
+\ifprof
+\else
 La modélisation retenue pour estimer le déplacement du point $P$ situé au bout du stabilisateur (1) est donnée figure \ref{fig_ccspsi2022:05}. La direction $\vec{y}_{0}$ correspond à la direction dorso-ventrale, le plan $\left(O_{0}, \vec{z}_{0}, \vec{x}_{0}\right)$ est le plan frontal et l'axe «pied-tête » du patient est représenté par le vecteur $\vec{x}_{0}$. Le point $O_{0}$ est un point de référence choisi, considéré comme fixe par rapport à la table d'opération (0).
 
 \begin{figure}[!h]
@@ -140,6 +153,7 @@ Deux rotations successives permettent de positionner la base $\mathcal{B}_{1}\le
 \end{itemize}
 
 Les figures de changement de base sont données figure \label{fig_ccspsi2022:05}. La position du point $P$ par rapport à la table d'opération (0) est donnée par $\overrightarrow{O_{0} P}=L \vec{z}_{1}$ avec $L=0,3 \mathrm{~m}$. Le point $P_{0}$ tel que $\overrightarrow{O_{0} P_{0}}=L \vec{z}_{0}$ correspond à la position de référence du point $P$ pour laquelle $\theta_{1 x}=\theta_{1 y}=0$.
+\fi
 
 %Q 2. 
 \question{\label{q:02}Exprimer le vecteur $\overrightarrow{P_{0} P}$ dans la base $\mathcal{B}_{0}$. En déduire l'expression de $u_{d}=\vec{P}_{0} P \cdot \vec{y}_{0}$ correspondant au déplacement en bout de stabilisateur dans la direction dorso-ventrale et $u_{f}=\left\|\overrightarrow{P_{0} P}-u_{d} \vec{y}_{0}\right\|$ traduisant le déplacement en bout de stabilisateur dans le plan frontal.}
@@ -194,11 +208,13 @@ Puisqu'on veut compenser les mouvements dans la direction dorso-ventrale génér
 \fi
 
 \section{Effet gyroscopique et modélisation du stabilisateur}
+
 %\section{— Objectif}
 \begin{obj}
 Étudier les actions mécaniques créées par le système GyroLock, définir et régler la chaine d'asservissement de l'étrier puis modéliser le comportement du stabilisateur grâce à une étude dynamique.
 \end{obj}
-
+\ifprof
+\else
 \subsection{\label{sec:IIA} Étude de l'effet gyroscopique généré par le système GyroLock}
 Pour déterminer les actions mécaniques créées par le système GyroLock sur le stabilisateur (1), un modèle simplifié du mécanisme, donné figure \ref{fig_ccspsi2022:06}, est utilisé. Ce modèle simplifié, dans lequel la liaison entre le stabilisateur (1) et la table d'opération (0) est modélisée par un encastrement, permet :
 
@@ -290,6 +306,7 @@ La réponse expérimentale à un échelon de vitesse $\omega_{c 2}(t)$ d'amplitu
 \end{figure}
 
 Les transformées de Laplace de $\omega_{2}(t), \omega_{c 2}(t), \theta_{2}(t)$ et $c_{x}(t)$ sont notées $\Omega_{2}(p), \Omega_{c 2}(p), \theta_{2}(p)$ et $C_{x}(p)$.
+\fi
 
 %Q 10. 
 \question{\label{q:10}Vérifier que la condition de réactivité énoncée ci-dessus est respectée. Justifier que la fonction de transfert de l'étrier (2) $H_{2}(p)=\frac{\Omega_{2}(p)}{\Omega_{c 2}(p)}$ peut alors être approchée par un gain statique $K_{2}$ de valeur à préciser. Il faut s'assurer que la position $\theta_{2}$ de l'étrier (2) ne s'éloigne pas trop de sa position de référence $\theta_{2}^{*}=0$. Le non-respect de cette condition, appelé dérive de l'étrier, génère un moment parasite $M_{01}$ responsable d'un déplacement du point $P$ selon $\vec{x}_{1}$.}
@@ -307,6 +324,9 @@ Si on considère le système très réactif, comme celui-ci est précis on peut 
 \fi
 
 \subsection{\label{sec:II.B} Réglage du correcteur de la chaine d'asservissement de l'étrier}
+
+\ifprof
+\else
 La figure \ref{fig_ccspsi2022:08} montre la boucle d'asservissement sur la position $\theta_{2}(t) . C(p)$ est la fonction de transfert d'un correcteur appelé correcteur d'étrier. La dérive de l'étrier sera évitée si $\lim\limits_{t \rightarrow+\infty} \theta_{2}(t)=0$ lorsque la commande de l'étrier $U(p)$ est un échelon.
 
 \begin{figure}[!h]
@@ -322,7 +342,7 @@ Les deux cas suivants sont envisagés :
   \item avec une correction proportionnelle : $C(p)=K_{10}$;
   \item avec une correction proportionnelle-intégrale : $C(p)=K_{10}+\frac{K_{11}}{p}$.
 \end{itemize}
-
+\fi
 
 %Q 11. 
 \question{\label{q:11}Exprimer sous forme canonique la fonction de transfert $H_{\theta_{2}}(p)=\frac{\theta_{2}(p)}{U(p)}$ en fonction de $C(p)$ et $K_{2}$. Après avoir déterminé $\lim\limits_{t \rightarrow+\infty} \theta_{2}(t)$ lorsque $U(p)$ est un échelon unitaire dans les deux cas cités précédemment, justifier la pertinence d'une correction proportionnelle-intégrale au regard de la problématique de la dérive de l'étrier. Dans la suite de l'étude, le correcteur adopté est $C(p)=K_{10}+\frac{K_{11}}{p}$. L'effet gyroscopique $c_{x}(t)$ est lié à la vitesse de rotation $\omega_{2}(t)$ et la consigne $\theta_{2}^{*}(t)$ est maintenue à 0 pour éviter la dérive de l'étrier. }
@@ -377,9 +397,8 @@ $ \boxed{K_{11} = \dfrac{\omega_m^2}{K_2} = 6,00\text{rad}^2.\text{s}^{-2}} \qua
 %La rotation du stabilisateur (1) étudiée en partie \ref{sec:I} n'est pas prise en compte figure \ref{fig_ccspsi2022:6}. Il est indispensable de considérer la flexibilité de l'attache reconfigurable utilisée pour lier le stabilisateur (1) à la table d'opération (0).
 
 \subsection{\label{sec:II.C} Comportement dynamique du stabilisateur}
-
-
-
+\ifprof
+\else
 Dans la modélisation retenue (figure \ref{fig_ccspsi2022:09}), une liaison pivot non parfaite permet de représenter la flexibilité de l'attache reconfigurable. La table d'opération (0) est supposée fixe et le référentiel $\mathcal{R}_{0}\left(O_{0}, \vec{x}_{0}, \vec{y}_{0}, \vec{z}_{0}\right)$ lié à la table (0) est galiléen. Au stabilisateur (1) est associé le repère $\mathcal{R}_{1}\left(O_{0}, \vec{x}_{0}=\vec{x}_{1}, \vec{y}_{1}, \vec{z}_{1}\right)$ avec $\theta_{1}=\left(\vec{y}_{0}, \vec{y}_{1}\right)=\left(\vec{z}_{0}, \vec{z}_{1}\right)$. Le point $P$ tel que $O_{0} P=L$ représente le bout du stabilisateur (1) en contact avec la zone à opérer.
 
 \begin{figure}[!h]
@@ -388,6 +407,7 @@ Dans la modélisation retenue (figure \ref{fig_ccspsi2022:09}), une liaison pivo
 %Figure 9 
 \caption{\label{fig_ccspsi2022:09}Modèle cinématique du système GyroLock (représenté pour $\theta_{2}=\theta_{3}=0$)}
 \end{figure}
+\fi
 
 %
 %\subsection*{Paramétrage, notations et hypothèses}
@@ -424,7 +444,8 @@ Dans la modélisation retenue (figure \ref{fig_ccspsi2022:09}), une liaison pivo
 %Q 18. 
 %\question{\label{q:18}Exprimer $J_{x}$ en fonction de $A_{1}, A_{3}, m_{1}, m_{3}, L_{G_{1}}, L_{G_{3}}$ et $H_{G_{3}}$ permettant d'écrire la loi de mouvement du stabilisateur (1) sous la forme suivante :}
 
-
+\ifprof
+\else
 La loi de mouvement du stabilisateur (1) peut s'écrire sous la forme suivante :
 $$
 J_{x} \ddot{\theta}_{1}(t)+f \dot{\theta}_{1}(t)+k \theta_{1}(t)=c_{x}(t)-L f_{c}(t)
@@ -433,6 +454,7 @@ $$
 En supposant que $\theta_{1}$ reste proche de 0, la relation $y(t)=L \theta_{1}(t)$ sera utilisée.
 
 Les transformées de Laplace de $y(t), c_{x}(t)$ et $f_{c}(t)$ sont notées $Y(p), C_{x}(p)$ et $F_{c}(p)$.
+\fi
 
 %Q 19. 
 \question{\label{q:19}En déduire les expressions littérales des fonctions de transfert $H_{\text {pert }}(p)$ et $H_{1}(p)$ du schéma-blocs figure \ref{fig_ccspsi2022:10} en fonction de $L, J_{x}, f$ et $k$.}
@@ -446,7 +468,8 @@ On identifie $\boxed{H_1(p) = \dfrac{L}{J_x p^2 + f p + k}}$ et $\boxed{H_{\text
 \else
 \fi
 
-
+\ifprof
+\else
 \begin{figure}[!h]
 \centering
 \includegraphics[width=.4\textwidth]{2023_07_26_54f5e859400a10e656ddg-07}
@@ -463,6 +486,7 @@ On rappelle que $L=0,3 \mathrm{~m}$ et les valeurs retenues pour $J_{x}, f$ et $
 
   \item $-k=95 \mathrm{~N} \cdot \mathrm{m} \cdot \mathrm{rad}^{-1}$.
 \end{itemize}
+\fi
 
 %Q 20. 
 \question{\label{q:20}Écrire $H_{1}(p)$ sous forme canonique, puis calculer les valeurs de ses paramètres caractéristiques : gain statique $K_{1}$, amortissement $\xi_{1}$ et pulsation propre $\omega_{1}$. Commenter le comportement associé (fréquentiel ou temporel).}
@@ -499,7 +523,8 @@ On choisit de décrire le comportement dans le domaine fréquentiel. On a un sys
 \begin{obj}
 Régler une loi de commande permettant de respecter les exigences figure \ref{fig_ccspsi2022:03}.
 \end{obj}
-
+\ifprof
+\else
 Le faible amortissement de la fonction de transfert $H_{1}(p)$ et la rapidité du système imposent la mise en place de deux boucles d'asservissement :
 \begin{itemize}
  \item  un asservissement en vitesse de la vitesse $v(t)=\dot{y}(t)$;
@@ -524,6 +549,7 @@ Le schéma-blocs global du système est donné figure \ref{fig_ccspsi2022:11}, o
 %Figure 11 
 \caption{\label{fig_ccspsi2022:11}Schéma-blocs global du système GyroLock}
 \end{figure}
+\fi
 
 \section{\label{sec:III.A} Valeur maximale de $K_{p}$}
 %Q 21.
@@ -535,6 +561,9 @@ On suppose $F_c(p) = 0$, alors: $\boxed{H_{\text{BO}}(p) = \dfrac{K_p}{p} \cdot 
 \else
 \fi
 
+\ifprof
+\else
+
 Un premier choix de conception de la commande a conduit à imposer $K_{v}=15$. Le diagramme de Bode de $H_{\mathrm{BO}}(p)$ pour $K_{p}=1$ est donné figure \ref{fig_ccspsi2022:12}. Pour ce tracé, la fonction de transfert $H_{2}(p)=\frac{\omega_{0}^{2}}{p^{2}+2 \xi \omega_{0} p+\omega_{0}^{2}}$ non simplifiée est utilisée, avec $\omega_{0}=200 \mathrm{rad} \cdot \mathrm{s}^{-1}, \xi=0,7$, et les valeurs de $K_{10}, K_{11}$ sont celles obtenues avec le modèle simplifié de la question~\ref{q:13}.
 
 
@@ -544,6 +573,7 @@ Un premier choix de conception de la commande a conduit à imposer $K_{v}=15$. L
 %Figure 12 
 \caption{\label{fig_ccspsi2022:12}Diagramme de Bode de la boucle ouverte avec $K_{p}=1$}
 \end{figure}
+\fi
 
 %Q 22. 
 \question{\label{q:22}À partir de la figure \ref{fig_ccspsi2022:12}, donner la valeur maximale de $K_{p}$ telle que le système soit stable en boucle fermée.}
@@ -574,6 +604,8 @@ Or l'exigence 1.1 demande $F \left| \dfrac{Y(j\omega)}{F_c(j\omega)} \right|\leq
 \else
 \fi
 
+\ifprof
+\else
 La figure \ref{fig_ccspsi2022:13} donne, en fonction de la valeur de $K_{p}$, la valeur maximale du gain $\left|\frac{Y(j \omega)}{F_{c}(j \omega)}\right|$ pour les fréquences cardiaques précisées par l'exigence 1.1.1 de la figure \ref{fig_ccspsi2022:03}.
 
 
@@ -583,6 +615,7 @@ La figure \ref{fig_ccspsi2022:13} donne, en fonction de la valeur de $K_{p}$, la
 %Figure 13 
 \caption{\label{fig_ccspsi2022:13}Gain maximal de la réponse fréquentielle de la fonction de transfert $\frac{Y(p)}{F_{c}(p)}$ en fonction de $K_{p}$}
 \end{figure}
+\fi
 
 \question{À partir de la figure \ref{fig_ccspsi2022:13}, déterminer la valeur minimale de $K_{p}$ permettant de respecter l'exigence~1.1. Vérifier la cohérence de cette valeur avec celle trouvée à la question \ref{q:22} .}
 \ifprof
@@ -596,6 +629,8 @@ C'est incohérent avec la valeur trouvée en question \label{q:22}: il faut ajou
 
 
 \subsection{\label{sec:III.C} Amélioration des performances par compensation de l'effort cardiaque}
+\ifprof
+\else
 Une solution pour améliorer la commande du système serait de compenser l'effet de l'effort cardiaque en complétant la commande $U(p)$ de l'étrier par une anticipation du type $C_{a}(p) F_{c}(p)$ avec $C_{a}(p)$ un correcteur à déterminer. Cependant, il n'est pas envisageable de mesurer l'effort cardiaque du patient. L'utilisation d'un observateur permet d'obtenir une estimation $\hat{f}_{c}(t)$ à partir des mesures de $y(t)$ et $v(t)=\dot{y}(t)$ (issues d'un accéléromètre lié au support du GyroLock). Cette structure de commande peut être représentée par le schéma-blocs figure \ref{fig_ccspsi2022:14}.
 
 \begin{figure}[!h]
@@ -618,6 +653,7 @@ La consigne virtuelle $Y^{*}(p)$ étant nulle, la structure de commande peut alo
 %Figure 15 
 \caption{\label{fig_ccspsi2022:15}Schéma bloc de la commande}
 \end{figure}
+\fi
 
 %Q 25. 
 \question{\label{q:25}Exprimer la fonction de transfert $H_{F_{c}}^{\text {est }}(p)=\frac{Y(p)}{F_{c}(p)}$ en fonction de $K_{p}, K_{v}, K_{3}, H_{\text {pert }}(p), \tau, C_{a}(p)$, $H_{m}(p)$ et $H_{1}(p)$.}
@@ -654,7 +690,10 @@ L'implantation d'un tel correcteur est donc risquée.
 \end{corrige}
 \else
 \fi
+\ifprof
+\else
 Le diagramme de Bode associé au correcteur $C_{a}(p)$, exprimé question \ref{q:26}, est donné figure \ref{fig_ccspsi2022:16}. Pour des raisons de simplification, une forme approchée du correcteur $C_{a}(p)$ doit être déterminée.
+\fi
 
 %Q 28. 
 \question{\label{q:28}À partir de la figure \ref{fig_ccspsi2022:16} et de l'exigence 1.1.1, justifier qu'une approximation de $C_{a}(p)$ sous la forme d'un gain proportionnel $\widetilde{C_{a}}(p)=K_{a}$ est suffisante. Déterminer la valeur numérique de $K_{a}$.}
@@ -677,9 +716,12 @@ L'approximation $\boxed{\widetilde{C_a}(p) = K_a = 10^{\frac{5}{20}} = 1,8}$ con
 \else
 \fi
 
+\ifprof
+\else
 La figure \ref{fig_ccspsi2022:17} montre les gains des réponses fréquentielles de l'effort de perturbation $f_{c}$ vers la position $y$ pour différents cas : en boucle ouverte, en boucle fermée avec la structure de commande définie dans cette étude sans anticipation et en boucle fermée avec anticipation.
 
 L'exploitation des modèles conduit en simulation numérique aux évolutions temporelles de $y(t)$ et de $\theta_{2}(t)$ (obtenues avec $K_{p}=500$ et une valeur de $K_{a}$ proche de celle déterminée à la question \ref{q:28}) présentées figure \ref{fig_ccspsi2022:18}. 
+\fi
 
 %Q 29. 
 \question{\label{q:29}Analyser les courbes des figures \ref{fig_ccspsi2022:17} et \ref{fig_ccspsi2022:18} et les commenter en considérant des critères (non exhaustifs) comme les coefficients d'amortissement obtenus, les niveaux d'atténuation de la perturbation d'effort au regard du cahier des charges défini figure \ref{fig_ccspsi2022:03}, la cohérence des résultats montrés par les figures \ref{fig_ccspsi2022:17} et \ref{fig_ccspsi2022:18}, etc.
@@ -710,6 +752,8 @@ Pour conclure le système GyroLock tel qu'il a été modélisé dans cette étud
 \else
 \fi
 
+\ifprof
+\else
 \begin{figure}[!h]
 \centering
 \includegraphics[width=.9\textwidth]{2023_07_26_54f5e859400a10e656ddg-10(1)}
@@ -732,5 +776,6 @@ Pour conclure le système GyroLock tel qu'il a été modélisé dans cette étud
 %Figure 18 
 \caption{\label{fig_ccspsi2022:18}Évolutions temporelles de $y(t)$ et $\theta_{2}(t)$ avec estimation et compensation de $f_{c}(t)$}
 \end{figure}
+\fi
 
 %\end{document}

@@ -1,6 +1,7 @@
 
 \section{\label{sec:03} Analyse simplifiée de l’asservissement du drone}
-
+\ifprof
+\else
 La structure générale de commande du drone est constituée de différents éléments présentés de manière schématique en \autoref{fig_ccinppsi2022:15}. On y retrouve :
 \begin{itemize}
 \item le contrôleur de position qui génère les valeurs de consigne en attitude 
@@ -16,21 +17,26 @@ les angles de roulis $\theta_R$, tangage $\theta_T$ et d’un magnétomètre afi
 afin d’estimer les positions et vitesses du drone.
 \end{itemize}
 
+\fi
+
 \begin{obj}
 L’objectif de cette partie est de vérifier que les performances de contrôle en roulis sont
 conservées lors du passage de l’ouverture et lors de l’activation du mécanisme de repliement/dépliement des bras. On se limite pour cela à la structure encadrée en pointillés de la
 \autoref{fig_ccinppsi2022:15}.
 \end{obj}
 
-
+\ifprof
+\else
 \begin{figure}[H]
 \centering
 \includegraphics[width=.8\linewidth]{fig_15}
 \caption{\label{fig_ccinppsi2022:15} Structure de commande du drone}
 \end{figure}
+\fi
 
 \subsection{­Modélisation du comportement des moteurs brushless}
-
+\ifprof
+\else
 Chaque hélice du drone est actionnée par un moteur brushless, lui-même alimenté par un
 ESC (Electronic Speed Controller). L’ESC est un contrôleur qui permet de faire varier la
 vitesse de rotation du moteur à l’aide d’une commande PPM (Pulse Position Modulation). Il
@@ -45,6 +51,7 @@ Suite à cet essai, on propose de modéliser le comportement du moteur brushless
 d’un système du premier ordre, reliant $\Omega_M(p)$ la transformée de Laplace de la vitesse de rotation à
 $U(p)$ la transformée de Laplace de la commande PPM. On note $\indice{H}{mot}(p) = \dfrac{\Omega_M(p)}{
 U(p)}$ la fonction de transfert du moteur.
+\fi
 
 %Q26
 \question{\label{q_ccinppsi2022:26} Justifier le modèle de comportement retenu pour $\indice{H}{mot}(p)$ et déterminer ses caractéristiques (valeurs numériques et unités à préciser). Faire apparaître sur la figure du DR
@@ -70,6 +77,8 @@ De plus, $0,4 K_m=10000$; donc $K_m=\SI{25000}{tr.min^{-1}} \simeq \SI{2620}{rad
 \fi
 
 \subsection{Modélisation du comportement des hélices}
+\ifprof
+\else
 Afin d’obtenir un modèle fiable pour le contrôle du drone, les composantes de poussée
 $T$ et de traînée $Q$ de l’action de l’air sur l’hélice sont identifiées pour le couple moteur/
 hélice grâce à un banc d’essai. Ce banc d’essai, \autoref{fig_ccinppsi2022:17}, est équipé de deux capteurs
@@ -77,6 +86,7 @@ d’effort $C1$ et $C2$, chacun muni de 4 jauges de déformation, et d’un capt
 mesurer la vitesse de l’hélice. On rappelle, \autoref{fig_ccinppsi2022:16}, qu’un capteur d’effort avec les jauges
 de déformation ainsi positionnées et orientées sur le corps d’épreuve du capteur permet
 d’accéder à la valeur de l’effort $F$ appliqué sur le capteur.
+\fi
 
 
 %Q27
@@ -92,6 +102,8 @@ Le capteur décalé est le capteur C1 : il permet donc de mesurer le moment de t
 \else
 \fi
 
+\ifprof
+\else
 \begin{figure}[H]
 \centering
 \includegraphics[width=.35\linewidth]{fig_16}
@@ -120,6 +132,7 @@ du point de fonctionnement correspondant à la vitesse d’approche du drone de 
 ce qui correspond à une vitesse de rotation des hélices de l’ordre de \SI{1400}{rad.s^{-1}}. On estime
 que les variations de vitesse de rotation des hélices sont au maximum de $\pm \SI{500}{rad.s^{-1}}$ lors
 des corrections d’attitude et de cap nécessaires au passage de l’ouverture.
+\fi
 
 %Q28
 \question{\label{q_ccinppsi2022:28} Proposer un modèle de comportement linéarisé de la variation de l’effort de poussée
@@ -143,6 +156,8 @@ $\Delta Q=\dfrac{0,032-0,006}{1000} \Delta \omega_1 =26\times 10^{-6} \Delta \om
 
 \subsection{Analyse du contrôleur d’attitude en roulis}
 
+\ifprof
+\else
 Dans cette sous-­partie, on s’intéresse au réglage du contrôleur d’attitude en roulis dans le
 cas d’une commande en échelon sans perturbation. Puis, nous verrons comment se comporte le drone en roulis lors du passage de l’ouverture (ajout d’une perturbation) et enfin
 son comportement lors du repliement des bras. L’objectif est de s’assurer que le réglage du
@@ -176,7 +191,7 @@ gain $G_{HS}(\omega) = 20 \log |H_S (j\omega)|$ et de la phase $\Phi_{HS} (\omeg
 
 Compte tenu de la réponse fréquentielle de $H_S (p)$, on propose le modèle suivant pour $H_S (p)$ :
 $H_S(p)=\dfrac{K_S}{1+\dfrac{2z_S}{\omega_{0S}}p+\dfrac{p^2}{\omega_{0S}^2}}$.
-
+\fi
 
 %Q29
 \question{\label{q_ccinppsi2022:29} Justifier le choix retenu pour l’expression de $H_S (p)$ et déterminer graphiquement les
@@ -238,9 +253,11 @@ Les deux marges sont négatives, le système est instable sans correction et ne 
 \else
 \fi
 
+\ifprof
+\else
 On s’intéresse tout d’abord à l’effet de l’action proportionnelle du contrôleur d’attitude et on
 pose $C(p) = K_P$.
-
+\fi
 
 %Q32
 \question{\label{q_ccinppsi2022:32} Déterminer graphiquement la valeur à donner à $K_P$ pour vérifier le critère de stabilité.}
@@ -262,6 +279,8 @@ Cette valeur est alors un maximum. Le fait de « baisser » la courbe de gain pe
 \fi
 
 
+\ifprof
+\else
 D’après les résultats des simulations, l’action proportionnelle du contrôleur d’attitude permettrait le respect des performances en roulis dans le cas de vol non perturbé. La prise en
 compte des perturbations est complexe à modéliser sur un tel système, aussi on considère
 en première approximation que les perturbations en vol contribuent à une variation de vitesse
@@ -273,6 +292,7 @@ de roulis $P(p)$, modélisée par la suite comme une perturbation de type échel
 \includegraphics[width=.8\linewidth]{fig_19}
 \caption{\label{fig_ccinppsi2022:19} Représentation par schéma bloc avec prise en compte des perturbations en vol}
 \end{figure}
+\fi
 
 
 %Q33
@@ -318,8 +338,11 @@ Or pour la stabilité, il faut $K_P<0,1$. Les deux valeurs ne sont pas compatibl
 \else
 \fi
 
+\ifprof
+\else
 Il est alors décidé de mettre en place une correction proportionnelle intégrale (correcteur PI)
 avec $C(p) = K_P\left(\dfrac{1+T_i p}{T_i p}\right)$. On fixe pour la suite $K_P = 0,1$.
+\fi
 
 %Q36
 \question{\label{q_ccinppsi2022:36} Justifier que cette correction permet de satisfaire les critères de précision sur la
@@ -333,11 +356,14 @@ De plus, la classe de la FTBO sera 2. Donc l’erreur de position et l’erreur 
 \else
 \fi
 
+\ifprof
+\else
 Les figures du DR de la question \ref{q_ccinppsi2022:37} donnent les résultats de la simulation du système avec la
 correction proportionnelle intégrale retenue. La première donne l’évolution de $\theta_R(t)$ pour une
 consigne de roulis $\theta_R^C(t)$ de type échelon d’amplitude $\theta_{R0}^C = 10\degres$ et pour une perturbation $P(t)$ de
 type échelon d’amplitude $P_0 =\SI{10}{deg/s}$ appliquée en $t = \SI{2}{s}$. La seconde donne les courbes
 de gain et de phase du diagramme de Bode de la réponse fréquentielle de la FTBO corrigée.
+\fi
 
 %Q37
 \question{\label{q_ccinppsi2022:37} Vérifier les performances temporelles et déterminer les marges de gain et de phase
@@ -367,6 +393,8 @@ Le correcteur PI permet de respecter les critères de l’exigence Id 2.
 \else
 \fi
 
+\ifprof
+\else
 Des essais en vol ont été réalisés avec le réglage précédent pour la partie roulis du contrôleur
 d’attitude. Ces essais décrivent le comportement en roulis du drone lors du repliement des
 bras, du passage de l’ouverture et du dépliement des bras. Les évolutions de l’angle de
@@ -381,6 +409,7 @@ déclenchement de la procédure de repliement des bras, l’ouverture est traver
 \caption{\label{fig_ccinppsi2022:20} ­Évolutions de l’angle de roulis (en degrés) et de la vitesse de rotation en roulis
 (en \si{deg/s}) du drone sont donnée pour 10 essais.}
 \end{figure}
+\fi
 
 %Q38
 \question{\label{q_ccinppsi2022:38} Conclure sur l’influence de la phase de repliement des bras et du passage de l’ouverture sur le comportement en roulis du drone avec la correction retenue.}
@@ -394,7 +423,8 @@ Le correcteur n’est pas assez rapide réellement. Le modèle retenu de la pert
 \else
 \fi
 
-
+\ifprof
+\else
 \newpage
 
 \section*{Annexe 1}
@@ -411,3 +441,4 @@ Le correcteur n’est pas assez rapide réellement. Le modèle retenu de la pert
 \includegraphics[width=\linewidth]{fig_22}
 \caption{\label{fig_ccinppsi2022:22} Diagramme de définition des blocs de la plateforme QuadMorphing}
 \end{figure}
+\fi
