@@ -914,37 +914,7 @@ $\tilde{\theta}_1(p)=\indice{H}{C1}(p)C_g(p)+\indice{H}{C2}(p)\tilde{\theta}_2(p
 $\tilde{\theta}_2(p)=\indice{H}{C3}(p)C_g(p)+\indice{H}{C2}(p)\tilde{\theta}_1(p)$.
 
 \begin{UPSTIcorrige}
-On a :
-$u(p)=K_P\tilde{\varepsilon}(p)+K_v p \tilde{\varepsilon}(p)$
-$\Rightarrow u=\left( K_P+K_v p\right) \left(\indice{\tilde{\theta}}{ref}(p) -  \tilde{\theta}(p)\right)$
 
-Par ailleurs, $u(p)=p^2 \tilde{\theta}(p)-A_1 \tilde{\theta}(p) - A_2 c_p(p)$. 
-
-En conséquences, 
-$p^2 \tilde{\theta}(p)-A_1 \tilde{\theta}(p) - A_2 c_p(p) =\left( K_P+K_v p\right) \left(\indice{\tilde{\theta}}{ref}(p) -  \tilde{\theta}(p)\right)$
-
-$\Rightarrow 
-\left(p^2 I_2 + K_P+K_v p-A_1\right) \tilde{\theta}(p)  =\left( K_P+K_v p\right) \indice{\tilde{\theta}}{ref}(p) + A_2 c_p(p)$
-
-On a $P = \left(p^2 I_2 + K_P+K_v p-A_1\right) = 
-\begin{pmatrix}
-p^2 + \indice{K}{p11}+\indice{K}{v11}p  & \indice{K}{p12}-2338 \\
-\indice{K}{p21} & p^2 + \indice{K}{p22}+\indice{K}{v22}p +2921\\
-\end{pmatrix}$
-
-On a alors en développant : 
-$\left\{
-\begin{array}{l}
-P_{11} \tilde{\theta}_1 + P_{12} \tilde{\theta}_2  =  \left(\indice{K}{p11}  +\indice{K}{v11}p\right) \tilde{\theta}_{1,\text{ref}}(p) +\indice{K}{p11}\tilde{\theta}_{2,\text{ref}}(p) + 9,93 c_g (p)\\
-P_{21} \tilde{\theta}_1 + P_{22} \tilde{\theta}_2  =  \indice{K}{p21}  \tilde{\theta}_{1,\text{ref}}(p) +\left(\indice{K}{p22} +\indice{K}{v22}p\right) \tilde{\theta}_{2,\text{ref}}(p) + 12,9 c_g (p)\\
-\end{array}
-\right.
-$
-
-J'ai l'impression que ce n'est pas la bonne direction...
-
-
-\textbf{Autre direction}
 
 \begin{align*}
 u=K_p\tilde{\varepsilon}+K_v\dot{\tilde{\varepsilon}}
@@ -1097,12 +1067,12 @@ Avec la deuxième relation,
 
 L'énoncé précise que le système doit vérifier le comportement de type raideur avec l'exigence 1.2.1.1, il doit s'agir d'une erreur et doit plutôt s'agir de l'exigence 1.2.1.3 avec une raideur de \SI{5}{N.m.rad^{-1}}.
 
-On peut interpréter cette raideur par les coefficients $\dfrac{1}{K_1}$ et $\dfrac{1}{K_3}$
+On peut interpréter cette raideur par les coefficients $\dfrac{1}{K_1}$ au niveau de la hanche (200 fois plus impportante que celle du genou) et $\dfrac{1}{K_3}$ au niveau du genou
 
 On obtient ainsi deux autres relations : 
 
 \begin{align*}
-\dfrac{K_{p11}-2338}{9,93}=5\\
+\dfrac{K_{p11}-2338}{9,93}=5\time 200\\
 \\
 \dfrac{2921+K_{p22}}{12,9}=5
 \end{align*}
@@ -1112,11 +1082,11 @@ En combinant ces différentes relations, voici ce qu'on obtient,
 \begin{align*}
 \left\{
 \begin{array}{l}
-K_{p11}=5\times 9,93+2338\\
+K_{p11}=1000\times 9,93+2338\\
 \\
 K_{p22}=5\times 12,9-2921\\
 \\
-K_{v11}=2\times 0,7\sqrt{5\times 9,93}\\
+K_{v11}=2\times 0,7\sqrt{1000\times 9,93}\\
 \\
 K_{v22}=2\times 0,7\sqrt{5\times 12,9}
 \end{array}
@@ -1129,11 +1099,11 @@ Les applications numériques donnent :
 \begin{align*}
 \left\{
 \begin{array}{l}
-K_{p11}=2387,65 \\
+K_{p11}=12268 \\
 \\
 K_{p22}=-2856,5 \\
 \\
-K_{v11}=9,86\\
+K_{v11}=139,5\\
 \\
 K_{v22}=11,24
 \end{array}
@@ -1161,7 +1131,12 @@ et de la marche}
 
 Les actions mécaniques exercées par le patient sont nulles, donc $C_p=0=C_g$
 
-Les consignes de position non nulles peuvent s'interpréter par : $\tilde{\theta}_{1,ref}\neq 0$ et $\tilde{\theta}_{2,ref}\neq 0$
+Les consignes de position non nulles peuvent s'interpréter par : $\tilde{\theta}_{1,ref}\neq 0$ et $\tilde{\theta}_{2,ref}\neq 0$.
+On souhaite d'après le cahier des charges minimiser l'erreur de position du mouvement de la hanche qui doit s'interpréter comme une erreur de trainage.
+
+Le correcteur proposé est un correcteur à action dérivée.
+
+On se propose donc d'utiliser un correcteur à action intégrale du genre \textbf{Proportionnel Intégral.}
 
 \end{UPSTIcorrige}
 
@@ -1184,6 +1159,10 @@ Les marges de stabilité étant positives, la stabilité stricte du système est
 considérées, vis-à-vis de la stabilité du patient et du type de comportement de rééducation de l’exosquelette.
 
 \begin{UPSTIcorrige}
+Il est difficile de répondre à cette question concernant la figure 14 car on ne sait pas trop ce qui est imposé.
+Ce qu'on peut dire c'est que les angle $\theta_1$ et $\theta_2$ se stabilise vers une valeur constante ce qui assure la stabilité de l'articulation.
+
+Les résultats de la simulation donné sur la figure 15 montre que les erreurs statiques sont nulles sur chaque axe et seront donc nulles en sur la position du talon ce qui est conforme à l'exigence 1.2.1.1. du cahier des charges.
 
 \end{UPSTIcorrige}
 
