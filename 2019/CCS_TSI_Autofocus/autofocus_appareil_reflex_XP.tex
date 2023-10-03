@@ -126,6 +126,7 @@ lentille. Afin de réaliser correctement cette mise au point, il est
 nécessaire que l'objectif photographique puisse communiquer avec tous
 les boitiers compatibles en répondant aux exigences suivantes.
 
+\begin{center}
 \begin{tabular}{|p{0.2\textwidth}|p{0.5\textwidth}|p{0.1\textwidth}|}
 \hline 
 \textbf{Exigence} & \textbf{Critère d'appréciation} & \textbf{Niveau} \\ 
@@ -135,6 +136,7 @@ Id = « 1.1 » Communiquer avec le boitier & Temps de transmission d'un échange
 & Résolution & $\SI{100}{\mu m}$ \\ 
 \hline 
 \end{tabular} 
+\end{center}
 
 
 \noindent\begin{minipage}{0.55\textwidth}
@@ -174,7 +176,7 @@ Dans les objectifs haut de gamme comme étudié ici, le moteur est inclus dans l
 \ifprof
 \begin{corrige}
 \begin{center}
-%\includegraphics[width=1.0\textwidth]{images/chaine_fonctionnelle_corrige.pdf}
+\includegraphics[width=1.0\textwidth]{images/chaine_fonctionnelle_corrige.pdf}
 \end{center}
 \end{corrige}
 \else
@@ -202,85 +204,85 @@ La partie gauche du modèle représente le fonctionnement du moteur. Ce modèle 
 \fi
 
 
-\question{Préciser les différences du point de vue de l'utilisation entre les codeurs absolus et relatifs.}
-\ifprof
-\begin{corrige}
-\begin{itemize}
-\item Un codeur absolu permet de connaître une position absolu. Un seule combinaison numérique correspond à une seul position. Ainsi à la mise à l'énergie la position est connu. Il n'y a donc pas besoin de calibrer le capteur.
-\item Un codeur relatif permet de connaître une position relativement à la position de initiale. Ainsi à la mise à l'énergie la position n'est pas connu. Il est nécessaire de calibrer le capteur. Pour cela il faut que sur l'axe mesuré il y ait un dispositif de détection de butée mécanique ou électrique.
-\end{itemize}
-\end{corrige}
-\else
-\fi
-
-
-
-Pour obtenir une zone de mise au point la plus nette possible, il est
-nécessaire que la résolution au niveau du positionnement de la lentille
-mobile soit inférieure à $100\mu m$.
-
-\question{Donner la résolution possible pour la course totale de la lentille mobile avec le codeur absolu. Justifier que le codeur absolu ne
-soit utilisé que lors de la phase d'initialisation de l'objectif photographique.}
-\ifprof
-\begin{corrige}
-Soit \(q\) la résolution du codeur absolu linéaire sur 4 bits et soit \(c\) la course totale de la lentille. On a~:
-
-\(q_{\text{abs}} = \frac{c}{2^{4}}= \frac{6mm}{2^{4}} = 375\mu m\)
-
-Comme \(q > 100\mu m\), la résolution est insuffisante pour une
-utilisation normale.
-\end{corrige}
-\else
-\fi
-
-
-
-\question{Déterminer la relation entre le déplacement de la lentille mobile $d_l$ et la position angulaire du codeur incrémental $\indice{\theta}{rc}$. En déduire la résolution possible pour la course totale de
-la lentille, si elle est déterminée en comptant les impulsions du codeur
-incrémental sur les fronts montants.}
-\ifprof
-\begin{corrige}
-On commence par calculer le rapport de réduction du train simple
-  d'engrenages avec en entrée \(\Delta\theta_{\text{rc}}\) la rotation
-  de l'arbre du codeur incrémental et en sortie \(\Delta\theta_{l}\) la
-  rotation de l'arbre de la lentille~:
-
-\({\frac{\Delta\theta_{l}}{\Delta\theta_{\text{rc}}} = \left( - 1 \right)^{7}\frac{Z_{3} \cdot Z_{4} \cdot Z_{5} \cdot Z_{7} \cdot Z_{9} \cdot Z_{11} \cdot Z_{12} \cdot Z_{14}}{Z_{4} \cdot Z_{5} \cdot Z_{6} \cdot Z_{8} \cdot Z_{10} \cdot Z_{12} \cdot Z_{13} \cdot Z_{15}} = r}\)\({r = - \frac{Z_{3} \cdot Z_{7} \cdot Z_{9} \cdot Z_{11} \cdot Z_{14}}{Z_{6} \cdot Z_{8} \cdot Z_{10} \cdot Z_{13} \cdot Z_{15}} = 0,005}\)
-
-Par définition du pas de la liaison hélicoïdale, on peut aussi écrire~:
-
-\(d_{l} = \left| \frac{p}{2\pi}\Delta\theta_{l} \right| = \frac{p}{2\pi} \cdot r \cdot \Delta\theta_{\text{rc}}\)
-
-La résolution en utilisant le codeur incrémental est donnée lorsque
-l'arbre du codeur fait un angle de \(2\pi/30\). Cela s'écrit~:
-
-\(q_{\text{inc}} = \frac{p}{2\pi} \cdot r \cdot \frac{2\pi}{30} = 5,2\mu m\)
-
-\end{corrige}
-\else
-\fi
-
-
-Dans la suite, la résolution sera prise égale à $\SI{5}{\mu m}$.
-
-\question{En déduire le nombre de bits nécessaires pour coder l'information « déplacement de la lentille mobile », si cette dernière
-est donnée par le comptage du nombre d'impulsions au niveau du codeur incrémental.}
-\ifprof
-\begin{corrige}
-Soit \(n\mathbb{\in N}\) le nombre de bits nécessaires pour coder l'information du codeur incrémental~:
-
-
-\({q_{\text{inc}} \geq \frac{c}{2^{n}}}\)
-
-\({2^{n} \geq \frac{c}{q_{\text{inc}}}}\)
-
-\({n \geq \frac{\ln\left( \frac{c}{q_{\text{inc}}} \right)}{\ln 2}}\)
-
-\({n \geq 10,23}\)
-\end{corrige}
-\else
-\fi
-
+%\question{Préciser les différences du point de vue de l'utilisation entre les codeurs absolus et relatifs.}
+%\ifprof
+%\begin{corrige}
+%\begin{itemize}
+%\item Un codeur absolu permet de connaître une position absolu. Un seule combinaison numérique correspond à une seul position. Ainsi à la mise à l'énergie la position est connu. Il n'y a donc pas besoin de calibrer le capteur.
+%\item Un codeur relatif permet de connaître une position relativement à la position de initiale. Ainsi à la mise à l'énergie la position n'est pas connu. Il est nécessaire de calibrer le capteur. Pour cela il faut que sur l'axe mesuré il y ait un dispositif de détection de butée mécanique ou électrique.
+%\end{itemize}
+%\end{corrige}
+%\else
+%\fi
+%
+%
+%
+%Pour obtenir une zone de mise au point la plus nette possible, il est
+%nécessaire que la résolution au niveau du positionnement de la lentille
+%mobile soit inférieure à $100\mu m$.
+%
+%\question{Donner la résolution possible pour la course totale de la lentille mobile avec le codeur absolu. Justifier que le codeur absolu ne
+%soit utilisé que lors de la phase d'initialisation de l'objectif photographique.}
+%\ifprof
+%\begin{corrige}
+%Soit \(q\) la résolution du codeur absolu linéaire sur 4 bits et soit \(c\) la course totale de la lentille. On a~:
+%
+%\(q_{\text{abs}} = \frac{c}{2^{4}}= \frac{6mm}{2^{4}} = 375\mu m\)
+%
+%Comme \(q > 100\mu m\), la résolution est insuffisante pour une
+%utilisation normale.
+%\end{corrige}
+%\else
+%\fi
+%
+%
+%
+%\question{Déterminer la relation entre le déplacement de la lentille mobile $d_l$ et la position angulaire du codeur incrémental $\indice{\theta}{rc}$. En déduire la résolution possible pour la course totale de
+%la lentille, si elle est déterminée en comptant les impulsions du codeur
+%incrémental sur les fronts montants.}
+%\ifprof
+%\begin{corrige}
+%On commence par calculer le rapport de réduction du train simple
+%  d'engrenages avec en entrée \(\Delta\theta_{\text{rc}}\) la rotation
+%  de l'arbre du codeur incrémental et en sortie \(\Delta\theta_{l}\) la
+%  rotation de l'arbre de la lentille~:
+%
+%\({\frac{\Delta\theta_{l}}{\Delta\theta_{\text{rc}}} = \left( - 1 \right)^{7}\frac{Z_{3} \cdot Z_{4} \cdot Z_{5} \cdot Z_{7} \cdot Z_{9} \cdot Z_{11} \cdot Z_{12} \cdot Z_{14}}{Z_{4} \cdot Z_{5} \cdot Z_{6} \cdot Z_{8} \cdot Z_{10} \cdot Z_{12} \cdot Z_{13} \cdot Z_{15}} = r}\)\({r = - \frac{Z_{3} \cdot Z_{7} \cdot Z_{9} \cdot Z_{11} \cdot Z_{14}}{Z_{6} \cdot Z_{8} \cdot Z_{10} \cdot Z_{13} \cdot Z_{15}} = 0,005}\)
+%
+%Par définition du pas de la liaison hélicoïdale, on peut aussi écrire~:
+%
+%\(d_{l} = \left| \frac{p}{2\pi}\Delta\theta_{l} \right| = \frac{p}{2\pi} \cdot r \cdot \Delta\theta_{\text{rc}}\)
+%
+%La résolution en utilisant le codeur incrémental est donnée lorsque
+%l'arbre du codeur fait un angle de \(2\pi/30\). Cela s'écrit~:
+%
+%\(q_{\text{inc}} = \frac{p}{2\pi} \cdot r \cdot \frac{2\pi}{30} = 5,2\mu m\)
+%
+%\end{corrige}
+%\else
+%\fi
+%
+%
+%Dans la suite, la résolution sera prise égale à $\SI{5}{\mu m}$.
+%
+%\question{En déduire le nombre de bits nécessaires pour coder l'information « déplacement de la lentille mobile », si cette dernière
+%est donnée par le comptage du nombre d'impulsions au niveau du codeur incrémental.}
+%\ifprof
+%\begin{corrige}
+%Soit \(n\mathbb{\in N}\) le nombre de bits nécessaires pour coder l'information du codeur incrémental~:
+%
+%
+%\({q_{\text{inc}} \geq \frac{c}{2^{n}}}\)
+%
+%\({2^{n} \geq \frac{c}{q_{\text{inc}}}}\)
+%
+%\({n \geq \frac{\ln\left( \frac{c}{q_{\text{inc}}} \right)}{\ln 2}}\)
+%
+%\({n \geq 10,23}\)
+%\end{corrige}
+%\else
+%\fi
+%
 
 
 \section{Validation de la structure permettant d'assurer le mouvement de l'optique}\label{validation-de-la-structure-permettant-dassurer-le-mouvement-de-loptique}
@@ -348,15 +350,12 @@ paramètres du modèle multiphysique suivants :
 \question{Passer les équations du modèle de connaissance dans le domaine de Laplace.}
 \ifprof
 \begin{corrige}
-\begin{align*}
-C_m(p)-C_0(p)-f\cdotp\cdot  \Omega_m(p)=J\cdot p\cdot d\Omega_m(p)\\
-\\
-U_m(p)=E(p)+L_m\cdot p I_m(p)+R_m\cdot I_m(p)\\
-\\
-E(p)=K_e\cdot \Omega_m(p)\\
-\\
-C_m(p)=K_T\cdot I_m(p).
-\end{align*}
+
+$C_m(p)-C_0(p)-f\cdotp\cdot  \Omega_m(p)=J\cdot p\cdot d\Omega_m(p)$,
+$U_m(p)=E(p)+L_m\cdot p I_m(p)+R_m\cdot I_m(p)$,
+$E(p)=K_e\cdot \Omega_m(p)$, 
+$C_m(p)=K_T\cdot I_m(p)$.
+
 \end{corrige}
 \else
 \fi
@@ -434,11 +433,7 @@ Lors de l'essai de la machine à courant continu à rotor bloqué et sous tensio
 \begin{corrige}
 Le rotor est bloqué, ainsi $\Omega_m(p)=0\rightarrow E(p)=0$.
 
-On obtient alors,
-
-\begin{align*}
-I_m(p)=\dfrac{1}{R_m+L_m\cdot p}U_m(p).
-\end{align*}
+On obtient alors, $I_m(p)=\dfrac{1}{R_m+L_m\cdot p}U_m(p)$.
 
 \end{corrige}
 \else
@@ -448,24 +443,17 @@ I_m(p)=\dfrac{1}{R_m+L_m\cdot p}U_m(p).
 \ifprof
 \begin{corrige}
 D'après l'essai on peut approximer $u_m(t)$ à un échelon retardé de $T=50\mu s$ et d'amplitude $U_0=1,6V$.
-Le théorème du retarde donne : 
-
-\begin{align*}
-U_m(p)=\dfrac{U_0e^{-T\cdot p}}{p}
-\end{align*}
+Le théorème du retard donne :  $U_m(p)=\dfrac{U_0e^{-T\cdot p}}{p}$
 
 On en déduit : 
-
-\begin{align*}
-I_m(p)=\dfrac{U_0e^{-T\cdot p}}{p}\dfrac{1}{R_m+L_m\cdot p}
-\end{align*}
+$I_m(p)=\dfrac{U_0e^{-T\cdot p}}{p}\dfrac{1}{R_m+L_m\cdot p}$
 
 \end{corrige}
 \else
 \fi
 
 
-\question{A l'aide de la figure \ref{fig9} et des résultats précédents, justifier la forme de la courbe à partir du modèle proposé.}
+\question{À l'aide de la figure \ref{fig9} et des résultats précédents, justifier la forme de la courbe à partir du modèle proposé.}
 \ifprof
 \begin{corrige}
 D'après la question précédente on doit s'attendre à ce que $I_m(p)$ corresponde à la réponse indicielle retardé d'un premier ordre. Cela semble être le cas car on n'observe pas de dépassement et la courbe présente une tangente à l'origine de l'échelon ($t=T$) non nulle.
@@ -478,23 +466,17 @@ D'après la question précédente on doit s'attendre à ce que $I_m(p)$ correspo
 \question{Déterminer la résistance d'induit $R_m$ et de l'inductance d'induit $L_m$ à partir de l'essai à rotor bloqué et des équations précédentes.}
 \ifprof
 \begin{corrige}
-Avec \(u_{m} = u_{m0} = 1,6V = cst\). La courbe de \(i_{m}(t)\)
-représente donc la réponse d'un système du premier ordre où
+Avec \(u_{m} = u_{m0} = 1,6V = \text{cst}\). La courbe de \(i_{m}(t)\) représente donc la réponse d'un système du premier ordre où
 \(K = 1/R_{m}\) et \(\tau = L_{m}/R_{m}\).
 
-La valeur finale donne~:
+La valeur finale donne~: 
+\(\operatorname{}{i_{m}(t)} = Ku_{m0} = \SI{75}{mA}\)
 
-\(\operatorname{}{i_{m}(t)} = Ku_{m0} = 75mA\)
+D'où~: \(R_{m} = \frac{u_{m0}}{0,075} = 21,3\Omega\)
 
-D'où~:
-
-\(R_{m} = \frac{u_{m0}}{0,075} = 21,3\Omega\)
-
-En identifiant la constante de temps par la propriété
-\(i_{m}\left( \tau \right) = 0,63 \cdot \operatorname{}{i_{m}(t)}\), on
-trouve \(\tau = \frac{L_{m}}{R_{m}} = 100\mu s\). Finalement~:
-
-\(L_{m} = R_{m}\tau = 2mH\)
+En identifiant la constante de temps par la propriété \(i_{m}\left( \tau \right) = 0,63 \cdot \operatorname{}{i_{m}(t)}\), on
+trouve \(\tau = \frac{L_{m}}{R_{m}} =\SI{100}{\mu s}\). Finalement~:
+\(L_{m} = R_{m}\tau = \SI{2}{mH}\).
 \end{corrige}
 \else
 \fi
@@ -518,7 +500,7 @@ On approxime la courbe issue des essais par une droite dont la pente
   vaut \(1/K_{E}\). On a donc~:
 
 
-\(K_{E} = \frac{E_{2} - E_{1}}{\omega_{m2} - \omega_{m1}} = \frac{2,5 - 1}{1600 - 700} = 1,7\ mV/(rad/s)=K_T\)
+\(K_{E} = \frac{E_{2} - E_{1}}{\omega_{m2} - \omega_{m1}} = \frac{2,5 - 1}{1600 - 700} = \SI{1,7}{mV/(rad/s)}=K_T\)
 \end{corrige}
 \else
 \fi
@@ -553,23 +535,22 @@ la figure \ref{fig13}.
 \question{Déterminer l'expression de la vitesse de rotation de la MCC en régime permanent notée $\omega_{\infty}$ en fonction des paramètre $U_m$, $C_0$, $K_T$, $K_e$, $R_m$ et $f$.}
 \ifprof
 \begin{corrige}
-On reprend l'équation du principe fondamental de la dynamique~:
-
-
+On reprend l'équation du principe fondamental de la dynamique~: 
 \(J\frac{d\omega_{m}}{\text{dt}} = C_{m} - C_{0} - f\omega_{m}\)
 
 En régime établi, cela se simplifie~:
-
 \(C_{m,\infty} - C_{0} - f\omega_{m,\infty} = 0\)
 
 Or pendant le régime établi, l'intensité est constante et la loi des
 mailles devient~:
-
 \(u_{m,\infty} = R_{m}i_{m,\infty} + K_{E}\omega_{m,\infty}\)
 
 Finalement~:
+\({K_{T}i_{m,\infty} - C_{0} - f\omega_{m,\infty} = 0}\)\({K_{T} \cdot \frac{u_{m,\infty} - K_{E}\omega_{m,\infty}}{R_{m}} - C_{0} - f\omega_{m,\infty} = 0}\)
 
-\({K_{T}i_{m,\infty} - C_{0} - f\omega_{m,\infty} = 0}\)\({K_{T} \cdot \frac{u_{m,\infty} - K_{E}\omega_{m,\infty}}{R_{m}} - C_{0} - f\omega_{m,\infty} = 0}\)\({\omega_{m,\infty}\left( \frac{K_{T}K_{E}}{R_{m}} + f \right) = \frac{K_{T}}{R_{m}}u_{m,\infty} - C_{0}}\)\({\omega_{m,\infty} = \frac{K_{T}}{K_{T}K_{E} + fR_{m}}u_{m,\infty} - \frac{R_{m}}{K_{T}K_{E} + fR_{m}}C_{0}}\)
+\({\omega_{m,\infty}\left( \frac{K_{T}K_{E}}{R_{m}} + f \right) = \frac{K_{T}}{R_{m}}u_{m,\infty} - C_{0}}\)
+
+\({\omega_{m,\infty} = \frac{K_{T}}{K_{T}K_{E} + fR_{m}}u_{m,\infty} - \frac{R_{m}}{K_{T}K_{E} + fR_{m}}C_{0}}\)
 
 \end{corrige}
 \else
@@ -581,6 +562,9 @@ Le tableau de la figure \ref{fig13} donne la vitesse en régime permanent $\omeg
 \question{Tracer sur le document réponse la courbe $\omega_{\infty}(U_m)$.}
 \ifprof
 \begin{corrige}
+\begin{center}
+\includegraphics[width=.5\textwidth]{images/courbe_dr_corrige.pdf}
+\end{center}
 \end{corrige}
 \else
 \fi
@@ -589,16 +573,13 @@ Le tableau de la figure \ref{fig13} donne la vitesse en régime permanent $\omeg
 \question{En déduire les valeurs numériques de $C_0$ et $f$.}
 \ifprof
 \begin{corrige}
-On a~: \(u_{m} = 1,3\ V\) en \(\omega_{m} = 0\ \frac{\text{rad}}{s}\)
+On a~: \(u_{m} = \SI{1,3}{V}\) en \(\omega_{m} = 0\si{rad.s^{-1}}\)
  
-Donc,
+Donc, \(0 = 1,3K_{T} - R_{m}C_{0}\)
 
-\(0 = 1,3K_{T} - R_{m}C_{0}\)
-
-\(C_{0} = \frac{1,3K_{T}}{R_{m}} = 0,116\ mN.m\)
+\(C_{0} = \frac{1,3K_{T}}{R_{m}} = \SI{0,116}{mN.m}\)
 
 La pente de la droite tracée en question précédent vaut~:
-
 \(\frac{K_{T}}{fR_{m} + K_{T}^{2}} = \frac{1730 - 0}{4,84 - 1,3} = 488\)
 
 \(f = \frac{K_{T} - 488K_{T}^{2}}{488R_{m}} = 1,33 \bullet 10^{- 8}\ \frac{\text{N.m}}{\left( \frac{\text{rad}}{s} \right)}\)
@@ -606,44 +587,44 @@ La pente de la droite tracée en question précédent vaut~:
 \else
 \fi
 
-
-\question{Placer sur la courbe les incertitudes dues à la dispersion des mesures.}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-\question{En tenant compte des incertitudes dans la mesure de vitesse, donner un encadrement de $C_0$ et de~$f$.}
-\ifprof
-\begin{corrige}
-Très difficile de répondre à cette question. En effet, graphiquement,
-  une seule droite passe par l'ensemble des intervalles de tolérance.
-
-  Mais de façon un peu artificielle, on peut encadrer la courbe
-  précédente par deux droites définies en pointillées sur le DR.
-
-\begin{itemize}
-\item
-  \(C_{0,1} = 0,116\ mN.m\)~;
-  \(f_{1} = 1,54 \bullet 10^{- 8}\ \frac{\text{N.m}}{\left( \frac{\text{rad}}{s} \right)}\)
-\item
-  \(C_{0,2} = 0,123\ mN.m\)~;
-  \(f_{2} = 9,89 \bullet 10^{- 9}\ \frac{\text{N.m}}{\left( \frac{\text{rad}}{s} \right)}\)
-
-  On pourrait donc encadrer les deux valeurs par~:
-\end{itemize}
-
-\(0,116 \bullet 10^{- 3} \leq C_{0} \leq 0,123 \bullet 10^{- 3}\ \)
-
-\(9,89 \bullet 10^{- 9} \leq f \leq 1,54 \bullet 10^{- 8}\)
-
-Avec cet encadrement, la tolérance sur le second point de mesure n'est
-pas respectée.
-\end{corrige}
-\else
-\fi
+%
+%\question{Placer sur la courbe les incertitudes dues à la dispersion des mesures.}
+%\ifprof
+%\begin{corrige}
+%\end{corrige}
+%\else
+%\fi
+%
+%
+%\question{En tenant compte des incertitudes dans la mesure de vitesse, donner un encadrement de $C_0$ et de~$f$.}
+%\ifprof
+%\begin{corrige}
+%Très difficile de répondre à cette question. En effet, graphiquement,
+%  une seule droite passe par l'ensemble des intervalles de tolérance.
+%
+%  Mais de façon un peu artificielle, on peut encadrer la courbe
+%  précédente par deux droites définies en pointillées sur le DR.
+%
+%\begin{itemize}
+%\item
+%  \(C_{0,1} = 0,116\ mN.m\)~;
+%  \(f_{1} = 1,54 \bullet 10^{- 8}\ \frac{\text{N.m}}{\left( \frac{\text{rad}}{s} \right)}\)
+%\item
+%  \(C_{0,2} = 0,123\ mN.m\)~;
+%  \(f_{2} = 9,89 \bullet 10^{- 9}\ \frac{\text{N.m}}{\left( \frac{\text{rad}}{s} \right)}\)
+%
+%  On pourrait donc encadrer les deux valeurs par~:
+%\end{itemize}
+%
+%\(0,116 \bullet 10^{- 3} \leq C_{0} \leq 0,123 \bullet 10^{- 3}\ \)
+%
+%\(9,89 \bullet 10^{- 9} \leq f \leq 1,54 \bullet 10^{- 8}\)
+%
+%Avec cet encadrement, la tolérance sur le second point de mesure n'est
+%pas respectée.
+%\end{corrige}
+%\else
+%\fi
 
 
 \section{Choix et réglage du correcteur permettant de « gérer le mouvement
@@ -736,16 +717,9 @@ Par théorème de superposition :
 \begin{itemize}
 \item \textbf{Détermination de $H_u(p)$ : } on prend $C_0(p)=0$ et $U_m(p)\neq 0$.
 Par la formule de Black : 
-
-\begin{align*}
-H_u(p)=\dfrac{ABC}{1+ABCD}
-\end{align*}
+$ H_u(p)=\dfrac{ABC}{1+ABCD}$
 \item \textbf{Détermination de $H_c(p)$ : } on prend $C_0(p)\neq 0$ et $U_m(p)= 0$.
-Par la formule de Black : 
-
-\begin{align*}
-H_u(p)=\dfrac{C}{1+ABCD}
-\end{align*}
+Par la formule de Black : $H_u(p)=\dfrac{C}{1+ABCD}$.
 \end{itemize}
 \end{corrige}
 \else
@@ -790,7 +764,7 @@ On trouve donc $\tau_m=\dfrac{L_m}{R_m}$ et $K_c=\dfrac{R_m}{K_T\cdot K_e+R_m\cd
 \question{Déterminer l'expression de la fonction de transfert $E$.}
 \ifprof
 \begin{corrige}
-$\omega_m(t)=\dfrac{d\theta_m(t)}{dt}$ ainsi $\Omega_m(p)=p\cdot \theta_m(p)$, d'où $E=\dfrac{1}{p}$
+$\omega_m(t)=\dfrac{\dd \theta_m(t)}{\dd t}$ ainsi $\Omega_m(p)=p\cdot \theta_m(p)$, d'où $E=\dfrac{1}{p}$.
 \end{corrige}
 \else
 \fi
@@ -801,24 +775,17 @@ On suppose connu les constantes $\indice{K}{cin}$, $\indice{K}{cod}$ et $\indice
 \ifprof
 \begin{corrige}
 Pour que le système soit correctement asservi, il faut vérifier : 
+$\varepsilon(p)=0\Leftrightarrow D_c(p)=D_c(p)$.
 
-\begin{align*}
-\varepsilon(p)=0\Leftrightarrow D_c(p)=D_c(p).
-\end{align*}
-
-Or,
-
-\begin{align*}
-\varepsilon(p)=K_a\cdot D_c(p)-\dfrac{\indice{K}{cod}K_{pc}}{\indice{K}{cin}}D_l(p)
-\end{align*}
+Or, $\varepsilon(p)=K_a\cdot D_c(p)-\dfrac{\indice{K}{cod}K_{pc}}{\indice{K}{cin}}D_l(p)$.
 
 On obtient alors : 
-
-\begin{align*}
+$
 \boxed{
 K_a=\dfrac{\indice{K}{cod}K_{pc}}{\indice{K}{cin}}
 }
-\end{align*}
+$.
+
 \end{corrige}
 \else
 \fi
@@ -828,6 +795,16 @@ Pour la suite on supposera que la perturbation $C_0(p)$ est nulle et on considè
 \question{Donner l'expression de $\varepsilon(p)$ en fonction de $D_c(p)$ et des constantes $K_a$, $\indice{K}{cin}$, $K_m$, $\xi$ et $\omega_0$.}
 \ifprof
 \begin{corrige}
+\begin{align*}
+\varepsilon(p)=K_a\cdot \left(D_c(p)-D_l(p)\right)=K_a\cdot \left[D_c(p)-\frac{\indice{K}{cin}}{p}H_u(p)\cdot K_p\cdot \varepsilon(p)\right]
+\end{align*}
+
+On obtient donc : 
+$
+\boxed{
+\varepsilon(p)=\dfrac{K_a}{1+\frac{\indice{K}{cin}\cdot K_p}{p}H_u(p)}\cdot D_c(p)=\dfrac{K_a}{1+\frac{\indice{K}{cin}\cdot K_p\cdot K_m}{p\left(1+\dfrac{2\xi}{\omega_0}p+\dfrac{p^2}{\omega_0^2}\right)}}\cdot D_c(p)
+}
+$.
 
 \end{corrige}
 \else
@@ -838,13 +815,12 @@ Pour la suite on supposera que la perturbation $C_0(p)$ est nulle et on considè
 \begin{corrige}
 Pour déterminer l'erreur statique $\varepsilon_s$ on pose $D_c(p)=\frac{D_0}{p}$.
 
-On calcule alors $\varepsilon_s=\lim_{t\rightarrow+\infty} \varepsilon(t) = \lim_{p\rightarrow0} p\;\varepsilon(p).$
+On calcule alors $\varepsilon_s=\lim\limits_{t\rightarrow+\infty} \varepsilon(t) = \lim\limits_{p\rightarrow0} p\;\varepsilon(p).$
 
 On obtient donc : 
-
-\begin{align*}
-\lim_{p\rightarrow0} p\;\varepsilon(p)=\dfrac{p\cdot K_a}{1+\frac{\indice{K}{cin}\cdot K_p\cdot K_m}{p\left(1+\dfrac{2\xi}{\omega_0}p+\dfrac{p^2}{\omega_0^2}\right)}}\cdot\frac{D_0}{p}=0
-\end{align*}
+$
+\lim\limits_{p\rightarrow0} p\;\varepsilon(p)=\dfrac{p\cdot K_a}{1+\frac{\indice{K}{cin}\cdot K_p\cdot K_m}{p\left(1+\dfrac{2\xi}{\omega_0}p+\dfrac{p^2}{\omega_0^2}\right)}}\cdot\frac{D_0}{p}=0
+$.
 
 Le cahier des charges est bien respecté.
 \end{corrige}
@@ -863,7 +839,7 @@ Le diagramme de Bode de la FTBO du système avec $C(p)=1$ est donné figure suiv
 \end{center}
 \end{figure}
 
-\question{Donner les marges de stabilité du système non corrigé. Conclure vis-à-vis du cahier des charges.}
+\question{Tracer et donner les marges de stabilité du système non corrigé sur le document réponse. Conclure vis-à-vis du cahier des charges.}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -876,6 +852,7 @@ La fonction de transfert du correcteur est donnée par : $C(p)=K_p + \dfrac{K_i}
 \question{Tracer, en justifiant, le diagramme de Bode du correcteur.}
 \ifprof
 \begin{corrige}
+\includegraphics[width=0.9\textwidth]{images/bode_PI.png}
 \end{corrige}
 \else
 \fi
@@ -900,6 +877,13 @@ donnée figure \ref{fig_simu}.
 \end{corrige}
 \else
 \fi
+
+\begin{figure}[!htb]
+\begin{center}
+\includegraphics[width=1.0\textwidth]{images/image_fig19}
+\caption{Diagramme de Bode la boucle ouverte avec le correcteur PI réglé\label{fig_19}}
+\end{center}
+\end{figure}
 
 \begin{figure}[!htb]
 \begin{center}
@@ -936,4 +920,66 @@ Pour rappel : $u(t)$ est la fonction échelon unitaire.
 	$\delta(t)$		&	$1$							&	$K\;\delta(t)$			&	$K$								\\[0.3cm]
 	\hline
 \end{tabular}
+\end{center}
+
+\newpage
+\clearpage
+\newpage
+
+\section*{Document réponse}
+
+\subsection*{Question 1}
+\begin{center}
+\includegraphics[width=1.0\textwidth]{images/chaine_fonctionnelle_0.pdf}
+\end{center}
+
+
+\subsection*{Question 2}
+\begin{center}
+\includegraphics[width=1.0\textwidth]{images/image13.png}
+\end{center}
+
+\subsection*{Question 5}
+\begin{center}
+\begin{large}
+\begin{tikzpicture}
+\sbEntree{E0}
+\sbComp[4]{c2}{E0}
+\sbRelier[$U_m(p)$]{E0}{c2}
+\sbBloc[1]{b2}{}{c2}
+\sbRelier{c2}{b2}
+\sbBloc[4]{b3}{}{b2}
+\sbRelier[]{b2}{b3}
+%\sbComp[4]{c3}{b3}
+\sbComph[6]{c3}{b3}
+\sbDecaleNoeudy[-4]{c3}{E2}
+\sbRelier[]{E2}{c3}
+\sbBloc[7]{b4}{}{b3}
+\sbRelier[]{b3}{c3}
+\sbRelier{c3}{b4}
+\sbSortie[5]{S}{b4}
+\sbRelier[\hspace{.75cm}$\Omega_m(p)$]{b4}{S}
+\sbDecaleNoeudy[4]{S}{v}
+\sbBlocr[6]{b5}{}{v}
+\sbRelieryx{b4-S}{b5}
+\sbRelierxy[]{b5}{c2}
+\end{tikzpicture}
+\end{large}
+\end{center}
+
+\subsection*{Question 12}
+\begin{center}
+\includegraphics[width=1.0\textwidth]{images/courbe_dr.pdf}
+\end{center}
+
+\subsection*{Question 20}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{images/image_fig18.jpg}
+%\caption{Diagramme de Bode en boucle ouverte avec $C(p)=1$ \label{fig18}}
+\end{center}
+
+\subsection*{Question 21}
+\begin{center}
+\includegraphics[width=0.9\textwidth]{images/bode_vierge.jpg}
+%\caption{Diagramme de Bode en boucle ouverte avec $C(p)=1$ \label{fig18}}
 \end{center}
