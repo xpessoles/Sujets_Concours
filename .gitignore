@@ -1,7 +1,5 @@
-
 compil/
 *.log
-*.pdf
 2022/Exemple/FichiersProf/Corrigé LaTeX/PT-SIB-2022-BancEssaiLamesTondeuse-Corrige.pdf
 *.aux
 *.out
@@ -17,3 +15,4 @@ compil - Copie/SUJET.idx
 *.idx
 compil_CCINP_PSI_2022/SUJET.tex
 compil_2017_CCINP_MP_2017/SUJET.tex
+compil*/

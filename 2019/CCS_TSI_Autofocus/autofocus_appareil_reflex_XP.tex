@@ -4,10 +4,8 @@
 \subsection{Contexte}\label{contexte}
 
 
-L'autofocus (AF) est le terme anglais pour désigner la mise au point
-automatique. C'est une fonction qui permet la mise au point automatique
-de certains systèmes optiques comme les appareils photo, leur permettant
-de régler la netteté du sujet. Cette mise au point est réalisée grâce à
+L'autofocus (AF) est le terme anglais pour désigner la mise au point automatique. C'est une fonction qui permet la mise au point automatique 
+de certains systèmes optiques comme les appareils photo, leur permettant de régler la netteté du sujet. Cette mise au point est réalisée grâce à
 l'association d'un boitier et d'un objectif photographiques.
 
 \begin{figure}[!htb]
@@ -27,8 +25,7 @@ l'association d'un boitier et d'un objectif photographiques.
 \vspace{-.5cm}
 
 
-Le principe consiste à déplacer une lentille afin que les rayons de
-l'image à photographier convergent sur le capteur. Si ce n'est pas le
+Le principe consiste à déplacer une lentille afin que les rayons de l'image à photographier convergent sur le capteur. Si ce n'est pas le
 cas, l'image sera floue. Sur la figure \ref{fig2}, la lentille est bien positionnée uniquement sur le schéma du milieu :
 les rayons convergent parfaitement sur le capteur.
 
@@ -129,18 +126,18 @@ lentille. Afin de réaliser correctement cette mise au point, il est
 nécessaire que l'objectif photographique puisse communiquer avec tous
 les boitiers compatibles en répondant aux exigences suivantes.
 
-\begin{tabular}{|p{0.15\textwidth}|p{0.5\textwidth}|p{0.1\textwidth}|}
+\begin{tabular}{|p{0.2\textwidth}|p{0.5\textwidth}|p{0.1\textwidth}|}
 \hline 
 \textbf{Exigence} & \textbf{Critère d'appréciation} & \textbf{Niveau} \\ 
 \hline 
-Id = « 1.1 » Communiquer avec le boitier & Temps de transmission d'un échange entre l'objectif photographique et le boitier & $0,5s$ \\ 
+Id = « 1.1 » Communiquer avec le boitier & Temps de transmission d'un échange entre l'objectif photographique et le boitier & $\SI{0,5}{s}$ \\ 
 \cline{2-3}
-& Résolution & $100\mu m$ \\ 
+& Résolution & $\SI{100}{\mu m}$ \\ 
 \hline 
 \end{tabular} 
 
 
-\begin{minipage}{0.4\textwidth}
+\noindent\begin{minipage}{0.55\textwidth}
 Lorsque l'utilisateur appuie sur le déclencheur, l'objectif
 photographique entre dans une phase d'initialisation durant laquelle la
 lentille mobile figure \ref{fig4} se déplace de
@@ -148,24 +145,24 @@ la mise au point minimale à la mise au point infinie, ce qui correspond
 à sa course totale.
 
 L'utilisateur a la possibilité de contrôler sa mise au point dans la lunette à l'aide de collimateurs (figure ci-contre).
-\end{minipage}
-\begin{minipage}{0.6\textwidth}
+\end{minipage}\hfill
+\begin{minipage}{0.4\textwidth}
 \begin{center}
-\includegraphics[width=0.7\textwidth]{images/collimateurs.jpg}
+\includegraphics[width=.9\textwidth]{images/collimateurs.jpg}
 \end{center}
 \end{minipage}
 
-\begin{minipage}{0.4\textwidth}
+\noindent\begin{minipage}{0.55\textwidth}
 L'objectif photographique est équipé de deux capteurs permettant de
 mesurer le déplacement de la lentille :
 \begin{itemize}
-\item un codeur absolu linéaire 4bits, situé au niveau de la la lentille mobile permettant de connaître la position de la lentille mobile selon la direction $\overrightarrow{z}_0$ (figure \ref{fig4})
-\item un codeur incrémental (monovoie, 30 impulsions par tour) relié au moteur par un dispositif poulies-courroie (figure \ref{fig4})
+\item un codeur absolu linéaire 4bits, situé au niveau de la la lentille mobile permettant de connaître la position de la lentille mobile selon la direction $\overrightarrow{z_0}$ (figure \ref{fig4})
+\item un codeur incrémental (monovoie, 30 impulsions par tour) relié au moteur par un dispositif poulies-courroie (figure~\ref{fig4})
 \end{itemize}
-\end{minipage}
-\begin{minipage}{0.6\textwidth}
+\end{minipage}\hfill
+\begin{minipage}{0.4\textwidth}
 \begin{center}
-\includegraphics[width=0.9\textwidth]{images/absolu.jpg}\\
+\includegraphics[width=0.95\textwidth]{images/absolu.jpg}\\
 \includegraphics[width=0.2\textwidth]{images/relatif.jpg}
 \end{center}
 \end{minipage}
@@ -174,13 +171,40 @@ Dans les objectifs haut de gamme comme étudié ici, le moteur est inclus dans l
 
 
 \question{A partir des données présentées dans la partie précédente compléter la chaine fonctionnelle relative à l'autofocus d'un appareil photo réflex.}
+\ifprof
+\begin{corrige}
+\begin{center}
+\includegraphics[width=1.0\textwidth]{images/chaine_fonctionnelle_corrige.pdf}
+\end{center}
+\end{corrige}
+\else
+\fi
+
 
 \question{Sur la modélisation multiphysique, repérer les parties acausales et les parties causales. Pour cela on surlignera en rouge ce qui représente la modélisation causale et en bleu ce qui représente la modélisation acausale.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 
 \question{Décrire en quelques phrases ce modèle et ce qu'il permet de représenter. En particulier en explicitera les grandeur physiques et la façon dont elles sont mesurées. On précisera également qu'elles sont les grandeurs imposées et mesurées.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 \question{Préciser les différences du point de vue de l'utilisation entre les codeurs absolus et relatifs.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 
 Pour obtenir une zone de mise au point la plus nette possible, il est
@@ -191,18 +215,36 @@ mobile soit inférieure à $100\mu m$.
 lentille mobile avec le codeur absolu. Justifier que le codeur absolu ne
 soit utilisé que lors de la phase d'initialisation de l'objectif
 photographique.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 
 \question{Déterminer la relation entre le déplacement de la lentille mobile $d_l$ et la position angulaire du codeur incrémental $\indice{\theta}{rc}$. En déduire la résolution possible pour la course totale de
 la lentille, si elle est déterminée en comptant les impulsions du codeur
 incrémental sur les fronts montants.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
-Dans la suite, la résolution sera prise égale à $5 \mu m$.
+
+Dans la suite, la résolution sera prise égale à $\SI{5}{\mu m}$.
 
 \question{En déduire le nombre de bits nécessaires pour coder
 l'information « déplacement de la lentille mobile », si cette dernière
 est donnée par le comptage du nombre d'impulsions au niveau du codeur
 incrémental.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 
 \section{Validation de la structure permettant d'assurer le mouvement de l'optique}\label{validation-de-la-structure-permettant-dassurer-le-mouvement-de-loptique}
@@ -268,8 +310,20 @@ paramètres du modèle multiphysique suivants :
 
 
 \question{Passer les équations du modèle de connaissance dans le domaine de Laplace.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 \question{On donne la structure du schéma bloc modélisant le moteur à courant continu. Compléter le schéma en précisant les fonctions de transfert et les variables.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 \begin{center}
 \begin{large}
@@ -305,13 +359,35 @@ paramètres du modèle multiphysique suivants :
 Lors de l'essai de la machine à courant continu à rotor bloqué et sous tension d'induit réduite ($u_m(t)$) de $1,6 V$, le courant d'induit ($i_m(t)$) est mesuré. Les résultats sont donnés sur la figure \ref{fig9}.
 
 \question{Exprimer sous ces conditions $I_m(p)$ en fonction de $U_m(p)$.}
-
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 \question{Donner l'expression de $U_m(p)$ et en déduire $I_m(p)$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 \question{A l'aide de la figure \ref{fig9} et des résultats précédents, justifier la forme de la courbe à partir du modèle proposé.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 \question{Déterminer la résistance d'induit $R_m$ et de l'inductance d'induit $L_m$ à partir de l'essai à rotor bloqué et des équations précédentes.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 \begin{figure}[!htb]
 \begin{center}
@@ -325,6 +401,12 @@ Plusieurs essais à vide avec des tension d'induit ($u_m(t)$) différentes ont p
 figure \ref{fig12}.
 
 \question{Déterminer à partir de ces résultats la valeur numérique de la constante de fcém ($K_e$) que l'on supposera égale à la constante de couple ($K_T$).}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 \begin{figure}[!htb]
 \begin{center}
@@ -359,31 +441,58 @@ la figure \ref{fig13}.
 Le tableau de la figure \ref{fig13} donne la vitesse en régime permanent $\omega_{\infty}$ ainsi que l'incertitude sur la mesure $\Delta \omega_{\infty}$.
 
 \question{Tracer sur le document réponse la courbe $\omega_{\infty}(U_m)$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 \question{En déduire les valeurs numériques de $C_0$ et $f$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 \question{Placer sur la courbe les incertitudes dues à la dispersion des mesures.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
 
 \question{En tenant compte des incertitudes dans la mesure de vitesse, donner un encadrement de $C_0$ et de~$f$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 
-\section{Modélisation de l'asservissement permettant de "gérer le mouvement de l'optique"}
+\section{Choix et réglage du correcteur permettant de « gérer le mouvement
+de l’optique »}
+\subsection{Modélisation de l'asservissement permettant de "gérer le mouvement de l'optique"}
 
 \begin{obj}
 Choisir et régler un correcteur afin de répondre aux exigences du cahier des charges
 \end{obj}
 
+\begin{center}
 \begin{tabular}{|p{0.15\textwidth}|p{0.5\textwidth}|p{0.1\textwidth}|}
 \hline 
 \textbf{Exigence} & \textbf{Critère d'appréciation} & \textbf{Niveau} \\ 
 \hline 
 Id = « 1.2.2 » Gérer le mouvement de l'optique & Précision, erreur statique & $<0,1\%$ \\ 
 \cline{2-3}
-& Rapidité $t_{r5\%}$ & $0,6s$ maxi \\ 
+& Rapidité $t_{r5\%}$ & $\SI{0,6}{s}$ maxi \\ 
 \cline{2-3}
 & Dépassement $D_1$ & aucun dépassement \\ 
 \hline 
 \end{tabular} 
+\end{center}
 
 
 Le réglage nécessite un compromis
@@ -447,26 +556,84 @@ Le modèle causal de l'objectif photographique dont les paramètres ont
 
 
 \question{On pose $\Omega_m(p)=H_u(p)\cdot U_m(p)+H_c(p)\cdot C_0(p)$. Exprimer $H_u(p)$ et $H_c(p)$ en fonction de $A$, $B$, $C$ et $D$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 \question{En utilisant le résultat de la question 9, montre que l'on peut mettre $H_u(p)$ et $H_c(p)$ sous la forme :  $H_u(p)=\dfrac{K_m}{1+\dfrac{2\xi}{\omega_0}p+\dfrac{p^2}{\omega_0^2}}$ et $H_c(p)=\dfrac{K_c\left(1+\tau_m p\right)}{1+\dfrac{2\xi}{\omega_0}p+\dfrac{p^2}{\omega_0^2}}
-$.
-On donner les expression de $K_m$, $K_c$, $\tau_m$, $\xi$ et $\omega_0$ en fonctions des constantes du problème.
-}
+$.On donnera les expression de $K_m$, $K_c$, $\tau_m$, $\xi$ et $\omega_0$ en fonctions des constantes du problème.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 \question{Déterminer l'expression de la fonction de transfert $E$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 On suppose connu les constantes $\indice{K}{cin}$, $\indice{K}{cod}$ et $\indice{K}{pc}$.
 
 \question{Donner l'expression du gain d'adaptation $K_a$ en fonction des grandeurs définies dans le schéma bloc (figure\ref{fig14}) pour que le système soit correctement asservi.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 Pour la suite on supposera que la perturbation $C_0(p)$ est nulle et on considère une correction proportionnelle $C(p)=K_p$.
 
 \question{Donner l'expression de $\varepsilon(p)$ en fonction de $D_c(p)$ et des constantes $K_a$, $\indice{K}{cin}$, $K_m$, $\xi$ et $\omega_0$.}
-
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 \question{En déduire l'erreur statique théorique issue de la modélisation et conclure vis-à-vis du cahier des charges.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
+%%%% Début XP %%%%%
+\subsection{Analyse du correcteur}
+Le diagramme de Bode de la FTBO du système avec $C(p)=1$ est donné figure suivante. 
+% Remarque : Le diagramme tracé est celui du modèle linéaire qui ne prend pas en compte la bande morte et la saturation. En effet, il n’est pas possible de tracer le diagramme du modèle non linéaire. La conséquence est qu’il n’est pas possible de conclure sur la rapidité à partir de l’analyse harmonique.
 
+\begin{figure}[!htb]
+\begin{center}
+\includegraphics[width=0.9\textwidth]{images/image_fig18.jpg}
+\caption{Diagramme de Bode en boucle ouverte avec $C(p)=1$ \label{fig18}}
+\end{center}
+\end{figure}
+
+\question{Donner les marges de stabilité du système non corrigé. Conclure vis-à-vis du cahier des charges.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+Le correcteur proportionnel va avoir pout but de supprimer l'écart statique sans perturber la stabilité du système.
+La fonction de transfert du correcteur est donnée par : $C(p)=K_p + \dfrac{K_i}{p}$ avec $K_p = 0,35$ et $K_i = 2$.
+
+\question{Tracer, en justifiant, le diagramme de Bode du correcteur.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+%%%% Fin XP %%%%%
+
+\subsection{Conclusion}
 Pour un échelon d'entrée $D_c(t)$ d'amplitude $\SI{1}{mm}$ et pour le dernier réglage du correcteur on obtient la réponse
 donnée figure \ref{fig_simu}.
 
@@ -479,7 +646,11 @@ donnée figure \ref{fig_simu}.
 \item les sources des écarts observés entre le comportement simulé, souhaité et réel de l'objectif photographique.
 \end{itemize}
 }
-
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 \begin{figure}[!htb]
 \begin{center}
@@ -499,21 +670,21 @@ Pour rappel : $u(t)$ est la fonction échelon unitaire.
 \begin{center}
 \begin{tabular}{|c|c||c|c|}
 	\hline
-	$f(t)$			&		$\displaystyle F(p)=\L\left[f(t)\right]$		&	$f(t)$				&	$F(p)=\L\left[f(t)\right]$			\\[0.3cm]
+	$f(t)$			&	$\displaystyle F(p)=\L\left[f(t)\right]$		&	$f(t)$					&	$F(p)=\L\left[f(t)\right]$					\\[0.3cm]
 	\hline\hline
-	$u(t)$			&		$\displaystyle \frac 1p$				&	$\sin(\omega t)\;u(t)$		&	$\displaystyle \frac{\omega}{p^2+\omega^2}$	\\[0.3cm]
+	$u(t)$			&	$\displaystyle \frac 1p$				&	$\sin(\omega t)\;u(t)$		&	$\displaystyle \frac{\omega}{p^2+\omega^2}$	\\[0.3cm]
 	\hline
-	$K\;u(t)$		&		$\displaystyle \frac{K}{p}$				&	$\cos(\omega t)\;u(t)$		&	$\displaystyle \frac{p}{p^2+\omega^2}$		\\[0.3cm]
+	$K\;u(t)$		&	$\displaystyle \frac{K}{p}$			&	$\cos(\omega t)\;u(t)$		&	$\displaystyle \frac{p}{p^2+\omega^2}$		\\[0.3cm]
 	\hline
-	$K\;t\;u(t)$		&		$\displaystyle \frac K{p^2}$				&	$\sinh(\omega t)\;u(t)$		&	$\displaystyle \frac \omega{p^2-\omega^2}$	\\[0.3cm]
+	$K\;t\;u(t)$		&	$\displaystyle \frac K{p^2}$			&	$\sinh(\omega t)\;u(t)$		&	$\displaystyle \frac \omega{p^2-\omega^2}$		\\[0.3cm]
 	\hline
-	$e^{-at}u(t)$		&		$\displaystyle \frac{1}{p+a}$				&	$\cosh(\omega t)\;u(t)$		&	$\displaystyle \frac{p}{p^2-\omega^2}$		\\[0.3cm]
+	$e^{-at}u(t)$	&	$\displaystyle \frac{1}{p+a}$			&	$\cosh(\omega t)\;u(t)$		&	$\displaystyle \frac{p}{p^2-\omega^2}$		\\[0.3cm]
 	\hline
-	$t^nu(t)$		&		$\displaystyle \frac{n!}{p^{n+1}}$			&	$e^{-at}\sin(\omega t)u(t)$	&	$\displaystyle \frac \omega{(p+a)^2+\omega^2}$	\\[0.3cm]
+	$t^nu(t)$		&	$\displaystyle \frac{n!}{p^{n+1}}$		&	$e^{-at}\sin(\omega t)u(t)$	&	$\displaystyle \frac \omega{(p+a)^2+\omega^2}$	\\[0.3cm]
 	\hline
-	$e^{at} t^n u(t)$	&		$\displaystyle \frac{n!}{(p-a)^{n+1}}$			&	$e^{-at}\cos(\omega t) u(t)$	&	$\displaystyle \frac{p+a}{(p+a)^2+\omega^2}$	\\[0.3cm]
+	$e^{at} t^n u(t)$	&	$\displaystyle \frac{n!}{(p-a)^{n+1}}$		&	$e^{-at}\cos(\omega t) u(t)$	&	$\displaystyle \frac{p+a}{(p+a)^2+\omega^2}$	\\[0.3cm]
 	\hline
-	$\delta(t)$		&		$1$							&	$K\;\delta(t)$			&	$K$						\\[0.3cm]
+	$\delta(t)$		&	$1$							&	$K\;\delta(t)$			&	$K$								\\[0.3cm]
 	\hline
 \end{tabular}
 \end{center}
