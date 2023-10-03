@@ -313,7 +313,7 @@ essais à rotor bloqué et en charge à différentes vitesses sont
 effectués. Ainsi, il est possible de déterminer expérimentalement les
 paramètres du modèle multiphysique suivants :
 
-\begin{minipage}{0.5\textwidth}
+\noindent\begin{minipage}{0.48\textwidth}
 \textbf{Constantes du modèle :}
 \begin{itemize}
 \item la résistance d'induit, notée $R_m$ ;
@@ -323,9 +323,9 @@ paramètres du modèle multiphysique suivants :
 \item le moment d'inertie ramené sur l'axe de la MCC, noté $J$ ;
 \item le couple de frottement visqueux, noté $f$ ;
 \end{itemize}
-
+\hfill
 \end{minipage}
-\begin{minipage}{0.5\textwidth}
+\begin{minipage}{0.48\textwidth}
 \textbf{Variables du modèle : }
 \begin{itemize}
 \item courant de l'induit, noté $i_m(t)$ ;
@@ -347,7 +347,7 @@ paramètres du modèle multiphysique suivants :
 \end{itemize}
 
 
-\question{Passer les équations du modèle de connaissance dans le domaine de Laplace.}
+\question{Transformer les équations du modèle de connaissance dans le domaine de Laplace.}
 \ifprof
 \begin{corrige}
 
@@ -663,7 +663,7 @@ Le modèle causal de l'objectif photographique dont les paramètres ont
 
 \begin{figure}[!htb]
 \begin{center}
-\begin{large}
+
 \begin{tikzpicture}
 \sbEntree{E0}
 \sbBloc[3]{b0}{$K_a$}{E0}
@@ -704,13 +704,13 @@ Le modèle causal de l'objectif photographique dont les paramètres ont
 \sbRelierxy[]{b9}{c1}
 \sbRelier{b8}{b9}
 \end{tikzpicture}
-\end{large}
+
 \caption{Schéma-bloc de l'asservissement de la position de la lentille \label{fig14}}
 \end{center}
 \end{figure}
 
 
-\question{On pose $\Omega_m(p)=H_u(p)\cdot U_m(p)+H_c(p)\cdot C_0(p)$. Exprimer $H_u(p)$ et $H_c(p)$ en fonction de $A$, $B$, $C$ et $D$.}
+\question{On pose $\Omega_m(p)=H_u(p)\cdot U_m(p)+H_c(p)\cdot C_0(p)$. Exprimer $H_u(p)$ et $H_c(p)$ en fonction de $A$, $B$, $C$ et~$D$.}
 \ifprof
 \begin{corrige}
 Par théorème de superposition : 
@@ -829,15 +829,15 @@ Le cahier des charges est bien respecté.
 
 %%%% Début XP %%%%%
 \subsection{Analyse du correcteur}
-Le diagramme de Bode de la FTBO du système avec $C(p)=1$ est donné figure suivante. 
+Le diagramme de Bode de la FTBO du système avec $C(p)=1$ est donné sur le document réponse. 
 % Remarque : Le diagramme tracé est celui du modèle linéaire qui ne prend pas en compte la bande morte et la saturation. En effet, il n’est pas possible de tracer le diagramme du modèle non linéaire. La conséquence est qu’il n’est pas possible de conclure sur la rapidité à partir de l’analyse harmonique.
-
-\begin{figure}[!htb]
-\begin{center}
-\includegraphics[width=0.9\textwidth]{images/image_fig18.jpg}
-\caption{Diagramme de Bode en boucle ouverte avec $C(p)=1$ \label{fig18}}
-\end{center}
-\end{figure}
+%
+%\begin{figure}[!htb]
+%\begin{center}
+%\includegraphics[width=0.9\textwidth]{images/image_fig18.jpg}
+%\caption{Diagramme de Bode en boucle ouverte avec $C(p)=1$ \label{fig18}}
+%\end{center}
+%\end{figure}
 
 \question{Tracer et donner les marges de stabilité du système non corrigé sur le document réponse. Conclure vis-à-vis du cahier des charges.}
 \ifprof
@@ -846,8 +846,16 @@ Le diagramme de Bode de la FTBO du système avec $C(p)=1$ est donné figure suiv
 \else
 \fi
 
-Le correcteur proportionnel va avoir pout but de supprimer l'écart statique sans perturber la stabilité du système.
 La fonction de transfert du correcteur est donnée par : $C(p)=K_p + \dfrac{K_i}{p}$ avec $K_p = 0,35$ et $K_i = 2$.
+
+\question{Quel peut être l'intérêt d'utiliser un tel correteur, notamment si la perturbation est un échelon ?}
+\ifprof
+\begin{corrige}
+\includegraphics[width=0.9\textwidth]{images/bode_PI.png}
+\end{corrige}
+\else
+\fi
+
 
 \question{Tracer, en justifiant, le diagramme de Bode du correcteur.}
 \ifprof
@@ -878,14 +886,14 @@ donnée figure \ref{fig_simu}.
 \else
 \fi
 
-\begin{figure}[!htb]
+\begin{figure}[H]
 \begin{center}
-\includegraphics[width=1.0\textwidth]{images/image_fig19}
+\includegraphics[width=.8\textwidth]{images/image_fig19}
 \caption{Diagramme de Bode la boucle ouverte avec le correcteur PI réglé\label{fig_19}}
 \end{center}
 \end{figure}
 
-\begin{figure}[!htb]
+\begin{figure}[H]
 \begin{center}
 \includegraphics[width=1.0\textwidth]{images/image_simu.jpg}
 \caption{Réponse indisielle finale simulée et réelle \label{fig_simu}}
@@ -926,6 +934,7 @@ Pour rappel : $u(t)$ est la fonction échelon unitaire.
 \clearpage
 \newpage
 
+\setcounter{page}{1}
 \section*{Document réponse}
 
 \subsection*{Question 1}
@@ -983,3 +992,5 @@ Pour rappel : $u(t)$ est la fonction échelon unitaire.
 \includegraphics[width=0.9\textwidth]{images/bode_vierge.jpg}
 %\caption{Diagramme de Bode en boucle ouverte avec $C(p)=1$ \label{fig18}}
 \end{center}
+\newpage
+$\quad$
