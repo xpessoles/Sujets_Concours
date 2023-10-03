@@ -1,8 +1,0 @@
-************************************
-* Kit du correcteur UPSTI          *
-* Version 1.0                      *
-* 27/04/2020                       *
-* E. Pinault-Bigeard               *
-************************************
-Téléchargeable ici: https://www.upsti.fr/documents-pedagogiques/kit-du-correcteur-upsti
-En cas de problème: corrigesconcours@upsti.fr
