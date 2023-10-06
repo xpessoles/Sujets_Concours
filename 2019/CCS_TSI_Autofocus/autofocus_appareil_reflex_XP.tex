@@ -3,6 +3,8 @@
 
 \subsection{Contexte}\label{contexte}
 
+\ifprof
+\else
 
 L'autofocus (AF) est le terme anglais pour désigner la mise au point automatique. C'est une fonction qui permet la mise au point automatique 
 de certains systèmes optiques comme les appareils photo, leur permettant de régler la netteté du sujet. Cette mise au point est réalisée grâce à
@@ -36,10 +38,12 @@ les rayons convergent parfaitement sur le capteur.
 \caption{Principe de la mise au point (source :\url{http://www.pierretoscani.com/autofocus.html)} \label{fig2}}
 \end{center}
 \end{figure}
+\fi
 
 
 \subsection{Mise en situation}\label{mise-en-situation}
-
+\ifprof
+\else
 
 Le mouvement de la lentille est donné par l'architecture représentée
 figure \ref{fig3}
@@ -112,13 +116,14 @@ comme buts :
 %  charges.
 %\end{itemize}
 
-
+\fi
 \section{Analyse structurelle du système}
 
 \begin{obj}
 Analyser la structure de l'objectif photographique et en particulier la chaine fonctionnelle assurant l'autofocus.
 \end{obj}
-
+\ifprof
+\else
 La mise au point résulte de l'interaction entre le boitier (possédant un micro-controleur spécifique) où se situe
 tout le traitement de numérisation de l'image (capteur CCD et programme
 de mise au point) et l'objectif photographique qui permet de mouvoir la
@@ -171,8 +176,9 @@ mesurer le déplacement de la lentille :
 
 Dans les objectifs haut de gamme comme étudié ici, le moteur est inclus dans l'objectif. On peut trouver des moteurs pas-à-pas ou ultrasonique silencieux (gamme AP-S Nikon). Ici on considéra que c'est cette dernière technologie qui est utilisée. Elle est pilotée par un variateur ultrasonique spécifique délivrant une tension alternative de haute fréquence (40kHz) appliqué à un céramique piezo-électrique.
 
+\fi
 
-\question{A partir des données présentées dans la partie précédente compléter la chaine fonctionnelle relative à l'autofocus d'un appareil photo réflex.}
+\question{À partir des données présentées dans la partie précédente compléter la chaine fonctionnelle relative à l'autofocus d'un appareil photo réflex.}
 \ifprof
 \begin{corrige}
 \begin{center}
@@ -307,7 +313,8 @@ adoptée ici est la suivante :
 \end{obj}
 
 \subsection{Détermination du modèle de la machine à courant continu}
-
+\ifprof
+\else
 Afin d'identifier le modèle de la machine à courant continu, différents
 essais à rotor bloqué et en charge à différentes vitesses sont
 effectués. Ainsi, il est possible de déterminer expérimentalement les
@@ -345,16 +352,17 @@ paramètres du modèle multiphysique suivants :
 \item équation électrique : $u_m(t)=e(t)+L_m\frac{\d i_m(t)}{\d t}+R_m\cdot i_m(t)$;
 \item équations électromécaniques : $e(t)=K_e\cdot \omega_m(t)$; $C_m(t)=K_T\cdot i_m(t)$.
 \end{itemize}
+\fi
 
 
 \question{Transformer les équations du modèle de connaissance dans le domaine de Laplace.}
 \ifprof
 \begin{corrige}
 
-$C_m(p)-C_0(p)-f\cdotp\cdot  \Omega_m(p)=J\cdot p\cdot d\Omega_m(p)$,
-$U_m(p)=E(p)+L_m\cdot p I_m(p)+R_m\cdot I_m(p)$,
-$E(p)=K_e\cdot \Omega_m(p)$, 
-$C_m(p)=K_T\cdot I_m(p)$.
+$C_m(p)-C_0(p)-f p\Omega_m(p)=J p\Omega_m(p)$,
+$U_m(p)=E(p)+L_m p I_m(p)+R_m I_m(p)$,
+$E(p)=K_e\Omega_m(p)$, 
+$C_m(p)=K_T I_m(p)$.
 
 \end{corrige}
 \else
@@ -392,7 +400,6 @@ $C_m(p)=K_T\cdot I_m(p)$.
 \end{center}
 \end{corrige}
 \else
-\fi
 
 
 \begin{center}
@@ -422,6 +429,7 @@ $C_m(p)=K_T\cdot I_m(p)$.
 \end{large}
 \end{center}
 
+\fi
 
 
 
@@ -481,7 +489,7 @@ trouve \(\tau = \frac{L_{m}}{R_{m}} =\SI{100}{\mu s}\). Finalement~:
 \else
 \fi
 
-
+\ifprof\else
 \begin{figure}[!htb]
 \begin{center}
 \includegraphics[width=0.9\textwidth]{images/image_fig9.jpg}
@@ -492,6 +500,7 @@ trouve \(\tau = \frac{L_{m}}{R_{m}} =\SI{100}{\mu s}\). Finalement~:
 
 Plusieurs essais à vide avec des tension d'induit ($u_m(t)$) différentes ont permis de tracer la courbe de la
 figure \ref{fig12}.
+\fi
 
 \question{Déterminer à partir de ces résultats la valeur numérique de la constante de fcém ($K_e$) que l'on supposera égale à la constante de couple ($K_T$).}
 \ifprof
@@ -505,17 +514,18 @@ On approxime la courbe issue des essais par une droite dont la pente
 \else
 \fi
 
-
+\ifprof\else
 \begin{figure}[!htb]
 \begin{center}
 \includegraphics[width=0.9\textwidth]{images/image_fig12.jpg}
 \caption{Mesures de vitesses angulaire du moteur en régime permanent pour différentes tensions d’induit \label{fig12}}
 \end{center}
 \end{figure}
+\fi
 
 %\FloatBarrier
 \subsection{Modélisation du frottement}
-
+\ifprof\else
 Le réglage de la lentille nécessite un asservissement en position. Dans ce cas le frottement qui induit une non-linéarité avec un seuil va perturber le système. Ainsi, il est primordial de quantifier les coefficient pour pouvoir
 régler la commande. Des essais ont été réalisés sur un prototype pour déterminer les valeurs des couples de
 frottement sec $C_0$ et visqueux $f$.
@@ -531,6 +541,7 @@ la figure \ref{fig13}.
 \caption{Mesures de vitesses angulaire du moteur pour différentes tensions d’induit \label{fig13}}
 \end{center}
 \end{figure}
+\fi
 
 \question{Déterminer l'expression de la vitesse de rotation de la MCC en régime permanent notée $\omega_{\infty}$ en fonction des paramètre $U_m$, $C_0$, $K_T$, $K_e$, $R_m$ et $f$.}
 \ifprof
@@ -556,14 +567,15 @@ Finalement~:
 \else
 \fi
 
-
+\ifprof\else
 Le tableau de la figure \ref{fig13} donne la vitesse en régime permanent $\omega_{\infty}$ ainsi que l'incertitude sur la mesure $\Delta \omega_{\infty}$.
+\fi
 
 \question{Tracer sur le document réponse la courbe $\omega_{\infty}(U_m)$.}
 \ifprof
-\begin{corrige}
+\begin{corrige}~\\
 \begin{center}
-\includegraphics[width=.5\textwidth]{images/courbe_dr_corrige.pdf}
+\rotatebox{90}{\includegraphics[width=.5\textwidth]{images/courbe_dr_corrige.pdf}}
 \end{center}
 \end{corrige}
 \else
@@ -634,7 +646,7 @@ de l’optique »}
 \begin{obj}
 Choisir et régler un correcteur afin de répondre aux exigences du cahier des charges
 \end{obj}
-
+\ifprof\else
 \begin{center}
 \begin{tabular}{|p{0.15\textwidth}|p{0.5\textwidth}|p{0.1\textwidth}|}
 \hline 
@@ -708,7 +720,7 @@ Le modèle causal de l'objectif photographique dont les paramètres ont
 \caption{Schéma-bloc de l'asservissement de la position de la lentille \label{fig14}}
 \end{center}
 \end{figure}
-
+\fi
 
 \question{On pose $\Omega_m(p)=H_u(p)\cdot U_m(p)+H_c(p)\cdot C_0(p)$. Exprimer $H_u(p)$ et $H_c(p)$ en fonction de $A$, $B$, $C$ et~$D$.}
 \ifprof
@@ -850,8 +862,8 @@ La fonction de transfert du correcteur est donnée par : $C(p)=K_p + \dfrac{K_i}
 
 \question{Quel peut être l'intérêt d'utiliser un tel correteur, notamment si la perturbation est un échelon ?}
 \ifprof
-\begin{corrige}
-\includegraphics[width=0.9\textwidth]{images/bode_PI.png}
+\begin{corrige} ~\\
+La FTBO est de classe 1, ce qui rend nul l'erreur statique vis-à-vis de l'entrée principale. Pour que l'erreur statique soit nulle vis-à-vis de la perturbation (échelon), il faut un intégrateur en amont de la perturbation. C'est l'intérêt d'utiliser un correcteur PI ici. 
 \end{corrige}
 \else
 \fi
@@ -859,8 +871,10 @@ La fonction de transfert du correcteur est donnée par : $C(p)=K_p + \dfrac{K_i}
 
 \question{Tracer, en justifiant, le diagramme de Bode du correcteur.}
 \ifprof
-\begin{corrige}
-\includegraphics[width=0.9\textwidth]{images/bode_PI.png}
+\begin{corrige} ~\\
+\begin{center}
+\includegraphics[width=0.75\textwidth]{images/bode_PI.png}
+\end{center}
 \end{corrige}
 \else
 \fi
@@ -882,10 +896,68 @@ donnée figure \ref{fig_simu}.
 }
 \ifprof
 \begin{corrige}
+\begin{itemize}
+\item
+  \textbf{Critères du cahier des charges~:}
+
+  \begin{itemize}
+  \item
+    Erreur statique~: la courbe de la réponse indicielle semble avoir
+    une asymptote à 2 mm en \(t \rightarrow \infty\) malgré l'indication
+    de 1,994 mm~; l'erreur statique serait donc nulle et le critère
+    respecté.
+  \item
+    Rapidité~: \(t_{r5\%} = 0,13\ s < 0,6\ s\) donc critère respecté.
+  \item
+    Aucun dépassement~: critère respecté.
+  \end{itemize}
+\item
+  \textbf{Hypothèses~:}
+
+  \begin{itemize}
+  \item
+    Le modèle cinématique ne prend pas en compte les éventuels jeux dans
+    la transmission, l'éventuel glissement de la courroie et son
+    élasticité.
+  \item
+    Les masses et inerties de certains solides sont négligées pour le
+    calcul de l'inertie équivalente.
+  \item
+    On fait l'hypothèse que le moteur est alimenté en courant continu
+    alors qu'il est vraisemblablement alimenté par un hacheur.
+  \item
+    On considère un modèle couple de frottement sec constant.
+  \end{itemize}
+\item
+  \textbf{Ecarts~:} les courbes de réponses indicielles simulée et réelle sont
+  très proches, il est difficile de statuer sur les écarts. Les jeux
+  dans la transmission pourraient expliquer le retard sur la réponse
+  indicielle mesurée. Cependant, les autres causes d'écarts pourraient
+  être~:
+
+  \begin{itemize}
+  \item
+    L'estimation de \(K_{e},C_{0}\) et \(f\) est faite à partir de
+    grandeurs entachées d'erreurs de mesure et de la chaîne
+    d'acquisition notamment le filtrage numérique qui peut induire un
+    retard et une erreur due à la discrétisation.
+  \item
+    La stabilité du système n'est vérifiée que sur le modèle linéarisé.
+  \item
+    Le correcteur utilisé réellement est vraisemblablement un correcteur
+    numérique.
+  \item
+    Il existe des modèles de frottement plus complexes que celui choisi.
+  \end{itemize}
+\end{itemize}
+
 \end{corrige}
 \else
 \fi
 
+
+\ifprof
+\else
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=.8\textwidth]{images/image_fig19}
@@ -933,6 +1005,7 @@ Pour rappel : $u(t)$ est la fonction échelon unitaire.
 \newpage
 \clearpage
 \newpage
+
 
 \setcounter{page}{1}
 \section*{Document réponse}
@@ -994,3 +1067,4 @@ Pour rappel : $u(t)$ est la fonction échelon unitaire.
 \end{center}
 \newpage
 $\quad$
+\fi
