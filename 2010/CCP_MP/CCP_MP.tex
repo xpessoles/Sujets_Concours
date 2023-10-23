@@ -1,0 +1,431 @@
+La société Agronutrition est une PME du tissu économique midi-pyrénéen. Elle conçoit, 
+fabrique et commercialise une large gamme de compléments nutritionnels destinés à 
+améliorer la qualité et/ou le rendement des productions végétales (grandes cultures, vigne, 
+arboriculture, maraîchage). Utilisables en Agriculture Biologique, ces compléments 
+permettent d'améliorer les qualités nutritives des produits agricoles (teneur en protéines, 
+teneur en sucres, teneur en oligo-éléments, résistance aux meurtrissures, conservation, etc.). 
+
+L’outil industriel répond aux exigences spécifiées en terme d’Installation Classée pour la 
+Protection de l’Environnement. Il est spécifiquement dédié à la formulation, la fabrication et 
+le conditionnement des produits. 
+
+L’étude se limitera à l’atelier de conditionnement des produits, aujourd’hui en partie 
+automatisé.
+
+\section{Atelier de conditionnement des produits}
+
+\subsection{Présentation }
+Les produits réalisés par l’entreprise Agronutrition se présentent sous forme liquide et sont 
+élaborés et stockés dans des cuves avant d’être conditionnés dans des bidons de 5, 10, 20 ou 
+40 litres. 
+
+Les bidons vides sont livrés par palettes. Le conditionnement des produits consiste en un 
+certain nombre d’opérations réalisées sur des postes spécifiques : 
+\begin{itemize}
+\item poste 1 : dépalettisation des bidons vides;
+\item poste 2 : remplissage des bidons;
+\item poste 3 : bouchage des bidons;
+\item poste 4 : marquage jet d’encre des bidons pour assurer leur traçabilité;
+\item poste 5 : collage étiquette;
+\item poste 6 : palettisation des bidons;
+\item poste 7 : stockage des palettes pleines. 
+\end{itemize}
+Seules les opérations 2, 3, 4, 5 et 6 sont aujourd’hui entièrement automatisées. En particulier, 
+la palettisation des bidons pleins au poste 6 est réalisée par un robot Kuka KR 180-2 PA dont 
+les caractéristiques sont précisées en annexe 1, page 15. ****
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.5\linewidth]{fig_00}
+\end{figure}
+
+
+\subsection{Schéma d’implantation}
+****La Figure 1, page 2 représente le schéma d’implantation de l’atelier de conditionnement. Les 
+bidons sont déposés au poste 1 sur un tapis de transfert motorisé en mouvement continu. La 
+coordination des postes est basée sur le nombre de bidons présents dans les stocks 
+intermédiaires : un poste n’effectuera un cycle de production normal que si au moins un bidon 
+est présent dans le stock amont et que le stock aval n’est pas saturé.
+
+Le poste de palettisation 6 est protégé par une enceinte grillagée. Son accès est interdit durant 
+les évolutions du robot par mesure de sécurité. 
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.5\linewidth]{fig_01}
+\caption{Schéma d'implantation \ref{fig:01}}
+\end{figure}
+
+\subsection{Exigences du cahier des charges}
+\begin{itemize}
+\item La production est de 20 000 litres de produit par jour. 
+\item L’entreprise travaille 8 heures par jour. 
+\item Les palettes sont aux normes européennes de dimensions (mm) : 1200x800. 
+\item Le temps nécessaire au remplacement d’une palette pleine par une palette vide au 
+poste 6 est estimé à 2 minutes. 
+\end{itemize}
+On note d’autre part (voir Figure 2****, page 3) :
+\begin{itemize}
+\item \textbf{m} : nombre de bidons rangés par longueur de palettes ; 
+\item \textbf{n} : nombre de bidons rangés par largeur de palettes ; 
+\item \textbf{c} : nombre de couches de bidons par palette. 
+\end{itemize}
+****Le Tableau 1, page 3 indique les nombres n, m, c de bidons par palette ainsi que leurs 
+dimensions $d_i$ en fonction de leur capacité. La dimension $d_3$ correspond à la hauteur d’un 
+bidon. 
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.5\linewidth]{fig_02}
+\caption{Palette vue de dessus \ref{fig:02}}
+\end{figure}
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{llll}
+\hline
+Capacité & & Conditionnement sur la palette & \\
+(litres) 	& m×$d_1$ (mm)	& n×$d_2$ (mm)	& c×$d_3$ (mm)  \\
+5	& 10×120	& 5×160	& 5×310 \\
+10	& 6×200	& 5×160	& 4×360 \\
+20	& 5×240	& 4×200	& 3×450 \\
+40	& 4×300	& 4×200	& 2×720 \\
+\hline
+\end{tabular}
+\caption{Caractéristiques des bidons suivant leur capacité \ref{tab:01}}
+\end{table} 
+
+On se place dans le cas le plus défavorable, c'est-à-dire celui consistant à 
+palettiser des bidons de 5 litres. On se propose de déterminer la durée maximale nécessaire à 
+la dépose d’un bidon sur la palette. 
+
+\question{À partir des données définies dans le cahier des charges, déterminer le nombre de bidons de 5 litres à palettiser par jour.}
+
+\question{À partir des données définies dans le cahier des charges, en déduire le nombre de palettes à produire par jour.}
+
+\question{À partir des données définies dans le cahier des charges, en déduire le temps nécessaire à la composition d’une palette en minutes incluant le temps de changement d’une palette.}
+
+\question{À partir des données définies dans le cahier des charges, en déduire la durée maximale nécessaire à la dépose d’un bidon sur la palette en  secondes.}
+
+
+\section{Etude de la palettisation 6}
+La pièce maîtresse du poste 6 est un robot de palettisation Kuka KR 180-2 PA (voir annexe 1, 
+page 15****). Ses fonctions de service (voir Figure 3****, page 4) sont définies ci-après : 
+\begin{itemize}
+\item FP1 : Déposer les bidons sur la palette;
+\item FP2 : Déposer les cartons sur la palette (fonction non étudiée);
+\item FS3 : Piloter le robot;
+\item FS4 : Alimenter en énergie électrique les actionneurs;
+\item FS5 : Protéger l’environnement lors des évolutions du robot.
+\end{itemize}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.5\linewidth]{fig_03}
+\caption{Diagramme des interacteurs \ref{fig:03}}
+\end{figure}
+
+
+\subsection{Objectif }
+On se propose de vérifier que les caractéristiques du robot permettent de satisfaire la cadence 
+de production imposée par le cahier des charges. 
+
+\subsection{Données}
+\begin{itemize}
+\item Le temps $t_{P2}$ de remplissage d’un bidon de 5 litres au poste 2 est de 6 secondes. 
+\item Le temps $t_{P3}$ de bouchage d’un bidon au poste 3 est de 3 secondes. 
+\item Les opérations associées aux postes 4 et 5 se font à la << volée >>, sans arrêt du bidon,
+leur durée est donc négligeable. 
+\item Le grafcet de la Figure 16***, annexe 2, page 19 représente le fonctionnement normal du 
+poste de palettisation. Les positions du robot sont spécifiées dans l’annexe 3, page 20***
+ainsi que les étapes correspondantes du grafcet de fonctionnement normal. 
+\item Dans la position de référence notée $P_0$, $\alpha_1 = -45\degres$ (voir Figure 13***, annexe 1, page 17 la signification de l’angle $\alpha_1$). 
+\end{itemize}
+
+\subsection{Détermination de la cadence de production}
+Une simulation a permis d’estimer les amplitudes des déplacements des différents axes $A_i$ du robot lors de la dépose d’un bidon sur la palette. 
+
+Afin de déterminer la durée d’un déplacement, seul est pris en compte, parmi les axes $A_i$ sollicités, celui dont l’amplitude, en valeur absolue, est la plus importante lors de ce déplacement. Les résultats sont consignés dans le Tableau 2, page 5.**** 
+
+Le profil de vitesse imposé lors de ces déplacements est représenté Figure 4, page 5. ****
+
+\question{Déterminer, pour les cas 2 et 3 définis dans le Tableau 2***, page 5, la durée 
+$d_i$ des différentes phases du profil de vitesse. En déduire le temps total $T_t$ nécessaire à ces 
+déplacements. Les résultats seront reportés dans le tableau 5*** du document réponse DR2.}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{llllll}
+Cas & Déplacements & Axe & Ampltude maximale 
+& $\omega_{\text{max}} \si{\degres/s}$
+& $\dot{\omega}_{\text{max}} \si{\degres/s^2}$ \\
+1 & $P_0$ à $P_1$, $P_1$ à $P_0$ & $A_1$ & 45\degres & 105 & 300 \\  
+2 & $P_1$ à                                  & $A_1$ & 90\degres & 105 & 300 \\ 
+3 & $P_1$ à $P_2$, $P_2$ à $P_1$,
+      $P_i$ à $P_j$, $P_j$ à $P_i$,   & $A_3$ & 15\degres & 105 & 300 \\
+\hline
+\end{tabular}
+\caption{Amplitudes maximales lors des déplacements \ref{tab:02}}
+\end{table} 
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.5\linewidth]{fig_04}
+\caption{Profil des vitesses  \ref{fig:04}}
+\end{figure}
+
+Nota : Indépendamment des valeurs calculées question 2-1***, on retiendra, pour la suite 
+du sujet, les durées suivantes des différentes opérations :
+
+\begin{tabular}{lll}
+\hline
+Étapes	& Opérations 			& Durée Tt (s) 	\\
+1	& Déplacer le robot de P0 à P1 	& 0,8 		\\
+3 et 5 	& Déplacer le robot de P1 à P2 ou de P2 à P1 & 0,5 \\ 
+4 	& Prendre un bidon 		& 0,1 \\ 
+9 	& Déplacer le robot de P1 à Pi 	& 1,2 \\
+10 et 12 & Déplacer le robot de Pi à Pj ou de Pj à Pi & 0,5 \\ 
+11 	& Déposer un bidon 		& 0,1 \\ 
+13 	& Déplacer le robot de Pi à P0 	& 0,8 \\
+\hline
+\end{tabular}
+
+Le temps nécessaire à la détermination de la position Pi lors de l’étape 8 est négligeable. 
+
+\question{ En supposant nul le temps d’attente d’un bidon lors de l’étape 2, déterminer 
+le temps $t_{P6}$ nécessaire à la dépose d’un bidon sur la palette, temps nécessaire au robot pour 
+partir de la position P0 et revenir en P0. }
+
+On considère comme instant initial l’instant où le premier bidon arrive au poste 6 suite à la 
+mise en route du système de conditionnement. Le niveau $Q(t)$ du stock de bidons en amont du 
+poste 6 évolue alors comme indiqué Figure 5, page 6*** avec :
+\begin{itemize}
+\item phase 1 : Chargement palette 1 
+\item phase 2 : Evacuation palette 1 
+\item phases 3 4 : Chargement palette 2 
+\item phase 5 : Evacuation palette 2.
+\end{itemize}
+
+Le cycle se reproduit ensuite identique à lui-même pour les autres palettes. 
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.5\linewidth]{fig_05}
+\caption{Evolution du stock en amont du poste 6\ref{fig:05}}
+\end{figure}
+
+
+\question{En considérant la durée des opérations $t_{P2}$ et $t_{P3]$ définies paragraphe 2-2***, 
+justifier que le niveau du stock n’évolue pas lors de la phase 1. Quel est alors le temps 
+d’attente d’un bidon lors de l’étape 2 ?}
+
+\question{Déterminer le niveau $\indice{Q}{max}$ du stock amont atteint lors de la phase 2. La 
+longueur de 4 mètres de la zone de stockage amont du poste 6 est-elle suffisante ?}
+
+\question{Déterminer :}
+\textit{
+\begin{enumerate}
+\item la durée $t_3$ de la phase 3 ; 
+\item le nombre de bidons chargés sur la palette lors de cette phase ; 
+\item la durée $t_4$ de la phase 4.
+\end{itemize}}
+
+\question{En déduire le temps nécessaire à la formation d’une palette correspondant 
+à la durée des phases 3, 4 et 5. Conclure quant à la satisfaction du cahier des charges.}
+
+%3 
+\section{Vérification du système de freinage du robot}
+%3.1 
+\subsection{Objectif }
+
+Suite à l’ouverture inopinée du portail d’accès au poste 6 ou à l’appui sur le bouton d’arrêt 
+d’urgence, le robot doit immédiatement s’immobiliser dans la position courante. On souhaite 
+alors vérifier que les freins équipant le robot sont suffisants pour assurer sa configuration 
+d’équilibre dans le cas d’une charge maximale de \SI{50}{daN} (préhenseur + bidon de 40 litres) et 
+qu’il ne faudra pas mettre des actionneurs en parallèle.
+
+
+%3.2 
+\subsection{Données}
+On se place dans la situation particulière définie Figure 6** avec $\alpha_2= -\SI{90}{\degres}$ et $\alpha_3= +\SI{90}{\degres}$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.5\linewidth]{fig_06}
+\caption{Configuration particulière du robot\ref{fig:06}}
+\end{figure}
+
+
+On donne : 
+\begin{itemize}
+\item $O_2O_3 = O_6O_7 = \SI{1250}{mm}$; 
+\item $O_3O_{10} = O_8O_9 = \SI{1350}{mm}$; 
+\item $O_2O_6 = O_3O_7 = O_3O_8 = O_9O_{10} = \SI{500}{mm}$; 
+\item $\vect{P} = -500\vect{z_4}$. 
+\end{itemize}
+
+On admettra pour simplifier que le point $O_4$ est situé sur l’axe \vect{x_3} et que l’axe \vect{z_4} passe par le point $O_9$. De même, les poids propres des pièces seront négligés par rapport aux autres 
+actions. 
+
+Les liaisons pivot sont supposées parfaites (pas de frottement). 
+
+Les couples de freinage maxi $M_{f2}$ et $M_{f3}$ des freins associés aux moteurs $M_2$ et $M_3$ sont de 
+\SI{5}{mN} sur l’arbre moteur. On leur adjoint en série un réducteur de rapport 1/200.
+
+\question{Déterminer les actions de la barre 8 et du bras 3 sur le poignet 4. }
+
+\question{En isolant l’ensemble 3 et 4 et en considérant les informations fournies Tableau 4***, 
+annexe 1, page 16****, déterminer l’expression du moment $M_{f3}$ correspondant à l’action 
+du frein sur la pièce 3 en $O_3$.}
+
+Le dispositif de freinage ne permet qu’un couple maxi de \SI{5}{mN} sur l’axe 
+moteur. 
+
+
+\question{Quel est alors le couple de freinage disponible en sortie du réducteur ? }
+
+\question{Le maintien du freinage est-il assuré ?}
+
+On veut alors vérifier que le dispositif de freinage du moteur $M_2$ convient. 
+
+\question{En isolant la pièce 7, déterminer l’action de la barre 6 sur la pièce 7. }
+
+\question{En considérant l’ensemble 2, 3, 4, 7, 8, déterminer l’expression du moment $M_{f2}$
+correspondant à l’action du frein sur la pièce 2 en $O_2$. Calculer $M_{f2}$.
+}
+
+\question{Le dispositif de freinage étant identique à celui de l’axe 3, le maintien du freinage 
+est-il assuré ?}
+
+\section{Analyse cinématique du robot}
+
+\subsection{Objectif}
+
+On souhaite tout d’abord s’assurer que, pour tous les conditionnements de produit, le robot 
+pourra mettre en position le bidon le plus éloigné situé dans les coins du bord extérieur de la 
+palette. 
+
+On s’intéressera ensuite aux particularités des mouvements du robot (dont la vocation est la 
+palettisation) résultant de l’utilisation d’un double parallélogramme. 
+
+\subsection{Données} 
+\begin{itemize}
+\item L’espace de travail du robot est défini Figure 15***, annexe 1, page 18. 
+\item Les palettes sont disposées symétriquement par rapport à l’axe $\axe{O_0}{x_0}$ (voir Figure 1***, 
+page 2) et leur bord intérieur est situé à une distance de 1,6 mètre du point $O_0$. 
+\item On suppose que l’axe vertical de symétrie d’un bidon est confondu avec l’axe $\axe{O_4}{z_4}$
+et que la face supérieure d’un bidon est située dans le plan $\angl{x_4}{z_4}$. 
+\item Distance d’approche $P_iP_j$ = $0,5 \times$ hauteur d’un bidon (voir grafcet annexe 2***, page 19). 
+\item Le plan supérieur de la palette est situé à une hauteur de \SI{200}{mm} du sol. 
+\end{itemize}
+
+
+\question{A partir des données précédentes, en déduire pour quel type de bidon le 
+conditionnement est le plus critique.}
+
+
+\question{Représenter sur la figure 17*** du document réponse DR1 la palette pleine (un tracé à 
+main levée est suffisant).}
+
+
+\question{Indiquer sur ce document les coordonnées $x_4$, $y_4$, $z_4$ du point $O_4$ dans le cas (ou les 
+cas) le plus défavorable. Conclure. }
+
+On se place dans la position instantanée de la Figure 6***, page 7, en supposant les 
+différents moteurs alimentés et en désignant par $\omega_{ij}$ la vitesse angulaire du solide $i$ par 
+rapport au solide $j$.
+
+\question{Déterminer $\vect{V}\left(O_4/7\right)$,  vitesse de $O_4$ par rapport à 7.}
+
+\question{Déterminer $\vectv{O_4}{7}{1}$,  vitesse de $O_4$ appartenant à 7 par rapport à 1.}
+
+\question{Déterminer $\vectv{O_4}{1}{0}$,  vitesse de $O_4$ appartenant à 1 par rapport au sol.}
+
+\question{En déduire la nature 
+du mouvement du poignet 4 par rapport 
+à la pièce 1. }
+
+\question{Ceci correspond-il à la vocation de 
+palettisation du robot ? }
+
+\question{Quel est l’intérêt d’une telle structure 
+par rapport à celle d’un robot 6 axes 
+(voir Figure 7) ?****}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.5\linewidth]{fig_07}
+\caption{Robot 6 axes \ref{fig:07}}
+\end{figure}
+
+
+
+%6 ASSERVISSEMENT EN POSITION DE L’AXE A1 
+\section{Asservissement en position de l'axe A1}
+
+\subsection{Objectif}
+On s’intéresse à l’asservissement en position de l’axe A1. On souhaite s’assurer que la chaîne 
+fonctionnelle d’asservissement permet de respecter les performances souhaitées en terme de 
+précision, rapidité et stabilité tout en restant peu sensible aux variations de l’inertie du robot 
+suivant la charge transportée. 
+
+\subsection{Données} 
+L’axe A1 est mu par un servomoteur qui présente l'avantage de posséder une très faible 
+inertie. Le comportement électromécanique de ce type de moteur est donné par les équations 
+suivantes : 
+\begin{itemize}[$\bullet$]
+\item $u(t) = Ri(t) + e(t)$ (1);
+\item $e(t) = k_e \omega_m(t)$  (2);
+\item $J_e \dfrac{\d \omega_m}{\d t} = c_m(t)$ (3);
+\item $c_m(t) = k_t i(t)$ (4).
+\end{itemize}
+
+Avec $u(t)$ la tension appliquée aux bornes du moteur, $i(t)$ le courant d’induit, $e(t)$ la force 
+contre électromotrice, $\omega_m(t)$ la vitesse de rotation du moteur, $c_m(t)$ le couple délivré par le 
+moteur et $J_e$ l’inertie équivalente ramenée sur l’arbre moteur. 
+
+Le réducteur retenu pour cette motorisation est un réducteur Harmonic-Drive. Les 
+caractéristiques de l’ensemble moteur-réducteur sont les suivantes : 
+\begin{itemize}
+\item $k_e = \SI{0,2}{V/(rad/s)}$ : constante de force électromotrice ; 
+\item $k_t = \SI{0,2}{Nm/A}$ : constante de couple ; 
+\item $R = \SI{2}{\Omega}$ : résistance de l’induit ; 
+\item $J_m = \SI{4e-3}{kg.m^2}$ : inertie de l’ensemble axe moteur et réducteur sur l'arbre moteur ; 
+\item $N = 200$ : rapport de transmission. 
+\end{itemize}
+
+L’inertie $J_1$ du robot autour de l’axe $\axe{O_1}{z_1}$ dépend de la configuration du robot et de la masse
+transportée. Elle est telle que : 
+\begin{itemize}
+\item $J_1 \text{mini} = \SI{50}{kg.m^2}$  lorsque le déplacement a lieu à vide ; 
+\item $J_1 \text{maxi} = \SI{200}{kg.m^2}$  lorsque la masse transportée est de \SI{50}{daN}. 
+\end{itemize}
+L’inertie équivalente $J_e$ ramenée sur l’arbre moteur est alors égale à : 
+\begin{itemize}
+\item $J_e \text{mini} = \SI{5,25e-3}{kg.m^2}$  lorsque $J_1 = J_1 \text{mini}$; 
+\item $J_e \text{maxi} = \SI{9e-3}{kg.m^2}$  lorsque $J_1 = J_1 \text{maxi}$. 
+\end{itemize}
+
+La chaîne fonctionnelle de l’asservissement de l’axe A1 est représentée Figure 8***, page 12. 
+
+La boucle interne réalise une correction de vitesse à partir de la tension $u_g(t)$ fournie par une 
+génératrice tachymétrique de gain $K_g$ montée en prise directe sur le moteur. $G$ est le gain 
+réglable de l’amplificateur de puissance. 
+
+
+La boucle externe réalise la correction de position à partir de la tension $u_r(t)$ fournie par le 
+capteur de position de gain $K_r$ monté en prise directe sur l’arbre de sortie du réducteur. La 
+fonction de transfert du correcteur est notée $C(p)$.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{fig_08}
+\caption{Asservissement en vitesse et position de l’axe A1\ref{fig:08}}
+\end{figure}
