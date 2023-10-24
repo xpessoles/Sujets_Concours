@@ -32,7 +32,7 @@ certain nombre d’opérations réalisées sur des postes spécifiques :
 \end{itemize}
 Seules les opérations 2, 3, 4, 5 et 6 sont aujourd’hui entièrement automatisées. En particulier, 
 la palettisation des bidons pleins au poste 6 est réalisée par un robot Kuka KR 180-2 PA dont 
-les caractéristiques sont précisées en annexe 1, page 15. ****
+les caractéristiques sont précisées en annexe 1.
 
 \begin{figure}[H]
 \centering
@@ -41,7 +41,7 @@ les caractéristiques sont précisées en annexe 1, page 15. ****
 
 
 \subsection{Schéma d’implantation}
-****La Figure 1, page 2 représente le schéma d’implantation de l’atelier de conditionnement. Les 
+La Figure \label{kuka:kuka:fig:01} représente le schéma d’implantation de l’atelier de conditionnement. Les 
 bidons sont déposés au poste 1 sur un tapis de transfert motorisé en mouvement continu. La 
 coordination des postes est basée sur le nombre de bidons présents dans les stocks 
 intermédiaires : un poste n’effectuera un cycle de production normal que si au moins un bidon 
@@ -54,7 +54,7 @@ les évolutions du robot par mesure de sécurité.
 \begin{figure}[H]
 \centering
 \includegraphics[width=.5\linewidth]{fig_01}
-\caption{Schéma d'implantation \ref{fig:01}}
+\caption{Schéma d'implantation \label{kuka:fig:01}}
 \end{figure}
 
 \subsection{Exigences du cahier des charges}
@@ -65,7 +65,7 @@ les évolutions du robot par mesure de sécurité.
 \item Le temps nécessaire au remplacement d’une palette pleine par une palette vide au 
 poste 6 est estimé à 2 minutes. 
 \end{itemize}
-On note d’autre part (voir Figure 2****, page 3) :
+On note d’autre part (voir Figure \ref{kuka:fig:02}, page 3) :
 \begin{itemize}
 \item \textbf{m} : nombre de bidons rangés par longueur de palettes ; 
 \item \textbf{n} : nombre de bidons rangés par largeur de palettes ; 
@@ -79,15 +79,15 @@ bidon.
 \begin{figure}[H]
 \centering
 \includegraphics[width=.5\linewidth]{fig_02}
-\caption{Palette vue de dessus \ref{fig:02}}
+\caption{Palette vue de dessus \label{kuka:fig:02}}
 \end{figure}
 
 
 \begin{table}[H]
 \centering
-\begin{tabular}{llll}
+\begin{tabular}{lccc}
 \hline
-Capacité & & Conditionnement sur la palette & \\
+Capacité & \multicolumn{3}{c}{Conditionnement sur la palette} \\
 (litres) 	& m×$d_1$ (mm)	& n×$d_2$ (mm)	& c×$d_3$ (mm)  \\
 5	& 10×120	& 5×160	& 5×310 \\
 10	& 6×200	& 5×160	& 4×360 \\
@@ -95,7 +95,7 @@ Capacité & & Conditionnement sur la palette & \\
 40	& 4×300	& 4×200	& 2×720 \\
 \hline
 \end{tabular}
-\caption{Caractéristiques des bidons suivant leur capacité \ref{tab:01}}
+\caption{Caractéristiques des bidons suivant leur capacité \label{kuka:tab:01}}
 \end{table} 
 
 On se place dans le cas le plus défavorable, c'est-à-dire celui consistant à 
@@ -113,7 +113,7 @@ la dépose d’un bidon sur la palette.
 
 \section{Etude de la palettisation 6}
 La pièce maîtresse du poste 6 est un robot de palettisation Kuka KR 180-2 PA (voir annexe 1, 
-page 15****). Ses fonctions de service (voir Figure 3****, page 4) sont définies ci-après : 
+page 15****). Ses fonctions de service (voir Figure \ref{kuka:fig:03}) sont définies ci-après : 
 \begin{itemize}
 \item FP1 : Déposer les bidons sur la palette;
 \item FP2 : Déposer les cartons sur la palette (fonction non étudiée);
@@ -126,7 +126,7 @@ page 15****). Ses fonctions de service (voir Figure 3****, page 4) sont définie
 \begin{figure}[H]
 \centering
 \includegraphics[width=.5\linewidth]{fig_03}
-\caption{Diagramme des interacteurs \ref{fig:03}}
+\caption{Diagramme des interacteurs \label{kuka:fig:03}}
 \end{figure}
 
 
@@ -151,40 +151,43 @@ Une simulation a permis d’estimer les amplitudes des déplacements des différ
 
 Afin de déterminer la durée d’un déplacement, seul est pris en compte, parmi les axes $A_i$ sollicités, celui dont l’amplitude, en valeur absolue, est la plus importante lors de ce déplacement. Les résultats sont consignés dans le Tableau 2, page 5.**** 
 
-Le profil de vitesse imposé lors de ces déplacements est représenté Figure 4, page 5. ****
+Le profil de vitesse imposé lors de ces déplacements est représenté Figure \ref{kuka:fig:04}.
 
 \question{Déterminer, pour les cas 2 et 3 définis dans le Tableau 2***, page 5, la durée 
 $d_i$ des différentes phases du profil de vitesse. En déduire le temps total $T_t$ nécessaire à ces 
 déplacements. Les résultats seront reportés dans le tableau 5*** du document réponse DR2.}
 
-\begin{table}[H]
+\begin{table}[!h]
 \centering
-\begin{tabular}{llllll}
-Cas & Déplacements & Axe & Ampltude maximale 
-& $\omega_{\text{max}} \si{\degres/s}$
-& $\dot{\omega}_{\text{max}} \si{\degres/s^2}$ \\
+\begin{tabular}{llcccc}
+\hline
+Cas & Déplacements & Axe & Amplitude  & $\omega_{\text{max}}$ &  $\dot{\omega}_{\text{max}} $\\
+&&&maximale & $ \si{\degres/s}$ & $ \si{\degres/s^2}$ \\
+\hline
 1 & $P_0$ à $P_1$, $P_1$ à $P_0$ & $A_1$ & 45\degres & 105 & 300 \\  
 2 & $P_1$ à                                  & $A_1$ & 90\degres & 105 & 300 \\ 
 3 & $P_1$ à $P_2$, $P_2$ à $P_1$,
       $P_i$ à $P_j$, $P_j$ à $P_i$,   & $A_3$ & 15\degres & 105 & 300 \\
 \hline
 \end{tabular}
-\caption{Amplitudes maximales lors des déplacements \ref{tab:02}}
+\caption{Amplitudes maximales lors des déplacements \label{kuka:tab:02}}
 \end{table} 
 
 
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \includegraphics[width=.5\linewidth]{fig_04}
-\caption{Profil des vitesses  \ref{fig:04}}
+\caption{Profil des vitesses  \label{kuka:fig:04}}
 \end{figure}
 
 Nota : Indépendamment des valeurs calculées question 2-1***, on retiendra, pour la suite 
 du sujet, les durées suivantes des différentes opérations :
 
+\begin{center}
 \begin{tabular}{lll}
 \hline
 Étapes	& Opérations 			& Durée Tt (s) 	\\
+\hline
 1	& Déplacer le robot de P0 à P1 	& 0,8 		\\
 3 et 5 	& Déplacer le robot de P1 à P2 ou de P2 à P1 & 0,5 \\ 
 4 	& Prendre un bidon 		& 0,1 \\ 
@@ -194,6 +197,7 @@ du sujet, les durées suivantes des différentes opérations :
 13 	& Déplacer le robot de Pi à P0 	& 0,8 \\
 \hline
 \end{tabular}
+\end{center}
 
 Le temps nécessaire à la détermination de la position Pi lors de l’étape 8 est négligeable. 
 
@@ -203,7 +207,7 @@ partir de la position P0 et revenir en P0. }
 
 On considère comme instant initial l’instant où le premier bidon arrive au poste 6 suite à la 
 mise en route du système de conditionnement. Le niveau $Q(t)$ du stock de bidons en amont du 
-poste 6 évolue alors comme indiqué Figure 5, page 6*** avec :
+poste 6 évolue alors comme indiqué Figure \ref{kuka:fig:05} avec :
 \begin{itemize}
 \item phase 1 : Chargement palette 1 
 \item phase 2 : Evacuation palette 1 
@@ -216,8 +220,8 @@ Le cycle se reproduit ensuite identique à lui-même pour les autres palettes.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.5\linewidth]{fig_05}
-\caption{Evolution du stock en amont du poste 6\ref{fig:05}}
+\includegraphics[width=.75\linewidth]{fig_05}
+\caption{Evolution du stock en amont du poste 6\label{kuka:fig:05}}
 \end{figure}
 
 
@@ -255,10 +259,10 @@ qu’il ne faudra pas mettre des actionneurs en parallèle.
 \subsection{Données}
 On se place dans la situation particulière définie Figure 6** avec $\alpha_2= -\SI{90}{\degres}$ et $\alpha_3= +\SI{90}{\degres}$.
 
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \includegraphics[width=.5\linewidth]{fig_06}
-\caption{Configuration particulière du robot\ref{fig:06}}
+\caption{Configuration particulière du robot\label{kuka:fig:06}}
 \end{figure}
 
 
@@ -317,8 +321,7 @@ palettisation) résultant de l’utilisation d’un double parallélogramme.
 \subsection{Données} 
 \begin{itemize}
 \item L’espace de travail du robot est défini Figure 15***, annexe 1, page 18. 
-\item Les palettes sont disposées symétriquement par rapport à l’axe $\axe{O_0}{x_0}$ (voir Figure 1***, 
-page 2) et leur bord intérieur est situé à une distance de 1,6 mètre du point $O_0$. 
+\item Les palettes sont disposées symétriquement par rapport à l’axe $\axe{O_0}{x_0}$ (voir Figure \ref{kuka:fig:01}) et leur bord intérieur est situé à une distance de 1,6 mètre du point $O_0$. 
 \item On suppose que l’axe vertical de symétrie d’un bidon est confondu avec l’axe $\axe{O_4}{z_4}$
 et que la face supérieure d’un bidon est située dans le plan $\angl{x_4}{z_4}$. 
 \item Distance d’approche $P_iP_j$ = $0,5 \times$ hauteur d’un bidon (voir grafcet annexe 2***, page 19). 
@@ -337,7 +340,7 @@ main levée est suffisant).}
 \question{Indiquer sur ce document les coordonnées $x_4$, $y_4$, $z_4$ du point $O_4$ dans le cas (ou les 
 cas) le plus défavorable. Conclure. }
 
-On se place dans la position instantanée de la Figure 6***, page 7, en supposant les 
+On se place dans la position instantanée de la Figure \ref{kuka:fig:06}, en supposant les 
 différents moteurs alimentés et en désignant par $\omega_{ij}$ la vitesse angulaire du solide $i$ par 
 rapport au solide $j$.
 
@@ -347,21 +350,17 @@ rapport au solide $j$.
 
 \question{Déterminer $\vectv{O_4}{1}{0}$,  vitesse de $O_4$ appartenant à 1 par rapport au sol.}
 
-\question{En déduire la nature 
-du mouvement du poignet 4 par rapport 
-à la pièce 1. }
+\question{En déduire la nature du mouvement du poignet 4 par rapport à la pièce 1. }
 
 \question{Ceci correspond-il à la vocation de 
 palettisation du robot ? }
 
-\question{Quel est l’intérêt d’une telle structure 
-par rapport à celle d’un robot 6 axes 
-(voir Figure 7) ?****}
+\question{Quel est l’intérêt d’une telle structure par rapport à celle d’un robot 6 axes  (voir Figure \ref{kuka:fig:07}) ?}
 
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \includegraphics[width=.5\linewidth]{fig_07}
-\caption{Robot 6 axes \ref{fig:07}}
+\caption{Robot 6 axes \label{kuka:fig:07}}
 \end{figure}
 
 
@@ -412,7 +411,7 @@ L’inertie équivalente $J_e$ ramenée sur l’arbre moteur est alors égale à
 \item $J_e \text{maxi} = \SI{9e-3}{kg.m^2}$  lorsque $J_1 = J_1 \text{maxi}$. 
 \end{itemize}
 
-La chaîne fonctionnelle de l’asservissement de l’axe A1 est représentée Figure 8***, page 12. 
+La chaîne fonctionnelle de l’asservissement de l’axe A1 est représentée Figure \ref{kuka:fig:08}. 
 
 La boucle interne réalise une correction de vitesse à partir de la tension $u_g(t)$ fournie par une 
 génératrice tachymétrique de gain $K_g$ montée en prise directe sur le moteur. $G$ est le gain 
@@ -424,8 +423,8 @@ capteur de position de gain $K_r$ monté en prise directe sur l’arbre de sorti
 fonction de transfert du correcteur est notée $C(p)$.
 
 
-\begin{figure}[H]
+\begin{figure}[!h]
 \centering
 \includegraphics[width=\linewidth]{fig_08}
-\caption{Asservissement en vitesse et position de l’axe A1\ref{fig:08}}
+\caption{Asservissement en vitesse et position de l’axe A1\label{kuka:fig:08}}
 \end{figure}
