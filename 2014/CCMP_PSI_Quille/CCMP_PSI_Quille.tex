@@ -815,6 +815,9 @@ La servovalve sature.
 
 
 \subsection{Comportement pour une commande de faible amplitude}
+
+\ifprof
+\else
 On étudie la réponse du système non corrigé ($C(p) = 1$) à une entrée échelon de 5\degres d’amplitude avec $F_R = 0$. Le modèle de travail qui a permis de tracer les courbes de la figure R6 est :
 
 $$ 
@@ -822,6 +825,7 @@ $$
 \quad \quad 
 \indice{H}{BO}(p)=\dfrac{2,2}{p\left( 1+0,12p+0,04 p^2\right)}.
 $$
+\fi
 
 %Question 22
 \question{}
@@ -832,13 +836,19 @@ $$
 \item Montrer que tout au long de ce fonctionnement, la servovalve fonctionnera sans saturer.
 \item De quelle hypothèse générale d’étude des systèmes asservis ce constat participe-t-il ?
 \end{enumerate}}
-
 \ifprof
 \begin{corrige}
+\begin{enumerate}
+\item $v(0+)=\theta_0 K_c'-0 = 5\times 1,1 = \SI{5,5}{V}$.
+\item $v(0+) < \SI{10}{V}$ donc le fonctionnement est sans saturation.
+\item Sans saturation on valide l'hypothèse de système linéaire.
+\end{enumerate}
 \end{corrige}
 \else
 \fi
 
+\ifprof
+\else
 
 \vspace{.5cm}
 
@@ -849,6 +859,8 @@ Une simulation de la réponse indicielle à cet échelon de 5\degres d’amplitu
 \end{itemize}
 
 À l’utilisation, le correcteur proportionnel réglé à 0,44 n’a pas donné satisfaction car le mouvement saccadé de la quille dû aux fluctuations de sa vitesse de rotation générait dans certaines conditions de navigation des perturbations compromettant la stabilité de route du navire. L’examen attentif de cette réponse indicielle fait apparaître la persistance d’un phénomène oscillatoire dont l’origine supposée se trouve dans le caractère résonant du vérin.
+
+\fi
 
 %Question 23
 \question{}
@@ -862,11 +874,23 @@ $\indice{H}{BO}(p)$ en indiquant les valeurs numériques associées aux points p
 \end{itemize}}
 \ifprof
 \begin{corrige}
+\begin{enumerate}
+\item $\omega_0 = \SI{5}{rad/s}$, $20\log\left(\dfrac{\indice{K}{BO}}{\omega_0}\right)=20\log\left(\dfrac{2,2}{5}\right) \simeq -\SI{7}{dB}$.
+\begin{center}
+\includegraphics[width=.75\linewidth]{cor_04}
+\end{center}
+%\caption{Stabilité << de formes >> \label{fig_02_quille}}
+
+\item $\dfrac{2\xi}{\omega_0} = 0,12$ $\Rightarrow \xi = \dfrac{0,12}{2}\omega_0 = 0,3$. $\omega_r = \omega_0 \sqrt{1-2\xi^2} =\SI{4,5}{rad/s}$.
+\item $\Delta K = 20\log\left( \dfrac{1}{2\xi\sqrt{1-\xi^2}}\right) = \SI{4,84}{dB}$.
+\end{enumerate}
 \end{corrige}
 \else
 \fi
 
 
+\ifprof
+\else
 \begin{figure}[!h]
 \centering
 \includegraphics[width=.6\linewidth]{fig_16}
@@ -875,6 +899,7 @@ $\indice{H}{BO}(p)$ en indiquant les valeurs numériques associées aux points p
 
 Pour éliminer le phénomène de résonance, on recherche l’expression de $C(p)$ permettant d’abaisser l’amplitude de $\Delta K$ à la pulsation $\omega_r$. Le concepteur a choisi un correcteur à retard de phase de fonction de transfert $C(p)=\indice{K}{COR}\dfrac{1+Tp}{1+bTp}$ avec $b>1$. Ce correcteur présente un extremum de la courbe de phase à la pulsation $\omega^*$ tel que : $\sin\left( \phi\left(\omega *\right)\right)=\dfrac{1-b}{1+b}$ et $\omega^*=\dfrac{1}{T\sqrt{b}}$.     
 L’étude consiste à déterminer les valeurs de $T$ et $b$.
+\fi
 
 %Question 24
 \question{}
@@ -887,6 +912,11 @@ Déterminer alors en fonction de $b$, l’amplitude $\left| C(j\omega^*)\right|_
 \end{enumerate}}
 \ifprof
 \begin{corrige}
+\begin{center}
+\includegraphics[width=.75\linewidth]{cor_05}
+\end{center}
+$| C(j\omega^*)|_{dB} = 20 \log \indice{K}{Cor} - 10 \log (1+b) + 10\log \left(1+\dfrac{1}{b}\right) = -10\log b$.
+
 \end{corrige}
 \else
 \fi
@@ -896,6 +926,10 @@ Déterminer alors en fonction de $b$, l’amplitude $\left| C(j\omega^*)\right|_
 \question{Pour $\indice{K}{COR} =1$, en faisant correspondre la pulsation de résonance $\omega_r$ de $\indice{H}{BO}$ à $\omega^*$ , calculer b pour que « l’excès » de gain $\Delta K$ soit compensé par le correcteur et calculer la valeur de $T$. Calculer ensuite le supplément de déphasage introduit par le correcteur à la pulsation $\omega^*$.}
 \ifprof
 \begin{corrige}
+\begin{enumerate}
+\item $10\log b = \Delta K$ soit $b=10^{\Delta K/10}$ et $b=3,05$. Il faut $\omega^* = \omega_r = \dfrac{1}{T\sqrt{b}}$ et $T = \dfrac{1}{\omega_r \sqrt{b}}=\SI{0,127}{s}$.
+\item $\varpi(\omega^*) = \arcsin \dfrac{1-b}{1+b} = -\SI{30,4}{\degres}$.
+\end{enumerate}
 \end{corrige}
 \else
 \fi
@@ -907,6 +941,10 @@ La réponse indicielle correspondant à ce réglage (entrée échelon de 5\degre
 \question{Déterminer la vitesse de rotation angulaire maximale de la quille obtenue avec ce réglage du correcteur.}
 \ifprof
 \begin{corrige}
+\begin{center}
+\includegraphics[width=.75\linewidth]{cor_06}
+\end{center}
+$\indice{\omega}{max} = \SI{3}{0,625}=\SI{4,8}{\degres/s}$.
 \end{corrige}
 \else
 \fi
@@ -915,6 +953,11 @@ La réponse indicielle correspondant à ce réglage (entrée échelon de 5\degre
 \question{Validez les critères C21 et C22 en laissant vos constructions apparentes.}
 \ifprof
 \begin{corrige}
+
+$t_{5\%}=\SI{2,3}{s}<\SI{4}{s}$ et $\indice{\omega}{max} = \SI{4,8}{\degres/s}<\SI{8}{\degres/s}$. 
+Les critères C21 et C22 sont donc respectés (mais le temps nécessaire pour passer de 0 à 45\degres sera supérieur à \SI{9,3}{s}. 
+
+
 \end{corrige}
 \else
 \fi
