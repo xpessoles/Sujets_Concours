@@ -767,13 +767,15 @@ ces conditions les évolutions temporelles de deux grandeurs de la boucle d’as
 sortant de la servovalve $q(t)$ et la position angulaire de la quille $\theta(t)$.
 \fi
 
-
+\ifprof
+\else
 %Question 20
 Sur cette figure R6, la courbe représentative de $q(t)$ présente un palier où $q(t)$ garde une valeur constante.    
 \begin{center}
 \includegraphics[width=.5\linewidth]{dr_06}
 %\caption{Stabilité << de formes >> \label{fig_02_quille}}
 \end{center}
+\fi
 
 \question{A l’aide de la caractéristique de la servovalve :}
 \vspace{-.4cm}
@@ -911,9 +913,9 @@ L’étude consiste à déterminer les valeurs de $T$ et $b$.
 Déterminer alors en fonction de $b$, l’amplitude $\left| C(j\omega^*)\right|_{dB}$ à la pulsation notée $\omega^*$.
 \end{enumerate}}
 \ifprof
-\begin{corrige}
+\begin{corrige}~\\
 \begin{center}
-\includegraphics[width=.75\linewidth]{cor_05}
+\rotatebox{90}{\includegraphics[width=.5\linewidth]{cor_05}}
 \end{center}
 $| C(j\omega^*)|_{dB} = 20 \log \indice{K}{Cor} - 10 \log (1+b) + 10\log \left(1+\dfrac{1}{b}\right) = -10\log b$.
 
@@ -940,9 +942,9 @@ La réponse indicielle correspondant à ce réglage (entrée échelon de 5\degre
 %%Question 26 
 \question{Déterminer la vitesse de rotation angulaire maximale de la quille obtenue avec ce réglage du correcteur.}
 \ifprof
-\begin{corrige}
+\begin{corrige}~\\
 \begin{center}
-\includegraphics[width=.75\linewidth]{cor_06}
+\includegraphics[width=.6\linewidth]{cor_06}
 \end{center}
 $\indice{\omega}{max} = \SI{3}{0,625}=\SI{4,8}{\degres/s}$.
 \end{corrige}
