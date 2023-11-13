@@ -358,15 +358,19 @@ Dans les hypothèses utilisées pour constituer le modèle de calcul, indiquer c
 
 \ifprof
 \begin{corrige}~\\
-\begin{center}
-\includegraphics[width=.5\linewidth]{cor_02}
-\end{center}
 
+\begin{minipage}[c]{.42\linewidth}
+\begin{center}
+\includegraphics[width=.95\linewidth]{cor_02}
+\end{center}
+\end{minipage}\hfill
+\begin{minipage}[c]{.5\linewidth}
 \begin{enumerate} 
 \item à \SI{1}{s}, $2200+5800+2500+4000=\SI{14500}{W}$; à \SI{3}{s} $0+4000+2500+16000=\SI{22500}{W}$. Le maximum est à environ \SI{22,5}{kW}.
 Le maximum est bien sur cet intervalle car le poids y est résistant (le poids est moteur sur $[\SI{5}{s} ; \SI{8}{s}]$). 
 \item La différence est de \SI{7,5}{kW}. Elle ne peut pas provenir des hypothèses faites (liaisons parfaites et $R_N$ galiléen). Elle provient certainement du fait que le système est surdimensionné pour pallier les erreurs de modélisation des actions de l'eau, le vieillissement de la quille avec les algues collées qui rajoutent du poids...
 \end{enumerate}
+\end{minipage}
 \end{corrige}
 \else
 
@@ -399,6 +403,8 @@ Hypothèses :
 \question{Déterminer le degré d'hyperstatisme du mécanisme.} 
 \ifprof
 \begin{corrige}
+$m = 1 + 4$, $I_S = 3\times 4 + 4 \times 2 + 5 = 25$, $E_S = 6\times 5 = 30$ soit $h = m - E_S + I_S = 5 -25+30=0$.
+(4 mobilités internes à cause des vérins entre deux rotules et rotation propre de chacune des tiges, 4 rotules, 2 pivit glissant, 1 pivot, 5 pièces à isoler).
 \end{corrige}
 \else
 \fi
@@ -427,10 +433,10 @@ On isole 1.
 
 BAME : 
 \begin{itemize}
-\item rotule en $A_2$ : $\torseur{T}{2}{1}$ et $\vectm{O}{2}{1} = \vect{0}+\vect{OA_2}\wedge F_21{x_2}$ $=\left(R\vect{y_1} - d \vect{z_N}\right)\wedge F_{21}{x_2}$ $=-dF_{21}\vect{y_N}-RF_{21}\cos\theta_1 \vect{z_N}$ ;
-\item rotule en $A_3$ : $\torseur{T}{3}{1}$ on néglige l'action de ce vérin;
-\item pivot en $O$ : $\torseur{T}{N}{1}$;
-\item pesanteur en $G_1$ : $\torseur{T}{\text{pes}}{1}$ et $\vectm{O}{\text{pes}}{1} = \vect{0}+\vect{OG_1}\wedge -Mg\vect{y_N}$ $=-L_1\vect{y_1}\wedge -Mg\vect{y_N}$ $=-L_1M_1g\sin\theta_1 \vect{z_N}$.
+\item rotule en $A_2$ : $\torseurstat{T}{2}{1}$ et $\vectm{O}{2}{1} = \vect{0}+\vect{OA_2}\wedge F_21{x_2}$ $=\left(R\vect{y_1} - d \vect{z_N}\right)\wedge F_{21}{x_2}$ $=-dF_{21}\vect{y_N}-RF_{21}\cos\theta_1 \vect{z_N}$ ;
+\item rotule en $A_3$ : $\torseurstat{T}{3}{1}$ on néglige l'action de ce vérin;
+\item pivot en $O$ : $\torseurstat{T}{N}{1}$;
+\item pesanteur en $G_1$ : $\torseurstat{T}{\text{pes}}{1}$ et $\vectm{O}{\text{pes}}{1} = \vect{0}+\vect{OG_1}\wedge -Mg\vect{y_N}$ $=-L_1\vect{y_1}\wedge -Mg\vect{y_N}$ $=-L_1M_1g\sin\theta_1 \vect{z_N}$.
 \end{itemize}
 
 PFS appliqué à 1 en $O$  dans $R_N$:
@@ -441,7 +447,7 @@ Y_O - M_1 g = 0 \\
 Z_O = 0
 \end{array}
 \right.$
-TMS : TRS : 
+TMS : 
 $\left\{ \begin{array}{l}
 L_O = 0 \\
 M_O - dF_{21} = 0 \\
@@ -635,30 +641,89 @@ $\lambda$  & Coefficient de frottements visqueux ($\si{N.m^{-1}.s}$) \\
 \ifprof
 \begin{corrige}
 $\dfrac{Q(p)}{Sp}-X(p)=\dfrac{V}{2BS}\Sigma(p)$ et 
-$\left(Mp^2 + \lambda ^+ k\right)X(p) = S\Sigma(p)-F_R(p)$. 
+$\left(Mp^2 + \lambda p+ k\right)X(p) = S\Sigma(p)-F_R(p)$. 
+
+
 On a donc : 
 $A_1(p) = \dfrac{1}{Sp}$, 
 $A_2(p) = \dfrac{2BS}{V}$, 
 $A_3(p) = S$, 
 $A_4(p) = \dfrac{1}{Mp^2+\lambda p + k}$.
 \end{corrige}
+
+\begin{corrige}
+D'une part 
+$Q(p) = SpX(p)+\dfrac{V}{2B} p \Sigma(p)$ et
+
+
+D'autre part, 
+$X(p) = A_4 \left( \Sigma(p) A_3 -F_R(p) \right)$ et $\Sigma(p) = \left(Q(p) A_1 - \dfrac{X(p)}{A_4}\right)A_2$.
+
+
+Par identification, on a donc : 
+$ X(p) = \left(S\Sigma(p) -f_R (p)\right)\dfrac{1}{M p^2 +k+ \lambda p}$ et donc $A_3(p) = S$ et $A_4(p)=\dfrac{1}{M p^2 +k+ \lambda p}$.
+
+De plus $\Sigma(p) = \left(Q(p) -  SpX(p)\right)\dfrac{2B}{Vp} $
+et $\Sigma(p) =  \left(Q(p)  - \dfrac{X(p)}{A_4A_1}\right)A_1 A_2$
+
+On a donc $A_1 A_2 = \dfrac{2B}{Vp}$ et $\dfrac{1}{A_4A_1} = Sp$.
+Or  $A_4(p)=\dfrac{1}{M p^2 +k+ \lambda p}$; donc $A_1 = \dfrac{1}{A_4Sp}$ 
+et $A_2(p)= \dfrac{2B}{A_1Vp}$ $= \dfrac{2B}{\dfrac{1}{A_4Sp}Vp}$ $= \dfrac{2BA_4S}{V}$.
+
+
+Au final,  $A_1(p) = \dfrac{M p^2 + \lambda p+k}{ Sp}$, $A_2(p)=\dfrac{2BS}{V\left( M p^2 +k+ \lambda p\right)}$,
+$A_3(p) = S$ et $A_4(p)=\dfrac{1}{M p^2 +k+ \lambda p}$.
+\end{corrige}
 \else
 \fi
 
 
 %Question 18
+\ifprof
+\else
 Le schéma-bloc de la figure \ref{fig_12_quille} peut se mettre sous la forme de la figure \ref{fig_13_quille}.
+\fi
 
 \question{Donner les expressions des fonctions de transfert $H_1$ et $H_2$ en fonction de $A1$, $A2$, $A3$ et $A4$, puis de la variable $p$ et des constantes.}
 \ifprof
-\begin{corrige}
+\begin{corrige}~\\
+\begin{minipage}[c]{.45\linewidth}
 \begin{center}
-\includegraphics[width=.5\linewidth]{cor_03}
+\includegraphics[width=.9\linewidth]{cor_03}
 \end{center}
+\end{minipage} \hfill
+\begin{minipage}[c]{.45\linewidth}
 $H_1(p)= A_1(p)A_2(p)A_3(p) =\dfrac{2BS}{Vp}$
 
-$H_2(p) = \dfrac{A_4(p)}{1+A_2(p)A_3(p)A_4(p)} = \dfrac{1}{Mp^2 + \lambda p + k + \dfrac{2BS^2}{V}}$ $=\dfrac{V}{kV + 2BS^2 + \lambda V p + MVp^2}$.
- 
+$H_2(p) = \dfrac{A_4(p)}{1+A_2(p)A_3(p)A_4(p)}$  
+
+$= \dfrac{1}{Mp^2 + \lambda p + k + \dfrac{2BS^2}{V}}$ 
+
+$=\dfrac{V}{kV + 2BS^2 + \lambda V p + MVp^2}$.
+ \end{minipage} 
+\end{corrige}
+
+
+\begin{corrige}
+On a vu que $X(p) = A_4 \left( \Sigma(p) A_3 -F_R(p) \right)$ et $\Sigma(p) = \left(Q(p) A_1 - \dfrac{X(p)}{A_4}\right)A_2$. 
+
+On a alors  $X(p) = A_4 \left( \left(Q(p) A_1 - \dfrac{X(p)}{A_4}\right)A_2 A_3 -F_R(p) \right)$
+$=  \left(Q(p) A_1 - \dfrac{X(p)}{A_4}\right)A_2 A_3A_4 -F_R(p) A_4$ 
+$=  Q(p) A_1A_2 A_3A_4  - X(p)A_2 A_3-F_R(p) A_4$.
+
+On a donc $X(p) \left(1+A_2 A_3\right) =Q(p) A_1A_2 A_3A_4  -F_R(p) A_4$ et 
+$X(p)  =Q(p) \dfrac{A_1A_2 A_3A_4}{1+A_2 A_3}  -F_R(p) \dfrac{A_4}{1+A_2 A_3} $
+
+$=\dfrac{A_4}{1+A_2 A_3}\left( Q(p) {A_1A_2 A_3}  -F_R(p)  \right)$.
+
+Par ailleurs, $X(p)= H_2(p) \left(Q(p) H_1(p) - F_R(p)\right)$.
+
+On a donc $H_1(p)=A_1A_2 A_3 =  \dfrac{M p^2 + \lambda p+k}{ Sp}\dfrac{2BS}{V\left( M p^2 +k+ \lambda p\right)} S$ 
+$ =  \dfrac{2BS}{Vp} $.
+
+$H_2(p)  = \dfrac{A_4}{1+A_2 A_3}$ $=\dfrac{\dfrac{1}{M p^2 +k+ \lambda p}}{1+S\dfrac{2BS}{V\left( M p^2 +k+ \lambda p\right)}}$
+$=\dfrac{1}{M p^2 +k+ \lambda p+S\dfrac{2BS}{V}}$
+
 \end{corrige}
 \else
 \fi
@@ -879,7 +944,7 @@ $\indice{H}{BO}(p)$ en indiquant les valeurs numériques associées aux points p
 \begin{enumerate}
 \item $\omega_0 = \SI{5}{rad/s}$, $20\log\left(\dfrac{\indice{K}{BO}}{\omega_0}\right)=20\log\left(\dfrac{2,2}{5}\right) \simeq -\SI{7}{dB}$.
 \begin{center}
-\includegraphics[width=.75\linewidth]{cor_04}
+\includegraphics[width=.6\linewidth]{cor_04}
 \end{center}
 %\caption{Stabilité << de formes >> \label{fig_02_quille}}
 
@@ -913,11 +978,12 @@ L’étude consiste à déterminer les valeurs de $T$ et $b$.
 Déterminer alors en fonction de $b$, l’amplitude $\left| C(j\omega^*)\right|_{dB}$ à la pulsation notée $\omega^*$.
 \end{enumerate}}
 \ifprof
-\begin{corrige}~\\
+\begin{corrige}$| C(j\omega^*)|_{\text{dB}} = 20 \log \indice{K}{Cor} - 10 \log (1+b) + 10\log \left(1+\dfrac{1}{b}\right) = -10\log b$.
+
 \begin{center}
 \rotatebox{90}{\includegraphics[width=.5\linewidth]{cor_05}}
 \end{center}
-$| C(j\omega^*)|_{dB} = 20 \log \indice{K}{Cor} - 10 \log (1+b) + 10\log \left(1+\dfrac{1}{b}\right) = -10\log b$.
+
 
 \end{corrige}
 \else
@@ -942,11 +1008,11 @@ La réponse indicielle correspondant à ce réglage (entrée échelon de 5\degre
 %%Question 26 
 \question{Déterminer la vitesse de rotation angulaire maximale de la quille obtenue avec ce réglage du correcteur.}
 \ifprof
-\begin{corrige}~\\
+\begin{corrige}$\indice{\omega}{max} = \dfrac{3}{0,625}=\SI{4,8}{\degres/s}$.
 \begin{center}
-\includegraphics[width=.6\linewidth]{cor_06}
+\includegraphics[width=.4\linewidth]{cor_06}
 \end{center}
-$\indice{\omega}{max} = \SI{3}{0,625}=\SI{4,8}{\degres/s}$.
+
 \end{corrige}
 \else
 \fi
