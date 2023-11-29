@@ -1,4 +1,6 @@
 \section{Élaboration d'un modèle de comportement dynamique lors du suivi de trajectoire}
+\ifprof
+\else
 
 L'objectif de cette partie est d'élaborer un modèle de comportement dynamique du système articulé lors de la dépose de bouteilles dans une caisse TSR. Pendant cette phase, le point $E$, centre de rotation du poignet par rapport au bras 3 (voir Annexe D.2), doit suivre une trajectoire rectiligne verticale pour éviter toute collision entre les bouteilles et les différentes parois de la caisse TSR. Les caractéristiques de cette trajectoire sont définies par la Figure \ref{fig:07} où le point $E$ se déplace sur le segment $\left[E_{1} E_{2}\right]$.
 
@@ -8,18 +10,68 @@ L'objectif de cette partie est d'élaborer un modèle de comportement dynamique 
 %Figure 7 - 
 \caption{Configuration du robot lors de la confection de caisse TSR 504 \label{fig:07}}
 \end{figure}
-
+\fi
 
 \subsection{Étude du système de compensation de gravité du robot}
+\ifprof
+\else
+
 Le robot est équipé d'un système de compensation de gravité dont on cherche à quantifier les effets lors du suivi de la trajectoire verticale $\left(E_{1} E_{2}\right)$, en fonction des charges et de leur position. Le paramétrage du robot est donné en Annexe D.2. Le système de compensation de gravité est constitué d'un vérin (pièces 7 et 8) de longueur $\lambda(t)$ et muni d'un ressort dont la longueur à vide sera notée $\lambda_{0}$ pour l'étude.
 
 On donne $\torseurstat{T}{8}{2}$, le torseur modélisant l'action du système de compensation sur le bras 2 .
 
-La relation entre $F_{\text {res }}$ et $\lambda$ est supposée linéaire avec $F_{\text {res }}=k_{r} \cdot\left(\lambda-\lambda_{0}\right), \quad \torseurstat{T}{8}{2}=\left\{\begin{array}{c}\vec{R}_{8 \rightarrow 2}=-F_{\text {res }} \cdot \vec{x}_{7} \\ k_{r}=200 \mathrm{~N} \cdot \mathrm{mm}^{-1} \text { et } \lambda_{0}=405 \mathrm{~mm} .\end{array}\right\}$
+La relation entre $F_{\text {res }}$ et $\lambda$ est supposée linéaire avec 
+$F_{\text {res }}=k_{r} \cdot\left(\lambda-\lambda_{0}\right)$, 
+$\torseurstat{T}{8}{2}=
+\left\{
+\begin{array}{c}
+\vectf{8}{2}=-F_{\text {res }} \cdot \vec{x}_{7} \\ 
+\vectm{H}{B}{2}=\vect{0} 
+\end{array}\right\}$ 
+avec
+$k_{r}=200 \mathrm{~N} \cdot \mathrm{mm}^{-1}$  et $\lambda_{0}=405 \mathrm{~mm}$.
+\fi
 
 \question{\label{q:11} Donner l'expression du couple $C_{\text {res }}$ exercé par le système de compensation sur le bras 2 autour de I'axe $\left(A, \vec{y}_{0}\right)$ en fonction de $F_{\text {res }}, \theta_{2}$ et $\theta_{7}$.}
+\ifprof
+\begin{corrige}
+
+$\vect{\indice{C}{res}\left(A,8 \rightarrow 2 \right)}$
+$= \vect{\indice{M}{Fres}\left(H,8 \rightarrow 2 \right)} + \vect{AH} \wedge \indice{F}{res} \vect{x_7}$
+$= \indice{F}{res} R \sin\left(\theta_7 - \theta_2\right) \vect{y_1}$
+
+$\indice{C}{res} = k_r \left(\lambda - \lambda_0\right) R \sin \left(\theta_7 - \theta_2\right) $.
+
+\end{corrige}
+\else
+\fi
 
 \question{\label{q:12}Par une fermeture géométrique, donner les expressions de $\lambda$ et $\theta_{7}$ en fonction de $\theta_{2}$ et des paramètres géométriques.}
+\ifprof
+\begin{corrige}
+
+On réalise la fermeture géométrique dans le triangle $KAH$ :
+	$\vect{KH} = \vect{KA} + \vect{AH}$ $\Rightarrow \lambda(t) \vx{7} = c\vx{1} - R\vx{2}$.
+
+En projetant cette équation sur  $\vx{1}$ et $\vz{1}$ on obtient :
+$\left\{
+\begin{array}{l}
+\lambda(t) \cos\theta_7 = c - R \cos \theta_2 \\
+-\lambda(t) \sin\theta_7 = 0 + R \sin \theta_2
+\end{array}
+\right.
+$.
+
+D'une part, en faisant le rapport des expressions, $\tan\theta_7 = \dfrac{R \sin \theta_2}{R \cos \theta_2-c}$.
+
+D'autre part, en sommant les carrés des expressions, on a $\lambda(t)^2 = \left( c - R \cos \theta_2\right)^2 + \left( R \sin \theta_2\right)^2$.
+
+\end{corrige}
+\else
+\fi
+
+\ifprof
+\else
 
 En utilisant les relations trouvées aux deux questions précédentes, on peut exprimer $C_{\text {res }}$ en fonction de $\theta_{2}$.
 
@@ -34,6 +86,7 @@ On donne les glisseurs modélisant l'action de la pesanteur sur les différents 
 
 %%%%
 On note $\indice{C}{pes}$ l'expression du couple résultant de l'action de la pesanteur sur l'ensemble \{bras 2 , bras 3, préhenseur et chargement\} autour de l'axe $\left(A, \vec{y}_{0}\right)$ en fonction de $m_{2}, m_{3}$, $m_{E}, g, \theta_{2}, \theta_{3}$ et des paramètres géométriques
+\fi
 
 \question{\label{q:13a} Déterminer le couple $\indice{C}{1}$ résultant de l'action de la pesanteur sur le \{bras 2\} autour de l'axe $\left(A, \vec{y}_{0}\right)$.}
 
@@ -41,9 +94,38 @@ On note $\indice{C}{pes}$ l'expression du couple résultant de l'action de la pe
 
 \question{\label{q:13c} Déterminer le couple $\indice{C}{p}$ résultant de l'action de la pesanteur sur le \{préhenseur et chargement\} autour de l'axe $\left(A, \vec{y}_{0}\right)$.}
 
+\ifprof
+\begin{corrige}
+On a $\indice{C}{pes} = \left( \vectm{A}{\text{pes}}{2}+\vectm{A}{\text{pes}}{3}+\vectm{A}{\text{pes}}{\text{pré}}\right)\cdot \vy{0}$
+
+$ =\left( \vect{AG_2}\wedge \left(-m_2 g \vz{0}\right) + \vect{AG_3}\wedge \left(-m_3 g \vz{0}\right) +\vect{AE}\wedge \left(-m_E g \vz{0}\right)\right) \cdot \vy{0} $
+
+$ =\left( a_2 \vz{2}\wedge \left(-m_2 g \vz{0}\right) + \left( L_2 \vz{2}+ a_3 \vz{3}- b_3 \vx{3} \right)\wedge \left(-m_3 g \vz{0}\right) + \left( L_2 \vz{2}+ L_3 \vz{3} \right)\wedge \left(-m_E g \vz{0}\right)\right) \cdot \vy{0} $
+
+$ = a_2m_2g \sin\theta_2 +\left( L_2 \sin\theta_2 + a_3 \sin(\theta_3+\theta_2)- b_3 \cos(\theta_3+\theta_2) \right) m_3 g  + \left( L_2 \sin\theta_2+ L_3  \sin(\theta_3+\theta_2) \right) m_E g  $
+
+\end{corrige}
+\else
+\fi
+
 La dépose de bouteilles dans une caisse impose une descente verticale.% (Partie C, page 9).
 
 \question{\label{q:14} Déterminer l'expression de $\overrightarrow{A E} \cdot \vec{x}_{1}$ en fonction de $\theta_{2}$ et $\theta_{3}$. Sachant que $\overrightarrow{A E} \cdot \vec{x}_{1}=L$, en déduire une relation entre $\theta_{2}$ et $\theta_{3}$.}
+\ifprof
+\begin{corrige}
+On a 
+$\vect{AE}\cdot \vx{1} = \left(\vect{AB} + \vect{BE}\right) \cdot \vx{1}$
+$= L_2 \vz{2}\cdot \vx{1} + L_3\vz{3}\cdot \vx{1}$ 
+$= L_2 \sin \theta_2 + L_3\sin \left(\theta_2+\theta_3\right)$.
+
+On a donc $L = L_2 \sin \theta_2 + L_3 \sin \left(\theta_2+\theta_3\right)$.
+
+\end{corrige}
+\else
+\fi
+
+\ifprof
+\else
 
 Les évolutions de $C_{\text {res }}$ et $\indice{C}{pes}$ sont données en fonction de $\theta_{2}$ par la courbe Figure \ref{fig:09}.
 
@@ -58,15 +140,22 @@ Lors du déplacement vertical du point $E$, l'angle $\theta_{2}$ est tel que $0^
 \caption{Evolution de $C_{\text{res}}$ et de $\indice{C}{pes}$ en fonction de $\theta_{2}$ \label{fig:09}}
 \end{figure}
 
+\fi
 
 \question{\label{q:15}Indiquer la plage de valeurs de $\theta_{2}$ qui permet au dispositif d'équilibrage une compensation supérieure à $100 \%$ des effets de la gravité. En déduire si pour cette plage de valeurs, l'action du motoréducteur de l'axe $J_{2}$ du robot sera frein ou moteur si on néglige les effets d'inertie.}
 
 \subsection{Étude du système articulé}
+\ifprof
+\else
+
 Le paramétrage et les caractéristiques de masses et d'inerties des différents sous-ensembles cinématiquement liés sont donnés en Annexe D.2.
 
 L'objectif de cette partie est de déterminer l'expression des couples qui doivent être exercés par les motoréducteurs d'une part entre la base 1 et le bras 2 autour de l'axe $J_{2}\left(A, \vec{y}_{1}\right)$, et d'autre part entre les bras 2 et 3 autour de l'axe $J_{3}\left(B, \vec{y}_{1}\right)$ (voir Annexe D.1).
+\fi
 
 \section*{Pour la suite l'ensemble \{bras 3 ; masse ponctuelle $\}$ sera noté ensemble 4 .}
+\ifprof
+\else
 \begin{itemize}
   \item On considère que l'ensemble poignet, préhenseur et chargement est représenté par une masse ponctuelle $m_{E}$ en $E$.
 
@@ -81,17 +170,46 @@ A_{4} & 0 & -E_{4} \\
 \end{array}\right]_{\mathcal{B}_{3}}
 $.
 \end{itemize}
+\fi
 
 \question{Tracer le graphe de liaisons.}
 
 
 \question{\label{q:16}Donner les expressions de $A_{4}, B_{4}, C_{4}$ et $E_{4}$ en fonction de $A_{3}, B_{3}, C_{3}, E_{3}, m_{E}$ et $L_{3}$.}
+\ifprof
+\begin{corrige}
+On a $\inertie{B}{3} = \matinertie{A_3}{B_3}{C_3}{0}{-E_3}{0}{\bas{3}}$. 
+Par ailleurs, pour la masse ponctuelle MP, 
+$\inertie{E}{MP} = \matinertie{0}{0}{0}{0}{0}{0}{\bas{3}}$. En utilisant le théorème de Huygens, avec 
+$\vect{BE}=L_E\vz{3}$, 
+$\inertie{B}{MP} = \matinertie{m_EL_E^2}{m_EL_E^2}{0}{0}{0}{0}{\bas{3}}$.
+
+Au final, 
+$\inertie{B}{4} = \matinertie{A_4}{B_4}{C_4}{0}{-E_4}{0}{\bas{3}}
+=\inertie{B}{3} +\inertie{B}{MP} = \matinertie{A_3+m_EL_E^2}{B_3+m_EL_E^2}{C_3}{0}{-E_3}{0}{\bas{3}}$. 
+\end{corrige}
+\else
+\fi
 
 \question{\label{q:17}Définir la position du centre d'inertie $G_{4}$ en donnant les expressions de $a_{4}$ et $b_{4}$ en fonction de $a_{3}$, $m_{3}, m_{E}, L_{3}$ et $b_{3}$.}
+\ifprof
+\begin{corrige}
+On a, par utilisation du barycentre, $\left(m_E+m_3\right)\vect{BG_4} = m_E\vect{BE} + m_3\vect{BG_3}$; donc 
+$\vect{BG_4} = \dfrac{m_E}{m_E+m_3} L_3\vect{z_3}+ \dfrac{m_3}{m_E+m_3}\left(a_3\vect{z_3}-b_3\vect{x_3} \right)$.
+
+Par identification, on a donc $a_4 = \dfrac{L_3m_E + a_3m_3}{m_E+m_3}$ et 
+$b_4 = b_3\dfrac{m_3}{m_E+m_3}$.
+\end{corrige}
+\else
+\fi
+
+\ifprof
+\else
 
 On donne les torseurs modélisant les actions mécaniques du bras 2 sur le bras 3 et de la base 1 sur le bras 2 :
 
 $\torseurstat{T}{2}{3}=\left\{\begin{array}{c}\vec{R}_{2 \rightarrow 3}=X_{23} \cdot \vec{x}_{0}+Y_{23} \cdot \vec{y}_{0}+Z_{23} \cdot \vec{z}_{0} \\ \vec{M}_{(B, 2 \rightarrow 3)}=L_{23} \cdot \vec{x}_{0}+C_{m 3} \cdot \vec{y}_{0}+N_{23} \cdot \vec{z}_{0}\end{array}\right\} ; \torseurstat{T}{1}{2}=\left\{\begin{array}{c}\vec{R}_{1 \rightarrow 2}=X_{12} \cdot \vec{x}_{0}+Y_{12} \cdot \vec{y}_{0}+Z_{12} \cdot \vec{z}_{0} \\ \vec{M}_{(A, 1 \rightarrow 2)}=L_{12} \cdot \vec{x}_{0}+C_{m 2} \cdot \vec{y}_{0}+N_{12} \cdot \vec{z}_{0}\end{array}\right\}$.
+\fi
 
 
 %\question{\label{q:18}Donner l'expression du vecteur vitesse $\vec{V}_{(B, 4 / 0)}$, puis du vecteur vitesse $\vec{V}_{\left(G_{4}, 4 / 0\right)}$.}
@@ -100,16 +218,232 @@ $\torseurstat{T}{2}{3}=\left\{\begin{array}{c}\vec{R}_{2 \rightarrow 3}=X_{23} \
 \question{\label{q:18a}Donner l'expression du vecteur vitesse $\vec{V}_{(B, 4 / 0)}$.}
 
 \question{\label{q:18}Donner l'expression du vecteur vitesse $\vec{V}_{\left(G_{4}, 4 / 0\right)}$.}
+\ifprof
+\begin{corrige}
+$\vectv{B}{4}{0} = \deriv{\vect{AB}}{\bas{0}}$
+$=L_2\deriv{\vect{z_2}}{\bas{0}}$
+$=L_2\thetap_2 \vect{x_2}$
+
+Par suite, 
+$\babarv{G_4}{B}{4}{0}$
+$=L_2\thetap_2 \vect{x_2} + (b_4\vx{3}-a_4 \vz{3})\wedge (\thetap_2+\thetap_3)\vy{1}$
+$=L_2\thetap_2 \vect{x_2} + (b_4\vz{3}+a_4 \vx{3}) (\thetap_2+\thetap_3)$.
+
+\end{corrige}
+\else
+\fi
 
 \question{\label{q:19}Donner l'expression du moment cinétique $\vec{\sigma}_{(B, 4 / 0)}$.}
+\ifprof
+\begin{corrige}
+On a, par définition du moment cinétique en un point quelquonque, 
+$\vectmc{B}{4}{0} = \inertie{B}{4} \vecto{4}{0} + m_4 \vect{BG_4}\wedge\vectv{B}{4}{0}$
+$=\matinertie{A_4}{B_4}{C_4}{0}{-E_4}{0}{\bas{3}} \begin{pmatrix} 0 \\ \thetap_2+\thetap_3\\  0\end{pmatrix}_{\bas{3}}
++  m_4 (-b_4\vx{3}+a_4 \vz{3})\wedge  L_2\thetap_2 \vect{x_2} $
+$=B_4 \left(\thetap_2+\thetap_3\right) \vy{3}+  m_4 ( b_4\sin\theta_3 +a_4 \cos\theta_3 )\vy{3} L_2\thetap_2  $
+\end{corrige}
+\else
+\fi
+
 
 \question{\label{q:20}En déduire l'expression du moment dynamique $\vec{\delta}_{(B, 4 / 0)} \cdot \vec{y}_{0}$.}
+\ifprof
+\begin{corrige}
+On a 
+$\vectmd{B}{4}{0}\cdot\vy{0}$
+$=\left( \deriv{\vectmc{B}{4}{0}}{\rep{0}} + m_4 \vectv{B}{4}{0}\wedge \vectv{G_4}{4}{0} \right)\cdot\vy{0}$
+
+$=\left( \left( B_4 \left(\thetapp_2+\thetapp_3\right)
++  m_4\thetap_3 ( b_4\cos\theta_3 -a_4 \sin\theta_3 ) L_2\thetap_2 \right) +  m_4 ( b_4\sin\theta_3 +a_4 \cos\theta_3 ) L_2\thetapp_2
++ m_4 L_2\thetap_2 \vect{x_2}\wedge \left(L_2\thetap_2 \vect{x_2} + (b_4\vz{3}+a_4 \vx{3}) (\thetap_2+\thetap_3)\right)\right)\cdot\vy{0}$
+
+$=\left( \left( B_4 \left(\thetapp_2+\thetapp_3\right)
++  m_4\thetap_3 ( b_4\cos\theta_3 -a_4 \sin\theta_3 ) L_2\thetap_2 \right) 
++  m_4 ( b_4\sin\theta_3 +a_4 \cos\theta_3 ) L_2\thetapp_2
++ m_4 L_2\thetap_2 (\thetap_2+\thetap_3)\vect{x_2}\wedge \left( b_4\vz{3}+a_4 \vx{3} \right)\right)\cdot\vy{0}$
+
+$= 
+ B_4 \left(\thetapp_2+\thetapp_3\right) 
+% + m_4L_2\thetap_2 \thetap_3 ( b_4\cos\theta_3 -a_4 \sin\theta_3 )  
+%+ m_4 L_2\thetap_2 \thetap_3 \left(- b_4\cos\theta_3+a_4 \sin\theta_3\right)
+ + m_4 L_2\thetapp_2 ( b_4\sin\theta_3 +a_4 \cos\theta_3 ) 
++ m_4 L_2\thetap_2^2 \left(- b_4\cos\theta_3+a_4 \sin\theta_3\right)$.
+
+\end{corrige}
+\else
+\fi
+
 
 \question{\label{q:21}Appliquer le théorème du moment dynamique à l'ensemble 4 en projection sur $\vec{y}_{0}$ de manière à donner l'expression du couple $C_{m 3}$ en fonction des angles $\theta_{2}, \theta_{3}$ et de leurs dérivées première et seconde, de $m_{4}$, et du moment d'inertie $B_{4}$.}
+\ifprof
+\begin{corrige}
+\begin{itemize}
+\item On isole 4.
+\item BAME : 
+\begin{itemize}
+\item $\torseurstat{T}{2}{3}$
+\item $\torseurstat{T}{\text{pes}}{4}$
+\item $\torseurstat{T}{\text{mot}}{3}$
+\end{itemize}
+On a donc, en appliquant le TMD en B en projection sur $\vy{0}$ : 
+
+$\vectmd{B}{4}{0}\cdot\vy{0} = \underbrace{\vectm{B}{2}{3}\cdot\vy{0}}_{\vect{0}}
++\vectm{B}{\text{pes}}{4}\cdot\vy{0}+\vectm{B}{\text{mot}}{3}\cdot\vy{0}$
+
+On a 
+$\vectm{B}{\text{pes}}{E}\cdot\vy{0} = \left(\vect{BG_4} \wedge -m_4 g \vz{1} \right) \cdot\vy{0}$
+
+$=\left(\left(a_4 \vz{3}-b_4\vx{3} \right)\wedge -m_4 g \vz{1} \right) \cdot\vy{0}$
+
+$=\left(a_4\sin\left( \theta_2+\theta_3\right) -b_4\cos\left( \theta_2+\theta_3\right) \right) m_4 g  $.
+
+Au final, 
+
+$C_{m3} = 
+   B_4 \left(\thetapp_2+\thetapp_3\right) 
++ m_4 L_2\thetapp_2 ( b_4\sin\theta_3 +a_4 \cos\theta_3 ) 
++ m_4 L_2\thetap_2^2 \left(- b_4\cos\theta_3+a_4 \sin\theta_3\right)
+- \left(a_4\sin\left( \theta_2+\theta_3\right) -b_4\cos\left( \theta_2+\theta_3\right) \right) m_4 g$
+\end{itemize}
+\end{corrige}
+\else
+\fi
+
 
 \question{\label{q:22}Donner l'expression du moment dynamique $\vec{\delta}_{(A, 2 / 0)}$.}
+\ifprof
+\begin{corrige}
+La matrice d'inertie de $2$ est donnée $A$ qui est un point fixe. 
+$\vectmd{A}{2}{0}=\deriv{\vectmc{A}{2}{0}}{\rep{0}}$
+$=\deriv{\inertie{A}{2} \vecto{2}{0}}{\rep{0}}$
+$=\deriv{B_2\thetap_2 \vect{y_1}}{\rep{0}}$
+$=B_2\thetapp_2 \vect{y_1}$
+
+
+\end{corrige}
+\else
+\fi
 
 \question{\label{q:23}Sans calcul, donner la démarche pour déterminer l'expression du couple $C_{m 2}$.}
+\ifprof
+\begin{corrige}
+\begin{itemize}
+\item On isole \{2+4\}.
+\item BAME : 
+\begin{itemize}
+\item $\torseurstat{T}{\text{pes}}{4}$;
+\item $\torseurstat{T}{\text{pes}}{2}$;
+\item $\torseurstat{T}{1}{2}$;
+\item $\torseurstat{T}{8}{2}$ (glisseur de direction $\vx{7}$);
+\item $\torseurstat{T}{\indice{C}{m2}}{2}$.
+\end{itemize}
+
+\item On applique le TMD en A en projection sur $\vy{1}$ :
+$$
+\vectm{A}{\text{pes}}{4}\cdot \vy{1}
++\vectm{A}{\text{pes}}{2}\cdot \vy{1}
++\vectm{A}{8}{2}\cdot \vy{1} +\indice{C}{m2} = \vectmd{A}{2}{0} \cdot \vy{1} + \vectmd{A}{4}{0} \cdot \vy{1}
+$$
+\end{itemize}
+\end{corrige}
+\else
+\fi
+
+
+%\ifprof
+%\begin{corrige}
+%On a : 
+%$\left\{
+%\begin{array}{l}
+%\Delta \indice{C}{m2}(p) = 
+%			-\Delta \indice{C}{res}(p) 
+%			+ G_0 \Delta\Theta_2(p)
+%			+ G_1 \Delta\Theta_3(p) 
+%			+ G_2p^2 \Delta\Theta_2(p) 
+%			+ G_3p^2 \Delta\Theta_3(p) \\
+%\Delta \indice{C}{m3}(p) = 
+%			G_4\left(\Delta\Theta_2(p)+\Delta\Theta_3(p) \right)
+%			+ G_5p^2 \Delta\Theta_2(p) 
+%			+ G_6p^2 \Delta\Theta_3(p) \\\end{array}
+%\right.$
+%
+%$\Rightarrow
+%\left\{
+%\begin{array}{l}
+%\Delta \indice{C}{m2}(p) + \Delta \indice{C}{res}(p) -  \left( G_1 + G_3p^2 \right)\Delta\Theta_3(p) = 
+%			 \left( G_0 + G_2p^2 \right)\Delta\Theta_2(p)
+%			 \\
+%\Delta \indice{C}{m3}(p) = 
+%			\left( G_4+ G_5p^2\right) \Delta\Theta_2(p)
+%			+\left( G_4+ G_6p^2\right) \Delta\Theta_3(p)
+%			 \end{array}
+%\right.
+%$
+%
+%D'autre part, d'après le schéma-bloc : 
+%$\Delta\Theta_2(p) = N_2(p)\left( \Delta \indice{C}{m2}(p) + \Delta \indice{C}{res}(p)
+%-\Delta\Theta_3(p)R_2(p)\right)$.
+%
+%Par identification, $N_2(p)=\dfrac{1}{G_0 + G_2p^2}$ et $R_2(p)= G_1 + G_3p^2 $.
+%
+%On a aussi 
+%$\Delta\Theta_3(p)= N_3(p)\left(\Delta \indice{C}{m3}(p) -R_3(p) \Delta\Theta_2(p)\right)$.
+%
+%Par identification, $N_3(p)=\dfrac{1}{G_4 + G_6p^2}$ et $R_3(p)= G_4 + G_5p^2 $.
+%
+%
+%En mettant les expressions sous forme canoniques, on a : 
+%\begin{itemize}
+%\item $\indice{K}{n2} = \dfrac{1}{G_0}$ et $\indice{n}{22}=\dfrac{G_2}{G_0}$;
+%\item $\indice{K}{n3} = \dfrac{1}{G_4}$ et $\indice{n}{32}=\dfrac{G_6}{G_4}$;
+%\item $\indice{K}{r2} = {G_1}$ et $\indice{r}{22}=\dfrac{G_3}{G_1}$;
+%\item $\indice{K}{r3} = {G_4}$ et $\indice{r}{22}=\dfrac{G_5}{G_4}$.
+%\end{itemize}
+%\end{corrige}
+%\else
+%\fi
+
+
+
+
+
+
+\ifcolle
+\else
+Eléments de correction, Robot :
+\begin{enumerate} \setcounter{enumi}{10}
+\item $\indice{C}{res} = k_r \left(\lambda - \lambda_0\right) R \sin \left(\theta_7 - \theta_2\right) $.
+\item $\tan\theta_7 = \dfrac{R \sin \theta_2}{R \cos \theta_2-c}$, $\lambda(t)^2 = \left( c - R \cos \theta_2\right)^2 + \left( R \sin \theta_2\right)^2$.
+\item $ \indice{C}{pes}= a_2m_2g \sin\theta_2 +\left( L_2 \sin\theta_2 + a_3 \sin(\theta_3+\theta_2)- b_3 \cos(\theta_3+\theta_2) \right) m_3 g  + \left( L_2 \sin\theta_2+ L_3  \sin(\theta_3+\theta_2) \right) m_E g  $
+\item $L = L_2 \sin \theta_2 + L_3 \sin \left(\theta_2+\theta_3\right)$.
+\item .
+\item $\inertie{B}{4} =\inertie{B}{3} +\inertie{B}{MP} = \matinertie{A_3+m_EL_E^2}{B_3+m_EL_E^2}{C_3}{0}{-E_3}{0}{\bas{3}}$. 
+\item $a_4 = \dfrac{L_3m_E + a_3m_3}{m_E+m_3}$ et 
+$b_4 = b_3\dfrac{m_3}{m_E+m_3}$.
+\item $\vectv{B}{4}{0} =L_2\thetap_2 \vect{x_2}$, $\vectv{G_4}{4}{0} =L_2\thetap_2 \vect{x_2} + (b_4\vz{3}+a_4 \vx{3}) (\thetap_2+\thetap_3)$.
+\item $\vectmc{B}{4}{0} = B_4 \left(\thetap_2+\thetap_3\right) \vy{3}+  m_4 ( b_4\sin\theta_3 +a_4 \cos\theta_3 )\vy{3} L_2\thetap_2  $.
+\item $\vectmd{B}{4}{0}\cdot\vy{0}=  B_4 \left(\thetapp_2+\thetapp_3\right) 
+ + m_4 L_2\thetapp_2 ( b_4\sin\theta_3 +a_4 \cos\theta_3 ) 
++ m_4 L_2\thetap_2^2 \left(- b_4\cos\theta_3+a_4 \sin\theta_3\right)$.
+\item $C_{m3} = 
+   B_4 \left(\thetapp_2+\thetapp_3\right) 
++ m_4 L_2\thetapp_2 ( b_4\sin\theta_3 +a_4 \cos\theta_3 ) 
++ m_4 L_2\thetap_2^2 \left(- b_4\cos\theta_3+a_4 \sin\theta_3\right)
+- \left(a_4\sin\left( \theta_2+\theta_3\right) -b_4\cos\left( \theta_2+\theta_3\right) \right) m_4 g$.
+\item $\vectmd{A}{2}{0}=B_2\thetapp_2 \vect{y_1}$.
+\item .
+\item .
+\begin{itemize}
+\item $\indice{K}{n2} = \dfrac{1}{G_0}$ et $\indice{n}{22}=\dfrac{G_2}{G_0}$;
+\item $\indice{K}{n3} = \dfrac{1}{G_4}$ et $\indice{n}{32}=\dfrac{G_6}{G_4}$;
+\item $\indice{K}{r2} = {G_1}$ et $\indice{r}{22}=\dfrac{G_3}{G_1}$;
+\item $\indice{K}{r3} = {G_4}$ et $\indice{r}{22}=\dfrac{G_5}{G_4}$.
+\end{itemize}
+\end{enumerate}
+\fi
+
+
+
 %
 %\section*{C.3 Finalisation du modèle}
 %Le modèle de comportement du système n'est pas linéaire car l'influence des charges et de l'action du système de compensation de pesanteur varie à chaque instant en fonction de $\theta_{2}$ et $\theta_{3}$.
