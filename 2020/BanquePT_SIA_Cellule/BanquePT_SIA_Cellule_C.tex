@@ -89,24 +89,58 @@ On note $\indice{C}{pes}$ l'expression du couple résultant de l'action de la pe
 \fi
 
 \question{\label{q:13a} Déterminer le couple $\indice{C}{1}$ résultant de l'action de la pesanteur sur le \{bras 2\} autour de l'axe $\left(A, \vec{y}_{0}\right)$.}
+\ifprof
+\begin{corrige}
+On a $\indice{C}{1} = \vectm{A}{\text{pes}}{2} \cdot \vy{0}$
+$ =\left( \vect{AG_2}\wedge \left(-m_2 g \vz{0}\right)\right) \cdot \vy{0} $
+$ =\left( a_2 \vz{2}\wedge \left(-m_2 g \vz{0}\right) \right) \cdot \vy{0} $
+$ = a_2m_2g \sin\theta_2 $
+
+\end{corrige}
+\else
+\fi
 
 \question{\label{q:13b} Déterminer le couple $\indice{C}{2}$ résultant de l'action de la pesanteur sur le \{bras 3\} autour de l'axe $\left(A, \vec{y}_{0}\right)$.}
+\ifprof
+\begin{corrige}
+On a $\indice{C}{2} = \vectm{A}{\text{pes}}{3}\cdot \vy{0}$
+$ =\left( \vect{AG_3}\wedge \left(-m_3 g \vz{0}\right)\right) \cdot \vy{0} $
+$ =\left( \left( L_2 \vz{2}+ a_3 \vz{3}- b_3 \vx{3} \right)\wedge \left(-m_3 g \vz{0}\right)\right) \cdot \vy{0} $
+$ = \left( L_2 \sin\theta_2 + a_3 \sin(\theta_3+\theta_2)- b_3 \cos(\theta_3+\theta_2) \right) m_3 g   $
+
+\end{corrige}
+\else
+\fi
 
 \question{\label{q:13c} Déterminer le couple $\indice{C}{p}$ résultant de l'action de la pesanteur sur le \{préhenseur et chargement\} autour de l'axe $\left(A, \vec{y}_{0}\right)$.}
 
 \ifprof
 \begin{corrige}
-On a $\indice{C}{pes} = \left( \vectm{A}{\text{pes}}{2}+\vectm{A}{\text{pes}}{3}+\vectm{A}{\text{pes}}{\text{pré}}\right)\cdot \vy{0}$
+On a $\indice{C}{P} = \vectm{A}{\text{pes}}{\text{pré}}\cdot \vy{0}$
+$ =\left( \vect{AE}\wedge \left(-m_E g \vz{0}\right)\right) \cdot \vy{0} $
+$ =\left( \left( L_2 \vz{2}+ L_3 \vz{3} \right)\wedge \left(-m_E g \vz{0}\right)\right) \cdot \vy{0} $
 
-$ =\left( \vect{AG_2}\wedge \left(-m_2 g \vz{0}\right) + \vect{AG_3}\wedge \left(-m_3 g \vz{0}\right) +\vect{AE}\wedge \left(-m_E g \vz{0}\right)\right) \cdot \vy{0} $
-
-$ =\left( a_2 \vz{2}\wedge \left(-m_2 g \vz{0}\right) + \left( L_2 \vz{2}+ a_3 \vz{3}- b_3 \vx{3} \right)\wedge \left(-m_3 g \vz{0}\right) + \left( L_2 \vz{2}+ L_3 \vz{3} \right)\wedge \left(-m_E g \vz{0}\right)\right) \cdot \vy{0} $
-
-$ = a_2m_2g \sin\theta_2 +\left( L_2 \sin\theta_2 + a_3 \sin(\theta_3+\theta_2)- b_3 \cos(\theta_3+\theta_2) \right) m_3 g  + \left( L_2 \sin\theta_2+ L_3  \sin(\theta_3+\theta_2) \right) m_E g  $
+$ =  \left( L_2 \sin\theta_2+ L_3  \sin(\theta_3+\theta_2) \right) m_E g  $
 
 \end{corrige}
 \else
 \fi
+
+
+
+%\ifprof
+%\begin{corrige}
+%On a $\indice{C}{pes} = \left( \vectm{A}{\text{pes}}{2}+\vectm{A}{\text{pes}}{3}+\vectm{A}{\text{pes}}{\text{pré}}\right)\cdot \vy{0}$
+%
+%$ =\left( \vect{AG_2}\wedge \left(-m_2 g \vz{0}\right) + \vect{AG_3}\wedge \left(-m_3 g \vz{0}\right) +\vect{AE}\wedge \left(-m_E g \vz{0}\right)\right) \cdot \vy{0} $
+%
+%$ =\left( a_2 \vz{2}\wedge \left(-m_2 g \vz{0}\right) + \left( L_2 \vz{2}+ a_3 \vz{3}- b_3 \vx{3} \right)\wedge \left(-m_3 g \vz{0}\right) + \left( L_2 \vz{2}+ L_3 \vz{3} \right)\wedge \left(-m_E g \vz{0}\right)\right) \cdot \vy{0} $
+%
+%$ = a_2m_2g \sin\theta_2 +\left( L_2 \sin\theta_2 + a_3 \sin(\theta_3+\theta_2)- b_3 \cos(\theta_3+\theta_2) \right) m_3 g  + \left( L_2 \sin\theta_2+ L_3  \sin(\theta_3+\theta_2) \right) m_E g  $
+%
+%\end{corrige}
+%\else
+%\fi
 
 La dépose de bouteilles dans une caisse impose une descente verticale.% (Partie C, page 9).
 
@@ -143,7 +177,12 @@ Lors du déplacement vertical du point $E$, l'angle $\theta_{2}$ est tel que $0^
 \fi
 
 \question{\label{q:15}Indiquer la plage de valeurs de $\theta_{2}$ qui permet au dispositif d'équilibrage une compensation supérieure à $100 \%$ des effets de la gravité. En déduire si pour cette plage de valeurs, l'action du motoréducteur de l'axe $J_{2}$ du robot sera frein ou moteur si on néglige les effets d'inertie.}
-
+\ifprof
+\begin{corrige}
+On a $\indice{C}{res}>\indice{C}{pes}$ lorsque $50\degres<\theta_2<80\degres$. En négliegeant $J_2$, l'action du motoréducteur sera motrice. 
+\end{corrige}
+\else
+\fi
 \subsection{Étude du système articulé}
 \ifprof
 \else
@@ -153,7 +192,7 @@ Le paramétrage et les caractéristiques de masses et d'inerties des différents
 L'objectif de cette partie est de déterminer l'expression des couples qui doivent être exercés par les motoréducteurs d'une part entre la base 1 et le bras 2 autour de l'axe $J_{2}\left(A, \vec{y}_{1}\right)$, et d'autre part entre les bras 2 et 3 autour de l'axe $J_{3}\left(B, \vec{y}_{1}\right)$ (voir Annexe D.1).
 \fi
 
-\section*{Pour la suite l'ensemble \{bras 3 ; masse ponctuelle $\}$ sera noté ensemble 4 .}
+\subsubsection*{Pour la suite l'ensemble \{bras 3 ; masse ponctuelle $\}$ sera noté ensemble 4 .}
 \ifprof
 \else
 \begin{itemize}
@@ -173,7 +212,14 @@ $.
 \fi
 
 \question{Tracer le graphe de liaisons.}
-
+\ifprof
+\begin{corrige}~\\
+\begin{center}
+\includegraphics[width=.65\linewidth]{graphe_structure}
+\end{center}
+\end{corrige}
+\else
+\fi
 
 \question{\label{q:16}Donner les expressions de $A_{4}, B_{4}, C_{4}$ et $E_{4}$ en fonction de $A_{3}, B_{3}, C_{3}, E_{3}, m_{E}$ et $L_{3}$.}
 \ifprof
@@ -216,14 +262,17 @@ $\torseurstat{T}{2}{3}=\left\{\begin{array}{c}\vec{R}_{2 \rightarrow 3}=X_{23} \
 
 
 \question{\label{q:18a}Donner l'expression du vecteur vitesse $\vec{V}_{(B, 4 / 0)}$.}
-
-\question{\label{q:18}Donner l'expression du vecteur vitesse $\vec{V}_{\left(G_{4}, 4 / 0\right)}$.}
 \ifprof
 \begin{corrige}
 $\vectv{B}{4}{0} = \deriv{\vect{AB}}{\bas{0}}$
 $=L_2\deriv{\vect{z_2}}{\bas{0}}$
 $=L_2\thetap_2 \vect{x_2}$
-
+\end{corrige}
+\else
+\fi
+\question{\label{q:18}Donner l'expression du vecteur vitesse $\vec{V}_{\left(G_{4}, 4 / 0\right)}$.}
+\ifprof
+\begin{corrige}
 Par suite, 
 $\babarv{G_4}{B}{4}{0}$
 $=L_2\thetap_2 \vect{x_2} + (b_4\vx{3}-a_4 \vz{3})\wedge (\thetap_2+\thetap_3)\vy{1}$
@@ -232,6 +281,21 @@ $=L_2\thetap_2 \vect{x_2} + (b_4\vz{3}+a_4 \vx{3}) (\thetap_2+\thetap_3)$.
 \end{corrige}
 \else
 \fi
+
+%\ifprof
+%\begin{corrige}
+%$\vectv{B}{4}{0} = \deriv{\vect{AB}}{\bas{0}}$
+%$=L_2\deriv{\vect{z_2}}{\bas{0}}$
+%$=L_2\thetap_2 \vect{x_2}$
+%
+%Par suite, 
+%$\babarv{G_4}{B}{4}{0}$
+%$=L_2\thetap_2 \vect{x_2} + (b_4\vx{3}-a_4 \vz{3})\wedge (\thetap_2+\thetap_3)\vy{1}$
+%$=L_2\thetap_2 \vect{x_2} + (b_4\vz{3}+a_4 \vx{3}) (\thetap_2+\thetap_3)$.
+%
+%\end{corrige}
+%\else
+%\fi
 
 \question{\label{q:19}Donner l'expression du moment cinétique $\vec{\sigma}_{(B, 4 / 0)}$.}
 \ifprof
@@ -493,13 +557,14 @@ $b_4 = b_3\dfrac{m_3}{m_E+m_3}$.
 %Chaque axe est mis en mouvement par un moteur brushless dédié, associé à un réducteur permettant d'exercer les couples $C_{m 2}$ et $C_{m 3}$.
 %
 %Chaque moteur est piloté par un variateur qui permet de l'asservir en couple (donc en courant), en vitesse et/ou en position. Les variateurs utilisés permettent d'apporter une correction proportionnelle, intégrale et/ou dérivée (PID) sur chaque boucle. La mise en place de la boucle de courant, après correction, permet de simplifier le modèle de comportement du motoréducteur et donc d'aboutir à la simplification donnée par le schéma bloc Figure 11, modélisant le comportement de l'asservissement en position du système articulé. Les motoréducteurs utilisés pour les axes $J_{2}$ et $J_{3}$ (voir Annexe D.1) sont identiques.
-
+\ifprof
+\else
 \subsection*{Annexes}
 
 \includegraphics[width=\textwidth]{annexes}
 
 \includegraphics[width=\textwidth]{annexes2}
-
+\fi
 %\includepdf[pages=-]{annexes.pdf}
 
 \end{document}
