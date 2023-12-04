@@ -1,0 +1,1002 @@
+\section{Mise en évidence de la problématique lors d'une marche en ligne droite}
+\ifprof
+\else
+\begin{obj}
+{Reformuler le cahier des charges global en termes de précision de façon à l'exprimer pour chacun des axes et mettre en évidence la nécessité de la prise en compte du couplage entre les axes dans la synthèse de la loi de commande.}
+\end{obj}
+\fi
+% Q1
+\question{Déterminer les expressions de $Y$ et $Z$, en fonction de $\theta_{1}, \theta_{2}, L_{2}$ et $L_{3}$.}
+
+\ifprof
+\begin{corrige}
+Écrivons la fermeture géométrique dans le triangle $ABD$ : $\vect{AD}+ \vect{DB}+\vect{BA} = \vect{0}$ soit $Y\vect{y_1}+Z\vect{z_1}+ L_3 \vect{z_3}+ L_2 \vect{z_2} = \vect{0}$.
+
+Souhaitant les expressions de $Y$ et $Z$ projetons l'expression dans la base $\left(\vect{y_1},\vect{z_1}\right)$ :
+
+$Y\vect{y_1}+Z\vect{z_1}
++L_3 \left( \cos \left(\theta_1 + \theta_2 \right) \vect{z_1} - \sin \left(\theta_1 + \theta_2 \right) \vect{y_1}\right) 
++ L_2 \left( \cos \left(\theta_1 \right) \vect{z_1} - \sin \left(\theta_1  \right) \vect{y_1}\right)  = \vect{0}$.
+
+On alors :
+$$
+\left\{
+\begin{array}{l}
+Y =  L_3 \sin  \left(\theta_1 + \theta_2 \right)  + L_2 \sin \left(\theta_1  \right) \\
+Z =- L_3 \cos \left(\theta_1 + \theta_2 \right) - L_2 \cos \left(\theta_1 \right)  
+\end{array}.
+\right.
+$$
+
+\end{corrige}\else\fi
+
+%Q2
+\question{À l'aide du résultat de la question 1, écrit à la position $\left(Y_{0}, Z_{0}\right)$, puis à la position $\left(Y_{0}+\Delta_{Y}, Z_{0}+\Delta_{Z}\right)$, déterminer les expressions de $\Delta_{Y}$ et $\Delta_{Z}$, en fonction de $\theta_{1,0}, \theta_{2,0}, \Delta_{\theta}, L_{2}$ et $L_{3}$.}
+
+\ifprof\begin{corrige}
+D'une part : 
+$
+\left\{
+\begin{array}{l}
+Y_0 =  L_3 \sin  \left(\theta_{1,0}+ \theta_{2,0} \right)  + L_2 \sin \left(\theta_{1,0}  \right) \\
+Z_0 =- L_3 \cos \left(\theta_{1,0} + \theta_{2,0} \right) - L_2 \cos \left(\theta_{1,0} \right)  
+\end{array}.
+\right.
+$
+
+
+\begin{enumerate}
+\item \textbf{Méthode 1 : }
+
+D'autre part : 
+$
+\left\{
+\begin{array}{l}
+Y_0 +\Delta_{Y}=  L_3 \sin  \left(\theta_{1,0}+ \theta_{2,0} + 2\Delta_{\theta} \right)  + L_2 \sin \left(\theta_{1,0} + \Delta_{\theta} \right) \\
+Z_0 +\Delta_{Z}=- L_3 \cos \left(\theta_{1,0} + \theta_{2,0}+ 2\Delta_{\theta} \right) - L_2 \cos \left(\theta_{1,0}+\Delta_{\theta} \right)  
+\end{array}.
+\right.
+$
+
+En faisant la différence :
+
+$
+\left\{
+\begin{array}{l}
+\Delta_{Y}=  L_3 \sin  \left(\theta_{1,0}+ \theta_{2,0} + 2\Delta_{\theta} \right)  + L_2 \sin \left(\theta_{1,0} + \Delta_{\theta} \right)  - L_3 \sin  \left(\theta_{1,0}+ \theta_{2,0} \right)  - L_2 \sin \left(\theta_{1,0}  \right)\\
+\Delta_{Z}=- L_3 \cos \left(\theta_{1,0} + \theta_{2,0}+ 2\Delta_{\theta} \right) - L_2 \cos \left(\theta_{1,0}+\Delta_{\theta} \right)   +  L_3 \cos \left(\theta_{1,0} + \theta_{2,0} \right) + L_2 \cos \left(\theta_{1,0} \right)
+\end{array}.
+\right.
+$
+
+Par suite : 
+
+$
+\left\{
+\begin{array}{ll}
+\Delta_{Y}=&   L_3 \left( \sin \left(\theta_{1,0}+ \theta_{2,0} \right) \cos \left( 2\Delta_{\theta} \right) + \cos \left(\theta_{1,0}+ \theta_{2,0}\right) \sin \left(2\Delta_{\theta} \right)\right) 
++ L_2 \left( \sin \left(\theta_{1,0} \right) \cos \left( \Delta_{\theta} \right) + \cos \left(\theta_{1,0}\right) \sin \left(\Delta_{\theta} \right)\right) \\
+& - L_3 \sin  \left(\theta_{1,0}+ \theta_{2,0} \right)  - L_2 \sin \left(\theta_{1,0}  \right)\\
+\Delta_{Z}=
+&- L_3 \left(\cos \left(\theta_{1,0} + \theta_{2,0}\right) \cos\left(2\Delta_{\theta} \right)
+- \sin \left(\theta_{1,0} + \theta_{2,0}\right) \sin\left(2\Delta_{\theta} \right) \right) \\
+&- L_2 \left(\cos \left(\theta_{1,0} \right) \cos\left(\Delta_{\theta} \right)
+- \sin \left(\theta_{1,0} \right) \sin\left(\Delta_{\theta} \right) \right)\\
+&  +  L_3 \cos \left(\theta_{1,0} + \theta_{2,0} \right) + L_2 \cos \left(\theta_{1,0} \right)
+\end{array}.
+\right.
+$
+
+et
+
+$
+\left\{
+\begin{array}{ll}
+\Delta_{Y}=&   L_3\cos \left(\theta_{1,0}+ \theta_{2,0}\right) \sin \left(2\Delta_{\theta} \right)
++ L_2 \cos \left(\theta_{1,0}\right) \sin \left(\Delta_{\theta} \right)\\
+\Delta_{Z}=& L_3  \sin \left(\theta_{1,0} + \theta_{2,0}\right) \sin\left(2\Delta_{\theta} \right) 
++L_2 \sin \left(\theta_{1,0} \right) \sin\left(\Delta_{\theta} \right)\\
+\end{array}.
+\right.
+$
+
+Par suite, 
+$
+\left\{
+\begin{array}{ll}
+\Delta_{Y}=&  2\Delta_{\theta}  L_3\cos \left(\theta_{1,0}+ \theta_{2,0}\right) 
++\Delta_{\theta}  L_2 \cos \left(\theta_{1,0}\right) \\
+\Delta_{Z}=& 2\Delta_{\theta} L_3  \sin \left(\theta_{1,0} + \theta_{2,0}\right)  
++L_2 \Delta_{\theta}\sin \left(\theta_{1,0} \right) \\
+\end{array}.
+\right.
+$
+
+\item \textbf{Méthode 2 : }
+
+On peut également utiliser le calcul différentiel : 
+$
+\begin{array}{l}
+\Delta Y=\d Y=\dfrac{\partial Y}{\partial \theta_1}\vert_{\theta_{1,0},\theta_{2,0}}\d\theta_1+\dfrac{\partial Y}{\partial \theta_2}\vert_{\theta_{1,0},\theta_{2,0}}\d\theta_2\\
+\Delta Z=\d Z=\dfrac{\partial Z}{\partial \theta_1}\vert_{\theta_{1,0},\theta_{2,0}}d\theta_1+\dfrac{\partial Z}{\partial \theta_2}\vert_{\theta_{1,0},\theta_{2,0}}\d\theta_2\\
+\end{array}.
+$
+
+Avec $\d\theta_1=\d\theta_2=\Delta_{\theta}$
+
+On obtient donc : 
+$
+\begin{array}{l}
+\Delta Y=\Delta_{\theta}\left[L_2\cos\theta_{10}+2L_3\cos(\theta_{20}+\theta_{10})\right]\\
+\Delta Z=\Delta_{\theta}\left[L_2\sin\theta_{10}+2L_3\sin(\theta_{20}+\theta_{10})\right]
+\end{array}
+$
+\end{enumerate}
+
+
+\end{corrige}\else\fi
+
+\question{Déterminer alors $\Delta_{Y Z}$, la norme de la variation de positionnement total du point $D$ dans le plan $\left(\vec{y}_{1}, \vec{z}_{1}\right)$, en fonction de $\theta_{2,0}, \Delta_{\theta}, L_{2}$ et $L_{3}$.}
+
+\ifprof\begin{corrige}
+ On a : 
+$\Delta_{Y}^2 + \Delta_{X}^2 = 4\Delta_{\theta}^2L_3^2 + \Delta_{\theta}^2L_2^2 
++ 4\Delta_{\theta}^2 L_2 L_3 \left( \cos \left(\theta_{1,0}+ \theta_{2,0}\right)  \cos \left(\theta_{1,0}\right)
++  \sin \left(\theta_{1,0}+ \theta_{2,0}\right)  \sin \left(\theta_{1,0}\right) \right)$
+
+soit 
+$\Delta_{YZ}^2 = \Delta_{\theta}^2 \left(4L_3^2 + L_2^2 
++ 4 L_2 L_3 \cos \left(\theta_{2,0} \right)\right)$
+\end{corrige}\else\fi
+
+\question{À partir de la figure 5, déterminer, parmi les valeurs proposées, l'erreur maximale admissible sur les axes $S_{\theta, \max }$ de l'exosquelette Atalante afin d'éviter la chute du patient.}
+
+\ifprof\begin{corrige}
+D'après le cahier des charges, l'incertitude de la position du point
+$D$ par rapport au point  $A$  doit être au maximum de $\SI{5}{mm}$. Parmi les 4 figures, seule une incertitude $S_{\theta}=\SI{0,01}{rad}$ permet d'avoir une incertitude $S_D < \SI{5}{mm}$.
+
+\end{corrige}\else\fi
+
+\question{À partir de la figure 6 et en justifiant la réponse, conclure sur la capacité des asservissements réalisés sans prise en compte du couplage entre les axes à respecter l'exigence 1.2.1.1.}
+
+\ifprof\begin{corrige}
+L'exigence indique que << Le talon doit être positionné à moins de
+\S{5}{mm} de la consigne >>. Pour cela on a vu que l'erreur maximale admissible sur chacun des axes doit être inférieure à \SI{0,01}{rad}. À tout stade de la marche, cette erreur est ici supérieure à \SI{0,01}{rad}. Les asservissements élaborés ne conviennent donc pas.
+\end{corrige}\else\fi
+
+
+\section{Élaboration et analyse d'un modèle dynamique de l'exosquelette}
+\ifprof
+\else
+\begin{obj}
+{Définir un modèle dynamique de l’exosquelette et montrer la nécessité de mettre en place un asservissement.}
+\end{obj}
+\fi
+\subsection{Comportement dynamique de l'exosquelette}
+
+%\parametrageAngulaire{\alpha}{\vect{y_3}}{\vect{z_3}}{\vect{x_3}}{\vect{y_3}'}{\vect{z_3}'}
+
+\question{Déterminer les expressions de $L_{0}$ et $\alpha$ en fonction de $l_{0}, L_{3}$ et $l_{3}$, puis calculer leurs valeurs numériques.}
+
+\ifprof\begin{corrige}
+On a $\vect{DB}+\vect{BG_3}+\vect{G_3D} = \vect{0}$ soit $L_3\vect{z_3}-L_0\vect{z_3}'-l_0\vect{y_3}-l_3\vect{z_3} = \vect{0}$. 
+
+En projetant dans la base $\mathcal{B}_3$ on a 
+$L_3\vect{z_3}-L_0\left(\cos\alpha \vect{z_3} - \sin\alpha \vect{y_3} \right)-l_0\vect{y_3}-l_3\vect{z_3} = \vect{0}$ puis : 
+$
+\left\{ \begin{array}{l}
+L_0 \sin\alpha -l_0 = 0 \\
+L_3-L_0 \cos\alpha -l_3 = 0
+\end{array}
+\right.
+$
+
+$
+\Rightarrow 
+\left\{ \begin{array}{l}
+L_0 \sin\alpha = l_0  \\
+L_0 \cos\alpha  = L_3 - l_3 
+\end{array}
+\right.
+$.
+On a donc $L_0 =\sqrt{l_0 ^2 + \left(L_3- l_3\right)^2}$ et $\alpha = \arcsin \left(\dfrac{l_0}{L_0}\right)$.
+
+\textit{Applications numériques : } $L_0= \SI{0,32}{m}$ et $\alpha \simeq \SI{0,67}{rad} \simeq 39\degres$.
+
+\end{corrige}\else\fi
+
+\question{Déterminer l'expression de l'accélération du point $G_{3}$ (cf. annexe B et question 6) appartenant à l'ensemble \{pied+tibia\} 3 dans son mouvement par rapport au buste 1, en fonction de $L_{0}, L_{2}, \theta_{1}, \theta_{2}$ et leurs dérivées temporelles.}
+
+\ifprof\begin{corrige}~\\
+
+\begin{tabular}{p{.68\linewidth}| p{.3\linewidth}}
+On cherche $\vectg{G_3}{3}{1} = \deriv{\vectv{G_3}{3}{1}}{\rep{1}}$.
+
+$\vectv{G_3}{3}{1} = \deriv{\vect{AB}+\vect{BG_3}}{\rep{1}}$
+$= \deriv{-L_2 \vect{z_2} -L_0 \vect{z_3}'}{\rep{1}}$
+
+$=L_2 \thetap_1\vect{y_2}  +L_0  \left(\thetap_1 + \thetap_2 \right)\vect{y_3}'$.
+&
+$\deriv{\vect{z_3}'}{\rep{1}} $ $=\vecto{3}{1}\wedge \vect{z_3}' $
+
+$= \left(\thetap_1 + \thetap_2 \right)\vect{x_3} \wedge \vect{z_3}' $
+
+$= - \left(\thetap_1 + \thetap_2 \right)\vect{y_3}' $ 
+\\
+\end{tabular}
+
+Par suite, 
+$\vectg{G_3}{3}{1} = L_2 \thetapp_1\vect{y_2}  +L_2 \thetap_1^2\vect{z_2}  + L_0  \left(\thetapp_1 + \thetapp_2 \right)\vect{y_3}'+ L_0  \left(\thetap_1 + \thetap_2 \right)^2\vect{z_3}'$.
+
+
+\end{corrige}\else\fi
+
+\question{Déterminer l'expression de la projection suivant $\vec{x}_{1}$ du moment dynamique en $A$ de l'ensemble \{pied+tibia\} 3 dans son mouvement par rapport au buste $1, \vec{\delta}_{A, 3 / 1} \cdot \vec{x}_{1}$, sous la forme :
+$$
+\vec{\delta}_{A, 3 / 1} \cdot \vec{x}_{1}=A_{1} \ddot{\theta}_{1}+A_{2} \ddot{\theta}_{2}+A_{3} \dot{\theta}_{1}^{2}+A_{4}\left(\dot{\theta}_{1}+\dot{\theta}_{2}\right)^{2}
+$$
+Préciser les expressions littérales de $A_{1}, A_{2}, A_{3}$ et $A_{4}$ en fonction des différentes caractéristiques géométriques, de masses et d'inerties de l'exosquelette.}
+
+\ifprof\begin{corrige}
+On cherche $\vectmd{A}{3}{1} \cdot \vect{x_1}$.
+
+On a  $\vectmd{A}{3}{1} \cdot \vect{x_1}$  
+$= \left(\vectmd{G_3}{3}{1}  + \vect{AG_3} \wedge m_3 \vectg{G_3}{3}{1}\right)  \cdot \vect{x_1}$ 
+$= \left(\deriv{\vectmc{G_3}{3}{1}}{\rep{1}}  + \vect{AG_3} \wedge m_3 \vectg{G_3}{3}{1}\right)  \cdot \vect{x_1}$.
+
+Or, en $G_3$, centre d'inertie de 3, $\vectmc{G_3}{3}{1} = \inertie{G_3}{3}\vecto{3}{1}$
+$ = \matinertie{I_{x3}}{I_{y3}}{I_{z3}}{I_{yz3}}{0}{0}{\bas{3}} \cdot \left(\thetap_1 + \thetap_2 \right) \vect{x_3}$ $=I_{x3}\left(\thetap_1 + \thetap_2 \right) \vect{x_3} $.
+
+Par suite, $\vectmd{A}{3}{1} \cdot \vect{x_1}$  
+$= \left(\deriv{\vectmc{G_3}{3}{1}}{\rep{1}} \cdot \vect{x_1} + \left(\vect{AG_3} \wedge m_3 \vectg{G_3}{3}{1}\right)\cdot \vect{x_1} \right)  $
+
+$= \left(\deriv{\vectmc{G_3}{3}{1}\cdot \vect{x_1}}{\rep{1}} - \vectmc{G_3}{3}{1}\cdot \underbrace{\deriv{ \vect{x_1}}{\rep{1}}}_{0}   + \left(\vect{AG_3} \wedge m_3 \vectg{G_3}{3}{1}\right)\cdot \vect{x_1} \right)  $
+
+$= I_{x3}\left(\thetapp_1 + \thetapp_2 \right)     + \left(\left( -L_2 \vect{z_2}-L_0 \vect{z_3}' \right) \wedge m_3 \left( L_2 \thetapp_1\vect{y_2}  +L_2 \thetap_1^2\vect{z_2}  + L_0  \left(\thetapp_1 + \thetapp_2 \right)\vect{y_3}'+ L_0  \left(\thetap_1 + \thetap_2 \right)^2\vect{z_3}'\right)\right)\cdot \vect{x_1}  $
+
+
+%$= I_{x3}\left(\thetapp_1 + \thetapp_2 \right)     
+%-L_2  m_3  \left( \vect{z_2}  \wedge\left( L_2 \thetapp_1\vect{y_2}  +L_2 \thetap_1^2\vect{z_2}  + L_0  \left(\thetapp_1 + \thetapp_2 \right)\vect{y_3}'+ L_0  \left(\thetap_1 + \thetap_2 \right)^2\vect{z_3}'\right)\right)\cdot \vect{x_1} 
+%$
+%$
+% -L_0  m_3 \left(\left(\vect{z_3}' \right) \wedge \left( L_2 \thetapp_1\vect{y_2}  +L_2 \thetap_1^2\vect{z_2}  + L_0  \left(\thetapp_1 + \thetapp_2 \right)\vect{y_3}'+ L_0  \left(\thetap_1 + \thetap_2 \right)^2\vect{z_3}'\right)\right)\cdot \vect{x_1}  $
+%
+%
+%$= I_{x3}\left(\thetapp_1 + \thetapp_2 \right)     
+%-L_2  m_3  \left( \left( L_2 \thetapp_1\vect{z_2}  \wedge\vect{y_2}  +L_2 \thetap_1^2\vect{z_2}  \wedge\vect{z_2}  + L_0  \left(\thetapp_1 + \thetapp_2 \right)\vect{z_2}  \wedge\vect{y_3}'+ L_0  \left(\thetap_1 + \thetap_2 \right)^2\vect{z_2}  \wedge\vect{z_3}'\right)\right)\cdot \vect{x_1} 
+% -L_0  m_3 \left( \left( L_2 \thetapp_1\vect{z_3}'  \wedge\vect{y_2}  +L_2 \thetap_1^2\vect{z_3}'  \wedge\vect{z_2}  + L_0  \left(\thetapp_1 + \thetapp_2 \right)\vect{z_3}'  \wedge \vect{y_3}'+ L_0  \left(\thetap_1 + \thetap_2 \right)^2\vect{z_3}'  \wedge\vect{z_3}'\right)\right)\cdot \vect{x_1}  $
+% 
+%$= I_{x3}\left(\thetapp_1 + \thetapp_2 \right)     
+%-L_2  m_3   \left(- L_2 \thetapp_1  
+%- L_0  \left(\thetapp_1 + \thetapp_2 \right) \cos\left( \theta_2+\alpha\right)
+%+ L_0  \left(\thetap_1 + \thetap_2 \right)^2\sin\left( \theta_2+\alpha\right)\right)
+% -L_0  m_3 \left( - L_2 \thetapp_1 \cos\left( \theta_2+\alpha \right)  
+% -L_2 \thetap_1^2\sin\left( \theta_2+\alpha\right)  
+% - L_0  \left(\thetapp_1 + \thetapp_2 \right)\right)  $
+
+
+$= 
+\thetapp_1\left(I_{x3} + m_3 L_2^2 +L_2  m_3 L_0   \cos\left( \theta_2+\alpha\right) +  m_3 L_0 L_2  \cos\left( \theta_2+\alpha \right) +   m_3 L_0^2 \right)$
+$+\thetapp_2\left(I_{x3} +L_2  m_3 L_0  \cos\left( \theta_2+\alpha\right) +   m_3 L_0^2 \right)$
+
+$+\thetap_1^2\left( m_3 L_0 L_2 \sin\left( \theta_2+\alpha\right)\right)$
+$+\left(\thetap_1 + \thetap_2 \right)^2\left(-L_2  m_3 L_0  \sin\left( \theta_2+\alpha\right) \right) $
+
+
+Soit : $ \left\{ \begin{array}{l}
+A_1 = I_{x3} + m_3 L_2^2 + 2 m_3 L_0 L_2 \cos\left( \theta_2+\alpha\right) +   m_3 L_0^2  \\
+B_1 = I_{x3} + m_3 L_0 L_2 \cos\left( \theta_2+\alpha\right) +   m_3 L_0^2  \\
+C_1 = m_3 L_0 L_2 \sin\left( \theta_2+\alpha\right) \\
+D_1 =-m_3 L_0L_2    \sin\left( \theta_2+\alpha\right)  \\
+\end{array}\right.
+$.
+\end{corrige}\else\fi
+
+\question{Proposer une démarche permettant de déterminer l'expression de $C_{1}$, l'action mécanique exercée sur la cuisse 2 par l'actionneur correspondant. Préciser le(les) ensemble(s) isolé(s), le(s) bilan(s) des actions mécaniques extérieurs, le(s) théorème(s) utilisé(s) et la(les) équation(s) utile(s).}
+\ifprof\begin{corrige}
+\begin{itemize}
+\item On isole l'ensemble $\{2+3\}$.  
+\item Bilan des actions mécaniques : 
+\begin{itemize}
+\item liaison pivot en $A$ telle que $\vectm{A}{1}{2}\cdot \vect{x_1} = 0$;
+\item actionneur de 1 sur 2 tel que  $\vectm{A}{1}{2_m}\cdot \vect{x_1} = C_1$;
+\item action du patient sur la hanche telle que  $\vectm{A}{1}{2_p}\cdot \vect{x_1} = \indice{C}{hanche}$;
+\item action de la pesanteur sur 2 en $G_2$;
+\item action de la pesanteur sur 3 en $G_3$.
+\end{itemize}
+\item On écrit alors le théorème du moment dynamique en $A$ en projection sur $\vect{x_0}$.
+\end{itemize}
+
+
+
+
+\end{corrige}\else\fi
+
+\question{Déterminer l'expression de $C_{1}$ en fonction de $\theta_{1}, \theta_{2}$, leurs différentes dérivées, de $C_{\textrm {hanche }}$ et des différentes caractéristiques géométriques, de masses et d'inerties de l'exosquelette.}
+
+\ifprof\begin{corrige}
+Détermination des actions mécaniques.
+\begin{itemize}
+\item $\vectm{A}{\text{pes}}{2}\cdot \vect{x_1}$ 
+$ =\left(\vect{AG_2}\wedge - m_2 g \vect{z_1} \right)\cdot \vect{x_1}$
+$ =\left(\left( l_2 - L_2\right)\vect{z_2}\wedge - m_2 g \vect{z_1} \right)\cdot \vect{x_1}$
+$ = m_2 g\left( l_2 - L_2\right) \sin \theta_1$;
+\item $\vectm{A}{\text{pes}}{3}\cdot \vect{x_1}$ 
+$ =\left(\vect{AG_3}\wedge - m_3 g \vect{z_1} \right)\cdot \vect{x_1}$
+$ =\left(\left(  - L_2 \vect{z_2}- L_0 \vect{z_3}'\right)\wedge - m_3 g \vect{z_1} \right)\cdot \vect{x_1}$
+$ =\left(\left( L_2 \vect{z_2} + L_0 \vect{z_3}'\right)\wedge m_3 g \vect{z_1} \right)\cdot \vect{x_1}$
+$ = - m_3 g\left(  L_2 \sin \theta_1 +  L_0 \sin\left( \alpha + \theta_2 + \theta_1\right)\right) $.
+\end{itemize}
+
+Le TMD en $A$ appliqué 2+3 en projections sur $\vect{x_1}$ se traduit donc par :
+
+  $C_{1} + C_{\textrm {hanche }}- m_3 g\left(  L_2 \sin \theta_1 +  L_0 \sin\left( \alpha + \theta_2 + \theta_1\right)\right)  + m_2 g\left( l_2 - L_2\right) \sin \theta_1 = A_{1} \ddot{\theta}_{1}+A_{2} \ddot{\theta}_{2}+A_{3} \dot{\theta}_{1}^{2}+A_{4}\left(\dot{\theta}_{1}+\dot{\theta}_{2}\right)^{2}$.
+\end{corrige}\else\fi
+
+\question{ Déduire des deux équations précédentes que le modèle dynamique considéré peut s'écrire sous la forme matricielle suivante :
+$$
+\left(\begin{array}{l}
+C_{1} \\
+C_{2}
+\end{array}\right)=M_{1}\left(\begin{array}{c}
+\ddot{\theta}_{1} \\
+\ddot{\theta}_{2}
+\end{array}\right)+M_{2}\left(\begin{array}{c}
+\dot{\theta}_{1} \\
+\dot{\theta}_{2}
+\end{array}\right)+C+M_{3}\left(\begin{array}{c}
+C_{\textrm {hanche }} \\
+C_{\textrm {genou }}
+\end{array}\right)
+$$
+où $C$ est une matrice colonne et $M_{1}, M_{2}$ et $M_{3}$ sont des matrices $2 \times 2$. Donner l'expression littérale des coefficients de $C, M_{1}, M_{2}$ et $M_{3}$ par des relations non linéaires des paramètres de mouvement $\left(\theta_{1}, \theta_{2}\right)$, leurs dérivés premières et des différentes caractéristiques géométriques, de masses et d'inerties du problème.}
+
+\ifprof\begin{corrige}
+On a :
+
+$\left\{
+\begin{array}{l}
+C_{1} = - C_{\textrm {hanche }}+ m_3 g\left(  L_2 \sin \theta_1 +  L_0 \sin\left( \alpha + \theta_2 + \theta_1\right)\right)  - m_2 g\left( l_2 - L_2\right) \sin \theta_1 - A_{1} \ddot{\theta}_{1}-A_{2} \ddot{\theta}_{2}-A_{3} \dot{\theta}_{1}^{2}-A_{4}\left(\dot{\theta}_{1}+\dot{\theta}_{2}\right)^{2} \\
+C_{2}=\left[I_{x 3}+m_{3} L_{0}^{2}\right]\left(\ddot{\theta}_{1}+\ddot{\theta}_{2}\right)+m_{3} L_{2} L_{0}\left[\ddot{\theta}_{1} \cos \left(\theta_{2}+\alpha\right)+\dot{\theta}_{1}^{2} \sin \left(\theta_{2}+\alpha\right)\right]+m_{3} g L_{0} \sin \left(\theta_{2}+\theta_{1}+\alpha\right)-C_{\text {genou }}
+\end{array}\right.
+$
+
+Par identification : 
+$M_1 = \begin{pmatrix}
+-A_1 & - A_2 \\
+\left[I_{x 3}+m_{3} L_{0}^{2}\right]  +m_{3} L_{2} L_{0}\cos \left(\theta_{2}+\alpha\right) & \left[I_{x 3}+m_{3} L_{0}^{2}\right] \\
+\end{pmatrix}$,
+
+$M_2 = \begin{pmatrix}
+-A_{3} \dot{\theta}_{1}  & 0 \\
+0 & m_{3} L_{2} L_{0} \dot{\theta}_{1} \sin \left(\theta_{2}+\alpha\right) \\
+\end{pmatrix}$, 
+
+$M_3 = \begin{pmatrix}
+- 1 & 0 \\
+0 & - 1  \\
+\end{pmatrix}$
+
+et 
+$C = \begin{pmatrix}
+ m_3 g\left(  L_2 \sin \theta_1 +  L_0 \sin\left( \alpha + \theta_2 + \theta_1\right)\right) - m_2 g\left( l_2 - L_2\right) \sin \theta_1 -A_{4}\left(\dot{\theta}_{1}+\dot{\theta}_{2}\right)^{2}\\
+m_{3} g L_{0} \sin \left(\theta_{2}+\theta_{1}+\alpha\right) \\
+\end{pmatrix}$.
+
+Si on part du principe que le vecteur $C$ ne doit pas dépendre de $\dot{\theta}_1$ et $\dot{\theta}_2$ on obtient cette autre solution : 
+
+$M_1 = \begin{pmatrix}
+-A_1 & - A_2 \\
+\left[I_{x 3}+m_{3} L_{0}^{2}\right]  +m_{3} L_{2} L_{0}\cos \left(\theta_{2}+\alpha\right) & \left[I_{x 3}+m_{3} L_{0}^{2}\right] \\
+\end{pmatrix}$,
+
+$M_2 = \begin{pmatrix}
+-\left(A_{3}+A_4\right) \dot{\theta}_{1}-2A_4 \dot{\theta}_2  & -A_4\left(\dot{\theta}_2+2\dot{\theta}_1\right) \\
+0 & m_{3} L_{2} L_{0} \dot{\theta}_{1} \sin \left(\theta_{2}+\alpha\right) \\
+\end{pmatrix}$, 
+
+$M_3 = \begin{pmatrix}
+- 1 & 0 \\
+0 & - 1  \\
+\end{pmatrix}$
+
+et 
+$C = \begin{pmatrix}
+ m_3 g\left(  L_2 \sin \theta_1 +  L_0 \sin\left( \alpha + \theta_2 + \theta_1\right)\right) - m_2 g\left( l_2 - L_2\right) \sin \theta_1 \\
+m_{3} g L_{0} \sin \left(\theta_{2}+\theta_{1}+\alpha\right) \\
+\end{pmatrix}$.
+
+
+
+\end{corrige}\else\fi
+
+
+\subsection{Analyse du modèle dynamique}
+
+%Q 12. 
+\question{Déterminer les valeurs numériques des coefficients $a_{i}$ et $b_{i}$ tels que la fonction de transfert $H_{L 4}(p)=$ $\frac{\Theta_{2}(p)}{C_{2}(p)}$ s'écrive :
+$$
+H_{L 4}(p)=\frac{a_{0}+a_{1} p+a_{2} p^{2}}{1+b_{1} p+b_{2} p^{2}+b_{3} p^{3}+b_{4} p^{4}}.
+$$}
+
+\ifprof\begin{corrige}
+On a $
+\begin{pmatrix}
+C_1 \\
+C_2
+\end{pmatrix}
+=\begin{pmatrix}
+3,4 & 2,6 \\
+2,6 & 1,9
+\end{pmatrix} \begin{pmatrix}
+\thetapp_1 \\
+\thetapp_2
+\end{pmatrix}
++
+\begin{pmatrix}
+-11,5 & -19,2 \\
+7,7 & 0
+\end{pmatrix} \begin{pmatrix}
+\thetap_1 \\
+\thetap_2
+\end{pmatrix}
++
+\begin{pmatrix}
+108,2 & 5,2 \\
+15,9 & 17,1
+\end{pmatrix} 
+\begin{pmatrix}
+\theta_1 \\
+\theta_2
+\end{pmatrix}-
+\begin{pmatrix}
+\indice{C}{hanche} \\
+\indice{C}{genou}
+\end{pmatrix}
+$; donc : 
+
+$C_i(p) = 3,4 p^2 \theta_1(p) + 2,6p^2\theta_2(p) - 11,5 p\theta_1(p) - 19,2p\theta_2(p) + 108,2\theta_1(p) + 5,2\theta_2(p) - \indice{C}{hanche}(p)$
+
+$C_2(p) = 2,6 p^2 \theta_1(p) + 1,9 p^2\theta_2(p) + 7,7 p\theta_1(p) + 15,9\theta_1(p) + 17,1\theta_2(p) - \indice{C}{genou}(p)$.
+
+En utilisant les hypothèses, on a :
+
+$\left\{
+\begin{array}{l} 
+0= 3,4 p^2 \theta_1(p) + 2,6p^2\theta_2(p) - 11,5 p\theta_1(p) - 19,2p\theta_2(p) + 108,2\theta_1(p) + 5,2\theta_2(p) \\
+C_2(p) = 2,6 p^2 \theta_1(p) + 1,9 p^2\theta_2(p) + 7,7 p\theta_1(p) + 15,9\theta_1(p) + 17,1\theta_2(p) \\
+\end{array}
+\right.$
+
+$\Rightarrow \left\{
+\begin{array}{l} 
+0= \left(3,4 p^2 - 11,5 p + 108,2\right) \theta_1(p) + \left(2,6p^2 - 19,2p + 5,2\right)\theta_2(p) \\
+C_2(p) = \left( 2,6 p^2 + 7,7 p + 15,9\right)\theta_1(p) + \left( 1,9 p^2+ 17,1\right)\theta_2(p) \\
+\end{array}
+\right.$.
+
+
+
+On a donc 
+$C_2(p) = - \left( 2,6 p^2 + 7,7 p + 15,9\right)\dfrac{2,6p^2 - 19,2p + 5,2}{3,4 p^2 - 11,5 p + 108,2}\theta_2(p) + \left( 1,9 p^2+ 17,1\right)\theta_2(p) $
+
+
+$\Rightarrow C_2(p) = 
+\dfrac{\left( 2,6 p^2 + 7,7 p + 15,9\right)\left(-2,6p^2 + 19,2p - 5,2\right) + \left(3,4 p^2 - 11,5 p + 108,2\right) \left( 1,9 p^2+ 17,1\right)}{3,4 p^2 - 11,5 p + 108,2} \theta_2(p)$
+
+\begin{tiny}
+$C_2(p) =  \dfrac{\theta_2(p)}{3,4 p^2 - 11,5 p + 108,2} $
+
+$\left(p^4 \left( - 2,6 ^2 +3,4 \times 1,9 \right)
++p^3 \left( 2,6 \cdot 19,2 - 7,7\cdot 2,6  -11,5 \cdot 1,9\right)
++p^2 \left( -2,6 \times 5,2 +7,7 \times 19,2 - 2,6 \times 15,9 +3,4 \times 17,1 +108,2 \times 1,9 \right) 
++p \left( -7,7 \times 5,2 + 15,9 \times 19,2 -11,5 \times 17,1\right)
+- 15,9 \times 5,2 +108,2 \times 17,1\right)$
+
+
+$\Rightarrow \dfrac{\theta_2(p)}{C_2(p)} =\dfrac{3,4 p^2 - 11,5 p + 108,2} {\left(p^4 \left( - 2,6 ^2 +3,4 \times 1,9 \right)
++p^3 \left( 2,6 \times 19,2 - 7,7 \times 2,6  -11,5 \times 1,9\right) 
++p^2 \left( -2,6 \times 5,2 +7,7 \times 19,2 - 2,6 \times 15,9 +3,4 \times 17,1 +108,2 \times 1,9 \right) 
++p \left( -7,7 \times 5,2 + 15,9 \times 19,2 -11,5 \times 17,1\right)
+- 15,9 \times 5,2 +108,2 \times 17,1\right)}$
+\end{tiny}
+
+Par suite, $b_4 = -17 \times 10^{-5}$, $b_3 = 4,6 \times 10^{-3}$, $b_2=20 \times 10^{-2} $ et $b_1 = 39 \times 10^{-3}$.
+De plus, $a_0 = 192\times 10^{-5}$, $a_1=-650\times 10^{-5}$ $a_2 =  6122\times 10^{-5}$.
+
+
+\end{corrige}\else\fi
+
+
+\question{Au regard de cette fonction de transfert, justifier le besoin de la mise en place d'un asservissement pour l'exosquelette.}
+
+\ifprof\begin{corrige}
+Pour qu'une fonction de transfert soit stable, ses zéros doivent être à partie réelle strictement négative, ce qui n'est pas le cas. Un asservissement est nécessaire pour stabiliser le système.
+\end{corrige}\else\fi
+
+\section{Conception et analyse de lois de commande de l’exosquelette}
+\subsection{Conception de l'asservissement en couple d'un actionneur}
+\ifprof
+\else
+\begin{obj}
+{Élaborer l'asservissement du couple généré par un actionneur, puis le valider par une analyse de son effet sur l'exosquelette.}
+\end{obj}
+\fi
+
+\subsubsection{Modèle dynamique d'un axe}
+
+%Q 14.
+\question{Déterminer l'expression de l'accélération du point $G_{3}$ appartenant à l'ensemble \{pied+tibia\} 3 dans son mouvement par rapport à la cuisse 2 en fonction de $L_{0}, \theta_{2}$ et ses dérivées.}
+
+\ifprof\begin{corrige}
+On cherche $\vectg{G_3}{3}{2} = \deriv{\vectv{G_3}{3}{2}}{\rep{3}}$ $= \dderiv{-L_0 \vect{z_3}'}{\rep{3}}$
+$= \deriv{L_0 \thetap_2 \vect{y_3}'}{\rep{3}}$
+$= L_0 \thetapp_2 \vect{y_3}' +L_0 \thetap_2^2 \vect{z_3}' $.
+
+\end{corrige}\else\fi
+
+%Q 15.
+\question{Par application du théorème du moment dynamique à l'ensemble \{pied+tibia\} 3 au point $B$, projeté suivant la direction $\vec{x}_{1}$, donner l'expression de $C_{2}$ sous la forme :
+$$
+C_{2}=A_{\mathrm{eq}} \ddot{\theta}_{2}+C_{r}.
+$$
+Préciser les expressions de $A_{\textrm{eq}}$ en fonction de $I_{x 3}, m_{3}, L_{0}$ et de $C_{r}$ en fonction de $C_{\textrm{genou}}, m_{3}, L_{0}, \alpha$ et $\theta_{2}$. Faire l'application numérique pour $A_{e q}$.}
+\ifprof\begin{corrige}
+
+Pour calculer $\vectmd{B}{3}{2} \cdot \vect{x_1}$, on reprend le raisonnement de la question 8 :  
+
+ $\vectmd{B}{3}{2} \cdot \vect{x_1}$  
+$= \left(\deriv{\vectmc{G_3}{3}{2}}{\rep{1}} \cdot \vect{x_1} + \left(\vect{BG_3} \wedge m_3 \vectg{G_3}{3}{1}\right)\cdot \vect{x_1} \right)  $
+
+$= \left(\deriv{\vectmc{G_3}{3}{2}\cdot \vect{x_1}}{\rep{1}} - \vectmc{G_3}{3}{2}\cdot \underbrace{\deriv{ \vect{x_1}}{\rep{1}}}_{0}   + \left(\vect{BG_3} \wedge m_3 \vectg{G_3}{3}{2}\right)\cdot \vect{x_1} \right)  $
+
+$=I_{x3}\thetapp_2 +\left( -L_0 \vect{z_3}'	 \wedge m_3  \left( L_0 \thetapp_2 \vect{y_3}' +L_0 \thetap_2^2 \vect{z_3}' \right)\right)\cdot \vect{x_1}$
+
+
+$=I_{x3}\thetapp_2 + m_3 L_0^2 \thetapp_2  $.
+
+Bilan des actions mécaniques : 
+\begin{itemize}
+\item liaison pivot en $B$ telle que $\vectm{B}{2}{3}\cdot \vect{x_1} = 0$;
+\item actionneur de 2 sur 3 tel que  $\vectm{B}{2}{3_m}\cdot \vect{x_1} = C_2$;
+\item action du patient sur le genou telle que  $\vectm{B}{2}{3_p}\cdot \vect{x_1} = \indice{C}{genou}$;
+\item action de la pesanteur sur 3 en $G_3$ : $\vectm{B}{Pes}{3} = \vect{BG_3}\wedge -m_3 g\vect{z_2}$ $= -L_0 \vect{z_3'}\wedge -m_3 g\vect{z_2}$
+
+$= - L_0 m_3 g \sin\left(\theta_2 + \alpha\right)\vect{x_1}$
+\end{itemize}
+
+Le TMD appliqué à 3 en $B$ projeté sur $\vect{x_1}$ se traduit donc par : 
+$C_2 +\indice{C}{genou} - L_0 m_3 g \sin\left(\theta_2 + \alpha\right)=I_{x3}\thetapp_2 + m_3 L_0^2 \thetapp_2  $.
+
+On a donc $C_2 = \left( I_{x3} + m_3 L_0^2 \right)\thetapp_2  - \indice{C}{genou} + L_0 m_3 g \sin\left(\theta_2 + \alpha\right) $.
+
+On a donc : $\indice{A}{eq} = I_{x3} + m_3 L_0^2$ et $C_r =  - \indice{C}{genou} + L_0 m_3 g \sin\left(\theta_2 + \alpha\right)$.
+
+%\textit{Application numérique :} $\indice{A}{eq} =\SI{1,925}{kg.m^2}$.
+
+\textit{Application numérique :} $\indice{A}{eq} =\SI{1,205}{kg.m^2}$.
+
+\end{corrige}\else\fi
+
+
+\subsubsection{Élaboration de la commande en couple de l'actionneur}
+
+%Q 16
+\question{ Calculer, en donnant les expressions littérales de $K_{c}, T_{c}$, $\xi_{c}$ et $\omega_{c}$, l'expression de la fonction de transfert $H_{C}(p)=\frac{C_{m}(p)}{\indice{C}{ref}(p)}$ sous la forme :
+$$
+H_{C}(p)=K_{c} \frac{1+T_{c} p}{1+2 \xi_{c} \frac{p}{\omega_{c}}+\left(\frac{p}{\omega_{c}}\right)^{2}}.
+$$}
+\ifprof\begin{corrige}
+On rappelle que $\indice{C}{pert} = 0$.	
+On a $C_m(p) = I_m(p) k_i $ 
+$=\left(\indice{C}{ref}(p)K_1- \Omega_m(p) \dfrac{k_e}{C_i(p)}\right) \dfrac{C_i(p)}{R_m + L_mp + C_i(p)\indice{K}{capi}}   k_i $ 
+$=\left(\indice{C}{ref}(p)K_1- C_m(p) \dfrac{1}{r\indice{A}{eq}p}\dfrac{k_e}{C_i(p)}\right) \dfrac{C_i(p) k_i}{R_m + L_mp + C_i(p)\indice{K}{capi}} $
+$=\left(\indice{C}{ref}(p)K_1- C_m(p) \dfrac{1}{r\indice{A}{eq}p}\dfrac{k_e}{C_i(p)}\right) F(p) $. 
+
+On a alors 
+$C_m(p) \left(1+\dfrac{F(p)}{r\indice{A}{eq}p}\dfrac{k_e}{C_i(p)}\right)=\indice{C}{ref}(p)K_1 F(p)$
+$ \Leftrightarrow \dfrac{C_m(p) }{\indice{C}{ref}(p)} =\dfrac{K_1 F(p)}{1+\dfrac{F(p)}{r\indice{A}{eq}p}\dfrac{k_e}{C_i(p)}} $
+
+$=\dfrac{K_1 \dfrac{C_i(p) k_i}{R_m + L_mp + C_i(p)\indice{K}{capi}}}{1+\dfrac{\dfrac{C_i(p) k_i}{R_m + L_mp + C_i(p)\indice{K}{capi}}}{r\indice{A}{eq}p}\dfrac{k_e}{C_i(p)}} $
+$=\dfrac{K_1 C_i(p) k_i}{R_m + L_mp + C_i(p)\indice{K}{capi}+\dfrac{k_e k_i}{r\indice{A}{eq}p}} $
+
+On remplace la fonction du transfert du correcteur :
+
+$\dfrac{C_m(p) }{\indice{C}{ref}(p)}=\dfrac{K_1 K\dfrac{1+Tp}{p} k_i}{R_m + L_mp + K\dfrac{1+Tp}{p}\indice{K}{capi}+\dfrac{k_e k_i}{r\indice{A}{eq}p}} $
+$=\dfrac{K_1 K\left(1+Tp\right) k_i}{R_mp + L_mp^2 + K\left(1+Tp\right)\indice{K}{capi}+\dfrac{k_e k_i}{r\indice{A}{eq}}} $
+
+$=\dfrac{K_1 K\left(1+Tp\right) k_i}{R_mp + L_mp^2 + K\left(1+Tp\right)\indice{K}{capi}+\dfrac{k_e k_i}{r\indice{A}{eq}}} $
+
+%$=\dfrac{K_1 Kk_i}{K\indice{K}{capi}+\dfrac{k_e k_i}{r\indice{A}{eq}}} \dfrac{1+Tp }{\alpha L_mp^2 + \alpha\left(R_m+  K\indice{K}{capi}T\right) p+1} $ avec $\dfrac{1}{\alpha} = K\indice{K}{capi}+\dfrac{k_e k_i}{r\indice{A}{eq}}$.
+
+$=\alpha K_1 Kk_i \dfrac{1+Tp }{\alpha L_mp^2 + \alpha\left(R_m+  K\indice{K}{capi}T\right) p+1} $ avec $\dfrac{1}{\alpha} = K\indice{K}{capi}+\dfrac{k_e k_i}{r\indice{A}{eq}}$.
+
+On a donc : 
+$
+\left\{
+\begin{array}{l}
+T_c = T \\
+K_c = \alpha K_1 Kk_i  \\
+\dfrac{1}{\omega_c^2} = \alpha L_m \Rightarrow  \omega_c = \sqrt{\dfrac{1}{\alpha L_m}} \\
+\dfrac{2 \xi_c}{\omega_c} = \alpha\left(R_m+  K\indice{K}{capi}T\right) 
+\Rightarrow  \xi_c = \dfrac{\omega_c}{2}\alpha\left(R_m+  K\indice{K}{capi}T\right) = \dfrac{1}{2}\sqrt{\dfrac{\alpha}{ L_m}} \left(R_m+  K\indice{K}{capi}T\right)  \\
+\end{array}
+\right.
+$
+\end{corrige}\else\fi
+
+%Q 17
+\question{Déterminer l'expression littérale, puis la valeur numérique, de $K$ afin de respecter le cahier des charges en termes de rapidité (rappel : $t_{r, 5 \%} \omega_{c} \approx 5$ pour un régime apériodique critique).}
+
+\ifprof\begin{corrige}
+On souhaite un temps de réponse de \SI{0,1e-3}{s}. 
+
+$\omega_c^2  = \dfrac{K\indice{K}{capi}+\dfrac{k_e k_i}{r\indice{A}{eq}}}{L_m} $
+$\Rightarrow K = \dfrac{L_m\omega_c^2 - \dfrac{k_e k_i}{r\indice{A}{eq}}}{\indice{K}{capi}}$
+$\Rightarrow K = \dfrac{L_m\left(\dfrac{5}{0,1 \times 10^{-3}} \right)^2 - \dfrac{k_e k_i}{r\indice{A}{eq}}}{\indice{K}{capi}}$
+
+\textit{Application numérique : } $K=1224960$ [USI].
+\end{corrige}\else\fi
+
+%Q 18
+\question{Déterminer l'expression littérale, puis la valeur numérique, de $T$ afin de respecter le cahier des charges en termes de stabilité.}
+
+\ifprof\begin{corrige}~\\
+Afin que le régime soit apériodique critique, il faut que $\xi_c = 1$. 
+Par suite, $    T = \dfrac{2\sqrt{\dfrac{ L_m}{\alpha}} - R_m }{K\indice{K}{capi}} $.
+
+\textit{Application numérique : } $T=\SI{3,8e-5}{s}$.
+\end{corrige}\else\fi
+
+%Q 19
+\question{ Déterminer l'expression littérale, puis la valeur numérique, de $K_{1}$ afin d'obtenir $K_{C}=r$ pour $H_{C}(p)$. Justifier la volonté d'obtenir cette valeur de gain pour $H_{C}(p)$.}
+\ifprof
+\begin{corrige}
+$
+K_C=r \Leftrightarrow \dfrac{K_1\cdot k_i\cdot r\cdot \indice{A}{eq}}{k_i\cdot k_e+r\cdot A_{eq\cdot \indice{K}{capi}\cdot K}}=r
+$ en simplifiant par $r$ et en inversant l'équation précédente, on obtient : 
+$K_1=\dfrac{k_i\cdot k_e+r\cdot \indice{A}{eq}\cdot \indice{K}{capi}\cdot K}{k_i\cdot \indice{A}{eq}}$.
+
+Obtenir un gain statique unitaire pour la fonction de transfert en boucle fermée de l'asservissement en couple assure d'avoir un écart statique nul sans perturbation.
+Soit $\indice{C}{ref}(p)=\dfrac{C_0}{p}$
+
+En effet : 
+$
+\varepsilon_s=\lim\limits_{t\rightarrow+\infty}  \left(\indice{C}{ref}(t)-C_{m(t)}\right)$
+$=\lim\limits_{p\rightarrow 0} p \left(\indice{C}{ref}(p)-C_{m(p)}\right)$
+$=\lim\limits_{p\rightarrow 0} p \left(\indice{C}{ref}(p)-C_{m(p)}\right)$
+$=\lim\limits_{p\rightarrow 0} p \indice{C}{ref}(p) \left(1-H_C\right)$
+$=\lim\limits_{p\rightarrow 0} C_{0} \left(1-K_C\dfrac{1+T_c p}{1+2\xi_c\dfrac{p}{\omega_c}+\left(\dfrac{p}{\omega_c}\right)^2}\right)=0$
+
+Cette dernière limite est bien nulle pour $K_c=1$.
+
+%L'application numérique donne : 
+%
+%\begin{align*}
+%K_1\SI{13,8e3}{s}
+%\end{align*}
+\end{corrige}\else\fi
+
+%Q 20
+
+\question{À partir de la figure 10, discuter du respect des exigences de l'asservissement en couple.}
+\ifprof\begin{corrige}
+\begin{itemize}
+\item Stabilité : régime apériodique critique : $\quad$ \textbf{critère validé}.
+\item Rapidité : temps de réponse à $\SI{5}{\%} =\SI{0,1}{ms}$ $\quad$ Mesure : \SI{0,055}{ms} --  \textbf{critère validé}.
+\item Précision : écart en régime permanent inférieur à $\SI{1}{\%}$ $\quad$ l'écart est nul -- \textbf{critère validé}.
+\end{itemize}
+\end{corrige}\else\fi
+
+\subsubsection{Vérification de la cohérence de la commande en couple sur l’exosquelette}
+
+%Q 21. 
+\question{À partir des figures 11 et 12, conclure sur la possibilité de considérer l'asservissement en couple comme amenant une action transparente pour le patient.}
+
+\ifprof\begin{corrige}
+\begin{itemize}
+\item La figure 11 montre que la différence entre modèle dynamique de l’exosquelette pris seul (noté Mod1) et le modèle dynamique de l’exosquelette associé à
+ses actionneurs avec l’asservissement en couple élaboré précédemment (noté Mod2) est minime. On relève au maximum $\Delta \theta_2$ de l'ordre de $\SI{3e-10}{rad}$ comparé au quelques $\SI{1e-6}{rad}$ c'est sans doute imperceptible.
+\item La figure 12 montre la différence entre dynamique de l’exosquelette associé à ses actionneurs avec l’asservissement en couple élaboré précédemment
+(Mod2) et pour le modèle dynamique de l’axe pris seul (noté Mod3). On relève au maximum $\Delta C_2$ de l'ordre de $\SI{1e-5}{N.m}$ comparé au quelques $\SI{1}{N.m}$ c'est sans doute imperceptible également.
+\end{itemize}
+\end{corrige}\else\fi
+
+\subsection{Synthèse de la loi de commande de l'exosquelette}
+\subsubsection{Formulation d’un modèle pour la synthèse de la loi de commande}
+\ifprof
+\else
+\begin{obj}{Élaborer une loi de commande en phase de rééducation à la proprioception de la verticalité et de la marche, et en phase de renforcement musculaire.}
+\end{obj}
+\fi
+
+
+%Q 22. 
+\question{Préciser l'expression de la matrice $M$ introduite précédemment en fonction de $M_{1}$ et $M_{3}$.}
+
+\ifprof\begin{corrige}
+On a  :
+
+$
+M_{1}(\Theta, \dot{\Theta}) \ddot{\Theta}+M_{2}(\Theta, \dot{\Theta}) \dot{\Theta}+C(\Theta, \dot{\Theta})+M_{3}(\Theta, \dot{\Theta}) C_{p}=C_{\mathrm{ref}}
+$
+
+$\Leftrightarrow
+M_{1}(\Theta, \dot{\Theta}) \left(U+M(\Theta, \dot{\Theta}) C_{p}\right)   +M_{2}(\Theta, \dot{\Theta}) \dot{\Theta}+C(\Theta, \dot{\Theta})+M_{3}(\Theta, \dot{\Theta}) C_{p}=M_{1}(\Theta, \dot{\Theta}) U+M_{2}(\Theta, \dot{\Theta}) \dot{\Theta}+C(\Theta, \dot{\Theta})
+$
+
+
+$\Leftrightarrow
+M_{1}(\Theta, \dot{\Theta}) \left(U+M(\Theta, \dot{\Theta}) C_{p}\right)   +M_{3}(\Theta, \dot{\Theta}) C_{p}=M_{1}(\Theta, \dot{\Theta}) U+M_{2}(\Theta, \dot{\Theta}) \dot{\Theta}
+$
+
+$\Leftrightarrow
+M_{1}(\Theta, \dot{\Theta}) M(\Theta, \dot{\Theta}) C_{p}   =
+M_{2}(\Theta, \dot{\Theta}) \dot{\Theta} - M_{3}(\Theta, \dot{\Theta}) C_{p}
+$
+
+
+$\Leftrightarrow
+ M(\Theta, \dot{\Theta}) C_{p}   =
+M_{1}^{-1}(\Theta, \dot{\Theta}) M_{2}(\Theta, \dot{\Theta}) \dot{\Theta} - M_{1}^{-1}M_{3}(\Theta, \dot{\Theta}) C_{p}
+$
+
+Par identification, $M(\Theta, \dot{\Theta}) = - M_{1}^{-1}M_{3}(\Theta, \dot{\Theta}) $.
+\end{corrige}\else\fi
+
+
+%Q 23. 
+\question{À partir du modèle précédent et de la transformée de Laplace, donner les deux relations permettant de relier $\tilde{\theta}_1(p)$, $\tilde{\theta}_2(p)$, $C_g(p)$, $U_1(p)$ et $U_2(p)$. Il n’est pas demandé d’établir les fonctions de transfert.}
+
+\ifprof\begin{corrige}
+En développant la linéarisation du modèle et réalisant la transformée de Laplace, on a :
+
+$
+\left\{
+\begin{array}{l}
+p^2 \tilde{\theta}_1(p) = 2338 \tilde{\theta}_2(p) + 9,93 C_g(p) + U_1(p) \\
+p^2 \tilde{\theta}_2(p) = -2921 \tilde{\theta}_2(p) + 12,9 C_g(p) + U_2(p) \\
+\end{array}
+\right.
+$
+
+On obtient ainsi,
+$\tilde{\theta}_1(p)=\dfrac{ 9,93 C_g(p) + U_1(p)}{-2338+p^2}$ et
+$\tilde{\theta}_2(p)=\dfrac{ 12,9 C_g(p) + U_1(p)}{2921+p^2}$.
+
+
+\end{corrige}\else\fi
+
+%Q 24.
+\question{Conclure sur la stabilité du système non corrigé.}
+
+\ifprof\begin{corrige}
+
+Si on considère le système non corrigé (et non perturbé) caractérisé par les fonctions de transfert : $\dfrac{\tilde{\theta}_1(p)}{U_1(p)}$ et $\dfrac{\tilde{\theta}_2(p)}{U_2(p)}$.
+
+Il existe un pôle est à partie réelle strictement positive : $+\sqrt{2338}$. Il existe aussi deux pôles à partie réelle nulle.
+
+Ceci laisse à penser que le système non corrigé ne sera pas stable.
+\end{corrige}\else\fi
+
+\subsubsection{Dimensionnement de la loi de commande pour le renforcement musculaire}
+%Q 25. 
+\question{Justifier, sans calcul et en supposant que le système converge en boucle fermée, qu’une commande avec une action intégrale ne permettra pas d’obtenir un comportement de type raideur avec le coefficient de valeur désirée.}
+
+\ifprof\begin{corrige}
+Le système est instable en boucle fermée. Afin de garantir un asservissement correct, il faudrait déjà veiller à stabiliser le système et pour cela privilégié une action dérivée soit par un correcteur proportionnel dérivé (ou à avance de phase) soit par l'ajout d'une boucle interne tenant compte de la dérivée des grandeurs asservies (ce qui revient également à mettre en place une correction dérivée.
+\end{corrige}\else\fi
+
+%Q 26. 
+\question{À partir du modèle linéarisé, et avec le correcteur proposé, déterminer les expressions de
+$\tilde{\theta}_1(p)$ et $\tilde{\theta}_2(p)$ sous la forme 
+$\tilde{\theta}_1(p)=\indice{H}{C1}(p)C_g(p)+\indice{H}{C2}(p)\tilde{\theta}_2(p)$ et
+$\tilde{\theta}_2(p)=\indice{H}{C3}(p)C_g(p)+\indice{H}{C2}(p)\tilde{\theta}_1(p)$.}
+
+\ifprof\begin{corrige}
+
+$u=K_p\tilde{\varepsilon}+K_v\dot{\tilde{\varepsilon}}$
+
+ce qui donne 
+
+$
+\left\{
+\begin{array}{l}
+u_1(t)=K_{\text{p11}}\tilde{\varepsilon}_1(t)+K_{\text{p12}}\tilde{\varepsilon}_2(t)+K_{\text{v11}} \cdot \dfrac{\d \tilde{\varepsilon}_1(t)}{\d t} \\
+u_2(t)=K_{p21}\tilde{\varepsilon}_1(t)+K_{p22}\tilde{\varepsilon}_2+K_{\text{v22}}\cdot \dfrac{\d \tilde{\varepsilon}_2(t)}{\d t}
+\end{array}
+\right.
+$
+
+L'énoncé précise que n exercice de renforcement musculaire, $\tilde{\theta}_{\text{ref}}$ et $\dot{\tilde{\theta}}_{\text{ref}}$ sont nuls.
+
+Ainsi $\tilde{\varepsilon}_1(t)=-\tilde{\theta}_1(t)$ et $\tilde{\varepsilon}_2(t)=-\tilde{\theta}_2(t)$
+
+Dans le domaine de Laplace, on obtient donc,
+
+$
+\left\{
+\begin{array}{l}
+U_1(p)=-\left(K_{\text{p11}}+K_{\text{v11}}\cdot p\right)\tilde{\theta}_1(p)-K_{\text{p12}}\tilde{\theta}_2(p)\\
+U_2(p)=-\left(K_{p22}+K_{\text{v22}}\cdot p\right)\tilde{\theta}_2(p)-K_{p21}\tilde{\theta}_1(p)\\
+\end{array}
+\right.
+$.
+
+Avec le résultat de Q23, on obtient : 
+
+$
+\left\{
+\begin{array}{l}
+\tilde{\theta}_1(p)=\dfrac{9,93C_g(p)+\left[-\left(K_{\text{p11}}+K_{\text{v11}}\cdot p\right)\tilde{\theta}_1(p)-K_{\text{p12}}\tilde{\theta}_2(p)\right]}{p^2-2338}\\
+\tilde{\theta}_2(p)=\dfrac{12,9C_g(p)+\left[-\left(K_{p22}+K_{\text{v22}}\cdot p\right)\tilde{\theta}_2(p)-K_{p21}\tilde{\theta}_1(p)\right]}{p^2+2921}\\
+\end{array}
+\right.
+$.
+
+En inversant ces équations, on obtient : 
+$
+\left\{
+\begin{array}{l}
+\tilde{\theta}_1(p)=\dfrac{9,93C_g(p)-K_{\text{p12}}\tilde{\theta}_2(p)}{p^2-2338+K_{\text{p11}}+K_{\text{v11}}\cdot p}\\
+\tilde{\theta}_2(p)=\dfrac{12,9C_g(p)-K_{p21}\tilde{\theta}_1(p)}{p^2+2921+K_{p22}+K_{\text{v22}}\cdot p}\\
+\end{array}
+\right.
+$
+
+\end{corrige}\else\fi
+
+
+%Q 27. 
+\question{Afin d’obtenir le découplage entre les axes, déterminer les valeurs des coefficients non diagonaux de $K_p$ permettant d’obtenir $\indice{H}{C2}(p)=\indice{H}{C4}(p)=0$.}
+
+\ifprof\begin{corrige}
+
+D'après la question précédente,
+$
+\left\{
+\begin{array}{l}
+H_{C2}(p)=\dfrac{-K_{\text{p12}}}{p^2-2338+K_{\text{p11}}+K_{\text{v11}}\cdot p}\\
+H_{C4}(p)=\dfrac{-K_{p21}}{p^2+2921+K_{p22}+K_{\text{v22}}\cdot p}\\
+\end{array}
+\right.
+$.
+
+Ainsi pour annuler $H_{C2}(p)$ et $H_{C4}(p)$, il faut,
+$K_{\text{p12}}=0=K_{p21}$.
+
+\end{corrige}\else\fi
+
+%Q 28. 
+\question{Déterminer les coefficients diagonaux des matrices $K_p$ et $K_v$ afin que les fonctions de transfert $\indice{H}{C1}(p)$ et $\indice{H}{C3}(p)$ soient assimilables à des fonctions du deuxième ordre $\indice{H}{C1}(p) = \dfrac{K_1}{1+\dfrac{2\xi}{\omega_1}p + \dfrac{p^2}{\omega_1^2}}$
+et $\indice{H}{C3}(p) = \dfrac{K_3}{1+\dfrac{2\xi}{\omega_3}p + \dfrac{p^2}{\omega_3^2}}$ permettant d’obtenir des valeurs limites de raideurs respectant l’exigence 1.2.1.1. et ayant
+un coefficient d’amortissement $\xi=0,7$.}
+
+\ifprof\begin{corrige}
+
+D'après la question 26,
+$
+\left\{
+\begin{array}{l}
+H_{C1}(p)=\dfrac{9,93}{p^2-2338+K_{\text{p11}}+K_{\text{v11}}\cdot p}\\
+H_{C3}(p)=\dfrac{12,9}{p^2+2921+K_{p22}+K_{\text{v22}}\cdot p}\\
+\end{array}
+\right.
+$.
+
+Ces deux fonctions de transfert sont des fonctions du deuxième ordre mais il faut qu'elle verifie l'exigence 1.2.1.1 qui d'après l'énoncé doit correspondre à $\xi=0,7$.
+
+Il faut mettre ces deux fonctions de transfert sous la forme canonique : 
+
+$\left\{
+\begin{array}{l}
+H_{C1}(p)=\dfrac{\dfrac{9,93}{K_{\text{p11}}-2338}}{\dfrac{p^2}{K_{\text{p11}}-2338}+\dfrac{K_{\text{v11}}}{K_{\text{p11}}-2338}\cdot p+1}\\
+H_{C3}(p)=\dfrac{\dfrac{12,9}{2921+K_{p22}}}{\dfrac{p^2}{2921+K_{p22}}+\dfrac{K_{\text{v22}}}{2921+K_{p22}}\cdot p+1}\\
+\end{array}
+\right.
+$.
+
+Par identification des formes canoniques, on obtient,
+$\left\{
+\begin{array}{l}
+K_1=\dfrac{9,93}{K_{\text{p11}}-2338}\\
+K_3=\dfrac{12,9}{2921+K_{p22}}\\
+\omega_1=\sqrt{K_{\text{p11}}-2338}\\
+\omega_3=\sqrt{2921+K_{p22}}
+\end{array}
+\right.
+$.
+
+Avec la première relation,
+$\xi=\dfrac{\omega_1}{2}\dfrac{K_{\text{v11}}}{K_{\text{p11}}-2338}=\dfrac{K_{\text{v11}}}{2\sqrt{K_{\text{p11}}-2338}}=0,7$.
+
+Avec la deuxième relation,
+$\xi=\dfrac{\omega_3}{2}\dfrac{K_{\text{v22}}}{2921+K_{p22}}=\dfrac{K_{\text{v22}}}{2\sqrt{2921+K_{p22}}}=0,7.$
+
+L'énoncé précise que le système doit vérifier le comportement de type raideur avec l'exigence 1.2.1.1, il doit s'agir d'une erreur et doit plutôt s'agir de l'exigence 1.2.1.3 avec une raideur de \SI{5}{N.m.rad^{-1}}.
+
+On peut interpréter cette raideur par les coefficients $\dfrac{1}{K_1}$ au niveau de la hanche (200 fois plus importante que celle du genou) et $\dfrac{1}{K_3}$ au niveau du genou
+
+On obtient ainsi deux autres relations : 
+$\dfrac{K_{\text{p11}}-2338}{9,93}=5\time 200$ et 
+$\dfrac{2921+K_{p22}}{12,9}=5$.
+
+En combinant ces différentes relations, voici ce qu'on obtient,
+$\left\{
+\begin{array}{l}
+K_{\text{p11}}=1000\times 9,93+2338\\
+K_{p22}=5\times 12,9-2921\\
+K_{\text{v11}}=2\times 0,7\sqrt{1000\times 9,93}\\
+K_{\text{v22}}=2\times 0,7\sqrt{5\times 12,9}
+\end{array}
+\right.
+$.
+
+Les applications numériques donnent : 
+$
+\left\{
+\begin{array}{l}
+K_{\text{p11}}=12268 \\
+K_{p22}=-2856,5 \\
+K_{\text{v11}}=139,5\\
+K_{\text{v22}}=11,24
+\end{array}
+\right.
+$.
+
+
+\end{corrige}\else\fi
+
+%Q 29. 
+\question{La rapidité de chacun des axes peut-elle être réglée indépendamment avec une telle commande ?}
+
+\ifprof\begin{corrige}
+Le réglage proposé précédemment correspond à l'optimum de rapidité ($\xi=0,7$) et il est obtenu de manière indépendante pour chaque axe.
+
+\end{corrige}\else\fi
+
+\subsubsection{ Analyse de la loi de commande pour la rééducation à la proprioception de la verticalité
+et de la marche}
+%Q 30. 
+\question{Justifier, sans calcul, que le correcteur élaboré précédemment ne permet pas à l’exosquelette de respecter le cahier des charges en termes de précision lors de la phase considérée ici.}
+
+
+\ifprof\begin{corrige}
+
+Les actions mécaniques exercées par le patient sont nulles, donc $C_p=0=C_g$
+
+Les consignes de position non nulles peuvent s'interpréter par : $\tilde{\theta}_{1,\text{ref}}\neq 0$ et $\tilde{\theta}_{2,\text{ref}}\neq 0$.
+On souhaite d'après le cahier des charges minimiser l'erreur de position du mouvement de la hanche qui doit s'interpréter comme une erreur de traînage.
+
+Le correcteur proposé est un correcteur à action dérivée.
+
+On se propose donc d'utiliser un correcteur à action intégrale du genre \textbf{Proportionnel Intégral.}
+
+\end{corrige}\else\fi
+
+%Q 31. 
+\question{Analyser les marges de stabilité de cette boucle avec cette loi de commande et conclure sur ses
+performances au regard des exigences liées à la rééducation de la proprioception de la verticalité et de la
+marche.}
+
+\ifprof\begin{corrige}
+Les marges de stabilité étant positives, la stabilité stricte du système est assurée. 
+\begin{center}
+\includegraphics{Q31}
+\end{center}
+\end{corrige}\else\fi
+
+\section{Synthèse}
+
+%Q 32. 
+\question{Commenter les figures 14 et 15. Conclure sur le respect du cahier des charges avec les lois de commande
+considérées, vis-à-vis de la stabilité du patient et du type de comportement de rééducation de l’exosquelette.}
+
+\ifprof\begin{corrige}
+Il est difficile de répondre à cette question concernant la figure 14 car on ne sait pas trop ce qui est imposé.
+Ce qu'on peut dire c'est que les angle $\theta_1$ et $\theta_2$ se stabilise vers une valeur constante ce qui assure la stabilité de l'articulation.
+
+Les résultats de la simulation donné sur la figure 15 montre que les erreurs statiques sont nulles sur chaque axe et seront donc nulles en sur la position du talon ce qui est conforme à l'exigence 1.2.1.1. du cahier des charges.
+
+\end{corrige}\else\fi
+
