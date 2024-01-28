@@ -1,15 +1,31 @@
 \ifprof
 \else
-\begin{wrapfigure}{r}{7cm}
-%\begin{figure}[H]
+%\begin{wrapfigure}{r}{7cm}
+%%\begin{figure}[H]
+%\centering
+%\includegraphics[width=.95\linewidth]{img_01}
+%\caption{RobuROC 6 \label{fig:01}}
+%%\end{figure}
+%\end{wrapfigure}
+Le robuROC 6 (\autoref{fig:01}) est un robot mobile développé par la société ROBOSOFT. Cette plate-forme robotisée a été conçue pour des applications de recherche et d’exploration en milieu extérieur. Elle est équipée de 6 roues motrices indépendantes, de même diamètre, montées par paires sur 3 podes articulés en tangage et en roulis (\autoref{img:03}). La cinématique permet à la plate-forme de se conformer au relief parcouru et de franchir des obstacles du type trottoirs, escaliers… Le robuROC 6 a été conçu pour se déplacer en zones urbaines et peut aussi s’adapter à tous types de milieux.  Afin d’explorer la zone géographique à risques, les 3 podes peuvent être équipés, selon les besoins de l’utilisateur, de caméras d’observation haute définition à 360\degres, de systèmes infrarouges de visualisation nocturne, ainsi que de bras de robot articulés pour manipuler des éléments de la zone à explorer. Les diagrammes SADT A-0 (\autoref{fig:011}) et FAST (annexe 1) recensent les fonctions remplies par la plate-forme.
+
+
+\begin{minipage}[c]{.47\linewidth}
+\begin{figure}[H]
 \centering
-\includegraphics[width=.95\linewidth]{img_01}
+\includegraphics[width=.8\linewidth]{img_01}
 \caption{RobuROC 6 \label{fig:01}}
-%\end{figure}
-\end{wrapfigure}
-Le robuROC 6 (\autoref{fig:01}) est un robot mobile développé par la société ROBOSOFT. Cette plate-forme robotisée a été conçue pour des applications de recherche et d’exploration en milieu extérieur. Elle est équipée de 6 roues motrices indépendantes, de même diamètre, montées par paires sur 3 podes articulés en tangage et en roulis (\autoref{img:03}). La cinématique permet à la plate-forme de se conformer au relief parcouru et de franchir des obstacles du type trottoirs, escaliers… Le robuROC 6 a été conçu pour se déplacer en zones urbaines et peut aussi s’adapter à tous types de milieux.  Afin d’explorer la zone géographique à risques, les 3 podes peuvent être équipés, selon les besoins de l’utilisateur, de caméras d’observation haute définition à 360\degres, de systèmes infrarouges de visualisation nocturne, ainsi que de bras de robot articulés pour manipuler des éléments de la zone à explorer. Les diagrammes SADT A-0 (figure 1) et FAST (annexe 1) recensent les fonctions remplies par la plate-forme.
+\end{figure}
+\end{minipage} \hfill
+\begin{minipage}[c]{.47\linewidth}
+\begin{figure}[H]
+\centering
+\includegraphics[width=.95\linewidth]{fig_01}
+\caption{SADT A-0  \label{fig:011}}
+\end{figure}
+\end{minipage} 
 
-
+\vspace{.5cm}
 
 Les déplacements de la plate-forme sont coordonnés par l’intermédiaire de deux microcontrôleurs placés dans les podes avant et arrière. Ces microcontrôleurs communiquent entre eux et dialoguent avec l’extérieur suivant deux modes de conduite : 
 \begin{itemize}
@@ -22,17 +38,17 @@ La motorisation principale est assurée par six moteurs électriques équipés d
 
 \begin{figure}[H]
 \centering
-\begin{subfigure}{0.25\textwidth}
+\begin{subfigure}{0.27\textwidth}
     \includegraphics[width=\linewidth]{img_02_a}
     \caption{Mode 6 roues}
     \label{fig:02a}
 \end{subfigure} \hfill
-\begin{subfigure}{0.25\textwidth}
+\begin{subfigure}{0.27\textwidth}
     \includegraphics[width=\linewidth]{img_02_b}
     \caption{Mode 4 roues -- Déplacement}
     \label{fig:02a}
 \end{subfigure} \hfill
-\begin{subfigure}{0.25\textwidth}
+\begin{subfigure}{0.27\textwidth}
     \includegraphics[width=\linewidth]{img_02_c}
     \caption{Mode 4 roues -- Observation}
     \label{fig:02a}
@@ -385,13 +401,13 @@ l’exemple de la roue centrale droite $R_{1d}$.
 
 \begin{tabular}{lccccc}
 \hline
-&  & Centre & Point de & Vitesse de &  \\
-&    Nom     &de         & contact  & rotation / au & Repère associé \\
-&        & gravité & avec le sol & pode central & \\ \hline\hline
-Roue centrale droite & $R_{1d}$ & $C_{1d}$ & $I_{1d}$ & $\dot{\theta}_{1d}$ & $\rep{1d}=\repere{C_{1d}}{x_L}{y_{1d}}{z_{1d}}$ \\ \hline
-Roue centrale gauche & $R_{1g}$ & $C_{1g}$ & $I_{1g}$ & $\dot{\theta}_{1g}$ & $\rep{1g}=\repere{C_{1g}}{x_L}{y_{1g}}{z_{1g}}$ \\ \hline
-Roue arrière droite & $R_{2d}$ & $C_{2d}$ & $I_{2d}$ & nulle &  \\ \hline
-Roue arrière gauche & $R_{2g}$ & $C_{2g}$ & $I_{2g}$ & nulle &\\ \hline
+&                & Centre          & Point de contact& Vitesse de rotation &  Repère associé \\
+&    Nom     & de gravité    & avec le sol &  / au pode central & \\
+\hline
+\textbf{Roue centrale droite} & $R_{1d}$ & $C_{1d}$ & $I_{1d}$ & $\dot{\theta}_{1d}$ & $\rep{1d}=\repere{C_{1d}}{x_L}{y_{1d}}{z_{1d}}$ \\ 
+\textbf{Roue centrale gauche} & $R_{1g}$ & $C_{1g}$ & $I_{1g}$ & $\dot{\theta}_{1g}$ & $\rep{1g}=\repere{C_{1g}}{x_L}{y_{1g}}{z_{1g}}$ \\ 
+\textbf{Roue arrière droite} & $R_{2d}$ & $C_{2d}$ & $I_{2d}$ & nulle &  \\ 
+\textbf{Roue arrière gauche} & $R_{2g}$ & $C_{2g}$ & $I_{2g}$ & nulle &\\ \hline
 \end{tabular}
 
 \caption{Paramétrage des roues en contact avec le sol \label{img:05}}
@@ -921,6 +937,18 @@ Stabilité & \\ %\cline{2-3}
 \question{\label{q_16}Déterminer les valeurs numériques et unités des gains associés au générateur de consigne (noté $K_G$), au rapport cinématique ($K_R$) et au convertisseur ($K_{\text{conv}}$) en sachant, que lorsque la vitesse réelle de la plateforme $V (t)$ est égale à la vitesse de consigne de la plate-forme $V_C (t)$ , l’écart $\varepsilon(t)$ doit être nul.}
 \ifprof
 \begin{corrige}
+\paragraph*{Détermination de $K_G$}
+On a $V(t)=R\indice{\Omega}{roue}$ et $\indice{\Omega}{roue} =\indice{\Omega}{Mot}k  \indice{\Omega}{roue}$ et $V(t) = kR \indice{\Omega}{Mot}$. 
+On a donc $K_G =  \dfrac{1}{kR}$.
+
+
+\textit{Application numérique :} $K_G = \dfrac{1}{\dfrac{1}{25}\times 225\times 10^{-3}} = \SI{111}{m}$.
+
+\paragraph*{Détermination de $K_R$}
+$K_R =  kR = \SI{0,009}{m^{-1}}$.
+
+\paragraph*{Détermination de $\indice{K}{conv}$}
+$\indice{K}{conv}=\indice{K}{Capt}=\SI{5e-3}{V/(rad/s)}$.
 \end{corrige}
 \else
 \fi
@@ -929,8 +957,19 @@ Stabilité & \\ %\cline{2-3}
 \question{\label{q_17} Compléter le schéma-blocs sur le document-réponse (question \ref{q_17}) en y faisant figurer les fonctions de transfert sous forme littérale dans le domaine de Laplace avec des conditions initiales nulles, ainsi que les signes des sommateurs.}
 \ifprof
 \begin{corrige}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{cor_q17}
+%\caption{Schéma-blocs à retour unitaire\label{img:10}}
+\end{figure}
 \end{corrige}
 \else
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{cor_q17}
+\caption{Schéma-blocs à remplir de la question \ref{q_17}}
+\end{figure}
+
 \fi
 
 
@@ -943,7 +982,7 @@ Stabilité & \\ %\cline{2-3}
 \end{figure}
 
 $H_U( p)$ et $H_C( p)$ sont les fonctions de transfert caractéristiques d’un des six moteurs. Nous retiendrons :
-$H_U(p)=\dfrac{K_U}{\left(T_1p +1\right)\left(T_2p +1\right)}$ et $H_U(p)=\dfrac{K_C\left(\dfrac{L}{r}p +1\right)}{\left(T_1p +1\right)\left(T_2p +1\right)}$
+$H_U(p)=\dfrac{K_U}{\left(T_1p +1\right)\left(T_2p +1\right)}$ et $H_C(p)=\dfrac{K_C\left(\dfrac{L}{r}p +1\right)}{\left(T_1p +1\right)\left(T_2p +1\right)}$
 avec 
 $K_U = \SI{8,3}{rad . s ^{-1}.V ^{-1}}$, 
 $K_C = \SI{152,7}{rad . s^{-1}.N^{-1} .m^{-1}}$, 
@@ -954,22 +993,53 @@ et $T_2 =\SI{0,36}{s}$.
 Nous distinguerons dans la suite :
 \begin{itemize}
 \item l’étude en poursuite : le couple de perturbation équivalent $C_{\text{equ}} (t)$ est nul $V_c (t)$ varie ;
-\item l’étude en régulation : La vitesse de consigne de la plate-forme $V_c (t)$ est nulle. $C_{\text{equ}}(t)$ varie.
+\item l’étude en régulation : la vitesse de consigne de la plate-forme $V_c (t)$ est nulle. $C_{\text{equ}}(t)$ varie.
 \end{itemize}
 
-Les diagrammes de Bode de la Fonction de Transfert en Boucle Ouverte $\text{FTBO}( p)$ non corrigée sont fournis sur le document-réponse (Bode non corrigé page 12) pour $C( p) = 1$.
+Les diagrammes de Bode de la Fonction de Transfert en Boucle Ouverte $\text{FTBO}( p)$ non corrigée sont fournis sur le document-réponse ou sur la figure \ref{rep_q_18} pour $C( p) = 1$.
 
 \question{Le système étudié est-il stable théoriquement ? Justifier vos réponses.}
 \ifprof
 \begin{corrige}
+La stabilité est indépendante de la perturbation. On peut donc ne pas la prendre en compte ici. 
+\begin{itemize}
+\item Possibilité 1 : la boucle ouverte est un ordre 2 avec tous les coefficients positifs. En bouclant, on aura encore un ordre 2 avec tous les coefficients positifs. Le système est donc stable. En effet, 
+$\indice{H}{BF}(p)=\dfrac{\indice{K}{Capt}K_A\dfrac{K_U}{\left(T_1p +1\right)\left(T_2p +1\right)}}{1+\indice{K}{Capt}K_A\dfrac{K_U}{\left(T_1p +1\right)\left(T_2p +1\right)}}$
+$=\dfrac{\indice{K}{Capt}K_AK_U}{\left(T_1p +1\right)\left(T_2p +1\right)+\indice{K}{Capt}K_AK_U}$.
+\item Possibilité 2 : d'après le diagramme de Bode de la boucle ouverte, le gain est toujours négatif et la phase toujours supérieure à $-\SI{180}{\degres}$. D'après le critère du Revers, le système est stable.  
+\end{itemize}
 \end{corrige}
 \else
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{rep_q18}
+\caption{Diagrame Bode de la boucle ouverte \label{rep_q_18}}
+\end{figure}
+
 \fi
 
 
 \question{Etudier l’aptitude du système sans correction à respecter les critères de précision. Vous déterminerez notamment les expressions littérales de l’erreur statique en poursuite pour une consigne de vitesse de la plate-forme $V_c (t)$ en échelon d’amplitude $V_{\text{CO}}$ : $V_C (t)=V_{\text{CO}} u(t)$ (avec $u(t)$ l’échelon unitaire) et de l’influence en régulation d’une perturbation $C_{\text{equ}} (t)$ en échelon d’amplitude $C_0$, sur la vitesse réelle $V (t)$ de la plate-forme en régime permanent.}
 \ifprof
 \begin{corrige}
+Le système est de classe 0. La précision en poursuite et en régulation ne peut donc pas être nulle.
+
+Notons $\varepsilon(p)$ l'écart en sortie du premier comparateur. On a  
+$\varepsilon(p) = V_c(p)-V(p)$
+
+$=V_c(p)-\left(K_G\indice{K}{Capt}K_A H_u(p) \varepsilon(p)- \indice{C}{equ}(p)H_C(p) \right)\dfrac{1}{K_G}$ 
+
+$\Leftrightarrow \varepsilon(p)\left( 1+ \indice{K}{Capt}K_A H_u(p)\right)=V_c(p)+  \dfrac{H_C(p)}{K_G}\indice{C}{equ}(p)$
+
+$\Leftrightarrow \varepsilon(p)=\dfrac{1}{1+ \indice{K}{Capt}K_A H_u(p)}V_c(p)+ \dfrac{H_C(p)}{K_G+ K_G\indice{K}{Capt}K_A H_u(p)}\indice{C}{equ}(p)$.
+
+Par ailleurs, $V_C (p)=\dfrac{V_{\text{CO}}}{p}$ et $C_{\text{equ}} (p) = \dfrac{C_0}{p}$.
+
+On a donc $\varepsilon_S = \lim\limits_{p\to 0} p \varepsilon(p)$
+$=\dfrac{1}{1+ \indice{K}{Capt}K_A K_U}V_{\text{CO}}+ \dfrac{K_C}{K_G+ K_G\indice{K}{Capt}K_A K_U}C_0$.
+On a donc $\dfrac{V_{\text{CO}}}{1+ \indice{K}{Capt}K_A K_U}$ erreur en poursuite et 
+$\dfrac{K_C C_0}{K_G+ K_G\indice{K}{Capt}K_A K_U}$ erreur en régulation.
 \end{corrige}
 \else
 \fi
@@ -980,16 +1050,20 @@ Les diagrammes de Bode de la Fonction de Transfert en Boucle Ouverte $\text{FTBO
 \question{\label{q_20}Indiquer quelle est la nature de la correction effectuée par ce correcteur (ou désignation du correcteur) ? Indiquer pour quelle(s) raison(s) principale(s) ce correcteur a été choisi. Valider ce choix vis à vis du cahier des charges. Sans calcul, donner l’influence de ce correcteur sur les autres performances attendues.}
 \ifprof
 \begin{corrige}
+Il s'agit d'un correcteur proportionnel intégral pur. 
+
+Il annule l'écart statique. Il ajoute 90\degres de déphasage ce qui peut déstabiliser le système.
 \end{corrige}
 \else
 \fi
 
 
-Reprenons le diagramme de Bode de la Fonction de Transfert en Boucle Ouverte $\text{FTBO( p)}$ non corrigée (Bode non corrigé page 12).
+Reprenons le diagramme de Bode de la Fonction de Transfert en Boucle Ouverte $\text{FTBO( p)}$ non corrigée (Bode non corrigé figure \ref{rep_q_18}).
 
 \question{\label{q_21}Compléter le document-réponse (Bode non corrigé page 12) en traçant les diagrammes de Bode du correcteur avec $K_I =\SI{1}{s^{-1}}$ . Déterminer alors la valeur de $K_I$ maximale notée $K_{\text{I max}}$ permettant de respecter les marges de stabilité énoncées dans le cahier des charges.}
 \ifprof
 \begin{corrige}
+
 \end{corrige}
 \else
 \fi
