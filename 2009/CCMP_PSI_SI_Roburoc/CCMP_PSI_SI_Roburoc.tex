@@ -7,7 +7,9 @@
 %\caption{RobuROC 6 \label{fig:01}}
 %%\end{figure}
 %\end{wrapfigure}
-Le robuROC 6 (\autoref{fig:01}) est un robot mobile développé par la société ROBOSOFT. Cette plate-forme robotisée a été conçue pour des applications de recherche et d’exploration en milieu extérieur. Elle est équipée de 6 roues motrices indépendantes, de même diamètre, montées par paires sur 3 podes articulés en tangage et en roulis (\autoref{img:03}). La cinématique permet à la plate-forme de se conformer au relief parcouru et de franchir des obstacles du type trottoirs, escaliers… Le robuROC 6 a été conçu pour se déplacer en zones urbaines et peut aussi s’adapter à tous types de milieux.  Afin d’explorer la zone géographique à risques, les 3 podes peuvent être équipés, selon les besoins de l’utilisateur, de caméras d’observation haute définition à 360\degres, de systèmes infrarouges de visualisation nocturne, ainsi que de bras de robot articulés pour manipuler des éléments de la zone à explorer. Les diagrammes SADT A-0 (\autoref{fig:011}) et FAST (annexe 1) recensent les fonctions remplies par la plate-forme.
+Le robuROC 6 (\autoref{fig:01}) est un robot mobile développé par la société ROBOSOFT. Cette plate-forme robotisée a été conçue pour des applications de recherche et d’exploration en milieu extérieur. Elle est équipée de 6 roues motrices indépendantes, de même diamètre, montées par paires sur 3 podes articulés en tangage et en roulis (\autoref{img:03}). La cinématique permet à la plate-forme de se conformer au relief parcouru et de franchir des obstacles du type trottoirs, escaliers… Le robuROC 6 a été conçu pour se déplacer en zones urbaines et peut aussi s’adapter à tous types de milieux.  Afin d’explorer la zone géographique à risques, les 3 podes peuvent être équipés, selon les besoins de l’utilisateur, de caméras d’observation haute définition à 360\degres, de systèmes infrarouges de visualisation nocturne, ainsi que de bras de robot articulés pour manipuler des éléments de la zone à explorer. Les diagrammes de contexte %SADT A-0 
+(\autoref{fig:011}) et %FAST 
+le diagramme des exigences (annexe 1) recensent les fonctions remplies par la plate-forme.
 
 
 \begin{minipage}[c]{.47\linewidth}
@@ -20,8 +22,11 @@ Le robuROC 6 (\autoref{fig:01}) est un robot mobile développé par la société
 \begin{minipage}[c]{.47\linewidth}
 \begin{figure}[H]
 \centering
-\includegraphics[width=.95\linewidth]{fig_01}
-\caption{SADT A-0  \label{fig:011}}
+%\includegraphics[width=.95\linewidth]{fig_01}
+%\caption{SADT A-0  \label{fig:011}}
+\includegraphics[width=.95\linewidth]{img_bdd}
+\caption{Diagramme de contexte  \label{fig:011}}
+
 \end{figure}
 \end{minipage} 
 
@@ -64,34 +69,59 @@ La motorisation principale est assurée par six moteurs électriques équipés d
 
 Les trois podes sont articulés en tangage et en roulis (\autoref{img:03}). Le mouvement de tangage est guidé par deux liaisons pivot (d’axe de direction  $\vect{x_L}$), respectivement entre le bras d’articulation avant \textbf{4} et le pode central \textbf{1} et entre le bras d’articulation arrière \textbf{4’} et le pode central \textbf{1}. Le système hydraulique de suspension permet l’amortissement (mode passif) et la motorisation de ce mouvement (mode actif). Les vérins \textbf{5} (côté droit) et \textbf{6} (côté gauche) sont en liaison avec le bras d’articulation avant \textbf{4} et le pode central \textbf{1}. Les vérins \textbf{5’} (côté droit) et \textbf{6’} (côté gauche) sont en liaison avec le bras d’articulation arrière \textbf{4’} et le pode central \textbf{1}. Le mouvement de roulis est assuré par deux liaisons pivot entre le pode avant \textbf{3} et le bras d’articulation avant \textbf{4} (liaison d’axe de direction $\vect{y_3}$) d’une part, et entre le pode arrière \textbf{2} et le bras d’articulation arrière \textbf{4’}  (liaison d’axe de direction $\vect{y_2}$) d’autre part. Ce mouvement n’est pas motorisé. 
 
+%\begin{table}[H]
+%\centering
+%\begin{tabular}{|p{4cm}|p{6cm}|l|l|}
+%\hline
+%Fonctions & Critères & Niveaux & Flexibilité \\ 
+%\hline
+%\hline
+%\multirow{7}{4cm}{FT3 : Assurer le déplacement}
+% & Vitesse de déplacement de la plate-forme & $\SI{13,7}{km/h}$ & Valeur maximale \\ \cline{2-4}
+% & Hauteur de franchissement d’un obstacle de type « trottoir » ($D_{\text{max}}$) & \SI{40}{cm} & Valeur minimale  \\ \cline{2-4}
+% & Pente du relief à vide & 45\degres & Valeur maximale  \\ \cline{2-4}
+% & Débattement angulaire en tangage du bras 4 par rapport au pode central 1 & de $-45\degres$ à $+30\degres$ & -----  \\ \cline{2-4}
+% & Débattement angulaire en tangage du bras 4’ par rapport au pode central 1 & de $+45\degres$ à $-30\degres$ & ----- \\ \cline{2-4}
+% & Débattement angulaire en roulis du pode avant 3 par rapport au bras 4 & de $-45\degres$ à $+45\degres$ & ----- \\ \cline{2-4}
+% & Débattement angulaire en roulis du pode arrière 2 par rapport au bras 4’ & de $+45\degres$ à $-45\degres$ & ----- \\
+% \hline
+% \multirow{2}{4cm}{FT4 : Analyser la zone géographique à explorer}
+% & Charge utile répartie sur les trois podes & \SI{100}{kg} & Valeur maximale \\ \cline{2-4}
+% & Hauteur d’observation ($H_{\text{obs}}$) & \SI{85}{cm} & Valeur minimale \\ \hline
+%FT6 : Fournir l’énergie électrique & Autonomie d’utilisation $\SI{4}{h} $ & $\pm \SI{1}{h}$ &Selon les conditions \\ \hline
+%\end{tabular}
+%\caption{Extrait du cahier des charges fonctionnel (d’après le diagramme FAST en annexe 1)}
+%\end{table}
+
 \begin{table}[H]
 \centering
-\begin{tabular}{|p{4cm}|p{6cm}|l|l|}
+\begin{tabular}{p{4cm}p{6cm}ll}
 \hline
-Fonctions & Critères & Niveaux & Flexibilité \\ 
+Exigences fonctionnelles & Critères & Niveaux & Flexibilité \\ 
 \hline
-\hline
-\multirow{7}{4cm}{FT3 : Assurer le déplacement}
- & Vitesse de déplacement de la plate-forme & $\SI{13,7}{km/h}$ & Valeur maximale \\ \cline{2-4}
- & Hauteur de franchissement d’un obstacle de type « trottoir » ($D_{\text{max}}$) & \SI{40}{cm} & Valeur minimale  \\ \cline{2-4}
- & Pente du relief à vide & 45\degres & Valeur maximale  \\ \cline{2-4}
- & Débattement angulaire en tangage du bras 4 par rapport au pode central 1 & de $-45\degres$ à $+30\degres$ & -----  \\ \cline{2-4}
- & Débattement angulaire en tangage du bras 4’ par rapport au pode central 1 & de $+45\degres$ à $-30\degres$ & ----- \\ \cline{2-4}
- & Débattement angulaire en roulis du pode avant 3 par rapport au bras 4 & de $-45\degres$ à $+45\degres$ & ----- \\ \cline{2-4}
- & Débattement angulaire en roulis du pode arrière 2 par rapport au bras 4’ & de $+45\degres$ à $-45\degres$ & ----- \\
- \hline
- \multirow{2}{4cm}{FT4 : Analyser la zone géographique à explorer}
- & Charge utile répartie sur les trois podes & \SI{100}{kg} & Valeur maximale \\ \cline{2-4}
+%\hline
+\multirow{7}{4cm}{Id 1.3 : Assurer le déplacement}
+ & Vitesse de déplacement de la plate-forme & $\SI{13,7}{km/h}$ & Valeur maximale \\ %\cline{2-4}
+ & Hauteur de franchissement d’un obstacle de type « trottoir » ($D_{\text{max}}$) & \SI{40}{cm} & Valeur minimale  \\ %\cline{2-4}
+ & Pente du relief à vide & 45\degres & Valeur maximale  \\ %\cline{2-4}
+ & Débattement angulaire en tangage du bras 4 par rapport au pode central 1 & de $-45\degres$ à $+30\degres$ & -----  \\ %\cline{2-4}
+ & Débattement angulaire en tangage du bras 4’ par rapport au pode central 1 & de $+45\degres$ à $-30\degres$ & ----- \\ %\cline{2-4}
+ & Débattement angulaire en roulis du pode avant 3 par rapport au bras 4 & de $-45\degres$ à $+45\degres$ & ----- \\ %\cline{2-4}
+ & Débattement angulaire en roulis du pode arrière 2 par rapport au bras 4’ & de $+45\degres$ à $-45\degres$ & ----- \\ \hline
+ \multirow{2}{4cm}{Id 1.4 : Analyser la zone géographique à explorer}
+ & Charge utile répartie sur les trois podes & \SI{100}{kg} & Valeur maximale \\ %\cline{2-4}
  & Hauteur d’observation ($H_{\text{obs}}$) & \SI{85}{cm} & Valeur minimale \\ \hline
-FT6 : Fournir l’énergie électrique & Autonomie d’utilisation $\SI{4}{h} $ & $\pm \SI{1}{h}$ &Selon les conditions \\ \hline
+Id 1.6 : Fournir l’énergie électrique & Autonomie d’utilisation $\SI{4}{h} $ & $\pm \SI{1}{h}$ &Selon les conditions \\ \hline
 \end{tabular}
-\caption{Extrait du cahier des charges fonctionnel (d’après le diagramme FAST en annexe 1)}
+\caption{Extrait du cahier des charges fonctionnel (d’après le diagramme des exigences en annexe 1)}
 \end{table}
 
 \fi
 
-\section{Analyse fonctionnelle \label{sec:1}}
-\question{\label{q_01} Compléter le diagramme FAST de la plate-forme d’exploration présenté en annexe 1 en indiquant les solutions techniques associées aux fonctions techniques référencées dans le tableau du document-réponse. Pour cela, vous associerez aux fonctiosn techniques FT1, FT2, FT311, FT312, FT321, FT33, FT41, FT51, FT61, FT71.}
+%\section{Analyse fonctionnelle \label{sec:1}}
+\section{Analyse des exigences \label{sec:1}}
+%\question{\label{q_01} Compléter le diagramme FAST de la plate-forme d’exploration présenté en annexe 1 en indiquant les solutions techniques associées aux fonctions techniques référencées dans le tableau du document-réponse. Pour cela, vous associerez aux fonctiosn techniques FT1, FT2, FT311, FT312, FT321, FT33, FT41, FT51, FT61, FT71.}
+\question{\label{q_01} Compléter le diagramme des exigencs de la plate-forme d’exploration présenté en annexe 1 en indiquant les solutions techniques associées aux fonctions techniques référencées dans le  document-réponse.}% Pour cela, vous associerez aux fonctiosn techniques FT1, FT2, FT311, FT312, FT321, FT33, FT41, FT51, FT61, FT71.}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -100,7 +130,8 @@ FT6 : Fournir l’énergie électrique & Autonomie d’utilisation $\SI{4}{h} $ 
 
 
 
-\section{Fonction technique FT32 : Assurer le mouvement en tangage \label{sec:2}}
+%\section{Fonction technique FT32 : Assurer le mouvement en tangage \label{sec:2}}
+\section{Exigence fonctionnelle ID 1.3.2 : Assurer le mouvement en tangage \label{sec:2}}
 
 \begin{hypo}~\\
 \begin{itemize}
@@ -347,7 +378,8 @@ $p_{\text{maxi}} = 2 \Delta P_{\text{max}} + p_0 = \SI{1201}{bar}$... chercher l
 \fi
 
 
-\section{\label{sec:3}Fonction technique FT31 : Assurer le mouvement de lacet}
+%\section{\label{sec:3}Fonction technique FT31 : Assurer le mouvement de lacet}
+\section{\label{sec:3}Exigence technique 1.3.1 : Assurer le mouvement de lacet}
 
 \begin{hypo}%Hypothèses :
 
@@ -772,8 +804,8 @@ et donc $C_m = 1,3\times 10^{-2}\left(34\times 1,26 + 0,65 \times 0,6 \dfrac{ 85
 
 
 
-\section{Fonction technique FT2 : gérer le fonctionnent}
-
+%\section{Fonction technique FT2 : gérer le fonctionnement}
+\section{Exigence fonctionnelle ID 1.2 : gérer le fonctionnement}
 \subsection{La commande de la plate-forme}
 
 \ifprof
@@ -1133,7 +1165,8 @@ Avec le couple de valeurs ($T_I$ et $K_P$) obtenu, la réponse fréquentielle du
 \fi
 
 
-\section{Fonction technique FT33 : guider les podes en roulis}
+%\section{Fonction technique FT33 : guider les podes en roulis}
+\section{Exigence technique 1.3.3 : guider les podes en roulis}
 
 L’objet de cette partie est d’étudier les solutions constructives assurant le guidage des podes en roulis. Ce guidage est réalisé par deux liaisons identiques, une pour le pode avant \textbf{3} et une pour le pode arrière \textbf{2}. Dans la suite, une seule des deux liaisons sera détaillée.
 
