@@ -91,7 +91,7 @@ FT6 : Fournir l’énergie électrique & Autonomie d’utilisation $\SI{4}{h} $ 
 \fi
 
 \section{Analyse fonctionnelle \label{sec:1}}
-\question{\label{q_01} Compléter le diagramme FAST de la plate-forme d’exploration présenté en annexe 1 en indiquant les solutions techniques associées aux fonctions techniques référencées dans le tableau du document-réponse.}
+\question{\label{q_01} Compléter le diagramme FAST de la plate-forme d’exploration présenté en annexe 1 en indiquant les solutions techniques associées aux fonctions techniques référencées dans le tableau du document-réponse. Pour cela, vous associerez aux fonctiosn techniques FT1, FT2, FT311, FT312, FT321, FT33, FT41, FT51, FT61, FT71.}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -366,13 +366,8 @@ direction est imposé par une rotation différentielle des roues du pode central
 Ce mouvement est défini par le torseur cinématique suivant : 
 $\torseurcin{V}{\text{PF}}{0} = \torseurl{\vecto{\text{PF}}{0}=\varphip \vect{z_0}}{\vect{0}}{C_1}$.
 
-\begin{wrapfigure}{r}{5.5cm}
-%\begin{figure}[H]
-\centering
-\includegraphics[width=\linewidth]{img_04}
-\caption{Loi de commande de vitesse \label{img:04}}
-%\end{figure}
-\end{wrapfigure}L’objectif de cette partie est de valider l’aptitude du système à respecter la
+
+L’objectif de cette partie est de valider l’aptitude du système à respecter la
 loi de vitesse de la \autoref{img:04}.
 Le modèle cinématique retenu est représenté sur l’annexe 9.
 Les roues centrales et les roues arrière sont en contact avec le sol. Dans ce
@@ -381,6 +376,24 @@ sans glisser sur le sol en $I_{1d}$ et $I_{1g}$. Les roues du pode avant \textbf
 arrière \textbf{2} sont bloquées (\autoref{img:05}).
 
 
+
+\begin{minipage}[b]{.47\linewidth}
+\begin{figure}[H]
+\centering
+\includegraphics[height=5cm]{img_04}
+\caption{Loi de commande de vitesse \label{img:04}}
+\end{figure}
+\end{minipage} \hfill
+\begin{minipage}[b]{.47\linewidth}
+\begin{figure}[H]
+\centering
+\includegraphics[height=4.5cm]{img_05}
+
+\caption{Paramétrage des roues en contact avec le sol \label{img:05}}
+\end{figure}
+\end{minipage} 
+
+\vspace{.5cm}
 
 Paramétrage (annexe 9) : 
 \begin{itemize}
@@ -393,11 +406,8 @@ Paramétrage (annexe 9) :
 l’exemple de la roue centrale droite $R_{1d}$.
 \end{itemize}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=.3\linewidth]{img_05}
 
-\vspace{.5cm}
+
 
 \begin{tabular}{lccccc}
 \hline
@@ -410,8 +420,6 @@ l’exemple de la roue centrale droite $R_{1d}$.
 \textbf{Roue arrière gauche} & $R_{2g}$ & $C_{2g}$ & $I_{2g}$ & nulle &\\ \hline
 \end{tabular}
 
-\caption{Paramétrage des roues en contact avec le sol \label{img:05}}
-\end{figure}
 \fi
 
 \subsection*{Caractéristiques géométriques et d’inertie des solides}
@@ -737,7 +745,7 @@ $  C_m  =\dfrac{kR}{2e} \left(J\varphipp  +T_{2d} b+T_{2g} b\right) $
 
 Pour la question \ref{q_14}, vous prendrez $J =\SI{34}{kg.m^2}$, $k_1 =\SI{0,65}{m}$ et $k_2 = \num{1,3e-2}$.
 
-\question{\label{q_14} Calculer le couple moteur maximal : $C_m$ maxi. À partir du graphe de fonctionnement du moteur (document réponse question 14), conclure quand à l’aptitude de la motorisation à générer le mouvement de lacet désiré.}
+\question{\label{q_14} Calculer le couple moteur maximal : $C_m$ maxi. À partir du graphe de fonctionnement du moteur (figure \ref{rep_q14}), conclure quand à l’aptitude de la motorisation à générer le mouvement de lacet désiré.}
 \ifprof
 \begin{corrige}
 D'une part : $  C_m  =\dfrac{kR}{2e} \left(J\varphipp  +b\left( T_{2d} +T_{2g} \right)\right) $ 
@@ -755,6 +763,12 @@ et donc $C_m = 1,3\times 10^{-2}\left(34\times 1,26 + 0,65 \times 0,6 \dfrac{ 85
 \end{corrige}
 \else
 \fi
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.6\linewidth]{rep_q14}
+\caption{Graphe de fonctionnement du moteur\label{rep_q14}}
+\end{figure}
 
 
 
@@ -866,19 +880,19 @@ angulaires de lacet, tangage et roulis restent nuls) ;
 \begin{center}
 \begin{tabular}{lll}
 \hline
-\textbf{Symbole} & \textbf{Désignation} & \textbf{Valeur, unités} \\  \hline\hline
-$U(t)$  			& Tension d’alimentation d’un moteur 		& $\si{V}$ \\ \hline
-$E(t)$ 			& Tension contre électromotrice dans un moteur 	& $\si{V}$ \\ \hline
-$I (t)$			& Intensité dans un moteur 			& $\si{A}$ \\ \hline
-$V(t)$ 			& Vitesse de déplacement de la plate-forme 		& $\si{m/s}$\\ \hline
-$\Omega_{\text{Mot}}(t)$& Vitesse de rotation de chacun des six moteurs	& $\si{rad/s}$ \\\hline
-$C_{\text{Mot}}(t)$ 	& Couple moteur appliqué par chacun des six moteurs & $\si{Nm}$ \\ \hline
+\textbf{Symbole} & \textbf{Désignation} & \textbf{Valeur, unités} \\  \hline
+$U(t)$  			& Tension d’alimentation d’un moteur 		& $\si{V}$ \\ 
+$E(t)$ 			& Tension contre électromotrice dans un moteur 	& $\si{V}$ \\ 
+$I (t)$			& Intensité dans un moteur 			& $\si{A}$ \\ 
+$V(t)$ 			& Vitesse de déplacement de la plate-forme 		& $\si{m/s}$\\ 
+$\Omega_{\text{Mot}}(t)$& Vitesse de rotation de chacun des six moteurs	& $\si{rad/s}$ \\
+$C_{\text{Mot}}(t)$ 	& Couple moteur appliqué par chacun des six moteurs & $\si{Nm}$ \\ 
 $C_{\text{equ}}(t)$ 	& Couple de perturbation équivalent appliqué à chacun des six axes moteurs
-& $\si{Nm}$ \\ \hline
-$r$ 			& Résistance de l’induit d’un moteur 		& $\SI{2,2}{\Omega}$ \\ \hline 
-$L$ 			& Inductance de l’induit d’un moteur 	& $\SI{4,62}{mH}$ \\ \hline
-$k_e$ 			& Constante de vitesse d’un moteur 	& $\SI{0,12}{V/(rad/s)}$ \\ \hline
-$k_c$ 			& Constante de couple d’un moteur 		& $\SI{0,12}{Nm/A}$ \\ \hline
+& $\si{Nm}$ \\ 
+$r$ 			& Résistance de l’induit d’un moteur 		& $\SI{2,2}{\Omega}$ \\ 
+$L$ 			& Inductance de l’induit d’un moteur 	& $\SI{4,62}{mH}$ \\ 
+$k_e$ 			& Constante de vitesse d’un moteur 	& $\SI{0,12}{V/(rad/s)}$ \\ 
+$k_c$ 			& Constante de couple d’un moteur 		& $\SI{0,12}{Nm/A}$ \\ 
 $J_{\text{equ}}$		& Inertie équivalente de la plate-forme ramenée sur l’axe d’un des six moteurs
 & $\SI{14,4e-3}{kg.m^2}$ \\ \hline
 \end{tabular}
@@ -903,14 +917,14 @@ Pour une vitesse de consigne $V_C (t)$ en \si{m/s}, les microcontrôleurs de pil
 
 \begin{figure}[H]
 \centering
-\begin{tabular}{cc}
+\begin{tabular}{lc}
 \hline
-\textbf{Blocs} & \textbf{Fonctions de transfert} 	\\ \hline\hline
-Générateur de consigne 	& $K_G$ (à déterminer) 		\\ \hline
-Convertisseur 		& $K_{\text{conv}}$(à déterminer)	\\ \hline
-Correcteur 		& $C(p)$ (réglé par la suite)	\\ \hline
-Amplificateur 		& $K_A = 20 $ (sans unité)	\\ \hline
-Capteur de vitesse 	& $K_{\text{Capt}}= \SI{5e-3}{V/(rad/s)}$ 	\\ \hline
+\textbf{Blocs} & \textbf{Fonctions de transfert} 	\\ \hline
+Générateur de consigne 	& $K_G$ (à déterminer) 		\\ 
+Convertisseur 		& $K_{\text{conv}}$(à déterminer)	\\ 
+Correcteur 		& $C(p)$ (réglé par la suite)	\\ 
+Amplificateur 		& $K_A = 20 $ (sans unité)	\\ 
+Capteur de vitesse 	& $K_{\text{Capt}}= \SI{5e-3}{V/(rad/s)}$ 	\\ 
 Rapport cinématique 	& $K_R$ (à déterminer) 	\\ \hline
 \end{tabular}
 
@@ -966,7 +980,7 @@ $\indice{K}{conv}=\indice{K}{Capt}=\SI{5e-3}{V/(rad/s)}$.
 \else
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{cor_q17}
+\includegraphics[width=\linewidth]{rep_q17}
 \caption{Schéma-blocs à remplir de la question \ref{q_17}}
 \end{figure}
 
@@ -1011,9 +1025,9 @@ $=\dfrac{\indice{K}{Capt}K_AK_U}{\left(T_1p +1\right)\left(T_2p +1\right)+\indic
 \end{corrige}
 \else
 
-\begin{figure}[H]
+\begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{rep_q18}
+\includegraphics[width=.8\linewidth]{rep_q18}
 \caption{Diagrame Bode de la boucle ouverte \label{rep_q_18}}
 \end{figure}
 
@@ -1157,3 +1171,5 @@ Dans un premier temps, chaque plot est considéré solidaire du bras d’articul
 \else
 \fi
 
+	
+\includepdf[pages=-]{Annexes.pdf}
