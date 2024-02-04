@@ -1124,7 +1124,11 @@ Reprenons le diagramme de Bode de la Fonction de Transfert en Boucle Ouverte $\t
 \question{\label{q_21}Compléter le document-réponse (Bode non corrigé page 12) en traçant les diagrammes de Bode du correcteur avec $K_I =\SI{1}{s^{-1}}$ . Déterminer alors la valeur de $K_I$ maximale notée $K_{\text{I max}}$ permettant de respecter les marges de stabilité énoncées dans le cahier des charges.}
 \ifprof
 \begin{corrige}
+En ajoutant un correcteur intégral pur, de gain $\SI{1}{s^{-1}}$ la marge de phase serait de 65\degres. La marge de gain serait de $\SI{50}{dB}$. 
 
+Pour avoir une marge de gain de 45\degres, il faut remonter, au maximum le gain de \SI{10}{dB}. Soit $\indice{K}{I max} = 10^{10/20}=\SI{3,16}{s^{-1}}$. La marge de gain serait alors de \SI{40}{dB} ce qui est supérieur au \SI{6}{dB} du cahier des charges. 
+
+(En se mettant à la limite de la marge de gain, la marge de phase serait négative et le système instable).
 \end{corrige}
 \else
 \fi
@@ -1136,6 +1140,22 @@ comportement du moteur en conservant uniquement le mode associé au pôle «~dom
 \question{\label{q_22}En analysant les valeurs numériques des pôles de la fonction de transfert du moteur en poursuite $H_U ( p)$, préciser quel est le pôle dominant et proposer alors un modèle simplifié de la fonction de transfert $H_U ( p)$. Déterminer alors la valeur numérique de $K_I$ notée $K_{I\SI{5}{\%}}$ minimisant le temps de réponse à \SI{5}{\%} pour une entrée échelon en poursuite. Calculer alors la valeur approchée du temps de réponse à \SI{5}{\%} minimale $T_{\SI{5}{\%} \text{mini}}$ et comparer la au cahier des charges.}
 \ifprof
 \begin{corrige}
+$-\dfrac{1}{T_2}$ est le pôle dominant (pôle le plus près de l'axe des imaginaires dans le plan complexe). 
+
+On note $F(p)$ la fonction de transfert en boucle fermée du système simplifié : 
+$F(p) = \dfrac{\indice{K}{Capt} \dfrac{K_I}{p} K_A \dfrac{K_U}{1+T_2 p}}{1+\indice{K}{Capt} \dfrac{K_I}{p} K_A \dfrac{K_U}{1+T_2 p}}$
+$= \dfrac{\indice{K}{Capt} K_I K_A K_U}{p\left(1+T_2 p\right)+\indice{K}{Capt} K_I K_AK_U}$
+$= \dfrac{1}{\dfrac{p}{\indice{K}{Capt} K_I K_AK_U}\left(1+T_2 p\right)+1}$
+
+On a donc $\dfrac{1}{\omega_0^2} = \dfrac{T_2 }{\indice{K}{Capt} K_I K_AK_U}$ et 
+$\omega_0 = \sqrt{\dfrac{\indice{K}{Capt} K_I K_AK_U}{T_2 }}$
+
+
+%$2\dfrac{\xi}{\omega_0} = \dfrac{1}{\indice{K}{Capt} K_I K_AK_U}$ 
+%$\Rightarrow \xi = \sqrt{\dfrac{\indice{K}{Capt} K_I K_AK_U}{T_2 }}\dfrac{1}{2\indice{K}{Capt} K_I K_AK_U} $
+%
+%$ = \dfrac{1}{2\sqrt{T_2 \indice{K}{Capt} K_I K_AK_U}} $
+
 \end{corrige}
 \else
 \fi
@@ -1165,6 +1185,7 @@ La valeur de $T_I$ déterminée à la question précédente est retenue pour le 
 \question{\label{q_24}Parmi les différentes valeurs de $K_P$, choisir la valeur qui assure un temps de réponse à 5\% au plus près de la valeur fournie dans le cahier des charges.}
 \ifprof
 \begin{corrige}
+
 \end{corrige}
 \else
 \fi
@@ -1220,4 +1241,7 @@ Dans un premier temps, chaque plot est considéré solidaire du bras d’articul
 \fi
 
 	
+\ifprof
+\else
 \includepdf[pages=2-]{Annexes.pdf}
+\fi
