@@ -132,13 +132,15 @@ Id 1.6 : Fournir l’énergie électrique & Autonomie d’utilisation $\SI{4}{h}
 
 %\section{Fonction technique FT32 : Assurer le mouvement en tangage \label{sec:2}}
 \section{Exigence fonctionnelle ID 1.3.2 : Assurer le mouvement en tangage \label{sec:2}}
-
+\ifprof
+\else
 \begin{hypo}~\\
 \begin{itemize}
 \item Dans toute la partie II, le mouvement de roulis est fixé à une valeur nulle. Ainsi le bras d’articulation avant \textbf{4} et le pode avant \textbf{3} sont solidaires et de la même manière, le bras d’articulation arrière \textbf{4’} et le pode arrière \textbf{2} sont aussi solidaires. D’autre part, le mouvement de lacet n’est pas considéré.
 \item Les éléments hydrauliques placés du côté gauche (vérins \textbf{6} et \textbf{6’}) agissent exactement de la même manière que les éléments placés du côté droit (vérins \textbf{5} et \textbf{5’}). L’étude suivante du circuit hydraulique sera donc réalisée uniquement du côté droit.
 \end{itemize}
 \end{hypo}
+\fi
 
 \subsection{Fonctionnement du circuit hydraulique}
 \ifprof
@@ -170,6 +172,10 @@ principales fonctionnalités du répartiteur hydraulique droit.
 \question{\label{q_02}Sur le document-réponse (questions \ref{q_02} et \ref{q_03}), indiquer en hachurant, les chambres des vérins qui sont en communication ainsi que le flexible permettant de les relier. Vous adopterez un type de hachures par volume d’huile en communication.}
 \ifprof
 \begin{corrige}
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{cor_q_2_3}
+\end{figure}
 \end{corrige}
 \else
 \fi
@@ -183,6 +189,7 @@ principales fonctionnalités du répartiteur hydraulique droit.
 \question{\label{q_03}Sur le document-réponse (questions \ref{q_02} et \ref{q_03}), indiquer par des flèches le sens de circulation de l’huile dans les flexibles au cours de ce mouvement de CABRAGE. Indiquer quel est le mouvement engendré entre l’ensemble \{pode arrière \textbf{2} + bras d’articulation \textbf{4’}\} et le pode central \textbf{1}, ainsi que son amplitude suite au mouvement de CABRAGE du pode avant d’un angle $\beta$.}
 \ifprof
 \begin{corrige}
+
 \end{corrige}
 \else
 \fi
@@ -206,6 +213,10 @@ Afin de piloter l’angle de tangage $\beta$ conformément aux consignes des mic
 d’alimentation des vérins afin de respecter les ordres de PLONGEE et de CABRAGE.}
 \ifprof
 \begin{corrige}
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{cor_q4}
+\end{figure}
 \end{corrige}
 \else
 \fi
@@ -796,12 +807,15 @@ et donc $C_m = 1,3\times 10^{-2}\left(34\times 1,26 + 0,65 \times 0,6 \dfrac{ 85
 \else
 \fi
 
+
+\ifprof
+\else
 \begin{figure}[H]
 \centering
 \includegraphics[width=.6\linewidth]{rep_q14}
 \caption{Graphe de fonctionnement du moteur\label{rep_q14}}
 \end{figure}
-
+\fi
 
 
 %\section{Fonction technique FT2 : gérer le fonctionnement}
@@ -1033,7 +1047,8 @@ $\indice{K}{conv}=\indice{K}{Capt}=\SI{5e-3}{V/(rad/s)}$.
 
 \fi
 
-
+\ifprof
+\else
 À partir de la modélisation des blocs, un schéma-blocs à retour unitaire est tracé.
 
 \begin{figure}[H]
@@ -1049,8 +1064,11 @@ $K_U = \SI{8,3}{rad . s ^{-1}.V ^{-1}}$,
 $K_C = \SI{152,7}{rad . s^{-1}.N^{-1} .m^{-1}}$, 
 $T_1=\SI{2,1}{ms}$, 
 et $T_2 =\SI{0,36}{s}$.
+\fi
 
 \subsubsection{Etude des performances sans correction : $C( p) =1$}
+\ifprof
+\else
 Nous distinguerons dans la suite :
 \begin{itemize}
 \item l’étude en poursuite : le couple de perturbation équivalent $C_{\text{equ}} (t)$ est nul $V_c (t)$ varie ;
@@ -1058,6 +1076,7 @@ Nous distinguerons dans la suite :
 \end{itemize}
 
 Les diagrammes de Bode de la Fonction de Transfert en Boucle Ouverte $\text{FTBO}( p)$ non corrigée sont fournis sur le document-réponse ou sur la figure \ref{rep_q_18} pour $C( p) = 1$.
+\fi
 
 \question{Le système étudié est-il stable théoriquement ? Justifier vos réponses.}
 \ifprof
@@ -1133,9 +1152,12 @@ Pour avoir une marge de gain de 45\degres, il faut remonter, au maximum le gain 
 \else
 \fi
 
-
+\ifprof
+\else
 Afin d’évaluer analytiquement le temps de réponse à 5\%, Il est proposé d’adopter une modélisation simplifiée du
 comportement du moteur en conservant uniquement le mode associé au pôle «~dominant~». On donne $T_{\SI{5}{\%} \text{mini}}\cdot \omega_0 = 3$ avec $\omega_0$ la pulsation propre non amortie d’un système fondamental du second ordre.
+\fi
+
 
 \question{\label{q_22}En analysant les valeurs numériques des pôles de la fonction de transfert du moteur en poursuite $H_U ( p)$, préciser quel est le pôle dominant et proposer alors un modèle simplifié de la fonction de transfert $H_U ( p)$. Déterminer alors la valeur numérique de $K_I$ notée $K_{I\SI{5}{\%}}$ minimisant le temps de réponse à \SI{5}{\%} pour une entrée échelon en poursuite. Calculer alors la valeur approchée du temps de réponse à \SI{5}{\%} minimale $T_{\SI{5}{\%} \text{mini}}$ et comparer la au cahier des charges.}
 \ifprof
@@ -1183,6 +1205,12 @@ Le correcteur est remplacé par un correcteur proportionnel intégral. Des répo
 \question{\label{q_23}Parmi les différentes valeurs de $T_I$, choisir celle qui assure le temps de réponse à 5\% le plus faible. Vous ferez apparaître ce temps de réponse sur la figure (question \ref{q_23}).}
 \ifprof
 \begin{corrige}
+C'est pour $T_I = \SI{0,2}{s}$ que le temps de réponse est le plus faible. 
+\begin{figure}[H]
+\centering
+\includegraphics[width=.6\linewidth]{cor_q23.png}
+%\caption{Loi de commande de vitesse \label{img:04}}
+\end{figure}
 \end{corrige}
 \else
 \fi
@@ -1193,6 +1221,13 @@ La valeur de $T_I$ déterminée à la question précédente est retenue pour le 
 \question{\label{q_24}Parmi les différentes valeurs de $K_P$, choisir la valeur qui assure un temps de réponse à 5\% au plus près de la valeur fournie dans le cahier des charges.}
 \ifprof
 \begin{corrige}
+Le cahier des caharge exige un temps de réponse de \SI{0,5}{s}. C'est pour $K_P = 4$ que le temps de réponse est le plus proche du CDC. 
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{cor_q24.png}
+%\caption{Loi de commande de vitesse \label{img:04}}
+\end{figure}
+
 
 \end{corrige}
 \else
@@ -1204,6 +1239,22 @@ Avec le couple de valeurs ($T_I$ et $K_P$) obtenu, la réponse fréquentielle du
 \question{\label{q_25} Conclure quant à la capacité de ce correcteur à respecter tous les critères du cahier des charges.}
 \ifprof
 \begin{corrige}
+$C(p)=4\left( 1+\dfrac{1}{0,2p}\right)$ correcteur réglé dans les questions précédentes pour, en accord avec le cahier des charges :
+\begin{itemize}
+\item annuler les erreurs statiques en poursuite comme en régulation (effet intégrateur du correcteur)
+\item ajuster le temps de réponse à 5 pourcents à 0,5 secondes.
+\end{itemize}
+De plus, on observe sur le diagramme de Bode du système corrigé, fourni ci-contre, que :
+\begin{itemize}
+\item le déphasage étant toujours supérieur à $-180$ degrés, la marge de gain est infinie ; elle est donc supérieure aux $\SI{6}{dB}$ attendus;
+\item la pulsation de coupure à $\SI{6}{dB}$ est de $\SI{10}{rad/s}$; à cette valeur, le déphasage est de $-105$ degrés. La marge de phase est donc de 75 degrés, valeur supérieure aux 45 degrés exigés.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.6\linewidth]{cor_q25.png}
+%\caption{Loi de commande de vitesse \label{img:04}}
+\end{figure}
 \end{corrige}
 \else
 \fi
@@ -1211,11 +1262,14 @@ Avec le couple de valeurs ($T_I$ et $K_P$) obtenu, la réponse fréquentielle du
 
 %\section{Fonction technique FT33 : guider les podes en roulis}
 \section{Exigence technique 1.3.3 : guider les podes en roulis}
-
+\ifprof
+\else
 L’objet de cette partie est d’étudier les solutions constructives assurant le guidage des podes en roulis. Ce guidage est réalisé par deux liaisons identiques, une pour le pode avant \textbf{3} et une pour le pode arrière \textbf{2}. Dans la suite, une seule des deux liaisons sera détaillée.
+\fi
 
 \subsection{Description de la première solution constructive (annexe 10)}
-
+\ifprof
+\else
 Les podes sont constitués d’un caisson creux dans lequel l’ensemble des éléments techniques prend place. Les caissons sont réalisés par assemblage et collage de plaques de composites de type « sandwich ». L’utilisation de ce
 type de matériau garantit une bonne résistance aux efforts tout en maîtrisant la masse.
 Pour des raisons d’encombrement (place à l’intérieur des podes), la liaison en roulis s’effectue uniquement sur l’épaisseur de la plaque en relation avec le bras d’articulation. Un insert métallique a été incorporé dans la plaque au niveau de la liaison avec le bras. Cette liaison réalisée par contact bilatéral direct peut être modélisée par l’association de deux liaisons en parallèle.
@@ -1225,10 +1279,16 @@ au bras d’articulation ;
 \item D’autre part, par une liaison sphère cylindre (linéaire annulaire) modélisant le centrage court entre l’insert lié
 au pode et le palier de roulis lié au bras d’articulation.
 \end{itemize}
+\fi
 
 \question{\label{q_26} Proposer un schéma cinématique représentant l’association des deux liaisons en parallèle. L’orientation des liaisons sera déterminée à partir de l’analyse technologique de la liaison. Montrer que la modélisation adoptée conduit alors à une liaison équivalente pivot isostatique.}
 \ifprof
 \begin{corrige}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{cor_q26.png}
+%\caption{Loi de commande de vitesse \label{img:04}}
+\end{figure}
 \end{corrige}
 \else
 \fi
@@ -1244,6 +1304,12 @@ Dans un premier temps, chaque plot est considéré solidaire du bras d’articul
 \question{\label{q_27} Déterminer le degré d’hyperstatisme de cette nouvelle solution. Proposer alors une solution modifiée sous la forme d’un schéma d’architecture (ou cinématique) permettant de réaliser les réglages géométriques nécessaires afin d’assurer un contact surfacique optimal entre chaque plot et la piste circulaire.}
 \ifprof
 \begin{corrige}
+\begin{figure}[H]
+\centering
+\includegraphics[width=.9\linewidth]{cor_q27.png}
+\includegraphics[width=.9\linewidth]{cor_q27_b.png}
+%\caption{Loi de commande de vitesse \label{img:04}}
+\end{figure}
 \end{corrige}
 \else
 \fi
