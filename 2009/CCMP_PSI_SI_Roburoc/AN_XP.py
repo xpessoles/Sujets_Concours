@@ -5,6 +5,23 @@ Created on Wed Jan 26 10:58:31 2022
 @author: xpess
 """
 
+# Q22
+
+KU = 8.3
+KC = 152.7
+T2 = 0.36
+Kcapt = 5e-3
+KA = 20
+
+KI = 1/(T2*KA*KU*Kcapt*4*0.69**2)
+
+print("KI, ",KI)
+
+omega0 = m.sqrt(Kcapt*KI*KA*KU/T2)
+
+print("OmegaO, ",KI)
+
+
 import math as m
 # Q21 - Correcteur proportionnel
 tau = (m.tan(m.radians((55+90)/2)))/0.13
