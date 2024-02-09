@@ -121,7 +121,7 @@ Id 1.6 : Fournir l’énergie électrique & Autonomie d’utilisation $\SI{4}{h}
 %\section{Analyse fonctionnelle \label{sec:1}}
 \section{Analyse des exigences \label{sec:1}}
 %\question{\label{q_01} Compléter le diagramme FAST de la plate-forme d’exploration présenté en annexe 1 en indiquant les solutions techniques associées aux fonctions techniques référencées dans le tableau du document-réponse. Pour cela, vous associerez aux fonctiosn techniques FT1, FT2, FT311, FT312, FT321, FT33, FT41, FT51, FT61, FT71.}
-\question{\label{q_01} Compléter le diagramme des exigencs de la plate-forme d’exploration présenté dans le document réponse en indiquant les solutions techniques associées aux fonctions techniques référencées.}% Pour cela, vous associerez aux fonctiosn techniques FT1, FT2, FT311, FT312, FT321, FT33, FT41, FT51, FT61, FT71.}
+\question{\label{q_01} Compléter le diagramme des exigences de la plate-forme d’exploration présenté dans le document réponse en indiquant les solutions techniques associées aux fonctions techniques référencées.}% Pour cela, vous associerez aux fonctiosn techniques FT1, FT2, FT311, FT312, FT321, FT33, FT41, FT51, FT61, FT71.}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -687,9 +687,11 @@ Au repos, $\left(Z_{2d}+Z_{2g}\right)_{\text{Repos}} \simeq \SI{590}{N}$. Dans c
 \else
 \fi
 
-
+\ifprof
+\else
 L’objectif est dans un second temps de valider l’aptitude des moteurs à suivre la loi de vitesse en lacet exigée. Il est
 proposé de déterminer l’expression du couple moteur $C_m$ par une approche énergétique.
+\fi
 
 
 \question{\label{q_12}Déterminer l’énergie cinétique galiléenne de l’ensemble des solides en mouvement. Le résultat sera mis
@@ -1296,10 +1298,12 @@ au pode et le palier de roulis lié au bras d’articulation.
 
 
 \subsection{Amélioration de la solution constructive (annexe 11)}
-
+\ifprof
+\else
 Lors des premiers essais, des détériorations localisées au niveau de l’insert métallique des plaques composites ont pu être observées, notamment en présence de moments importants dans la liaison autour de l’axe vertical. Afin de
 renforcer la liaison, Il a été décidé de rajouter sur chaque pode avant / arrière deux pistes circulaires métalliques et sur chaque bras deux plots venant glisser respectivement sur chacune des pistes et récupérer une partie des efforts.
 Dans un premier temps, chaque plot est considéré solidaire du bras d’articulation (liaison complète) et chaque contact entre un plot et une piste circulaire est modélisé par une liaison appui plan.
+\fi
 
 \question{\label{q_27} Déterminer le degré d’hyperstatisme de cette nouvelle solution. Proposer alors une solution modifiée sous la forme d’un schéma d’architecture (ou cinématique) permettant de réaliser les réglages géométriques nécessaires afin d’assurer un contact surfacique optimal entre chaque plot et la piste circulaire.}
 \ifprof
