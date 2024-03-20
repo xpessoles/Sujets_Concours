@@ -1,0 +1,542 @@
+\documentclass[10pt]{article}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\graphicspath{ {./images/} }
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{multirow}
+
+\title{III Élaboration du modèle de connaissance d'un actionneur linéaire placé sur un banc d'essai }
+
+
+\author{III.A - Étude de la dynamique de l'actionneur linéaire dans le cas particulier représentatif\\
+de la mise en précontrainte étudiée à la question 3 modélisant le système dans cette\\
+configuration particulière}
+\date{}
+
+
+\begin{document}
+\maketitle
+\begin{center}
+\includegraphics[max width=\textwidth]{2024_03_20_0c3cf888f6e04b1986bcg-04}
+\end{center}
+
+Figure 5 Plan et axe sagittal
+
+Après avoir déterminé l'amplitude nécessaire du déplacement des actionneurs linéaires, l'étude portera sur la caractérisation dynamique et la commande d'un des quatre actionneurs linéaires. Cette dernière nécessite l'élaboration d'un modèle de connaissance du système étudié. La société Japet a construit un banc d'essai et de mesure. Ce banc d'essai a pour finalité de :
+
+\begin{itemize}
+  \item contrôler l'amplitude nécessaire du déplacement des actionneurs linéaires ;
+
+  \item comparer les résultats issus des simulations aux résultats expérimentaux pour une position particulière d'un actionneur linéaire, dans un premier temps.
+
+\end{itemize}
+
+Par la suite, le constructeur validera chaque actionneur linéaire commercialisé à l'aide du banc d'essai dans une démarche qualité.
+
+\section*{II Étude de l'amplitude du déplacement de l'actionneur pour conserver un mouvement naturel}
+\begin{itemize}
+  \item Objectif
+\end{itemize}
+
+Déterminer la course des actionneurs permettant de suivre les mouvements du corps conformément à l'exigence Id2 du cahier des charges partiel.
+
+L'exigence Id2 «Préserver l'activité musculaire » est composée de deux exigences Id2.1 et Id2.2 (tableau 2). Le fonctionnement de l'exosquelette nécessite une mise en précontrainte. Pour cette mise en précontrainte, chaque actionneur linéaire doit exercer une force de $40 \mathrm{~N}$. Cette valeur est obtenue par déplacement vertical de la ceinture haute par rapport à la ceinture basse.
+
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Id & Exigence & Critère & Niveau & Flexibilité \\
+\hline
+Id2.1 & \begin{tabular}{l}
+Permettre le mouvement de \\
+translation de la ceinture haute \\
+par rapport à la ceinture basse \\
+\end{tabular} & \begin{tabular}{l}
+Déplacement vertical $\Delta h$ de la \\
+ceinture haute par rapport à la \\
+ceinture basse \\
+\end{tabular} & $\Delta h=50 \mathrm{~mm}$ & $<10 \%$ \\
+\hline
+Id2.2 & \begin{tabular}{l}
+Permettre le mouvement de \\
+rotation de la ceinture haute \\
+par rapport à la ceinture basse \\
+\end{tabular} & Amplitude de rotation $\varphi$ & $\left[0,+20^{\circ}\right]$ selon l'axe sagittal & $<10 \%$ \\
+\hline
+\end{tabular}
+\end{center}
+
+Tableau 2 Extrait du cahier des charges fonctionnel limité au mouvement dans le plan sagittal de l'exosquelette
+
+L'exigence Id2.1 correspond à la valeur du déplacement vertical nécessaire à la précontrainte. Cette valeur est propre à chaque utilisateur. Dans le cas extrême, cette valeur correspond à un déplacement vertical de $50 \mathrm{~mm}$. L'étude cinématique est limitée à un mouvement de flexion avant. La figure 6 décrit le mouvement ainsi que le positionnement de l'exosquelette dans le plan sagittal. La figure 7 décrit le modèle géométrique paramétré de l'exosquelette. La liaison sphère-cylindre en $C$ modélise les degrés de liberté supprimés par les éléments extérieurs au système (colonne vertébrale + tissus mous).
+
+Q 3. Déterminer l'expression de la longueur $l_{2}(t)$ en fonction de $\varphi(t), h(t), b$ et $a$.\\
+\includegraphics[max width=\textwidth, center]{2024_03_20_0c3cf888f6e04b1986bcg-05}
+
+Figure 6 Mouvement de flexion et implantation de l'exosquelette
+
+\begin{center}
+\includegraphics[max width=\textwidth]{2024_03_20_0c3cf888f6e04b1986bcg-05(1)}
+\end{center}
+
+Paramétrage des solides
+
+$-\overrightarrow{B C}=\overrightarrow{C D}=b \vec{x}_{3}$
+
+$-\overrightarrow{A O}=\overrightarrow{O E}=a \vec{x}$.
+
+Paramétrage des liaisons
+
+\begin{itemize}
+  \item $\overrightarrow{A B}=l_{1}(t) \vec{y}_{1}$
+\end{itemize}
+
+$-\overrightarrow{E D}=l_{2}(t) \vec{y}_{2}$
+
+\begin{itemize}
+  \item $\varphi(t)=\left(\vec{x}, \vec{x}_{3}\right)$ (angle de la ceinture haute par rapport à la ceinture basse selon l'axe sagittal);
+\end{itemize}
+
+$-\alpha(t)=\left(\vec{y}, \vec{y}_{1}\right)$;
+
+$-\beta(t)=\left(\vec{y}, \vec{y}_{2}\right)$;
+
+\begin{itemize}
+  \item $\overrightarrow{O C}=h(t) \vec{y}$ avec $h(t) \in\left[h_{0}, h_{0}+\Delta h\right]$.
+\end{itemize}
+
+Figure 7 Paramétrage cinématique
+
+Le protocole de mise en précontrainte et d'utilisation de l'exosquelette est le suivant:
+
+\begin{enumerate}
+  \item à $t=0$, mise en place de l'ensemble en ajustant sur le corps de l'usager les deux ceintures basse et haute $\left(h_{0}=h(0)\right)$;
+
+  \item pour $t \in[0, T]$, mise en précontrainte $\left(h(T)=h_{0}+\Delta h\right)$;
+
+  \item pour $t>T$, mouvement libre (dans notre étude, $\varphi(t)$ est limité de $0^{\circ}$ à $20^{\circ}$ selon l'axe sagittal).
+
+\end{enumerate}
+
+On définit la course d'un actionneur linéaire comme étant la distance que peut parcourir la tige par rapport au corps entre ses positions extrêmes.
+
+Q 4. Le point $C$ restant sur l'axe $(O, \vec{y})$, déterminer la course du vérin 2 à partir du protocole défini précédemment pour les valeurs $a=100 \mathrm{~mm}, b=150 \mathrm{~mm}, h_{0}=100 \mathrm{~mm}$ et $\Delta h=50 \mathrm{~mm}$.
+
+Une étude équivalente montre que la course du vérin 2 est supérieure à celle du vérin 1.
+
+La course obtenue permet donc de dimensionner géométriquement les actionneurs en fonction des positions des points d'accroche sur les ceintures haute et basse. On peut ainsi définir la valeur de contrôle à mettre en place sur le banc d'essai. Cette valeur est vérifiée pour chaque actionneur fabriqué.
+
+L'exigence sur la liberté de mouvement angulaire étant vérifiée, la suite de l'étude a pour but de caractériser la dynamique et la commande d'un des quatre actionneurs ce qui nécessite l'élaboration d'un modèle de connaissance. La validation sera faite à partir des résultats de la force de traction mesurée sur le banc d'essai.
+
+Objectif
+
+Définir un modèle de connaissance de la dynamique du système permettant d'obtenir les équations d'un modèle de simulation comparable aux mesures du banc d'essai.
+
+Le système est placé sur un banc d'essai en position horizontale (figure 8). Dans cette configuration, la pesanteur est portée par la direction $\vec{z}_{0}$. On rappelle que le banc fonctionne selon deux protocoles distincts
+
+\begin{itemize}
+  \item vérification de la course définie précédemment (non étudiée ici);
+  \item vérification de la force exercée par un actionneur linéaire pour effectuer la précontrainte.
+\end{itemize}
+
+\begin{center}
+\includegraphics[max width=\textwidth]{2024_03_20_0c3cf888f6e04b1986bcg-06(1)}
+\end{center}
+
+Figure 8 Banc d'essai
+
+Pour la vérification de la force de précontrainte, l'actionneur linéaire est bloqué en $H$ et un capteur d'effort, noté cap (figure 8), supposé indéformable, est placé en $K$. Cette configuration permet uniquement de valider la performance relative à la mise en précontrainte.
+
+La raideur du ressort du capteur d'effort de l'actionneur linéaire (figure 9) a été choisie à partir d'une campagne d'essais réalisée par différents utilisateurs qui ont exprimé leur ressenti en donnant une note de confort. L'exploitation des données recueillies a permis au fabricant de déterminer le meilleur compromis parmi les retours des différents utilisateurs.
+
+Chaine d'action : transmission de l'énergie par une chaine moteur-réducteur-vis-écrou
+
+\begin{center}
+\includegraphics[max width=\textwidth]{2024_03_20_0c3cf888f6e04b1986bcg-06}
+\end{center}
+
+Capteur d'effort de l'actionneur linéaire : mesure de l'effort par déformation du ressort
+
+Figure 9 Actionneur linéaire
+
+Dans la configuration spécifique retenue, les points $K$ et $H$ sont immobiles par rapport au châssis du banc d'essai. Les solides (0) et (4) sont immobiles par rapport au châssis du banc d'essai. L'action mécanique de l'actionneur linéaire sur le capteur d'effort du banc d'essai est un glisseur de support passant par $K$ et de résultante $\vec{F}_{4 \rightarrow \text { cap }}$. Le capteur du banc d'essai mesure ainsi $\vec{F}_{4 \rightarrow \text { cap }} \cdot \vec{y}_{0}$. On suppose que c'est une image fidèle de la force de traction exercée par l'actionneur linéaire.
+
+\begin{center}
+\includegraphics[max width=\textwidth]{2024_03_20_0c3cf888f6e04b1986bcg-07}
+\end{center}
+
+Figure 10 Modèle d'étude de l'actionneur linéaire sur le banc d'essai
+
+On note $\ell(t)$ le déplacement de (3) par rapport à (4).
+
+On a $y(t)=\ell_{0}-\ell(t)$ avec $\ell_{0}$ la longueur à vide du ressort du capteur installé sur le système réel. Le ressort n'est pas préchargé avant le début de l'essai soit $\ell(t=0)=\ell_{0}$.
+
+Le repère $R_{0}\left(H ; \vec{x}_{0}, \vec{y}_{0}, \vec{z}_{0}\right)$ lié au châssis du banc d'essai est supposé galiléen.
+
+Les différentes grandeurs utiles à cette partie sont regroupées dans le tableau 3.
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Éléments & Caractéristiques et notation \\
+\hline
+Corps du vérin 0 & Masse : $m_{0}$ \\
+\hline
+\multirow[t]{4}{*}{Moteur} & Couple moteur : $C_{3 \rightarrow \text { arbre moteur }}(t)=c_{m}(t)$ \\
+\hline
+ & Moment d'inertie de l'arbre moteur suivant son axe $: I_{m}$ \\
+\hline
+ & Vitesse de rotation de l'arbre moteur : $\omega_{m}(t)=\omega_{m / 3}$ \\
+\hline
+ & Masse négligeable devant les autres masses \\
+\hline
+\multirow{4}{*}{Réducteur planétaire + pignon 1} & Vitesse de rotation en sortie du réducteur : $\omega_{r}(t)=\omega_{1 / 3}$ \\
+\hline
+ & Rapport de réduction : $\lambda=\frac{\omega_{r}(t)}{\omega_{m}(t)}$ \\
+\hline
+ & Moment d'inertie équivalent reporté sur l'arbre de sortie du réducteur : $I_{r}$ \\
+\hline
+ & Masse négligeable devant les autres masses \\
+\hline
+\multirow[t]{2}{*}{Transmetteur par engrenage} & Nombre de dents du pignon d'entrée $1: Z_{1}$ \\
+\hline
+ & Nombre de dents du pignon de sortie $2: Z_{2}=Z_{1}$ \\
+\hline
+\multirow[t]{3}{*}{Vis + pignon 2} & Moment d'inertie suivant l'axe $\left(J, \vec{y}_{0}\right): I_{V}$ \\
+\hline
+ & Vis de pas géométrique : pas en $\mathrm{m} \cdot \mathrm{tr}^{-1}$ \\
+\hline
+ & Masse négligeable devant les autres masses \\
+\hline
+\multirow[t]{2}{*}{Ressort} & Raideur $K_{\text {res }}$ \\
+\hline
+ & Masse négligeable devant les autres masses \\
+\hline
+Ensemble 3 & \begin{tabular}{l}
+Masse $m_{3}$ (les masses du carter moteur et du carter réducteur sont \\
+comprises dans la masse $m_{3}$ ) \\
+\end{tabular} \\
+\hline
+Tige de vérin 4 & Masse : $m_{4}$ \\
+\hline
+Rendement & Rendement global de l'actionneur linéaire, supposé constant : $\eta$ \\
+\hline
+\end{tabular}
+\end{center}
+
+Tableau 3 Caractéristiques principales de l'actionneur linéaire
+
+Q 5. En prenant soin de préciser le solide isolé et le théorème utilisé, déterminer l'expression littérale de la résultante $\vec{F}_{\text {cap } \rightarrow 4}$ en projection sur $\vec{y}_{0}$, en fonction de $K_{\text {res }}$ et $y(t)$.
+
+Q 6. Déterminer le rapport $\frac{\omega_{1 / 3}}{\omega_{2 / 3}}$ en fonction de $Z_{1}$ et $Z_{2}$ et faire l'application numérique. En déduire l'expression de $\vec{V}_{J, 3 / R_{0}}$ en fonction de $\omega_{m}(t)$, pas et $\lambda$.
+
+On note $\Sigma=\{(0)$, arbre moteur, (1), (2), (3), ressort, (4) $\}$ l'ensemble mobile en mouvement par rapport à $R_{0}$.
+
+Q 7. Déterminer l'expression des énergies cinétiques $E_{c}\left(\operatorname{arbre}\right.$ moteur $\left./ R_{0}\right), E_{c}\left(1 / R_{0}\right), E_{c}\left(2 / R_{0}\right)$ et $E_{c}\left(3 / R_{0}\right)$ en fonction de $\omega_{m}(t)$, pas, $\lambda$, de la masse $m_{3}$ et des inerties.
+
+Q 8. Écrire l'expression de l'énergie cinétique $E_{c}\left(\Sigma / R_{0}\right)$ et en déduire l'expression du moment d'inertie équivalent $I_{\text {eq }}$ de l'ensemble mobile $\Sigma$ reporté sur l'arbre moteur en fonction de pas, $\lambda$, de la masse $m_{3}$ et des inerties.
+
+Q 9. Établir le bilan des puissances galiléennes des actions extérieures s'exerçant sur $\Sigma$ et montrer qu'elles sont toutes nulles.
+
+Q 10. Établir le bilan des puissances des actions intérieures à $\Sigma$ et déterminer leurs expressions littérales en justifiant les résultats.
+
+Q 11. Par composition des vecteurs vitesse en $K$ entre les solides (4), (3) et (0), déterminer la relation entre $\dot{y}(t), \omega_{m}(t)$, pas et $\lambda$.
+
+Pour la suite, on définit $K_{\text {trans }}$ tel que $\dot{y}(t)=K_{\text {trans }} \cdot \omega_{m}(t)$.
+
+Q 12. En appliquant le théorème de l'énergie cinétique à l'ensemble $\Sigma$ en mouvement par rapport à $R_{0}$, montrer que l'équation de mouvement s'écrit sous la forme
+
+$$
+I_{\mathrm{eq}} \frac{\mathrm{d} \omega_{m}(t)}{\mathrm{d} t}=Q c_{m}(t)-c_{r}(t) \quad \text { avec } \quad c_{r}(t)=T y(t)
+$$
+
+où l'on précisera les expressions de $Q$ et $T$ en fonction de $\eta, K_{\text {res }}$ et $K_{\text {trans }}$.
+
+Q 13. Exprimer l'équation différentielle du mouvement liant le déplacement $y(t)$ à l'action mécanique $c_{m}(t)$ en fonction des paramètres de $Q, T$ et $K_{\text {trans }}$. En déduire la valeur numérique du facteur d'amortissement et conclure quant à l'amortissement de la réponse indicielle.
+
+Cet ensemble d'équations permet de mettre en place un modèle de connaissance de l'actionneur linéaire placé sur le banc d'essai et son analyse justifie la mise en place d'une structure particulière de l'asservissement.
+
+\section*{III.B - Étude de l'effort d'assistance nécessaire au soutien lombaire}
+\section*{Objectif}
+Proposer un modèle de connaissance de l'asservissement en force, le valider par comparaison avec une mesure sur un banc d'essai et vérifier les performances de l'actionneur linéaire sur un banc d'essai. Ce modèle permettra de valider une commande pour le cas spécifique étudié.
+
+\section*{III.B.1) Mise en place d'un modèle de connaissance}
+L'actionneur linéaire placé sur le banc d'essai et sa commande peuvent être modélisés par le schéma-blocs représenté figure 11.
+
+Notations et hypothèses :
+
+\begin{itemize}
+  \item la transformée de Laplace de la fonction $a(t)$ est notée $A(p)$ dans le cas général ;
+
+  \item les conditions de Heaviside sont supposées vérifiées ;
+
+  \item $F_{c}(p)$ représente la consigne en force de l'asservissement de force, dans le domaine de Laplace;
+
+  \item $F(p)$ représente la force développée par l'actionneur linéaire, dans le domaine de Laplace.
+
+\end{itemize}
+
+Les équations modélisant le comportement du moteur électrique (moteur à courant continu) muni d'une boucle d'asservissement de l'intensité du courant $i_{m}(t)$, sont:
+
+\begin{itemize}
+  \item en supposant le temps de réponse de la boucle de courant négligeable,
+\end{itemize}
+
+$$
+u_{I}(t)=R i_{m}(t)
+$$
+
+\begin{itemize}
+  \item par application des théorèmes généraux de la dynamique appliqués à l'ensemble des solides en mouvement,
+\end{itemize}
+
+$$
+I_{\text {eq }} \frac{\mathrm{d} \omega_{m}(t)}{\mathrm{d} t}=Q c_{m}(t)-c_{r}(t) \quad \text { avec } \quad c_{r}(t)=T y(t)
+$$
+
+— loi de couplage électromécanique,
+
+$$
+c_{m}(t)=k_{c} i_{m}(t)
+$$
+
+Avec :
+
+\begin{itemize}
+  \item $u_{I}(t)$, la consigne en tension de la boucle d'asservissement de l'intensité du courant $i_{m}(t)$ (en V);
+
+  \item $i_{m}(t)$, l'intensité du courant d'induit absorbé par le moteur à courant continu (en A);
+
+  \item $R$, la résistance d'induit du moteur (en $\Omega$ );
+
+  \item $k_{c}$, la constante de couple (en $\mathrm{N} \cdot \mathrm{m} \cdot \mathrm{A}^{-1}$ );
+
+  \item $I_{\text {eq }}$, le moment d'inertie équivalent des solides en mouvement par rapport au référentiel lié au bâti supposé galiléen, reportée sur l'arbre moteur ( $\mathrm{en} \mathrm{kg} \cdot \mathrm{m}^{2}$ ) ;
+
+  \item $K_{1}$, le gain du modulateur d'énergie.
+
+\end{itemize}
+
+\begin{center}
+\includegraphics[max width=\textwidth]{2024_03_20_0c3cf888f6e04b1986bcg-09}
+\end{center}
+
+Figure 11 Schéma-blocs de l'asservissement de force développée par un actionneur linéaire placé sur le banc d'essai
+
+Q 14. Après avoir transformé les équations précédentes dans le domaine de Laplace, exprimer les gains $K_{3}$ et $K_{5}$ en fonction de $Q, k_{c}$ et $T$.
+
+Q 15. Exprimer la fonction de transfert $H_{6}(p)$ en fonction de $K_{\text {trans }}$.
+
+Q 16. En supposant le système stable, déterminer l'expression de $K_{\text {adapt }}$ en fonction de $K_{\text {trans }}$ et $K_{\text {res }}$ qui assure que l'écart en régime permanent $(\varepsilon(t \rightarrow \infty))$ soit nul si l'erreur en régime permanent est nulle.
+
+\section*{III.B.2) Réglage de la boucle d'asservissement de la vitesse angulaire du moteur}
+Le schéma-blocs décrivant la structure de l'asservissement de la vitesse angulaire du moteur est fourni sur la figure 12. Cet asservissement doit respecter le cahier des charges fourni dans le tableau 4.
+
+\begin{center}
+\includegraphics[max width=\textwidth]{2024_03_20_0c3cf888f6e04b1986bcg-10}
+\end{center}
+
+Figure 12 Schéma-blocs de la boucle d'asservissement de la vitesse angulaire du moteur électrique
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Critère concepteur & Niveau \\
+\hline
+Marge de phase & $\geqslant 80^{\circ}$ \\
+\hline
+Erreur en régime permanent pour une perturbation en échelon constante & Nulle \\
+\hline
+Pulsation de coupure à $0 \mathrm{~dB}$ & $\omega_{0 \mathrm{~dB}}=10 \mathrm{rad} \cdot \mathrm{s}^{-1}$ \\
+\hline
+\end{tabular}
+\end{center}
+
+Tableau 4 Critères concepteur pour la boucle d'asservissement de la vitesse angulaire
+
+Le choix d'un correcteur proportionnel intégral est fait afin de diminuer l'influence de la perturbation en couple modélisée par $C_{r}(p)$. La fonction de transfert du correcteur de la boucle d'asservissement en vitesse angulaire est noté $C_{v}(p)$, tel que
+
+$$
+C_{v}(p)=K_{i} \frac{1+\tau_{i} p}{\tau_{i} p}
+$$
+
+On note $H_{B O v}(p)=\frac{\Omega_{m}(p)}{\varepsilon_{v}(p)}$ la fonction de transfert en boucle ouverte de l'asservissement de vitesse angulaire du moteur.
+
+Q 17. Déterminer l'expression littérale de la phase de $H_{B O v}(\mathrm{i} \omega)$. En déduire la valeur numérique de $\tau_{i}$ respectant les critères concepteur de la boucle de vitesse.
+
+Le diagramme de Bode de la boucle ouverte $H_{B O v}(p)$, avec $K_{i}=1$ et $\tau_{i}$ déterminé à la question 17 , est donné sur la figure 13 .\\
+\includegraphics[max width=\textwidth, center]{2024_03_20_0c3cf888f6e04b1986bcg-10(1)}
+
+Figure 13 Diagramme de Bode de $H_{B O v}(p)$
+
+Q 18. Déterminer la valeur numérique de $K_{i}$ afin que la boucle d'asservissement de vitesse respecte les critères concepteur du tableau 4.
+
+\section*{III.B.3) Simplification du modèle de connaissance}
+Il est possible de mettre le schéma-blocs de la figure 11 sous la forme du schéma-blocs de la figure 14, afin de faciliter la prévision des performances simulées.
+
+\begin{center}
+\includegraphics[max width=\textwidth]{2024_03_20_0c3cf888f6e04b1986bcg-11(1)}
+\end{center}
+
+Figure 14 Schéma-blocs de l'asservissement de la force développée par un actionneur linéaire
+
+Q 19. Déterminer les fonctions de transfert $H_{8}(p)$ et $H_{9}(p)$ en fonction de $K_{5}, I_{\text {eq }}$ et $H_{6}(p)$. Ne pas remplacer $K_{5}$ et $H_{6}(p)$ par les expressions trouvées précédemment.
+
+Pour faciliter l'analyse des performances simulées, le schéma-blocs de la figure 14 est adapté afin de disposer d'un schéma-blocs à retour unitaire, tel que décrit sur la figure 15.
+
+\begin{center}
+\includegraphics[max width=\textwidth]{2024_03_20_0c3cf888f6e04b1986bcg-11}
+\end{center}
+
+Figure 15 Schéma-blocs de l'asservissement de la force développée par un actionneur linéaire à retour unitaire
+
+Q 20. Déterminer l'expression du gain $K_{10}$ en fonction de $K_{\text {capt }}$ et de $K_{\text {res }}$.
+
+Q 21. Déterminer la fonction de transfert $G(p)$ en fonction de $H_{2}(p), I_{\text {eq }}, H_{8}(p), H_{9}(p)$ et $K_{\text {res }}$. Ne pas remplacer $H_{2}(p), H_{8}(p)$ et $H_{9}(p)$ par les expressions trouvées précédemment.
+
+Pour la suite, on donne la fonction de transfert $G(p)$, obtenue avec les valeurs de réglage correctes déterminées aux questions 17 et 18 ,
+
+$$
+G(p)=\frac{F(p)}{\Omega_{c}(p)}=\frac{1+\tau_{i} p}{p} \frac{1,2 \times 10^{-5}}{2 \times 10^{-4}+9,7 \times 10^{-5} p+5,3 \times 10^{-6} p^{2}} .
+$$
+
+\section*{III.B.4) Analyse des performances de l'asservissement en force développée par un actionneur}
+ linéaireIl est proposé dans cette section d'analyser les performances simulées de l'asservissement en force dont un extrait du cahier des charges est présenté dans le tableau 5.
+
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+Id & Exigence & Critère & Niveau \\
+\hline
+Id1.1 & Stabilité & Marge de phase & $\geqslant 60^{\circ}$ \\
+\cline { 3 - 5 }
+ &  & Marge de gain & $>20 \mathrm{~dB}$ \\
+\cline { 3 - 4 }
+ &  & Dépassement maximal & $<2,5 \%$ \\
+\hline
+Id1.2 & Précision & Erreur en régime permanent pour une entrée en échelon & $<1 \%$ \\
+\hline
+\multirow{2}{*}{Id1.3} & Rapidité & Temps de réponse à 5\% pour une consigne en échelon de force de $40 \mathrm{~N}$ & $\operatorname{tr}_{5 \%}<1 \mathrm{~s}$ \\
+\cline { 3 - 5 }
+ &  & Vitesse maximale de montée de la force de traction & $100 \mathrm{~N} \cdot \mathrm{s}^{-1}$ \\
+\hline
+\end{tabular}
+\end{center}
+
+Tableau 5 Extrait du cahier des charges fonctionnel de l'actionneur linéaire sur le banc d'essai
+
+On note $H_{B O f}(p)=\frac{F(p)}{\varepsilon_{f}(p)}$ la fonction de transfert en boucle ouverte de l'asservissement en force développé par un actionneur linéaire. Dans un premier temps, le choix d'un correcteur proportionnel $C(p)=K_{\text {cor }}$ est réalisé. Le diagramme de Bode de la fonction de transfert $H_{B O f}(p)=\frac{F(p)}{\varepsilon_{f}(p)}=K_{\text {cor }} K_{10} G(p)$, avec $K_{\text {cor }}=1$ et la valeur de $\tau_{i}$ déterminée à la question 17 , est donné sur la figure 16.\\
+\includegraphics[max width=\textwidth, center]{2024_03_20_0c3cf888f6e04b1986bcg-12(1)}
+
+Figure 16 Diagramme de Bode de $H_{B O f}(p)$
+
+Q 22. Déterminer la valeur numérique limite de $K_{\text {cor }}$ afin que la boucle d'asservissement de force respecte les critères de marge de phase et de gain du tableau 5 .
+
+Les courbes sur la figure 17 représentent les réponses temporelles du modèle de connaissance de la figure 11, avec les correcteurs $C_{v}(p)$ et $C(p)$ correctement réglés, et de l'expérimentation sur le banc d'essai pour une consigne en échelon de force de $40 \mathrm{~N}$.
+
+\begin{center}
+\includegraphics[max width=\textwidth]{2024_03_20_0c3cf888f6e04b1986bcg-12}
+\end{center}
+
+Figure 17 Réponses temporelles du modèle et expérimentale, pour une consigne en échelon de force de $40 \mathrm{~N}$
+
+Q 23. Quel critère du tableau des exigences (tableau 5) n'est pas pris en compte dans le modèle de connaissance ? D'après la courbe expérimentale, ce critère est-il respecté par le système réel ?
+
+III.B.5) Amélioration du modèle. Mise en place d'une limitation en vitesse angulaire
+
+Pour améliorer le modèle de connaissance et le valider, la comparaison entre la réponse simulée issue du modèle de connaissance amélioré et la réponse expérimentale sera traitée par résolution numérique informatique. Le langage de programmation utilisé est Python.
+
+\begin{center}
+\includegraphics[max width=\textwidth]{2024_03_20_0c3cf888f6e04b1986bcg-13}
+\end{center}
+
+Figure 18 Schéma-blocs de l'asservissement de force développée par l'actionneur linéaire avec limitation de la vitesse angulaire
+
+Notations et hypothèses :
+
+\begin{itemize}
+  \item $f(t)$ est la grandeur de sortie de l'asservissement en force, de variable de Laplace $F(p)$;
+
+  \item $f_{c}(t)$ est la grandeur de consigne de l'asservissement en force, de variable de Laplace $F_{c}(p)$;
+
+  \item $\omega_{c}(t)$ est la commande de vitesse angulaire du moteur, de variable de Laplace $\Omega_{c}(p)$;
+
+  \item la dérivée première temporelle d'une fonction $h(t)$ est notée $\dot{h}(t)$ et sa dérivée seconde $\ddot{h}(t)$;
+
+  \item les conditions de Heaviside sont supposées vérifiées, soient $f(t=0)=0$ et $\dot{f}(t=0)=0$.
+
+\end{itemize}
+
+a) Cadre général de la résolution numérique d'un problème de Cauchy
+
+Pour déterminer numériquement la solution $E(t)$ d'une équation différentielle, il faut préalablement la mettre sous la forme d'un problème de Cauchy :
+
+$$
+\dot{E}(t)=F_{\text {Cauchy }}(E(t), t) \quad \text { avec } \quad E(t=0)=E_{0}
+$$
+
+$E(t)$ est appelé vecteur d'états à l'instant $t, \dot{E}(t)$ représente le vecteur composé des dérivées premières des états par rapport au temps $t, F_{\text {Cauchy }}$ la fonction de Cauchy et $E_{0}$ le vecteur d'états des conditions initiales.
+
+Le problème étant décrit sous la forme de Cauchy, la résolution numérique peut être menée par un schéma numérique du type Euler explicite ou en utilisant la fonction odeint de la bibliothèque scipy.
+
+b) Problème de Cauchy lié à l'équation différentielle associée à $G(p)$
+
+Compte-tenu du correcteur $C_{v}(p)$ de la boucle d'asservissement de la vitesse angulaire du moteur électrique réglé aux questions 17 et 18 , il est possible de simplifier la fonction de transfert $G(p)$. L'équation différentielle associée à $G(p)$ simplifiée s'écrit
+
+$$
+\ddot{f}(t)+18 \dot{f}(t)=1,18 \omega_{c}(t) .
+$$
+
+Dans le cadre de la résolution de l'équation différentielle globale liée à l'asservissement de force développée par un actionneur linéaire (figure 18), la vitesse angulaire de consigne $\omega_{c}(t)$ est une fonction du temps inconnue à ce stade.
+
+Le vecteur d'états associé à l'étude de $G(p)$ retenu est $E(t)=\left(\begin{array}{c}f(t) \\ \dot{f}(t)\end{array}\right)$, ainsi $\dot{E}(t)=\left(\begin{array}{l}\dot{f}(t) \\ \ddot{f}(t)\end{array}\right)=G\left(E(t), \omega_{c}(t), t\right)$.
+
+Q 24. Déterminer la fonction $G\left(E(t), \omega_{c}(t), t\right)$, associée à $G(p)$.
+
+Q 25. Écrire en langage Python la fonction $G(E, w c, t)$ qui implémente la fonction $G\left(E(t), \omega_{c}(t), t\right)$. Cette fonction renvoie une liste de deux nombres à virgule flottante et prend en paramètres
+
+\begin{itemize}
+  \item $\mathrm{E}$, une liste de deux nombres représentant le vecteur d'états ;
+
+  \item wc, un nombre représentant la consigne de vitesse angulaire du moteur ;
+
+  \item $\mathrm{t}$, un nombre représentant le temps.
+
+\end{itemize}
+
+c) Problème de Cauchy lié au schéma-blocs de la figure 18 sans la limitation en vitesse angulaire
+
+Le correcteur de la boucle d'asservissement de la force développée par un actionneur linéaire est un correcteur proportionnel tel que $C(p)=K_{\text {cor }}$. Ainsi, en l'absence de limitation, la grandeur $\omega_{c}(t)$ est telle que
+
+$$
+\omega_{c}(t)=K_{\mathrm{cor}} K_{10} \varepsilon_{f}(t)=K_{\mathrm{cor}} K_{10}\left(f_{c}(t)-f(t)\right) .
+$$
+
+Il reste à exprimer la fonction de Cauchy pour la boucle fermée de l'asservissement de force
+
+$$
+\dot{E}(t)=\left(\begin{array}{c}
+\dot{f}(t) \\
+\ddot{f}(t)
+\end{array}\right)=\operatorname{FBFsl}(E(t), t)
+$$
+
+On considère dès à présent que la consigne de force $f_{c}(t)$ est un échelon d'amplitude $F_{\text {cons }}$, prise égale à $40 \mathrm{~N}$.
+
+Q 26. Recopier et compléter le programme Python de la figure 19 implémentant la fonction FBFsl qui renvoie une liste de deux nombres et prend en paramètres
+
+\begin{itemize}
+  \item $\mathrm{E}$, une liste de deux nombres représentant le vecteur d'états ;
+
+  \item $t$, un nombre représentant le temps.
+
+\end{itemize}
+
+\end{document}
