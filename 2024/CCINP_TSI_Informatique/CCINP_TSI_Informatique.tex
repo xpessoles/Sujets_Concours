@@ -13,15 +13,13 @@ Comme les pays, les couleurs sont numérotées à partir de zéro.
 
 \begin{figure}[!h]
 \centering
-XX
-%\includegraphics[width=.6\linewidth]{fig_01}
+\includegraphics[width=.6\linewidth]{fig_01}
 \caption{Exemple d'une carte de pays \label{2024_CCINP_TSI_Info_fig_01}}
 \end{figure}
 
 \begin{figure}[!h]
 \centering
-XX
-%\includegraphics[width=.6\linewidth]{fig_02}
+\includegraphics[width=.6\linewidth]{fig_02}
 \caption{Graphe $\indice{G}{ex}$ associé à la carte de pays de la figure \ref{2024_CCINP_TSI_Info_fig_01}\label{2024_CCINP_TSI_Info_fig_02}}
 \end{figure}
 
@@ -29,11 +27,30 @@ Ainsi, sur le graphe de la figure \ref{2024_CCINP_TSI_Info_fig_02}, deux pays so
 
 
 % Q01
+%\question{Un graphe peut être représenté par une matrice d'adjacence.
+%Le DR*** contient la matrice d'adjacence pré-remplie du graphe $\indice{G}{ex}$. La compléter et expliquer le processus de construction.}
 \question{Un graphe peut être représenté par une matrice d'adjacence.
-Le DR*** contient la matrice d'adjacence pré-remplie du graphe $\indice{G}{ex}$. La compléter et expliquer le processus de construction.}
+Donner la matrice d'adjacence associée au graphe $\indice{G}{ex}$ et expliquer le processus de construction.}
+
 \ifprof
 \begin{corrige}
+Pour remplir la matrice d'adjacence, si deux sommets $i$ et $j$ sont voisins alors $\indice{G}{ex}[i][j] = 1$.
+ Sinon,  $\indice{G}{ex}[i][j] = 0$. 
+$\indice{G}{ex}=
+\begin{pmatrix}
+%0 	& 1	& 2	& 3	& 4	& 5	& 6	& 7	\\ 
+0 	& 1	& 0	& 1	& 1	& 0	& 1	& 1	\\ 
+1 	& 0	& 1	& 1	& 0	& 0	& 0	& 0	\\ 
+0 	& 1	& 0	& 1	& 0	& 0	& 0	& 0	\\ 
+1	& 1	& 1	& 0	& 1	& 0	& 0	& 0	\\ 
+1 	& 0	& 0	& 1	& 0	& 1	& 1	& 1	\\ 
+0 	& 0	& 0	& 0	& 1	& 0	& 1	& 1	\\ 
+1 	& 0	& 0	& 0	& 1	& 1	& 0	& 1	\\ 
+1 	& 0	& 0	& 0	& 1	& 1	& 1	& 0	\\ 
+\end{pmatrix}$
 
+On a aussi : 
+\lstinputlisting[firstline=2,lastline=9]{CCINP_TSI_Informatique.py}
 \end{corrige}
 \else
 \fi
@@ -44,6 +61,11 @@ Une autre manière de représenter en mémoire un graphe est d'utiliser une list
 \question{Donner la liste d'adjacence du graphe  $\indice{G}{ex}$ présenté en exemple.}
 \ifprof
 \begin{corrige}
+On a  :
+
+%\lstinline{LA = [[1,3,4,6,6],[0,2,3],[1,3],[0,1,2,4],[0,3,5,6,7],[4,6,7],[0,4,5,7],[0,4,5,6]]}.
+
+\lstinputlisting[firstline=12,lastline=12]{CCINP_TSI_Informatique.py}
 
 \end{corrige}
 \else
@@ -53,6 +75,36 @@ Une autre manière de représenter en mémoire un graphe est d'utiliser une list
 \question{Donner un avantage et un inconvénient d'une représentation par matrice d'adjacence. Donner un avantage et un inconvénient d'une représentation par liste d'adjacence.}
 \ifprof
 \begin{corrige}
+\textbf{Matrice d'adjacence :}
+\begin{itemize}
+\item [$+$] Le test d’adjacence de deux sommets se fait en temps constant.
+\item [$+$] Rajouter ou supprimer une arête (ou un arc) peut se faire en temps constant.
+\item [$-$] Ajouter ou supprimer un sommet nécessite un temps proportionnel à $n^2$.
+\item [$-$] Pour récupérer les voisins/successeurs d’un nœud, il faut parcourir toute la ligne de la matrice :
+l’opération se fait donc en $\mathcal{O}(n)$, ce qui est regrettable si le degré sortant du noeud est petit devant $n$.
+\item [$-$] On consomme une mémoire proportionnelle à $|V|^2$, même quand la taille du graphe est de l’ordre de $n$ (graphe creux).
+\end{itemize}
+
+
+\textbf{Liste d'adjacence :}
+\begin{itemize}
+\item [$+$] La mémoire utilisée est de l’ordre de $|E| + |V|$, ce qui est nettement mieux que $|V|^2$ si le graphe est
+creux.
+\item [$+$] On a directement accès à la liste des voisins d’un noeud : la parcourir prend un temps proportionnel
+au degré sortant du noeud.% (et pas à $|V|$).
+\item [$+$] Ajouter un noeud peut normalement se faire en temps $|V|$ (si l’ajout n’impose pas de renuméroter
+les noeuds déjà présents).
+%\item  Si l’on a besoin d’un accès en temps raisonnable aux prédécesseurs d’un noeud (dans le cas orienté),
+%il faut stocker séparément le tableau de listes correspondant.
+\item [$-$]  Le test d’adjacence ne se fait plus en temps constant (mais en temps proportionnel au degré du
+nœud).
+\item [$-$] Si le graphe est dense, on consommera plus de mémoire (d’un facteur constant) qu’avec une matrice d’adjacence.
+\item [$-$] Ajouter ou supprimer une arête n’est pas aussi évident que dans une matrice d’adjacence : suivant
+l’opération précise que l’on souhaite faire, la complexité peut être unitaire ou proportionnelle aux
+degrés des nœuds impactés.
+\item [$-$] Supprimer un noeud n’est pas pratique : le plus simple est de reconstruire entièrement le graphe (en
+un temps $\mathcal{O}\left(|E| + |V|\right)$).
+\end{itemize}
 
 \end{corrige}
 \else
@@ -61,21 +113,42 @@ Une autre manière de représenter en mémoire un graphe est d'utiliser une list
 On rappelle que le degré d'un sommet $s$ d'un graphe $G$ est le nombre de voisins du sommet $s$, c'est-à-dire le nombre de sommets reliés à $s$.
 
 % Q04
-\question{Le DR*** fournit le tableau des degrés des différents sommets du graphe Le compléter.}
+%\question{Le DR*** fournit le tableau des degrés des différents sommets du graphe $\indice{G}{ex}$. Le compléter.}
+\question{Compléter le tableau des degrés des différents sommets du graphe $\indice{G}{ex}$ est donné ci-dessus.}
 \ifprof
 \begin{corrige}
+\begin{center}
+\begin{tabular}{lcccccccc}
+\hline
+\textbf{Sommet} 	& 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+\hline
+\textbf{Degré} 		& 5 & 3 & 2 & 4 & 5 & 3 & 4 & 4\\
+\hline
+\end{tabular}
+\end{center}
 
 \end{corrige}
 \else
+
 \fi
+\begin{center}
+\begin{tabular}{lcccccccc}
+\hline
+\textbf{Sommet} 	& 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 \\
+\hline
+\textbf{Degré} 		& & & & & & & & \\
+\hline
+\end{tabular}
+\end{center}
+
 
 \subsection{Tester si une coloration est valide}
 
 % Q05
 \question{Écrire une fonction \lstinline{voisins} avec trois arguments, deux nombres entiers distincts \lstinline{i} et \lstinline{j} et une liste d'adjacence \lstinline{LA} représentant un graphe, qui renvoie \lstinline{True} si les sommets numérotés \lstinline{i} et \lstinline{j} sont reliés par une arête et \lstinline{False} sinon.}
 \ifprof
-\begin{corrige}
-
+\begin{corrige}~\\ \vspace{-.5cm}
+\lstinputlisting[firstline=16,lastline=33]{CCINP_TSI_Informatique.py}
 \end{corrige}
 \else
 \fi
@@ -85,8 +158,8 @@ On considère une carte de pays, représentée par un graphe \lstinline{G} pour 
 % Q06
 \question{Écrire la fonction \lstinline{coloration_valide} avec pour arguments une liste d'adjacence \lstinline{LA} et une liste de couleurs \lstinline{C}, qui renvoie \lstinline{True} si la coloration est valide, \lstinline{False} sinon.}
 \ifprof
-\begin{corrige}
-
+\begin{corrige}~\\ \vspace{-.5cm}
+\lstinputlisting[firstline=36,lastline=41]{CCINP_TSI_Informatique.py}
 \end{corrige}
 \else
 \fi
@@ -95,21 +168,22 @@ On considère une carte de pays, représentée par un graphe \lstinline{G} pour 
 \question{\label{2024_CCINP_TSI_Info_q_07} Pour un graphe comportant \lstinline{n} sommets, quelle est la complexité temporelle dans le pire des cas de la fonction \lstinline{coloration_valide} ?}
 \ifprof
 \begin{corrige}
-
+Dans le pire des cas, on a $n$ sommets tous interconnectés. Chaque sommet a donc $n-1$ voisins. 
+En comptant le nombre de comparaisons, on a $C(n) = \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{n} 1 = \mathcal{O}\left(n^2\right)$.
 \end{corrige}
 \else
 \fi
 
 \subsection{Un algorithme intuitif de coloration}
 
-L'attribution des couleurs à chaque sommet est caractérisée par une liste \lstinline{C} où \lstinline{C[i]} est la couleur attribuée au sommet \lstinline{i}; \lstinline{C [1]} vaut $-1$ si la couleur n'est pas encore attribuée. La liste \lstinline{C} ne contient que des  $-1$ au départ et ses valeurs sont modifiées progressivement au fur et à mesure que les couleurs sont attribuées.
+L'attribution des couleurs à chaque sommet est caractérisée par une liste \lstinline{C} où \lstinline{C[i]} est la couleur attribuée au sommet \lstinline{i}; \lstinline{C[i]} vaut $-1$ si la couleur n'est pas encore attribuée. La liste \lstinline{C} ne contient que des  $-1$ au départ et ses valeurs sont modifiées progressivement au fur et à mesure que les couleurs sont attribuées.
 
 
 % Q08
 \question{\label{2024_CCINP_TSI_Info_q_08} On suppose (dans cette question seulement) que \lstinline{n} est une constante déjà définie. Écrire la ou les instruction(s) permettant de créer une liste initiale \lstinline{C} composée de \lstinline{n} éléments valant $-1$.}
 \ifprof
-\begin{corrige}
-
+\begin{corrige}~\\ \vspace{-.5cm}
+\lstinputlisting[firstline=46,lastline=50]{CCINP_TSI_Informatique.py}
 \end{corrige}
 \else
 \fi
@@ -122,6 +196,8 @@ L'attribution des couleurs à chaque sommet est caractérisée par une liste \ls
 Par exemple, pour le graphe $\indice{G}{ex}$, prenons \lstinline{C = [0,1,-1,-1,-1,-1,-1,-1]}. Les sommets 0 et 1 ont donc déjà été colorés avec les couleurs \lstinline{C[0] = 0} et \lstinline{C[1] = 1}.
 
 L'appel \lstinline{colore_sommet(C, 2, LA)} modifie la liste \lstinline{C} en \lstinline{C  = [0,1,0,-1,-1,-1,-1,-1]}. Cela veut dire que le sommet 2, adjacent au sommet 1 mais pas au sommet 0, a reçu la même couleur que le sommet 0.
+
+
 \ifprof
 \begin{corrige}
 
@@ -129,7 +205,14 @@ L'appel \lstinline{colore_sommet(C, 2, LA)} modifie la liste \lstinline{C} en \l
 \else
 
 \fi
-
+\begin{lstlisting}
+def colore_sommet(C,s,LA) :
+    # on détermine la liste des couleurs des voisins de s déjà colorés
+    coul_vois = []
+    # coul_vois est maintenant déterminée et on recherche la
+    # plus petite couleur, notée num_coul, absente de coul_vois:
+    # la valeur num_coul trouvée devient la couleur du sommet s:}
+\end{lstlisting}
 % Q10
 \question{\label{2024_CCINP_TSI_Info_q_10} À l'aide de la question \ref{2024_CCINP_TSI_Info_q_09}, écrire une fonction \lstinline{colorer1} avec pour argument une liste \lstinline{LA} caractérisant un graphe, qui crée et renvoie la liste \lstinline{C} des numéros des couleurs attribuées en colorant les sommets un par un par ordre croissant de leurs numéros.}
 
