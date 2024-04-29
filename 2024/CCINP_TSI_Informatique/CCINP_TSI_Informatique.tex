@@ -1,0 +1,349 @@
+
+% Colorer un graphe
+La coloration d'une carte de pays consiste à attribuer une couleur à chacun des pays de manière à ce que deux pays voisins soient de couleurs différentes.
+Étudier ces techniques de coloration revient de façon plus abstraite à travailler sur des graphes.
+Le champ d'applications de la coloration de graphes est très vaste et couvre des domaines aussi variés que le problème de l'attribution de fréquences dans les télécommunications, la conception de puces électroniques ou l'allocation de registres en compilation.
+Soulignons que tous les graphes considérés dans ce sujet sont non-orientés. Quelques rappels de syntaxe Python figurent dans l'annexe \ref{2024_CCINP_TSI_Info_ann_02}.
+
+\section{Des algorithmes pour colorer un graphe \label{2024_CCINP_TSI_Info_sec_01}}
+\subsection{Introduction sur un exemple \label{2024_CCINP_TSI_Info_sec_01_1}}
+On cherche à colorer une carte de pays avec comme seule contrainte que deux pays ayant une frontière commune ne peuvent être de la même couleur.
+Comme les pays, les couleurs sont numérotées à partir de zéro.
+À titre d'exemple, on considérera la carte suivante (figure \ref{2024_CCINP_TSI_Info_fig_01}), comportant 8 pays numérotés de 0 à 7, que l'on représentera par le graphe $\indice{G}{ex}$, donné en figure \ref{2024_CCINP_TSI_Info_fig_02}.
+
+\begin{figure}[!h]
+\centering
+XX
+%\includegraphics[width=.6\linewidth]{fig_01}
+\caption{Exemple d'une carte de pays \label{2024_CCINP_TSI_Info_fig_01}}
+\end{figure}
+
+\begin{figure}[!h]
+\centering
+XX
+%\includegraphics[width=.6\linewidth]{fig_02}
+\caption{Graphe $\indice{G}{ex}$ associé à la carte de pays de la figure \ref{2024_CCINP_TSI_Info_fig_01}\label{2024_CCINP_TSI_Info_fig_02}}
+\end{figure}
+
+Ainsi, sur le graphe de la figure \ref{2024_CCINP_TSI_Info_fig_02}, deux pays sont voisins si et seulement si les sommets correspondants sont reliés par une arête.
+
+
+% Q01
+\question{Un graphe peut être représenté par une matrice d'adjacence.
+Le DR*** contient la matrice d'adjacence pré-remplie du graphe $\indice{G}{ex}$. La compléter et expliquer le processus de construction.}
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+Une autre manière de représenter en mémoire un graphe est d'utiliser une liste d'adjacence. La liste d'adjacence d'un graphe (constitué de sommets numérotés de 0 à $n-1$) est une liste \lstinline{LA}, telle que \lstinline{LA[i]} est la liste des sommets voisins du sommet \lstinline{i}. Par convention, les voisins énumérés dans \lstinline{LA[i]} seront listés dans l'ordre croissant.
+
+% Q02
+\question{Donner la liste d'adjacence du graphe  $\indice{G}{ex}$ présenté en exemple.}
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+% Q03
+\question{Donner un avantage et un inconvénient d'une représentation par matrice d'adjacence. Donner un avantage et un inconvénient d'une représentation par liste d'adjacence.}
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+On rappelle que le degré d'un sommet $s$ d'un graphe $G$ est le nombre de voisins du sommet $s$, c'est-à-dire le nombre de sommets reliés à $s$.
+
+% Q04
+\question{Le DR*** fournit le tableau des degrés des différents sommets du graphe Le compléter.}
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+\subsection{Tester si une coloration est valide}
+
+% Q05
+\question{Écrire une fonction \lstinline{voisins} avec trois arguments, deux nombres entiers distincts \lstinline{i} et \lstinline{j} et une liste d'adjacence \lstinline{LA} représentant un graphe, qui renvoie \lstinline{True} si les sommets numérotés \lstinline{i} et \lstinline{j} sont reliés par une arête et \lstinline{False} sinon.}
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+On considère une carte de pays, représentée par un graphe \lstinline{G} pour laquelle on a une proposition de coloration donnée par une liste \lstinline{C}. Ainsi, \lstinline{C[i]} donne le numéro de la couleur attribuée au sommet \lstinline{i}. On souhaite déterminer si la coloration proposée est valide (deux sommets du graphe reliés par une arête ne peuvent pas être de la même couleur).
+
+% Q06
+\question{Écrire la fonction \lstinline{coloration_valide} avec pour arguments une liste d'adjacence \lstinline{LA} et une liste de couleurs \lstinline{C}, qui renvoie \lstinline{True} si la coloration est valide, \lstinline{False} sinon.}
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+% Q07
+\question{\label{2024_CCINP_TSI_Info_q_07} Pour un graphe comportant \lstinline{n} sommets, quelle est la complexité temporelle dans le pire des cas de la fonction \lstinline{coloration_valide} ?}
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+\subsection{Un algorithme intuitif de coloration}
+
+L'attribution des couleurs à chaque sommet est caractérisée par une liste \lstinline{C} où \lstinline{C[i]} est la couleur attribuée au sommet \lstinline{i}; \lstinline{C [1]} vaut $-1$ si la couleur n'est pas encore attribuée. La liste \lstinline{C} ne contient que des  $-1$ au départ et ses valeurs sont modifiées progressivement au fur et à mesure que les couleurs sont attribuées.
+
+
+% Q08
+\question{\label{2024_CCINP_TSI_Info_q_08} On suppose (dans cette question seulement) que \lstinline{n} est une constante déjà définie. Écrire la ou les instruction(s) permettant de créer une liste initiale \lstinline{C} composée de \lstinline{n} éléments valant $-1$.}
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+
+
+% Q09
+\question{\label{2024_CCINP_TSI_Info_q_09} Compléter la fonction \lstinline{colore_sommet} ayant trois arguments, la liste \lstinline{C} des couleurs attribuées, le numéro \lstinline{s} du sommet à colorer et la liste d'adjacence \lstinline{LA} caractérisant le graphe. Cette fonction ne renvoie rien mais modifie la liste \lstinline{C} en donnant à \lstinline{C[s]} la plus petite couleur possible, en fonction des couleurs des sommets voisins qui sont déjà colorés. }
+
+Par exemple, pour le graphe $\indice{G}{ex}$, prenons \lstinline{C = [0,1,-1,-1,-1,-1,-1,-1]}. Les sommets 0 et 1 ont donc déjà été colorés avec les couleurs \lstinline{C[0] = 0} et \lstinline{C[1] = 1}.
+
+L'appel \lstinline{colore_sommet(C, 2, LA)} modifie la liste \lstinline{C} en \lstinline{C  = [0,1,0,-1,-1,-1,-1,-1]}. Cela veut dire que le sommet 2, adjacent au sommet 1 mais pas au sommet 0, a reçu la même couleur que le sommet 0.
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+
+\fi
+
+% Q10
+\question{\label{2024_CCINP_TSI_Info_q_10} À l'aide de la question \ref{2024_CCINP_TSI_Info_q_09}, écrire une fonction \lstinline{colorer1} avec pour argument une liste \lstinline{LA} caractérisant un graphe, qui crée et renvoie la liste \lstinline{C} des numéros des couleurs attribuées en colorant les sommets un par un par ordre croissant de leurs numéros.}
+
+Par exemple, l'application de la fonction \lstinline{colorer1} au graphe $\indice{G}{ex}$ renverra la liste de couleurs \lstinline{[0,1,0,2,1,0,2,3]}.
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+
+L'ordre de coloration imposé à la question précédente est arbitraire. On souhaite maintenant colorer le graphe en traitant les sommets selon un ordre arbitraire donné en argument.
+
+% Q11
+\question{\label{2024_CCINP_TSI_Info_q_11}  Écrire une fonction \lstinline{colorer2} analogue à \lstinline{colorer1} et avec un argument supplémentaire, une liste \lstinline{ordre} fixant l'ordre de coloration des pays.}
+
+Par exemple \lstinline{colorer2([0,2,4,6,1,3,5,7], LA)} colorera le graphe $\indice{G}{ex}$ en commençant d'abord par le sommet \lstinline{0}, puis en continuant par les sommets \lstinline{2}, \lstinline{4}, \lstinline{6}...
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+% Q12
+\question{Donner la liste des couleurs renvoyée par \lstinline{colorer2} pour colorer le graphe $\indice{G}{ex}$ donné en exemple en prenant \lstinline{ordre = [7,6,5,4,3,2,1,0]}. Combien de couleurs ont-elles été utilisées ?}
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+La méthode que nous venons de décrire est rapide et fonctionne plutôt bien. Cependant, si on cherche à utiliser le nombre minimum de couleurs, l'efficacité de l'algorithme proposé ci-dessus dépend en grande partie de l'ordre dans lequel on choisit de colorer les sommets du graphe. 
+
+L'objectif des sous-parties suivantes est d'affiner la stratégie pour mieux choisir cet ordre de coloration
+
+
+\subsection{Variante de Weish-Powell}
+Une alternative est donnée par la variante de Welsh-Powell. L'idée est de parcourir l'ensemble des sommets du graphe par ordre décroissant de leurs degrés.
+Comme le degré d'un sommet est un entier positif, il est possible d'écrire un algorithme de tri efficace (dit par répartition).
+
+
+% Q13
+\question{\label{2024_CCINP_TSI_Info_q_13} Écrire une fonction \lstinline{degre} avec pour argument la liste d'adjacence \lstinline{LA} d'un graphe quelconque, qui renvoie la liste des degrés des sommets du graphe.}
+
+Par exemple, pour un graphe de liste d'adjacence \lstinline{LA = ([1,2], [0,2,3], [0,1,3], [1,2,4], [3]]}, la fonction \lstinline{degre} renverra la liste \lstinline{[2,3,3,3,1]}.
+
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+% Q14
+\question{Écrire une fonction \lstinline{init} avec pour argument un entier \lstinline{n}, qui renvoie une liste de listes \lstinline{R} de taille \lstinline{n}, telle que \lstinline{R[i]} soit une liste vide.}
+
+Par exemple, \lstinline{init(3)} renverra \lstinline{[[],[],[]]}.
+
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+% Q15
+\question{Écrire une fonction \lstinline{ranger} avec pour argument une liste d'adjacence \lstinline{LA}, qui renvoie une liste \lstinline{R} de même taille que \lstinline{LA}, telle que \lstinline{R[i]} soit la liste des sommets de degré \lstinline{i}.}
+
+Ainsi, pour l'exemple de la question \ref{2024_CCINP_TSI_Info_q_13}, l'appel \lstinline{ranger(LA)} renverra la liste \lstinline{[[],[4],[0],[1,2,3]]}.
+
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+% Q16
+\question{Écrire une fonction renverse avec pour argument une liste \lstinline{L}, qui crée et renvoie une nouvelle liste obtenue en lisant \lstinline{L} dans l'ordre inverse.}
+
+Par exemple, \lstinline{renverse([1,2,3,4])} renverra \lstinline{[4,3,2,1]}.
+
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+% Q17
+\question{Écrire une fonction \lstinline{trier_sommets} avec pour argument une liste d'adjacence \lstinline{LA}, qui renvoie la liste des sommets triés dans l'ordre décroissant de leur degré.}
+
+Par exemple, pour un graphe de liste d'adjacence \lstinline{LA = [[1,2],[0,2,3],[0,1,3],[1,2,4],[3]]}, la fonction \lstinline{trier_sommets} renverra la liste de sommets \lstinline{[1,2,3,0,4]}.
+
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+% Q18
+\question{Pour un graphe à \lstinline{n} sommets, quelle est la complexité temporelle de la fonction \lstinline{trier_sommets} dans le pire des cas ?}
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+
+% Q19
+\question{Écrire la fonction \lstinline{colorer3} avec pour argument une liste d'adjacence \lstinline{LA}, qui crée et renvoie une liste de couleurs \lstinline{C}, telle que \lstinline{c[i]} soit la couleur à attribuer au sommet numéro \lstinline{i}, les sommets étant colorés dans l'ordre décroissant de leur degré.
+Quelle est la complexité de \lstinline{colorer3} dans le pire des cas pour un graphe à \lstinline{n} sommets?}
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+
+% Q20
+\question{Pour le graphe $\indice{G}{ex}$ de la figure \ref{2024_CCINP_TSI_Info_fig_02}, donner la liste \lstinline{C} des couleurs renvoyée par la fonction \lstinline{colorer3}.}
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+L'amélioration proposée donne de bons résultats dans un grand nombre de cas. Cependant, il reste quelques cas où la coloration obtenue utilise trop de couleurs.
+
+La méthode suivante, proposée en 1979 par Danier Brélaz de l'École Polytechnique Fédérale de Lausanne, raffine la détermination de l'ordre de coloration. La priorité de coloration est ainsi recalculée après chaque traitement d'un sommet et non plus une fois pour toute au départ. Au final, cette approche fournit rapidement une coloration optimale dans un très grand nombre de cas.
+
+
+\subsection{Algorithme DSATUR}
+% Q21
+\question{Écrire une fonction \lstinline{degre_satur} avec 3 arguments, une liste d'adjacence \lstinline{LA}, un sommet \lstinline{s} du graphe, une liste \lstinline{C} de couleurs. Cette fonction renvoie le degré de saturation du sommet \lstinline{s}. On rappelle que le sommet \lstinline{i} est coloré si et seulement si \lstinline{C[i]} est différent de $-1$.}
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+
+% Q22
+\question{Écrire une fonction \lstinline{liste_satur} avec deux arguments, une liste d'adjacence \lstinline{LA}, la liste \lstinline{C} des couleurs des sommets, qui renvoie la liste des sommets non colorés du graphe ayant un degré de saturation maximum parmi les sommets non colorés.
+On notera qu'il s'agit d'une liste car plusieurs sommets peuvent avoir le même degré de satu¬ration. On supposera de plus qu'il reste au moins un sommet non coloré.
+}
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+
+% Q23
+\question{Écrire une fonction \lstinline{pas_fini} avec pour argument une liste \lstinline{C}, qui renvoie \lstinline{True} si cette liste contient la valeur \lstinline{-1}, \lstinline{False} sinon.}
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+
+% Q24
+\question{Compléter la fonction \lstinline{colorer4} ayant pour argument une liste d'adjacence \lstinline{LA}, qui renvoie une liste \lstinline{C} constituant une coloration du graphe. Cette fonction procède de la façon suivante. Tant qu'il reste un sommet non coloré :}
+\begin{itemize}
+\item déterminer parmi les sommets non colorés ceux de degré de saturation maximale;
+\item si plusieurs sommets non colorés ont un degré de saturation maximale, en choisir un parmi ceux-ci qui soit de degré maximal ;
+\item colorer le sommet choisi en lui attribuant la couleur disponible ayant la plus petite valeur.
+\end{itemize}
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+Il n'est pas facile d'être certain d'avoir utilisé le nombre minimum de couleurs. La sous-partie suivante propose une piste.
+
+% Q25
+\question{}
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+
+% Q26
+\question{}
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+
+% Q27
+\question{}
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
