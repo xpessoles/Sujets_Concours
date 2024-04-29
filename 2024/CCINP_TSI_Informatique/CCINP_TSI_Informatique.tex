@@ -318,8 +318,19 @@ On notera qu'il s'agit d'une liste car plusieurs sommets peuvent avoir le même 
 
 Il n'est pas facile d'être certain d'avoir utilisé le nombre minimum de couleurs. La sous-partie suivante propose une piste.
 
+
+\subsection{Un minorant du nombre de couleurs nécessaires}
+Considérons un graphe \lstinline{G} et un sous-ensemble \lstinline{K} de sommets de ce graphe. On dit que \lstinline{K} forme une clique si et seulement si pour chaque paire de sommets de \lstinline{K}, il existe une arête les reliant.
+
+Par exemple, sur le graphe $\indice{G}{ex}$ de la figure \ref{2024_CCINP_TSI_Info_fig_02}, $(4, 5, 6, 7)$ constitue une clique de 4 sommets et $(4, 5, 6)$ une clique de 3 sommets. En revanche, (0, 4, 5, 6, 7) ne forme pas une clique puisque le sommet 0 n'est pas relié au sommet 5).
+
+Enfin, on note $n_c$, le cardinal de la plus grande clique de \lstinline{G}.
+
+
 % Q25
-\question{}
+\question{Justifier que le nombre minimum de couleurs pour colorer un graphe est supérieur ou égal au
+nombre $n_c$. Montrer également que : $n_c \leq 1+\max\{\text{deg} s, s\in G \}$ où $\text{deg} s$ désigne le degré du sommet
+dans le graphe \lstinline{G}.}
 \ifprof
 \begin{corrige}
 
@@ -327,9 +338,10 @@ Il n'est pas facile d'être certain d'avoir utilisé le nombre minimum de couleu
 \else
 \fi
 
+Dans ce qui suit, on suppose toujours que les sommets d'un graphe à $n$ sommets sont numérotés de 0 à $n-1$.
 
 % Q26
-\question{}
+\question{Écrire une fonction \lstinline{est_clique} avec deux arguments, la liste d'adjacence \lstinline{LA} d'un graphe et un tuple \lstinline{K} de sommets de ce graphe, qui renvoie \lstinline{True} si \lstinline{K} est une clique, \lstinline{False} sinon.}
 \ifprof
 \begin{corrige}
 
@@ -337,9 +349,11 @@ Il n'est pas facile d'être certain d'avoir utilisé le nombre minimum de couleu
 \else
 \fi
 
+
+La fonction \lstinline{combinations} du module \lstinline{itertools}, présentée à l'annexe 2***, fournit toutes les combinaisons de taille fixée d'une liste. 
 
 % Q27
-\question{}
+\question{Sur le DR, compléter la fonction \lstinline{minoration_nb_couleurs} ayant pour argument la liste d'adjacence \lstinline{LA} d'un graphe, qui renvoie le cardinal de la plus grande clique du graphe considéré.}
 \ifprof
 \begin{corrige}
 
@@ -347,3 +361,4 @@ Il n'est pas facile d'être certain d'avoir utilisé le nombre minimum de couleu
 \else
 \fi
 
+Ainsi, si le nombre de couleurs utilisées pour colorer le graphe est égal à 0, , on est sûr d'avoir utilisé le nombre minimum de couleurs.
