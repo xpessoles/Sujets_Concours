@@ -1,12 +1,19 @@
 
 % Colorer un graphe
+
+\ifprof
+\else
 La coloration d'une carte de pays consiste à attribuer une couleur à chacun des pays de manière à ce que deux pays voisins soient de couleurs différentes.
 Étudier ces techniques de coloration revient de façon plus abstraite à travailler sur des graphes.
 Le champ d'applications de la coloration de graphes est très vaste et couvre des domaines aussi variés que le problème de l'attribution de fréquences dans les télécommunications, la conception de puces électroniques ou l'allocation de registres en compilation.
 Soulignons que tous les graphes considérés dans ce sujet sont non-orientés. %Quelques rappels de syntaxe Python figurent dans l'annexe \ref{2024_CCINP_TSI_Info_ann_02}.
+\fi
 
 \section{Des algorithmes pour colorer un graphe \label{2024_CCINP_TSI_Info_sec_01}}
 \subsection{Introduction sur un exemple \label{2024_CCINP_TSI_Info_sec_01_1}}
+
+\ifprof
+\else
 On cherche à colorer une carte de pays avec comme seule contrainte que deux pays ayant une frontière commune ne peuvent être de la même couleur.
 Comme les pays, les couleurs sont numérotées à partir de zéro.
 À titre d'exemple, on considérera la carte suivante (figure \ref{2024_CCINP_TSI_Info_fig_01}), comportant 8 pays numérotés de 0 à 7, que l'on représentera par le graphe $\indice{G}{ex}$, donné en figure \ref{2024_CCINP_TSI_Info_fig_02}.
@@ -24,6 +31,7 @@ Comme les pays, les couleurs sont numérotées à partir de zéro.
 \end{figure}
 
 Ainsi, sur le graphe de la figure \ref{2024_CCINP_TSI_Info_fig_02}, deux pays sont voisins si et seulement si les sommets correspondants sont reliés par une arête.
+\fi
 
 
 % Q01
@@ -55,7 +63,10 @@ On a aussi :
 \else
 \fi
 
+\ifprof
+\else
 Une autre manière de représenter en mémoire un graphe est d'utiliser une liste d'adjacence. La liste d'adjacence d'un graphe (constitué de sommets numérotés de 0 à $n-1$) est une liste \lstinline{LA}, telle que \lstinline{LA[i]} est la liste des sommets voisins du sommet \lstinline{i}. Par convention, les voisins énumérés dans \lstinline{LA[i]} seront listés dans l'ordre croissant.
+\fi
 
 % Q02
 \question{Donner la liste d'adjacence du graphe  $\indice{G}{ex}$ présenté en exemple.}
@@ -110,7 +121,10 @@ un temps $\mathcal{O}\left(|E| + |V|\right)$).
 \else
 \fi
 
+\ifprof
+\else
 On rappelle que le degré d'un sommet $s$ d'un graphe $G$ est le nombre de voisins du sommet $s$, c'est-à-dire le nombre de sommets reliés à $s$.
+\fi
 
 % Q04
 %\question{Le DR*** fournit le tableau des degrés des différents sommets du graphe $\indice{G}{ex}$. Le compléter.}
@@ -130,7 +144,6 @@ On rappelle que le degré d'un sommet $s$ d'un graphe $G$ est le nombre de voisi
 \end{corrige}
 \else
 
-\fi
 \begin{center}
 \begin{tabular}{lcccccccc}
 \hline
@@ -140,6 +153,7 @@ On rappelle que le degré d'un sommet $s$ d'un graphe $G$ est le nombre de voisi
 \hline
 \end{tabular}
 \end{center}
+\fi
 
 
 \subsection{Tester si une coloration est valide}
@@ -153,7 +167,10 @@ On rappelle que le degré d'un sommet $s$ d'un graphe $G$ est le nombre de voisi
 \else
 \fi
 
+\ifprof
+\else
 On considère une carte de pays, représentée par un graphe \lstinline{G} pour laquelle on a une proposition de coloration donnée par une liste \lstinline{C}. Ainsi, \lstinline{C[i]} donne le numéro de la couleur attribuée au sommet \lstinline{i}. On souhaite déterminer si la coloration proposée est valide (deux sommets du graphe reliés par une arête ne peuvent pas être de la même couleur).
+\fi
 
 % Q06
 \question{Écrire la fonction \lstinline{coloration_valide} avec pour arguments une liste d'adjacence \lstinline{LA} et une liste de couleurs \lstinline{C}, qui renvoie \lstinline{True} si la coloration est valide, \lstinline{False} sinon.}
@@ -176,7 +193,10 @@ En comptant le nombre de comparaisons, on a $C(n) = \sum\limits_{i=1}^{n}\sum\li
 
 \subsection{Un algorithme intuitif de coloration}
 
+\ifprof
+\else
 L'attribution des couleurs à chaque sommet est caractérisée par une liste \lstinline{C} où \lstinline{C[i]} est la couleur attribuée au sommet \lstinline{i}; \lstinline{C[i]} vaut $-1$ si la couleur n'est pas encore attribuée. La liste \lstinline{C} ne contient que des  $-1$ au départ et ses valeurs sont modifiées progressivement au fur et à mesure que les couleurs sont attribuées.
+\fi
 
 
 % Q08
@@ -193,10 +213,12 @@ L'attribution des couleurs à chaque sommet est caractérisée par une liste \ls
 % Q09
 \question{\label{2024_CCINP_TSI_Info_q_09} Compléter la fonction \lstinline{colore_sommet} ayant trois arguments, la liste \lstinline{C} des couleurs attribuées, le numéro \lstinline{s} du sommet à colorer et la liste d'adjacence \lstinline{LA} caractérisant le graphe. Cette fonction ne renvoie rien mais modifie la liste \lstinline{C} en donnant à \lstinline{C[s]} la plus petite couleur possible, en fonction des couleurs des sommets voisins qui sont déjà colorés. }
 
+\ifprof
+\else
 Par exemple, pour le graphe $\indice{G}{ex}$, prenons \lstinline{C = [0,1,-1,-1,-1,-1,-1,-1]}. Les sommets 0 et 1 ont donc déjà été colorés avec les couleurs \lstinline{C[0] = 0} et \lstinline{C[1] = 1}.
 
 L'appel \lstinline{colore_sommet(C, 2, LA)} modifie la liste \lstinline{C} en \lstinline{C  = [0,1,0,-1,-1,-1,-1,-1]}. Cela veut dire que le sommet 2, adjacent au sommet 1 mais pas au sommet 0, a reçu la même couleur que le sommet 0.
-
+\fi
 
 \ifprof
 \begin{corrige}
@@ -207,8 +229,6 @@ NDLR -- XP : Question pas si évidente. Il y a surement une solution plus simple
 \end{corrige}
 
 \else
-
-\fi
 \begin{lstlisting}
 def colore_sommet(C,s,LA) :
     # on détermine la liste des couleurs des voisins de s déjà colorés
@@ -219,6 +239,8 @@ def colore_sommet(C,s,LA) :
     
     # la valeur num_coul trouvée devient la couleur du sommet s :
 \end{lstlisting}
+\fi
+
 % Q10
 \question{\label{2024_CCINP_TSI_Info_q_10} À l'aide de la question \ref{2024_CCINP_TSI_Info_q_09}, écrire une fonction \lstinline{colorer1} avec pour argument une liste \lstinline{LA} caractérisant un graphe, qui crée et renvoie la liste \lstinline{C} des numéros des couleurs attribuées en colorant les sommets un par un par ordre croissant de leurs numéros.}
 
@@ -230,9 +252,9 @@ Par exemple, l'application de la fonction \lstinline{colorer1} au graphe $\indic
 \else
 \fi
 
-
+\ifprof\else
 L'ordre de coloration imposé à la question précédente est arbitraire. On souhaite maintenant colorer le graphe en traitant les sommets selon un ordre arbitraire donné en argument.
-
+\fi
 % Q11
 \question{\label{2024_CCINP_TSI_Info_q_11}  Écrire une fonction \lstinline{colorer2} analogue à \lstinline{colorer1} et avec un argument supplémentaire, une liste \lstinline{ordre} fixant l'ordre de coloration des pays.}
 
@@ -253,14 +275,17 @@ La fonction renvoie \lstinline{[4, 2, 1, 0, 3, 2, 1, 0]}, soient 5 couleurs util
 \else
 \fi
 
+\ifprof\else
 La méthode que nous venons de décrire est rapide et fonctionne plutôt bien. Cependant, si on cherche à utiliser le nombre minimum de couleurs, l'efficacité de l'algorithme proposé ci-dessus dépend en grande partie de l'ordre dans lequel on choisit de colorer les sommets du graphe. 
 
 L'objectif des sous-parties suivantes est d'affiner la stratégie pour mieux choisir cet ordre de coloration
-
+\fi
 
 \subsection{Variante de Weish-Powell}
+\ifprof\else
 Une alternative est donnée par la variante de Welsh-Powell. L'idée est de parcourir l'ensemble des sommets du graphe par ordre décroissant de leurs degrés.
 Comme le degré d'un sommet est un entier positif, il est possible d'écrire un algorithme de tri efficace (dit par répartition).
+\fi
 
 
 % Q13
@@ -375,13 +400,16 @@ NRLR -- XP : en utilisant la fonction codée : \lstinline{[1, 0, 1, 2, 0, 1, 3, 
 \else
 \fi
 
+\ifprof\else
 L'amélioration proposée donne de bons résultats dans un grand nombre de cas. Cependant, il reste quelques cas où la coloration obtenue utilise trop de couleurs.
 
 La méthode suivante, proposée en 1979 par Danier Brélaz de l'École Polytechnique Fédérale de Lausanne, raffine la détermination de l'ordre de coloration. La priorité de coloration est ainsi recalculée après chaque traitement d'un sommet et non plus une fois pour toute au départ. Au final, cette approche fournit rapidement une coloration optimale dans un très grand nombre de cas.
-
+\fi
 
 \subsection{Algorithme DSATUR}
+\ifprof\else
 Lorsque l’on colore un graphe, le degré de saturation d’un sommet est le nombre de couleurs différentes déjà attribuées à ses différents sommets voisins. Évidemment, ce degré de saturation est susceptible d’évoluer à chaque fois qu’un nouveau sommet est coloré.
+\fi
 
 % Q21
 \question{Écrire une fonction \lstinline{degre_satur} avec 3 arguments, une liste d'adjacence \lstinline{LA}, un sommet \lstinline{s} du graphe, une liste \lstinline{C} de couleurs. Cette fonction renvoie le degré de saturation du sommet \lstinline{s}. On rappelle que le sommet \lstinline{i} est coloré si et seulement si \lstinline{C[i]} est différent de $-1$.}
@@ -428,8 +456,6 @@ A réfléchir :D.
 
 \end{corrige}
 \else
-\fi
-
 \begin{lstlisting}
 def colorer4(LA):
     n = # nombre de sommets du graphe
@@ -452,16 +478,23 @@ def colorer4(LA):
     
     return C
 \end{lstlisting}
+\fi
 
+
+\ifprof \else
 Il n'est pas facile d'être certain d'avoir utilisé le nombre minimum de couleurs. La sous-partie suivante propose une piste.
-
+\fi
 
 \subsection{Un minorant du nombre de couleurs nécessaires}
+
+\ifprof \else
+
 Considérons un graphe \lstinline{G} et un sous-ensemble \lstinline{K} de sommets de ce graphe. On dit que \lstinline{K} forme une clique si et seulement si pour chaque paire de sommets de \lstinline{K}, il existe une arête les reliant.
 
 Par exemple, sur le graphe $\indice{G}{ex}$ de la figure \ref{2024_CCINP_TSI_Info_fig_02}, $(4, 5, 6, 7)$ constitue une clique de 4 sommets et $(4, 5, 6)$ une clique de 3 sommets. En revanche, (0, 4, 5, 6, 7) ne forme pas une clique puisque le sommet 0 n'est pas relié au sommet 5.
 
 Enfin, on note $n_c$, le cardinal de la plus grande clique de \lstinline{G}.
+\fi
 
 
 % Q25
@@ -485,7 +518,7 @@ Dans ce qui suit, on suppose toujours que les sommets d'un graphe à $n$ sommets
 \else
 \fi
 
-
+\ifprof \else
 La fonction \lstinline{combinations} du module \lstinline{itertools}%, présentée à l'annexe 2***, 
 fournit toutes les combinaisons de taille fixée d'une liste. 
 \begin{lstlisting}
@@ -493,6 +526,7 @@ from itertools import combinations
 for C in combinations([0,1,2,3,4],3): # Combinaisons de 3 éléments parmis une liste de 5 éléments
     print(C)
 \end{lstlisting}
+\fi
 
 % Q27
 \question{Sur le DR, compléter la fonction \lstinline{minoration_nb_couleurs} ayant pour argument la liste d'adjacence \lstinline{LA} d'un graphe, qui renvoie le cardinal de la plus grande clique du graphe considéré.}
@@ -503,4 +537,6 @@ for C in combinations([0,1,2,3,4],3): # Combinaisons de 3 éléments parmis une 
 \else
 \fi
 
+\ifprof \else
 Ainsi, si le nombre de couleurs utilisées pour colorer le graphe est égal à 0, , on est sûr d'avoir utilisé le nombre minimum de couleurs.
+\fi
