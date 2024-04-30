@@ -3,7 +3,7 @@
 La coloration d'une carte de pays consiste à attribuer une couleur à chacun des pays de manière à ce que deux pays voisins soient de couleurs différentes.
 Étudier ces techniques de coloration revient de façon plus abstraite à travailler sur des graphes.
 Le champ d'applications de la coloration de graphes est très vaste et couvre des domaines aussi variés que le problème de l'attribution de fréquences dans les télécommunications, la conception de puces électroniques ou l'allocation de registres en compilation.
-Soulignons que tous les graphes considérés dans ce sujet sont non-orientés. Quelques rappels de syntaxe Python figurent dans l'annexe \ref{2024_CCINP_TSI_Info_ann_02}.
+Soulignons que tous les graphes considérés dans ce sujet sont non-orientés. %Quelques rappels de syntaxe Python figurent dans l'annexe \ref{2024_CCINP_TSI_Info_ann_02}.
 
 \section{Des algorithmes pour colorer un graphe \label{2024_CCINP_TSI_Info_sec_01}}
 \subsection{Introduction sur un exemple \label{2024_CCINP_TSI_Info_sec_01_1}}
@@ -386,14 +386,12 @@ Lorsque l’on colore un graphe, le degré de saturation d’un sommet est le no
 % Q21
 \question{Écrire une fonction \lstinline{degre_satur} avec 3 arguments, une liste d'adjacence \lstinline{LA}, un sommet \lstinline{s} du graphe, une liste \lstinline{C} de couleurs. Cette fonction renvoie le degré de saturation du sommet \lstinline{s}. On rappelle que le sommet \lstinline{i} est coloré si et seulement si \lstinline{C[i]} est différent de $-1$.}
 \ifprof
-\ifprof
 \begin{corrige}~\\ \vspace{-.5cm}
 \lstinputlisting[firstline=164,lastline=171]{CCINP_TSI_Informatique.py}
 \end{corrige}
 \else
 \fi
-\else
-\fi
+
 
 
 % Q22
@@ -402,7 +400,7 @@ On notera qu'il s'agit d'une liste car plusieurs sommets peuvent avoir le même 
 }
 \ifprof
 \begin{corrige}
-
+A réfléchir :D.
 \end{corrige}
 \else
 \fi
@@ -411,8 +409,8 @@ On notera qu'il s'agit d'une liste car plusieurs sommets peuvent avoir le même 
 % Q23
 \question{Écrire une fonction \lstinline{pas_fini} avec pour argument une liste \lstinline{C}, qui renvoie \lstinline{True} si cette liste contient la valeur \lstinline{-1}, \lstinline{False} sinon.}
 \ifprof
-\begin{corrige}
-
+\begin{corrige}~\\ \vspace{-.5cm}
+\lstinputlisting[firstline=201,lastline=205]{CCINP_TSI_Informatique.py}
 \end{corrige}
 \else
 \fi
@@ -432,21 +430,43 @@ On notera qu'il s'agit d'une liste car plusieurs sommets peuvent avoir le même 
 \else
 \fi
 
+\begin{lstlisting}
+def colorer4(LA):
+    n = # nombre de sommets du graphe
+    D = # liste des degrés des sommets du graphe
+    C = # initialisation de la liste des couleurs
+    while :
+        # liste des sommets non colorés de degré de saturation maximal
+
+        Ls =
+
+        # en cas d'égalité, recherche du sommet de degré maximal
+        
+
+
+
+
+
+        # coloration du sommet prioritaire
+    
+    
+    return C
+\end{lstlisting}
+
 Il n'est pas facile d'être certain d'avoir utilisé le nombre minimum de couleurs. La sous-partie suivante propose une piste.
 
 
 \subsection{Un minorant du nombre de couleurs nécessaires}
 Considérons un graphe \lstinline{G} et un sous-ensemble \lstinline{K} de sommets de ce graphe. On dit que \lstinline{K} forme une clique si et seulement si pour chaque paire de sommets de \lstinline{K}, il existe une arête les reliant.
 
-Par exemple, sur le graphe $\indice{G}{ex}$ de la figure \ref{2024_CCINP_TSI_Info_fig_02}, $(4, 5, 6, 7)$ constitue une clique de 4 sommets et $(4, 5, 6)$ une clique de 3 sommets. En revanche, (0, 4, 5, 6, 7) ne forme pas une clique puisque le sommet 0 n'est pas relié au sommet 5).
+Par exemple, sur le graphe $\indice{G}{ex}$ de la figure \ref{2024_CCINP_TSI_Info_fig_02}, $(4, 5, 6, 7)$ constitue une clique de 4 sommets et $(4, 5, 6)$ une clique de 3 sommets. En revanche, (0, 4, 5, 6, 7) ne forme pas une clique puisque le sommet 0 n'est pas relié au sommet 5.
 
 Enfin, on note $n_c$, le cardinal de la plus grande clique de \lstinline{G}.
 
 
 % Q25
 \question{Justifier que le nombre minimum de couleurs pour colorer un graphe est supérieur ou égal au
-nombre $n_c$. Montrer également que : $n_c \leq 1+\max\{\text{deg} s, s\in G \}$ où $\text{deg} s$ désigne le degré du sommet
-dans le graphe \lstinline{G}.}
+nombre $n_c$. Montrer également que : $n_c \leq 1+\max\{\text{deg} s, s\in G \}$ où $\text{deg} s$ désigne le degré du sommet dans le graphe \lstinline{G}.}
 \ifprof
 \begin{corrige}
 
@@ -459,14 +479,20 @@ Dans ce qui suit, on suppose toujours que les sommets d'un graphe à $n$ sommets
 % Q26
 \question{Écrire une fonction \lstinline{est_clique} avec deux arguments, la liste d'adjacence \lstinline{LA} d'un graphe et un tuple \lstinline{K} de sommets de ce graphe, qui renvoie \lstinline{True} si \lstinline{K} est une clique, \lstinline{False} sinon.}
 \ifprof
-\begin{corrige}
-
+\begin{corrige}~\\ \vspace{-.5cm}
+\lstinputlisting[firstline=241,lastline=246]{CCINP_TSI_Informatique.py}
 \end{corrige}
 \else
 \fi
 
 
-La fonction \lstinline{combinations} du module \lstinline{itertools}, présentée à l'annexe 2***, fournit toutes les combinaisons de taille fixée d'une liste. 
+La fonction \lstinline{combinations} du module \lstinline{itertools}%, présentée à l'annexe 2***, 
+fournit toutes les combinaisons de taille fixée d'une liste. 
+\begin{lstlisting}
+from itertools import combinations
+for C in combinations([0,1,2,3,4],3): # Combinaisons de 3 éléments parmis une liste de 5 éléments
+    print(C)
+\end{lstlisting}
 
 % Q27
 \question{Sur le DR, compléter la fonction \lstinline{minoration_nb_couleurs} ayant pour argument la liste d'adjacence \lstinline{LA} d'un graphe, qui renvoie le cardinal de la plus grande clique du graphe considéré.}

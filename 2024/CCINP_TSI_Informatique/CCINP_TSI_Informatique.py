@@ -160,7 +160,7 @@ def colorer3(LA:[[int]]) -> [int]:
 
 # print(colorer3(LA))
 
-## Question 19
+## Question 21
 def degre_satur(LA:[[int]],C:[int],s:[int]) -> int:
     voisins = LA[s]
     # On récupére les couleurs des voisins
@@ -169,3 +169,79 @@ def degre_satur(LA:[[int]],C:[int],s:[int]) -> int:
         if C[v] != -1 and C[v] not in liste_coul :
             liste_coul.append(C[v])
     return len(liste_coul)
+
+
+## Question 22
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Question 23 -- Ligne 200
+def pas_fini(C):
+    if -1 in C :
+        return True
+    else :
+        return False
+
+
+
+## Quesion 24
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Question 25 -- Ligne 240
+def est_clique(LA,K):
+    for i in K:
+        for j in K:
+            if j not in LA[k]:
+                return False
+    return True
+
