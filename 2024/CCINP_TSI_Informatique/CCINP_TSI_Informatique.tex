@@ -200,8 +200,12 @@ L'appel \lstinline{colore_sommet(C, 2, LA)} modifie la liste \lstinline{C} en \l
 
 \ifprof
 \begin{corrige}
+NDLR -- XP : Question pas si évidente. Il y a surement une solution plus simple.
 
+
+\lstinputlisting[firstline=53,lastline=76]{CCINP_TSI_Informatique.py}
 \end{corrige}
+
 \else
 
 \fi
@@ -209,17 +213,19 @@ L'appel \lstinline{colore_sommet(C, 2, LA)} modifie la liste \lstinline{C} en \l
 def colore_sommet(C,s,LA) :
     # on détermine la liste des couleurs des voisins de s déjà colorés
     coul_vois = []
+    
     # coul_vois est maintenant déterminée et on recherche la
     # plus petite couleur, notée num_coul, absente de coul_vois:
-    # la valeur num_coul trouvée devient la couleur du sommet s:}
+    
+    # la valeur num_coul trouvée devient la couleur du sommet s :
 \end{lstlisting}
 % Q10
 \question{\label{2024_CCINP_TSI_Info_q_10} À l'aide de la question \ref{2024_CCINP_TSI_Info_q_09}, écrire une fonction \lstinline{colorer1} avec pour argument une liste \lstinline{LA} caractérisant un graphe, qui crée et renvoie la liste \lstinline{C} des numéros des couleurs attribuées en colorant les sommets un par un par ordre croissant de leurs numéros.}
 
 Par exemple, l'application de la fonction \lstinline{colorer1} au graphe $\indice{G}{ex}$ renverra la liste de couleurs \lstinline{[0,1,0,2,1,0,2,3]}.
 \ifprof
-\begin{corrige}
-
+\begin{corrige}~\\ \vspace{-.5cm}
+\lstinputlisting[firstline=80,lastline=84]{CCINP_TSI_Informatique.py}
 \end{corrige}
 \else
 \fi
@@ -232,8 +238,8 @@ L'ordre de coloration imposé à la question précédente est arbitraire. On sou
 
 Par exemple \lstinline{colorer2([0,2,4,6,1,3,5,7], LA)} colorera le graphe $\indice{G}{ex}$ en commençant d'abord par le sommet \lstinline{0}, puis en continuant par les sommets \lstinline{2}, \lstinline{4}, \lstinline{6}...
 \ifprof
-\begin{corrige}
-
+\begin{corrige}~\\ \vspace{-.5cm}
+\lstinputlisting[firstline=90,lastline=94]{CCINP_TSI_Informatique.py}
 \end{corrige}
 \else
 \fi
@@ -242,7 +248,7 @@ Par exemple \lstinline{colorer2([0,2,4,6,1,3,5,7], LA)} colorera le graphe $\ind
 \question{Donner la liste des couleurs renvoyée par \lstinline{colorer2} pour colorer le graphe $\indice{G}{ex}$ donné en exemple en prenant \lstinline{ordre = [7,6,5,4,3,2,1,0]}. Combien de couleurs ont-elles été utilisées ?}
 \ifprof
 \begin{corrige}
-
+La fonction renvoie \lstinline{[4, 2, 1, 0, 3, 2, 1, 0]}, soient 5 couleurs utilisées. 
 \end{corrige}
 \else
 \fi
@@ -260,11 +266,11 @@ Comme le degré d'un sommet est un entier positif, il est possible d'écrire un 
 % Q13
 \question{\label{2024_CCINP_TSI_Info_q_13} Écrire une fonction \lstinline{degre} avec pour argument la liste d'adjacence \lstinline{LA} d'un graphe quelconque, qui renvoie la liste des degrés des sommets du graphe.}
 
-Par exemple, pour un graphe de liste d'adjacence \lstinline{LA = ([1,2], [0,2,3], [0,1,3], [1,2,4], [3]]}, la fonction \lstinline{degre} renverra la liste \lstinline{[2,3,3,3,1]}.
+Par exemple, pour un graphe de liste d'adjacence \lstinline{LA = [[1,2], [0,2,3], [0,1,3], [1,2,4], [3]]}, la fonction \lstinline{degre} renverra la liste \lstinline{[2,3,3,3,1]}.
 
 \ifprof
-\begin{corrige}
-
+\begin{corrige}~\\ \vspace{-.5cm}
+\lstinputlisting[firstline=104,lastline=111]{CCINP_TSI_Informatique.py}
 \end{corrige}
 \else
 \fi
@@ -275,8 +281,8 @@ Par exemple, pour un graphe de liste d'adjacence \lstinline{LA = ([1,2], [0,2,3]
 Par exemple, \lstinline{init(3)} renverra \lstinline{[[],[],[]]}.
 
 \ifprof
-\begin{corrige}
-
+\begin{corrige}~\\ \vspace{-.5cm}
+\lstinputlisting[firstline=117,lastline=118]{CCINP_TSI_Informatique.py}
 \end{corrige}
 \else
 \fi
@@ -284,11 +290,11 @@ Par exemple, \lstinline{init(3)} renverra \lstinline{[[],[],[]]}.
 % Q15
 \question{Écrire une fonction \lstinline{ranger} avec pour argument une liste d'adjacence \lstinline{LA}, qui renvoie une liste \lstinline{R} de même taille que \lstinline{LA}, telle que \lstinline{R[i]} soit la liste des sommets de degré \lstinline{i}.}
 
-Ainsi, pour l'exemple de la question \ref{2024_CCINP_TSI_Info_q_13}, l'appel \lstinline{ranger(LA)} renverra la liste \lstinline{[[],[4],[0],[1,2,3]]}.
+Ainsi, pour l'exemple de la question \ref{2024_CCINP_TSI_Info_q_13}, l'appel \lstinline{ranger(LA)} renverra la liste \lstinline{[[],[4],[0],[1,2,3],[]]}.
 
 \ifprof
-\begin{corrige}
-
+\begin{corrige}~\\ \vspace{-.5cm}
+\lstinputlisting[firstline=124,lastline=129]{CCINP_TSI_Informatique.py}
 \end{corrige}
 \else
 \fi
@@ -299,8 +305,8 @@ Ainsi, pour l'exemple de la question \ref{2024_CCINP_TSI_Info_q_13}, l'appel \ls
 Par exemple, \lstinline{renverse([1,2,3,4])} renverra \lstinline{[4,3,2,1]}.
 
 \ifprof
-\begin{corrige}
-
+\begin{corrige}~\\ \vspace{-.5cm}
+\lstinputlisting[firstline=135,lastline=139]{CCINP_TSI_Informatique.py}
 \end{corrige}
 \else
 \fi
@@ -312,7 +318,10 @@ Par exemple, pour un graphe de liste d'adjacence \lstinline{LA = [[1,2],[0,2,3],
 
 \ifprof
 \begin{corrige}
+NDLR -- XP : comment trier entre eux des sommets avec même degré ?
+La fonction proposée ci-dessous respecte la spécification mais pas l'exemple. 
 
+\lstinputlisting[firstline=144,lastline=151]{CCINP_TSI_Informatique.py}
 \end{corrige}
 \else
 \fi
@@ -321,18 +330,37 @@ Par exemple, pour un graphe de liste d'adjacence \lstinline{LA = [[1,2],[0,2,3],
 \question{Pour un graphe à \lstinline{n} sommets, quelle est la complexité temporelle de la fonction \lstinline{trier_sommets} dans le pire des cas ?}
 \ifprof
 \begin{corrige}
+On fait l'hypothèse que la complexité amortie de \lstinline{append} est constante.
+On fait aussi l'hypthèse que la complexité de \lstinline{len} est constante.
+Notons $n$ le nombre de sommets du graphe. 
 
+Commençons par analyser la fonction \lstinline{ranger} :
+\begin{itemize}
+\item \lstinline{init} est en $\mathcal{O}(n)$;
+\item \lstinline{degre} est en $\mathcal{O}(n)$;
+\item la boucle \lstinline{est} exécutée $n$ fois.
+\end{itemize}
+Il en résulte que \lstinline{ranger} est en $\mathcal{O}(n)$.
+
+NDLR -- XP :
+Concernant les boucles \lstinline{for} la boucle sur les éléments de \lstinline{R} a forcément $n$ itérations. La boucle intérieure a dans le pire des cas $n$ itérations... mais dans ce cas, les autres éléments de \lstinline{R} sont vides... 
+Que conclure ?  $\mathcal{O}(n)$ ? $\mathcal{O}(n^2)$ ?.
 \end{corrige}
 \else
 \fi
 
 
 % Q19
-\question{Écrire la fonction \lstinline{colorer3} avec pour argument une liste d'adjacence \lstinline{LA}, qui crée et renvoie une liste de couleurs \lstinline{C}, telle que \lstinline{c[i]} soit la couleur à attribuer au sommet numéro \lstinline{i}, les sommets étant colorés dans l'ordre décroissant de leur degré.
+\question{Écrire la fonction \lstinline{colorer3} avec pour argument une liste d'adjacence \lstinline{LA}, qui crée et renvoie une liste de couleurs \lstinline{C}, telle que \lstinline{C[i]} soit la couleur à attribuer au sommet numéro \lstinline{i}, les sommets étant colorés dans l'ordre décroissant de leur degré.
 Quelle est la complexité de \lstinline{colorer3} dans le pire des cas pour un graphe à \lstinline{n} sommets?}
 \ifprof
 \begin{corrige}
+NDLR -- XP : rappeler qu'on peut utiliser colore2 ?
+\lstinputlisting[firstline=157,lastline=159]{CCINP_TSI_Informatique.py}
 
+\lstinline{colore_sommet} est en $\mathcal{O}(n)$. \lstinline{colorer2} fait $n$ appels à \lstinline{colore_sommet}; donc 
+
+\lstinline{colorer2} est en $\mathcal{O}(n^2)$ et \lstinline{colorer3} également. 
 \end{corrige}
 \else
 \fi
@@ -342,7 +370,7 @@ Quelle est la complexité de \lstinline{colorer3} dans le pire des cas pour un g
 \question{Pour le graphe $\indice{G}{ex}$ de la figure \ref{2024_CCINP_TSI_Info_fig_02}, donner la liste \lstinline{C} des couleurs renvoyée par la fonction \lstinline{colorer3}.}
 \ifprof
 \begin{corrige}
-
+NRLR -- XP : en utilisant la fonction codée : \lstinline{[1, 0, 1, 2, 0, 1, 3, 2]}.
 \end{corrige}
 \else
 \fi
@@ -353,19 +381,24 @@ La méthode suivante, proposée en 1979 par Danier Brélaz de l'École Polytechn
 
 
 \subsection{Algorithme DSATUR}
+Lorsque l’on colore un graphe, le degré de saturation d’un sommet est le nombre de couleurs différentes déjà attribuées à ses différents sommets voisins. Évidemment, ce degré de saturation est susceptible d’évoluer à chaque fois qu’un nouveau sommet est coloré.
+
 % Q21
 \question{Écrire une fonction \lstinline{degre_satur} avec 3 arguments, une liste d'adjacence \lstinline{LA}, un sommet \lstinline{s} du graphe, une liste \lstinline{C} de couleurs. Cette fonction renvoie le degré de saturation du sommet \lstinline{s}. On rappelle que le sommet \lstinline{i} est coloré si et seulement si \lstinline{C[i]} est différent de $-1$.}
 \ifprof
-\begin{corrige}
-
+\ifprof
+\begin{corrige}~\\ \vspace{-.5cm}
+\lstinputlisting[firstline=164,lastline=171]{CCINP_TSI_Informatique.py}
 \end{corrige}
+\else
+\fi
 \else
 \fi
 
 
 % Q22
 \question{Écrire une fonction \lstinline{liste_satur} avec deux arguments, une liste d'adjacence \lstinline{LA}, la liste \lstinline{C} des couleurs des sommets, qui renvoie la liste des sommets non colorés du graphe ayant un degré de saturation maximum parmi les sommets non colorés.
-On notera qu'il s'agit d'une liste car plusieurs sommets peuvent avoir le même degré de satu¬ration. On supposera de plus qu'il reste au moins un sommet non coloré.
+On notera qu'il s'agit d'une liste car plusieurs sommets peuvent avoir le même degré de saturation. On supposera de plus qu'il reste au moins un sommet non coloré.
 }
 \ifprof
 \begin{corrige}
