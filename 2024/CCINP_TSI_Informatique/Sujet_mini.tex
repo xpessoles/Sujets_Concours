@@ -1,0 +1,48 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+%%%%%%%%%%%%%
+\usepackage{graphicx}
+\graphicspath{{images/}}
+
+\newcommand{\indice}[2]{{#1}_{\text{#2}}}
+
+\usepackage{listings}
+\usepackage{listingsutf8}
+
+\lstset{language=Python,
+  inputencoding=utf8/latin1,
+  breaklines=true,
+  upquote = true,
+  columns=fullflexible} 
+\lstset{
+     literate=%
+         {é}{{\'e}}1    
+         {è}{{\`e}}1    
+         {ê}{{\^e}}1    
+         {à}{{\`a}}1
+         {À}{{\`A}}1
+         {â}{{\^a}}1	 
+         {ô}{{\^o}}1    
+         {ù}{{\`u}}1    
+         {î}{{\^i}}1 
+         {ç}{{\c{c}}}1
+}
+  
+
+\newcounter{CptQues}
+\newenvironment{question}{\refstepcounter{CptQues} Question \theCptQues~}{}
+
+\usepackage{tcolorbox}
+\newtcolorbox{corrige}{colback=red!5!white}
+\newif\ifprof
+%%%%%%%%%%%%%%%%%%%%%%
+
+\proftrue
+
+\begin{document}
+\input{CCINP_TSI_Informatique}
+\end{document}
