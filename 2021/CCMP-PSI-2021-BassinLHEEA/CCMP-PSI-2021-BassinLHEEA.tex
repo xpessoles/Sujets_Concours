@@ -5,17 +5,17 @@ Le système étudié, nommé bassin de traction, est un des nombreux bassins d'e
 Ce bassin de traction mesure \SI{140}{m} de long, \SI{5}{m} de large, et a une profondeur constante de \SI{3}{m} (Figure \ref{fig:CCMP:2021:01} et Annexe 3). Il est équipé d’un chariot de traction pouvant se déplacer dans l’une ou l’autre des directions, avec des vitesses atteignant jusqu’à \SI{8}{m.s^{-1}} (Figure \ref{fig:CCMP:2021:02}). À une extrémité du bassin se trouve un batteur à houle permettant de générer des houles unidirectionnelles régulières de hauteur crête-à-creux maximale de \SI{0,5}{m}. À son autre extrémité, une plage d’amortissement sert à faire déferler les vagues pour limiter leur réflexion dans le bassin.
 
 
-\begin{figure}[!h]
-\centering
-\includegraphics[width=.45\linewidth]{image1}
-\caption{ \label{fig:CCMP:2021:01}Bassin de traction}
-\end{figure}
+\begin{multicols}{2}
+\begin{center}
+\includegraphics[width=.85\linewidth]{image1}
+\captionof{figure}{ \label{fig:CCMP:2021:01}Bassin de traction}
+\end{center}
 
-\begin{figure}[!h]
-\centering
-\includegraphics[width=.45\linewidth]{image2}
-\caption{ \label{fig:CCMP:2021:02} Chariot de traction}
-\end{figure} 
+\begin{center}
+\includegraphics[width=.85\linewidth]{image2}
+\captionof{figure}{ \label{fig:CCMP:2021:02}Chariot de traction}
+\end{center}
+\end{multicols}
 
 Ce bassin, 2ème plus grand bassin de traction en France et le 1er au niveau académique, permet de mener un certain nombre d’expériences :
 \begin{itemize}
@@ -55,7 +55,7 @@ Le profil de vitesse adopté est le suivant :
   
 \begin{figure}[!h]
 \centering
-\includegraphics[width=.95\linewidth]{image4}
+\includegraphics[width=.7\linewidth]{image4}
 \caption{ \label{fig:CCMP:2021:04} Profil de vitesse souhaité du chariot}
 \end{figure} 
 
@@ -67,6 +67,11 @@ La vitesse de déplacement du chariot par rapport au sol pendant la deuxième ph
 
 % Q1
 \question{\label{q:CCMP:2021:01}À partir de la Figure \ref{fig:CCMP:2021:04}, donner l'expression littérale du temps $T_1$ nécessaire pour avoir $\indice{t}{acq}=\SI{10}{s}$. En déduire l’expression littérale de l'accélération $\gamma$  de la première phase en fonction de $V_m$, $\indice{t}{acq}$,  $X_0$ et $X_f$. Faire l’application numérique.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 \subsection{Dimensionnement de la motorisation}
 Dans cette partie, on va dimensionner la motorisation en déterminant notamment le couple à fournir afin de satisfaire l’exigence 1.1.1.
@@ -146,13 +151,28 @@ On isole l'ensemble du chariot $\Sigma=\textbf{(1)}\cup \textbf{(2)}\cup \textbf
 
 % Q2
 \question{\label{q:CCMP:2021:02}Exprimer $V_3$ en fonction de $\omega_R$. Déterminer l'énergie cinétique $\ec{\Sigma}{0}$ de l'ensemble isolé par rapport à \textbf{(0)} (on écrira le résultat en fonction de $V_3$). En déduire la masse équivalente $\indice{M}{eq}$, ramenée sur \textbf{(3)}, de l'ensemble isolé, telle que $\ec{\Sigma}{0}=\dfrac{1}{2} \indice{M}{eq} V_3^2$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 
 % Q3
 \question{\label{q:CCMP:2021:03} Lister l'ensemble des puissances galiléennes des actions mécaniques extérieures, et donner leur expression en fonction de $V_3$ et des paramètres du modèle. Reproduire la démarche avec la puissance des actions mécaniques intérieures.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 % Q4
 \question{\label{q:CCMP:2021:4}Appliquer le Théorème de l'Énergie Cinétique (Énergie Puissance) pour déterminer l'expression du couple moteur $C_m$ au niveau de chaque moteur permettant d'assurer l’accélération $\gamma$ nécessaire.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 
 \subsection{Détermination du facteur de frottement minimal}
@@ -160,6 +180,11 @@ Afin d’éviter un phénomène de glissement entre les roues motrices et le rai
 
 % Q5
 \question{\label{q:CCMP:2021:5}Donner l'expression du moment dynamique de la roue avant \textbf{(1)} au point $O_1$ dans son mouvement par rapport au sol \textbf{(0)} en fonction de $\deriv{\omega_R (t)}{}$. Réaliser l'inventaire des actions mécaniques extérieures agissant sur \textbf{(1)} (donner l'expression de chaque torseur).}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 
 % Q6
@@ -168,18 +193,38 @@ dynamique appliqué à la roue \textbf{(1)} au point $O_1$ projeté sur $\vz{0}$
 l'expression littérale de la composante $X_{01}$ (de l'action du sol \textbf{(0)} sur la roue \textbf{(1)})
 en fonction uniquement de l'accélération $\gamma$ et des masses. Donner alors, sans faire le calcul,
 l'expression littérale de la composante $X_{02}$ de l'action du sol \textbf{(0)} sur la roue \textbf{(2)}.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 
 % Q7
 \question{\label{q:CCMP:2021:7}On isole l'ensemble du chariot $\Sigma=\textbf{(1)}\cup \textbf{(2)}\cup \textbf{(3)}\cup (\text{\textbf{moto-réducteurs}})$. Proposer le théorème utilisé (T.R.D. ou T.M.D., la projection, éventuellement le point) permettant de déterminer la composante $Y_{01}$. Donner l’expression de la composante du torseur dynamique correspondant en fonction de $\gamma$, des différentes masses et/ou inerties ainsi que des grandeurs géométriques.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 % Q8
 \question{\label{q:CCMP:2021:8}Proposer uniquement la démarche (isolement(s), inventaire des actions mécaniques, théorème(s) utilisé(s)) permettant ensuite de déterminer la composante $Y_{02}$ de l'action du sol \textbf{(0)} sur la roue \textbf{(2)}.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 Une application numérique a permis de déterminer, sous les hypothèses fournies précédemment, la valeur minimale pour assurer le non-glissement du facteur de frottement noté $f_1$ au niveau de la roue motrice avant \textbf{(1)} puis celle du facteur de frottement noté $f_2$ au niveau de la roue motrice arrière \textbf{(2)} : $f_1=0,177$ et $f_2=0,146$.
 
 % Q9
 \question{\label{q:CCMP:2021:9}Dans un premier temps, en se basant sur les lois de Coulomb, indiquer la démarche qui a été mise en œuvre pour déterminer les valeurs minimales de $f_1$ et $f_2$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 En réalité, le chariot ne possède pas uniquement quatre roues motrices (deux de chaque côté), mais deux bogies constitués chacun de deux roues motrices et de deux roues libres en rotation (Annexe 6). La présence d'une roue libre en rotation sur chaque côté d'un bogie permet de soulager environ de moitié l'effort normal sur chaque roue motrice, tandis que l'effort tangentiel sur chaque roue motrice reste identique.
 Le rail sur lequel les roues roulent sans glisser est en acier. On souhaite utiliser le même matériau pour toutes les roues (avant comme arrière, motrices comme libres).
@@ -187,6 +232,11 @@ On adoptera un coefficient de sécurité $s=2$ afin de garantir la pertinence de
 
 % Q10
 \question{\label{q:CCMP:2021:10}À partir des indications fournies, proposer une valeur du facteur de frottement à retenir et justifier. Enfin, à partir du Tableau \ref{tab:CCMP:2021:01} ci-dessous, proposer un choix de bandage (matériau de chaque roue) qui permette d’éviter le glissement en phase d’accélération, pour ainsi respecter l'exigence 1.1.1.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 
 \begin{table}[!h]
@@ -281,9 +331,19 @@ $\left\{ \mathcal{T} \left(4\to 5 \right) \right\} = \torseurcol{X_{45}}{Y_{45}}
 
 % Q11
 \question{\label{q:CCMP:2021:11}Préciser votre démarche puis donner l'écriture simplifiée du torseur $\left\{ \mathcal{T}^1 \left(4\to 5 \right) \right\}$ au point $L$ puis donner le nom et la (les) caractéristique(s) géométrique(s) de cette liaison. Donner également l'écriture simplifiée du torseur $\left\{ \mathcal{T}^2 \left(4\to 5 \right) \right\}$ au point $L'$. Les torseurs seront exprimés dans la base $b_0=\left(\vx{0},\vy{0},\vz{0} \right)$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 % Q12
 \question{\label{q:CCMP:2021:12}Donner l'écriture simplifiée de $\left\{ \mathcal{T}\left(4\to 5 \right) \right\}$, torseur des actions mécaniques transmissibles par la liaison équivalente entre \textbf{(4)} et \textbf{(5)} en $L$ (également exprimé dans la base $b_0$). Donner le nom et la (les) caractéristique(s) géométrique(s) de cette liaison. Expliquer pourquoi le concepteur a choisi une telle liaison plutôt qu’une liaison encastrement entre l’ensemble \textbf{(5)} et le solide \textbf{(4)}.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 \subsection{Réglage de la ligne de flottaison}
 Dans un souci de polyvalence du banc de mesure, il est nécessaire de pouvoir régler la position de la ligne de flottaison (exigence 3.2.1). De plus, il est important de compenser la présence du dispositif de mesure (exigence 3.2.2), c'est à dire d'annuler l'influence du poids du mât vertical. Un système de poulie avec contrepoids a donc été ajouté pour satisfaire conjointement ces deux exigences (Figure \ref{fig:CCMP:2021:09}).
@@ -333,12 +393,27 @@ $\left\{ \mathcal{T} \left(5\to 6 \right) \right\} = \torseurl{F_{56}\vy{0}}{\ve
 
 % Q13
 \question{\label{q:CCMP:2021:13}En appliquant le Principe Fondamental de la Statique à l’ensemble \textbf{\{6+7\}}, exprimer $F_{56}$ en fonction de $m_7$,  $g$ et des paramètres géométriques nécessaires. Préciser la ou les équations utilisées.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 % Q14
 \question{\label{q:CCMP:2021:14}Exprimer le torseur modélisant l’action de la poussée d’Archimède sur la maquette $\torseurstat{T}{\text{eau}}{5}$, au point $G_5$, en fonction de $L_5$, $e_5$, $h_i$, $\rho$ et $g$. En appliquant le Principe Fondamental de la Statique à \textbf{(5)}, en déduire la hauteur de maquette immergée $h_i$ en fonction de $m_5$, $m_7$, $\rho$, $e_5$ et $L_5$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 % Q15
 \question{\label{q:CCMP:2021:15}Montrer que ce dispositif permet à lui seul de satisfaire les exigences 3.2.1 et 3.2.2. L’emplacement du point d’ancrage du câble du contrepoids sur la maquette a-t-il une influence sur la hauteur immergée ?}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 \subsection{Détermination du torseur des actions mécaniques de l’eau sur la maquette}
 
@@ -358,26 +433,51 @@ $\left\{ \mathcal{T} \left(5\to 6 \right) \right\} = \torseurl{F_{56}\vy{0}}{\ve
 
 % Q16
 \question{\label{q:CCMP:2021:}Sur la base de la Figure \ref{fig:CCMP:2021:07}, on considère le système constitué des solides \textbf{(3)}, \textbf{(4)} et des 6 barres \textbf{(Bi)}. Déterminer le degré d’hyperstatisme du modèle proposé. Que peut-on en déduire ?}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 En considérant que les distances $a_5$ et $c_5$ sont très petites, une étude dynamique préliminaire a permis d’établir que l’action du câble sur la maquette s’écrit en $G_5$ : $\torseurstat{T}{6}{5}= \torseurl{m_7 \left(g-\gamma_5\right) \vy{0}}{\vect{0}}{G_5}$
 
 
 % Q17
 \question{\label{q:CCMP:2021:17}En tenant compte des hypothèses précédentes, déterminer le torseur $\torseurstat{T}{4}{5}$ (exprimé au point $L$) des actions mécaniques transmises par la liaison glissière entre \textbf{(4)} sur \textbf{(5)} en fonction de $X_e$, $Y_e$, ..., $N_e$ et des différents paramètres géométriques. On exprimera le résultat dans $b_0$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 % Q18
 \question{\label{q:CCMP:2021:18}Sachant que les coordonnées de $\torseurstat{T}{4}{5}$ seront mesurées par les 6 capteurs dynamométriques de la balance, indiquer s’il est possible de mesurer $Y_e$ avec ce dispositif. Justifier.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 On note $F_1$, $F_2$, …, $F_6$ les valeurs algébriques mesurées par les 6 capteurs  $\left(c_1, c_2, ..., c_6\right)$ telles que, pour une barre \textbf{(Bi)} de direction $\vect{u_i}$ :  $\torseurstat{T}{B_i}{4}=\torseurl{F_i \vect{u_i}}{\vect{0}}{M_i}$  avec le point $M_i$ à choisir parmi les points $A$, $B$, $C$ et $D$.
 
 % Q19
 \question{\label{q:CCMP:2021:19}Montrer que l'action mécanique de la barre \textbf{(B1)} sur \textbf{(4)} est un glisseur et préciser son axe.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 
 % Q20
 \question{\label{q:CCMP:2021:20}Exprimer en fonction des $F_i$ la forme des torseurs des actions mécaniques suivantes dans la base $b_0$ : 
 $\torseurstat{T}{B_1}{4}$, $\torseurstat{T}{B_2}{4}$, $\torseurstat{T}{B_3}{4}$, 
 $\torseurstat{T}{B_4}{4}$, $\torseurstat{T}{B_5}{4}$ et $\torseurstat{T}{B_6}{4}$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 
 Quels que soient les résultats obtenus précédemment, on admettra pour la suite :
@@ -385,9 +485,19 @@ $\torseurstat{T}{5}{4}=\torseurcol{X_e}{0}{Z_e}{L_e-\lambda(t)Z_e}{M_e + eZ_e}{M
 
 % Q21
 \question{\label{q:CCMP:2021:21}Déterminer les expressions de $X_e$, $Z_e$, $L_e$, $M_e$ et $N_e$ en fonction de $F_1$, $F_2$,…, $F_6$ et des diverses grandeurs géométriques.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 % Q22
 \question{\label{q:CCMP:2021:22}Au vu des expressions précédentes, quelle(s) grandeur(s) est-il nécessaire de connaitre sur le système pour obtenir à tout instant une mesure de $X_e$, $Z_e$, $L_e$, $M_e$ et $N_e$ ? Proposer un dispositif permettant de connaitre cette (ces) grandeur(s) en temps réel.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 \section{\label{s:CCMP:2021:04}Étude de l'exigence 1.2 : « Garantir un dÉplacement du chariot à vitesse constante »}
 \begin{obj}
@@ -403,7 +513,7 @@ On étudie l'asservissement en vitesse du chariot de traction dont le schéma-bl
 
 \begin{itemize}
 \item Un adaptateur de gain $K_1$ permet de fournir l'image $U_C (p)$ de la consigne de vitesse $V_C (p)$.
-\item Un capteur de vitesse en rotation de gain $K_{11}$ renvoie une tension $\indice{U}{mes}(p)$ proportionnelle à la vitesse de rotation $\indice{\Omega}{mes} (p)$ de son axe. Par ailleurs, une roue libre en rotation de gain $K_9$ associée à un réducteur de vitesse épicycloïdal de gain $K_10$ permettent de transformer la vitesse du chariot $V(p)$ en vitesse de rotation $\indice{\Omega}{mes} (p)$ de l'axe du capteur de vitesse de rotation.
+\item Un capteur de vitesse en rotation de gain $K_{11}$ renvoie une tension $\indice{U}{mes}(p)$ proportionnelle à la vitesse de rotation $\indice{\Omega}{mes} (p)$ de son axe. Par ailleurs, une roue libre en rotation de gain $K_9$ associée à un réducteur de vitesse épicycloïdal de gain $K_{10}$ permettent de transformer la vitesse du chariot $V(p)$ en vitesse de rotation $\indice{\Omega}{mes} (p)$ de l'axe du capteur de vitesse de rotation.
 \item L'écart $\varepsilon_U (p)$ entre $U_C (p)$ et $\indice{U}{mes} (p)$ est ensuite corrigé par un correcteur de fonction de transfert $C(p)$ afin de piloter un variateur de gain $K_2$.
 \item La tension de commande $U_m (p)$ du moteur va induire la vitesse angulaire $\Omega_m (p)$ de l'axe moteur.
 \item Un réducteur de vitesse de gain $K_7$ puis le système roue-rail de gain $K_8$ transforment le mouvement pour obtenir une vitesse $V(p)$ de translation du chariot.
@@ -423,13 +533,23 @@ On rappelle qu'il y a roulement sans glissement entre la roue libre en rotation 
 \item Rayon de la roue motrice :	$R=\SI{0,25}{m}$
 \item Rayon de la roue libre en rotation : $r=\SI{0,15}{m}$
 \item Capteur de vitesse en rotation : $K_{11}=\SI{60}{V.s.rad^{-1}}$
-\item Autres données : $K_2=1$ et $K_7=\mu=\dfrac{1}{25}$, $K_10=\dfrac{1}{2,5}$	$K_{12}=R\mu$.
+\item Autres données : $K_2=1$ et $K_7=\mu=\dfrac{1}{25}$, $K_{10}=\dfrac{1}{2,5}$	$K_{12}=R\mu$.
  \end{itemize}
  
 On souhaite compléter la modélisation de l'asservissement à partir du principe de fonctionnement fourni et des données générales.
 
 % Q23
 \question{\label{q:CCMP:2021:}Indiquer les expressions littérales des gains $K_8$ et $K_9$. Déterminer ensuite $K_1$ en fonction des autres gains $K_i$ permettant d’obtenir un écart $\varepsilon_U (p)$ nul lorsque la sortie $V(p)$ est égale à la consigne $V_c (p)$ (vous préciserez les unités de chacun des gains demandés).}
+\ifprof
+\begin{corrige}
+\begin{itemize}
+\item La vitesse du chariot est obtenue grâce à la mise en rotation de la roue motrice de rayon $R$ et il a été vu que$v(t)=-R\omega_r(t)$. De plus $V(p)=K_8\Omega_R(p)$. On a donc et $K_8 = -R$ et $K_8 = -\SI{0,25}{m}$.
+\item De même en passant par la roue libre, $V(p)=r \Omega_{rl}(p)$ et $K_9 = -\dfrac{1}{r} = -\SI{6,67}{m^{-1}}$.
+\item On a $\varepsilon_U(p)=V_C(p)K_1 - V(p) K_{11}K_{10}K_9$. Pour avoir un écart nul lorsque $V(p)=V_C(p)$, on a nécessairement $K_1 = K_{11}K_{10}K_9$. On a donc  $K_1 = 60\times \dfrac{1}{2,5}\times \dfrac{-1}{0,15}=  - \SI{160}{V.s.rad^{-1} m^{-1}}$.
+\end{itemize}
+\end{corrige}
+\else
+\fi
 
 
 \subsection{Influence de la perturbation sur la réponse}
@@ -464,11 +584,43 @@ Par souci de simplification, on notera également $\indice{K}{BO}=CK_a K_b K_m$.
 
 % Q24
 \question{\label{q:CCMP:2021:}Déterminer l'expression littérale des fonctions de transfert $H_1(p)$ et $H_2 (p)$ (la forme canonique n'est pas demandée). En déduire les expressions des réponses $v_1$ et $v_2$ en fonction de $V_0$, $F_0$, $\indice{K}{BO}$, $K_m$, $K_c$ et $K_b$.}
+\ifprof
+\begin{corrige}
+Par lecture directe : $V(p)=U_m(p)H_m(p)K_b$ $=\left(\varepsilon_V(p) K_a C(p) - \indice{F}{res}(p)K_c\left(1+T_e p\right)\right) H_m(p)K_b$.
+On a donc $V(p)=\left(\left(V_c(p) - V(p) \right) K_a C(p) - \indice{F}{res}(p)K_c\left(1+T_e p\right)\right) H_m(p)K_b$ et $V(p)=K_a C(p)H_m(p)K_bV_c(p) - H_m(p)K_bK_a C(p) V(p)  - \indice{F}{res}(p)K_c\left(1+T_e p\right)H_m(p)K_b$
+Soit : 
+$V(p)\left(1+ H_m(p)K_bK_a C(p)\right)  =K_a C(p)H_m(p)K_bV_c(p) - \indice{F}{res}(p)K_c\left(1+T_e p\right)H_m(p)K_b$ et 
+$V(p) =\dfrac{K_a C(p)H_m(p)K_b}{1+ H_m(p)K_bK_a C(p)}V_c(p) -\dfrac{K_c\left(1+T_e p\right)H_m(p)K_b}{1+ H_m(p)K_bK_a C(p)} \indice{F}{res}(p)$.
 
-La perturbation $\indice{F}{res}(p)$ de cet asservissement correspond à l'action de l'eau sur la maquette en mouvement. On souhaite déterminer ici la condition sur le gain C du correcteur proportionnel (on notera $\indice{C}{pert}$ cette condition) permettant de négliger l'influence de cette perturbation vis-à-vis de la réponse à la consigne. Pour cela, on cherchera à vérifier la relation suivante : $|v_2 | \leq 0,1 |v_1 |$.
+Par ailleurs : 
+
+$v_1=\lim\limits_{t\to \infty}v_1(t)=\lim\limits_{p\to0} p V_1(p) $ $=\lim\limits_{p\to0} p   \dfrac{K_a C \dfrac{K_m}{\left(1+T_e p\right) \left(1+T_m.p\right) }K_b}{1+ \dfrac{K_m}{\left(1+T_e p\right) \left(1+T_m.p\right) }K_bK_a C} \dfrac{V_0}{p}$
+ $=\dfrac{K_a C K_m K_b}{1+ K_mK_bK_a C} V_0$  $=\dfrac{\indice{K}{BO}}{1+ \indice{K}{BO}} V_0$.
+ 
+De même, $v_2=\lim\limits_{t\to \infty}v_2(t)=\lim\limits_{p\to0} p V_2(p) $
+$=-\dfrac{K_c K_mK_b}{1+ K_mK_bK_a C} F_0$ $=-\dfrac{K_c K_mK_b}{1+ \indice{K}{BO}}F_0$.
+\end{corrige}
+\else
+\fi
+
+La perturbation $\indice{F}{res}(p)$ de cet asservissement correspond à l'action de l'eau sur la maquette en mouvement. On souhaite déterminer ici la condition sur le gain C du correcteur proportionnel (on notera $\indice{C}{pert}$ cette condition) permettant de négliger l'influence de cette perturbation vis-à-vis de la réponse à la consigne. Pour cela, on cherchera à vérifier la relation suivante : $|v_2| \leq 0,1 |v_1|$.
 
 % Q25
 \question{\label{q:CCMP:2021:25}Déterminer la condition (notée $\indice{C}{pert}$) sur le gain $C$ du correcteur permettant de s'assurer que l'influence de la perturbation est négligeable devant l'influence de la consigne. Faire l'application numérique avec $V_0=\SI{8}{m.s^{-1}}$ et $F_0=\SI{400}{N}$.}
+\ifprof
+\begin{corrige}
+On souhaite que $|v_2| \leq 0,1 |v_1|$ 
+$\Rightarrow \dfrac{K_c K_mK_b}{1+ K_mK_bK_a C} F_0 \leq 0,1 \dfrac{K_a C K_m K_b}{1+ K_mK_bK_a C} V_0$
+$\Rightarrow K_c K_mK_b F_0 \leq 0,1 K_a C K_m K_b V_0$
+$\Rightarrow 10\dfrac{K_c K_mK_b}{K_a  K_m K_b} \dfrac{F_0}{V_0} \leq  C $
+$\Rightarrow C \geq 10\dfrac{K_c }{K_a } \dfrac{F_0}{V_0}  $
+$\Rightarrow C \geq 10\dfrac{0,1}{1000 } \dfrac{400}{8}  $
+$\Rightarrow C \geq \dfrac{5}{100} $.
+
+Analyse des unités : $\dfrac{\si{V.N^{-1}}}{\si{V.s.m^{-1}}}\times \dfrac{\si{N}}{\si{m.s^{-1}}} = 1$.
+\end{corrige}
+\else
+\fi
 
 Pour la suite du sujet, on supposera que la relation $|v_2 | \leq 0,1 |v_1 |$ est vérifiée et donc que l'on peut négliger la perturbation.
 
@@ -491,14 +643,29 @@ Le concepteur a choisi un correcteur Proportionnel Intégral :	$C_1 (p)=\dfrac{C
 
 % Q26
 \question{\label{q:CCMP:2021:26}Déterminer les expressions littérales de l'erreur statique $E_S$ (consigne : échelon d'amplitude $V_0$) et de l'erreur de trainage $E_T$ (consigne : rampe de pente $\gamma_0$) de cet asservissement corrigé avec $C_1 (p)$ en fonction de la consigne, du gain $K_N$ et des paramètres du correcteur $C$ et $T_m$. En déduire la condition (notée $C_{\varepsilon}$) sur le gain $C$ du correcteur permettant de satisfaire l’exigence 1.2.3 du cahier des charges.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 Les diagrammes de Bode de la fonction de transfert en boucle ouverte corrigée de l'asservissement avec $C_1 (p)$ sont fournis sur le cahier réponse à la question \ref{q:CCMP:2021:27}. Ces diagrammes de Bode ont été tracés avec la valeur particulière $C=1$.
 
 % Q27
 \question{\label{q:CCMP:2021:27}Déterminer la condition (notée $C_{\varphi}$) sur le gain $C$ du correcteur permettant de satisfaire uniquement le critère de marge de phase de l’exigence 1.2.2 du cahier des charges. Faire l’application numérique (on pourra utiliser la courbe fournie en annexe 1).}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 % Q28
 \question{\label{q:CCMP:2021:28}Conclure quant à la capacité de ce correcteur à satisfaire le cahier des charges.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 \subsection{Réglage du correcteur PID}
 On choisit finalement de prendre le correcteur Proportionnel Intégral Dérivé suivant :
@@ -506,13 +673,28 @@ $C_2 (p)=C \left(1+1\dfrac{1}{T_i p}+T_d p\right)$ avec $T_i=2.T_e$  et $T_d=\df
 
 % Q29
 \question{\label{q:CCMP:2021:29}Montrer qu'on peut mettre ce correcteur sous la forme $C_2 (p)=\dfrac{K}{p} \left(1+T p\right)^2$ et donner les expressions de $K$ et de $T$ en fonction de $C$ et $T_e$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 % Q30
 \question{\label{q:CCMP:2021:30}Donner l'expression de la fonction de transfert en boucle ouverte du système corrigé. En déduire les expressions littérales de l'erreur statique $E_S$ (consigne : échelon d'amplitude $V_0$) et de l'erreur de trainage $E_T$ (consigne : rampe de pente $\gamma_0$) de cet asservissement corrigé. En déduire la condition sur la valeur du gain $K$ du correcteur permettant de satisfaire l’exigence 1.2.3 du cahier des charges.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 
 % Q31
 \question{\label{q:CCMP:2021:31}La courbe réelle de la phase de la FTBO est représentée sur le cahier réponses. Compléter le tracé avec les diagrammes de Bode asymptotiques (gain et phase) de la FTBO du système corrigé avec le correcteur $C_2 (p$) (avec $K=\SI{0,05}{V.m^{-1}}$). On assimilera la courbe réelle de gain à son tracé asymptotique. Tracer la marge de phase sur le cahier réponses et conclure quant au respect du cahier des charges.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 On choisit finalement le réglage du correcteur $C_2 (p)$ suivant, qui permet de satisfaire l’exigence 1.2.2 :
 $C_2 (p)=\dfrac{7,5}{p} (1+0,5 p)^2$
@@ -520,6 +702,11 @@ On réalise une simulation, dont les résultats sont donnés sur la Figure \ref{
 
 % Q32
 \question{\label{q:CCMP:2021:32}Relever la valeur du premier dépassement puis du temps de réponse pour le système soumis à un échelon. Relever le dépassement pour le système soumis à un trapèze de vitesse. Conclure quant à la capacité de ce correcteur à satisfaire l’exigence 1.2 du cahier des charges.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 \begin{figure}[!h]
 \centering
@@ -542,4 +729,9 @@ On réalise une simulation, dont les résultats sont donnés sur la Figure \ref{
 
 % Q33
 \question{\label{q:CCMP:2021:33}Commenter la courbe de tension du moteur (Figure \ref{fig:CCMP:2021:15}) pour une consigne en trapèze de vitesse. Au vu de cette analyse, proposer une modification du modèle de la Figure \ref{fig:CCMP:2021:10} afin de limiter les écarts entre la simulation et le comportement réel du système.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
