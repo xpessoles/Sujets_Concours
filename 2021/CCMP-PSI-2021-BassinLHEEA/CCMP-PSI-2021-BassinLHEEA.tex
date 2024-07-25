@@ -627,11 +627,11 @@ Pour la suite du sujet, on supposera que la relation $|v_2 | \leq 0,1 |v_1 |$ es
 \subsection{Étude d'un premier correcteur}
 
 L'asservissement de vitesse est à présent modélisé par le schéma-blocs de la Figure \ref{fig:CCMP:2021:12} à retour unitaire. Cet asservissement n’est valable que pour les petites variations de vitesse.
-H(p) correspond à la fonction de transfert en boucle ouverte naturelle (non corrigée), $C(p)$ est le correcteur.
+$H(p)$ correspond à la fonction de transfert en boucle ouverte naturelle (non corrigée), $C(p)$ est le correcteur.
  
 \begin{figure}[!h]
 \centering
-\includegraphics[width=.45\linewidth]{image12}
+\includegraphics[width=.4\linewidth]{image12}
 \caption{\label{fig:CCMP:2021:12} Schéma-blocs simplifié (sans perturbation)}
 \end{figure}  
 
@@ -645,6 +645,22 @@ Le concepteur a choisi un correcteur Proportionnel Intégral :	$C_1 (p)=\dfrac{C
 \question{\label{q:CCMP:2021:26}Déterminer les expressions littérales de l'erreur statique $E_S$ (consigne : échelon d'amplitude $V_0$) et de l'erreur de trainage $E_T$ (consigne : rampe de pente $\gamma_0$) de cet asservissement corrigé avec $C_1 (p)$ en fonction de la consigne, du gain $K_N$ et des paramètres du correcteur $C$ et $T_m$. En déduire la condition (notée $C_{\varepsilon}$) sur le gain $C$ du correcteur permettant de satisfaire l’exigence 1.2.3 du cahier des charges.}
 \ifprof
 \begin{corrige}
+\textbf{Méthode recommandée}
+La FTBO peut s'exprimer sous la forme $F(p)=\dfrac{C}{T_i p} \left(1+T_i p\right)\dfrac{K_N}{\left(1+T_m p\right) \left(1+T_e p\right)}$ $=\dfrac{C}{T_m p}\dfrac{K_N}{ \left(1+T_e p\right)}$. $F(p)$ est une fonction de classe 1 et de gain $\indice{K}{BO} = \dfrac{CK_N}{T_m} $.
+
+L'erreur statique $E_S$ est alors nulle. L'erreur de trainage $E_t$ est donnée par  $E_t = \dfrac{\gamma_0 T_m}{C K_N}$ $ =\dfrac{1,6\times 5}{C \times 20}$. Pour valider l'exigence, il faut donc $\dfrac{0,4}{C} \leq 0,16 $
+$\Rightarrow C\geq  \SI{2,5}{sVm^{-1}}$.
+
+\begin{center}
+\begin{tabular}{p{5cm}llp{3cm}}
+\hline
+Exigence & Cahier des charges & Calcul & Validation  \\
+\hline
+Erreur statique pour une entrée $V_0 = \SI{8}{m.s^{-1}}$ & $E_S=0$ & $E_S=0$ & Validé \\
+Erreur de trainage pour une entrée $\gamma_0 = \SI{1,8}{m.s^{-2}}$ & $E_T\leq \SI{0,16}{m.s^{-1}}$ &  & Validé pour  $C\geq  \SI{2,5}{sVm^{-1}}$\\
+\hline
+\end{tabular}
+\end{center} 
 \end{corrige}
 \else
 \fi
