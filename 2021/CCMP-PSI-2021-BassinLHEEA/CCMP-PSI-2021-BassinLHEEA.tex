@@ -645,7 +645,8 @@ Le concepteur a choisi un correcteur Proportionnel Intégral :	$C_1 (p)=\dfrac{C
 \question{\label{q:CCMP:2021:26}Déterminer les expressions littérales de l'erreur statique $E_S$ (consigne : échelon d'amplitude $V_0$) et de l'erreur de trainage $E_T$ (consigne : rampe de pente $\gamma_0$) de cet asservissement corrigé avec $C_1 (p)$ en fonction de la consigne, du gain $K_N$ et des paramètres du correcteur $C$ et $T_m$. En déduire la condition (notée $C_{\varepsilon}$) sur le gain $C$ du correcteur permettant de satisfaire l’exigence 1.2.3 du cahier des charges.}
 \ifprof
 \begin{corrige}
-\textbf{Méthode recommandée}
+\textbf{Méthode recommandée -- Classe de la BO}
+
 La FTBO peut s'exprimer sous la forme $F(p)=\dfrac{C}{T_i p} \left(1+T_i p\right)\dfrac{K_N}{\left(1+T_m p\right) \left(1+T_e p\right)}$ $=\dfrac{C}{T_m p}\dfrac{K_N}{ \left(1+T_e p\right)}$. $F(p)$ est une fonction de classe 1 et de gain $\indice{K}{BO} = \dfrac{CK_N}{T_m} $.
 
 L'erreur statique $E_S$ est alors nulle. L'erreur de trainage $E_t$ est donnée par  $E_t = \dfrac{\gamma_0 T_m}{C K_N}$ $ =\dfrac{1,6\times 5}{C \times 20}$. Pour valider l'exigence, il faut donc $\dfrac{0,4}{C} \leq 0,16 $
@@ -665,12 +666,24 @@ Erreur de trainage pour une entrée $\gamma_0 = \SI{1,8}{m.s^{-2}}$ & $E_T\leq \
 \else
 \fi
 
-Les diagrammes de Bode de la fonction de transfert en boucle ouverte corrigée de l'asservissement avec $C_1 (p)$ sont fournis sur le cahier réponse à la question \ref{q:CCMP:2021:27}. Ces diagrammes de Bode ont été tracés avec la valeur particulière $C=1$.
+Les diagrammes de Bode de la fonction de transfert en boucle ouverte corrigée de l'asservissement avec $C_1 (p)$ sont fournis sur le cahier réponse à la question \ref{q:CCMP:2021:27} (il sont aussi donnés Figure \ref{fig:CCMP:2021:bode}). Ces diagrammes de Bode ont été tracés avec la valeur particulière $C=1$.
+
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.45\linewidth]{Bode}
+\caption{\label{fig:CCMP:2021:bode} Réponse à un échelon d’amplitude $V_0=\SI{8}{m.s^{-1}}$.}
+\end{figure} 
 
 % Q27
 \question{\label{q:CCMP:2021:27}Déterminer la condition (notée $C_{\varphi}$) sur le gain $C$ du correcteur permettant de satisfaire uniquement le critère de marge de phase de l’exigence 1.2.2 du cahier des charges. Faire l’application numérique (on pourra utiliser la courbe fournie en annexe 1).}
 \ifprof
 \begin{corrige}
+D'après le cahier des charges, on souhaute une marge de phase supérieure à 45\degres.
+Cette marge est obtenue pour une pulsation de \SI{2}{rad.s^{-1}}. À cette pulsation, le gain de la BO non corrigée est de \SI{2,5}{dB}. 
+
+On cherche donc $C_\varphi$ tel que $20\log C_\varphi = -2,5$ $\Rightarrow C_\varphi = 10^{-2,5/20} = 0,75$.
+Il faut donc que $C_\varphi$ soit inférieur à \SI{0,75}{mVs^{-1}} pour que la marge de phase soit supérieure à 45\degres.
 \end{corrige}
 \else
 \fi
@@ -679,18 +692,31 @@ Les diagrammes de Bode de la fonction de transfert en boucle ouverte corrigée d
 \question{\label{q:CCMP:2021:28}Conclure quant à la capacité de ce correcteur à satisfaire le cahier des charges.}
 \ifprof
 \begin{corrige}
+On a vu que :
+\begin{itemize}
+\item $C\geq  \SI{2,5}{sVm^{-1}}$;
+\item $C_{\varphi} \leq  \SI{0,75}{mVs^{-1}}$.
+\end{itemize}
+
+Il n'est donc pas possible de satisfaire le cahier des charges avec un correcteur proportionnel. 
+
 \end{corrige}
 \else
 \fi
 
 \subsection{Réglage du correcteur PID}
 On choisit finalement de prendre le correcteur Proportionnel Intégral Dérivé suivant :
-$C_2 (p)=C \left(1+1\dfrac{1}{T_i p}+T_d p\right)$ avec $T_i=2.T_e$  et $T_d=\dfrac{T_e}{2}$.
+$C_2 (p)=C \left(1+\dfrac{1}{T_i p}+T_d p\right)$ avec $T_i=2 T_e$  et $T_d=\dfrac{T_e}{2}$.
 
 % Q29
 \question{\label{q:CCMP:2021:29}Montrer qu'on peut mettre ce correcteur sous la forme $C_2 (p)=\dfrac{K}{p} \left(1+T p\right)^2$ et donner les expressions de $K$ et de $T$ en fonction de $C$ et $T_e$.}
 \ifprof
 \begin{corrige}
+On a d'une part, $C_2 (p)=C \left(1+\dfrac{1}{2 T_e p}+\dfrac{T_e}{2} p\right)$ $=\dfrac{C}{2 T_e }\dfrac{1 +2 T_e p +  T_e^2p^2}{p}$.
+
+D'autre part $C_2 (p)=\dfrac{K}{p} \left(1+2 TP+ T^2 p^2\right)$.
+
+En identifiant, $T=T_e$ et $K = \dfrac{C}{2 T_e }$.
 \end{corrige}
 \else
 \fi
@@ -699,18 +725,29 @@ $C_2 (p)=C \left(1+1\dfrac{1}{T_i p}+T_d p\right)$ avec $T_i=2.T_e$  et $T_d=\df
 \question{\label{q:CCMP:2021:30}Donner l'expression de la fonction de transfert en boucle ouverte du système corrigé. En déduire les expressions littérales de l'erreur statique $E_S$ (consigne : échelon d'amplitude $V_0$) et de l'erreur de trainage $E_T$ (consigne : rampe de pente $\gamma_0$) de cet asservissement corrigé. En déduire la condition sur la valeur du gain $K$ du correcteur permettant de satisfaire l’exigence 1.2.3 du cahier des charges.}
 \ifprof
 \begin{corrige}
+La FTBO du système corrigé est donnée par $F_2(p)=\dfrac{K}{p} \left(1+T p\right)^2\dfrac{K_N}{\left(1+T_m p\right) \left(1+T_e p\right)}$.
+
+Cette fonction étant de classe 1 et de gain $KK_N$, on a $E_S = 0$ et $E_T = \dfrac{\gamma_0}{KK_N}$. Pour respecter l'exigence 1.2.3, il faut donc nécessaurement que $\dfrac{\gamma_0}{KK_N} \leq 0,16$ soit 
+$\dfrac{\gamma_0}{0,16K_N} \leq K$. On a donc $K\geq \dfrac{1,6}{0,16\times 20}$ $=\SI{0,5}{V m^{-1}}$.
 \end{corrige}
 \else
 \fi
 
 
 % Q31
-\question{\label{q:CCMP:2021:31}La courbe réelle de la phase de la FTBO est représentée sur le cahier réponses. Compléter le tracé avec les diagrammes de Bode asymptotiques (gain et phase) de la FTBO du système corrigé avec le correcteur $C_2 (p$) (avec $K=\SI{0,05}{V.m^{-1}}$). On assimilera la courbe réelle de gain à son tracé asymptotique. Tracer la marge de phase sur le cahier réponses et conclure quant au respect du cahier des charges.}
+\question{\label{q:CCMP:2021:31}La courbe réelle de la phase de la FTBO est représentée sur le cahier réponses et Figure \ref{fig:CCMP:2021:bode2}. Compléter le tracé avec les diagrammes de Bode asymptotiques (gain et phase) de la FTBO du système corrigé avec le correcteur $C_2 (p$) (avec $K=\SI{0,05}{V.m^{-1}}$). On assimilera la courbe réelle de gain à son tracé asymptotique. Tracer la marge de phase sur le cahier réponses et conclure quant au respect du cahier des charges.}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.45\linewidth]{Bode2}
+\caption{\label{fig:CCMP:2021:bode2}}
+\end{figure} 
+
 
 On choisit finalement le réglage du correcteur $C_2 (p)$ suivant, qui permet de satisfaire l’exigence 1.2.2 :
 $C_2 (p)=\dfrac{7,5}{p} (1+0,5 p)^2$
