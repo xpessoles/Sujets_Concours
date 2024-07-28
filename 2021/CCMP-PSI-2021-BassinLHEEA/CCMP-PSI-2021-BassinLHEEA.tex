@@ -69,6 +69,15 @@ La vitesse de déplacement du chariot par rapport au sol pendant la deuxième ph
 \question{\label{q:CCMP:2021:01}À partir de la Figure \ref{fig:CCMP:2021:04}, donner l'expression littérale du temps $T_1$ nécessaire pour avoir $\indice{t}{acq}=\SI{10}{s}$. En déduire l’expression littérale de l'accélération $\gamma$  de la première phase en fonction de $V_m$, $\indice{t}{acq}$,  $X_0$ et $X_f$. Faire l’application numérique.}
 \ifprof
 \begin{corrige}
+On a :
+\begin{itemize}
+\item $X_0 = \dfrac{V_m T_1}{2}$
+\item $\gamma = \dfrac{V_m}{T_1}$; 
+\item $T_1 V_m + \indice{t}{acq}V_m = X_0 + X_f$ (aire sous le trapèze). 
+\end{itemize}
+En conséquences, $T_1   =\dfrac{X_0 + X_f -  \indice{t}{acq}V_m}{V_m}$ et 
+$\gamma= \dfrac{V_m^2}{X_0 + X_f -  \indice{t}{acq}V_m}$
+
 \end{corrige}
 \else
 \fi
@@ -757,6 +766,28 @@ On réalise une simulation, dont les résultats sont donnés sur la Figure \ref{
 \question{\label{q:CCMP:2021:32}Relever la valeur du premier dépassement puis du temps de réponse pour le système soumis à un échelon. Relever le dépassement pour le système soumis à un trapèze de vitesse. Conclure quant à la capacité de ce correcteur à satisfaire l’exigence 1.2 du cahier des charges.}
 \ifprof
 \begin{corrige}
+Le pic est atteint à \SI{8,7}{m.s^{-1}}. Le dépassement absolu est donc de \SI{0,7}{m.s^{-1}} et le dépassement relatif est donc de 8\,\%. Cela est bien inférieur aux 10\,\% exigés par le cahier des charges. 
+
+Pour la réponse à un trapèze le dépassement relatif est inférieur à $\SI{0,1}{m.s^{-1}}$.
+
+
+\textbf{Bilan :}
+\begin{center}
+\begin{tabular}{p{5cm}llp{3cm}}
+\hline
+Exigence & Cahier des charges & Mesure& Validation  \\
+\hline
+Rapidité & $T_{5\%}\leq \SI{3}{s}$ & & \\
+Stabilité & $M_G\geq\SI{12}{dB}$ & & \\
+	& $M_{\varphi} \geq\SI{45}{\degres}$ & & \\
+Erreur statique pour une entrée $V_0 = \SI{8}{m.s^{-1}}$ & $E_S=0$ & $E_S=0$ & Validé \\
+Erreur de trainage pour une entrée $\gamma_0 = \SI{1,8}{m.s^{-2}}$ & $E_T\leq \SI{0,16}{m.s^{-1}}$ &  & Validé pour  $C\geq  \SI{2,5}{sVm^{-1}}$\\
+Dépassement & $D_{1E} \leq 10\%$ & & \\
+		   & $D_{1T} \leq \SI{0,1}{m.s^{-1}}$ & & \\
+\hline
+\end{tabular}
+\end{center} 
+
 \end{corrige}
 \else
 \fi
