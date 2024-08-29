@@ -187,13 +187,13 @@ $$
 %Q 21. 
 \question{En appliquant le principe fondamental de la dynamique, exprimer le couple $C_{m 2}$ sous la forme}
 $$
-J_{e q} \ddot{\theta}_{32}(t)=A C_{m 2}(t)+C_{r}(t)
+\indice{J}{eq} \ddot{\theta}_{32}(t)=A C_{m 2}(t)+C_{r}(t)
 $$
 
 Donner alors l'expression littérale, puis la valeur numérique de
 
 \begin{itemize}
-  \item $J_{e q}$ en fonction de $J_{3}, J_{4}, m_{4}$ et $l_{3}$;
+  \item $\indice{J}{eq}$ en fonction de $J_{3}, J_{4}, m_{4}$ et $l_{3}$;
   \item $A$ en fonction de $r_{9}$ et $\eta_{9}$
   \item $C_{r}(t)$ en fonction de $g$ (accélération de la pesanteur), $m_{3}, m_{4}, a_{3}, l_{3}, \alpha_{1}$ et $\theta_{21}$.
 \end{itemize}
@@ -226,10 +226,10 @@ Déterminer un correcteur pour la chaine d'asservissement de la position angulai
 Au regard des hypothèses précédentes, la synthèse du correcteur associé à une articulation $j$ peut être effectuée en utilisant le modèle suivant
 
 $$
-J_{e q} \ddot{q}_{j}(t)=c_{j}(t)+c_{\mathrm{ext}}(t)
+\indice{J}{eq} \ddot{q}_{j}(t)=c_{j}(t)+c_{\mathrm{ext}}(t)
 $$
 
-où $q_{j}$ est l'angle de rotation de l'articulation considérée, $J_{e q}$ est le moment d'inertie équivalent ramené sur l'axe de l'articulation $j, c_{j}$ est le couple moteur pour l'articulation considérée et $c_{\text {ext }}$ modélise un couple perturbateur représentant: les efforts de frottement sec, le couple dû à l'influence des autres axes et d'éventuels couples résiduels modélisant les incertitudes de compensation des effets de la gravité.
+où $q_{j}$ est l'angle de rotation de l'articulation considérée, $\indice{J}{eq}$ est le moment d'inertie équivalent ramené sur l'axe de l'articulation $j, c_{j}$ est le couple moteur pour l'articulation considérée et $c_{\text {ext }}$ modélise un couple perturbateur représentant: les efforts de frottement sec, le couple dû à l'influence des autres axes et d'éventuels couples résiduels modélisant les incertitudes de compensation des effets de la gravité.
 
 En supposant que les hypothèses précédentes sont validées, la chaine d'asservissement de l'articulation considérée est représentée par le schéma bloc de la figure \ref{fig_11} où $T(p)=Q_{j}(p) / C_{j}(p)$ est la fonction de transfert du couple de commande $c_{j}$ de l'articulation $j$ vers la position $q_{j}$ et où $K_{1}$ et $K_{2}$ sont les gains de la loi de commande choisie.
 
@@ -248,12 +248,12 @@ Les mesures disponibles étant réalisées au moyen de capteurs placés directem
 \end{figure}
 
 %Q 24. 
-\question{Déterminer l'expression de $T(p)$. Exprimer, sous forme canonique, la fonction de transfert en boucle fermée $F_{j}(p)=\frac{Q_{j}(p)}{Q_{j}^{*}(p)}$ en fonction de $J_{e q}, K_{1}$ et $K_{2}$. Déterminer alors les expressions littérales de $K_{1}$ et $K_{2}$ en fonction de $J_{e q}$, de la pulsation propre $\omega_{0}$ et de l'amortissement $\xi$ (exigence 5.1.1 du cahier des charges figure \ref{fig_12}).}
+\question{Déterminer l'expression de $T(p)$. Exprimer, sous forme canonique, la fonction de transfert en boucle fermée $F_{j}(p)=\frac{Q_{j}(p)}{Q_{j}^{*}(p)}$ en fonction de $\indice{J}{eq}, K_{1}$ et $K_{2}$. Déterminer alors les expressions littérales de $K_{1}$ et $K_{2}$ en fonction de $\indice{J}{eq}$, de la pulsation propre $\omega_{0}$ et de l'amortissement $\xi$ (exigence 5.1.1 du cahier des charges figure \ref{fig_12}).}
 
 Un des problèmes majeurs de ce type de robot, surtout aux faibles vitesses de déplacement, est la présence d'efforts de frottement sec de valeur importante qui peuvent se traduire par des oscillations aux faibles vitesses ou encore par des erreurs en régime permanent. Pour l'analyse en régime permanent, une solution est de modéliser ce type d'effort comme un signal perturbateur externe constant.\\
 
 %Q 25. 
-\question{En conservant les gains $K_{1}$ et $K_{2}$ déterminés précédemment, préciser la fonction de transfert en boucle fermée $D(p)=\frac{Q_{j}(p)}{C_{\text {ext }}(p)}$ en fonction de $J_{e q}, \omega_{0}$ et $\xi$. Déterminer alors littéralement l'écart en régime permanent, $\lim _{t \rightarrow+\infty} \varepsilon(t)$, pour une variation en échelon de l'effort perturbateur $c_{\text {ext }}(t)=C_{\text {ext } 0} \Upsilon(t)$ d'amplitude $C_{\text {ext } 0}$ où $\Upsilon(t)$ représente l'échelon d'Heaviside. Conclure sur la performance associée.}
+\question{En conservant les gains $K_{1}$ et $K_{2}$ déterminés précédemment, préciser la fonction de transfert en boucle fermée $D(p)=\frac{Q_{j}(p)}{C_{\text {ext }}(p)}$ en fonction de $\indice{J}{eq}, \omega_{0}$ et $\xi$. Déterminer alors littéralement l'écart en régime permanent, $\lim _{t \rightarrow+\infty} \varepsilon(t)$, pour une variation en échelon de l'effort perturbateur $c_{\text {ext }}(t)=C_{\text {ext } 0} \Upsilon(t)$ d'amplitude $C_{\text {ext } 0}$ où $\Upsilon(t)$ représente l'échelon d'Heaviside. Conclure sur la performance associée.}
 
 %III.B - 
 \subsection{Amélioration des performances par compensation du couple de perturbation}
@@ -264,7 +264,7 @@ Améliorer les performances de la loi de commande vis-à-vis des couples perturb
 
 Une solution pour améliorer la performance en précision serait de compléter le correcteur en introduisant un terme intégral. Cependant, l'introduction de ce terme diminuera les marges de stabilité et son calcul peut s'avérer difficile au regard de la fonction de transfert en boucle ouverte s'il est nécessaire d'assurer un certain niveau de performance dynamique.
 
-Une solution alternative est de compenser le terme perturbateur en introduisant une loi de commande $c_{j}(t)=$ $\tilde{c}_{j}(t)-c_{\text {ext }}(t)$ (soit après compensation, un modèle du procédé à considérer $J_{e q} \ddot{q}_{j}(t)=\tilde{c}_{j}(t)$ ne faisant pas apparaître de terme perturbateur). Cependant, cette solution nécessite de disposer de la mesure du signal perturbateur, irréalisable en pratique. Afin de répondre à ce problème, une solution est de mettre en place un observateur permettant d'obtenir une estimée $\hat{c}_{\text {ext }}(t)$ du couple extérieur. Cet observateur est mis en place en utilisant les relations suivantes
+Une solution alternative est de compenser le terme perturbateur en introduisant une loi de commande $c_{j}(t)=$ $\tilde{c}_{j}(t)-c_{\text {ext }}(t)$ (soit après compensation, un modèle du procédé à considérer $\indice{J}{eq} \ddot{q}_{j}(t)=\tilde{c}_{j}(t)$ ne faisant pas apparaître de terme perturbateur). Cependant, cette solution nécessite de disposer de la mesure du signal perturbateur, irréalisable en pratique. Afin de répondre à ce problème, une solution est de mettre en place un observateur permettant d'obtenir une estimée $\hat{c}_{\text {ext }}(t)$ du couple extérieur. Cet observateur est mis en place en utilisant les relations suivantes
 
 $$
 \left\{\begin{array}{l}
@@ -290,7 +290,7 @@ où $K(p)$ est un correcteur à déterminer et $\hat{Q}_{j}(p)$ une estimation d
 Le calcul du correcteur $K(p)$ peut être alors effectué en utilisant le schéma bloc de la figure \ref{fig_13} où $C_{\text {ext }}(p)$ peut être interprété comme une consigne fictive.
 
 %Q 28. 
-\question{En adoptant une démarche comparable à celle utilisée dans la sous-partie III.A, proposer la fonction de transfert d'un correcteur $K(p)$ à deux paramètres, notés $K_{1}^{\prime}$ et $K_{2}^{\prime}$, de façon à ce que la fonction de transfert en boucle fermée ait un polynôme caractéristique du second ordre $\left(p+\omega_{0}^{\prime}\right)^{2}$, d'amortissement $\xi=1$ et de pulsation propre $\omega_{0}^{\prime}=5 \omega_{0}$. Exprimer littéralement ces deux paramètres en fonction de $J_{e q}, \omega_{0}$ et $\xi$. On s'attachera à justifier brièvement que l'erreur en régime permanent est nulle vis-à-vis d'un couple $c_{\text {ext }}$ constant, c'est à dire que $\lim _{t \rightarrow \infty}\left(c_{\text {ext }}(t)-\hat{c}_{\text {ext }}(t)\right)=0$ en réponse à une variation en échelon du couple perturbateur $c_{\text {ext }}(t)=C_{\text {ext } 0} \Upsilon(t)$.}
+\question{En adoptant une démarche comparable à celle utilisée dans la sous-partie III.A, proposer la fonction de transfert d'un correcteur $K(p)$ à deux paramètres, notés $K_{1}^{\prime}$ et $K_{2}^{\prime}$, de façon à ce que la fonction de transfert en boucle fermée ait un polynôme caractéristique du second ordre $\left(p+\omega_{0}^{\prime}\right)^{2}$, d'amortissement $\xi=1$ et de pulsation propre $\omega_{0}^{\prime}=5 \omega_{0}$. Exprimer littéralement ces deux paramètres en fonction de $\indice{J}{eq}, \omega_{0}$ et $\xi$. On s'attachera à justifier brièvement que l'erreur en régime permanent est nulle vis-à-vis d'un couple $c_{\text {ext }}$ constant, c'est à dire que $\lim\limits_{t \rightarrow \infty}\left(c_{\text {ext }}(t)-\hat{c}_{\text {ext }}(t)\right)=0$ en réponse à une variation en échelon du couple perturbateur $c_{\text {ext }}(t)=C_{\text {ext } 0} \Upsilon(t)$.}
 
 Cette première structure de commande correspondant à la relation
 
