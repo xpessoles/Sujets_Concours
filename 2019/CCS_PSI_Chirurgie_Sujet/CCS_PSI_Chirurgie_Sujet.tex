@@ -24,12 +24,82 @@ $$
 
 %Q 7. 
 \question{On note $H(p)=\frac{\varepsilon(p)}{Z^{*}(p)}$ la fonction de transfert de la consigne $Z^{*}(p)$ vers l'écart $\varepsilon(p)$. Déterminer $H(p)$ en fonction de $\omega_{0}$ et $\xi$. Donner les relations exprimant $\varepsilon_{2}$ et $\Theta_{2}$ en fonction de $\left\|H\left(\mathrm{i} \omega_{2}\right)\right\|$, $\arg \left(H\left(\mathrm{i} \omega_{2}\right)\right), A_{2}$ et $\Phi_{2}$.}
+\ifprof
+\begin{corrige}
+
+D'une part, $H(p)=\dfrac{\varepsilon (p)}{Z^*(p)}$ et d'autre part, $F(p)=\dfrac{Z (p)}{Z^*(p)}$. Enfin, $\varepsilon(p)=Z^*(p)-Z(p)$. On a donc $\varepsilon(p)=\dfrac{\varepsilon(p)}{H(p)} - F(p)Z^*(p)=\dfrac{\varepsilon(p)}{H(p)} - F(p)\dfrac{\varepsilon(p)}{H(p)}$. On a donc  $\varepsilon(p)=\dfrac{\varepsilon(p)}{H(p)} - F(p)\dfrac{\varepsilon(p)}{H(p)} \Leftrightarrow $ $H(p)=1 - F(p)= p\dfrac{p+2\xi\omega_0  }{p^2+2\xi\omega_0 p + \omega_0^2}$.
+
+
+En mettant cette fonction de transfert sous forme canonique, on  obtient : 
+$
+H(p)=\dfrac{2\xi\cdot p}{\omega_0}\dfrac{1+\dfrac{p}{2\xi\omega_0}}{1+\dfrac{2\xi}{\omega_0}p+\dfrac{p^2}{\omega_0^2}}
+$.
+
+\begin{itemize}
+\item Le module de cette fonction de transfert en remplaçant $p$ par $i\omega$ représente le rapport des amplitudes en régime permanent vis-à-vis d'une entrée $z^*(t)$ sinusoïdale : 
+$
+\dfrac{\varepsilon_2}{A_2}=\Vert H(i\omega_2)\Vert
+$.
+\item L'argument de cette fonction de transfert en remplaçant $p$ par $i\omega$ représente le déphasage en régime permanent vis-à-vis d'une entrée $z^*(t)$ sinusoïdale : 
+$
+\Theta_2-\Phi_2=\arg\left(H(i\omega_2)\right)
+$.
+\end{itemize}
+
+Ainsi on a : 
+$
+\left\{
+\begin{array}{c}
+\varepsilon_2=A_2\cdot \Vert H(i\omega_2)\Vert\\
+\\
+\Theta_2=\arg\left(H(i\omega_2)\right)+\Phi_2
+\end{array}
+\right.
+$.
+
+
+%Supposons que  $z_2(t)=A_2\sin \left(\omega_2 t + \Phi_2 \right)$. De plus, $\varepsilon_2(t)=\varepsilon_2 \sin \left( \omega_2 t + \Theta_2 \right)$. On a donc, $\varepsilon_2 = || H\left( i\omega_2\right)|| A_2$, $\Phi_2 - \Theta_2 = \arg \left(H\left(i\omega_2\right)\right)$.
+
+
+
+\begin{rem}
+Il est peut être souhaitable de préciser avant la question aux candidats qu'on a $z_n(t)=A_n\sin \left(2\pi f_n t + \Phi_n \right)=A_n\sin \left(\omega_n t + \Phi_n \right)$. 
+\end{rem}
+
+\end{corrige}
+\else
+\fi
+
 
 % Q 8. 
 \question{En considérant la bande de pulsations $\omega \ll \omega_{0}$, donner une approximation de $\|H(\mathrm{i} \omega)\|$ sous la forme $\|H(\mathrm{i} \omega)\| \approx K \omega$ où $K$ est un gain à préciser. En considérant cette approximation, donner alors une expression de $\varepsilon_{2}$ en fonction de $A_{2}, \omega_{2}, \omega_{0}$ et $\xi$.}
+\ifprof
+\begin{corrige}
+En considérant de faibles pulsations telles que $\omega\ll \omega_0$, on peut effectuer l'approximation : 
+$\Vert H(i\cdot \omega)\Vert\approx\dfrac{2\xi\omega}{\omega_0}$.
+
+On obtient donc bien : $\Vert H(i\omega)\Vert\approx K\cdot \omega $  avec $K=\dfrac{2\xi}{\omega_0}$.
+
+On a alors $\varepsilon_2=A_2\cdot \Vert H(i\omega_2)\Vert $ $\simeq A_2 \dfrac{2\xi}{\omega_0}\omega_2$
+\end{corrige}
+\else
+\fi
+
 
 %Q 9. 
 \question{En considérant $\varepsilon_{2}$, déterminer la valeur minimale de $\omega_{0}$ permettant d'assurer la précision exigée vis-àvis de la consigne sinusoïdale de pulsation $\omega_{2}=2 \pi f_{2}$ (pour l'application numérique, on adoptera un coefficient d'amortissement $\xi=1$ ). Vérifier si l'application numérique est compatible avec celle exprimée par le diagramme des exigences (figure \ref{fig_03} et plus précisément l'exigence 1.2.3).}
+\ifprof
+\begin{corrige}
+D'après l'exigence 1.3.3, $\dfrac{\varepsilon_2}{A_2}<10^{-2}$, on obtient alors la relation suivante : $
+\dfrac{\varepsilon_2}{A_2}\approx \dfrac{2\xi\omega_2}{\omega_0}<10^{-2}$.  
+
+Ce qui donne $\omega_0>200\xi\omega_2\approx \SI{603}{rad.s^{-1}}$
+
+L'exigence 1.2 du cahier des charges concernant l'asservissement en position, et donc la fonction de transfert $F(p)$, impose une bande passante (que l'on suppose à $\SI{0}{dB}$), inférieure à $\SI{30}{rad.s^{-1}}$. $F(p)$ est une fonction de transfert du second ordre de gain 1 et la bande passante à $\SI{0}{dB}$ est de l'ordre de $\omega_0\approx \SI{600}{rad.s^{-1}}$. \textbf{Le cahier des charges est donc bien respecté.}
+\end{corrige}
+\else
+\fi
+
 
 Dans la suite du sujet, il s'agit de déterminer une loi de commande de la chaine d'asservissement permettant d'assurer les exigences du cahier des charges. Cette loi de commande devra résoudre le problème mis en évidence et assurer la compatibilité entre la bande passante minimale et le niveau de précision requis vis-à-vis des consignes sinusoïdales. La conception de cette loi de commande nécessite au préalable de définir et identifier un modèle dynamique du robot esclave, c'est l'objet de la partie suivante.
 
@@ -111,12 +181,47 @@ On étudiera uniquement l'influence du robot esclave sur l'écart de position de
 
 %Q 10. 
 \question{À partir de la figure \ref{fig_04}, déterminer la valeur numérique de $s_{\text {max }}$, la résolution maximale de mesure sur la position de l'outil lors d'une opération pour respecter l'exigence 1.3.3 du cahier des charges présenté figure \ref{fig_03}. La mise en place pré-opératoire définie précédemment permet de considérer que le repère $\left(B, \vec{x}_{2}{ }^{\prime}, \vec{y}_{2}{ }^{\prime}, \vec{z}_{2}{ }^{\prime}\right)$ est un référentiel galiléen. C'est à partir de ce repère que sont définies les trajectoires de l'outil lors de l'opération.}
+\ifprof
+\begin{corrige}
+
+D'après le cahier des charges $\varepsilon_r<1\%$ (exigence 1.3.3). 
+D'après la figure 4, la variation maximale des déplacement est de $\SI{7,5}{mm}$. Il faudrait donc une résolution de $s_{\text{max}}=\SI{75}{\mu m}$.
+\end{corrige}
+\else
+\fi
+
 
 %Q 11. 
 \question{En traduisant la propriété cinématique de la liaison hélicoïdale de pas à droite $p$ et d'axe $\left(P, \vec{z}_{3}\right)$ entre les solides 4 et 8 , donner la relation liant $\lambda(t), \lambda_{0}, p$ et $\theta_{83}$. En déduire l'expression du vecteur position $\overrightarrow{B D}$ caractérisant le point opératoire de l'outil dans la base $\left(\vec{x}_{3}, \vec{y}_{3}, \vec{z}_{3}\right)$ en fonction de $l_{3}, l_{4}, \lambda_{0}, p$ et $\theta_{83}(t)$.}
+\ifprof
+\begin{corrige}
+On a $\lambda(t)=\lambda_0 + \dfrac{p}{2\pi} \theta_{83}(t)$. 
+En conséquences, $\vect{BD}=\vect{BC}+\vect{CD}=l_3\vect{y_3}+\lambda(t)\vect{z_3}+l_4\vect{z_4}
+=l_3\vect{y_3}+\left( \lambda_0 + \dfrac{p}{2\pi} \theta_{83}(t) \right)\vect{z_3}+l_4\vect{z_3}$.
+\end{corrige}
+\else
+\fi
+
 
 %Q 12. 
 \question{En supposant que $\theta_{32}(t)$ reste de faible amplitude, exprimer les coordonnées $\left(x_{D}, y_{D}, z_{D}\right)$ du vecteur $\overrightarrow{B D}$ dans la base $\left(\vec{x}_{2}{ }^{\prime}, \vec{y}_{2}{ }^{\prime}, \vec{z}_{2}{ }^{\prime}\right)$ en fonction $l_{3}, l_{4}, \lambda_{0}, p, \theta_{32}(t)$ et $\theta_{83}(t)$.}
+\ifprof
+\begin{corrige}
+
+En projetant $\vect{BD}$ dans la base $\base{x_2'}{y_2'}{z_2'}$, on a 
+
+ $\vect{BD}=l_3\vect{y_3}+\left( \lambda_0 + \dfrac{p}{2\pi} \theta_{83} \right)\vect{z_3}+l_4\vect{z_3}$
+ $ =l_3\left( \cos \theta_{32} \vect{y_2'} - \sin\theta_{32} \vect{x_2'}  \right)+\left( \lambda_0 + \dfrac{p}{2\pi} \theta_{83} +l_4\right)\vect{z_2'}$.
+ 
+ Avec l'hypothèse que $\theta_{32}$ reste petit, on a  $\vect{BD}=l_3\left(  \vect{y_2'} - \theta_{32} \vect{x_2'}  \right)+\left( \lambda_0 + \dfrac{p}{2\pi} \theta_{83} +l_4\right)\vect{z_2'}$.
+  Ainsi,
+  
+  $\left(x_D,y_D,z_D\right)=
+\left(-l_3 \theta_{32},l_3, \lambda_0 + \dfrac{p}{2\pi} \theta_{83} +l_4\right)$.
+\end{corrige}
+\else
+\fi
+
 
 Afin de déterminer la résolution de mesure $s_{D}$ sur le déplacement du point $D$, il est choisi d'utiliser une hypothèse de propagation quadratique des incertitudes avec un coefficient de sécurité de 3 . Ainsi, on peut écrire
 
@@ -129,6 +234,48 @@ Afin de réaliser l'asservissement du robot esclave, deux capteurs identiques pe
 
 %Q 13. 
 \question{Exprimer $s_{D}$ en fonction de $l_{3}$, $p$, et la résolution de mesure sur les angles $s_{\text {capteur }}$. En déduire la valeur maximale de $s_{\text {capteur }}$ pour pouvoir respecter l'exigence 1.3.3 du cahier des charges.}
+\ifprof
+\begin{corrige}
+Soit, $s_D=3\sqrt{s_X^2+s_Y^2+s_Z^2}$. Par calcul différentiel :  \textcolor{red}{XP?}
+
+\begin{minipage}{0.5\textwidth}
+\begin{align*}
+\left\{
+\begin{array}{c}
+dx_D=-l_3d\theta_{32}\\
+dy_D=0\\
+dz_D=\dfrac{p}{2\pi}d\theta_{83}
+\end{array}
+\right.
+\end{align*}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+
+\begin{align*}
+\left\{
+\begin{array}{c}
+s_X=\Delta x_D=l_3\Delta \theta_{32}=l_3 s_{\text{capteur}}\\
+s_Y=\Delta y_D=0\\
+s_Z=\Delta z_D=\dfrac{p}{2\pi}\Delta \theta_{83}=\dfrac{p}{2\pi}s_{\text{capteur}}
+\end{array}
+\right.
+\end{align*}
+\end{minipage}
+
+Ainsi,$
+s_D=3\cdot s_{\text{capteur}}\sqrt{l_3^2+\dfrac{p^2}{4\pi^2}}
+$.
+Le cahier des charges impose la relation suivante,
+
+$
+s_{\text{capteur}}<\dfrac{75\mu m}{3\sqrt{l_3^2+\dfrac{p^2}{4\pi^2}}}
+$.
+
+L'application numérique donne pour résolution maximale afin de respecter le cahier des charge :  $s_{\text{capteur}}=2,72\times \SI{e-5}{}$.
+\end{corrige}
+\else
+\fi
+
 
 %II.B - 
 \subsection{Détermination et vérification du modèle dynamique du robot esclave}
@@ -143,19 +290,70 @@ On se propose de vérifier les caractéristiques du réducteur fournies par le c
 
 %Q 14. 
 \question{Exprimer $\vec{C}_{73}$, le moment de l'action mécanique exercée par l'arbre moteur 7 sur le bras secondaire 3 en B, en fonction de $C_{m 2}, r_{9}$ et $\eta_{9}$.}
+\ifprof
+\begin{corrige}
+On se place en régime permanent. Le rendement peut s'exprimer par 
+$\eta_9 =\dfrac{C_{73}\dot{\theta}_{32}}{C_{m2}\dot{\theta}_{72}}=\dfrac{C_{73}}{C_{m2}}r_9$. 
+On a donc, en régime permanent, $\vect{C_{73}}=C_{73}\vect{z'_2}=C_{m2}\dfrac{\eta_9}{r_9}\vect{z'_2}$.
+
+
+\textbf{Remarque :} peut-être aurait-il été souhaitable de préciser que l'on souhaite cette relation en régime permanent ?
+\end{corrige}
+\else
+\fi
+
 
 Un essai sur le réducteur 9 a permis d'obtenir la courbe figure \ref{fig_09} représentant l'évolution du couple en sortie du réducteur $C_{73}$ en fonction du couple en entrée $C_{m 2}$.\\
 %Q 15. 
 \question{Conclure sur la validité des valeurs de $r_{9}$ et $\eta_{9}$ fournies par le constructeur.}
+\ifprof
+\begin{corrige}
+Au vu du tracé expérimental de $C_{73}$ en fonction de $C_{m2}$, on peut réaliser une linéarisation sur l'intervalle $[0,10]$ et $C_{73}\simeq 3 C_{m2}$. 
+D'après les données constructeur, on a $C_{73}=C_{m2}\dfrac{\eta_9}{r_9}=C_{m2}\dfrac{0,78}{0,25}=\SI{3,12}{Nm}$.
+
+On peut donc valider les valeurs données par le constructeur.
+\end{corrige}
+\else
+\fi
+
 
 % II.B.2) 
 \subsubsection{Élaboration du modèle dynamique d'un axe du robot esclave}
 Le graphe de structure de la modélisation retenue pour le système est donné sur la figure \ref{fig_A} du document réponse.\\
 %Q 16. 
 \question{Sur la figure \ref{fig_A}, donner le nombre d'inconnues d'actions mécaniques (noté NI-AM) pour chacune des liaisons représentées sur le graphe de structure et indiquer les actions extérieures auxquelles sont soumises les différentes classes d'équivalence cinématiques.}
+\ifprof
+\begin{corrige}
+\begin{center}
+\includegraphics[width=\textwidth]{fig_02}
+\end{center}
+
+\textbf{Remarque :} en ajoutant l'hypothèse en début de partie II.B.1, l'action de 7 sur 3 est modélisée par un couple. Dans ce cas, le résultat attendu est peut-être 1 inconnue entre 7 et 3.
+\end{corrige}
+\else
+\fi
+
 
 %Q 17. 
 \question{Proposer, le plus clairement et synthétiquement possible, sans calcul, une démarche qui permette d'exprimer le couple nécessaire $C_{m 2}$ à fournir sur l'arbre 7 du motoréducteur afin de réaliser le mouvement décrit précédemment.}
+\ifprof
+\begin{corrige}
+On cherche à déterminer le couple $C_{m2}$ à fournir sur l'arbre 7. L'arbre 7 est en rotation autour de l'axe $\axe{N}{z_2'}$. Il entraîne l'ensemble $\left\{3+8+4+5\right\}$ en rotation autour de l'axe $\axe{B}{z_2'}$.
+
+\begin{center}
+\includegraphics[width=\textwidth]{fig_05}
+\end{center}
+
+On propose donc les isolements et des théorèmes associés suivants : 
+\begin{itemize}
+\item isolement de $\left\{3+8+4+5\right\}$ : théorème du moment dynamique en projection sur $\left(B,\overrightarrow{z}_2'\right)$ qui permet de relier l'action de 7 sur 3 aux paramètres de mouvement de l'ensemble $\left\{3+8+4+5\right\}$ qui représente dans le cas particulier du mouvement souhaité la même classe d'équivalence;
+\item isolement de $7$ : théorème du moment dynamique selon $\left(N,\overrightarrow{z}_2'\right)$ qui revient à un théorème du moment statique car l'inertie de 7 est négligeable. Cela permet de relier $C_{m2}$ à l'action de 3 sur 7.
+\end{itemize}
+Cet ordonnancement des isolements permet de ne pas faire apparaître les inconnues dans les liaisons pivot entre 2 et 7 ainsi qu'entre 7 et 3. 
+\end{corrige}
+\else
+\fi
+
 
 
 \begin{figure}[!h]
@@ -167,6 +365,57 @@ Le graphe de structure de la modélisation retenue pour le système est donné s
 %Q 18. 
 \question{Exprimer $\vec{V}_{G_{4}, 4 / 1}$ la vitesse du point $G_{4}$ centre de gravité du bras terminal 4 dans son mouvement par rapport à la table 1 , en fonction de $l_{3}, \dot{\lambda}$ et $\dot{\theta}_{32}$.\\
 Un essai a permis d'obtenir le relevé de mesure présenté figure \ref{fig_10} pour une loi de commande de $\theta_{32}(t)$ en trapèze de vitesse. On supposera que le temps de réponse du moteur est tel que l'évolution de la vitesse suit parfaitement son profil de commande.}
+\ifprof
+\begin{corrige}
+On cherche $\vectv{G_4}{4}{1}$. On a $\vect{OG_4}=\vect{OA}+\vect{AB}+\vect{BC}+\vect{CG_4}$ $=l_0\vect{y_0}+l_1\vect{y_1}+l_2\vect{y_2}+l_2'\vect{y_2'}+l_3\vect{y_3}+\lambda(t)\vect{z_3}+b_4\vect{z_4}$.
+On a $\alpha_1=\dfrac{\pi}{4}$ et $\alpha_2=-\dfrac{\pi}{4}$.
+
+On a donc $\vectv{G_4}{4}{1}= \left[\dfrac{\dd \vect{OG_4}}{\dd t}\right]_{\rep{0}} $ 
+
+$= 
+\left[\dfrac{\dd l_0\vect{y_0}}{\dd t}\right]_{\rep{0}}+
+\left[\dfrac{\dd l_1\vect{y_1}}{\dd t}\right]_{\rep{0}}+
+\left[\dfrac{\dd l_2\vect{y_2}}{\dd t}\right]_{\rep{0}}+
+\left[\dfrac{\dd l_2'\vect{y_2'}}{\dd t}\right]_{\rep{0}}+
+\left[\dfrac{\dd l_3\vect{y_3}}{\dd t}\right]_{\rep{0}}+
+\left[\dfrac{\dd \lambda(t)\vect{z_3}}{\dd t}\right]_{\rep{0}}+
+\left[\dfrac{\dd b_4\vect{z_4}}{\dd t}\right]_{\rep{0}}$
+
+$= 
+\vect{0}+
+\vect{0}+
+l_2\left[\dfrac{\dd \vect{y_2}}{\dd t}\right]_{\rep{0}}+
+l_2'\left[\dfrac{\dd \vect{y_2'}}{\dd t}\right]_{\rep{0}}+
+l_3\left[\dfrac{\dd \vect{y_3}}{\dd t}\right]_{\rep{0}}+
+\lambda(t)\left[\dfrac{\dd \vect{z_3}}{\dd t}\right]_{\rep{0}}+
+\dot{\lambda}(t)\left[\dfrac{\dd \vect{z_3}}{\dd t}\right]_{\rep{0}}+
+b_4\left[\dfrac{\dd \vect{z_4}}{\dd t}\right]_{\rep{0}}$
+
+$= 
+l_2\left[ \vecto{2}{0} \wedge \vect{y_2} \right]+
+l_2'\left[ \vecto{2'}{0} \wedge \vect{y_2'} \right]+
+l_3\left[ \vecto{3}{0} \wedge \vect{y_3} \right]+
+\lambda(t)\left[ \vecto{3}{0} \wedge \vect{z_3} \right]+
+\dot{\lambda}(t)\vect{z_3}+
+b_4\left[ \vecto{4}{0} \wedge \vect{z_4} \right]$. 
+
+$= 
+l_2\left[ \dot{\theta}_{21}\vect{z_2} \wedge \vect{y_2} \right]+
+l_2'\left[ \dot{\theta}_{21}\vect{z_2} \wedge \vect{y_2'} \right]+
+l_3\left[ \left(\dot{\theta}_{21}\vect{z_2}+\dot{\theta}_{32}\vect{z_3} \right) \wedge \vect{y_3} \right]+
+\lambda(t)\left[ \left(\dot{\theta}_{21}\vect{z_2}+\dot{\theta}_{32}\vect{z_3} \right) \wedge \vect{z_3} \right]+
+\dot{\lambda}(t)\vect{z_3}+
+b_4\left[ \left(\dot{\theta}_{21}\vect{z_2}+\dot{\theta}_{32}\vect{z_3} \right) \wedge \vect{z_3} \right]$. 
+
+Or $\dot{\theta}_{21}=0$. On a donc :
+$\vectv{G_4}{4}{1}= 
+l_3\left(\dot{\theta}_{32}\vect{z_3} \wedge \vect{y_3} \right)+
+\dot{\lambda}(t)\vect{z_3} =
+-\dot{\theta}_{32}l_3\vect{x_3}  + \dot{\lambda}(t)\vect{z_3}$.
+\end{corrige}
+\else
+\fi
+
 
 
 \begin{figure}[!h]
@@ -180,9 +429,65 @@ Un essai a permis d'obtenir le relevé de mesure présenté figure \ref{fig_10} 
 $$
 \forall t, \quad \cos \left(\theta_{32}(t)\right) \approx 1 \quad \text { et } \quad \sin \left(\theta_{32}(t)\right) \approx 0
 $$
+\ifprof
+\begin{corrige}
+En utilisant l'évolution de $\dot{\theta}_{32}$, on peut déterminer le déplacement angulaire effectué en traçant l'aire sous la courbe :
+$\theta_{32}=\dfrac{1}{2}\left( 1+0,5\right)\times 0,075 =\SI{0,056}{rad}\simeq 3^{\text{o}}$.
+
+Cet angle étant faible, on peut donc considérer que $\forall t \cos \left(\theta_{32}(t)\right)\simeq 1$ et $\sin\left(\theta_{32}(t)\right)\simeq 0$.
+\end{corrige}
+\else
+\fi
+
 
 %Q 20. 
-\question{Exprimer $\vec{\delta}_{B, 4 / 1} \cdot \vec{z}_{4}$, la projection du moment dynamique au point $B$ appartenant au bras terminal 4 dans son mouvement par rapport à la table 1 sur la direction $\vec{z}_{4}$, en fonction de $J_{4}, m_{4}, l_{3}$ et $\ddot{\theta}_{32}$.\\}
+\question{Exprimer $\vec{\delta}_{B, 4 / 1} \cdot \vec{z}_{4}$, la projection du moment dynamique au point $B$ appartenant au bras terminal 4 dans son mouvement par rapport à la table 1 sur la direction $\vec{z}_{4}$, en fonction de $J_{4}, m_{4}, l_{3}$ et $\ddot{\theta}_{32}$.}
+\ifprof
+\begin{corrige}
+On donne $J_4$ le moment d'inertie du bras 4 autour de l'axe $\axe{G_4}{z_4}$.
+
+\textbf{Méthode}
+\begin{enumerate}
+\item Expression de $\vectmd{B}{4}{1}\cdot\vect{z_4} = \left( \vectmd{G_4}{4}{1} + \vect{BG_4}\wedge m_4 \vectg{G_4}{4}{1}\right)\cdot\vect{z_4}$.
+\item Calcul de $\vectmd{G_4}{4}{1}$.
+\end{enumerate}
+
+$\vectmd{G_4}{4}{1} \cdot\vect{z_4} = \left[ \dfrac{\dd \vectmc{G_4}{4}{1}}{\dd t} \right]_{\rep{0}}\cdot\vect{z_4}
+=\left[ \dfrac{\dd \vectmc{G_4}{4}{1}\cdot \vect{z_4}}{\dd t} \right]-\vectmc{G_4}{4}{1}\cdot\left[ \dfrac{\dd \vect{z_4}}{\dd t} \right]_{\rep{0}}$
+
+
+
+On a $\vectmc{G_4}{4}{1} =\inertie{G_4}{4} \vecto{4}{1}$ avec $\vecto{4}{1}=\underbrace{\vecto{4}{3}}_{\vect{0}}+\vecto{3}{2}+\vecto{2}{1} =\dot{\theta}_{32} \vect{z_3}+\underbrace{\dot{\theta}_{21}}_{0} \vect{z_2}=\dot{\theta}_{32} \vect{z_4}$.
+
+Donc,
+$\vectmc{G_4}{4}{1}\cdot\vect{z_4}=J_4\dot{\theta}_{32} $.
+
+De plus, $ \left[ \dfrac{ \dd \vect{z_4}}{\dd t} \right]_{\rep{0}} = \vect{0} $. 
+En conséquences, $\vectmd{G_4}{4}{1} \cdot\vect{z_4}  = J_4\ddot{\theta}_{32}$.
+
+Par ailleurs, $\vectg{G_4}{4}{1}= \left[\dfrac{\dd \vectv{G_4}{4}{1}}{\dd t} \right]_{\rep{0}}=\left[\dfrac{\dd \left( -\dot{\theta}_{32}l_3\vect{x_3}  + \dot{\lambda}(t)\vect{z_3} \right)}{\dd t} \right]_{\rep{0}}$
+$= -\ddot{\theta}_{32}l_3\vect{x_3} -\dot{\theta}_{32}l_3    \left(\dot{\theta}_{32} \vect{z_3}\wedge \vect{x_3} \right)  + \ddot{\lambda}(t)\vect{z_3}  $
+
+$= -\ddot{\theta}_{32}l_3\vect{x_3} -l_3   \dot{\theta}_{32}^2  \vect{y_3} + \ddot{\lambda}(t)\vect{z_3}  $.
+
+$\left(\vect{BG_4}\wedge m_4 \vectg{G_4}{4}{1}\right)\cdot\vect{z_4} = 
+m_4\left( \left(l_3 \vect{y_3} + \lambda(t) \vect{z_3}+ b_4 \vect{z_4}\right) \wedge  \left(-\ddot{\theta}_{32}l_3\vect{x_3} -l_3   \dot{\theta}_{32}^2  \vect{y_3} + \ddot{\lambda}(t)\vect{z_3} \right) \right)\cdot \vect{z_{4,3}}$
+
+Par simplification avec les propriétés du produit mixte et du produit vectoriel,
+
+$
+\left(\vect{BG_4}\wedge m_4 \vectg{G_4}{4}{1}\right)\cdot\vect{z_4} =
+m_4\left( \left(l_3 \vect{y_3} \right) \wedge  \left(-\ddot{\theta}_{32}l_3\vect{x_3} \right) \right)\cdot \vect{z_{4,3}}
+=m_4\cdot l_3^2\ddot{\theta}_{32}
+$
+
+
+  Au final,  $\vectmd{B}{4}{1}\cdot\vect{z_4} = J_4 \ddot{\theta}_{32}+\ddot{\theta}_{32}l_3^2 m_4 $.
+
+\end{corrige}
+\else
+\fi
+
 
 %Q 21. 
 \question{En appliquant le principe fondamental de la dynamique, exprimer le couple $C_{m 2}$ sous la forme}
@@ -198,185 +503,162 @@ Donner alors l'expression littérale, puis la valeur numérique de
   \item $C_{r}(t)$ en fonction de $g$ (accélération de la pesanteur), $m_{3}, m_{4}, a_{3}, l_{3}, \alpha_{1}$ et $\theta_{21}$.
 \end{itemize}
 
+\ifprof
+\begin{corrige}
+Par analogie avec la question précédente, on a $\vectmd{B}{3}{1}\cdot\vect{z_4}= J_3\ddot{\theta}_{32}+\ddot{\theta}_{32}a_3^2 m_3$.
+
+En conséquence,  $\vectmd{B}{3+4+5+8}{1}\cdot\vect{z_4} = \left(J_3+J_4+a_3^2 m_3  +l_3^2 m_4\right) \ddot{\theta}_{32}$.
+
+\begin{rem}
+On fait l'hypothèse ici que l'action de 3 sur 7 ou du réducteur sur 7 est bien modélisée par une action mécanique de type couple comme le suggère l'énoncé.
+\end{rem}
+
+
+
+\textbf{On isole l'ensemble $\{3,4,5,8\}$.}
+
+\begin{rem}
+Le schéma peut être trompeur car représenté dans une configuration particulière mais la pesanteur crée un moment en $B$ suivant $\vect{z_0}$.
+\end{rem}
+
+\begin{itemize}
+\item On réalise le bilan des actions mécaniques extérieures. 
+\begin{itemize}
+\item Action de la pesanteur sur 3 : 
+$\vectm{B}{\text{pes}}{3}\cdot \vect{z_4} $ $ =\left(\vect{BG_3}\wedge \left(-m_3g \vect{z_0}\right) \right)\vect{z_4}$ 
+$ =\left(\left( a_3\vect{y_3} + b_3\vect{z_3}  \right)\wedge \left(-m_3g \vect{z_0}\right)\right)\vect{z_4}$
+$ =\left( a_3\vect{y_4} \wedge \left(-m_3g \vect{z_0}\right)\right)\vect{z_4}$
+$ =\left( \vect{z_4} \wedge a_3\vect{y_4}\right)\cdot  \left(-m_3g \vect{z_0}\right)$
+$ = a_3 m_3g \left( \vect{x_3}\cdot \vect{z_0} \right)$
+$ = a_3 m_3g \left(  \cos\theta_{32} \vect{x_2'} +\sin\theta_{32} \vect{y_2'} \right)\cdot \vect{z_0} $
+
+On utilise les hypothèses de linéarisation vues précédemment et on a 
+$\vectm{B}{\text{pes}}{3}\cdot \vect{z_4}= a_3 m_3g \vect{x_2'} \cdot \vect{z_0} $ 
+$= a_3 m_3g \vect{x_2} \cdot \vect{z_0} $
+$= a_3 m_3g \left( \cos \theta_{21} \vect{x_1} +\sin \theta_{21} \vect{y_1} \right)\cdot \vect{z_0} $
+$= a_3 m_3g \left( \cos \theta_{21} \vect{x_0} +\sin \theta_{21}  \left( \cos \alpha_1 \vect{y_0} + \sin \alpha_1 \vect{z_0} \right) \right)\cdot \vect{z_0} $
+$= a_3 m_3g \sin \theta_{21}   \sin \alpha_1    $. En faisant l'application numérique, on a donc 
+$\vectm{B}{\text{pes}}{3}\cdot \vect{z_4}= a_3 m_3g  \dfrac{\sqrt{2}}{2} \dfrac{\sqrt{3}}{2}$
+
+\item Action de la pesanteur sur 4 : 
+$\vectm{B}{\text{pes}}{4}\cdot \vect{z_4} $ $ =\left(\vect{BG_4}\wedge \left(-m_4g \vect{z_0}\right) \right)\vect{z_4}$ 
+
+$ =\left(\left(l_3\vect{y_3} + \lambda(t) \vect{z_{3,4}} + b_4\vect{z_{3,4}} \right)\wedge \left(-m_4g \vect{z_0}\right) \right)\vect{z_{3,4}}
+=\overrightarrow{z}_{3,4}\wedge l_3\overrightarrow{y}_3\cdot \left(-m_4\cdot g\cdot \overrightarrow{z}_0\right)=m_4l_3g\overrightarrow{x}_3\cdot \overrightarrow{z}_0
+$
+
+Or,
+
+$\overrightarrow{x}_3=\cos\theta_{32}\overrightarrow{x}_{2,2'}+\sin\theta_{32}\overrightarrow{y}_{2'}$
+
+avec $\cos\theta_{32}\approx 1$ et $\sin\theta_{32}\approx 0$
+
+ Donc, 
+ 
+ $\overrightarrow{x}_3\cdot \overrightarrow{z}_0=\left(\cos\theta_{21}\overrightarrow{x}_{1,0}+\sin\theta_{21}\overrightarrow{y}_1\right)\cdot \overrightarrow{z}_0=\sin\theta_{21}\sin\alpha_1=\dfrac{\sqrt{6}}{4}$
+ On obtient alors,
+ 
+ $\vectm{B}{\text{pes}}{4}\cdot \vect{z_4} = =l_3 m_4g\sin\theta_{21}\sin\alpha_1 =l_3 m_4g  \dfrac{\sqrt{6}}{4}$.
+
+\item $\vectm{B}{2}{3}\cdot \vect{z_0}=0$.
+\item $\vectm{B}{7}{3}\cdot \vect{z_4}=C_{73}$ (Indication du sujet).
+\end{itemize}
+\item En appliquant le théorème du moment dynamique en $B$ en projection sur $\vect{z}$ on a donc 
+$  \left( a_3^2 m_3  +l_3^2 m_4+J_3+J_4\right) \ddot{\theta}_{32}=C_{73} + g  \sin \theta_{21}   \sin \alpha_1 \left( a_3 m_3 + l_3 m_4\right) $.
+\end{itemize}
+
+\textbf{Il semblerait que ce qui est attendu soit d'utiliser ${C_{73}}=C_{m2}\dfrac{\eta_9}{r_9}$, mais cette relation avait été établie en régime permanent ce qui n'est plus le cas. } 
+
+
+$\left(J_3+J_4  + a_3^2 m_3  +l_3^2 m_4 \right) \ddot{\theta}_{32} =C_{m2}\dfrac{\eta_9}{r_9}+ g  \sin \theta_{21}   \sin \alpha_1 \left( a_3 m_3 + l_3 m_4\right) $.
+
+Par identification, on a donc :
+\begin{itemize}
+\item $\indice{J}{eq} = J_3+J_4  + a_3^2 m_3  +l_3^2 m_4$;
+\item $A  =\dfrac{\eta_9}{r_9}$;
+\item $C_r(t)=g  \sin \theta_{21}   \sin \alpha_1 \left( a_3 m_3 + l_3 m_4\right) $.
+\end{itemize}
+
+\begin{rem} 
+$\indice{J}{eq}$ dépendrait aussi de $a_3$ et $m_3$.
+\end{rem}
+\end{corrige}
+\else
+\fi
+
+
 %Q 22.
 \question{À partir de la figure \ref{fig_10}, déterminer les valeurs expérimentales du couple résistant $C_{r}(t)$ et de l'inertie équivalente $J_{\text {eq }}$ ramenée sur l'axe $\left(B, \vec{z}_{3}\right)$.}
+\ifprof
+\begin{corrige}
+\begin{itemize}
+\item \textbf{Méthode 1 : }
+D'après l'expression donnée, on a $C_r(t)=\indice{J}{eq}\ddot{\theta}_{32}(t)-A C_{m2}(t)$.
+Lorsque la vitesse est constante, on a donc $C_r(t)=-A C_{m2}(t)$ avec $C_{m2}(t)=-\SI{53,25}{Nm}$ et 
+$C_r(t)= \dfrac{0,78}{0,25} \cdot  53,25  = \SI{166,14}{Nm}$.   \textbf{Trop grand.}
+
+
+À accélération constante, $\ddot{\theta}_{32} = \dfrac{0,075}{0,25}=\SI{0,3}{rad.s^{-2}}$. 
+
+On a donc 
+$\indice{J}{eq}=\dfrac{C_r(t)+A C_{m2}(t)}{\ddot{\theta}_{32}(t)}=\dfrac{C_r(t)-A 51,25}{0,3}$ 
+$\dfrac{166,14  -51,25\dfrac{0,78}{0,25}}{0,3}=\SI{20,8}{kg.m^2}$. 
+
+\item \textbf{Méthode 2 : }
+Soit,
+\begin{itemize}
+\item $C^{a}_{m2}=C_{m2}(t)\approx-\SI{51,2}{Nm}$ pour $t\in\left[0;0,25\right]$ ;
+\item $C^{b}_{m2}=C_{m2}(t)\approx-\SI{53}{Nm}$ pour $t\in\left[0,25;0,75\right]$ ;
+\item $C^{b}_{m2}=C_{m2}(t)\approx-\SI{55}{Nm}$ pour $t\in\left[0,75;1\right]$ ;
+\item $\ddot{\theta}_{32}(t)=\ddot{\theta}_{32a}=\dfrac{0,075}{0,25}=\SI{0,3}{rad. s^{-2}}$ pour $t\in \left[0;0,25\right]$
+\end{itemize}
+
+On obtient alors 3 équations : 
+$
+\left\{
+\begin{array}{l}
+\indice{J}{eq}\ddot{\theta}_{32a}=A\cdot C^{a}_{m2}+C_r(t) \quad (a)\\
+0=A\cdot C^{b}_{m2}+C_r(t)  \quad (b)\\
+-\indice{J}{eq}\ddot{\theta}_{32a}=A\cdot C^{c}_{m2}+C_r(t)  \quad (c)\\
+\end{array}
+\right.
+$
+
+En combinant les équations : 
+\begin{itemize}
+\item $(b) \rightarrow C_r(t)=-A\cdot  C^{b}_{m2}=-\dfrac{\eta_9}{r_9}C^{b}_{m2}\approx \SI{165,67}{Nm}$
+\item $(a)-(c)\rightarrow 2 \indice{J}{eq} \ddot{\theta}_{32a}=A\cdot \left(C^{a}_{m2}-C^{c}_{m2}\right)$
+\end{itemize}
+
+On obtient alors,
+
+\begin{align*}
+\indice{J}{eq}=\dfrac{A\cdot \left(C^{a}_{m2}-C^{c}_{m2}\right)}{2\ddot{\theta}_{32a}} \approx \SI{19,76}{kg}\cdot m^2
+\end{align*}
+\end{itemize}
+\end{corrige}
+\else
+\fi
+
 
 %Q 23. 
 \question{À partir de la figure \ref{fig_10}, en comparant les valeurs théoriques et expérimentales de l'inertie équivalente et du couple résistant ramenés sur l'arbre 7 du motoréducteur, expliquer les écarts éventuels et conclure sur la validité du modèle utilisé.}
+\ifprof
+\begin{corrige}
+En faisant l'application numérique à partir des données de l'énoncé, on trouve : 
 
-\section{Définition et analyse de la chaine d'asservissement du robot esclave}
-\begin{obj}
-Définir le régulateur de la chaine d'asservissement du robot esclave, analyser ses performances vis-à-vis des perturbations en se limitant à celles dues aux couples de frottement sec et compléter la chaine d'asservissement par la compensation de ces efforts.
-\end{obj}
+$
+\left\{
+\begin{array}{c}
+J_{\text{eqth}}=\SI{18,1}{kg m^2} \\
+C_{\text{rth}}=-\SI{85,57}{N m}
+\end{array}
+\right.
+$
 
-Un robot étant un système multivariable comportant en particulier des couplages entre les dynamiques des différents axes, la mise en place d'une loi de commande prenant en compte tous les axes peut se révéler complexe. Dans le cadre de ce sujet, on suppose
+Le moment d'inertie équivalent trouvé expérimentalement est supérieur au moment d'inertie théorique avec un écart de l'ordre de $10\%$ probablement du aux hypothèses concernant l'utilisation rendement.
 
-\begin{itemize}
-  \item que des boucles internes locales à chaque axe motorisé ont été mises en place pour asservir le couple de chaque articulation à un couple de référence. Ceci permet de considérer le robot comme un système dont les entrées sont les couples moteurs intervenant dans les différentes articulations ;
-  \item que des termes de compensation active des couples dus à la pesanteur ont été mis en place sur chaque articulation ;
-  \item que les couplages entre les axes sont modélisés comme des entrées de perturbation dans les chaines d'asservissement.\\
-L'objectif de cette partie est de déterminer la loi de commande permettant d'assurer l'asservissement de position des articulations $\theta_{32}$ et $\theta_{21}$ à des angles de référence issus du modèle cinématique inverse (figure \ref{fig_02}). Pour la suite de l'étude, on note les positions articulaires $q_{j}=\theta_{j}[j=32,21]$ et les consignes pour les chaines d'asservissement associées $q_{j}^{*}=\theta_{j}^{*}[j=32,21]$.
-\end{itemize}
-
-\subsection{Calcul d'un correcteur et analyse partielle des performances de la chaine d'asservissement}
-\begin{obj}
-Déterminer un correcteur pour la chaine d'asservissement de la position angulaire des articulations. Afin d'aboutir à une démarche générale (indépendante d'une articulation particulière), la loi de commande sera paramétrée par le moment d'inertie équivalent de l'articulation considérée.
-\end{obj}
-
-Au regard des hypothèses précédentes, la synthèse du correcteur associé à une articulation $j$ peut être effectuée en utilisant le modèle suivant
-
-$$
-\indice{J}{eq} \ddot{q}_{j}(t)=c_{j}(t)+c_{\mathrm{ext}}(t)
-$$
-
-où $q_{j}$ est l'angle de rotation de l'articulation considérée, $\indice{J}{eq}$ est le moment d'inertie équivalent ramené sur l'axe de l'articulation $j, c_{j}$ est le couple moteur pour l'articulation considérée et $c_{\text {ext }}$ modélise un couple perturbateur représentant: les efforts de frottement sec, le couple dû à l'influence des autres axes et d'éventuels couples résiduels modélisant les incertitudes de compensation des effets de la gravité.
-
-En supposant que les hypothèses précédentes sont validées, la chaine d'asservissement de l'articulation considérée est représentée par le schéma bloc de la figure \ref{fig_11} où $T(p)=Q_{j}(p) / C_{j}(p)$ est la fonction de transfert du couple de commande $c_{j}$ de l'articulation $j$ vers la position $q_{j}$ et où $K_{1}$ et $K_{2}$ sont les gains de la loi de commande choisie.
-
-\begin{figure}[!h]
-\centering
-\includegraphics[width=.7\textwidth]{2024_08_29_b4f920ed3822451bf72bg-10}
-\caption{\label{fig_11}Modèle de synthèse de la chaine d'asservissement d'une articulation}
-\end{figure}
-
-Les mesures disponibles étant réalisées au moyen de capteurs placés directement sur les motoréducteurs pour des questions de facilité de réalisation, on suppose que les grandeurs disponibles sont les positions angulaires des articulations. Pour cette raison, l'asservissement des axes est réalisé sur les mesures des positions angulaires des articulations et non directement sur les positions cartésiennes. Le cahier des charges partiel de cet asservissement est donné par le diagramme des exigences de la figure \ref{fig_12} déduit des exigences exprimées dans le repère cartésien du cahier des charges figure \ref{fig_03}.
-
-\begin{figure}[!h]
-\centering
-\includegraphics[max width=\textwidth]{2024_08_29_b4f920ed3822451bf72bg-11}
-\caption{\label{fig_12}Diagramme des exigences de la chaine d'asservissement}
-\end{figure}
-
-%Q 24. 
-\question{Déterminer l'expression de $T(p)$. Exprimer, sous forme canonique, la fonction de transfert en boucle fermée $F_{j}(p)=\frac{Q_{j}(p)}{Q_{j}^{*}(p)}$ en fonction de $\indice{J}{eq}, K_{1}$ et $K_{2}$. Déterminer alors les expressions littérales de $K_{1}$ et $K_{2}$ en fonction de $\indice{J}{eq}$, de la pulsation propre $\omega_{0}$ et de l'amortissement $\xi$ (exigence 5.1.1 du cahier des charges figure \ref{fig_12}).}
-
-Un des problèmes majeurs de ce type de robot, surtout aux faibles vitesses de déplacement, est la présence d'efforts de frottement sec de valeur importante qui peuvent se traduire par des oscillations aux faibles vitesses ou encore par des erreurs en régime permanent. Pour l'analyse en régime permanent, une solution est de modéliser ce type d'effort comme un signal perturbateur externe constant.\\
-
-%Q 25. 
-\question{En conservant les gains $K_{1}$ et $K_{2}$ déterminés précédemment, préciser la fonction de transfert en boucle fermée $D(p)=\frac{Q_{j}(p)}{C_{\text {ext }}(p)}$ en fonction de $\indice{J}{eq}, \omega_{0}$ et $\xi$. Déterminer alors littéralement l'écart en régime permanent, $\lim _{t \rightarrow+\infty} \varepsilon(t)$, pour une variation en échelon de l'effort perturbateur $c_{\text {ext }}(t)=C_{\text {ext } 0} \Upsilon(t)$ d'amplitude $C_{\text {ext } 0}$ où $\Upsilon(t)$ représente l'échelon d'Heaviside. Conclure sur la performance associée.}
-
-%III.B - 
-\subsection{Amélioration des performances par compensation du couple de perturbation}
-%Objectif\\
-\begin{obj}
-Améliorer les performances de la loi de commande vis-à-vis des couples perturbateurs extérieurs.
-\end{obj}
-
-Une solution pour améliorer la performance en précision serait de compléter le correcteur en introduisant un terme intégral. Cependant, l'introduction de ce terme diminuera les marges de stabilité et son calcul peut s'avérer difficile au regard de la fonction de transfert en boucle ouverte s'il est nécessaire d'assurer un certain niveau de performance dynamique.
-
-Une solution alternative est de compenser le terme perturbateur en introduisant une loi de commande $c_{j}(t)=$ $\tilde{c}_{j}(t)-c_{\text {ext }}(t)$ (soit après compensation, un modèle du procédé à considérer $\indice{J}{eq} \ddot{q}_{j}(t)=\tilde{c}_{j}(t)$ ne faisant pas apparaître de terme perturbateur). Cependant, cette solution nécessite de disposer de la mesure du signal perturbateur, irréalisable en pratique. Afin de répondre à ce problème, une solution est de mettre en place un observateur permettant d'obtenir une estimée $\hat{c}_{\text {ext }}(t)$ du couple extérieur. Cet observateur est mis en place en utilisant les relations suivantes
-
-$$
-\left\{\begin{array}{l}
-\hat{Q}_{j}(p)=T(p)\left(C_{j}(p)+\hat{C}_{\mathrm{ext}}(p)\right) \\
-\hat{C}_{\mathrm{ext}}(p)=K(p)\left(Q_{j}(p)-\hat{Q}_{j}(p)\right)
-\end{array}\right.
-$$
-
-où $K(p)$ est un correcteur à déterminer et $\hat{Q}_{j}(p)$ une estimation de $Q_{j}(p)$.\\
-
-%Q 26. 
-\question{En utilisant ces équations, compléter le schéma bloc modélisant cet observateur (figure \ref{fig_B} du document réponse).}
-
-\question{Au moyen d'une approche à choisir, montrer que le schéma bloc de la figure \ref{fig_B} , représentatif de l'observateur, peut être réduit au schéma bloc équivalent de la figure \ref{fig_13}.}
-
-\begin{figure}[!h]
-\centering
-\includegraphics[width=.6\textwidth]{2024_08_29_b4f920ed3822451bf72bg-12}
-\caption{\label{fig_13} Modèle équivalent de l'estimateur du couple perturbateur}
-\end{figure}
-
-
-Le calcul du correcteur $K(p)$ peut être alors effectué en utilisant le schéma bloc de la figure \ref{fig_13} où $C_{\text {ext }}(p)$ peut être interprété comme une consigne fictive.
-
-%Q 28. 
-\question{En adoptant une démarche comparable à celle utilisée dans la sous-partie III.A, proposer la fonction de transfert d'un correcteur $K(p)$ à deux paramètres, notés $K_{1}^{\prime}$ et $K_{2}^{\prime}$, de façon à ce que la fonction de transfert en boucle fermée ait un polynôme caractéristique du second ordre $\left(p+\omega_{0}^{\prime}\right)^{2}$, d'amortissement $\xi=1$ et de pulsation propre $\omega_{0}^{\prime}=5 \omega_{0}$. Exprimer littéralement ces deux paramètres en fonction de $\indice{J}{eq}, \omega_{0}$ et $\xi$. On s'attachera à justifier brièvement que l'erreur en régime permanent est nulle vis-à-vis d'un couple $c_{\text {ext }}$ constant, c'est à dire que $\lim\limits_{t \rightarrow \infty}\left(c_{\text {ext }}(t)-\hat{c}_{\text {ext }}(t)\right)=0$ en réponse à une variation en échelon du couple perturbateur $c_{\text {ext }}(t)=C_{\text {ext } 0} \Upsilon(t)$.}
-
-Cette première structure de commande correspondant à la relation
-
-$$
-C_{j}(p)=\tilde{C}_{j}(p)-\hat{C}_{\text {ext }}(p)=\left(K_{1}\left(Q_{j}^{*}(p)-Q_{j}(p)\right)-K_{2} p Q_{j}(p)\right)-\hat{C}_{\text {ext }}(p)
-$$
-
-peut être représentée par le schéma bloc de la figure \ref{fig_14}. Elle sera conservée et complétée dans la suite de l'étude.
-
-
-\begin{figure}[!h]
-\centering
-\includegraphics[width=.9\textwidth]{2024_08_29_b4f920ed3822451bf72bg-12(1)}
-\caption{\label{fig_14} Schéma bloc de la commande avec estimation et compensation de couple perturbateur}
-\end{figure}
-
-
-L'introduction de la compensation $C_{j}(p)=\left(K_{1}\left(Q_{j}^{*}(p)-Q_{j}(p)\right)-K_{2} p Q_{j}(p)\right)-\hat{C}_{\text {ext }}(p)$ de la perturbation modifie la structure de la boucle et la stabilité en boucle fermée n'est plus garantie à priori.
-
-%Q 29. 
-\question{En utilisant cette compensation, déterminer la fonction de transfert $\frac{Q_{j}(p)}{C_{\text {ext }}}$ et l'exprimer en fonction de $T(p), K_{1}, K_{2}$ et $K(p)$ (on supposera que la consigne est nulle $Q_{j}^{*}=0$ et que le système est bouclé par le correcteur déterminé à la sous-partie III.A). En déduire le polynôme caractéristique puis, en justifiant la réponse, conclure sur la stabilité du système bouclé et sur l'écart en régime permanent lorsque le couple perturbateur $c_{\text {ext }}$ est constant.}
-
-\section{Analyse des performances vis-à-vis des mouvements respiratoires}
-\begin{obj}
-Quantifier le niveau de performance de la loi de commande déterminée en considérant la consigne correspondant aux mouvements physiologiques. Une amélioration de la loi de commande est ensuite envisagée sous la forme d'une anticipation sur la consigne pour améliorer les performances.
-\end{obj}
-
-Cette partie porte sur l'analyse et l'amélioration des performances vis-à-vis des signaux respiratoires. Pour ce type de signaux, la consigne de position angulaire est modélisée par le signal $q_{j}^{*}(t)=B \sin (\omega t)$ où l'amplitude $B$ (comprise entre 0,04 et $\SI{0,09}{rad}$ ) et la pulsation $\omega$ (comprise entre les deux valeurs $\omega_{1}$ et $\omega_{2}$ ) sont calculées à partir des deux termes sinusoïdaux retenus dans la partie I.A. On considère le schéma de la figure \ref{fig_11}, on suppose que la structure de correction permet d'assurer la pulsation propre $\omega_{0}$ souhaitée en boucle fermée et que les perturbations extérieures sont nulles $\left(C_{\text {ext }}=0\right)$.\\
-
-%Q 30. 
-\question{La fonction de transfert de la consigne $Q_{j}^{*}(p)$ vers l'écart $\varepsilon(p)$, obtenue à partir du schéma bloc de la figure \ref{fig_11}, peut être approchée dans la bande de pulsations $\omega \ll \omega_{0}$, caractéristique des signaux de consigne, par la relation $\frac{\varepsilon(p)}{Q_{j}^{*}(p)} \approx 0,066 p$. En utilisant cette approximation, calculer l'amplitude de l'écart en régime permanent vis-à-vis des deux termes de consigne sinusoïdaux retenus pour modéliser les mouvements respiratoires. Conclure sur cette performance comparativement aux exigences de précision du cahier des charges exprimées dans la figure \ref{fig_12}.}
-
-Afin d'améliorer ce niveau de performance, on complète la loi de commande en ajoutant un terme d'anticipation $c_{a}(t)$ selon la structure de commande représentée d'un point de vue symbolique par le schéma de la figure \ref{fig_15} (pour cette partie, on ne tiendra pas compte des perturbations, seule la structure représentée sur ce schéma bloc sera considérée). La conception de ce terme d'anticipation est l'objectif de la suite de l'étude.
-
-\begin{figure}[!h]
-\centering
-\includegraphics[width=.9\textwidth]{2024_08_29_b4f920ed3822451bf72bg-13}
-\caption{\label{fig_15} Structure de commande avec anticipation sur la consigne}
-\end{figure}
-
-%Q 31. 
-\question{En utilisant les différents éléments de la structure représentée, en particulier la fonction de transfert $T(p)=\frac{Q_{j}(p)}{C_{j}(p)}$, et en supposant que la consigne est idéalement suivie sans erreur, c'est à dire $q_{j}(t) \equiv q_{j}^{*}(t)$, donner en fonction de $q_{j}^{*}(t)$ et de ses dérivées l'expression temporelle du couple idéal $c_{j}(t)$ et du couple $c_{u}(t)$ issu du correcteur. En déduire alors l'expression du terme d'anticipation $c_{a}(t)$ qu'il est nécessaire d'ajouter pour obtenir le comportement souhaité.}
-
-La structure de commande avec anticipation sur la consigne peut être réalisée selon le schéma bloc de la figure \ref{fig_16}.
-
-\begin{figure}[!h]
-\centering
-\includegraphics[width=.9\textwidth]{2024_08_29_b4f920ed3822451bf72bg-13(1)}
-\caption{\label{fig_16} Structure de commande avec anticipation sur consigne}
-\end{figure}
-
-
-%Q 32. 
-\question{Au regard de cette représentation (figure \ref{fig_16}):}
-\textit{\begin{itemize}
-  \item déterminer la fonction de transfert du correcteur par anticipation $K_{a}(p)$;
-  \item déterminer la fonction de transfert en boucle fermée $F(p)=\frac{Q_{j}(p)}{Q_{j}^{*}(p}$. Justifier alors que l'erreur est nulle vis-à-vis de la consigne et en particulier vis-à-vis de signaux de consigne sinusoïdaux.\\
-\end{itemize}}
-
-Une fonction telle que $K_{a}(p)$ est difficile à réaliser en pratique, voire impossible. La réalisation de la loi de commande est numérique et on implante cette loi de commande selon la structure de la figure \ref{fig_17} en séparant le mouvement périodique dû à la respiration $\delta q_{j}^{*}(t)=B_{1} \sin \left(\omega_{1} t+\theta_{1}\right)+B_{2} \sin \left(\omega_{2} t+\theta_{2}\right)$ de la partie due à la consigne correspondant au point de fonctionnement $Q_{j 0}^{*}(p)$.
-
-
-\begin{figure}[!h]
-\centering
-\includegraphics[max width=\textwidth]{2024_08_29_b4f920ed3822451bf72bg-14}
-\caption{\label{fig_17} Schéma d'implantation de la structure de commande avec anticipation sur la consigne}
-\end{figure}
-
-%Q 33. 
-\question{Donner alors l'équation permettant de calculer le signal d'anticipation $c_{a}(t)$ pour le cas du signal $\delta q_{j}^{*}(t)$ sinusoïdal retenu pour modéliser les mouvements physiologiques.}
-
-\paragraph*{Question de synthèse}
-
-En adoptant cette stratégie de commande :
-\begin{itemize}
-  \item la figure \ref{fig_18} montre le déplacement de la position angulaire de l'axe 3 en réponse à une variation en échelon d'amplitude $\SI{0,3}{rad}$ de la consigne ;
-  \item la figure \ref{fig_19} montre les évolutions de la consigne sinusoïdale destinée à suivre les mouvements physiologiques, de la sortie et du signal d'écart associé.
-\end{itemize}
-
-\begin{figure}[!h]
-\centering
-\includegraphics[max width=.7\textwidth]{2024_08_29_b4f920ed3822451bf72bg-14(1)}
-
-\caption{\label{fig_18} Axe 3 : réponse à une variation en échelon d'amplitude $0,3 \mathrm{rad}$ de la consigne de position articulaire}
-\end{figure}
-
-%Q 34. 
-\question{Analyser les réponses obtenues et conclure (en argumentant la réponse) sur la pertinence de ce système au regard de la problématique de compensation des mouvements physiologiques pour les robots de téléopération en chirurgie mini-invasive.}
-
+Le couple résistant théorique est deux fois inférieur au couple résistant réel. L'hypothèse concernant l'utilisation du rendement permettrait probablement d'expliquer ces écarts. De plus les liaisons ont été supposées parfaite ici et le couple résistant théorique ne dépend que l'action de la pesanteur. Il faudrait prendre en compte les frottements secs et visqueux. 
+\end{corrige}
+\else
+\fi
