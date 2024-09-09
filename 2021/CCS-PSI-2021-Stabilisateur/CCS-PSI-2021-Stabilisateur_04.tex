@@ -144,7 +144,7 @@ soit $\boxed{\arg\left(C\left(j\omega_{c,\SI{0}{dB}}\right)\right)=\Delta\varphi
 \fi
 
 %Q 21. 
-\question{\label{q:21} Déterminer l'expression littérale du paramètre $T$ du correcteur. Effectuer l'application numérique. (On pourra raisonner sur la marge de phase et sur le calcul de l'argument de la fonction de transfert adéquate.}
+\question{\label{q:21} Déterminer l'expression littérale du paramètre $T$ du correcteur. Effectuer l'application numérique. (On pourra raisonner sur la marge de phase et sur le calcul de l'argument de la fonction de transfert adéquate.)}
 \ifprof
 \begin{corrige}
 $\arg\left(C\left(j\omega\right)\right)=\arg{\dfrac{K}{2T}}+2\arg\left(1+Tj\omega\right)-\arg(j\omega)=0+2\arctan\left(T\omega\right)-\dfrac{\pi}{2}$. En conséquence:
@@ -178,7 +178,7 @@ Application numérique : $\boxed{K \simeq 0,93}$.
 \subsection{Spécification de l'actionneur}
 \ifprof
 \else
-Pour concevoir le prototype, il faut définir la chaine de motorisation. Dans ce but, l'actionneur est supposé asservi. La relation entre le couple de consigne et le couple moteur est modélisé par une fonction de transfert du premier ordre
+Pour concevoir le prototype, il faut définir la chaine de motorisation. Dans ce but, l'actionneur est supposé asservi. La relation entre le couple de consigne et le couple moteur est modélisé par une fonction de transfert du premier ordre :
 
 $$
 \Delta(p)=\frac{C_{m}(p)}{C_{m}^{*}(p)}=\frac{1}{1+\tau p} .
@@ -293,13 +293,13 @@ $\omega=\SI{1}{rad.s^{-1}}$, $\omega=\SI{10}{rad.s^{-1}}$ et $\omega=\SI{100}{ra
 
 %Q 25. 
 \question{\label{q:25} En exploitant le document réponse :}
-%\textit{
+\vspace{-.3cm}\textit{
 \begin{itemize}
   \item déterminer la valeur de $\tau$ qui assure la stabilité ;
   \item déterminer la valeur de $\tau$ qui assure un amortissement correct en considérant qu'il est obtenu lorsque la marge de phase est d'au moins $60^{\circ}$;
 \item conclure sur une valeur de $\tau$ maximale admissible à spécifier pour le choix du motoréducteur.
 \end{itemize}
-%}
+}
 \ifprof
 \begin{corrige}
 On répond aux différents points dans l'ordre:
