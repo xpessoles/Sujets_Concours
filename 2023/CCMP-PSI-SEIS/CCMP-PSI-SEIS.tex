@@ -93,11 +93,11 @@ Le schéma cinématique et le paramétrage du dispositif sont fournis en Annexe 
 
 On désigne par «~ensemble mobile~» le pendule noté (2) équipé du contrepoids noté (3). Le bâti, lié au sol, est noté~(1).
 
-\question{Écrire l'équation traduisant l'équilibre de l'ensemble mobile $\{(2)+(3)\}$ sur Terre, lorsque $\alpha(t)=\alpha_{\mathrm{eq}}$. Préciser le bilan des actions mécaniques extérieures, le théorème ou principe utilisé, et les éléments d'application (projection, point éventuel).}
+\question{\label{ccmp2023_q_01}Écrire l'équation traduisant l'équilibre de l'ensemble mobile $\{(2)+(3)\}$ sur Terre, lorsque $\alpha(t)=\alpha_{\mathrm{eq}}$. Préciser le bilan des actions mécaniques extérieures, le théorème ou principe utilisé, et les éléments d'application (projection, point éventuel).}
 
 Sur Mars, le pendule (2) n'est pas équipé du contrepoids (3). Cependant, la position d'équilibre du pendule (2) sans contrepoids (3) sur Mars, et celle du pendule (2) avec le contrepoids (3) sur Terre, doivent être identiques.
 
-\question{Donner la condition sur la masse $m_{3}$ et la variable $b$ pour compenser la différence de pesanteur entre la Terre et Mars. Pour cela, exprimer le produit $b m_{3}$ en fonction de $a$, $M_{2}, g_{T}$ et $g_{M}$.}
+\question{\label{ccmp2023_q_02}Donner la condition sur la masse $m_{3}$ et la variable $b$ pour compenser la différence de pesanteur entre la Terre et Mars. Pour cela, exprimer le produit $b m_{3}$ en fonction de $a$, $M_{2}, g_{T}$ et $g_{M}$.}
 
 Cette condition étant respectée, on peut alors traduire l'équilibre de l'ensemble mobile sur Terre :
 
@@ -107,7 +107,7 @@ a M_{2} g_{\mathrm{M}} \sin \alpha_{\mathrm{eq}}+C_{0}-k\left(\alpha_{\mathrm{eq
 $$
 
 
-\subsection*{2.2 Conception d'un mécanisme de translation du centre d'inertie du pendule}
+\subsection{Conception d'un mécanisme de translation du centre d'inertie du pendule}
 Si l'inclinaison de la surface sur laquelle le sismomètre est posé n'est pas correctement corrigée par les pieds réglables, la position $a$ du centre d'inertie $G_{2}$ du pendule (2) le long de l'axe $\left(O_{1}, \overrightarrow{y_{2}}\right)$ peut être réglée à distance. Cela permet notamment d'assurer que $\alpha_{\mathrm{eq}}$ conserve une valeur optimale déterminée lors d'expérimentations sur Terre.
 
 Pour cela, un mécanisme embarqué sur (2), constitué d'un moteur pas-à-pas, d'un réducteur à train épicycloïdal, d'un joint d'accouplement (joint d'Oldham) et d'un système vis-écrou, indiqués en Figure 4, est guidé en translation le long de l'axe  $\axe{O_1}{y_2}$.
@@ -124,8 +124,6 @@ Justifier les choix de conception du mécanisme de translation du centre d'inert
 %\end{figure}
 
 
-
-
 \begin{minipage}[c]{.45\linewidth}
     \includegraphics[height=6.5cm]{2024_04_26_3285cfc264024262add0g-05(1)}
     \captionof{figure} {\label{ccmp2023_fig_04} Photographie du mécanisme de réglage de la position du centre d'inertie du pendule. Le mécanisme est ici fixé sur un support métallique incliné représentant le corps du pendule (2).}
@@ -136,32 +134,16 @@ Justifier les choix de conception du mécanisme de translation du centre d'inert
         \captionof{figure} {\label{ccmp2023_fig_05} Schéma cinématique du guidage en translation des tiges (4) par rapport au corps du pendule (2)}
 \end{minipage}
 
-\end{document}
-
-
-\begin{figure}[!h]
-\centering
-\includegraphics[width=\textwidth]{2024_04_26_3285cfc264024262add0g-05(2)}
-\caption{\label{ccmp2023_fig_01}
-\end{figure}
-
-$(4)$
-\begin{figure}[!h]
-\centering
-\includegraphics[width=\textwidth]{2024_04_26_3285cfc264024262add0g-05}
-\caption{\label{ccmp2023_fig_0}}
-\end{figure}
-
-Figure 5 - Schéma cinématique du guidage en translation des tiges (4) par rapport au corps du pendule (2)
 
 Pendant la phase de réglage de la position de son centre d'inertie, on suppose que le corps du pendule (2) reste immobile. L'ensemble du mécanisme embarqué est considéré comme mobile par rapport au corps du pendule (2) le temps de cette étude.
 
 Le guidage en translation des tiges (4) par rapport à (2) permettant le réglage de la position du centre d'inertie est réalisé par l'association de 4 liaisons en parallèle (voir FIGURE 5).
 
 
-Q3. Compléter, sur le Cahier Réponses, le graphe des liaisons fourni avec les noms et la (les) caractéristique(s) géométrique(s) des liaisons. Donner le nombre de boucles indépendantes (nombre cyclomatique $\gamma$ ) de ce modèle.
+%Q3. 
+\question{\label{ccmp2023_q_03}Compléter, sur le Cahier Réponses, le graphe des liaisons fourni avec les noms et la (les) caractéristique(s) géométrique(s) des liaisons. Donner le nombre de boucles indépendantes (nombre cyclomatique $\gamma$ ) de ce modèle.}
 
-Q4. Déterminer le degré d'hyperstatisme $h$ de ce modèle. Préciser les mobilités internes $\left(m_{i}\right)$ et utiles $\left(m_{u}\right)$. Justifier, au regard du système et de son contexte d'utilisation, l'intérêt d'un tel degré d'hyperstatisme pour la réalisation du guidage.
+\question{\label{ccmp2023_q_04}Déterminer le degré d'hyperstatisme $h$ de ce modèle. Préciser les mobilités internes $\left(m_{i}\right)$ et utiles $\left(m_{u}\right)$. Justifier, au regard du système et de son contexte d'utilisation, l'intérêt d'un tel degré d'hyperstatisme pour la réalisation du guidage.}
 
 L'association des 4 liaisons en parallèle entre (4) et (2) correspond à une liaison glissière équivalente de direction $\overrightarrow{y_{2}}$. La suite de l'étude s'appuiera sur le schéma cinématique réduit de la FigURE 6 faisant apparaître cette liaison équivalente, ainsi que des éléments du mécanisme embarqué. Le schéma cinématique réduit de l'ensemble du mécanisme est fourni en Annexe 3.
 
@@ -179,27 +161,34 @@ On suppose que le joint est assemblé sans jeu entre les différentes surfaces d
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=\textwidth]{2024_04_26_3285cfc264024262add0g-06(1)}
-\caption{\label{ccmp2023_fig_01}
+\includegraphics[width=4cm]{2024_04_26_3285cfc264024262add0g-06(1)}
+\caption{\label{ccmp2023_fig_06} Schéma cinématique réduit du mécanisme de déplacement du centre d'inertie du pendule}
+%FigURE 6 - Schéma cinématique réduit du mécanisme de déplacement du centre d'inertie du pendule\\
 \end{figure}
 
-FigURE 6 - Schéma cinématique réduit du mécanisme de déplacement du centre
-
-d'inertie du pendule\\
+\begin{figure}[!h]
+\centering
 \includegraphics[width=\textwidth]{2024_04_26_3285cfc264024262add0g-06}
-\caption{\label{ccmp2023_fig_01}
+\caption{\label{ccmp2023_fig_07} Joint d'Oldham assemblé (à gauche) et éclaté (à droite)}
+%FiguRe 7 - Joint d'Oldham assemblé (à gauche) et éclaté (à droite)
+\end{figure}
 
-FiguRe 7 - Joint d'Oldham assemblé (à gauche) et éclaté (à droite)
 
-Q5. À l'aide de la FigURe 7 et par analyse des surfaces de contact, identifier la liaison entre $(\mathbf{N})$ et (5) d'une part, et entre (N) et (v) d'autre part. Compléter le schéma cinématique en 3D du Cahier Réponses en traçant ces liaisons.
+%Q5. 
+\question{\label{ccmp2023_q_05}À l'aide de la figure \ref{ccmp2023_fig_07} et par analyse des surfaces de contact, identifier la liaison entre $(\mathbf{N})$ et (5) d'une part, et entre (N) et (v) d'autre part. Compléter le schéma cinématique en 3D du Cahier Réponses en traçant ces liaisons.}
 
 Ce type de joint permet de lier entre eux des éléments d'un mécanisme tout en corrigeant d'éventuels défauts de positionnement relatif entre les arbres (5) et (v).
 
-Q6. Pour chacune des 5 propositions de défauts géométriques du tableau du Cahier Réponses, entourer OUI lorsque le joint d'Oldham permet de rattraper le défaut et entourer NON lorsque ce n'est pas le cas.
+%}Q6. 
+\question{\label{ccmp2023_q_06} Pour chacune des 5 propositions de défauts géométriques du tableau du Cahier Réponses, entourer OUI lorsque le joint d'Oldham permet de rattraper le défaut et entourer NON lorsque ce n'est pas le cas.}
 
-\subsection*{2.3 Validation de la précision du positionnement du centre d'inertie du pendule}
-\begin{center}
-\begin{tabular}{|c|l|l|c|}
+
+
+\subsection{Validation de la précision du positionnement du centre d'inertie du pendule}
+
+\begin{table}[!h]
+\centering
+\begin{tabular}{llll}
 \hline
 Id & Exigence & Critère & Niveau \\
 \hline
@@ -208,11 +197,13 @@ $\mathbf{1}$ & Ajuster la position d'équilibre du pendule sur Mars &  &  \\
 $\mathbf{1 . 1}$ & Déplacer le centre d'inertie du pendule & Précision du positionnement & $\pm 3 \mu \mathrm{m}$ \\
 \hline
 \end{tabular}
-\end{center}
+\caption{\label{ccmp2023_tab_01} Liste (non exhaustive) des exigences du mécanisme de translation du centre d'inertie du pendule}
+%TABLE 1 - Liste (non exhaustive) des exigences du mécanisme de translation du centre d'inertie du pendule
+\end{table}
 
-TABLE 1 - Liste (non exhaustive) des exigences du mécanisme de translation du centre d'inertie du pendule
-
-Objectif : vérifier que l'exigence 1.1 de précision du positionnement du centre d'inertie du pendule est bien validée.
+\begin{obj}
+Vérifier que l'exigence 1.1 de précision du positionnement du centre d'inertie du pendule est bien validée.
+\end{obj}
 
 On introduit, pour le vecteur vitesse de rotation d'un solide $i$ par rapport à un solide $j$, la notation suivante :
 
@@ -220,29 +211,17 @@ $$
 \vec{\Omega}_{i / j} \cdot \overrightarrow{y_{2}}=\omega_{i / j}
 $$
 
-Les éléments du mécanisme de transformation de mouvement permettant le déplacement du centre d'inertie du pendule sont rappelés en FIGURE 8. Leurs caractéristiques y sont précisées.
+Les éléments du mécanisme de transformation de mouvement permettant le déplacement du centre d'inertie du pendule sont rappelés en figure \ref{ccmp2023_fig_08}. Leurs caractéristiques y sont précisées.
 
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|c|c|}
-\hline
-\begin{tabular}{r}
-Mot \\
-$N_{m}$ \\
-\end{tabular} & $\omega_{m}$ & \begin{tabular}{l}
-Train \\
-4 éta \\
-\end{tabular} & $\omega_{5}$ & \begin{tabular}{c}
-Joint \\
-d'Oldham \\
-\end{tabular} & $\omega$ & \begin{tabular}{r}
-$\mathrm{V}$ \\
-pas $p_{v}$ \\
-\end{tabular} \\
-\hline
-\end{tabular}
-\end{center}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=\textwidth]{fig_08}
+\caption{\label{ccmp2023_fig_08} Chaîne de transmission réalisant le déplacement de la position du centre d'inertie du pendule}
+%FigURE 8 - Chaîne de transmission réalisant le déplacement de la position du centre d'inertie du pendule
+\end{figure}
 
-FigURE 8 - Chaîne de transmission réalisant le déplacement de la position du centre d'inertie du pendule
+
+%FigURE 8 - Chaîne de transmission réalisant le déplacement de la position du centre d'inertie du pendule
 
 Le joint d'Oldham est homocinétique, c'est-à-dire que la vitesse de rotation de l'arbre de sortie du réducteur (5) est la même que celle de la vis (v) par rapport au pendule (2) :
 
@@ -250,45 +229,52 @@ $$
 \omega_{5 / 2}=\omega_{v / 2}
 $$
 
-Le réducteur est à train épicycloïdal. Son schéma complet est fourni en Annexe 3. Comme il est composé de 4 étages identiques, on résume son étude à celle d'un seul étage, ici le dernier, de manière à en déduire par la suite le rapport de transmission global du train complet. Le schéma cinématique du dernier étage du réducteur est fourni en FIGURE 9 page suivante.
+Le réducteur est à train épicycloïdal. Son schéma complet est fourni en Annexe 3. Comme il est composé de 4 étages identiques, on résume son étude à celle d'un seul étage, ici le dernier, de manière à en déduire par la suite le rapport de transmission global du train complet. Le schéma cinématique du dernier étage du réducteur est fourni en figure \ref{ccmp2023_fig_09}.
 
-Q7. Justifier que $\omega_{4 / 2}=0$. Établir l'expression du rapport de transmission d'un étage $k=\frac{\omega_{5 / 2}}{\omega_{7 / 2}}$ en fonction des nombres de dents $Z_{i}$ et faire l'application numérique.
+
+\question{\label{ccmp2023_q_07}Justifier que $\omega_{4 / 2}=0$. Établir l'expression du rapport de transmission d'un étage $k=\frac{\omega_{5 / 2}}{\omega_{7 / 2}}$ en fonction des nombres de dents $Z_{i}$ et faire l'application numérique.}
+
 
 \begin{figure}[!h]
 \centering
 \includegraphics[width=\textwidth]{2024_04_26_3285cfc264024262add0g-08}
-\caption{\label{ccmp2023_fig_01}
+\caption{\label{ccmp2023_fig_09} Schéma cinématique du dernier étage du train épicycloïdal}
+%FigURe 9 - Schéma cinématique du dernier étage du train épicycloïdal
 \end{figure}
 
-FigURe 9 - Schéma cinématique du dernier étage du train épicycloïdal
 
-Q8. Exprimer le rapport de transmission global du réducteur $k_{g}=\frac{\omega_{5 / 2}}{\omega_{m / 2}}$ en fonction de $k$.
+%Q08
+\question{\label{ccmp2023_q_08}Exprimer le rapport de transmission global du réducteur $k_{g}=\frac{\omega_{5 / 2}}{\omega_{m / 2}}$ en fonction de $k$.}
 
-Q9. En s'appuyant sur les notations et données de la FigURE 8, établir l'expression du déplacement linéaire $d_{v}$ de la vis (v) par pas du moteur en fonction de $N_{m}, k_{g}$ et $p_{v}$. Faire l'application numérique et conclure vis-à-vis de l'exigence 1.1 de précision du positionnement du centre d'inertie.
+\question{\label{ccmp2023_q_09}En s'appuyant sur les notations et données de la figure \ref{ccmp2023_fig_08}, établir l'expression du déplacement linéaire $d_{v}$ de la vis (v) par pas du moteur en fonction de $N_{m}, k_{g}$ et $p_{v}$. Faire l'application numérique et conclure vis-à-vis de l'exigence 1.1 de précision du positionnement du centre d'inertie.}
 
-Un capteur optique a permis de mesurer le déplacement de la vis, fourni en FigURE 10, et a mis en évidence une non-linéarité lors des changements de sens de rotation du moteur.\\
+Un capteur optique a permis de mesurer le déplacement de la vis, fourni en figure \ref{ccmp2023_fig_10}, et a mis en évidence une non-linéarité lors des changements de sens de rotation du moteur.\\
+
 \begin{figure}[!h]
 \centering
 \includegraphics[width=\textwidth]{2024_04_26_3285cfc264024262add0g-08(1)}
-\caption{\label{ccmp2023_fig_01}
+\caption{\label{ccmp2023_fig_10} Déplacement de la vis en $\mu \mathrm{m}$ et nombre de pas du moteur en fonction du temps}
 \end{figure}
-FigURe 10 - Déplacement de la vis en $\mu \mathrm{m}$ et nombre de pas du moteur en fonction du temps
+%FigURe 10 - Déplacement de la vis en $\mu \mathrm{m}$ et nombre de pas du moteur en fonction du temps
 
-Q10. Proposer une cause de la non-linéarité qui apparait au changement de sens de rotation du moteur.
+\question{\label{ccmp2023_q_10}Proposer une cause de la non-linéarité qui apparait au changement de sens de rotation du moteur.}
 
-Q11. Donner l'erreur de positionnement due à la non-linéarité. Conclure à nouveau vis-à-vis de l'exigence 1.1 de précision du positionnement du centre d'inertie.
+\question{\label{ccmp2023_q_11}Donner l'erreur de positionnement due à la non-linéarité. Conclure à nouveau vis-à-vis de l'exigence 1.1 de précision du positionnement du centre d'inertie.}
 
-\section*{3 Caractérisation dynamique de l'ensemble mobile}
+
+\section{Caractérisation dynamique de l'ensemble mobile}
 On rappelle que les pendules inversés du sismomètre VBB conservent leur équilibre autour de leur axe de rotation $\left(O_{1}, \overrightarrow{z_{1}}\right)$ par rapport au bâti grâce à un ressort à lame souple. Afin que chaque système soit suffisamment sensible aux séismes sur Mars, le choix du ressort associé à une articulation à lamelles doit également permettre d'amplifier les mouvements sur la plage de fréquences attendues pour les séismes martiens.
 
-On définit pour cela les exigences de la TABLE 2.
+On définit pour cela les exigences de la table \ref{ccmp2023_tab_02}.
 
-\begin{center}
-\begin{tabular}{|c|l|l|c|}
+
+\begin{table}
+\centering
+\begin{tabular}{lp{5cm}ll}
 \hline
 $\mathbf{2}$ & Être mécaniquement sensible aux séismes attendus sur Mars &  &  \\
 \hline
-$\mathbf{2 . 1}$ & Être suffisamment sensible & Amplification mécanique & $>2 \mathrm{rad} \cdot \mathrm{m}^{-1} \cdot \mathrm{s}^{2}$ \\
+$\mathbf{2 .1}$ & Être suffisamment sensible & Amplification mécanique & $>2 \mathrm{rad} \cdot \mathrm{m}^{-1} \cdot \mathrm{s}^{2}$ \\
 \hline
 $\mathbf{2 . 2}$ & \begin{tabular}{l}
 Être sensible aux fréquences des \\
@@ -304,15 +290,17 @@ soit $[0,06 ; 3] \mathrm{rad} \cdot \mathrm{s}^{-1}$ \\
 \end{tabular} \\
 \hline
 \end{tabular}
-\end{center}
-
-TABLE 2 - Liste (non exhaustive) des exigences de sensibilité mécanique d'un système
+\caption{Liste (non exhaustive) des exigences de sensibilité mécanique d'un système \label{ccmp2023_tab_02}}
+\end{table}
 
 Chaque ressort est unique, et entre les trois systèmes constituant VBB, ces derniers ne sont pas interchangeables. Ils sont fabriqués sur mesure, en tenant compte des caractéristiques des articulations à lamelles, uniques elles aussi.
 
-Objectif : établir le lien entre la raideur du ressort et la pulsation propre de l'ensemble mobile; choisir un ressort et une articulation à lamelles de façon à respecter les exigences 2.1 et 2.2.
+\begin{obj}
+Etablir le lien entre la raideur du ressort et la pulsation propre de l'ensemble mobile; choisir un ressort et une articulation à lamelles de façon à respecter les exigences 2.1 et 2.2.
+\end{obj}
 
-\subsection*{3.1 Modélisation dynamique de l'ensemble mobile en réponse à un séisme}
+
+\subsection{Modélisation dynamique de l'ensemble mobile en réponse à un séisme}
 En cas de séisme, le sol (1) est en mouvement. Il entraîne dans son mouvement le bâti du système et ne peut plus être considéré comme un référentiel galiléen.
 
 Le schéma cinématique et le paramétrage du dispositif sont fournis en Annexe 4, ainsi que l'ensemble des notations et hypothèses utiles pour cette sous-partie.
@@ -333,49 +321,46 @@ I_{x x} & -I_{x y} & -I_{x z} \\
 \end{array}\right)_{\left(\overrightarrow{\left.x_{2}, \overrightarrow{y_{2}}, \overrightarrow{z_{1}}\right)}\right.}
 $$
 
-Q12. Quel plan de symétrie de l'ensemble mobile $\{(2)+(3)\}$ serait cohérent avec les valeurs numériques de la matrice d'inertie $\overline{\bar{I}}_{\left(O_{1}, 2+3\right)}$ déterminée par le logiciel de CAO ? En déduire, sous sa forme littérale, l'écriture simplifiée de la matrice d'inertie.
+%Q12. 
+\question{\label{ccmp2023_q_12}Quel plan de symétrie de l'ensemble mobile $\{(2)+(3)\}$ serait cohérent avec les valeurs numériques de la matrice d'inertie $\overline{\bar{I}}_{\left(O_{1}, 2+3\right)}$ déterminée par le logiciel de CAO ? En déduire, sous sa forme littérale, l'écriture simplifiée de la matrice d'inertie.}
 
-Q13. Déterminer, dans son mouvement par rapport au repère $R_{0}$, l'expression du moment cinétique de $\{(\mathbf{2})+(3)\}$ en $O_{1}, \vec{\sigma}_{O_{1},(2+3) / R_{0}}$. On l'exprimera en fonction des paramètres cinétiques de $\{(2)+(3)\}$ et des paramètres géométriques et cinématiques du système.
+\question{\label{ccmp2023_q_13}Déterminer, dans son mouvement par rapport au repère $R_{0}$, l'expression du moment cinétique de $\{(\mathbf{2})+(3)\}$ en $O_{1}, \vec{\sigma}_{O_{1},(2+3) / R_{0}}$. On l'exprimera en fonction des paramètres cinétiques de $\{(2)+(3)\}$ et des paramètres géométriques et cinématiques du système.}
 
-Q14. Montrer que la projection sur $\overrightarrow{z_{1}}$ du moment dynamique de $\{(2)+(3)\}$ dans son mouvement par rapport au repère $R_{0}$ en $O_{1}$, est de la forme suivante :
-
+\question{\label{ccmp2023_q_14}Montrer que la projection sur $\overrightarrow{z_{1}}$ du moment dynamique de $\{(2)+(3)\}$ dans son mouvement par rapport au repère $R_{0}$ en $O_{1}$, est de la forme suivante :
 $$
 \vec{\delta}_{O_{1},(2+3) / R_{0}} \cdot \overrightarrow{z_{1}}=I_{z z} \ddot{\alpha}(t)-d M \gamma_{x 2}(t)
 $$
-
-où l'on précisera l'expression de $\gamma_{x 2}(t)$.
+où l'on précisera l'expression de $\gamma_{x 2}(t)$.}
 
 On déduit de cette équation que $\overrightarrow{x_{2}}$ est la direction de sensibilité de l'ensemble mobile, c'est-à-dire que l'ensemble mobile n'est sensible qu'aux accélérations du sol en projection sur $\overrightarrow{x_{2}}$.
 
-Q15. Préciser, sans faire de calculs, le système isolé et l'équation issue du Principe Fondamental de la Dynamique qui permet d'obtenir l'équation du mouvement de l'ensemble mobile suivante :
-
-
+%Q15.
+\question{\label{ccmp2023_q_12}Préciser, sans faire de calculs, le système isolé et l'équation issue du Principe Fondamental de la Dynamique qui permet d'obtenir l'équation du mouvement de l'ensemble mobile suivante :
 \begin{equation*}
 I_{z z} \ddot{\alpha}(t)+\mu \dot{\alpha}(t)+k\left(\alpha(t)-\alpha_{0}\right)=a M_{2} g_{\mathrm{M}} \sin \alpha(t)+d M \gamma_{x 2}(t)+C_{0} \tag{eq.2}
 \end{equation*}
-
-
-Donner les éléments d'application (équation, projection, point éventuel...) du théorème utilisé. Justifier que l'équation obtenue n'est pas linéaire, indépendamment de l'expression de $\gamma_{x 2}(t)$.
+Donner les éléments d'application (équation, projection, point éventuel...) du théorème utilisé. Justifier que l'équation obtenue n'est pas linéaire, indépendamment de l'expression de $\gamma_{x 2}(t)$.}
 
 Afin de mettre en évidence les caractéristiques de l'ensemble mobile en réponse à une accélération du sol $\gamma_{x 2}(t)$, ses oscillations ayant une amplitude très faible, l'équation du mouvement est linéarisée autour du point d'équilibre $\alpha_{\mathrm{eq}}=\alpha_{0}$ de l'ensemble mobile.
 
 On pose $\alpha(t)=\alpha_{0}+\Delta \alpha(t)$, avec $\Delta \alpha(t) \ll \alpha_{0}$.
 
-Q16. Montrer que l'équation du mouvement linéarisée s'écrit :
-
-
-\begin{equation*}
-I_{z z} \ddot{\Delta} \alpha(t)+\mu \dot{\Delta} \alpha(t)+k \Delta \alpha(t)=a M_{2} g_{\mathrm{M}} \cos \alpha_{0} \Delta \alpha(t)+d M \gamma_{x 2}(t) \tag{eq.3}
-\end{equation*}
-
+%Q16. 
+\question{\label{ccmp2023_q_16}Montrer que l'équation du mouvement linéarisée s'écrit :}
+$$
+I_{z z} \ddot{\Delta} \alpha(t)+\mu \dot{\Delta} \alpha(t)+k \Delta \alpha(t)=a M_{2} g_{\mathrm{M}} \cos \alpha_{0} \Delta \alpha(t)+d M \gamma_{x 2}(t) %\tag{eq.3}
+$$
 
 On note $\alpha(p)$ et $\gamma_{x 2}(p)$ respectivement les transformées de Laplace des variations angulaires $\Delta \alpha(t)$ et de l'accélération du sol $\gamma_{x 2}(t)$. Les conditions initiales sont supposées nulles.
 
-Q17. Exprimer, sous forme canonique, la fonction de transfert de l'ensemble mobile $\frac{\alpha(p)}{\gamma_{x 2}(p)}$ et donner la condition de stabilité de l'ensemble mobile sous la forme d'une inéquation. Conclure sur le rôle stabilisateur du ressort.
+%Q17. 
+\question{\label{ccmp2023_q_17}Exprimer, sous forme canonique, la fonction de transfert de l'ensemble mobile $\frac{\alpha(p)}{\gamma_{x 2}(p)}$ et donner la condition de stabilité de l'ensemble mobile sous la forme d'une inéquation. Conclure sur le rôle stabilisateur du ressort.}
 
-Q18. Donner, en fonction des constantes du problème, les expressions des constantes caractéristiques de cette fonction de transfert : gain d'amplification mécanique noté $A$, pulsation propre $\omega_{0}$ et coefficient d'amortissement $\xi$.
+%Q18. 
+\question{\label{ccmp2023_q_18}Donner, en fonction des constantes du problème, les expressions des constantes caractéristiques de cette fonction de transfert : gain d'amplification mécanique noté $A$, pulsation propre $\omega_{0}$ et coefficient d'amortissement $\xi$.}
 
-\subsection*{3.2 Choix du couple ressort/articulation pour le système}
+
+\subsection{Choix du couple ressort/articulation pour le système}
 Pour optimiser la conception des systèmes, 50 ressorts à lame souple et 8 articulations à lamelles ont été fabriqués. L'association d'un ressort et d'une articulation confère une certaine raideur $k$ et un certain moment de précontrainte $C_{0}$ sur l'axe de rotation du pendule par rapport au bâti. Grâce au dispositif expérimental mis au point avec le contrepoids, $k$ et $C_{0}$ sont mesurés pour chaque association, ce qui permet de tracer point par point le diagramme de la FIGURE A du Cahier Réponses. Pour faciliter l'interprétation du diagramme, seuls 16 points ont été tracés au lieu de 400 .
 
 Le couple idéal ressort/articulation doit être déterminé pour une utilisation du pendule sur Mars, c'est-à-dire sans contrepoids. Ainsi, les équations précédentes $(1,1,2$ et 3 ) restent valables, en substituant $M_{2}$ par $M$ et $a$ par $d$.
@@ -394,17 +379,18 @@ $4,4 \times 10^{-3} \mathrm{~m} \cdot \mathrm{kg}$ & $4 \mathrm{~m} \cdot \mathr
 \end{tabular}
 \end{center}
 
-Q19. Déterminer la valeur numérique de $C_{0}$ pour assurer l'équilibre du pendule.
+\question{\label{ccmp2023_q_19}Déterminer la valeur numérique de $C_{0}$ pour assurer l'équilibre du pendule.}
 
-Q20. Donner les 2 inéquations qui régissent le choix de la raideur $k$ du couple ressort/articulation, afin de satisfaire l'exigence 2.1 et d'avoir un système stable. À l'aide d'applications numériques, en déduire la plage de valeurs acceptables pour $k$ afin de satisfaire ces 2 conditions.
+\question{\label{ccmp2023_q_20}Donner les 2 inéquations qui régissent le choix de la raideur $k$ du couple ressort/articulation, afin de satisfaire l'exigence 2.1 et d'avoir un système stable. À l'aide d'applications numériques, en déduire la plage de valeurs acceptables pour $k$ afin de satisfaire ces 2 conditions.}
 
-Q21. Sur la FiguRe A du Cahier Réponses, tracer les droites encadrant les valeurs acceptables pour $k$ et la droite correspondant à la valeur idéale de $-C_{0}$. En déduire le meilleur couple ressort/articulation pour le pendule étudié en entourant le point correspondant sur le diagramme.
+\question{\label{ccmp2023_q_21}Sur la FiguRe A du Cahier Réponses, tracer les droites encadrant les valeurs acceptables pour $k$ et la droite correspondant à la valeur idéale de $-C_{0}$. En déduire le meilleur couple ressort/articulation pour le pendule étudié en entourant le point correspondant sur le diagramme.}
 
 Le diagramme de Bode en gain de la fonction de transfert $\frac{\alpha(p)}{\gamma_{x 2}(p)}$ du système pour ce choix du couple ressort/articulation est fourni sur la FiguRe B du Cahier Réponses.
 
-Q22. Conclure vis-à-vis de l'exigence 2.2. Les tracés nécessaires devront figurer sur la FIGURE B du Cahier Réponses. Le système en l'état est-il satisfaisant pour la mesure des mouvements du sol martien dans la plage de fréquence des séismes attendus sur Mars?
+%Q22. 
+\question{\label{ccmp2023_q_22}Conclure vis-à-vis de l'exigence 2.2. Les tracés nécessaires devront figurer sur la FIGURE B du Cahier Réponses. Le système en l'état est-il satisfaisant pour la mesure des mouvements du sol martien dans la plage de fréquence des séismes attendus sur Mars?}
 
-\section*{4 Performances de l'asservissement}
+\section{Performances de l'asservissement}
 À chaque mouvement du sol, un capteur mesure la position angulaire du pendule (2) par rapport au bâti (1). Des bobines de contre-réaction situées sur le pendule (voir FIGURE 2 et l'Annexe 1) génèrent un moment de rappel sur son axe de rotation, qui le ramène à sa position d'équilibre.
 
 \begin{itemize}
@@ -476,7 +462,9 @@ signaux mesurés \\
 
 TABLE 3 - Liste (non exhaustive) des exigences de l'asservissement
 
-Objectif : régler la correction des bobines $\mathrm{HF}$ et $\mathrm{BF}$.
+\begin{obj}
+Régler la correction des bobines $\mathrm{HF}$ et $\mathrm{BF}$.
+\end{obj}
 
 Le réglage de l'asservissement s'effectue par une étude numérique, dans les conditions de la gravité martienne. On considère donc le pendule (2) sans son contrepoids (3). On note $J$ le moment d'inertie du pendule (2) sur l'axe ( $\left.O_{1}, \overrightarrow{z_{1}}\right)$. Pour simplifier l'étude, on néglige les frottements dans l'articulation à lamelles, et on note $K=k-d M g_{M} \cos \alpha_{0}$ la raideur équivalente du pendule.
 
@@ -484,126 +472,134 @@ La grandeur utile aux scientifiques qui analysent les données mesurées par le 
 
 Le schéma-blocs de l'asservissement en tension d'un système est fourni en Annexe 5 , ainsi que la description des grandeurs physiques intervenant dans l'asservissement et les données numériques utiles à cette partie.
 
-On s'intéresse dans un premier temps à l'asservissement avec l'action de la bobine HF seule. Le schéma-blocs correspondant est fourni à la FIGURE 11.
+On s'intéresse dans un premier temps à l'asservissement avec l'action de la bobine HF seule. Le schéma-blocs correspondant est fourni à la figure \ref{ccmp2023_fig_11}.
 
 \begin{figure}[!h]
 \centering
 \includegraphics[width=\textwidth]{2024_04_26_3285cfc264024262add0g-13(1)}
-\caption{\label{ccmp2023_fig_01}
-\end{center}
+\caption{\label{ccmp2023_fig_11} Schéma-blocs de l'asservissement avec l'action de la bobine HF seule}
+\end{figure}
 
-FIGURE 11 - Schéma-blocs de l'asservissement avec l'action de la bobine HF seule
+%FIGURE 11 - Schéma-blocs de l'asservissement avec l'action de la bobine HF seule
 
-Q23. Déterminer la fonction de transfert $H_{\gamma}(p)=\frac{U(p)}{\gamma_{x 2}(p)}$, avec $U_{C}(p)=0$, en l'exprimant sous la forme:
-
-$$
+\question{\label{ccmp2023_q_23}. Déterminer la fonction de transfert $H_{\gamma}(p)=\frac{U(p)}{\gamma_{x 2}(p)}$, avec $U_{C}(p)=0$, en l'exprimant sous la forme:
+$
 H_{\gamma}(p)=K_{\mathrm{HF}} \cdot \frac{1+a_{1} p}{1+b_{1} p+b_{2} p^{2}+b_{3} p^{3}}
-$$
+$
+où l'on précisera les expressions de $K_{\mathrm{HF}}, a_{1}, b_{1}, b_{2}$ et $b_{3}$.}
 
-où l'on précisera les expressions de $K_{\mathrm{HF}}, a_{1}, b_{1}, b_{2}$ et $b_{3}$.
+On donne les pôles $p_{i}$ de $H_{\gamma}(p)$ en TABLE 4 et le diagramme de Bode en gain de $H_{\gamma}(p)$ en figure \ref{ccmp2023_fig_12} pour différentes valeurs de $K_{1}$.
 
-On donne les pôles $p_{i}$ de $H_{\gamma}(p)$ en TABLE 4 et le diagramme de Bode en gain de $H_{\gamma}(p)$ en FigURe 12 pour différentes valeurs de $K_{1}$.
 
-\begin{center}
+\begin{table}[!h]
+\centering
 \begin{tabular}{|c|c|c|c|}
 \hline
 $K_{1}$ & $p_{1}$ & $p_{2}$ & $p_{3}$ \\
 \hline\hline
-0,05 & -1000 & $-0,38-2,33 \mathrm{j}$ & $-0,38+2,33 \mathrm{j}$ \\
+0,05 & $-1000$ & $$-0,38-2,33$ \mathrm{j}$ & $-0,38+2,33 \mathrm{j}$ \\
 \hline
-0,5 & -1000 & $-0,64$ & $-9,32$ \\
+0,5 & $-1000$ & $-0,64$ & $-9,32$ \\
 \hline
-5 & -1000 & $-0,069$ & $-95,7$ \\
+5 & $-1000$ & $-0,069$ & $-95,7$ \\
 \hline
 \end{tabular}
-\end{center}
+\caption{Pôles de la fonction de transfert $H_{\gamma}(p)$ \label{ccmp2023_tab_04}}
+\end{table}
 
-TABLE 4 - Pôles de la fonction de transfert $H_{\gamma}(p)$
+%TABLE 4 - Pôles de la fonction de transfert $H_{\gamma}(p)$
 
 \begin{figure}[!h]
 \centering
 \includegraphics[width=\textwidth]{2024_04_26_3285cfc264024262add0g-13}
-\caption{\label{ccmp2023_fig_01}
+\caption{\label{ccmp2023_fig_12} Diagramme de Bode en gain de la fonction de transfert $H_{\gamma}(p)$}
+%Figure 12 - Diagramme de Bode en gain de la fonction de transfert $H_{\gamma}(p)$
 \end{figure}
 
-Figure 12 - Diagramme de Bode en gain de la fonction de transfert $H_{\gamma}(p)$
+
 
 Le réglage du correcteur HF doit permettre de répondre à l'exigence 3.1.
 
-Q24. Justifier que $H_{\gamma}(p)$ correspond à un système stable quelle que soit la valeur retenue pour $K_{1}$ dans la gamme $[0,05 ; 5]$ s. Choisir, en justifiant, la valeur de $K_{1}$ parmi les valeurs proposées, la plus adaptée au réglage de l'asservissement avec l'action de la bobine HF seule.
+%Q24. 
+\question{\label{ccmp2023_q_24}Justifier que $H_{\gamma}(p)$ correspond à un système stable quelle que soit la valeur retenue pour $K_{1}$ dans la gamme $[0,05 ; 5]$ s. Choisir, en justifiant, la valeur de $K_{1}$ parmi les valeurs proposées, la plus adaptée au réglage de l'asservissement avec l'action de la bobine HF seule.}
 
-Q25. En s'appuyant sur les données numériques de la TABLE 4 et de l'Annexe 5, justifier que, pour la valeur retenue de $K_{1}$, la fonction de transfert peut s'écrire sous la forme :
-
+%Q25. 
+\question{\label{ccmp2023_q_25}En s'appuyant sur les données numériques de la TABLE 4 et de l'Annexe 5, justifier que, pour la valeur retenue de $K_{1}$, la fonction de transfert peut s'écrire sous la forme :
 $$
 H_{\gamma}(p)=\frac{d M K_{D}}{K} \cdot \frac{1}{\left(1+\tau_{2} p\right)\left(1+\tau_{3} p\right)}, \text { avec } \tau_{2} \gg \tau_{3}
 $$
-
-Préciser les valeurs des constantes de temps $\tau_{2}$ et $\tau_{3}$.
+Préciser les valeurs des constantes de temps $\tau_{2}$ et $\tau_{3}$.}
 
 Pour la suite des questions, on conservera cette forme simplifiée de $H_{\gamma}(p)$.
 
-Q26. Justifier que l'asservissement avec l'action de la bobine HF seule ne permet pas de satisfaire les exigences 3.2 et 3.3 .
+%Q26. 
+\question{\label{ccmp2023_q_26}Justifier que l'asservissement avec l'action de la bobine HF seule ne permet pas de satisfaire les exigences 3.2 et 3.3.}
 
-En tenant compte des résultats précédents, le schéma-blocs de l'Annexe 5 peut se mettre sous la forme de celui de la Figure 13.
+En tenant compte des résultats précédents, le schéma-blocs de l'Annexe 5 peut se mettre sous la forme de celui de la Figure \ref{ccmp2023_fig_13}.
 
 \begin{figure}[!h]
 \centering
 \includegraphics[width=\textwidth]{2024_04_26_3285cfc264024262add0g-14}
-\caption{\label{ccmp2023_fig_01}
+\caption{\label{ccmp2023_fig_13}  Schéma-blocs de l'asservissement d'un système}
+%FigURe 13 - Schéma-blocs de l'asservissement d'un système
 \end{figure}
 
-FigURe 13 - Schéma-blocs de l'asservissement d'un système
+
 
 Le correcteur BF est un correcteur proportionnel intégral. Pour optimiser la rapidité, $\tau_{4}$ doit permettre de compenser le pôle dominant de la boucle ouverte. $K_{4}$ est réglé de façon à répondre aux exigences 3.3 et 3.4.
 
-Q27. Préciser l'intérêt de la chaîne d'action BF vis-à-vis de l'exigence 3.2.
+%Q27. 
+\question{\label{ccmp2023_q_27}Préciser l'intérêt de la chaîne d'action BF vis-à-vis de l'exigence 3.2.}
 
-Q28. Donner l'expression de la fonction de transfert en boucle ouverte de l'asservissement, $H_{B O}(p)=\frac{U(p)}{\varepsilon(p)}$. Donner, en justifiant, la valeur retenue pour $\tau_{4}$.
+%Q28. 
+\question{\label{ccmp2023_q_28}Donner l'expression de la fonction de transfert en boucle ouverte de l'asservissement, $H_{B O}(p)=\frac{U(p)}{\varepsilon(p)}$. Donner, en justifiant, la valeur retenue pour $\tau_{4}$.}
 
 On donne, pour la valeur de $\tau_{4}$ retenue et différentes valeurs de $K_{4}$, le diagramme de Bode de l'asservissement en tension, $\frac{U(p)}{\gamma_{x 2}(p)}$, sur la FiguRE C du Cahier Réponses.
 
-Q29. Choisir, en justifiant, la valeur de $K_{4}$ qui permet de vérifier au mieux les exigences 3.3 et 3.4. Les tracés nécessaires apparaitront sur la FiguRe $\mathrm{C}$ du Cahier Réponses.
+%Q29. 
+\question{\label{ccmp2023_q_29}Choisir, en justifiant, la valeur de $K_{4}$ qui permet de vérifier au mieux les exigences 3.3 et 3.4. Les tracés nécessaires apparaitront sur la FiguRe $\mathrm{C}$ du Cahier Réponses.}
 
-Q30. Donner le nom du type de filtre réalisé par le pendule asservi et préciser l'intérêt de cette solution pour la mesure des séismes par le sismomètre VBB.
+%Q30. 
+\question{\label{ccmp2023_q_30}Donner le nom du type de filtre réalisé par le pendule asservi et préciser l'intérêt de cette solution pour la mesure des séismes par le sismomètre VBB.}
 
 \section*{Annexe 1 - Détail des éléments d'un des systèmes du VBB}
 \begin{figure}[!h]
 \centering
-\includegraphics[width=\textwidth]{2024_04_26_3285cfc264024262add0g-15(3)}
-\caption{\label{ccmp2023_fig_01}
+\includegraphics[width=.5\textwidth]{2024_04_26_3285cfc264024262add0g-15(3)}
+\caption{\label{ccmp2023_fig_ann_1_1} bâti (1)}
 \end{figure}
 
-bâti (1)
+
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=\textwidth]{2024_04_26_3285cfc264024262add0g-15(2)}
-\caption{\label{ccmp2023_fig_01}
+\includegraphics[width=.5\textwidth]{2024_04_26_3285cfc264024262add0g-15(2)}
+\caption{\label{ccmp2023_fig_ann_1_2}articulation à lamelles entre (1) et (2)}
 \end{figure}
 
-articulation à lamelles entre (1) et (2)
+
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=\textwidth]{2024_04_26_3285cfc264024262add0g-15}
-\caption{\label{ccmp2023_fig_01}
+\includegraphics[width=.5\textwidth]{2024_04_26_3285cfc264024262add0g-15}
+\caption{\label{ccmp2023_ann_1_2} pendule (2)}
 \end{figure}
 
-pendule (2)
+
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=\textwidth]{2024_04_26_3285cfc264024262add0g-15(1)}
-\caption{\label{ccmp2023_fig_01}
+\includegraphics[width=.5\textwidth]{2024_04_26_3285cfc264024262add0g-15(1)}
+\caption{\label{ccmp2023_ann_1_3}mécanisme de translation du centre d'inertie de (2)}
 \end{figure}
 
-mécanisme de translation du centre d'inertie de (2)
+
 
 \section*{Annexe 2 - Modèle cinématique du système en l'absence de séisme}
 \begin{figure}[!h]
 \centering
 \includegraphics[width=\textwidth]{2024_04_26_3285cfc264024262add0g-16}
-\caption{\label{ccmp2023_fig_01}
+%\caption{\label{ccmp2023_fig_01}}
 \end{figure}
 
 \section*{Notations}
@@ -673,10 +669,10 @@ Annexe 3 - Schéma cinématique du mécanisme de translation de la position du c
 \begin{figure}[!h]
 \centering
 \includegraphics[width=\textwidth]{2024_04_26_3285cfc264024262add0g-17}
-\caption{\label{ccmp2023_fig_01}
-\end{center}
+%\caption{\label{ccmp2023_fig_01}
+\end{figure}
 
-Page $3 / 5$
+%Page $3 / 5$
 
 \section*{Annexe 4 - Modèle cinématique du système lors d'un séisme}
 Les torseurs d'actions mécaniques et les notations de l'Annexe 2 restent valables.
@@ -684,8 +680,8 @@ Les torseurs d'actions mécaniques et les notations de l'Annexe 2 restent valabl
 \begin{figure}[!h]
 \centering
 \includegraphics[width=\textwidth]{2024_04_26_3285cfc264024262add0g-18}
-\caption{\label{ccmp2023_fig_01}
-\end{center}
+%\caption{\label{ccmp2023_fig_01}
+\end{figure}
 
 Notations et hypothèses supplémentaires
 
@@ -735,8 +731,8 @@ Schéma-blocs de l'asservissement
 \begin{figure}[!h]
 \centering
 \includegraphics[width=\textwidth]{2024_04_26_3285cfc264024262add0g-19}
-\caption{\label{ccmp2023_fig_01}
-\end{center}
+%\caption{\label{ccmp2023_fig_01}
+\end{figure}
 
 Grandeurs physiques intervenant dans l'asservissement
 
@@ -790,7 +786,7 @@ $C_{\mathrm{HF}}(t)$ & $C_{\mathrm{HF}}(p)$ & $\mathrm{N} \cdot \mathrm{m}$ & Mo
 \end{itemize}
 
 
-
+\end{document}
 \newpage
 
 \newpage
