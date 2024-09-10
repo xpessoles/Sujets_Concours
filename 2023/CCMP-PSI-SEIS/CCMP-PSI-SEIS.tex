@@ -391,9 +391,10 @@ Le diagramme de Bode en gain de la fonction de transfert $\frac{\alpha(p)}{\gamm
 
 L'asservissement mis en place est donc une régulation devant permettre d'annuler en régime permanent les effets des secousses sismiques sur le pendule, tout en étant sensible aux signaux dans une large bande de fréquences d'ondes sismiques, entre $0,01 \si{Hz}$ et $0,5 \si{Hz}$.
 
-Les exigences auxquelles doit répondre cet asservissement sont fournies dans la TABLE 3.
+Les exigences auxquelles doit répondre cet asservissement sont fournies dans la table \ref{ccmp2023_tab_03}.
 
-\begin{center}
+\begin{table}[!h]
+\centering
 \begin{tabular}{cp{4cm}p{4cm}p{4cm}}
 \hline
 $\mathbf{3}$ & \multicolumn{3}{l}{Acquérir les vibrations du sol martien}  \\
@@ -414,9 +415,11 @@ $\mathbf{3 . 4}$ & Éviter des problèmes de saturation & Amplification des mouv
 &$<120 \si{dB}$ pour tous les signaux mesurés \\
 \hline
 \end{tabular}
-\end{center}
+\caption{\label{ccmp2023_tab_03}  Liste (non exhaustive) des exigences de l'asservissement}
+%TABLE 3 - Liste (non exhaustive) des exigences de l'asservissement
+\end{table}
 
-TABLE 3 - Liste (non exhaustive) des exigences de l'asservissement
+
 
 \begin{obj}
 Régler la correction des bobines $\mathrm{HF}$ et $\mathrm{BF}$.
@@ -444,7 +447,7 @@ H_{\gamma}(p)=K_{\mathrm{HF}} \cdot \frac{1+a_{1} p}{1+b_{1} p+b_{2} p^{2}+b_{3}
 $
 où l'on précisera les expressions de $K_{\mathrm{HF}}, a_{1}, b_{1}, b_{2}$ et $b_{3}$.}
 
-On donne les pôles $p_{i}$ de $H_{\gamma}(p)$ en TABLE 4 et le diagramme de Bode en gain de $H_{\gamma}(p)$ en figure \ref{ccmp2023_fig_12} pour différentes valeurs de $K_{1}$.
+On donne les pôles $p_{i}$ de $H_{\gamma}(p)$ en table \ref{ccmp2023_tab_04} et le diagramme de Bode en gain de $H_{\gamma}(p)$ en figure \ref{ccmp2023_fig_12} pour différentes valeurs de $K_{1}$.
 
 
 \begin{table}[!h]
@@ -460,7 +463,7 @@ $K_{1}$ & $p_{1}$ & $p_{2}$ & $p_{3}$ \\
 5 & $-1000$ & $-0,069$ & $-95,7$ \\
 \hline
 \end{tabular}
-\caption{Pôles de la fonction de transfert $H_{\gamma}(p)$ \label{ccmp2023_tab_04}}
+\caption{\label{ccmp2023_tab_04} Pôles de la fonction de transfert $H_{\gamma}(p)$ }
 \end{table}
 
 %TABLE 4 - Pôles de la fonction de transfert $H_{\gamma}(p)$
