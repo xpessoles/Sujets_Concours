@@ -1,0 +1,120 @@
+
+\section{Caractérisation dynamique de l'ensemble mobile}
+On rappelle que les pendules inversés du sismomètre VBB conservent leur équilibre autour de leur axe de rotation $\left(O_{1}, \overrightarrow{z_{1}}\right)$ par rapport au bâti grâce à un ressort à lame souple. Afin que chaque système soit suffisamment sensible aux séismes sur Mars, le choix du ressort associé à une articulation à lamelles doit également permettre d'amplifier les mouvements sur la plage de fréquences attendues pour les séismes martiens.
+
+On définit pour cela les exigences de la table \ref{ccmp2023_tab_02}.
+
+
+\begin{table}
+\centering
+\begin{tabular}{lp{5cm}p{5cm}p{4cm}}
+\hline
+$\mathbf{2}$ &\multicolumn{3}{l}{Être mécaniquement sensible aux séismes attendus sur Mars} \\
+\hline
+$\mathbf{2.1}$ & Être suffisamment sensible & Amplification mécanique & $>2 \mathrm{rad} \cdot \mathrm{m}^{-1} \cdot \mathrm{s}^{2}$ \\
+\hline
+$\mathbf{2.2}$ & Être sensible aux fréquences des séismes attendus sur Mars & 
+Amplification en fonction de la fréquence des mouvements du sol & $\geq 10 \si{dB}$ dans la bande $[0,01 ; 0,5] \si{Hz}$ soit $[0,06 ; 3] \si{rad} \cdot \mathrm{s}^{-1}$  \\
+\hline
+\end{tabular}
+\caption{Liste (non exhaustive) des exigences de sensibilité mécanique d'un système \label{ccmp2023_tab_02}}
+\end{table}
+
+Chaque ressort est unique, et entre les trois systèmes constituant VBB, ces derniers ne sont pas interchangeables. Ils sont fabriqués sur mesure, en tenant compte des caractéristiques des articulations à lamelles, uniques elles aussi.
+
+\begin{obj}
+Etablir le lien entre la raideur du ressort et la pulsation propre de l'ensemble mobile; choisir un ressort et une articulation à lamelles de façon à respecter les exigences 2.1 et 2.2.
+\end{obj}
+
+
+\subsection{Modélisation dynamique de l'ensemble mobile en réponse à un séisme}
+En cas de séisme, le sol (1) est en mouvement. Il entraîne dans son mouvement le bâti du système et ne peut plus être considéré comme un référentiel galiléen.
+
+Le schéma cinématique et le paramétrage du dispositif sont fournis en Annexe 4, ainsi que l'ensemble des notations et hypothèses utiles pour cette sous-partie.
+
+On admet qu'il y a un mouvement de translation de (1) par rapport au repère $R_{0}$ dans les directions $\overrightarrow{x_{1}}$ et $\overrightarrow{y_{1}}$, comme imposé par les deux liaisons glissières en série entre (1) et $R_{0}$ sur le schéma cinématique de l'Annexe 4. Aucun degré de liberté en rotation n'est admis : $\vec{\Omega}_{1 / 0}=\overrightarrow{0}$.
+
+Un logiciel de CAO a permis de déterminer numériquement la matrice d'inertie du pendule (2) équipé du contrepoids (3) en $O_{1}$, où tous les termes sont en $\mathrm{kg} \cdot \mathrm{m}^{2}$ :
+
+$$
+\overline{{I}}_{\left(O_{1}, 2+3\right)}=\left(\begin{array}{ccc}
+5,31 \times 10^{-4} & -0,94 \times 10^{-4} & -5,67 \times 10^{-7} \\
+-0,94 \times 10^{-4} & 1,25 \times 10^{-4} & -2,33 \times 10^{-8} \\
+-5,67 \times 10^{-7} & -2,33 \times 10^{-8} & 4,04 \times 10^{-4}
+\end{array}\right)_{\left(\overrightarrow{x_{2}}, \overrightarrow{y_{2}}, \overrightarrow{z_{1}}\right)}=\left(\begin{array}{ccc}
+I_{x x} & -I_{x y} & -I_{x z} \\
+-I_{x y} & I_{y y} & -I_{y z} \\
+-I_{x z} & -I_{y z} & I_{z z}
+\end{array}\right)_{\left(\overrightarrow{\left.x_{2}, \overrightarrow{y_{2}}, \overrightarrow{z_{1}}\right)}\right.}
+$$
+
+%Q12. 
+\question{\label{ccmp2023_q_12}Quel plan de symétrie de l'ensemble mobile $\{(2)+(3)\}$ serait cohérent avec les valeurs numériques de la matrice d'inertie $\overline{{I}}_{\left(O_{1}, 2+3\right)}$ déterminée par le logiciel de CAO ? En déduire, sous sa forme littérale, l'écriture simplifiée de la matrice d'inertie.}
+
+\question{\label{ccmp2023_q_13}Déterminer, dans son mouvement par rapport au repère $R_{0}$, l'expression du moment cinétique de $\{(\mathbf{2})+(3)\}$ en $O_{1}, \vec{\sigma}_{O_{1},(2+3) / R_{0}}$. On l'exprimera en fonction des paramètres cinétiques de $\{(2)+(3)\}$ et des paramètres géométriques et cinématiques du système.}
+
+\question{\label{ccmp2023_q_14}Montrer que la projection sur $\overrightarrow{z_{1}}$ du moment dynamique de $\{(2)+(3)\}$ dans son mouvement par rapport au repère $R_{0}$ en $O_{1}$, est de la forme suivante :
+$$
+\vec{\delta}_{O_{1},(2+3) / R_{0}} \cdot \overrightarrow{z_{1}}=I_{z z} \ddot{\alpha}(t)-d M \gamma_{x 2}(t)
+$$
+où l'on précisera l'expression de $\gamma_{x 2}(t)$.}
+
+On déduit de cette équation que $\overrightarrow{x_{2}}$ est la direction de sensibilité de l'ensemble mobile, c'est-à-dire que l'ensemble mobile n'est sensible qu'aux accélérations du sol en projection sur $\overrightarrow{x_{2}}$.
+
+%Q15.
+\question{\label{ccmp2023_q_12}Préciser, sans faire de calculs, le système isolé et l'équation issue du Principe Fondamental de la Dynamique qui permet d'obtenir l'équation du mouvement de l'ensemble mobile suivante :
+%\begin{equation*}
+$$I_{z z} \ddot{\alpha}(t)+\mu \dot{\alpha}(t)+k\left(\alpha(t)-\alpha_{0}\right)=a M_{2} g_{\mathrm{M}} \sin \alpha(t)+d M \gamma_{x 2}(t)+C_{0}
+$$
+%\end{equation*}
+Donner les éléments d'application (équation, projection, point éventuel...) du théorème utilisé. Justifier que l'équation obtenue n'est pas linéaire, indépendamment de l'expression de $\gamma_{x 2}(t)$.}
+
+Afin de mettre en évidence les caractéristiques de l'ensemble mobile en réponse à une accélération du sol $\gamma_{x 2}(t)$, ses oscillations ayant une amplitude très faible, l'équation du mouvement est linéarisée autour du point d'équilibre $\alpha_{\mathrm{eq}}=\alpha_{0}$ de l'ensemble mobile.
+
+On pose $\alpha(t)=\alpha_{0}+\Delta \alpha(t)$, avec $\Delta \alpha(t) \ll \alpha_{0}$.
+
+%Q16. 
+\question{\label{ccmp2023_q_16}Montrer que l'équation du mouvement linéarisée s'écrit :
+$$
+I_{z z} \ddot{\Delta} \alpha(t)+\mu \dot{\Delta} \alpha(t)+k \Delta \alpha(t)=a M_{2} g_{\mathrm{M}} \cos \alpha_{0} \Delta \alpha(t)+d M \gamma_{x 2}(t) %\tag{eq.3}
+$$}
+
+On note $\alpha(p)$ et $\gamma_{x 2}(p)$ respectivement les transformées de Laplace des variations angulaires $\Delta \alpha(t)$ et de l'accélération du sol $\gamma_{x 2}(t)$. Les conditions initiales sont supposées nulles.
+
+%Q17. 
+\question{\label{ccmp2023_q_17}Exprimer, sous forme canonique, la fonction de transfert de l'ensemble mobile $\frac{\alpha(p)}{\gamma_{x 2}(p)}$ et donner la condition de stabilité de l'ensemble mobile sous la forme d'une inéquation. Conclure sur le rôle stabilisateur du ressort.}
+
+%Q18. 
+\question{\label{ccmp2023_q_18}Donner, en fonction des constantes du problème, les expressions des constantes caractéristiques de cette fonction de transfert : gain d'amplification mécanique noté $A$, pulsation propre $\omega_{0}$ et coefficient d'amortissement~$\xi$.}
+
+
+\subsection{Choix du couple ressort/articulation pour le système}
+Pour optimiser la conception des systèmes, 50 ressorts à lame souple et 8 articulations à lamelles ont été fabriqués. L'association d'un ressort et d'une articulation confère une certaine raideur $k$ et un certain moment de précontrainte $C_{0}$ sur l'axe de rotation du pendule par rapport au bâti. Grâce au dispositif expérimental mis au point avec le contrepoids, $k$ et $C_{0}$ sont mesurés pour chaque association, ce qui permet de tracer point par point le diagramme de la FIGURE A du Cahier Réponses. Pour faciliter l'interprétation du diagramme, seuls 16 points ont été tracés au lieu de 400 .
+
+Le couple idéal ressort/articulation doit être déterminé pour une utilisation du pendule sur Mars, c'est-à-dire sans contrepoids. Ainsi, les équations précédentes $(1,1,2$ et 3 ) restent valables, en substituant $M_{2}$ par $M$ et $a$ par $d$.
+
+De plus, $\alpha_{\mathrm{eq}}=\alpha_{0}$. On admet que $\alpha_{0}=30^{\circ}$ assure un bon compromis entre un gain d'amplification maximisé et un bruit de mesure faible.
+
+Les données numériques utiles sont résumées dans le tableau suivant, dans les Unités du Système International (USI) :
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+$\dd M$ & $g_{M}$ & $\dd M g_{\mathrm{M}} \cos \alpha_{0}$ \\
+\hline
+$4,4 \times 10^{-3} \si{m} \cdot \mathrm{kg}$ & $4 \si{m} \cdot \mathrm{s}^{-2}$ & $15 \times 10^{-3} \mathrm{USI}$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\question{\label{ccmp2023_q_19}Déterminer la valeur numérique de $C_{0}$ pour assurer l'équilibre du pendule.}
+
+\question{\label{ccmp2023_q_20}Donner les 2 inéquations qui régissent le choix de la raideur $k$ du couple ressort/articulation, afin de satisfaire l'exigence 2.1 et d'avoir un système stable. À l'aide d'applications numériques, en déduire la plage de valeurs acceptables pour $k$ afin de satisfaire ces 2 conditions.}
+
+\question{\label{ccmp2023_q_21}Sur la FiguRe A du Cahier Réponses, tracer les droites encadrant les valeurs acceptables pour $k$ et la droite correspondant à la valeur idéale de $-C_{0}$. En déduire le meilleur couple ressort/articulation pour le pendule étudié en entourant le point correspondant sur le diagramme.}
+
+Le diagramme de Bode en gain de la fonction de transfert $\frac{\alpha(p)}{\gamma_{x 2}(p)}$ du système pour ce choix du couple ressort/articulation est fourni sur la FiguRe B du Cahier Réponses.
+
+%Q22. 
+\question{\label{ccmp2023_q_22}Conclure vis-à-vis de l'exigence 2.2. Les tracés nécessaires devront figurer sur la FIGURE B du Cahier Réponses. Le système en l'état est-il satisfaisant pour la mesure des mouvements du sol martien dans la plage de fréquence des séismes attendus sur Mars?}
+
