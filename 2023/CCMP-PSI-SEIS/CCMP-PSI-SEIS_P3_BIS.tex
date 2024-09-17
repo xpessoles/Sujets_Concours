@@ -1,4 +1,6 @@
 \section{Caractérisation dynamique de l'ensemble mobile}
+\ifprof
+\else
 On rappelle que les pendules inversés du sismomètre VBB conservent leur équilibre autour de leur axe de rotation $\left(O_{1}, \overrightarrow{z_{1}}\right)$ par rapport au bâti grâce à un ressort à lame souple. Afin que chaque système soit suffisamment sensible aux séismes sur Mars, le choix du ressort associé à une articulation à lamelles doit également permettre d'amplifier les mouvements sur la plage de fréquences attendues pour les séismes martiens.
 
 On définit pour cela les exigences de la table \ref{ccmp2023_tab_02}.
@@ -20,13 +22,15 @@ Amplification en fonction de la fréquence des mouvements du sol & $\geq 10 \si{
 \end{table}
 
 Chaque ressort est unique, et entre les trois systèmes constituant VBB, ces derniers ne sont pas interchangeables. Ils sont fabriqués sur mesure, en tenant compte des caractéristiques des articulations à lamelles, uniques elles aussi.
-
+\fi
 \begin{obj}
 Etablir le lien entre la raideur du ressort et la pulsation propre de l'ensemble mobile; choisir un ressort et une articulation à lamelles de façon à respecter les exigences 2.1 et 2.2.
 \end{obj}
 
 
 \subsection{Modélisation dynamique de l'ensemble mobile en réponse à un séisme}
+\ifprof
+\else
 En cas de séisme, le sol (1) est en mouvement. Il entraîne dans son mouvement le bâti du système et ne peut plus être considéré comme un référentiel galiléen.
 %
 %Le schéma cinématique et le paramétrage du dispositif sont fournis en Annexe 4, ainsi que l'ensemble des notations et hypothèses utiles pour cette sous-partie.
@@ -64,7 +68,7 @@ En cas de séisme, le sol (1) est en mouvement. Il entraîne dans son mouvement 
 %\question{\label{ccmp2023_q_12}Préciser, sans faire de calculs, le système isolé et l'équation issue du Principe Fondamental de la Dynamique qui permet d'obtenir l'équation du mouvement de l'ensemble mobile suivante :
 %\begin{equation*}
 L'équation issue du Principe Fondamental de la Dynamique permet d'obtenir l'équation du mouvement de l'ensemble mobile suivante :
-$$I_{z z} \ddot{\alpha}(t)+\mu \dot{\alpha}(t)+k\left(\alpha(t)-\alpha_{0}\right)=a M_{2} g_{\mathrm{M}} \sin \alpha(t)+d M \gamma_{x 2}(t)+C_{0}
+$$I_{z z} \ddot{\alpha}(t)+\mu \dot{\alpha}(t)+k\left(\alpha(t)-\alpha_{0}\right)=a M_{2} g_{\mathrm{M}} \sin \alpha(t)+d M \gamma_{x 2}(t)+C_{0} \quad \text{(eq. 2)}
 $$
 
 
@@ -76,12 +80,13 @@ Afin de mettre en évidence les caractéristiques de l'ensemble mobile en répon
 On pose $\alpha(t)=\alpha_{0}+\Delta \alpha(t)$, avec $\Delta \alpha(t) \ll \alpha_{0}$.
 
 
-En l'absence de séisme, on montre que $a M_{2} g_{\mathrm{M}} \sin \alpha_{0}+C_{0}=0$.
+En l'absence de séisme, on montre que $a M_{2} g_{\mathrm{M}} \sin \alpha_{0}+C_{0}=0$ (eq 1').
+\fi
 
 %Q16. 
 \question{\label{ccmp2023_q_16}Montrer que l'équation du mouvement linéarisée s'écrit :
 $$
-I_{z z} \ddot{\Delta} \alpha(t)+\mu \dot{\Delta} \alpha(t)+k \Delta \alpha(t)=a M_{2} g_{\mathrm{M}} \cos \alpha_{0} \Delta \alpha(t)+d M \gamma_{x 2}(t) %\tag{eq.3}
+I_{z z} \ddot{\Delta} \alpha(t)+\mu \dot{\Delta} \alpha(t)+k \Delta \alpha(t)=a M_{2} g_{\mathrm{M}} \cos \alpha_{0} \Delta \alpha(t)+d M \gamma_{x 2}(t)  \quad \text{(eq. 3)}%\tag{eq.3}
 $$}
 \ifprof
 \begin{corrige}
@@ -151,9 +156,11 @@ $
 \fi
 
 \subsection{Choix du couple ressort/articulation pour le système}
+\ifprof
+\else
 Pour optimiser la conception des systèmes, 50 ressorts à lame souple et 8 articulations à lamelles ont été fabriqués. L'association d'un ressort et d'une articulation confère une certaine raideur $k$ et un certain moment de précontrainte $C_{0}$ sur l'axe de rotation du pendule par rapport au bâti. Grâce au dispositif expérimental mis au point avec le contrepoids, $k$ et $C_{0}$ sont mesurés pour chaque association, ce qui permet de tracer point par point le diagramme de la Figure A du document réponse (question \ref{ccmp2023_q_21}). Pour faciliter l'interprétation du diagramme, seuls 16 points ont été tracés au lieu de 400 .
 
-Le couple idéal ressort/articulation doit être déterminé pour une utilisation du pendule sur Mars, c'est-à-dire sans contrepoids. Ainsi, les équations précédentes $(1,1,2$ et 3 ) restent valables, en substituant $M_{2}$ par $M$ et $a$ par $d$.
+Le couple idéal ressort/articulation doit être déterminé pour une utilisation du pendule sur Mars, c'est-à-dire sans contrepoids. \textbf{Ainsi, les équations précédentes (1,1',2 et 3 ) restent valables, en substituant $M_{2}$ par $M$ et $a$ par $d$.}
 
 De plus, $\alpha_{\mathrm{eq}}=\alpha_{0}$. On admet que $\alpha_{0}=30^{\circ}$ assure un bon compromis entre un gain d'amplification maximisé et un bruit de mesure faible.
 
@@ -168,18 +175,39 @@ $4,4 \times 10^{-3} \si{m} \cdot \mathrm{kg}$ & $4 \si{m} \cdot \mathrm{s}^{-2}$
 \hline
 \end{tabular}
 \end{center}
+\fi
 
 \question{\label{ccmp2023_q_19}Déterminer la valeur numérique de $C_{0}$ pour assurer l'équilibre du pendule.}
 \ifprof
-\begin{corrige}
+\begin{corrige}\textbf{[UPSTI]} --
+On a : $dMg_M \sin \alpha_0+C_0=0$  
+$\Rightarrow C_0=-dMg_M \sin\alpha_0$.
+
+Or $\alpha_0=30\degres$. On a donc :
+$C_0=-\dfrac{dMg_M}{2}=-\SI{8,8e-3}{Nm}$.
 
 \end{corrige}
 \else
 \fi
 
+
+
 \question{\label{ccmp2023_q_20}Donner les 2 inéquations qui régissent le choix de la raideur $k$ du couple ressort/articulation, afin de satisfaire l'exigence 2.1 et d'avoir un système stable. À l'aide d'applications numériques, en déduire la plage de valeurs acceptables pour $k$ afin de satisfaire ces 2 conditions.}
 \ifprof
 \begin{corrige}
+\textbf{[UPSTI]} --
+On veut : $k-dMg_M \cos \alpha_0>0$ $\Rightarrow A>\indice{A}{min}=\SI{2}{rad.m^{-1}.s^2}$
+On a donc : $k>dMg_M \cos \alpha_0$ 
+$\Rightarrow \dfrac{dM}{k-dMg_M \cos\alpha_0}>\indice{A}{min} $
+$\Rightarrow dM>\indice{A}{min} (k-dMg_M \cos\alpha_0)$
+
+$\Rightarrow dM+\indice{A}{min} dMg_M \cos\alpha_0>\indice{A}{min} k$
+$\Rightarrow \dfrac{dM(1+\indice{A}{min} g_M \cos\alpha_0)}{\indice{A}{min}} >k$.
+
+On a donc :
+$\dfrac{dM(1+\indice{A}{min} g_M \cos\alpha_0)}{\indice{A}{min}} >k>dMg_M \cos\alpha_0$
+Soit : $17,2.10^{-3}>k>15.10^{-3} \si{N.m/rad}$.
+
 \end{corrige}
 \else
 \fi
@@ -187,6 +215,7 @@ $4,4 \times 10^{-3} \si{m} \cdot \mathrm{kg}$ & $4 \si{m} \cdot \mathrm{s}^{-2}$
 \question{\label{ccmp2023_q_21}Sur la Figure A du Cahier Réponses, tracer les droites encadrant les valeurs acceptables pour $k$ et la droite correspondant à la valeur idéale de $-C_{0}$. En déduire le meilleur couple ressort/articulation pour le pendule étudié en entourant le point correspondant sur le diagramme.}
 \ifprof
 \begin{corrige}
+\textbf{[UPSTI]} --
 \end{corrige}
 \else
 \fi
@@ -197,6 +226,8 @@ Le diagramme de Bode en gain de la fonction de transfert $\frac{\alpha(p)}{\gamm
 \question{\label{ccmp2023_q_22}Conclure vis-à-vis de l'exigence 2.2. Les tracés nécessaires devront figurer sur la FIGURE B du Cahier Réponses. Le système en l'état est-il satisfaisant pour la mesure des mouvements du sol martien dans la plage de fréquence des séismes attendus sur Mars?}
 \ifprof
 \begin{corrige}
+\textbf{[UPSTI]} --
+Les gains pour des pulsations entre 0,06 et \SI{3}{rad/s} sont supérieurs à \SI{10}{dB}. L’exigence 2.2 est donc vérifiée. On observe toutefois de la résonance pour une fréquence de \SI{3}{rad/s}. En l’état, le système n’est pas satisfaisant pour la mesure des mouvements du sol martien.
 \end{corrige}
 \else
 \fi

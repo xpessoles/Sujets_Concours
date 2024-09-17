@@ -5,8 +5,9 @@
 \end{center}
 
 \section{Présentation}
+\ifprof
+\else
 Après des années de recherche et de développement puis un voyage de 485 millions de kilomètres, la sonde InSight (Interior Exploration using Seismic Investigations, Geodesy and Heat Transport) s'est posée sur Mars le 26 novembre 2018. Elle est le premier observatoire géophysique martien, dont l'objectif est d'étudier la structure interne de Mars et de comprendre la formation et l'évolution des planètes rocheuses du Système solaire. En mesurant la façon dont les ondes sismiques, provoquées par des séismes martiens ou des impacts de météorites, se propagent à l'intérieur de Mars, les géophysiciens vont pouvoir répondre avec précision à cet objectif.
-
 
 \begin{figure}[!h]
 \centering
@@ -14,9 +15,6 @@ Après des années de recherche et de développement puis un voyage de 485 milli
 \caption{\label{ccmp2023_fig_01}Écorché de SEIS et ses différents niveaux de protection}
 %FigURE 1 - Écorché de SEIS et ses différents niveaux de protection}
 \end{figure}
-
-
-
 
 Le sismomètre SEIS (Seismic Experiment for Interior Structures), déployé à la surface de Mars, est protégé des variations de la température et du vent à l'aide d'un bouclier thermique et d'une coque de protection. SEIS comporte deux sismomètres indépendants, le VBB (Very Broad Band) et le SP (Short Periods), montés sur une structure commune pouvant être réglée à l'horizontale grâce à des pieds de longueur variable.
 
@@ -37,3 +35,7 @@ Le sismomètre SEIS (Seismic Experiment for Interior Structures), déployé à l
 Dans ce sujet, on s'attache à valider certaines étapes clés de la conception et du réglage d'un des trois systèmes du sismomètre VBB. Cette dernière étape ayant eu lieu sur Terre, il a fallu contourner les difficultés liées aux différences de gravité et de température entre la Terre et Mars.
 
 Une vue détaillée d'un des systèmes du VBB est fournie en figure \ref{ccmp2023_fig_02} et le détail des différents éléments qui le constituent est fourni en Annexe 1.
+
+L’équilibre de l’ensemble mobile sur Terre peut s'exprimer par l'équation suivante : 
+$ aM_2 g_M \sin\indice{\alpha}{eq} +C_0 - k( \indice{\alpha}{eq} -\alpha_0)=0 $(eq. 1).
+\fi

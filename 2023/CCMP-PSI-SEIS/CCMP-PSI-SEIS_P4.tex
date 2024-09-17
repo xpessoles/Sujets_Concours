@@ -1,4 +1,6 @@
 \section{Performances de l'asservissement}
+\ifprof
+\else
 À chaque mouvement du sol, un capteur mesure la position angulaire du pendule (2) par rapport au bâti (1). Des bobines de contre-réaction situées sur le pendule (voir figure \ref{ccmp2023_fig_02} et l'Annexe 1) génèrent un moment de rappel sur son axe de rotation, qui le ramène à sa position d'équilibre.
 
 \begin{itemize}
@@ -55,6 +57,7 @@ On s'intéresse dans un premier temps à l'asservissement avec l'action de la bo
 \includegraphics[width=\textwidth]{2024_04_26_3285cfc264024262add0g-13(1)}
 \caption{\label{ccmp2023_fig_11} Schéma-blocs de l'asservissement avec l'action de la bobine HF seule}
 \end{figure}
+\fi
 
 %FIGURE 11 - Schéma-blocs de l'asservissement avec l'action de la bobine HF seule
 
@@ -63,7 +66,35 @@ $
 H_{\gamma}(p)=K_{\mathrm{HF}} \cdot \frac{1+a_{1} p}{1+b_{1} p+b_{2} p^{2}+b_{3} p^{3}}
 $
 où l'on précisera les expressions de $K_{\mathrm{HF}}, a_{1}, b_{1}, b_{2}$ et $b_{3}$.}
+\ifprof
+\begin{corrige}
+\textbf{[UPSTI]} --
+D’après la formule de Black, on a :
+$H_{\gamma} (p)=dM \dfrac{\dfrac{K_D}{K+Jp^2}}{1+\dfrac{K_D K_H K_1 p}{(K+Jp^2)(1+\tau_H p)}}$
 
+$H_{\gamma} (p)=dM \dfrac{\dfrac{K_D}{K+Jp^2}}{\dfrac{(K+Jp^2)(1+\tau_H p)+K_D K_H K_1 p}{(K+Jp^2)(1+\tau_H p)}}$
+
+$H_{\gamma} (p)=dM \dfrac{K_D}{K+Jp^2}  \dfrac{(K+Jp^2)(1+\tau_H p)}{(K+Jp^2)(1+\tau_H p)+K_D K_H K_1 p}$
+
+$H_{\gamma} (p)=dMK_D  \dfrac{1+\tau_H p}{(K+Jp^2)(1+\tau_H p)+K_D K_H K_1 p}$
+
+$H_{\gamma} (p)=dMK_D  \dfrac{1+\tau_H p}{J\tau_H p^3+Jp^2+(K\tau_H+K_D K_H K_1)p+K}$
+
+$H_{\gamma} (p)=\dfrac{dMK_D}{K}  \dfrac{1+\tau_H p}{1+(K\tau_H+K_D K_H K_1)/K p+J/K p^2+(J\tau_H)/K p^3  }$
+
+Par identification, on a :
+$K_HF=\dfrac{dMK_D}{K}$, 
+$a_1=\tau_H$, 
+$b_1=\dfrac{K\tau_H+K_D K_H K_1}{K}$, 
+$b_2=\dfrac{J}{K}$, 
+$b_3=\dfrac{J\tau_H}{K}$.
+
+\end{corrige}
+\else
+\fi
+
+\ifprof
+\else
 On donne les pôles $p_{i}$ de $H_{\gamma}(p)$ en table \ref{ccmp2023_tab_04} et le diagramme de Bode en gain de $H_{\gamma}(p)$ en figure \ref{ccmp2023_fig_12} pour différentes valeurs de $K_{1}$.
 
 
@@ -92,12 +123,20 @@ $K_{1}$ & $p_{1}$ & $p_{2}$ & $p_{3}$ \\
 %Figure 12 - Diagramme de Bode en gain de la fonction de transfert $H_{\gamma}(p)$
 \end{figure}
 
-
-
 Le réglage du correcteur HF doit permettre de répondre à l'exigence 3.1.
+\fi
 
 %Q24. 
 \question{\label{ccmp2023_q_24}Justifier que $H_{\gamma}(p)$ correspond à un système stable quelle que soit la valeur retenue pour $K_{1}$ dans la gamme $[0,05 ; 5]$ s. Choisir, en justifiant, la valeur de $K_{1}$ parmi les valeurs proposées, la plus adaptée au réglage de l'asservissement avec l'action de la bobine HF seule.}
+\ifprof
+\begin{corrige}
+\textbf{[UPSTI]} --
+Tous les pôles ont des parties réelles strictement négatives. On en déduit que le système est stable au sens entrée bornée-sortie bornée.
+
+L’exigence 3.4 n’est pas respectée pour une valeur de K1 de 0,05 (gain supérieur à 120 dB). On cherche une bande passante la plus grande possible pour respecter l’exigence 3.1. On choisit donc une valeur de K1 de 0,5.
+\end{corrige}
+\else
+\fi
 
 %Q25. 
 \question{\label{ccmp2023_q_25}En s'appuyant sur les données numériques de la table \ref{ccmp2023_tab_04} et de l'Annexe 5, justifier que, pour la valeur retenue de $K_{1}$, la fonction de transfert peut s'écrire sous la forme :
@@ -106,11 +145,41 @@ H_{\gamma}(p)=\frac{d M K_{D}}{K} \cdot \frac{1}{\left(1+\tau_{2} p\right)\left(
 $$
 Préciser les valeurs des constantes de temps $\tau_{2}$ et $\tau_{3}$.}
 
+\ifprof
+\begin{corrige}%
+\textbf{[UPSTI]} -- 
+$\tau_1=-\dfrac{1}{p_1} =\dfrac{1}{1000}\si{s^{-1}}$,  $\tau_2=-1/p_2 =1/0,64 \si{s^{-1}}$,  $\tau3=-1/p_3 =1/9,32\si{s^{-1}}$. 
+
+On constate que $\tau_2 >> \tau_1$ et $\tau_3>> \tau_1$. Le pôle $p_1$ pourrait être négligé (constante de temps très faible par rapport aux autres. Mais ici il se simplifie avec le zéro de la fonction de transfert ($\tau_1=\tau_H$) et 
+$H_{\gamma} (p)= \dfrac{dMK_D}{K} \dfrac{ 1}{(1+\tau2 p)(1+\tau3 p)}$
+
+\end{corrige}
+\else
+\fi
+
+
 Pour la suite des questions, on conservera cette forme simplifiée de $H_{\gamma}(p)$.
 
 %Q26. 
 \question{\label{ccmp2023_q_26}Justifier que l'asservissement avec l'action de la bobine HF seule ne permet pas de satisfaire les exigences 3.2 et 3.3.}
+\ifprof
+\begin{corrige}%
+\textbf{[UPSTI]} -- 
+L’exigence 3.2 impose un écart statique nul en réponse à un échelon d’accélération du sol. Cette exigence n’est pas satisfaite. Pour le justifier :
+	Soit remarquer qu’il n’y a pas d’intégration en amont de la perturbation, l’écart statique vis-à-vis de cette perturbation est donc non nul.
+	Soit calculer la limite de l’écart lorsque t tend vers l’infini avec $u_c (t)=0$ et $\gamma_{x2} (t)= \gamma_0 u(t)$ 
+	$$ \lim_{t\to\infty}  \varepsilon(t) 
+	= \lim_{p\to 0}  pU(p) 
+	= \lim_{p\to 0}-H_{\gamma} (p) \gamma_0 =-\dfrac{dMK_D}{K} \gamma_0 \neq 0.$$
 
+Le gain n’est pas supérieur à \SI{110}{dB} sur toute la gamme de fréquence. On en déduit que l’exigence 3.3 n’est pas respectée non plus.
+
+\end{corrige}
+\else
+\fi
+
+\ifprof
+\else
 En tenant compte des résultats précédents, le schéma-blocs de l'Annexe 5 peut se mettre sous la forme de celui de la Figure \ref{ccmp2023_fig_13}.
 
 \begin{figure}[!h]
@@ -123,17 +192,51 @@ En tenant compte des résultats précédents, le schéma-blocs de l'Annexe 5 peu
 
 
 Le correcteur BF est un correcteur proportionnel intégral. Pour optimiser la rapidité, $\tau_{4}$ doit permettre de compenser le pôle dominant de la boucle ouverte. $K_{4}$ est réglé de façon à répondre aux exigences 3.3 et 3.4.
+\fi
 
 %Q27. 
 \question{\label{ccmp2023_q_27}Préciser l'intérêt de la chaîne d'action BF vis-à-vis de l'exigence 3.2.}
+\ifprof
+\begin{corrige}%
+\textbf{[UPSTI]} -- L’action BF permet d’augmenter la classe de la FTBO. Il y a une intégration en amont de la perturbation, l’écart statique vis-à-vis de cette perturbation est donc nul. L’exigence 3.2. est satisfaite.
+\end{corrige}
+\else
+\fi
 
 %Q28. 
 \question{\label{ccmp2023_q_28}Donner l'expression de la fonction de transfert en boucle ouverte de l'asservissement, $H_{B O}(p)=\frac{U(p)}{\varepsilon(p)}$. Donner, en justifiant, la valeur retenue pour $\tau_{4}$.}
+\ifprof
+\begin{corrige}%
+\textbf{[UPSTI]} -- 
+$\indice{H}{BO} (p)=\dfrac{K_D K_4 K_B (1+\tau_4 p)}{Kp(1+\tau_B p)(1+\tau_2 p)(1+\tau_3 p)}$
+On cherche à éliminer le pôle dominant. On a donc : $\tau_4=\tau_2$ et  
+$\indice{H}{BO} (p)=\dfrac{K_D K_4 K_B}{Kp(1+\tau_B p)(1+\tau_3 p)}$
+
+\end{corrige}
+\else
+\fi
 
 On donne, pour la valeur de $\tau_{4}$ retenue et différentes valeurs de $K_{4}$, le diagramme de Bode de l'asservissement en tension, $\frac{U(p)}{\gamma_{x 2}(p)}$, sur la Figure C du document réponse (question \ref{ccmp2023_q_29}).
 
 %Q29. 
 \question{\label{ccmp2023_q_29}Choisir, en justifiant, la valeur de $K_{4}$ qui permet de vérifier au mieux les exigences 3.3 et 3.4. Les tracés nécessaires apparaitront sur la document réponses.}
+\ifprof
+\begin{corrige}%
+\textbf{[UPSTI]} --
+Pour $K = \SI{0,0001}{s^{-1}}$, on amplifie (Gain $\geq \SI{110}{dB}$) sur une bande $\left[0,01 ; 3\right] \si{rad/s}$.
+Pour $K = \SI{0,01}{s^{-1}}$, on amplifie sur une bande $\left[0,2 ; 3\right] \si{rad/s}$.
+On choisit donc une valeur de $K$ de $\SI{0,001}{s^{-1}}$ (on amplifie sur une bande $\left[0,06 ; 3\right] \si{rad/s}$).
+
+\end{corrige}
+\else
+\fi
 
 %Q30. 
 \question{\label{ccmp2023_q_30}Donner le nom du type de filtre réalisé par le pendule asservi et préciser l'intérêt de cette solution pour la mesure des séismes par le sismomètre VBB.}
+\ifprof
+\begin{corrige}%
+\textbf{[UPSTI]} -- 
+Il s’agit d’un filtre passe bande. Il permet de sélectionner les fréquences souhaitées en amplifiant uniquement ces dernières.
+\end{corrige}
+\else
+\fi
