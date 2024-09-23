@@ -94,8 +94,10 @@ Justifier les choix de conception du mécanisme de translation du centre d'inert
 \end{minipage}
 \hfill
 \begin{minipage}[c]{.45\linewidth}
+\begin{center}
         \includegraphics[height=5.5cm]{fig_05}
         \captionof{figure} {\label{ccmp2023_fig_05} Schéma cinématique du guidage en translation des tiges (4) par rapport au corps du pendule (2)}
+\end{center}
 \end{minipage}
 
 
@@ -105,7 +107,7 @@ Le guidage en translation des tiges (4) par rapport à (2) permettant le réglag
 
 
 %Q3. 
-\question{\label{ccmp2023_q_03}Compléter, sur le Cahier Réponses, le graphe des liaisons fourni avec les noms et la (les) caractéristique(s) géométrique(s) des liaisons. Donner le nombre de boucles indépendantes (nombre cyclomatique $\gamma$ ) de ce modèle.}
+\question{\label{ccmp2023_q_03}Compléter, sur le Cahier Réponses, le graphe des liaisons fourni avec les noms et la (les) caractéristique(s) géométrique(s) des liaisons. Donner le nombre de boucles indépendantes (nombre cyclomatique $\gamma$) de ce modèle.}
 
 \question{\label{ccmp2023_q_04}Déterminer le degré d'hyperstatisme $h$ de ce modèle. Préciser les mobilités internes $\left(m_{i}\right)$ et utiles $\left(m_{u}\right)$. Justifier, au regard du système et de son contexte d'utilisation, l'intérêt d'un tel degré d'hyperstatisme pour la réalisation du guidage.}
 
@@ -132,22 +134,53 @@ On suppose que le joint est assemblé sans jeu entre les différentes surfaces d
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=\textwidth]{2024_04_26_3285cfc264024262add0g-06}
+\includegraphics[width=.8\textwidth]{2024_04_26_3285cfc264024262add0g-06}
 \caption{\label{ccmp2023_fig_07} Joint d'Oldham assemblé (à gauche) et éclaté (à droite)}
 %FiguRe 7 - Joint d'Oldham assemblé (à gauche) et éclaté (à droite)
 \end{figure}
 
 
 %Q5. 
-\question{\label{ccmp2023_q_05}À l'aide de la figure \ref{ccmp2023_fig_07} et par analyse des surfaces de contact, identifier la liaison entre $(\mathbf{N})$ et (5) d'une part, et entre (N) et (v) d'autre part. Compléter le schéma cinématique en 3D du Cahier Réponses en traçant ces liaisons.}
+\question{\label{ccmp2023_q_05}À l'aide de la figure \ref{ccmp2023_fig_07} et par analyse des surfaces de contact, identifier la liaison entre $(\mathbf{N})$ et (5) d'une part, et entre (N) et (v) d'autre part. Recopier et compléter le schéma cinématique en 3D de la figure \ref{ccmp2023_fig_dr_05} en traçant ces liaisons.}
+
+%\begin{figure}[!h]
+%\centering
+%\includegraphics[width=.4\textwidth]{DR_05}
+%\caption{\label{ccmp2023_fig_dr_05}Schéma cinématique à compléter}
+%%FiguRe 7 - Joint d'Oldham assemblé (à gauche) et éclaté (à droite)
+%\end{figure}
+
 
 Ce type de joint permet de lier entre eux des éléments d'un mécanisme tout en corrigeant d'éventuels défauts de positionnement relatif entre les arbres (5) et (v).
 
 %}Q6. 
-\question{\label{ccmp2023_q_06} Pour chacune des 5 propositions de défauts géométriques du tableau du Cahier Réponses, entourer OUI lorsque le joint d'Oldham permet de rattraper le défaut et entourer NON lorsque ce n'est pas le cas.}
+\question{\label{ccmp2023_q_06} Pour chacune des 5 propositions de défauts géométriques du tableau figure \ref{ccmp2023_fig_dr_06}, entourer OUI lorsque le joint d'Oldham permet de rattraper le défaut et entourer NON lorsque ce n'est pas le cas.}
 
 
+%\begin{figure}[!h]
+%\centering
+%\includegraphics[width=.4\textwidth]{DR_06}
+%\caption{\label{ccmp2023_fig_dr_06}Joint d'Oldham}
+%%FiguRe 7 - Joint d'Oldham assemblé (à gauche) et éclaté (à droite)
+%\end{figure}
 
+\begin{minipage}{.48\linewidth}
+\begin{center}
+\centering
+\includegraphics[width=.7\textwidth]{DR_05}
+\captionof{figure}{\label{ccmp2023_fig_dr_05}Schéma cinématique à compléter}
+%FiguRe 7 - Joint d'Oldham assemblé (à gauche) et éclaté (à droite)
+\end{center}
+
+\end{minipage}
+\begin{minipage}{.48\linewidth}
+\begin{center}
+\centering
+\includegraphics[width=.9\textwidth]{DR_06}
+\captionof{figure}{\label{ccmp2023_fig_dr_06}Joint d'Oldham}
+%FiguRe 7 - Joint d'Oldham assemblé (à gauche) et éclaté (à droite)
+\end{center}
+\end{minipage}
 \subsection{Validation de la précision du positionnement du centre d'inertie du pendule}
 
 \begin{table}[!h]
@@ -216,7 +249,7 @@ Un capteur optique a permis de mesurer le déplacement de la vis, fourni en figu
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=\textwidth]{2024_04_26_3285cfc264024262add0g-08(1)}
+\includegraphics[width=.7\textwidth]{2024_04_26_3285cfc264024262add0g-08(1)}
 \caption{\label{ccmp2023_fig_10} Déplacement de la vis en $\mu \mathrm{m}$ et nombre de pas du moteur en fonction du temps}
 \end{figure}
 %FigURe 10 - Déplacement de la vis en $\mu \mathrm{m}$ et nombre de pas du moteur en fonction du temps
