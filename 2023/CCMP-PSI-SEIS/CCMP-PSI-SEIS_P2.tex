@@ -1,10 +1,15 @@
 
 \section{Réglage de la position d'équilibre du pendule \label{ccmp2023_sec_02}}
+\ifprof
+\else
 Comme pour les applications terrestres, chaque système du sismomètre VBB possède un pendule qui oscille par rapport à un bâti sous l'impulsion de secousses sismiques transmises par le sol à l'instrument. Une articulation à lamelles permet des mouvements de très faible amplitude avec un minimum de frottements visqueux entre le pendule et le bâti, et sans jeu. Elle constitue l'axe de rotation du pendule dans son mouvement par rapport au bâti.
 
 Le sismomètre VBB s'appuie sur le principe du pendule inversé. L'instabilité inhérente au pendule inversé lui confère une plus grande sensibilité que celle d'un pendule classique. Bien qu'instable par nature, le pendule inversé du sismomètre VBB conserve son équilibre grâce à un ressort à lame souple, recourbé en demi-cercle, et qui applique en permanence une action mécanique de rappel.
+\fi
 
 \subsection{Compensation de la gravité terrestre \label{ccmp2023_sec_02_01}}
+\ifprof
+\else
 Le sismomètre étant optimisé pour fonctionner sous gravité martienne, il n'est pas possible de le tester sur Terre sans y apporter des modifications. En effet, pour un mouvement du sol donné sur Terre, l'amplitude résultante des oscillations du pendule risquerait de détériorer le mécanisme. Un contrepoids est ajouté au pendule, dont le moment généré sur son axe de rotation par rapport au bâti doit compenser celui dû à la différence de gravité entre la Terre et Mars (voir figure \ref{ccmp2023_fig_03b}).
 
 
@@ -24,6 +29,7 @@ Le sismomètre étant optimisé pour fonctionner sous gravité martienne, il n'e
     \end{subfigure}
     \caption{}
 \end{figure*}
+\fi
 
 
 %
@@ -52,29 +58,53 @@ Le sismomètre étant optimisé pour fonctionner sous gravité martienne, il n'e
 Etablir les conditions que doit respecter le contrepoids pour compenser la gravité terrestre lors d'expériences sur Terre.
 \end{obj}
  
-
+\ifprof
+\else
 Le schéma cinématique et le paramétrage du dispositif sont fournis en Annexe 2, ainsi que l'ensemble des notations et hypothèses utiles pour cette sous-partie.
 
 On désigne par «~ensemble mobile~» le pendule noté (2) équipé du contrepoids noté (3). Le bâti, lié au sol, est noté~(1).
+\fi
 
 \question{\label{ccmp2023_q_01}Écrire l'équation traduisant l'équilibre de l'ensemble mobile $\{(2)+(3)\}$ sur Terre, lorsque $\alpha(t)=\alpha_{\mathrm{eq}}$. Préciser le bilan des actions mécaniques extérieures, le théorème ou principe utilisé, et les éléments d'application (projection, point éventuel).}
+\ifprof
+\begin{corrige}
+\textbf{UPSTI -- }
+\end{corrige}
 
+\else
+\fi
+
+\ifprof
+\else
 Sur Mars, le pendule (2) n'est pas équipé du contrepoids (3). Cependant, la position d'équilibre du pendule (2) sans contrepoids (3) sur Mars, et celle du pendule (2) avec le contrepoids (3) sur Terre, doivent être identiques.
-
+\fi
 \question{\label{ccmp2023_q_02}Donner la condition sur la masse $m_{3}$ et la variable $b$ pour compenser la différence de pesanteur entre la Terre et Mars. Pour cela, exprimer le produit $b m_{3}$ en fonction de $a$, $M_{2}, g_{T}$ et $g_{M}$.}
+\ifprof
+\begin{corrige}
+\textbf{UPSTI -- }
+
+\end{corrige}
+\else
+\fi
+
+
+\ifprof
+\else
 
 Cette condition étant respectée, on peut alors traduire l'équilibre de l'ensemble mobile sur Terre :
-
 
 $$
 a M_{2} g_{\mathrm{M}} \sin \alpha_{\mathrm{eq}}+C_{0}-k\left(\alpha_{\mathrm{eq}}-\alpha_{0}\right)=0 %\tag{eq.1}
 $$
-
+\fi
 
 \subsection{Conception d'un mécanisme de translation du centre d'inertie du pendule}
+\ifprof
+\else
 Si l'inclinaison de la surface sur laquelle le sismomètre est posé n'est pas correctement corrigée par les pieds réglables, la position $a$ du centre d'inertie $G_{2}$ du pendule (2) le long de l'axe $\left(O_{1}, \overrightarrow{y_{2}}\right)$ peut être réglée à distance. Cela permet notamment d'assurer que $\alpha_{\mathrm{eq}}$ conserve une valeur optimale déterminée lors d'expérimentations sur Terre.
 
 Pour cela, un mécanisme embarqué sur (2), constitué d'un moteur pas-à-pas, d'un réducteur à train épicycloïdal, d'un joint d'accouplement (joint d'Oldham) et d'un système vis-écrou, indiqués enfigure \label{ccmp2023_fig_04}, est guidé en translation le long de l'axe  $\axe{O_1}{y_2}$.
+\fi
 
 \begin{obj}
 Justifier les choix de conception du mécanisme de translation du centre d'inertie du pendule.
@@ -86,7 +116,8 @@ Justifier les choix de conception du mécanisme de translation du centre d'inert
 %\caption{\label{ccmp2023_fig_04} Photographie du mécanisme de réglage de la position du centre d'inertie du pendule. Le mécanisme est ici fixé sur un support métallique incliné représentant le corps du pendule (2).}
 %% FiguRe 4 - Photographie du mécanisme de réglage de la position du centre d'inertie du pendule. Le mécanisme est ici fixé sur un support métallique incliné représentant le corps du pendule (2).
 %\end{figure}
-
+\ifprof
+\else
 
 \begin{minipage}[c]{.45\linewidth}
     \includegraphics[height=6.5cm]{2024_04_26_3285cfc264024262add0g-05(1)}
@@ -104,13 +135,29 @@ Justifier les choix de conception du mécanisme de translation du centre d'inert
 Pendant la phase de réglage de la position de son centre d'inertie, on suppose que le corps du pendule (2) reste immobile. L'ensemble du mécanisme embarqué est considéré comme mobile par rapport au corps du pendule (2) le temps de cette étude.
 
 Le guidage en translation des tiges (4) par rapport à (2) permettant le réglage de la position du centre d'inertie est réalisé par l'association de 4 liaisons en parallèle (voir figure \label{ccmp2023_fig_05}).
-
+\fi
 
 %Q3. 
 \question{\label{ccmp2023_q_03}Compléter, sur le Cahier Réponses, le graphe des liaisons fourni avec les noms et la (les) caractéristique(s) géométrique(s) des liaisons. Donner le nombre de boucles indépendantes (nombre cyclomatique $\gamma$) de ce modèle.}
+\ifprof
+\begin{corrige}
+\textbf{UPSTI -- }
+
+\end{corrige}
+\else
+\fi
 
 \question{\label{ccmp2023_q_04}Déterminer le degré d'hyperstatisme $h$ de ce modèle. Préciser les mobilités internes $\left(m_{i}\right)$ et utiles $\left(m_{u}\right)$. Justifier, au regard du système et de son contexte d'utilisation, l'intérêt d'un tel degré d'hyperstatisme pour la réalisation du guidage.}
+\ifprof
+\begin{corrige}
+\textbf{UPSTI -- }
 
+\end{corrige}
+\else
+\fi
+
+\ifprof
+\else
 L'association des 4 liaisons en parallèle entre (4) et (2) correspond à une liaison glissière équivalente de direction $\overrightarrow{y_{2}}$. La suite de l'étude s'appuiera sur le schéma cinématique réduit de la figure \label{ccmp2023_fig_06} faisant apparaître cette liaison équivalente, ainsi que des éléments du mécanisme embarqué. Le schéma cinématique réduit de l'ensemble du mécanisme est fourni en Annexe 3.
 
 Le joint de type Oldham assure l'accouplement de l'arbre (5) en sortie du réducteur à train épicycloïdal avec la vis (v).
@@ -138,10 +185,18 @@ On suppose que le joint est assemblé sans jeu entre les différentes surfaces d
 \caption{\label{ccmp2023_fig_07} Joint d'Oldham assemblé (à gauche) et éclaté (à droite)}
 %FiguRe 7 - Joint d'Oldham assemblé (à gauche) et éclaté (à droite)
 \end{figure}
+\fi
 
 
 %Q5. 
 \question{\label{ccmp2023_q_05}À l'aide de la figure \ref{ccmp2023_fig_07} et par analyse des surfaces de contact, identifier la liaison entre $(\mathbf{N})$ et (5) d'une part, et entre (N) et (v) d'autre part. Recopier et compléter le schéma cinématique en 3D de la figure \ref{ccmp2023_fig_dr_05} en traçant ces liaisons.}
+\ifprof
+\begin{corrige}
+\textbf{UPSTI -- }
+
+\end{corrige}
+\else
+\fi
 
 %\begin{figure}[!h]
 %\centering
@@ -150,11 +205,20 @@ On suppose que le joint est assemblé sans jeu entre les différentes surfaces d
 %%FiguRe 7 - Joint d'Oldham assemblé (à gauche) et éclaté (à droite)
 %\end{figure}
 
-
+\ifprof
+\else
 Ce type de joint permet de lier entre eux des éléments d'un mécanisme tout en corrigeant d'éventuels défauts de positionnement relatif entre les arbres (5) et (v).
+\fi
 
 %}Q6. 
 \question{\label{ccmp2023_q_06} Pour chacune des 5 propositions de défauts géométriques du tableau figure \ref{ccmp2023_fig_dr_06}, entourer OUI lorsque le joint d'Oldham permet de rattraper le défaut et entourer NON lorsque ce n'est pas le cas.}
+\ifprof
+\begin{corrige}
+\textbf{UPSTI -- }
+
+\end{corrige}
+\else
+\fi
 
 
 %\begin{figure}[!h]
@@ -163,7 +227,8 @@ Ce type de joint permet de lier entre eux des éléments d'un mécanisme tout en
 %\caption{\label{ccmp2023_fig_dr_06}Joint d'Oldham}
 %%FiguRe 7 - Joint d'Oldham assemblé (à gauche) et éclaté (à droite)
 %\end{figure}
-
+\ifprof
+\else
 \begin{minipage}{.48\linewidth}
 \begin{center}
 \centering
@@ -227,10 +292,19 @@ $$
 $$
 
 Le réducteur est à train épicycloïdal. Son schéma complet est fourni en Annexe 3. Comme il est composé de 4 étages identiques, on résume son étude à celle d'un seul étage, ici le dernier, de manière à en déduire par la suite le rapport de transmission global du train complet. Le schéma cinématique du dernier étage du réducteur est fourni en figure \ref{ccmp2023_fig_09}.
-
+\fi
 
 \question{\label{ccmp2023_q_07}Justifier que $\omega_{4 / 2}=0$. Établir l'expression du rapport de transmission d'un étage $k=\frac{\omega_{5 / 2}}{\omega_{7 / 2}}$ en fonction des nombres de dents $Z_{i}$ et faire l'application numérique.}
+\ifprof
+\begin{corrige}
+\textbf{UPSTI -- }
 
+\end{corrige}
+\else
+\fi
+
+\ifprof
+\else
 
 \begin{figure}[!h]
 \centering
@@ -238,13 +312,29 @@ Le réducteur est à train épicycloïdal. Son schéma complet est fourni en Ann
 \caption{\label{ccmp2023_fig_09} Schéma cinématique du dernier étage du train épicycloïdal}
 %FigURe 9 - Schéma cinématique du dernier étage du train épicycloïdal
 \end{figure}
-
+\fi
 
 %Q08
 \question{\label{ccmp2023_q_08}Exprimer le rapport de transmission global du réducteur $k_{g}=\frac{\omega_{5 / 2}}{\omega_{m / 2}}$ en fonction de $k$.}
+\ifprof
+\begin{corrige}
+\textbf{UPSTI -- }
+
+\end{corrige}
+\else
+\fi
 
 \question{\label{ccmp2023_q_09}En s'appuyant sur les notations et données de la figure \ref{ccmp2023_fig_08}, établir l'expression du déplacement linéaire $d_{v}$ de la vis (v) par pas du moteur en fonction de $N_{m}, k_{g}$ et $p_{v}$. Faire l'application numérique et conclure vis-à-vis de l'exigence 1.1 de précision du positionnement du centre d'inertie.}
+\ifprof
+\begin{corrige}
+\textbf{UPSTI -- }
 
+\end{corrige}
+\else
+\fi
+
+\ifprof
+\else
 Un capteur optique a permis de mesurer le déplacement de la vis, fourni en figure \ref{ccmp2023_fig_10}, et a mis en évidence une non-linéarité lors des changements de sens de rotation du moteur.\\
 
 \begin{figure}[!h]
@@ -253,8 +343,23 @@ Un capteur optique a permis de mesurer le déplacement de la vis, fourni en figu
 \caption{\label{ccmp2023_fig_10} Déplacement de la vis en $\mu \mathrm{m}$ et nombre de pas du moteur en fonction du temps}
 \end{figure}
 %FigURe 10 - Déplacement de la vis en $\mu \mathrm{m}$ et nombre de pas du moteur en fonction du temps
+\fi
 
 \question{\label{ccmp2023_q_10}Proposer une cause de la non-linéarité qui apparait au changement de sens de rotation du moteur.}
+\ifprof
+\begin{corrige}
+\textbf{UPSTI -- }
+
+\end{corrige}
+\else
+\fi
 
 \question{\label{ccmp2023_q_11}Donner l'erreur de positionnement due à la non-linéarité. Conclure à nouveau vis-à-vis de l'exigence 1.1 de précision du positionnement du centre d'inertie.}
+\ifprof
+\begin{corrige}
+\textbf{UPSTI -- }
+
+\end{corrige}
+\else
+\fi
 
