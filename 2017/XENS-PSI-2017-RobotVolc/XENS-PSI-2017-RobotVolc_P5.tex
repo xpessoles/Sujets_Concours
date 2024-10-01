@@ -42,7 +42,7 @@ avec le bâti 0. La biellette 3 est également en liaison pivot d'axe $\left(E,\
 \item  d'un mors 5 en liaisons pivot d'axes $\left(B,\vect{z_P}\right)$ et $\left(D,\vect{z_P}\right)$ avec les biellettes 3 et 4 ;
 \item  d'un galet 6 en liaison rotule de centre $Q$ avec le mors 5 et en contact avec l'objet à saisir.
 \end{itemize}
-Les points $A$ , $B$ , $C$ , $D$ forment un parallélogramme. On introduit le paramétrage suivant :
+Les points $A$, $B$, $C$, $D$ forment un parallélogramme. On introduit le paramétrage suivant :
 $d=\vect{HP} \cdot \vect{y_P}=\vect{AP} \cdot \vect{y_P}=\vect{CP} \cdot \vect{y_P}$, 
 $CE = EH = \ell_2$, 
 $AC = BD = \ell_3$,
@@ -68,6 +68,22 @@ de normale $\vect{y_P}$ .
 Dans une première approche, on considère que toutes les liaisons sont parfaites. De plus, le poids
 des pièces composant la pince est négligé.
 L'objet à saisir est modélisé par un cylindre à base circulaire de rayon $R$.
+\fi
+
+
+% QUESTION SUPPLEMENTAIRE
+\question{Dans cette question uniquement, on considère le système formé par les pièces 0, 3, 4 et 5. Déterminer degré d'hyperstatisme du modèle. S'il est hyperstatique, proposé une ou plusieurs modifications de liaisons pour le rendre isostatique.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+% QUESTION SUPPLEMENTAIRE
+\question{Déterminer degré d'hyperstatisme du modèle complet.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
 \fi
 
 
@@ -136,11 +152,18 @@ se traduit au niveau de la liaison équivalente entre le mors 5 et l'objet à sa
 statique de la forme : $\torseurstat{T}{5}{\text{objet}}=\torseurl{-F_S^x\vect{x_P}+F_S^y\vect{y_P}}{\vect{0}}{S}$ 
 où $F_S^x$ est l'effort tangentiel et $F_S^y$ est l'effort normal (ou de serrage) au contact.
 
-% Q5.5
-\question{Par une étude statique, montrer que les efforts $F_P$, $F_S^x$ et $F_S^y$ 
-y sont liés par la relation $F_P = K \left( \tan \beta F_S^y - F_S^x\right)$  
-où l'expression de la constante $K$ est à préciser en fonction de $\ell_2$ et $\ell_4$.
-Montrer également que cette relation est indépendante de la longueur $L_5$ et expliquer l'avantage technique de ce résultat. }
+%% Q5.5
+%\question{Par une étude statique, montrer que les efforts $F_P$, $F_S^x$ et $F_S^y$ 
+%y sont liés par la relation $F_P = K \left( \tan \beta F_S^y - F_S^x\right)$  
+%où l'expression de la constante $K$ est à préciser en fonction de $\ell_2$ et $\ell_4$.
+%Montrer également que cette relation est indépendante de la longueur $L_5$ et expliquer l'avantage technique de ce résultat. }
+
+% Question modifiiée
+\question{Par une étude statique, on peut montrer que les efforts $F_P$, $F_S^x$ et $F_S^y$ sont liés par la relation $F_P = K \left( \tan \beta F_S^y - F_S^x\right)$  
+où l'expression la constante $K$ s'exprime en fonction de $\ell_2$ et $\ell_4$.
+Proposer une stratégie (isolement, théorèmes utilisé, point d'application si nécessaire, projection) permettant d'établir cette relation. On s'appuiera sur un graphe de structure.}
+%Montrer également que cette relation est indépendante de la longueur $L_5$ et expliquer l'avantage technique de ce résultat. }
+
 \ifprof
 \begin{corrige}~\\
 \begin{figure}[H]
