@@ -12,7 +12,7 @@ critère suivant du cahier des charges :
 \begin{center}
 \begin{tabular}{ll}
 \hline
-\textbf{Critère} & \textbf{Valeur} \\ \hline \hline
+\textbf{Critère} & \textbf{Valeur} \\ \hline 
 Vitesse de déplacement atteignable &   \SI{0,5}{m/s} \\\hline
 \end{tabular}
 \end{center}
@@ -109,7 +109,7 @@ système est modélisé sur la \autoref{fig_07}.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.45\linewidth]{fig_07.png}
+\includegraphics[width=.5\linewidth]{fig_07.png}
 \caption{Structure d'asservissement \label{fig_07}}
 \end{figure}
 
@@ -117,10 +117,26 @@ La fonction $K_c$ représente un capteur de vitesse permettant de mesurer la vit
 moteur.
 
 
+%%Q2.9 :
+%\question{Citer deux composants permettant de réaliser la fonction $K_c$ en précisant les
+%avantages/inconvénients et le type de signal (analogique ou numérique) en entrée/sortie de
+%chacun. Indiquer, en justifiant, la technologie la plus probablement retenue ici.}
+%\ifprof
+%\begin{corrige}
+%\end{corrige}
+%\else
+%\fi
+
+
 %Q2.9 :
-\question{Citer deux composants permettant de réaliser la fonction $K_c$ en précisant les
-avantages/inconvénients et le type de signal (analogique ou numérique) en entrée/sortie de
-chacun. Indiquer, en justifiant, la technologie la plus probablement retenue ici.}
+\question{Citer un composant permettant de réaliser la fonction $K_c$. Décrire succinctement son fonctionnement.}
+\ifprof
+\begin{corrige}
+Une génératrice tachymétrique est un capteur de vitesse. Ce constituant est une machine à courant continu. Lorsqu'il est mis en rotation, il délivre une tension proportionnelle à la vitesse. 
+\end{corrige}
+\else
+\fi
+
 
 \subsubsection{Étude du convertisseur numérique-analogique (CNA)}
 
@@ -131,6 +147,13 @@ hexadécimal de 0000 à sa valeur maximale FFFF.
 %Q2.10 :
 \question{Donner la valeur numérique de $U (t)$ à appliquer pour obtenir une valeur nulle en sortie
 du CNA. À quelle consigne correspond la valeur hexadécimale d'entrée $U (t) =\text{A000}$?}
+\ifprof
+\begin{corrige}
+On a $U(t) = \left(\text{pts}-2^{15}\right) \times \dfrac{20}{2^{16}}$.
+On a $A000 = 10\times 16^3 = 40960 = \SI{2,5}{V}$.  
+\end{corrige}
+\else
+\fi
 
 \subsubsection{Étude du convertisseur analogique-numérique (CAN)}
 
@@ -142,10 +165,25 @@ d'une linéarité de $+/-\SI{1}{bit}$. Le temps de conversion par canal est de 2
 
 %Q2.11 :
 \question{Calculer la résolution en \si{mV} du CAN.}
+\ifprof
+\begin{corrige}
+On  a : $\dfrac{650+610}{2^12} = \SI{0,3}{mV}$.
+\end{corrige}
+\else
+\fi
 
 %Q2.12 :
-\question{Donner les deux hypothèses principales qu’il faut faire pour pouvoir utiliser un modèle de
+\question{Dans ces conditions, donner des deux hypothèses principales qu’il faut faire pour pouvoir utiliser un modèle de
 système linéaire continu invariant.}
+\ifprof
+\begin{corrige} \textbf{ -- UPSTI}\\
+ Il faut faire l’hypothèse que la période d’échantillonnage soit faible vis-à-vis de la rapidité 
+de la grandeur à asservir (pour la validité du modèle système continu). De plus, il faut faire 
+l’hypothèse que le pas de quantification est très faible par rapport à l’étendue de mesure de la 
+grandeur à asservir (pour la validité du modèle linéaire).
+\end{corrige}
+\else
+\fi
 
 \subsubsection{Asservissement en vitesse}
 
@@ -168,14 +206,37 @@ envoyé en entrée.
 %Q2.13 : 
 \question{Exprimer par un modèle du premier ordre sous forme canonique la fonction de transfert
 $\indice{H}{moteur}( p)$ du moteur, et identifier ses paramètres.}
+\ifprof
+\begin{corrige}\textbf{ -- UPSTI}\\ 
+$H(p)=\dfrac{0,00406}{1+0,34p}$.
+\end{corrige}
+\else
+\fi
+
+
+\question{Déterminer le gain d'adaptation à mettre en amont du comparateur, afin que le système soit asservi sur la vitesse angulaire de la roue.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 %Q2.14 : 
 \question{Calculer la fonction de transfert $\dfrac{\indice{\Omega}{roue}( p)}{\Omega_c(p)}$ sous forme canonique.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 %Q2.15 : 
 \question{Exprimer les conditions pour avoir des valeurs d'erreur statique en position et en vitesse
 inférieures à 1\%. Proposer un moyen d'obtenir ces erreurs statiques nulles.}
-
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 %% Partie 2.5 TODO
 %\subsection{Maîtrise de trajectoire}
