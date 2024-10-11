@@ -137,6 +137,8 @@ Une génératrice tachymétrique est un capteur de vitesse. Ce constituant est u
 \else
 \fi
 
+\question{Un codeur incrémental serait-il adapté ? Si oui comment l'utiliser ? Donner la résolution d'un codeur incrémental ayant 1000 fentes et 2 voies de mesures. }
+
 
 \subsubsection{Étude du convertisseur numérique-analogique (CNA)}
 
@@ -167,7 +169,7 @@ d'une linéarité de $+/-\SI{1}{bit}$. Le temps de conversion par canal est de 2
 \question{Calculer la résolution en \si{mV} du CAN.}
 \ifprof
 \begin{corrige}
-On  a : $\dfrac{650+610}{2^12} = \SI{0,3}{mV}$.
+On  a : $\dfrac{650+610}{2^{12}} = \SI{0,3}{mV}$.
 \end{corrige}
 \else
 \fi
@@ -213,10 +215,16 @@ $H(p)=\dfrac{0,00406}{1+0,34p}$.
 \else
 \fi
 
+Il manque un gain d'adaptation, en amont du comparateur, pour que le système soit asservi sur la vitesse angulaire de la roue.
 
 \question{Déterminer le gain d'adaptation à mettre en amont du comparateur, afin que le système soit asservi sur la vitesse angulaire de la roue.}
 \ifprof
 \begin{corrige}
+Dans ces conditions, l'écart en sortie du premier comparateur doit être nul lorsque l'entrée et la sortie sont égaux. 
+On a donc $\varepsilon(p)=\Omega_c(p) \indice{K}{Adapt} -\Omega_m(p) \indice{K}{C} CAN 
+=\Omega_c(p) \indice{K}{Adapt} -\dfrac{\Omega_c(p)}{\indice{K}{red}} \indice{K}{C} CAN $.
+Il faut donc $\indice{K}{Adapt} = \dfrac{ \indice{K}{C} CAN}{\indice{K}{red}} $
+
 \end{corrige}
 \else
 \fi
@@ -225,6 +233,15 @@ $H(p)=\dfrac{0,00406}{1+0,34p}$.
 \question{Calculer la fonction de transfert $\dfrac{\indice{\Omega}{roue}( p)}{\Omega_c(p)}$ sous forme canonique.}
 \ifprof
 \begin{corrige}
+En tenant compte du gain d'adaptation :
+$\dfrac{\indice{\Omega}{roue}( p)}{\Omega_c(p)} =\indice{K}{Adapt} \indice{K}{red} \dfrac{C_v(p) CNA \indice{H}{moteur}(p)}{1+C_v(p) CNA \indice{H}{moteur}(p)}$
+
+$=\indice{K}{Adapt} \indice{K}{red} \dfrac{K_v \dfrac{\indice{K}{m}(p)}{1+\tau_m p}}{1+K_v  \dfrac{\indice{K}{m}(p)}{1+\tau_m p}}$
+$=\indice{K}{Adapt} \indice{K}{red} \dfrac{K_v \indice{K}{m}}{1+\tau_m p+K_v  \indice{K}{m}}$
+$=\dfrac{\indice{K}{Adapt} \indice{K}{red}}{K_vK_m +1} \dfrac{K_v \indice{K}{m}}{1+\dfrac{\tau_m}{K_vK_m +1} p}$
+
+$=\dfrac{\dfrac{ \indice{K}{C} CAN}{\indice{K}{red}} \indice{K}{red}}{K_vK_m +1} \dfrac{K_v \indice{K}{m}}{1+\dfrac{\tau_m}{K_vK_m +1} p}$
+$=\dfrac{ \indice{K}{C} CAN }{K_vK_m +1} \dfrac{K_v \indice{K}{m}}{1+\dfrac{\tau_m}{K_vK_m +1} p}$
 \end{corrige}
 \else
 \fi
@@ -234,6 +251,12 @@ $H(p)=\dfrac{0,00406}{1+0,34p}$.
 inférieures à 1\%. Proposer un moyen d'obtenir ces erreurs statiques nulles.}
 \ifprof
 \begin{corrige}
+Le système est de classe 0. Le gain de la BO est donné par $\indice{K}{BO}  = K_v K_m $.
+L'écart statique est donc donné par $\varepsilon_S = \dfrac{1}{1+K_v K_m K_c}$. L'erreur de trainage est infinie.
+$\varepsilon_S  < 0,01$ si 
+$\dfrac{1}{1+K_v K_m} < 0,01$ et donc 
+$ \dfrac{1-0,01}{0,01 K_m}<K_v$ soit 
+$K_v > 24\,384$.
 \end{corrige}
 \else
 \fi

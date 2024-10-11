@@ -107,7 +107,7 @@ Un schéma cinématique de la plateforme (châssis+roues) est présenté sur la 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.45\linewidth]{fig_12.png}
+\includegraphics[width=.65\linewidth]{fig_12.png}
 \caption{Schéma cinématique de la plateforme\label{fig_12}}
 \end{figure}
 
@@ -126,13 +126,28 @@ On considère dans les questions \ref{q3.1} et \ref{q3.2} que les liaisons sont 
 
 
 \question{ \label{q3.1} Déterminer le nombre de mobilités du modèle du système.}
+\ifprof
+\begin{corrige}\textbf{ -- UPSTI}\\ 
+\end{corrige}
+\else
+\fi
 
 \question{ \label{q3.2} Montrer que le modèle est isostatique. Conclure quant à la capacité du châssis à maintenir
 les roues au contact du sol en toute circonstance.}
+\ifprof
+\begin{corrige}\textbf{ -- UPSTI}\\ 
+\end{corrige}
+\else
+\fi
 
 \question{ \label{q3.3} Proposer un modèle de liaison parfaite pour le contact roue-sol qui permet de tenir compte,
 dans une étude de statique sans glissement, du frottement longitudinal et transversal. Peut-on
 calculer toutes les inconnues statiques de liaison dans ce cas ?}
+\ifprof
+\begin{corrige}\textbf{ -- UPSTI}\\ 
+\end{corrige}
+\else
+\fi
 
 
 On considère par la suite que le sol est horizontal dans la direction $\vect{y}$; on se ramène alors à un
@@ -190,6 +205,12 @@ suivante :  $\indice{N}{AV}= \indice{N}{AR}=mg$, $N_C=Mg$.}
 gravité avant basculement du système sur une pente inclinée d'un angle $\alpha$. En déduire la valeur
 limite de $h$ à respecter pour satisfaire le cahier des charges, puis faire l'application numérique et
 conclure. On donne $\tan (50\degres)\simeq 1,2$ .}
+\ifprof
+\begin{corrige}\textbf{ -- UPSTI}\\ 
+\end{corrige}
+\else
+\fi
+
 
 Dans la question suivante, on fait l'hypothèse (notée HYP1) de limite de glissement au contact
 entre le sol et la paire de roues de l'ensemble ENSC le plus chargé. On note $\mu$ le coefficient
@@ -198,6 +219,11 @@ de frottement.
 \question{Montrer que l'hypothèse HYP1 permet de calculer l'ensemble des efforts de contact roue-sol
  dans la configuration $\alpha \neq 0$ (le calcul n'est pas demandé). Quelle équation permet de
 démontrer que $\indice{N}{AV}\neq\indice{N}{AR}$ dans cette configuration ?}
+\ifprof
+\begin{corrige}\textbf{ -- UPSTI}\\ 
+\end{corrige}
+\else
+\fi
 
 \subsection{Franchissement d'un obstacle}
 
@@ -225,6 +251,11 @@ précédente.
 % Q3.8
 \question{Pour chacune des trois phases, donner les deux équations obtenues par le théorème de la
 résultante statique selon $\vect{x}$ et $\vect{z}$. Les autres équations de statique ne sont pas demandées.}
+\ifprof
+\begin{corrige}\textbf{ -- UPSTI}\\ 
+\end{corrige}
+\else
+\fi
 
 Sous l'hypothèse (notée HYP2) de \textbf{limite de glissement pour la paire de roues montant le long
 de l'obstacle}, l'ensemble des équations de statique donne accès aux valeurs des efforts de
@@ -236,10 +267,20 @@ coefficient de frottement roue-sol $\mu = 0,5$ ou $\mu = 2$.
 \question{Identifier les plages temporelles des diagrammes où ont lieu chacune des phases 1, 2 et 3.
 Indiquer également à quoi correspondent les autres phases des diagrammes, et préciser l'origine
 des sauts d'effort observés.}
+\ifprof
+\begin{corrige}\textbf{ -- UPSTI}\\ 
+\end{corrige}
+\else
+\fi
 
 % Q3.10
 \question{Expliquer pourquoi, sous l'hypothèse HYP2, il n'est pas possible de franchir l'obstacle
 avec un coefficient de frottement $\mu = 0,5$.}
+\ifprof
+\begin{corrige}\textbf{ -- UPSTI}\\ 
+\end{corrige}
+\else
+\fi
 
 
 \subsection{Sélection des couples optimaux}
@@ -270,6 +311,11 @@ Chaque roue est supposée rigide et est assimilée à un cylindre parfait.
 \end{figure}
 
 \question{Donner la relation entre le couple moteur $C_m$ et les autres actions extérieures.}
+\ifprof
+\begin{corrige}\textbf{ -- UPSTI}\\ 
+\end{corrige}
+\else
+\fi
 
 En lien avec l'évolution des efforts donnée dans l'Annexe 2, on trace sur la\autoref{fig_17} l'évolution
 des couples $\indice{C}{m, AV}$, $\indice{C}{m,C}$ et $\indice{C}{m,AR}$ sur chaque paire de roues en fonction du temps lors du franchissement d'un obstacle de hauteur $H =\SI{400}{mm}$ et pour $\mu=2$.
@@ -284,6 +330,11 @@ des couples $\indice{C}{m, AV}$, $\indice{C}{m,C}$ et $\indice{C}{m,AR}$ sur cha
 % Q3.12
 \question{Conclure sur la valeur de couple à retenir pour le dimensionnement des moteurs, et
 remettre en cause l'utilisation de l'hypothèse HYP2 pour ce dimensionnement.}
+\ifprof
+\begin{corrige}\textbf{ -- UPSTI}\\ 
+\end{corrige}
+\else
+\fi
 
 On cherche à présent la meilleure répartition du couple sur chaque roue, minimisant la puissance
 motrice tout en évitant le glissement.
@@ -291,6 +342,11 @@ motrice tout en évitant le glissement.
 % Q3.13
 \question{Proposer un algorithme de répartition du couple sur chaque roue, qui serait une alternative
 à l'hypothèse HYP2 et permettrait de sélectionner des couples optimaux.}
+\ifprof
+\begin{corrige}\textbf{ -- UPSTI}\\ 
+\end{corrige}
+\else
+\fi
 
 
 \subsection{Asservissement en couple – contrôle de traction}
@@ -302,8 +358,8 @@ limiter le glissement. Le cahier des charges à respecter est le suivant :
 \begin{center}
 \begin{tabular}{ll}
 \hline
-\textbf{Critère} & \textbf{Valeur} \\ \hline \hline
-Dépassement autorisé & inférieur à 5 \% \\ \hline
+\textbf{Critère} & \textbf{Valeur} \\ \hline 
+Dépassement autorisé & inférieur à 5 \% \\ 
 Temps de réponse à 5 \% & inférieur à \SI{9}{ms} \\ \hline
 \end{tabular}
 \end{center}
@@ -331,12 +387,22 @@ $\indice{H}{mot} (p)=\dfrac{K_c}{K_c K_e+(R+Lp)( f +Jp)}$. Par identification, o
 % Q3.14
 \question{Énoncer, en justifiant, les hypothèses permettant de négliger les termes $L$ et $f$ pour
 cette modélisation du moteur par une fonction de transfert du premier ordre.}
+\ifprof
+\begin{corrige}\textbf{ -- UPSTI}\\ 
+\end{corrige}
+\else
+\fi
 
 On néglige dans un premier temps la boucle d'anticipation ($\indice{C}{ff} =0$) et on prend
 $\indice{C}{fb}( p)=\indice{K}{fb}+\dfrac{\indice{I}{fb}}{p}$.
 
 % Q3.15
 \question{Déterminer la fonction de transfert en boucle fermée.}
+\ifprof
+\begin{corrige}\textbf{ -- UPSTI}\\ 
+\end{corrige}
+\else
+\fi
 
 La \autoref{fig_19} représente l'évolution du dépassement et du temps de réponse à 5\% en fonction du
 coefficient d'amortissement $\zeta$.
@@ -344,6 +410,11 @@ coefficient d'amortissement $\zeta$.
 % Q3.16
 \question{En s'aidant de la \autoref{fig_19}, exprimer les conditions sur les paramètres $\indice{K}{fb}$ et $\indice{I}{fb}$
 permettant de respecter le cahier des charges.}
+\ifprof
+\begin{corrige}\textbf{ -- UPSTI}\\ 
+\end{corrige}
+\else
+\fi
 
 \begin{figure}[H]
 \centering
@@ -359,10 +430,20 @@ Par une technique d’optimisation, un bon jeu de paramètres trouvé est : $\in
 
 % Q3.17
 \question{Calculer la valeur du dépassement et le temps de réponse.}
+\ifprof
+\begin{corrige}\textbf{ -- UPSTI}\\ 
+\end{corrige}
+\else
+\fi
 
 % Q3.18
-\question{Tracer sur le document réponse DR2 le diagramme de Bode asymptotique de la fonction
-de transfert en boucle ouverte. Discuter des marges de gain et de phase.}
+\question{Tracer %sur le document réponse DR2 
+le diagramme de Bode asymptotique de la fonction de transfert en boucle ouverte. Discuter des marges de gain et de phase.}
+\ifprof
+\begin{corrige}\textbf{ -- UPSTI}\\ 
+\end{corrige}
+\else
+\fi
 
 
 On considère à présent la structure d'asservissement complète, avec le correcteur $\indice{C}{ff} (p)$.
@@ -370,9 +451,19 @@ On considère à présent la structure d'asservissement complète, avec le corre
 % Q3.19
 \question{Exprimer la fonction de transfert en boucle fermée du système en fonction de $\indice{H}{mot}( p)$ ,
 $\indice{C}{fb} (p)$ et $\indice{C}{ff} (p)$.}
+\ifprof
+\begin{corrige}\textbf{ -- UPSTI}\\ 
+\end{corrige}
+\else
+\fi
 
 % Q3.20
 \question{Que se passe-t-il si le correcteur vaut $\indice{C}{ff} (p)= \dfrac{1}{\indice{H}{mot} (p)}$ ? Quel est l’intérêt et le risque ?}
+\ifprof
+\begin{corrige}\textbf{ -- UPSTI}\\ 
+\end{corrige}
+\else
+\fi
 
 Pour une fonction de transfert $\indice{C}{fb} (p)$ fixée, on considère le correcteur $\indice{C}{ff}(p)$ comme un gain
 proportionnel variable. Les courbes de réponse pour différentes valeurs de ce gain proportionnel
@@ -380,4 +471,9 @@ sont données dans l'Annexe 3.
 
 % Q3.21
 \question{Quelles conclusions peut-on en tirer sur l'effet du correcteur $\indice{C}{ff} (p)$?}
+\ifprof
+\begin{corrige}\textbf{ -- UPSTI}\\ 
+\end{corrige}
+\else
+\fi
 
