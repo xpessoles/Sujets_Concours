@@ -128,23 +128,58 @@ On considère dans les questions \ref{q3.1} et \ref{q3.2} que les liaisons sont 
 \question{ \label{q3.1} Déterminer le nombre de mobilités du modèle du système.}
 \ifprof
 \begin{corrige}\textbf{ -- UPSTI}\\ 
+\vspace{-.7cm}
+\begin{itemize}
+\item 6 mobilités : 6 pivots de roues liées à la rotation des roues par rapport à leur axe.
+\item Liaison appui plan de l’ensemble par rapport au sol et donc 2 translations et une rotation de l’ensemble par rapport au sol : 3 mobilités.
+\item Rotations en Rz des ensembles AAV ou AAR par rapport à EC : 2 mobilités
+\item Rotations simultanées de AAR et AAV par rapport à EC en Ry . (Une seule mobilité)
+\end{itemize}
+Au total : 12 mobilités. 
 \end{corrige}
 \else
 \fi
 
-\question{ \label{q3.2} Montrer que le modèle est isostatique. Conclure quant à la capacité du châssis à maintenir
-les roues au contact du sol en toute circonstance.}
+\question{ \label{q3.2} Montrer que le modèle est isostatique. Conclure quant à la capacité du châssis à maintenir les roues au contact du sol en toute circonstance.}
 \ifprof
 \begin{corrige}\textbf{ -- UPSTI}\\ 
+\vspace{-1cm}
+\begin{multicols}{2}
+On peut utiliser ici directement les formules de calcul du degré d’hyperstatisme.
+En calculant à partir des relations cinématiques :
+\begin{itemize}
+\item Nombre cyclomatique $\mu =16-12+1=5$
+\item Nombre de mobilités $m=12$
+\item Inconnues cinématiques $I_c=6\times 5+2\times 2+8\times 1=42$
+\end{itemize}
+Le degré d’hyperstatisme est donc égal à : $h=12+30-42=0$.
+Le système est isostatique.
+
+En calculant à partir des inconnues de statique :
+\begin{itemize}
+\item Nombre de pièces  $p=12$.
+\item Nombre de mobilités $m=12$.
+\item Inconnues cinématiques $I_S=6\times 1+2\times 4+8\times 5=54$.
+\end{itemize}
+Le degré d’hyperstatisme est donc égal à : $h=12-66+54=0$.
+
+Le système est isostatique
+
+\end{multicols}
 \end{corrige}
 \else
 \fi
 
-\question{ \label{q3.3} Proposer un modèle de liaison parfaite pour le contact roue-sol qui permet de tenir compte,
-dans une étude de statique sans glissement, du frottement longitudinal et transversal. Peut-on
-calculer toutes les inconnues statiques de liaison dans ce cas ?}
+\question{ \label{q3.3} Proposer un modèle de liaison parfaite pour le contact roue-sol qui permet de tenir compte, dans une étude de statique sans glissement, du frottement longitudinal et transversal. Peut-on calculer toutes les inconnues statiques de liaison dans ce cas ?}
 \ifprof
 \begin{corrige}\textbf{ -- UPSTI}\\ 
+La liaison parfaite qui permet de tenir en compte dans une étude de statique sans glissement  à la fois des efforts normaux, du frottement longitudinal et du frottement transversal est une liaison rotule. Il faudrait alors modéliser les 6 contacts entre les roues et le sol par des liaisons rotule pour résoudre.
+
+
+\textbf{Dans ce cas, le degré d’hyperstatisme est modifié :}
+
+12 inconnues de liaison sont supprimées, mais seule une mobilité (rotations simultanées autour de AAC et AAV autour de EC) subsiste. Le système est hyperstatique de degré 1 et toutes les inconnues de statique ne peuvent être déterminées. 
+
 \end{corrige}
 \else
 \fi
@@ -198,15 +233,66 @@ On donne $D =\SI{300}{mm}$, $m =\SI{60}{kg}$, $M =\SI{80}{kg}$, $a =\SI{800}{mm}
 \caption{Configuration en pente \label{fig_14}}
 \end{figure}
 
-\question{Dans la configuration $\alpha = 0\degres$ (pente nulle), justifier la répartition des efforts normaux
-suivante :  $\indice{N}{AV}= \indice{N}{AR}=mg$, $N_C=Mg$.}
-
-\question{Déterminer, en fonction des données géométriques, la hauteur $h$ limite des centres de
-gravité avant basculement du système sur une pente inclinée d'un angle $\alpha$. En déduire la valeur
-limite de $h$ à respecter pour satisfaire le cahier des charges, puis faire l'application numérique et
-conclure. On donne $\tan (50\degres)\simeq 1,2$ .}
+\question{Dans la configuration $\alpha = 0\degres$ (pente nulle), justifier la répartition des efforts normaux suivante :  $\indice{N}{AV}= \indice{N}{AR}=mg$, $N_C=Mg$.}
 \ifprof
 \begin{corrige}\textbf{ -- UPSTI}\\ 
+Par symétrie du système, on peut commencer par remarquer que le centre de gravité du système est situé en $G_c$.
+
+On isole tout l’ensemble en équilibre et on applique le Principe Fondamental de Statique. 
+
+Le Théorème de la Résultante est projeté sur $\vect{z}$. Le Théorème du Moment Statique est appliqué au point $P_c$ en projection sur $\vect{y}$.
+
+On obtient alors les relations suivantes :
+$\left\{
+\begin{array}{l}
+\indice{N}{AV} +\indice{N}{C}+\indice{N}{AR}-(M+2m)g=0 \\
+a\indice{N}{AV} - a\indice{N}{AR} = 0 . \\
+\end{array}
+\right.$
+Ensuite, par identification, on obtient $\indice{N}{AV}=\indice{N}{AR}=mg$ et $N_C = Mg$.
+
+\end{corrige}
+\else
+\fi
+
+\question{Déterminer, en fonction des données géométriques, la hauteur $h$ limite des centres de
+gravité avant basculement du système sur une pente inclinée d'un angle $\alpha$. En déduire la valeur limite de $h$ à respecter pour satisfaire le cahier des charges, puis faire l'application numérique et conclure. On donne $\tan (50\degres)\simeq 1,2$ .}
+\ifprof
+\begin{corrige}\textbf{ -- UPSTI}\\ 
+On commence par étudier les configurations possibles de basculement :
+\begin{itemize}
+\item Basculement de ENSAV autour de B.
+\item Basculement de ENSAV et ENSC simultanément.
+\end{itemize}
+
+
+Le basculement débutera donc obligatoirement par le basculement de la partie avant du véhicule.
+A l’aide de considérations graphiques, il est possible de dire que le basculement débutera lorsque les efforts de pesanteur sur ENSAV seront « à droite » de B.
+ 
+La situation limite de basculement est tracée ci-contre (l’effort de pesanteur passe par le point $B$).
+On lit directement sur la figure en utilisant les données du schéma :
+$\tan\alpha = \dfrac{AB}{\indice{AG}{AV}} = \dfrac{a-b}{h}$.
+
+La hauteur limite des centres de gravité avant basculement dans une pente $\alpha$ est donc :
+$\indice{h}{lim}=\dfrac{a-b}{\tan \alpha}$.
+
+Le cahier des charges impose de monter des pentes de 50\deges, on obtient donc une hauteur limite $h$ après application numérique : $\indice{h}{lim}=0.6/1.2=\SI{0,5}{m}$.
+
+\textbf{Deuxième méthode : }
+En isolant ENSAV et en appliquant le Principe Fondamental de la Statique, on pourra résoudre sachant qu’à la limite du basculement, $\indice{N}{AV}$ est connu et vaut 0.
+
+\begin{itemize}
+\item Théorème de la résultante sur $\vect{x}$ : $\indice{T}{AV}+X_{\text{ensc-ensav}}-mg \sin \alpha = 0$
+\item Théorème de la résultante sur $\vect{z}$ : $\indice{N}{AV}+Y_{\text{ensc-ensav}}-mg \cos \alpha = 0$.
+\end{itemize}
+Théorème du Moment sur y ⃗ au point B :
+ -mgh sin⁡〖α+〗  mg(a-b)cos⁡〖α-〗 N_AV (a-b)-T_AV h=0
+A la limite du basculement, les efforts sur la roue avant sont nuls et l’équation de moment devient :
+-mgh_lim  sin⁡〖α+〗  mg(a-b)cos⁡〖α=0〗 soit encore 
+
+▭(h_lim=((a-b))/tan⁡α )
+
+
 \end{corrige}
 \else
 \fi
