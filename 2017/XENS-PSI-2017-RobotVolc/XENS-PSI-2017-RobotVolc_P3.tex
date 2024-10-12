@@ -2,11 +2,11 @@
 % PARTIE 3
 % 
 \section{Étude du comportement sur terrain accidenté \label{sec_3}}
-
+\ifprof\else
 Le terrain volcanique est en pratique très accidenté, avec la présence d'obstacles (roches) et de
 fortes pentes (\autoref{fig_10}). Par conséquent, le système de locomotion de ROBOVOLC doit être
 adapté à ce type de terrain.
-
+\fi
 \begin{obj}
 L'objectif de cette partie est de valider les performances d'agilité et de franchissement
 d'obstacle du système sur des terrains non structurés avec difficultés topologiques
@@ -22,7 +22,7 @@ Hauteur maximale d'un obstacle & \SI{400}{mm} \\
 \end{tabular}
 \end{center}
 \end{obj}
-
+\ifprof\else
 Dans toute cette partie, les effets dynamiques sont négligés et on se place en statique.
 
 
@@ -31,15 +31,14 @@ Dans toute cette partie, les effets dynamiques sont négligés et on se place en
 \includegraphics[width=.45\linewidth]{fig_10.png}
 \caption{Illustration du comportement de ROBOVOLC sur terrain accidenté \label{fig_10}}
 \end{figure}
-
-
+\fi
 
 \subsection{Modélisation du châssis}
 
 \begin{obj}
 Dans cette sous-partie, on établit un modèle statique du châssis de ROBOVOLC.
 \end{obj}
-
+\ifprof\else
 La mobilité sur terrain accidenté est obtenue, en plus de par la motorisation indépendante des
 roues, par l'utilisation d'un châssis articulé. Celui-ci a une structure tubulaire avec des articulations
 passives (non actionnées) permettant à ROBOVOLC de s'adapter à toute surface non plane. Une
@@ -124,6 +123,7 @@ $\axe{P_i}{z}$.
 
 On considère dans les questions \ref{q3.1} et \ref{q3.2} que les liaisons sont parfaites sans frottements.
 
+\fi
 
 \question{ \label{q3.1} Déterminer le nombre de mobilités du modèle du système.}
 \ifprof
@@ -184,7 +184,7 @@ La liaison parfaite qui permet de tenir en compte dans une étude de statique sa
 \else
 \fi
 
-
+\ifprof\else
 On considère par la suite que le sol est horizontal dans la direction $\vect{y}$; on se ramène alors à un
 problème dans le plan médian $\left(O,\vect{x},\vect{z}\right)$. Dans cette configuration plane, la plateforme est
 constituée de trois ensembles articulés pour s'adapter au terrain accidenté (\autoref{fig_13}) :
@@ -204,18 +204,21 @@ points $\indice{P}{AV}$, $\indice{P}{C}$ ou $\indice{P}{AR}$ (projections des po
 \includegraphics[width=.45\linewidth]{fig_13.png}
 \caption{Configuration plane du châssis\label{fig_13}}
 \end{figure}
+\fi
 
 \question{Indiquer s'il est possible de déterminer, par une analyse statique globale, les différentes
 actions $\indice{N}{AV}$, $\indice{T}{AV}$, $\indice{N}{C}$, $\indice{T}{C}$, $\indice{N}{AR}$, $\indice{T}{AR}$. Justifier la réponse.}
 
+\ifprof\else
 La modélisation plane de la \autoref{fig_13} est considérée dans la suite de cette partie.
+\fi
 
 \subsection{Comportement en pente et stabilité}
 \begin{obj}
 Dans cette sous-partie, on analyse le comportement en pente et la stabilité statique de la
 plateforme.
 \end{obj}
-
+\ifprof\else
 On considère ici un sol plan dans le plan $\left(O,\vect{x},\vect{z}\right)$ et incliné d'un angle $\alpha$ par rapport à
 l'horizontale (\autoref{fig_14}). La masse totale du système ROBOVOLC est répartie sur les trois
 ensembles de la plateforme; les ensembles ENSAV et ENSAR ont la même masse
@@ -232,6 +235,8 @@ On donne $D =\SI{300}{mm}$, $m =\SI{60}{kg}$, $M =\SI{80}{kg}$, $a =\SI{800}{mm}
 \includegraphics[width=.45\linewidth]{fig_14.png}
 \caption{Configuration en pente \label{fig_14}}
 \end{figure}
+
+\fi
 
 \question{Dans la configuration $\alpha = 0\degres$ (pente nulle), justifier la répartition des efforts normaux suivante :  $\indice{N}{AV}= \indice{N}{AR}=mg$, $N_C=Mg$.}
 \ifprof
@@ -256,7 +261,7 @@ Ensuite, par identification, on obtient $\indice{N}{AV}=\indice{N}{AR}=mg$ et $N
 \fi
 
 \question{Déterminer, en fonction des données géométriques, la hauteur $h$ limite des centres de
-gravité avant basculement du système sur une pente inclinée d'un angle $\alpha$. En déduire la valeur limite de $h$ à respecter pour satisfaire le cahier des charges, puis faire l'application numérique et conclure. On donne $\tan (50\degres)\simeq 1,2$ .}
+gravité avant basculement du système sur une pente inclinée d'un angle $\alpha$. En déduire la valeur limite de $h$ à respecter pour satisfaire le cahier des charges, puis faire l'application numérique et conclure. On donne $\tan 50\degres \simeq 1,2$.}
 \ifprof
 \begin{corrige}\textbf{ -- UPSTI}\\ 
 On commence par étudier les configurations possibles de basculement :
@@ -276,7 +281,7 @@ $\tan\alpha = \dfrac{AB}{\indice{AG}{AV}} = \dfrac{a-b}{h}$.
 La hauteur limite des centres de gravité avant basculement dans une pente $\alpha$ est donc :
 $\indice{h}{lim}=\dfrac{a-b}{\tan \alpha}$.
 
-Le cahier des charges impose de monter des pentes de 50\deges, on obtient donc une hauteur limite $h$ après application numérique : $\indice{h}{lim}=0.6/1.2=\SI{0,5}{m}$.
+Le cahier des charges impose de monter des pentes de 50\degres, on obtient donc une hauteur limite $h$ après application numérique : $\indice{h}{lim}=0.6/1.2=\SI{0,5}{m}$.
 
 \textbf{Deuxième méthode : }
 En isolant ENSAV et en appliquant le Principe Fondamental de la Statique, on pourra résoudre sachant qu’à la limite du basculement, $\indice{N}{AV}$ est connu et vaut 0.
@@ -284,15 +289,11 @@ En isolant ENSAV et en appliquant le Principe Fondamental de la Statique, on pou
 \begin{itemize}
 \item Théorème de la résultante sur $\vect{x}$ : $\indice{T}{AV}+X_{\text{ensc-ensav}}-mg \sin \alpha = 0$
 \item Théorème de la résultante sur $\vect{z}$ : $\indice{N}{AV}+Y_{\text{ensc-ensav}}-mg \cos \alpha = 0$.
+\item Théorème du Moment sur $\vect{y}$ au point $B$ : $ -mgh \sin \alpha +  mg(a-b) \cos\alpha \indice{N}{AV} (a-b)- \indice{T}{AV} h=0$.
 \end{itemize}
-Théorème du Moment sur y ⃗ au point B :
- -mgh sin⁡〖α+〗  mg(a-b)cos⁡〖α-〗 N_AV (a-b)-T_AV h=0
-A la limite du basculement, les efforts sur la roue avant sont nuls et l’équation de moment devient :
--mgh_lim  sin⁡〖α+〗  mg(a-b)cos⁡〖α=0〗 soit encore 
 
-▭(h_lim=((a-b))/tan⁡α )
-
-
+À la limite du basculement, les efforts sur la roue avant sont nuls et l’équation de moment devient :
+$-mg\indice{h}{lim} +mg(a-b) \cos\alpha = 0$ soit encore $\indice{h}{lim} = \dfrac{a-b}{\tan \alpha}$.
 \end{corrige}
 \else
 \fi
@@ -302,11 +303,13 @@ Dans la question suivante, on fait l'hypothèse (notée HYP1) de limite de gliss
 entre le sol et la paire de roues de l'ensemble ENSC le plus chargé. On note $\mu$ le coefficient
 de frottement.
 
-\question{Montrer que l'hypothèse HYP1 permet de calculer l'ensemble des efforts de contact roue-sol
- dans la configuration $\alpha \neq 0$ (le calcul n'est pas demandé). Quelle équation permet de
-démontrer que $\indice{N}{AV}\neq\indice{N}{AR}$ dans cette configuration ?}
+\question{Montrer que l'hypothèse HYP1 permet de calculer l'ensemble des efforts de contact roue-sol dans la configuration $\alpha \neq 0$ (le calcul n'est pas demandé). Quelle équation permet de démontrer que $\indice{N}{AV}\neq\indice{N}{AR}$ dans cette configuration ?}
 \ifprof
 \begin{corrige}\textbf{ -- UPSTI}\\ 
+Dans le cas où les 3 coefficients de frottement ne sont pas connus, on a démontré qu’il n’était pas possible de résoudre, car il nous manquait une équation.
+Avec l’HYP1, la résolution devient possible puisque l’on rajoute une équation de comportement.
+L’écriture du Théorème du Moment Statique appliqué au point $P_c$  permet de démontrer l’inégalité $\indice{N}{AV}\neq \indice{N}{AR}$.
+
 \end{corrige}
 \else
 \fi
@@ -317,7 +320,7 @@ démontrer que $\indice{N}{AV}\neq\indice{N}{AR}$ dans cette configuration ?}
 Dans cette sous-partie, on étudie le franchissement par ROBOVOLC d'un obstacle en
 analysant les différentes phases du franchissement en terme d'efforts sur les roues.
 \end{obj}
-
+\ifprof\else
 L'obstacle est matérialisé par une marche (pente verticale) de hauteur $H$ dans le plan $\left(O,\vect{x},\vect{z}\right)$,
 $\vect{z}$ correspondant à la verticale \autoref{fig_15}.
 On s'intéresse particulièrement aux trois phases représentées sur la \autoref{fig_15}, correspondant à la
@@ -332,6 +335,7 @@ précédente.
 \includegraphics[width=.45\linewidth]{fig_15.png}
 \caption{Schématisation de l'obstacle et des phases de son franchissement\label{fig_15}}
 \end{figure}
+\fi
 
 
 % Q3.8
@@ -339,15 +343,28 @@ précédente.
 résultante statique selon $\vect{x}$ et $\vect{z}$. Les autres équations de statique ne sont pas demandées.}
 \ifprof
 \begin{corrige}\textbf{ -- UPSTI}\\ 
+\begin{itemize}
+\item \textbf{Phase 1} : 
+\begin{itemize} 
+\item TRS en $\vect{x}$ : $-\indice{N}{AV}+T_C+\indice{T}{AR}=0$
+\item TRS en $\vect{z}$ : $\indice{T}{AV}+N_C+\indice{N}{AR}-\left(2m + M\right)g=0$
+\end{itemize}
+\item \textbf{Phase 2} : 
+\begin{itemize} 
+\item TRS en $\vect{x}$ : $\indice{T}{AV}-N_C+\indice{T}{AR}=0$
+\item TRS en $\vect{z}$ : $\indice{N}{AV}+T_C+\indice{N}{AR}-\left(2m + M\right)g=0$
+\end{itemize}
+\item \textbf{Phase 3} : 
+\begin{itemize} 
+\item TRS en $\vect{x}$ : $\indice{T}{AV}+T_C-\indice{N}{AR}=0$
+\item TRS en $\vect{z}$ : $\indice{N}{AV}+N_C+\indice{T}{AR}-\left(2m + M\right)g=0$
+\end{itemize}
+\end{itemize}
 \end{corrige}
 \else
 \fi
 
-Sous l'hypothèse (notée HYP2) de \textbf{limite de glissement pour la paire de roues montant le long
-de l'obstacle}, l'ensemble des équations de statique donne accès aux valeurs des efforts de
-contact roue-sol. On représente dans l'Annexe 2 les diagrammes d'évolution simulée de ces efforts
-au cours du franchissement de l'obstacle, pour une hauteur de l'obstacle $H =\SI{400}{mm}$ et un
-coefficient de frottement roue-sol $\mu = 0,5$ ou $\mu = 2$.
+Sous l'hypothèse (notée HYP2) de \textbf{limite de glissement pour la paire de roues montant le long de l'obstacle}, l'ensemble des équations de statique donne accès aux valeurs des efforts de contact roue-sol. On représente dans l'Annexe 2 les diagrammes d'évolution simulée de ces efforts au cours du franchissement de l'obstacle, pour une hauteur de l'obstacle $H =\SI{400}{mm}$ et un coefficient de frottement roue-sol $\mu = 0,5$ ou $\mu = 2$.
 
 % Q3.9
 \question{Identifier les plages temporelles des diagrammes où ont lieu chacune des phases 1, 2 et 3.
@@ -355,6 +372,9 @@ Indiquer également à quoi correspondent les autres phases des diagrammes, et p
 des sauts d'effort observés.}
 \ifprof
 \begin{corrige}\textbf{ -- UPSTI}\\ 
+Pour $t\in [1;2]$ s : phase 1 ; pour $t\in [3;4]$ s :  Phase 2 ; Pour $t\in [5;6]$ s : Phase 3.
+Remarque : Une erreur s’est glissée dans le document Annexe 2. Il faut lire µ=2, et non 0,2.
+Les autres phases correspondent à des états transitoires lorsqu’aucune roue ne touche les marches verticales.
 \end{corrige}
 \else
 \fi
@@ -364,6 +384,7 @@ des sauts d'effort observés.}
 avec un coefficient de frottement $\mu = 0,5$.}
 \ifprof
 \begin{corrige}\textbf{ -- UPSTI}\\ 
+Avec l’hypothèse $\mu = 0,5$, la condition sur la roue avant et sur la roue arrière entre 3 et \SI{4}{s} impose $\indice{T}{AV}  > 0,5 \cdot  \indice{N}{AV}$  et $\indice{T}{AR} > 0,5 \times \indice{N}{AR}$, ce qui est impossible. Donc, il n’est pas possible de franchir l’obstacle avec un tel coefficient de frottement.
 \end{corrige}
 \else
 \fi
@@ -376,7 +397,7 @@ Dans cette sous-partie, on met en place un algorithme de calcul des couples opti
 appliquer à chaque roue.
 \end{obj}
 
-
+\ifprof\else
 Les actions extérieures exercées sur chaque roue (ou chaque paire de roues) sont représentées
 sur la \autoref{fig_16} :
 \begin{itemize}
@@ -395,10 +416,22 @@ Chaque roue est supposée rigide et est assimilée à un cylindre parfait.
 \includegraphics[width=.45\linewidth]{fig_16.png}
 \caption{Schématisation des actions extérieures sur une roue\label{fig_16}}
 \end{figure}
+\fi
 
 \question{Donner la relation entre le couple moteur $C_m$ et les autres actions extérieures.}
 \ifprof
 \begin{corrige}\textbf{ -- UPSTI}\\ 
+On effectue le Bilan des Actions Mécaniques Extérieures Appliquées à la roue :
+\begin{itemize}
+\item Action de la plateforme sur la roue (liaison pivot d’axe $\vect{y}$;
+\item Action du moteur $\vect{C_m}=C_m\vect{y}$;
+\item Action résistante $\vect{M_r}=-kN\vect{y}$;
+\item Action du sol sur la roue : $\vect{F_{\text{sol} \rightarrow \text{roue}}}$.
+\end{itemize}
+
+On applique le Théorème du Moment Statique au centre de la roue et on obtient :
+$C_m - M_r - T\dfrac{D}{2}$.
+
 \end{corrige}
 \else
 \fi
@@ -418,6 +451,8 @@ des couples $\indice{C}{m, AV}$, $\indice{C}{m,C}$ et $\indice{C}{m,AR}$ sur cha
 remettre en cause l'utilisation de l'hypothèse HYP2 pour ce dimensionnement.}
 \ifprof
 \begin{corrige}\textbf{ -- UPSTI}\\ 
+Le couple maximal à retenir pour les moto-réducteurs est de \SI{120}{Nm}.
+L’hypopthèse d’une valeur maximale (limite de glissement) pour la seule roue montant l’obstacle entraîne une surestimation de $C_m$. En réalité, il est possible que les trains avant et arrière soient plus ou moins chargés dans cette configuration.
 \end{corrige}
 \else
 \fi
@@ -430,6 +465,9 @@ motrice tout en évitant le glissement.
 à l'hypothèse HYP2 et permettrait de sélectionner des couples optimaux.}
 \ifprof
 \begin{corrige}\textbf{ -- UPSTI}\\ 
+On peut par exemple calculer les couples résistants en prenant comme hypothèse un rapport $\dfrac{T}{N}$ constant sur les différents trains, ce qui aurait tendance à équilibrer la charge sur les différents trains.
+Si l’on veut réellement limiter les couples moteurs, il faudrait faire la démarche inverse et atteindre la limite du glissement pour les roues les moins chargées.
+
 \end{corrige}
 \else
 \fi
@@ -475,6 +513,18 @@ $\indice{H}{mot} (p)=\dfrac{K_c}{K_c K_e+(R+Lp)( f +Jp)}$. Par identification, o
 cette modélisation du moteur par une fonction de transfert du premier ordre.}
 \ifprof
 \begin{corrige}\textbf{ -- UPSTI}\\ 
+Le modèle de connaissance est du second ordre. Or il nous est fourni un modèle du premier ordre. Cela signifie que le coefficient d’amortissement $\xi$ est supérieur à 1. Par conséquent la fonction de transfert du second ordre peut s’écrire comme un produit de 2 premiers ordres.
+On a alors :
+$\indice{H}{mot} (p)=\dfrac{K_c}{K_c K_e+Rf} \cdot \dfrac{1}{1+\dfrac{RJ+Lf}{K_c K_e+Rf}p+\dfrac{LJ}{K_c K_e+Rf}p^2}$ 
+ 
+Si le coefficient de frottement est très faible (le couple dû aux frottements visqueux est très faible devant le couple électromagnétique), alors on peut considérer $f\simeq 0$
+On a alors :
+$\indice{H}{mot}(p)=\dfrac{1}{K_e} \dfrac{1}{1+\dfrac{RJ}{K_c K_e } p+\dfrac{LJ}{K_c K_e }p^2}$
+
+L’inductance $L$ étant généralement faible (la tension aux bornes de l’inductance faible vis-à-vis des tensions électriques présentes dans le montage), on peut considérer $ L \simeq 0$.
+Donc, on retrouve bien un modèle simplifié du 1er ordre tel que proposé.
+ 
+
 \end{corrige}
 \else
 \fi
@@ -486,6 +536,13 @@ $\indice{C}{fb}( p)=\indice{K}{fb}+\dfrac{\indice{I}{fb}}{p}$.
 \question{Déterminer la fonction de transfert en boucle fermée.}
 \ifprof
 \begin{corrige}\textbf{ -- UPSTI}\\ 
+$\indice{H}{mot} (p)=\dfrac{0,265}{0,4p+200}=\dfrac{\dfrac{0.265}{200}}{1+\dfrac{0.4}{200} p}=\dfrac{K}{1+\tau p}$
+
+et $\dfrac{\indice{C}{S}(p)}{\indice{C}{C}(p)} $
+$=\dfrac{\indice{C}{fb} (p) \indice{H}{mot} (p)}{1+\indice{C}{fb} (p) \indice{H}{mot} (p)}$
+$=\dfrac{1+\dfrac{\indice{K}{fb}}{\indice{I}{fb}}  p}{1+\dfrac{K\indice{K}{fb}+1}{K\indice{I}{fb}} p+\dfrac{\tau}{K\indice{I}{fb} } p^2}$
+
+
 \end{corrige}
 \else
 \fi
@@ -494,14 +551,29 @@ La \autoref{fig_19} représente l'évolution du dépassement et du temps de rép
 coefficient d'amortissement $\zeta$.
 
 % Q3.16
-\question{En s'aidant de la \autoref{fig_19}, exprimer les conditions sur les paramètres $\indice{K}{fb}$ et $\indice{I}{fb}$
-permettant de respecter le cahier des charges.}
+\question{En s'aidant de la \autoref{fig_19}, exprimer les conditions sur les paramètres $\indice{K}{fb}$ et $\indice{I}{fb}$ permettant de respecter le cahier des charges.}
 \ifprof
 \begin{corrige}\textbf{ -- UPSTI}\\ 
+Les paramètres du modèle élaboré en question précédente sont les suivants :
+\begin{itemize}
+\item  $\xi=\dfrac{1}{2} \dfrac{K\indice{K}{fb}+1}{K\indice{I}{fb}}\sqrt{\dfrac{K\indice{I}{fb}}{\tau}}$
+\item  $\omega_0\sqrt{\dfrac{K\indice{I}{fb}}{\tau}}$.
+\end{itemize}
+Pour respecter le cahier des charges, il faut que $\xi \geq 0,7$ et $\omega_0 \geq \SI{333}{rad/s}$.
+
+
+Les conditions traduites sur $\indice{I}{fb}$ et sur $\indice{K}{fb}$ donnent :
+
+$\dfrac{K}{\tau} \omega_0^2 \leq \indice{I}{fb}$ soit $\indice{I}{fb}\geq 16,7\times 10^5$.
+
+$\dfrac{\dfrac{2\xi \indice{I}{fb}}{\omega_0}-1}{K} > \indice{K}{fb}$
+relation dont le résultat dépend de la valeur choisie pour $\indice{I}{fb}$.
+
 \end{corrige}
 \else
 \fi
 
+\ifprof\else
 \begin{figure}[H]
 \centering
 \includegraphics[width=.45\linewidth]{fig_19_a.png}
@@ -510,14 +582,18 @@ permettant de respecter le cahier des charges.}
 \end{figure}
 
 
-
-
 Par une technique d’optimisation, un bon jeu de paramètres trouvé est : $\indice{K}{fb}=30$ et $\indice{I}{fb}=200\times10^{3}$.
+\fi
 
 % Q3.17
 \question{Calculer la valeur du dépassement et le temps de réponse.}
 \ifprof
 \begin{corrige}\textbf{ -- UPSTI}\\ 
+Dans le cas avec le jeu de paramètre correct, on a : $\omega_0 \simeq \SI{365}{rad/s}$, $\xi \simeq 0,701$.
+
+Donc, d’après les courbes on trouve : $t_{R5\%} = \SI{8}{ms}$.
+
+
 \end{corrige}
 \else
 \fi
@@ -527,6 +603,20 @@ Par une technique d’optimisation, un bon jeu de paramètres trouvé est : $\in
 le diagramme de Bode asymptotique de la fonction de transfert en boucle ouverte. Discuter des marges de gain et de phase.}
 \ifprof
 \begin{corrige}\textbf{ -- UPSTI}\\ 
+La fonction de transfert en Boucle Ouverte s’exprime ainsi :
+$\text{FTBO}(p)=\indice{C}{fb} (p) \indice{H}{mot} (p)=\left(30+\dfrac{200\times 10^3}{p}\right)
+\dfrac{0,265}{0,4p+200}=265\left(1+\dfrac{p}{6667}\right)\dfrac{1}{1+p/500}$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.85\linewidth]{cor_Q318.png}
+\end{figure}
+
+La marge de gain est infinie (ou non définie) car la phase n’atteint jamais $-180\degres$.
+
+La marge de phase est nécessairement positive, car la phase est strictement supérieure à $-180\degres$. Donc le système est bien stable en boucle fermée.
+
+
 \end{corrige}
 \else
 \fi
@@ -535,10 +625,13 @@ le diagramme de Bode asymptotique de la fonction de transfert en boucle ouverte.
 On considère à présent la structure d'asservissement complète, avec le correcteur $\indice{C}{ff} (p)$.
 
 % Q3.19
-\question{Exprimer la fonction de transfert en boucle fermée du système en fonction de $\indice{H}{mot}( p)$ ,
-$\indice{C}{fb} (p)$ et $\indice{C}{ff} (p)$.}
+\question{Exprimer la fonction de transfert en boucle fermée du système en fonction de $\indice{H}{mot}( p)$, $\indice{C}{fb} (p)$ et $\indice{C}{ff} (p)$.}
 \ifprof
 \begin{corrige}\textbf{ -- UPSTI}\\ 
+$\dfrac{C_S (p)}{C_C (p)}=\left(
+1+\dfrac{\indice{C}{ff} (p)}{\indice{C}{fb} (p)}\right)
+\dfrac{\indice{H}{mot}(p) \indice{C}{fb}(p)}{1+\indice{H}{mot}(p) \indice{C}{fb}(p)}$
+
 \end{corrige}
 \else
 \fi
@@ -547,6 +640,20 @@ $\indice{C}{fb} (p)$ et $\indice{C}{ff} (p)$.}
 \question{Que se passe-t-il si le correcteur vaut $\indice{C}{ff} (p)= \dfrac{1}{\indice{H}{mot} (p)}$ ? Quel est l’intérêt et le risque ?}
 \ifprof
 \begin{corrige}\textbf{ -- UPSTI}\\ 
+En admettant que l’on puisse réaliser un tel système (en fait, le système étant composé d’un gain et d’un dérivateur pur, il faudrait rajouter du filtrage afin d’avoir un système causal), on obtient après simplification :
+ 
+$\dfrac{C_S (p)}{C_C (p)}=\left(
+1+\dfrac{\indice{C}{ff} (p)}{\indice{C}{fb} (p)}\right)
+\dfrac{\indice{H}{mot}(p) \indice{C}{fb}(p)}{1+\indice{H}{mot}(p) \indice{C}{fb}(p)}=1$
+
+
+L’intérêt théorique d’un tel système est donc évident puisqu’il s’agit d’un système dont la réponse correspond parfaitement à la consigne.
+Cependant, pour y parvenir, il faut parfaitement maîtriser les paramètres du modèle du moteur $\indice{H}{mot} (p)$.
+
+Un risque est donc de ne pas avoir un modèle suffisamment précis de $\indice{H}{mot} (p)$ et donc d’avoir des réactions imprévisibles et non désirées du correcteur.
+
+Un autre  écart entre la théorie et la réalisation pratique du correcteur  est lié à la saturation de la commande. Un tracé de la réponse du système à un échelon de commande réalisé avec le correcteur théorique (modèle fourni dans ce dossier) montre la commande théorique du système.
+
 \end{corrige}
 \else
 \fi
@@ -559,6 +666,7 @@ sont données dans l'Annexe 3.
 \question{Quelles conclusions peut-on en tirer sur l'effet du correcteur $\indice{C}{ff} (p)$?}
 \ifprof
 \begin{corrige}\textbf{ -- UPSTI}\\ 
+Ce correcteur à tendance à améliorer la rapidité sans trop dégrader la stabilité. Les critères de rapidité (temps de réponse à 5\%) et de stabilité (dépassement autorisé) sont respectés, voire même améliorés pour $\indice{C}{ff}  = 100$.
 \end{corrige}
 \else
 \fi

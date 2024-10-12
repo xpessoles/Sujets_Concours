@@ -145,13 +145,14 @@ Les solides 2 et 4 sont soumis chacun à 2 glisseurs, par conséquent, les direc
 \else
 \fi
 
-
+\ifprof\else
 L'ouverture/fermeture de la pince est réalisée par un moteur électrique et un système vis-écrou
 fournissant un effort de poussée $\vect{F_P}=F_p\vect{x_P}$ sur le vérin 1 en amont de la pince. D'autre part, on
 introduit à présent un modèle de frottement au contact entre le galet 6 et l'objet à saisir. Ce modèle
 se traduit au niveau de la liaison équivalente entre le mors 5 et l'objet à saisir par un torseur
 statique de la forme : $\torseurstat{T}{5}{\text{objet}}=\torseurl{-F_S^x\vect{x_P}+F_S^y\vect{y_P}}{\vect{0}}{S}$ 
 où $F_S^x$ est l'effort tangentiel et $F_S^y$ est l'effort normal (ou de serrage) au contact.
+\fi
 
 %% Q5.5
 %\question{Par une étude statique, montrer que les efforts $F_P$, $F_S^x$ et $F_S^y$ 
