@@ -72,9 +72,18 @@ L'objet à saisir est modélisé par un cylindre à base circulaire de rayon $R$
 
 
 % QUESTION SUPPLEMENTAIRE
-\question{Dans cette question uniquement, on considère le système formé par les pièces 0, 3, 4 et 5. Déterminer degré d'hyperstatisme du modèle. S'il est hyperstatique, proposé une ou plusieurs modifications de liaisons pour le rendre isostatique.}
+\question{Dans cette question uniquement, on considère le système formé par les pièces 0, 3, 4 et 5. Déterminer degré d'hyperstatisme du modèle. S'il est hyperstatique, proposer une ou plusieurs modifications de liaisons pour le rendre isostatique.}
 \ifprof
 \begin{corrige}
+Dans cette configuration on a : 
+\begin{itemize}
+\item $m=1$ : mobilité du parallélogramme;
+\item $E_S = 6\times 3 = 18$;
+\item $I_S = 4\times 5 = 20$ : 4 laisons pivot.
+\end{itemize}
+Au final : $h=m-E_S+I_S = 1 -18+20 = 3$.
+Il suffit de remplacer une liaison pivot par une liaison sphère-cylindre.
+
 \end{corrige}
 \else
 \fi
@@ -83,6 +92,13 @@ L'objet à saisir est modélisé par un cylindre à base circulaire de rayon $R$
 \question{Tracer le graphe de liaisons. Déterminer degré d'hyperstatisme du modèle complet.}
 \ifprof
 \begin{corrige}
+\begin{itemize}
+\item $m=2$ : mobilité du parallélogramme commandé et du galet 6 (rotation propre);
+\item $E_S = 6\times 6 = 36$;
+\item $I_S = 6\times 5 + 1\times 6  + 3 + 2=41$ : 6 laisons pivot, 1 glissière, 1 rotule, 1 cylindre plan.
+\end{itemize}
+Au final : $h=m-E_S+I_S = 2 -36+41 = 7$.
+
 \end{corrige}
 \else
 \fi
@@ -371,10 +387,12 @@ Bien qu’il ne soit pas possible de positionner un capteur d’effort, il est p
 \end{corrige}
 \else
 \fi
-
+\ifprof
+\else
 Dans l'étude précédente, la masse de l'objet et le coefficient de frottement entre la pince et l'objet
 sont supposés connus. Cependant, ce n’est pas le cas en pratique et il peut en résulter un
 glissement possible de l’objet si ces paramètres sont mal évalués.
+\fi
 
 %Q5.16 : 
 \question{Quel moyen peut-on imaginer afin de limiter le glissement de l’objet ? Expliquer le

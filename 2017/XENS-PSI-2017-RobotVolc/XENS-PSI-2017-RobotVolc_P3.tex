@@ -143,7 +143,7 @@ Au total : 12 mobilités.
 \question{ \label{q3.2} Montrer que le modèle est isostatique. Conclure quant à la capacité du châssis à maintenir les roues au contact du sol en toute circonstance.}
 \ifprof
 \begin{corrige}\textbf{ -- UPSTI}\\ 
-\vspace{-1cm}
+\vspace{-.3cm}
 \begin{multicols}{2}
 On peut utiliser ici directement les formules de calcul du degré d’hyperstatisme.
 En calculant à partir des relations cinématiques :
@@ -299,9 +299,12 @@ $-mg\indice{h}{lim} +mg(a-b) \cos\alpha = 0$ soit encore $\indice{h}{lim} = \dfr
 \fi
 
 
+\ifprof
 Dans la question suivante, on fait l'hypothèse (notée HYP1) de limite de glissement au contact
 entre le sol et la paire de roues de l'ensemble ENSC le plus chargé. On note $\mu$ le coefficient
 de frottement.
+\else
+\fi
 
 \question{Montrer que l'hypothèse HYP1 permet de calculer l'ensemble des efforts de contact roue-sol dans la configuration $\alpha \neq 0$ (le calcul n'est pas demandé). Quelle équation permet de démontrer que $\indice{N}{AV}\neq\indice{N}{AR}$ dans cette configuration ?}
 \ifprof
@@ -364,7 +367,10 @@ résultante statique selon $\vect{x}$ et $\vect{z}$. Les autres équations de st
 \else
 \fi
 
+\ifprof
+\else
 Sous l'hypothèse (notée HYP2) de \textbf{limite de glissement pour la paire de roues montant le long de l'obstacle}, l'ensemble des équations de statique donne accès aux valeurs des efforts de contact roue-sol. On représente dans l'Annexe 2 les diagrammes d'évolution simulée de ces efforts au cours du franchissement de l'obstacle, pour une hauteur de l'obstacle $H =\SI{400}{mm}$ et un coefficient de frottement roue-sol $\mu = 0,5$ ou $\mu = 2$.
+\fi
 
 % Q3.9
 \question{Identifier les plages temporelles des diagrammes où ont lieu chacune des phases 1, 2 et 3.
@@ -435,7 +441,8 @@ $C_m - M_r - T\dfrac{D}{2}$.
 \end{corrige}
 \else
 \fi
-
+\ifprof
+\else
 En lien avec l'évolution des efforts donnée dans l'Annexe 2, on trace sur la\autoref{fig_17} l'évolution
 des couples $\indice{C}{m, AV}$, $\indice{C}{m,C}$ et $\indice{C}{m,AR}$ sur chaque paire de roues en fonction du temps lors du franchissement d'un obstacle de hauteur $H =\SI{400}{mm}$ et pour $\mu=2$.
 
@@ -444,6 +451,7 @@ des couples $\indice{C}{m, AV}$, $\indice{C}{m,C}$ et $\indice{C}{m,AR}$ sur cha
 \includegraphics[width=.45\linewidth]{fig_17.png}
 \caption{Evolution du couple sur chaque paire de roues\label{fig_17}}
 \end{figure}
+\fi
 
 
 % Q3.12
@@ -489,7 +497,8 @@ Temps de réponse à 5 \% & inférieur à \SI{9}{ms} \\ \hline
 \end{center}
 
 \end{obj}
-
+\ifprof
+\else
 
 La structure d’asservissement proposée est composée de deux correcteurs utilisés simultanément :
 un correcteur de boucle de retour (nommé $C_{\text{fb}}( p)$) et un correcteur de boucle d'anticipation
@@ -507,6 +516,7 @@ Le schéma d'asservissement est donné sur la \autoref{fig_18}.
 Le bloc  $\indice{H}{mot} (p)$ représente un moteur ayant pour fonction de transfert
 $\indice{H}{mot} (p)=\dfrac{K_c}{K_c K_e+(R+Lp)( f +Jp)}$. Par identification, on trouve $\indice{H}{mot}= \dfrac{0,265}{0,4 p+200}$.
 
+\fi
 
 % Q3.14
 \question{Énoncer, en justifiant, les hypothèses permettant de négliger les termes $L$ et $f$ pour
