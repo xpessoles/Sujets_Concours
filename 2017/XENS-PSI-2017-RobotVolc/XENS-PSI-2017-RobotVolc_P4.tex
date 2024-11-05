@@ -68,8 +68,15 @@ $m_1 =\SI{2}{kg}$, $m_2=\SI{2}{kg}$, $m_3 =\SI{6}{kg}$ (incluant un objet saisi 
 $\theta_1$ et $\theta_2$ (appelés variables articulaires) et de la position verticale $\lambda_3$ de la pince. On cherche alors la configuration du système à partir de ces variables. 
 
 %Q4.1 : 
-\question{En représentant sur le document réponse DR3 figure \ref{xens_2027_dr03} la base du cylindre, montrer que le volume
- accessible par le point $P$ (enveloppe de travail) est un cylindre à base non-circulaire. }
+\question{En représentant sur le document réponse DR3 figure \ref{xens_2027_dr03} la base du cylindre, montrer que le volume accessible par le point $P$ (enveloppe de travail) est un cylindre à base non-circulaire. }
+  \ifprof
+ \begin{corrige}
+ \begin{center}
+\includegraphics[width=.7\linewidth]{q_42_cor}
+\end{center}
+ \end{corrige}
+ \else
+ \fi
  
 \begin{figure}[!h]
 \centering
@@ -80,22 +87,66 @@ $\theta_1$ et $\theta_2$ (appelés variables articulaires) et de la position ver
 %Q4.2 : 
 \question{Donner l'expression des coordonnées $\left( x_P, y_P, z_P\right)$ et de la vitesse $\vectv{P}{3}{0}$
  du point $P$  dans le repère fixe $\repere{O_0}{x_0}{y_0}{z_0}$ en fonction des variables $\theta_1$, $\theta_2$, $\lambda_3$ et des dimensions constantes du problème. }
+ \ifprof
+ \begin{corrige}
+ On a : 
+ $\left\{
+ \begin{array}{l}
+ x_P = \ell_1 \cos \theta_1 + \ell_2 \cos(\theta_1 + \theta_2) \\
+ y_P = \ell_1 \sin \theta_1 + \ell_2 \sin(\theta_1 + \theta_2) \\
+ z_P = d_1 + d_2 - \lambda_3
+  \end{array}
+ \right.
+ $
+ 
+De plus : 
+$\vectv{P}{3}{0} = \deriv{\vect{O_OO_3}}{\rep{0}} = \ell_1\thetap_1 \vy{1} + \ell_2\left( \thetap_1+\thetap_2\right)\vy{2}-\lambdap_3 \vz{0}$.
+ \end{corrige}
+ \else
+ \fi
  
 %Q4.3 : 
 \question{Montrer que la vitesse maximale $\indice{V}{max}$ (en norme) que peut atteindre le point $P$ dans le
  plan $\left(O_0,\vx{0},\vy{0}\right)$ est obtenue pour $\theta_2 = 0\degres$. Exprimer $\indice{V}{max}$ en fonction de la vitesse de rotation maximale $\indice{\omega}{max}$ des moteurs et des dimensions constantes.}
+  \ifprof
+ \begin{corrige}
+On exprime $\vectv{P}{3}{0}$ dans la base 1 par exemple et on calcule la norme de ce vecteur vitesse.
+
+On obtient :
+$||\vectv{P}{3}{0}|| = \sqrt{\ell_1^2\thetap_1^2 + \ell_2^2\left( \thetap_1+\thetap_2\right)^2+2\ell_1\thetap_1 \ell_2\left( \thetap_1+\thetap_2\right)\cos\theta_2+\lambdap_3 ^2  }$
+
+$\lambdap_3 = 0$ car on considère ci un mouvement plan.
+
+La vitesse du point $P$ est maximale lorsque $\theta_2=0\degres$, donc lorsque les deux bras sont alignés.
+$||\vectv{P}{3}{0}|| = \sqrt{\ell_1^2\thetap_1^2 + \ell_2^2\left( \thetap_1+\thetap_2\right)^2+2\ell_1\thetap_1 \ell_2\left( \thetap_1+\thetap_2\right) }$
+$ = \ell_1\thetap_1 + \left( \ell_1+\ell_2\right)\thetap_2$.
+
+Dans ce cas, on a $\indice{V}{max}  =\ell_1\indice{\omega}{max} + \left( \ell_1+\ell_2\right)\indice{\omega}{max} =  \left( 2\ell_1+\ell_2\right)\indice{\omega}{max}$.
+
+ \end{corrige}
+ \else
+ \fi
  
  Dans un modèle cinématique inverse, les données d'entrée sont la position $\left(x_P, y_P, z_P\right)$ et la
  vitesse $\left(V_P^x,V_P^y,V_P^z\right)$ de la pince située en $P$ dans le repère fixe $\repere{O_0}{x_0}{y_0}{z_0}$. On cherche  alors les lois à appliquer au niveau des liaisons (variables $\theta_1$, $\theta_2$, $\lambda_3$) pour obtenir ces données.
 
 % Q4.4 : 
 \question{Donner l'expression de $\lambda_3$  et $\lambdap_3$ en fonction de $z_P$ , $V_P^z$ et des dimensions constantes.}
-
+ \ifprof
+ \begin{corrige}
+ $\lambda_3 = d_1 + d_2 -z_P$ et  $\lambdap_3 = -\dot{z}_P = -V_P^Z$.
+ \end{corrige}
+ \else
+ \fi
+ 
 % Q4.5 : 
-\question{Pour une même position $\left(x_P, y_P, z_P\right)$ du point $P$ , montrer schématiquement qu'il y a deux configurations possibles des angles $\theta_1$ et $\theta_1$. Par un raisonnement graphique, donner sur le
-document DR4 figure \label{xens_2027_dr04} la configuration complémentaire de celle dessinée correspondant à $\theta_1 = 90\degres$ et
-$\theta_2 = -60\degres$.}
-
+\question{Pour une même position $\left(x_P, y_P, z_P\right)$ du point $P$ , montrer schématiquement qu'il y a deux configurations possibles des angles $\theta_1$ et $\theta_1$. Par un raisonnement graphique, donner sur le document DR4 figure \label{xens_2027_dr04} la configuration complémentaire de celle dessinée correspondant à $\theta_1 = 90\degres$ et $\theta_2 = -60\degres$.}
+ \ifprof
+ \begin{corrige}
+ \end{corrige}
+ \else
+ \fi
+ 
 \begin{figure}[!h]
 \centering
 \includegraphics[width=.9\linewidth]{dr_04}
@@ -106,6 +157,11 @@ $\theta_2 = -60\degres$.}
 % Q4.6 : 
 \question{Montrer que quelle que soit la configuration, la valeur de l'angle $\theta_2$ est entièrement
  déterminée par $x_P^2 + y_P^2$ et donner l'expression de $\theta_2$ en fonction de $x_P^2 + y_P^2$ et des dimensions  constantes.}
+  \ifprof
+ \begin{corrige}
+ \end{corrige}
+ \else
+ \fi
  
  \subsection{Modélisaton dynamique}
 \textbf{Dans cette sous-partie, on construit un modèle dynamique du bras manipulateur.}
@@ -131,12 +187,27 @@ $\inertie{i}{G_i} = \matinertie{A_i}{B_i}{C_i}{D_i}{E_i}{F_i}{\left( \vx{i},\vy{
  %Q4.7 : 
  \question{A partir de l'expression générale précédente, préciser et justifier la forme simplifiée de la
  matrice d'inertie $\inertie{i}{G_i}$ du bras $i$ prenant en compte sa modélisation géométrique.}
+  \ifprof
+ \begin{corrige}
+ \end{corrige}
+ \else
+ \fi
  
  %Q4.8 : 
  \question{Déterminer l'hyperstatisme du modèle du système (Figure 20). Conclure sur la possibilité
  d'obtenir les différentes actions de liaison (leur calcul n'est pas demandé).}
-
+ \ifprof
+ \begin{corrige}
+ \end{corrige}
+ \else
+ \fi
+ 
 %Q4.9 : 
 \question{Calculer les vitesses  $\vectv{G_i}{i}{0}$ et accélérations $\vectg{G_i}{i}{0}$ des points $G_1$ et $G_2$ dans leur mouvement par rapport au bâti 0, ainsi que $\vectv{P}{i}{0}$ et $\vectg{P}{i}{0}$, en fonction des
  paramètres variables ($\theta_1$, $\theta_2$, $\lambda_3$) et des dimensions constantes.}
+  \ifprof
+ \begin{corrige}
+ \end{corrige}
+ \else
+ \fi
  
