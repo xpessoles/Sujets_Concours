@@ -46,13 +46,13 @@ Le positionnement vertical de la pince est quant à lui obtenu par une liaison g
  $\vz{0}$ entre la tige 3 et le bras 2. 
 Toutes les liaisons sont supposées parfaites.
 On note : $\vect{O_0O_1} = d_1 \vz{0}$, 
-$\vect{O_1O_2} = l_1 \vx{1}+d_2 \z{0}$, 
-$\vect{O_2 P} =l_2\vx{2} - \lambda_3 \vz{0}$.
+$\vect{O_1O_2} = \ell_1 \vx{1}+d_2 \z{0}$, 
+$\vect{O_2 P} =\ell_2\vx{2} - \lambda_3 \vz{0}$.
 
 Les 3 degrés de liberté du bras sont donc $\theta_1$, $\theta_2$ et $\lambda_3$. Le débattement permis pour les deux iaisons pivot est $\pm 150\degres$ (limitation par des butées). 
 Un schéma cinématique du système est proposé sur la Figure \ref{xens_2027_fig20}.
  On donne de plus :
- $d_1 =\SI{500}{mm}$, $d_2 =\SI{30}{mm}$, $l_1=\SI{500}{mm}$, $l_2 =\SI{500}{mm}$, 
+ $d_1 =\SI{500}{mm}$, $d_2 =\SI{30}{mm}$, $\ell_1=\SI{500}{mm}$, $\ell_2 =\SI{500}{mm}$, 
 $m_1 =\SI{2}{kg}$, $m_2=\SI{2}{kg}$, $m_3 =\SI{6}{kg}$ (incluant un objet saisi de masse \SI{2,5}{kg}).
 
 \begin{figure}[!h]
@@ -127,6 +127,7 @@ Dans ce cas, on a $\indice{V}{max}  =\ell_1\indice{\omega}{max} + \left( \ell_1+
  \else
  \fi
  
+
  Dans un modèle cinématique inverse, les données d'entrée sont la position $\left(x_P, y_P, z_P\right)$ et la
  vitesse $\left(V_P^x,V_P^y,V_P^z\right)$ de la pince située en $P$ dans le repère fixe $\repere{O_0}{x_0}{y_0}{z_0}$. On cherche  alors les lois à appliquer au niveau des liaisons (variables $\theta_1$, $\theta_2$, $\lambda_3$) pour obtenir ces données.
 
@@ -159,6 +160,17 @@ Dans ce cas, on a $\indice{V}{max}  =\ell_1\indice{\omega}{max} + \left( \ell_1+
  déterminée par $x_P^2 + y_P^2$ et donner l'expression de $\theta_2$ en fonction de $x_P^2 + y_P^2$ et des dimensions  constantes.}
   \ifprof
  \begin{corrige}
+On a $x_P^2+y_P^2=(\ell_1+\ell_2 )^2$
+De plus, 
+$\left\{\begin{array}{l}
+x_P=\ell_1\cos\theta_1+\ell_2\cos\left(\theta_1+\theta_2\right)\\
+y_P=\ell_1\sin\theta_1+\ell_2\sin(\theta_1+\theta_2)
+\end{array} \right.$
+
+Donc,					 $x_P^2+y_P^2= \ell_1^2+\ell_2^2+2\ell_1 \ell_2  \cos\theta_2$
+
+On obtient alors $\cos\theta_2= \dfrac{ x_P^2+y_P^2-\ell_1^2-\ell_2^2}{2\ell_1 \ell_2 }$
+
  \end{corrige}
  \else
  \fi
@@ -169,7 +181,7 @@ Dans ce cas, on a $\indice{V}{max}  =\ell_1\indice{\omega}{max} + \left( \ell_1+
 On suppose que chaque bras $i$ peut être modélisé géométriquement par un parallélépipède
  rectangle de génératrice $\vx{i}$ et à base carrée dans les directions $\vy{i}$ et $\vz{i}$ (Figure \ref{xens_2027_fig20}). On
  suppose de plus que le bras est homogène; son centre de gravité $G_i$ correspond donc au centre
- géométrique avec $\vect{O_iG_i} \dfrac{l_i}{2} \vx{i}$.
+ géométrique avec $\vect{O_iG_i} \dfrac{\ell_i}{2} \vx{i}$.
  
 
 \begin{figure}[!h]
@@ -177,6 +189,7 @@ On suppose que chaque bras $i$ peut être modélisé géométriquement par un pa
 \includegraphics[width=.6\linewidth]{fig_21}
 \caption{Modèle géométrique d'un bras \label{xens_2027_fig21}}
 \end{figure}
+
 
 
 On donne l'écriture générale de la matrice d'inertie du bras $i$ au point $G_i$ : 
@@ -189,6 +202,10 @@ $\inertie{i}{G_i} = \matinertie{A_i}{B_i}{C_i}{D_i}{E_i}{F_i}{\left( \vx{i},\vy{
  matrice d'inertie $\inertie{i}{G_i}$ du bras $i$ prenant en compte sa modélisation géométrique.}
   \ifprof
  \begin{corrige}
+ Les bras 1 et 2 possèdent chacun 3 plans de symétrie $\left(O_i;\vx{i}; \vy{i}\right)$, $\left(O_i;\vy{i}; \vz{i}\right)$, $\left(O_i;\vx{i}; \vz{i}\right)$ passant par leur centre de gravité respectif $G_i$ (2 plans de symétrie seraient suffisant pour justifier la forme ci-après)
+Donc, la matrice d’inertie prend la forme suivante : 
+$\inertie{G_i}{i} =\matinertie{A_i}{B_i}{C_i}{0}{0}{0}{\left(\vx{i},\vy{i},\vz{i}\right)}$.
+
  \end{corrige}
  \else
  \fi
@@ -198,15 +215,58 @@ $\inertie{i}{G_i} = \matinertie{A_i}{B_i}{C_i}{D_i}{E_i}{F_i}{\left( \vx{i},\vy{
  d'obtenir les différentes actions de liaison (leur calcul n'est pas demandé).}
  \ifprof
  \begin{corrige}
+ Le mécanisme est modélisé par une chaîne ouverte. Par conséquent le degré d’hyperstatisme est nul. Il est donc tout à fait possible de déterminer l’ensemble des inconnues de liaisons.
  \end{corrige}
  \else
  \fi
- 
+
 %Q4.9 : 
 \question{Calculer les vitesses  $\vectv{G_i}{i}{0}$ et accélérations $\vectg{G_i}{i}{0}$ des points $G_1$ et $G_2$ dans leur mouvement par rapport au bâti 0, ainsi que $\vectv{P}{i}{0}$ et $\vectg{P}{i}{0}$, en fonction des
  paramètres variables ($\theta_1$, $\theta_2$, $\lambda_3$) et des dimensions constantes.}
   \ifprof
  \begin{corrige}
+ Calcul de $\vectv{G_1}{1}{0}$  :
+
+$\vectv{G_1}{1}{0}=\deriv{\vect{O_1 G_1}}{\rep{0}} = \dfrac{\ell_1}{2} \thetap_1 \vy{1}$
+
+Calcul de $\vectg{G_1}{1}{0}$  :
+
+$\vectg{G_1}{1}{0}=\deriv{\vectv{G_1}{1}{0}}{\rep{0}}=\dfrac{\ell_1}{2} \thetapp_1 \vy{1}-\dfrac{\ell_1}{2} \thetap_1^2 \vx{1}$
+
+Calcul de $\vectv{G_2}{2}{0}$  :
+
+$\vectv{G_2}{1}{0}=\deriv{\vect{O_1 G_2}}{\rep{0}}= \ell_1 \thetap_1 \vy{1}+ \ell_2/2 \left( \thetap_1+\thetap_2 \right)^2\vy{2}$
+
+Calcul de $\vectg{G_2}{2}{0}$  :
+
+$\vectg{G_2}{2}{0}=\deriv{\vectv{G_2}{1}{0}}{\rep{0}}=\ell_1 \thetapp_1 \vy{1}-\ell_1 \thetap_1^2 \vx{1}+\ell_2/2 \left(\thetapp_1+\thetapp_2\right)\vy{2} - \dfrac{\ell_2}{2} \left(\thetap_1 + \thetap_2\right)^2 \vx{2}$.
+
+
+Calcul de $\vectv{P}{1}{0}$  :
+
+$\vectv{P}{1}{0}=\vectv{O_1}{1}{0}+\vect{PO_1}\wedge \vecto{1}{0} = \ell_1 \thetap_1 \vy{1}+\ell_2 \thetap_1 \vy{2}$
+
+
+Calcul de $\vectg{P}{1}{0}$  :
+
+$\vectg{P}{1}{0}=\deriv{\vectv{P}{1}{0}}{\rep{0}}=\ell_1 \thetapp_1 \vy{1}-\ell_1 \thetap_1^2 \vx{1}+\ell_2 \thetapp_1 \vy{2}-\ell_2 \thetap_1^2 \vx{2}$
+
+
+
+Calcul de $\vectv{P}{2}{0}$  :
+
+$\vectv{P}{2}{0}= \left.\vectv{P}{3}{0}\right|_{\lambda = \text{cste}}=\ell_1 \thetap_1 \vy{1}+\ell_2 \left(\thetap_1+\thetap_2 \right)^2\vy{2}$.
+
+
+Calcul de $\vectg{P}{2}{0}$  :
+
+$\vectg{P}{2}{0}=\deriv{\vectv{P}{2}{0}}{\rep{0}}=\ell_1 \thetapp_1 \vy{1}-\ell_1 \thetap_1^2 \vx{1}+\ell_2 (\thetapp_1+\thetapp_2 ) \vy{2}-\ell_2 \left( \thetap_1+\thetap_2  \right)^2\vx{2}$
+
+Calcul de $\vectg{P}{3}{0}$  :
+
+$\vectg{P}{3}{0}=\deriv{\vectv{P}{3}{0}}{\rep{0}}=\ell_1 \thetapp_1 \vy{1}-\ell_1 \thetap_1^2 \vx{1}+\ell_2 (\thetapp_1+\thetapp_2 ) \vy{2}-\ell_2 
+\left(\thetap_1 + \thetap_2\right)\vx{2} - \lambdapp_3\vz{0}$.
+
  \end{corrige}
  \else
  \fi
