@@ -1,4 +1,6 @@
 \section{Étude du bras manipulateur}
+\ifprof
+\else
  Le package scientifique équipant ROBOVOLC est formé d'un bras manipulateur et d'une pince
  servant d'effecteur pour collecter des échantillons rocheux et poser/prendre des instruments sur le
  sol. Ces organes sont pilotés par des moteurs à courant continu contrôlés par des modules
@@ -17,8 +19,11 @@ Masse maximale des objets à saisir & $\SI{2,5}{kg}$ \\
  \end{tabular}
  \end{center}
  \end{obj}
+\fi
  
  \subsection{Modélisation cinématique}
+\ifprof
+\else
 \textbf{ Dans cette sous-partie, on établit le lien entre la cinématique des liaisons et la cinématique
  de la pince située au bout du bras. }
  
@@ -66,6 +71,7 @@ $m_1 =\SI{2}{kg}$, $m_2=\SI{2}{kg}$, $m_3 =\SI{6}{kg}$ (incluant un objet saisi 
 
  Dans un modèle cinématique direct, les données d'entrée sont les valeurs des angles de rotation
 $\theta_1$ et $\theta_2$ (appelés variables articulaires) et de la position verticale $\lambda_3$ de la pince. On cherche alors la configuration du système à partir de ces variables. 
+\fi
 
 %Q4.1 : 
 \question{En représentant sur le document réponse DR3 figure \ref{xens_2027_dr03} la base du cylindre, montrer que le volume accessible par le point $P$ (enveloppe de travail) est un cylindre à base non-circulaire. }
@@ -78,11 +84,14 @@ $\theta_1$ et $\theta_2$ (appelés variables articulaires) et de la position ver
  \else
  \fi
  
+ \ifprof
+\else
 \begin{figure}[!h]
 \centering
 \includegraphics[width=.9\linewidth]{dr_03}
 \caption{DR 3 \label{xens_2027_dr03}}
 \end{figure}
+\fi
 
 %Q4.2 : 
 \question{Donner l'expression des coordonnées $\left( x_P, y_P, z_P\right)$ et de la vitesse $\vectv{P}{3}{0}$
@@ -144,16 +153,23 @@ Dans ce cas, on a $\indice{V}{max}  =\ell_1\indice{\omega}{max} + \left( \ell_1+
 \question{Pour une même position $\left(x_P, y_P, z_P\right)$ du point $P$ , montrer schématiquement qu'il y a deux configurations possibles des angles $\theta_1$ et $\theta_1$. Par un raisonnement graphique, donner sur le document DR4 figure \label{xens_2027_dr04} la configuration complémentaire de celle dessinée correspondant à $\theta_1 = 90\degres$ et $\theta_2 = -60\degres$.}
  \ifprof
  \begin{corrige}
+ \begin{center}
+ \includegraphics[width=.459\linewidth]{cor_Q45.png}
+\end{center}
+
+ 
  \end{corrige}
  \else
  \fi
  
+ \ifprof
+\else
 \begin{figure}[!h]
 \centering
 \includegraphics[width=.9\linewidth]{dr_04}
 \caption{DR 4 \label{xens_2027_dr03}}
 \end{figure}
-
+\fi
 
 % Q4.6 : 
 \question{Montrer que quelle que soit la configuration, la valeur de l'angle $\theta_2$ est entièrement
@@ -176,6 +192,9 @@ On obtient alors $\cos\theta_2= \dfrac{ x_P^2+y_P^2-\ell_1^2-\ell_2^2}{2\ell_1 \
  \fi
  
  \subsection{Modélisaton dynamique}
+
+\ifprof
+\else
 \textbf{Dans cette sous-partie, on construit un modèle dynamique du bras manipulateur.}
 
 On suppose que chaque bras $i$ peut être modélisé géométriquement par un parallélépipède
@@ -194,6 +213,7 @@ On suppose que chaque bras $i$ peut être modélisé géométriquement par un pa
 
 On donne l'écriture générale de la matrice d'inertie du bras $i$ au point $G_i$ : 
 $\inertie{i}{G_i} = \matinertie{A_i}{B_i}{C_i}{D_i}{E_i}{F_i}{\left( \vx{i},\vy{i},\vz{i}\right)}$.
+\fi
 
 
 
