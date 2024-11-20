@@ -100,7 +100,7 @@ D’autre part $D$ est lié au pas de la vis par la relation suivante : $D/2=\df
 d’où l’expression de $c_v(t)$ : $c_v (t)=F \dfrac{p}{\pi}\dfrac{1}{\eta_v}=M.g.\dfrac{p}{2\pi}\dfrac{1}{\eta_v}$.
 On remonte jusqu’au couple en entrée du réducteur à partir de l’expression su rendement : $\eta_v= \dfrac{c_v \omega_{vis}}{c_R \omega_m}$ et à partir de la connaissance du rapport de réduction : $r=\omega_{vis}/\omega_m$.
  
-On en déduit la relation finale : $C_r (t)=\dfrac{M.g.p.r)}{2.\pi.\eta_v.\eta_r}$.
+On en déduit la relation finale : $C_r (t)=\dfrac{Mgpr}{2\pi\eta_v\eta_r}$.
 
 A.N. $C_r (t)=\dfrac{M.g.p.r)}{2.\pi.\eta_v.\eta_r}=\dfrac{1 \times  9,81 \times  0,012\times  1/100}{2 \times  \pi 0,95\times 0,96}=\SI{0,20}{mN.m}$.
 
@@ -277,11 +277,12 @@ On en déduit la fonction de transfert de $M(p)$ : $M(p)=\dfrac{D(p)}{V(p)} =\df
 \ifprof
 \begin{corrige}%
 L’expression de la FTBO de ce système asservi est donnée par :
-
-$\indice{G}{BO}(p)=M(p)\indice{K}{red}\indice{K}{capt}C_0 (p)K_p×\dfrac{\dfrac{K_C.K_E}{R.f+K_C.K_E}}{\dfrac{J.R}{R.f+K_C.K_E}.p+1}$
-
-$=\dfrac{\dfrac{K_C.K_EK_p.\indice{K}{capt}.\indice{K}{red}}{p(Rf+K_CK_E}}{p.(\dfrac{JR}{R.f+K_C.K_E}.p+1) }$.
-Ou $\indice{G}{BO}(p)= \dfrac{F_0 K_H\indice{K}{capt}\indice{K}{red}}{p.(T_0.p+1)}$
+%
+%$\indice{G}{BO}(p)=M(p)\indice{K}{red}\indice{K}{capt}C_0 (p)K_p×\dfrac{\dfrac{K_C.K_E}{R.f+K_C.K_E}}{\dfrac{J.R}{R.f+K_C.K_E}.p+1}$
+%
+%$=\dfrac{\dfrac{K_C.K_EK_p.\indice{K}{capt}.\indice{K}{red}}{p(Rf+K_CK_E}}{p.(\dfrac{JR}{R.f+K_C.K_E}.p+1) }$.
+%Ou 
+$\indice{G}{BO}(p)= \dfrac{F_0 K_H\indice{K}{capt}\indice{K}{red}}{p.(T_0.p+1)}$
 Cette fonction de transfert d’ordre 2 présente un terme p en facteur au dénominateur, donc de classe 1.
 Pour un système asservi, si la classe de la FTBO est 1, le système présente une erreur statique, ou de position, nulle. Le système est donc précis et répond à une exigence du cahier des charges fonctionnel
 
@@ -346,9 +347,9 @@ $
 
  soit $\omega_0 = \SI{6,3}{rad/s}$ et $\xi =281$.
  
-D’après les relations donnant l’expression du temps de réponse, (4), pour $\xi >\dfrac{1}{\sqrt{2}}$ : $t_(r5\%)\simeq(6 \xi)/\omega_0 \simeq \SI{268}{s}$
+D’après les relations donnant l’expression du temps de réponse, (4), pour $\xi >\dfrac{1}{\sqrt{2}}$ : $t_{r5\%}\simeq(6 \xi)/\omega_0 \simeq \SI{268}{s}$
 Le système est donc beaucoup trop lent au regard de l’exigence en rapidité (« Id 004 ») : 
-$t_(r5\%)<\SI{5}{s}$.
+$t_{r5\%}<\SI{5}{s}$.
 
 \end{corrige}
 \else
@@ -376,11 +377,12 @@ Cette valeur permet d’obtenir un système avec peu de dépassement et beaucoup
 \else
 \fi
 
-
+\ifprof
+\else
  On impose un temps de réponse à 5\% de \SI{5}{s} et un facteur d’amortissement $\xi$ supérieur à 1.
  On donne l’expression numérique de $\indice{G}{BF}(p)$ avec un correcteur de gain $\indice{K}{D}$ :
  $\indice{G}{BF}(p)=\dfrac{1}{\dfrac{0,025}{K_D}p^2+\dfrac{89}{K_D}p +1}$.
- 
+ \fi
  
 \question{À partir des équations liant le temps de réponse, le facteur d’amortissement et la pulsation 
 propre ainsi que de l’expression numérique de $\indice{G}{BF}(p)$, donner une expression liant $t_{r5\%}$  et $\indice{K}{D2}$. En déduire la valeur de $\indice{K}{D2}$ permettant de respecter la contrainte imposée en termes de rapidité.}
