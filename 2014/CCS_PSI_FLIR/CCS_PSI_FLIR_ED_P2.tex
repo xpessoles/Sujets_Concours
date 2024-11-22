@@ -56,15 +56,23 @@ Cardan définis sur la figure \ref{figure8}, avec :
 \question{Déterminer le torseur cinématique en $P$ , exprimé dans la base $\base{{x_a}}{{y_a}}{{z_a}}$ de la liaison équivalente
 entre le porteur et la charge. En déduire la nature de cette liaison équivalente et préciser ses caractéristiques
 géométriques.}
-
+\ifprof
+\begin{corrige}
+Il y a en série 2 liaisons pivot d'axe orthogonaux et concourants en $P$. Le torseur cinématique équivalent résulte de la somme des torseurs cinématiques exprimés au point $P$ soit $\axe{P}{y_a}$. C'est le torseur d'une liaison sphérique à doigt de centre $P$ de rotation bloquée $\vect{x_e}$.
+\end{corrige}
+\else
+\fi
 Dans un cas d'utilisation normal, la liaison cinématique entre la tête du pilote et le cockpit est assimilable à une
 liaison sphérique dont le centre se trouve au milieu de la nuque. Or, le pilote doit avoir une image cohérente à
 sa vision quelle que soit l'orientation de sa tête par rapport au porteur.
 
-\question{Afin de pouvoir valider la solution technique retenue pour la structure cinématique à deux axes orthogonaux
-motorisés du FLIR, comparer les mobilités du FLIR et celles de la tête du pilote par rapport au porteur
-et expliquer quel doit être un des rôles de l'algorithme implanté dans le calculateur.}
-
+\question{Afin de pouvoir valider la solution technique retenue pour la structure cinématique à deux axes orthogonaux motorisés du FLIR, comparer les mobilités du FLIR et celles de la tête du pilote par rapport au porteur et expliquer quel doit être un des rôles de l'algorithme implanté dans le calculateur.}
+\ifprof
+\begin{corrige}
+La tête du pilote dispose d'une mobilité supplémentaire il est donc nécessaire que l'algorithme du calculateur intègre les informations de position de la tête du pilote par rapport au porteur (en particulier la position angulaire suivant la mobilité supplémentaire) fournies par le sous système de détection des postures implanté dans le casque afin de reproduire cela au niveau de l'affichage de l'image.
+\end{corrige}
+\else
+\fi
 \section{Hypothèses simplificatrices}
 
 \begin{obj}
@@ -75,7 +83,6 @@ d'élévation ;
 \item  les effets aérodynamiques et la variation de position du centre d'inertie de la charge n'influent pas
 sur les performances du FLIR.
 \end{itemize}
-
 \end{obj}
 
 
@@ -101,15 +108,8 @@ sur les performances du FLIR.
 perturbations aérodynamiques}
 
 
-Afin de limiter l'influence des vibrations du porteur sur la
-ligne de visée et augmenter la précision de son orientation,
-les ingénieurs ont choisi de décomposer l'axe motorisé
-d'élévation en deux étages (voir figures \ref{fig9} et \ref{figure10}).
-Le premier étage, appelé étage gros d'élévation ($ge$), est
-en prise directe avec l'air et est donc soumis aux effets
-aérodynamiques lors des mouvements du porteur. L'étage
-gros d'élévation est lui même en liaison pivot, d'axe $\axe{P}{{y_e}}$,
-avec l'axe motorisé d'azimut.
+Afin de limiter l'influence des vibrations du porteur sur la ligne de visée et augmenter la précision de son orientation, les ingénieurs ont choisi de décomposer l'axe motorisé d'élévation en deux étages (voir figures \ref{fig9} et \ref{figure10}). 
+Le premier étage, appelé étage gros d'élévation ($ge$), est en prise directe avec l'air et est donc soumis aux effets aérodynamiques lors des mouvements du porteur. L'étage gros d'élévation est lui même en liaison pivot, d'axe $\axe{P}{{y_e}}$, avec l'axe motorisé d'azimut.
 
 \begin{figure}[h]
 \begin{center}
@@ -120,14 +120,7 @@ avec l'axe motorisé d'azimut.
 
 %\FloatBarrier
 
-Le second, appelé étage fin d'élévation ($fe$), est protégé
-des effets aérodynamiques grâce au carter sphérique
-solidaire de l'étage gros. Cet étage est en liaison pivot,
-d'axe $\axe{P}{{y_e}}$, avec l'étage gros d'élévation. L'inertie des
-éléments déplacés par l'étage fin d'élévation est plus faible
-que celle de l'étage gros d'élévation et les choix de guidage
-et de motorisation permettent d'atteindre des accélérations
-et des vitesses élevées. Cependant, l'amplitude du mouvement de l'étage fin est limitée.
+Le second, appelé étage fin d'élévation ($fe$), est protégé des effets aérodynamiques grâce au carter sphérique solidaire de l'étage gros. Cet étage est en liaison pivot, d'axe $\axe{P}{{y_e}}$, avec l'étage gros d'élévation. L'inertie des éléments déplacés par l'étage fin d'élévation est plus faible que celle de l'étage gros d'élévation et les choix de guidage et de motorisation permettent d'atteindre des accélérations et des vitesses élevées. Cependant, l'amplitude du mouvement de l'étage fin est limitée.
 
 \begin{figure}[!htb]
 \begin{center}
@@ -170,6 +163,11 @@ Lors des conditions de vol les plus sévères, le couple exercé par les effets 
 gros d'élévation a été mesuré à $\SI{0,18}{N.m}$.
 
 \question{À l'aide de l'abaque donné figure \ref{fig11}, déterminer une valeur de réglage pertinente de la précharge du guidage en rotation de l'étage gros d'élévation par rapport à l'axe motorisé d'azimut.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 %\FloatBarrier
 \subsection{Influence du déport de masse lié à la variation de position des optiques}
@@ -219,6 +217,20 @@ $
 \end{itemize}
 
 \question{Déterminer littéralement l'opérateur d'inertie $\overline{\overline{I}}_P(\text{fe})$ de l'étage fin d'élévation en fonction de $\indice{A}{cyl}$, $\indice{B}{cyl}$, $A_o$, $B_o$, $d$ et $m_o$ dans le repère $R_e$, puis exprimer le vecteur $\vect{PG_{fe}}=\lambda \cdot \vect{x}_e$ dans le repère $R_e$ en fonction de $\indice{m}{cyl}$, $m_o$ et $d$.}
+\ifprof
+\begin{corrige}
+Pour pouvoir déterminer l'opérateur d'inertie de l'étage fin élévation au point $P$, il suffit d'additionner les matrices exprimées toutes deux au point $P$ et dans la même base. Pour cela on applique la relation d'Huygens à l'opérateur de la partie optique entre son centre de gravité $P_0$ et le point $P$  avec le vecteur  $\vect{PP_0}=d\vect{x_e}$. On obtient dans la base  $\base{x_e}{y_e}{z_e}$ :
+
+$
+\inertie{P}{fe}=
+\inertie{P}{\text{cyl}}+\inertie{P_0}{o}+m_0\matinertie{0}{d^2}{d^2}{0}{0}{0}{}
+$
+$=m_0\matinertie{\indice{A}{cyl}+A_o}{\indice{B}{cyl}+B_o+m_od^2}{\indice{A}{cyl}+B_o+m_od^2}{0}{0}{0}{}$
+
+La position du centre d'inertie noté $\indice{G}{fe}$ est donné par la relation : $\vect{PG_{\text{fe}}}=\dfrac{m_od}{m_o+\indice{m}{cyl}}\vect{x_e}$ (calcul du barycentre).
+\end{corrige}
+\else
+\fi
 
 Des mesures à bord du NH90 ont montré que la phase de vol la plus pénalisante, c'est-à-dire celle qui perturbe
 le plus la ligne de visée du FLIR, est l'ascension verticale du porteur. Dans cette phase, il est possible d'effectuer
@@ -239,23 +251,139 @@ La vitesse d'ascension verticale du porteur est notée $\vect{V}(P\in \text{port
 
 Les dérivées d'un paramètre $x(t)$ par rapport au temps seront notées : $\dot{x}(t)=\dfrac{\dd x(t)}{\dd t}$ et $\ddot{x}(t)=\dfrac{\dd ^2x(t)}{\dd t^2}$. 
 
-\question{Montrer que $\vect{V}(G_{fe}\in fe/R_0)$, vecteur vitesse du point $G_{fe}$, centre d'inertie de l'étage fin d'élévation dans son mouvement par rapport à $R_0$, peut s'écrire sous la forme : $\vect{V}(G_{fe}\in fe/R_0)=a(t)\cdot \vect{z}_0+b(t)\cdot \vect{z}_e$. L'exprimer alors en fonction de $v(t)$, $m_{cyl}$, $m_o$, $d$, $\theta_{eo}(t)$ et $\dot{\theta}_{eo}(t)$.}
+\question{Montrer que $\vect{V}(G_{fe}\in fe/R_0)$, vecteur vitesse du point $G_{fe}$, centre d'inertie de l'étage fin d'élévation dans son mouvement par rapport à $R_0$, peut s'écrire sous la forme : $\vect{V}(G_{fe}\in fe/R_0)=a(t)\cdot \vect{z}_0+b(t)\cdot \vect{z}_e$. L'exprimer alors en fonction de $v(t)$, $\indice{m}{cyl}$, $m_o$, $d$, $\indice{\theta}{eo}(t)$ et $\indice{\dot{\theta}}{eo}(t)$.}
+\ifprof
+\begin{corrige}
+Le champ de vecteur vitesse du mouvement de l'ensemble fin élévation donne la relation :
+$\vectv{G}{fe}{\rep{0}} = \vectv{P}{fe}{\rep{0}} +\vecto{fe}{\rep{0}} \wedge \vect{PG_{\text{fe}}} $.
+
+Une relation de composition de mouvement conduit à : 
+$\vectv{P}{\text{porteur}}{\rep{0}} = 
+\vectv{P}{\text{porteur}}{\text{axe}} 
++\vectv{P}{\text{axe}}{\text{ge}} 
++\vectv{P}{\text{ge}}{\text{fe}} 
++\vectv{P}{\text{fe}}{\rep{0}} = v(t) \vect{Z_0} $
+ (le point $P$ ayant la particularité de se trouver à l'intersection des axes des deux rotations considérées).
+
+Ainsi la relation permet d'écrire :  
+$\vectv{G}{fe}{\rep{0}} 
+= v(t)\vect{Z_0} + \thetap_{\text{ea}}(t)\vect{y_a}\wedge \dfrac{m_o d}{m_o + m_{\text{cyl}}} \vect{x_e}
+=v(t)\vect{Z_0}-\thetap_{\text{ea}}(t) \dfrac{m_o d}{m_o+\indice{m}{cyl}} \vect{z_e}$
+
+soit dans la base souhaitée :  $\vectv{G}{fe}{\rep{0}} 
+=v(t)\vect{Z_0}-\thetap_{\text{ea}}(t) \dfrac{m_o d}{m_o+\indice{m}{cyl}} \left(\sin\theta_{eo}\vect{X_0}+\cos\theta_{eo}\vect{Z_0} \right)$.
+\end{corrige}
+\else
+\fi
+
+\question{Déterminer l'accélération $\vect{\Gamma\left( G_{\text{fe}},\text{fe}/R_0 \right)}$}
+\ifprof
+\begin{corrige}
+Calcul de la résultante dynamique : $\vectrd{G}{fe}{\rep{0}} =m_{fe}\deriv{\vectv{G}{fe}{\rep{0}}}{\rep{0}}$ 
+
+$ = m_{fe}\left(
+ \dot{v}(t)\vect{Z_0}
+-\thetapp_{\text{ea}}(t) \dfrac{m_o d}{m_o+\indice{m}{cyl}} \left(\sin\theta_{eo}\vect{X_0}+\cos\theta_{eo}\vect{Z_0} \right)
+-\thetap^2_{\text{ea}}(t) \dfrac{m_o d}{m_o+\indice{m}{cyl}} \left(\cos\theta_{eo}\vect{X_0}-\sin\theta_{eo}\vect{Z_0} \right)\right)$ 
 
 
-\question{Déterminer l'accélération $\vect{\Gamma\left( G_{\text{fe}},fe/R_0 \right)}$}
+$ = m_{fe}\left(
+ \dot{v}(t)\vect{Z_0}
+-\thetapp_{\text{ea}}(t) \dfrac{m_o d}{m_o+\indice{m}{cyl}}\vect{z_e}
+-\thetap^2_{\text{ea}}(t) \dfrac{m_o d}{m_o+\indice{m}{cyl}}\vect{x_e}\right)
+$ 
+\end{corrige}
+\else
+\fi
 
 \question{Isoler $\text{fe}$ et faire les bilan des actions mécaniques en écrivant tous les torseurs en $P$}
+\ifprof 
+\begin{corrige} ~\\
+\begin{minipage}[c]{.35\linewidth}
+\begin{center}
+\includegraphics[width=\linewidth]{cor_11}
+\end{center}
+\end{minipage}\hfill
+\begin{minipage}[c]{.6\linewidth}
+\begin{itemize}
+\item BAME : 
+\begin{itemize}
+\item pivot : $\torseurstat{T}{\text{ge}}{\text{fe}} = \torseurl{X\vect{x_e}+Y\vect{y_e}+Z\vect{z_e}}{L\vect{x_e}+N\vect{z_e}}{P}$;
+\item couple moteur : $\torseurstat{T}{\text{mot}}{\text{fe}} = \torseurl{\vect{0}}{C_m(t)\vect{y_e}}{P}$;
+\item pesanteur : $\torseurstat{T}{\text{pes}}{\text{fe}} = \torseurl{-\indice{m}{fe}g\vect{Z_0}}{\vect{0}}{\indice{G}{fe}}$. De plus, 
+$\vectm{P}{\text{pes}}{\text{fe}} = \vect{0} + \vect{P\indice{G}{fe}}\wedge -\indice{m}{fe}g\vect{Z_0} =  \dfrac{m_od}{m_o+\indice{m}{cyl}}\vect{x_e} \wedge -\indice{m}{fe}g\vect{Z_0} $  $= \dfrac{m_od}{m_o+\indice{m}{cyl}}\indice{m}{fe}g\cos\theta \vect{ye} $
+\end{itemize}
+\end{itemize}
+\end{minipage}
+\end{corrige}
+\else
+\fi
 
-\question{Énoncer le théorème du moment dynamique appliqué à $fe$ en $P$ sans développer le calcul.}
+\question{Énoncer le théorème du moment dynamique appliqué à $\text{fe}$ en $P$ sans développer le calcul.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 \question{Donner la relation liant le moment dynamique en $P$ ($\vect{\delta\left( P,fe/R_0 \right)}$) à celui en $G_{fe}$ ($\vect{\delta\left( G_{\text{fe}},fe/R_0 \right)}$)}
+\ifprof
+\begin{corrige}
+%Calcul du moment dynamique : la matrice d'inertie a été calculée en $P$. Faisons donc le calcul en $P$, point quelconque.
 
-\question{Déterminer le moment cinétique $\vect{\sigma\left( G_{\text{fe}},fe/R_0 \right)}$ puis le moment dynamique au même point : \(\vect{\delta\left( G_{\text{fe}},fe/R_0 \right)}$}
 
-\question{En déduire le moment dynamique : $\vect{\delta\left( P,fe/R_0 \right)}$}
+\end{corrige}
+\else
+\fi
+
+\question{Déterminer le moment cinétique $\vect{\sigma\left( G_{\text{fe}},\text{fe}/R_0 \right)}$ puis le moment dynamique au même point : \(\vect{\delta\left( G_{\text{fe}},\text{fe}/R_0 \right)}$}
+\ifprof
+\begin{corrige}
+Calcul du moment cinétique en un point quelconque : 
+
+$\vectmc{\indice{P}{fe}}{\text{fe}}{\rep{0}} $
+$= \inertie{\indice{P}{fe}}{\text{fe}} \vecto{\text{fe}}{\rep0} +\indice{m}{fe} \vect{P\indice{G}{fe}} \wedge \vectv{P}{}{\rep0}$
+
+$=\inertie{\indice{P}{fe}}{\text{fe}} \thetap \vect{y_e} +\indice{m}{fe} \dfrac{m_od}{m_o+\indice{m}{cyl}}\vect{x_e} \wedge {v}\vect{Z_0} $
+$ =\left( \indice{B}{cyl}+B_o+m_od^2\right) \thetap \vect{y_e}  + \indice{m}{fe} \dfrac{m_od}{m_o+\indice{m}{cyl}} {v} (-\cos \theta) \vect{y_e}$.
+
+
+\end{corrige}
+\else
+\fi
+
+\question{En déduire le moment dynamique : $\vect{\delta\left( P,\text{fe}/R_0 \right)}$}
+\ifprof
+\begin{corrige}
+Calcul du moment dynamique en un point quelconque : 
+
+$\vectmd{\indice{P}{fe}}{\text{fe}}{\rep{0}}= \deriv{\vectmc{\indice{P}{fe}}{fe}{\rep{0}}}{\rep{0}} + \vectv{P}{}{\rep{0}}\wedge  \indice{m}{fe}\vectv{\indice{G}{fe}}{fe}{\rep{0}} $
+ 
+$ =\left( \indice{B}{cyl}+B_o+m_od^2\right) \thetapp \vect{y_e}  + \indice{m}{fe} \dfrac{m_od}{m_o+\indice{m}{cyl}} \left( -\dot{v} \cos \theta+{v} \thetap \sin \theta \right) \vect{y_e}
++  \indice{m}{fe} {v}\vect{Z_0}\wedge \left( v(t)\vect{Z_0}-\thetap_{\text{ea}}(t) \dfrac{m_o d}{m_o+\indice{m}{cyl}} \vect{z_e} \right) $ 
+
+$ =\left( \indice{B}{cyl}+B_o+m_od^2\right) \thetapp \vect{y_e}  + \indice{m}{fe} \dfrac{m_od}{m_o+\indice{m}{cyl}} \left( -\dot{v} \cos \theta+{v} \thetap \sin \theta \right) \vect{y_e}
++  \indice{m}{fe} \dot{v}\left( -\thetap_{\text{ea}}(t) \dfrac{m_o d}{m_o+\indice{m}{cyl}}  \right) \sin\theta\vect{y_e} $
+
+$ =\left( \indice{B}{cyl}+B_o+m_od^2\right) \thetapp \vect{y_e}  - \indice{m}{fe} \dfrac{m_od}{m_o+\indice{m}{cyl}} \dot{v} \cos \theta  \vect{y_e}
+$
+\end{corrige}
+\else
+\fi
 
 \question{En déduire l'équation différentielle régissant le mouvement de l'étage fin d'élévation par rapport
 au référentiel galiléen $R_0$.}
+\ifprof
+\begin{corrige}
+En appliquant le théorème du moment dynamique au solide $\text{fe}$ au point $P$ en projection sur  $\vect{y_e}$, on a donc : 
+
+$$
+\left( \indice{B}{cyl}+B_o+m_od^2\right) \thetapp  - \indice{m}{fe} \dfrac{m_od}{m_o+\indice{m}{cyl}} \dot{v} \cos \theta 
+=  \dfrac{m_od}{m_o+\indice{m}{cyl}}\indice{m}{fe}g\cos\theta .
+$$
+\end{corrige}
+\else
+\fi
 
 Les valeurs numériques suivantes sont données : $m_o =\SI{1,4}{kg}$ ; $d= \SI{0,01}{m}$ ; $\vert \gamma(t)\vert_{\text{MAXI NH90}} = \SI{1,8}{g}$, avec $g\approx  \SI{9,81}{m.s^{-2}}$.
 
@@ -263,5 +391,16 @@ Les couples perturbateurs voisins du dixième de la valeur du couple moteur maxi
 de ce dernier lors de la conception de la commande. Pour l'étage fin d'élévation, le couple moteur maximal est
 voisin de $\SI{3}{N.m}$.
 
-\question{Dans la phase de vol étudiée, donner sous forme littérale l'expression du couple de perturbation issu du déport de masse $d$, noté $\indice{C}{pert}$. Calculer la valeur numérique maximale de $\indice{C}{pert}$, notée $C_{\text{pertMAXI}}$, dans le cas le plus défavorable. Conclure sur la pertinence de la prise en compte de cette perturbation pour la conception de
-la commande de l'étage fin d'élévation.}
+\question{Dans la phase de vol étudiée, donner sous forme littérale l'expression du couple de perturbation issu du déport de masse $d$, noté $\indice{C}{pert}$. Calculer la valeur numérique maximale de $\indice{C}{pert}$, notée $C_{\text{pertMAXI}}$, dans le cas le plus défavorable. Conclure sur la pertinence de la prise en compte de cette perturbation pour la conception de la commande de l'étage fin d'élévation.}
+\ifprof
+\begin{corrige}
+Le couple perturbateur dû au déport de masse contient le terme de gravité ainsi que le terme d'accélération soit 
+$\indice{C}{pert} = \gamma(t) m_o d \cos\theta_{eo}+m_o d g \cos\theta_{eo}$.
+
+Les conditions les plus défavorables sont quant le terme en cosinus vaut 1 soit après application numérique :
+$\indice{C}{pert} = 1,4 \times 0,01 \times 9,81 \times (1+1,8) \simeq \SI{0,385}{Nm}$.
+
+Cela reste de l'ordre du dixième du couple moteur  proposé ($\simeq{3}{Nm}$), on peut donc le considérer comme négligeable.
+\end{corrige}
+\else
+\fi
