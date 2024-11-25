@@ -7,8 +7,39 @@ Déterminer le couple statique du moto-réducteur $\indice{M}{01}$ qui permet l�
 On note $\vect{g} = - g \vy{0}$ l'accélération du champ de pesanteur terrestre avec $g = \SI{9,81}{ms^{-2}}$.
 
 % Q06
-\question{Exprimer puis calculer le couple statique, noté $\indice{C}{01}$, que doit exercer le moto-réducteur $\indice{M}{01}$ dans
-la position du système de déploiement la plus défavorable. Préciser clairement le système isolé ainsi que le principe/théorème utilisé.}
+\question{Exprimer puis calculer le couple statique, noté $\indice{C}{01}$, que doit exercer le moto-réducteur $\indice{M}{01}$ dans la position du système de déploiement la plus défavorable. Préciser clairement le système isolé ainsi que le principe/théorème utilisé.}
+\ifprof
+\begin{corrige}%
+On isole (1,2,3).
+
+Bilan des efforts : 
+\begin{itemize}
+\item Pesanteur sur  1 
+\item Pesanteur sur 2
+\item Pesanteur sur 3
+\item Couple moteur sur 1
+\item Liaison pivot. 
+
+\end{itemize}
+
+La position la plus défavorable est $\theta_1=\theta_2=0$.
+On applique le TMS en $O$ en projection sur $\vz{}$.
+
+$C_{01}=\dfrac{L}{2} m_1g+3\dfrac{L}{2} m_2g+2Lm_Sg \Leftrightarrow C_{01}=L\left(\dfrac{m_1}{2}+3\dfrac{m_2}{2}+2mS\right)g$
+
+Numériquement :
+$C_{01}=0,5\left(\dfrac{0,352}{2}+\dfrac{3\times 0,352}{2}+2.1,2\right) \times 9,81=\SI{15,2}{N.m}$.
+
+\end{corrige}
+\else
+\fi
+
 
 % Q07
 \question{En déduire la valeur minimale du couple de maintien, noté $\indice{C}{m1min}$, dont doit disposer le moteur pas à pas.}
+\ifprof
+\begin{corrige}%
+$\indice{C}{m1 min}= 15,2/82 = \SI{0,18}{N.m}$.
+\end{corrige}
+\else
+\fi

@@ -10,9 +10,33 @@ On note $\vectv{M}{S}{R}$ est le vecteur vitesse du point $M$ appartenant au sol
 
 %Q04
 \question{Déterminer l’expression de la vitesse du point $P$, appartenant à l’avant-bras 2, par rapport à $\rep{0}$ en fonction de $\theta_1$, $\theta_2$ et $L$.}
+\ifprof
+\begin{corrige}%
+$\vectv{P}{}{0}= \deriv{\vect{OP}}{0}$  
+$=\deriv{L\vx{1}}{0} + \deriv{L\vx{2}}{0}$
+$=L\thetap \vy{1} + L\left(\thetap_1+\thetap_2\right) \vy{2}$
+\end{corrige}
+\else
+\fi
 
 %
 \question{Déterminer l’expression de l'accélération du point $P$, appartenant à l’avant-bras 2, par rapport à $\rep{0}$.}
+\ifprof
+\begin{corrige}%
+
+\end{corrige}
+\else
+\fi
 
 %Q05
 \question{Déterminer la valeur maximale du taux de rotation $|| \vecto{1}{0} ||$  pour que l’avant-bras 2 suive un mouvement de translation circulaire par rapport à $\rep{0}$ en respectant l’exigence 003 << Vitesse de la pince >>.}
+\ifprof
+\begin{corrige}%
+Pour que la pince suive un mouvement de translation autour de $\axe{O}{z_1}$, il faut et il suffit que $\thetap_1= -\thetap_2$. Il vient alors : $\vectv{P}{}{0} = L\thetap_1 \vy{1}$.
+
+Soit : $||\vecto{1}{0}|| = \dfrac{||\vectv{P}{}{0}||}{L}$.
+Pour que la vitesse du point $P$ ne dépasse pas \SI{20}{mm/s} (Id=’003’), il faut que, numériquement :$||\vecto{1}{0}|| < \dfrac{20\cdot 10^{-3}}{0,5}  \Rightarrow ||\vecto{1}{0}||<\SI{0,04}{rad/s}$.
+
+\end{corrige}
+\else
+\fi

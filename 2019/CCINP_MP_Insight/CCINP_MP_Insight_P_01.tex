@@ -1,19 +1,68 @@
 \section{Validation des capacités de positionnement du système de déploiement}
 
 \begin{obj}
-Vérifier l’exigence 002 «Position de la pince» afin que le point de préhension $P$ du 
+Vérifier l’exigence 002 «~Position de la pince~» afin que le point de préhension $P$ du 
 système de déploiement DPL puisse être défini à partir de deux coordonnées articulaires.
 \end{obj}
 
 %01
 \question{Établir la relation vectorielle entre $X_P$, $Y_P$, $L$ et $\vx{0}$, $\vy{0}$, $\vx{1}$ et $\vx{2}$. }
-
+\ifprof
+\begin{corrige}%
+$\vect{OP}=\vect{OQ}+\vect{QP} \Leftrightarrow X_p(t) \vx{0} + Y_p(t) \vy{0} =L\vx{1}+L\vx{2}$.
+\end{corrige}
+\else
+\fi
 
 %02
 \question{Projeter la relation précédente selon $\vx{0}$ et $\vy{0}$, puis donner les deux équations scalaires 
 correspondantes.}
+\ifprof
+\begin{corrige}%
+$X_P(t)\vx{0}+Y_P(t)\vy{0}=L\left(\cos(\theta_1)\vx{0}+\sin(\theta_1)\vy{0}\right)+L\left(\cos(\theta_1+\theta_2)\vx{0}+\sin(\theta_1+\theta_2)\vy{0}\right)$
+
+$\Rightarrow 
+\left\{
+\begin{array}{l}
+X_P(t)=L\cos(\theta_1)+L\cos(\theta_1+\theta_2) \\
+Y_P(t)=L\sin(\theta_1)+L\sin(\theta_1+\theta_2) 
+\end{array}
+\right.$
+
+
+\end{corrige}
+\else
+\fi
+
 
 %03
-\question{Exprimer $\theta_1$ et $\theta_2$ en fonction de $X_P$, $Y_P$ et $L$. Conclure quant au respect de «l’exigence 
-002».}
+\question{Exprimer $\theta_1$ et $\theta_2$ en fonction de $X_P$, $Y_P$ et $L$. Conclure quant au respect de «l’exigence 002».}
+\ifprof
+\begin{corrige}%
+En utilisant les relations trigonométriques : 
+$\left\{
+\begin{array}{l}
+X_P(t)=2L \cos\left(\dfrac{2\theta_1 + \theta_2}{2}\right) \cos
+\left(\dfrac{\theta_2}{2}\right) \\
+Y_P(t)=2L \sin\left(\dfrac{2\theta_1 + \theta_2}{2}\right) \cos
+\left(\dfrac{\theta_2}{2}\right) 
+\end{array}
+\right.
+$
+
+Il vient : 
+$X_P^2 (t)+Y_P^2 (t)=4L^2 \cos^2 \left(\dfrac{\theta_2}{2}\right)$ 
+$\Leftrightarrow 
+\arccos 
+\left( 
+\dfrac{X_P^2 (t)+Y_P^2 (t)-2L^2}{2L^2}
+\right)$
+
+Et : $\dfrac{Y_P(t)}{X_P(t)} =\tan\left(\dfrac{2\theta_1 + \theta_2}{2}\right)$ 
+$ \Rightarrow \theta_1 = \arctan \dfrac{Y_P(t)}{X_P(t)} -\dfrac{1}{2} \arccos\left(\dfrac{X_P^2 (t)+Y_P^2 (t)-2L^2)}{2L^2}\right)$
+
+Conformément à l'exigence 002 , la position de la pince peut être commandée par deux variables angulaires.
+\end{corrige}
+\else
+\fi
 

@@ -110,10 +110,10 @@ leur être faites.
 \begin{center}
 \begin{tabular}{ll}
 \hline
-Critères de performances & Niveaux associés \\ \hline \hline
-Résolution verticale du capteur optique & $< \SI{10}{nm}$ \\ \hline
-Amplitude de lecture & $\SI{20}{\mu m}$ \\ \hline
-Amplitude de l'asservissement (??) & $\SI{10}{mm}$ \\ \hline
+\textbf{Critères de performances} & \textbf{Niveaux associés} \\ \hline
+Résolution verticale du capteur optique & $< \SI{10}{nm}$ \\ 
+Amplitude de lecture & $\SI{20}{\mu m}$ \\ 
+Amplitude de l'asservissement (??) & $\SI{10}{mm}$ \\ 
 Vitesse de déplacement & $\SI{20}{mm.s^{-1}}$\\ \hline
 \end{tabular}
 \end{center}
@@ -275,7 +275,7 @@ $ =\begin{pmatrix} -F\dot{\theta}  \\ B\dot{\theta} \\ -D\dot{\theta} \end{pmatr
 
 \item  $\vect{V(A/0)}  = \dot{x}\vect{x_0}$.
 
-\item  $\vectv{G_3}{3}{0}  = \vectv{A}{3}{0}  + \vect{G_3A} \wedge \vecto{3}{0}$  $=\dot{x}\vect{x_0} -r \vect{x_3} \wedge \dot{\theta}\vect{y_3}$ $=\dot{x}\vect{x_0} -r  \dot{\theta}\vect{z_3}$.
+\item  $\vectv{G_3}{3}{0}$  = \vectv{A}{3}{0}  + \vect{G_3A} \wedge \vecto{3}{0}$  $=\dot{x}\vect{x_0} -r \vect{x_3} \wedge \dot{\theta}\vect{y_3}$ $=\dot{x}\vect{x_0} -r  \dot{\theta}\vect{z_3}$.
 
 \item $m_3 \left(\vect{V(A/0)}\wedge\vectv{G_3}{3}{0}\right)\cdot \vect{y_3}$ 
 $ = m_3 \left(\dot{x}\vect{x_0}\wedge\left( \dot{x}\vect{x_0} -r  \dot{\theta}\vect{z_3}\right)\right)\cdot \vect{y_3}$
@@ -341,7 +341,7 @@ $ C_{\text{m3}}-f_3 \dot{\theta} -\left(K_{\text{tors}}\theta + C_0\right) +  rm
 $ C_0 =  rm_3g  $. 
 \item Au final $ C_{\text{m3}}-f_3 \dot{\theta} -\left(K_{\text{tors}}\theta + rm_3g \right) +  rm_3g\cos \theta  = B\ddot{\theta} - m_3 r\sin\theta \ddot{x}$ soit
 
-$B\ddot{\theta} - m_3 r\sin\theta \ddot{x} + f_3 \dot{\theta} + K_{\text{tors}}\theta=  C_{\text{m3}} + rm_3g \left(\cos \theta - 1 \right)   $
+$B\ddot{\theta} - m_3 r\sin\theta \ddot{x} + f_3 \dot{\theta} + K_{\text{tors}}\theta=  C_{\text{m3}} + rm_3g \left(\cos \theta - 1 \right) $
 \end{itemize}
 \end{corrige}
 \else
@@ -362,9 +362,37 @@ $B\ddot{\theta} - m_3 r\sin\theta \ddot{x} + f_3 \dot{\theta} + K_{\text{tors}}\
 %l’écriture de plusieurs équations, mais elle ne doit pas, au final, contenir d’inconnues mécaniques
 %transmissibles dans les liaisons ($L_{\text{0/1}}$ , $L_{\text{1/2}}$ , $L_{\text{2/3}}$ , $L_{\text{0/2}}$).
 \fi
-\question{Isoler \{2+3\} et réaliser le Théorème de la Résultante dynamique en projection sur $\vx{0}$.}
 
-\question{Isoler 3 et réaliser le Théorème du Moment Dynamique en projection sur $\vx{0}$ en O. Conclure.}
+\question{Isoler \{2+3\} et réaliser le Théorème de la Résultante dynamique en projection sur $\vx{0}$.}
+\ifprof
+\begin{corrige}
+\begin{itemize}
+\item On isole $\{2+3\}$.
+\item Bilan d'actions mécaniques 
+\begin{itemize}
+\item Hélicoïdale $ \torseurstat{T}{1}{2}$ avec $\vectf{1}{2}\cdot \vx{0}=X_{12}$.
+\item Glissière avec forttement $ \torseurstat{T}{0}{2}$ avec $\vectf{0}{2}\cdot \vx{0}=-f_2\dot{x}$.
+\item Pesanteur sur 2.
+\item Pesanteur sur 3.
+\end{itemize}
+\item On applique le TRD suivant $\vx{0}$.
+\begin{itemize}
+\item $\vectrd{2}{0} \cdot \vx{0} = m_2 \ddot{x}$.
+\item $\vectrd{3}{0} \cdot \vx{0} = m_3\left( \ddot{x} -r  \thetapp \vz{3}\cdot \vx{0}  -r \thetap \deriv{\vz{3}}{\rep{0}} \cdot \vx{0} \right)$ $= m_3\left( \ddot{x} +r  \thetapp \sin \theta  +r \thetap^2 \cos \theta \right)$.
+\item on a donc : $X_{12}-f_2\dot{x} = m_2 \ddot{x}+ m_3\left( \ddot{x} +r  \thetapp \sin \theta  +r \thetap^2 \cos \theta \right)$.
+\end{itemize}
+\end{itemize}
+\end{corrige}
+\else
+\fi
+
+
+\question{Isoler 1 et réaliser le Théorème du Moment Dynamique en projection sur $\vx{0}$ en O. Conclure.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
 
 %
 %\question{\label{q_05}Sans faire de calcul, donner, très clairement et précisément, la démarche qui vous permet d’obtenir

@@ -12,7 +12,8 @@
 %\end{figure}
 
 \section{Performances de l'asservissement}
-
+\ifprof
+\else
 SEIS comporte deux sismomètres indépendants, le VBB (Very Broad Band) et le SP (Short Periods), montés sur une structure commune pouvant être réglée à l'horizontale grâce à des pieds de longueur variable.
 
 \begin{itemize}
@@ -32,7 +33,7 @@ Une vue détaillée d'un des systèmes du VBB est fournie en figure \ref{ccmp202
 
 L’équilibre de l’ensemble mobile sur Terre peut s'exprimer par l'équation suivante : 
 $ aM_2 g_M \sin\indice{\alpha}{eq} +C_0 - k( \indice{\alpha}{eq} -\alpha_0)=0 $(eq. 1).
-
+\fi
 
 
 
@@ -188,7 +189,7 @@ Préciser les valeurs des constantes de temps $\tau_{2}$ et $\tau_{3}$.}
 $\tau_1=-\dfrac{1}{p_1} =\dfrac{1}{1000}\si{s^{-1}}$,  $\tau_2=-1/p_2 =1/0,64 \si{s^{-1}}$,  $\tau3=-1/p_3 =1/9,32\si{s^{-1}}$. 
 
 On constate que $\tau_2 >> \tau_1$ et $\tau_3>> \tau_1$. Le pôle $p_1$ pourrait être négligé (constante de temps très faible par rapport aux autres. Mais ici il se simplifie avec le zéro de la fonction de transfert ($\tau_1=\tau_H$) et 
-$H_{\gamma} (p)= \dfrac{dMK_D}{K} \dfrac{ 1}{(1+\tau2 p)(1+\tau3 p)}$
+$H_{\gamma} (p)= \dfrac{dMK_D}{K} \dfrac{ 1}{(1+\tau_2 p)(1+\tau_3 p)}$
 
 \end{corrige}
 \else
@@ -258,12 +259,15 @@ $\indice{H}{BO} (p)=\dfrac{K_D K_4 K_B}{Kp(1+\tau_B p)(1+\tau_3 p)}$
 On donne, pour la valeur de $\tau_{4}$ retenue et différentes valeurs de $K_{4}$, le diagramme de Bode de l'asservissement en tension, $\frac{U(p)}{\gamma_{x 2}(p)}$, sur la Figure ci desssous. %C du document réponse (question \ref{ccmp2023_q_29}).
 \fi
 
+\ifprof
+\else
 \begin{figure}[!h]
 \centering
 \includegraphics[width=\textwidth]{DR_29_C}
 %\caption{\label{ccmp2023_fig_13}  Schéma-blocs de l'asservissement d'un système}
 %FigURe 13 - Schéma-blocs de l'asservissement d'un système
 \end{figure}
+\fi
 
 %Q29. 
 \question{\label{ccmp2023_q_29}Choisir, en justifiant, la valeur de $K_{4}$ qui permet de vérifier au mieux les exigences 3.3 et 3.4.}

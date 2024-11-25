@@ -11,8 +11,7 @@ de vision en réalité augmentée}
 \begin{corrige}
 Temps maximal disponible pour l'orientation des caméras : d'après la description fournie on peut écrire
 $\indice{t}{disponible} = \indice{t}{trait}+ \indice{t}{com}+ \indice{t}{ddp}+ \indice{t}{filtre}$
- soit
- $\indice{t}{disponible} = 50+5+20+5=\SI{80}{ms}<\SI{120}{ms}$ 
+ soit $\indice{t}{disponible} = 50+5+20+5=\SI{80}{ms}<\SI{120}{ms}$ 
  qui est le critère du cahier des charges à respecter.
 \end{corrige}
 \else
@@ -43,7 +42,15 @@ $\dfrac{40 \times \pi}{180\times 1024} \simeq \SI{1,14e-4}{rad}$.
 \question{}
 \ifprof
 \begin{corrige}
-Il y a en série 2 liaisons pivot d'axe orthogonaux et concourants en $P$. Le torseur cinématique équivalent résulte de la somme des torseurs cinématiques exprimés au point $P$ soit $\axe{P}{y_a}$. C'est le torseur d'une liaison sphérique à doigt de centre P d'axe et de normale $\vect{z_a}$.
+Il y a en série 2 liaisons pivot d'axe orthogonaux et concourants en $P$. Le torseur cinématique équivalent résulte de la somme des torseurs cinématiques exprimés au point $P$ soit $\axe{P}{y_a}$. C'est le torseur d'une 
+liaison sphérique à doigt de centre $P$ de rotation bloquée $\vect{x_e}$.
+
+
+\(\{ V_{\text{leq}}\} = \begin{Bmatrix}
+\overrightarrow{\Omega_{\text{charge}/\text{porteur}}} = \dot{\theta_{\text{ap}}}\overrightarrow{z_{a}} + \dot{\theta_{\text{ea}}}\overrightarrow{y_{a}} \\
+\overrightarrow{V_{P \in \text{charge}/\text{porteur}}} = \overrightarrow{0} \\
+\end{Bmatrix}\).
+
 \end{corrige}
 \else
 \fi
