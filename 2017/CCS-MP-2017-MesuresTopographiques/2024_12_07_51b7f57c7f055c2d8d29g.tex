@@ -1,0 +1,391 @@
+\documentclass[10pt]{article}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\graphicspath{ {./images/} }
+\usepackage{multirow}
+
+\title{IV.B - Étude partielle de l'exigence Id = "1.1" "Positionner angulairement les deux axes avec une précision ISO » }
+
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+Les mesures topographiques peuvent être réalisées au moyen de trois systèmes optiques, qui déterminent tous les coordonnées d'un point par rapport à un repère de référence, mais avec des niveaux de précision différents :
+
+\begin{itemize}
+  \item le théodolite permet de réaliser des pointages visuels sur une mire, règle comportant des graduations régulières, positionnée verticalement par un opérateur au niveau du point à mesurer;
+  \item le tachéomètre est un théodolite qui dispose d'un système de mesure de la distance via le renvoi d'un faisceau laser par un prisme optique rétro-réfléchissant positionné à l'endroit de mesure ;
+  \item la station totale est un tachéomètre doté d'un système de communication et d'acquisition des mesures sans fil, ce qui permet la réalisation de mesures en continu.\\
+L'objectif de ce sujet est d'étudier les mesures topographiques réalisées par l'ensemble théodolite et mire (partie II) puis par l'ensemble tachéomètre et prisme optique rétro-réféchissant (partie III) avant d'analyser l'optimisation de ces mesures en utilisant la station totale LeICA TCRA 1103 (partie IV).
+\end{itemize}
+
+\section*{I.B - Grandeurs mesurées}
+Afin de s'adapter à tous les terrains, l'appareil de mesure est placé sur un plateau orientable, lui-même fixé sur un trépied télescopique. La parfaite verticalité de l'appareil, indispensable à la réalisation de levés topographiques précis, est réglée par des vis micrométriques (figure 2). Une direction de référence $\vec{x}_{0}$ est choisie par le géomètre, ce qui permet de complètement définir les références des angles d'azimut $\varphi$ et d'élévation $\theta$.\\
+La détermination des valeurs des coordonnées $x, y$ et $z$ d'un point $P$ de l'espace dans le repère $R_{0}\left(O_{0} ; \vec{x}_{0}, \vec{y}_{0}, \vec{z}_{0}\right)$ est obtenue par les mesures de l'angle d'azimut $\varphi$, de l'angle d'élévation $\theta$ et de la distance $D$ entre l'isocentre $O$ de l'appareil (point d'intersection des axes de rotation, confondu avec l'origine $O_{0}$ ) et le point $P$ : voir figure 2.\\
+\includegraphics[max width=\textwidth, center]{2024_12_07_51b7f57c7f055c2d8d29g-02}
+
+Figure 2 Éléments d'un appareil de mesure topographique et grandeurs déterminées\\
+Q 1. Tracer les figures de changement de base associées aux angles d'azimut $\varphi$ et d'élévation $\theta$ et déterminer les expressions des coordonnées $x, y$ et $z$ de la cible $P$ dans le repère de référence $R_{0}\left(O_{0} ; \vec{x}_{0}, \vec{y}_{0}, \vec{z}_{0}\right)$ en fonction des angles $\varphi$ et $\theta$ et de la distance $D$ entre l'isocentre $O$ de l'appareil et la cible $P$.
+
+\section*{II Levé topographique par pointage visuel sur une mire}
+\section*{Objectif}
+Montrer les limites en terme de facilité d'utilisation des mesures effectuées à l'aide d'un théodolite.
+
+La mesure par théodolite nécessite la présence de deux opérateurs:
+
+\begin{itemize}
+  \item un premier opérateur positionne le plus verticalement possible la mire (règle graduée) au point où la mesure topographique est à réaliser ;
+  \item et un second opérateur pointe la ligne de visée vers la mire, met visuellement en coïncidence les traits de référence gravés sur le réticule, et situés à une distance $h$ l'un de l'autre, avec les points $A$ et $B$ de la mire (deux lentilles convexes permettent le rétablissement du sens d'origine de l'image) et finalement relève visuellement la différence de hauteur $H$ entre les points $A$ et $B$ (figure 3).\\
+Q 2. Déterminer la relation entre la distance focale de l'objectif $d$, la distance $h$ entre les deux traits de référence gravés sur le réticule, la distance $D$ à mesurer et la hauteur $H$ entre les points $A$ et $B$ sur la mire. Dans les appareils Leica, $d=100 \mathrm{~h}$ : calculer la valeur de la distance $D$ (en mètres) lorsque la hauteur $H=0,226 \mathrm{~m}$. La détermination de l'altitude d'un point permet de connaitre le dénivelé. Pour réaliser cette mesure, la hauteur d'instrument $L_{i}$ est d'abord mesurée précisément puis le bloc optique est pointé sur la même hauteur $L_{i}$ sur la mire : l'angle d'élévation $\theta_{i}$ est alors mesuré directement sur l'appareil (figure 4).\\
+Q 3. Donner la relation entre le dénivelé $\delta$, la distance de mesure $D$ et l'angle d'élévation $\theta_{i}$. Pour une mesure $\theta_{i}=-4,723^{\circ}$ et pour la valeur de la distance $D$ obtenue question 2 , donner la valeur du dénivelé $\delta$ (en mètres).\\
+\includegraphics[max width=\textwidth, center]{2024_12_07_51b7f57c7f055c2d8d29g-03(1)}
+\end{itemize}
+
+Figure 3 Mesure de la distance en utilisant un théodolite et une mire\\
+\includegraphics[max width=\textwidth, center]{2024_12_07_51b7f57c7f055c2d8d29g-03}
+
+Figure 4 Mesure du dénivelé en utilisant un théodolite et une mire\\
+Q 4. La distance $H$ est évaluée visuellement avec une incertitude $\Delta H=5 \mathrm{~mm}$ : déterminer la valeur de l'incertitude $\Delta D$ de la mesure de la distance $D$ (en mètres). La précision souhaitée pour la mesure de dénivelé de la question 3 étant de $0,01 \%$ (exigence du Bureau d'Études Topographiques Aérotopo pour que sa mesure soit valide selon les normes ISO), conclure sur la possibilité d'utiliser un théodolite, sachant que la résolution de la mesure angulaire en élévation est de $0,001^{\circ}$ sur les meilleurs appareils.\\
+Le levé topographique par théodolite est d'une précision liée à la qualité d'un relevé visuel : la qualité des mesures peut être grandement améliorée en utilisant un système de pointage laser sur un prisme optique rétroréfléchissant, ce qui est réalisé par le tachéomètre étudié dans la partie suivante.
+
+\section*{III Levé topographique par pointage laser sur un prisme optique rétro-réfléchissant}
+\section*{Objectif}
+Justifier la pertinence de l'utilisation d'un prisme optique rétro-réfléchissant pour effectuer des mesures topographiques rapides, fiables et d'une grande précision.
+
+Le tachéomètre (terme qui signifie « mesure rapide ») est un théodolite muni en plus d'un distance-mètre laser pointant sur un prisme optique rétro-réfléchissant: la détermination de la position de la cible $P$ par rapport à l'isocentre $O$ de l'appareil se fait directement à partir des mesures des angles d'azimut $\varphi$ et d'élévation $\theta$, comme pour le théodolite, auxquelles s'ajoute celle de la distance $D$ (figure 2).\\
+Une fois positionné et réglé en position parfaitement verticale (figure 2), le bâti $\underline{\mathbf{0}}$ reste fixe. La fourche d'azimut $\underline{\mathbf{1}}$ et le bloc optique $\underline{\mathbf{2}}$ sont orientés de telle façon que la la ligne de visée pointe vers le prisme optique rétroréfléchissant positionné à l'endroit où la mesure doit être effectuée.\\
+Le prisme optique rétro-réfléchissant utilisé pour le renvoi du faisceau laser a une géométrie particulière constituée d'une pyramide en verre, supposé homogène et isotrope, à base pyramidale et de miroirs à $90^{\circ}$, dite «à\\
+coin de cube» ou « catadioptre» (figure 5). L'indice de réfraction du verre utilisé est $n_{\text {verre }}=1,520$ et celui de l'air ambiant sec à $18^{\circ} \mathrm{C}$ est $n_{\text {air }}=1,008$.\\
+\includegraphics[max width=\textwidth, center]{2024_12_07_51b7f57c7f055c2d8d29g-04}
+
+Vue externe et détail de la zone en coin de cube d'un prisme optique rétro-réfléchissant\\
+\includegraphics[max width=\textwidth, center]{2024_12_07_51b7f57c7f055c2d8d29g-04(1)}
+
+Vue générale d'un coin de cube et trajectoire du faisceau laser dans le verre dans le cas d'une incidence normale
+
+Figure 5 Prisme optique rétro-réfléchissant : photographie et principe du renvoi du faisceau laser\\
+On limite l'étude au cas particulier de l'évolution du faisceau laser dans un plan.\\
+Q 5. Répondre à cette question exclusivement sur la figure A du document réponse. Tracer, dans la configuration proposée (angle d'incidence $i=15^{\circ}$ ) et en justifiant les constructions dans la zone prévue, la trajectoire du faisceau laser à l'intérieur ainsi qu'en sortie du prisme optique rétro-réfléchissant.\\
+L'utilisation du tachéomètre améliore la qualité des mesures topographiques qui peuvent être par ailleurs réalisées par un seul opérateur après placement du prisme optique rétro-réfléchissant au point à mesurer. La forme de la mesure reste cependant inchangée : l'appareil de mesure, très lourd, est mobile et la cible est fixe.\\
+Afin d'améliorer grandement le confort de l'opérateur, il est nécessaire de changer le principe de la mesure en considérant un prisme optique rétro-réfléchissant mobile et un tachéomètre motorisé pouvant suivre automatiquement la cible: c'est le principe d'une station totale, étudiée dans la partie suivante.
+
+\section*{IV Étude de la station totale LeICA TCra 1103}
+\section*{IV.A - Mesure par une station totale et exigences client}
+Dans une station totale, les deux axes d'azimut et d'élévation, motorisés et asservis en position angulaire, poursuivent en continu le prisme rétro-réfléchissant déplacé par l'opérateur : dès que ce dernier s'immobilise au point qu'il a choisi pour effectuer une mesure, le système de visée recale le faisceau au centre du prisme (cette opération dure moins d'une seconde) et informe l'opérateur qui peut alors déclencher la mesure à distance.\\
+La station totale LeIcA TCRA 1103 est principalement composée de trois ensembles rigides en mouvements relatifs : le bâti $\underline{\mathbf{0}}$, la fourche d'azimut $\underline{\mathbf{1}}$ et le bloc optique $\underline{\mathbf{2}}$ (figure 2 et figure 6).\\
+\includegraphics[max width=\textwidth, center]{2024_12_07_51b7f57c7f055c2d8d29g-04(2)}
+
+Figure 6 Photographies de la station totale LeICA TCRA 1103\\
+Les deux axes motorisés sont asservis en position angulaire: la description en chaines fonctionnelles de chacun des deux axes d'azimut (angle $\varphi$ ) et d'élévation (angle $\theta$ ) est fournie figure 7 . L'interface homme - machine (IHM) intégrée à la station totale est constituée d'un pupitre et d'un écran tactile. L'IHM déportée dispose des mêmes fonctionnalités que l'IHM intégrée et permet la communication et le pilotage à distance.\\
+\includegraphics[max width=\textwidth, center]{2024_12_07_51b7f57c7f055c2d8d29g-05}
+
+Figure 7 Description en chaines fonctionnelles de chacun des deux axes.\\
+La mise en position de l'appareil (pointage du prisme optique rétro-réfléchissant) se fait de manière motorisée grâce au pupitre de commande. Afin d'orienter plus rapidement l'axe de visée vers la cible, il est également possible de faire pivoter chacun des axes par action manuelle, comme dans le cas d'un théodolite : cette double fonctionnalité est permise par le limiteur de couple qui transmet la puissance du moteur à la structure à entrainer et glisse sous un effort manuel modéré de l'opérateur.\\
+Les exigences du point de vue des géomètres pour réaliser une mesure selon les normes ISO sont exprimées par l'exigence $\mathrm{Id}=" 1 "$ et ses deux sous-exigences $\mathrm{Id}=" 1.1 "$ et $\mathrm{Id}=" 1.2 "$ du diagramme partiel des exigences de la figure 8 . Les sous-exigences $\mathrm{Id}=" 1.1 .1 ", \mathrm{Id}=" 1.2 .1 "$ et $\mathrm{Id}=" 1.2 .2 "$ correspondent aux performances de la station totale Leica tcra 1103 telles que précisées dans son document technique.\\[0pt]
+req [modèle] Station totale TCRA 1103 [Exigences]
+
+\begin{center}
+\begin{tabular}{|l|}
+\hline
+\multicolumn{1}{|c|}{<< requirement >>} \\
+\multicolumn{1}{c|}{Cartographier précisément un terrain} \\
+\hline
+$\mathrm{Id}=$ "1" \\
+Text = "La station totale doit pouvoir faire automa- \\
+tiquement des mesures de coordonnées de points de \\
+l'espace avec une incertitude $\leqslant 1 \mathrm{~mm}$ jusqu'à 500 m \\
+de distance." \\
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+ & \begin{tabular}{l}
+<< requirement >> \\
+Positionner angulairement les deux axes avec une précision ISO \\
+\end{tabular} \\
+\hline
+\multirow[t]{2}{*}{$\ominus$} & \begin{tabular}{l}
+\( \mathrm{Id}=\mathrm{"} 1.1 " \) \\
+Text $=$ "Le positionnement angulaire des deux axes doit être réalisé selon les normes ISO, y compris en suivi de cible." \\
+\end{tabular} \\
+\hline
+ & refine \\
+\hline
+ & \texttt{<< requirement >> Valeur de la résolution angulaire Id = "1.1.1" Text = "Résolution angulaire sur chacun des axes: 0,0012*."} \\
+\hline
+\multicolumn{2}{|l|}{\(
+\int \text { refine }
+\)} \\
+\hline
+ & \begin{tabular}{l}
+<< requirement >> \\
+Suivi continu en mouvement \\
+\end{tabular} \\
+\hline
+\multicolumn{2}{|l|}{Id = "1.2.2"} \\
+\hline
+\multicolumn{2}{|l|}{Text = "Le suivi par le système de visée d'un prisme optique rétro-réfléchissant de rayon $R_{\mathrm{pr}}=50 \mathrm{~mm}$ est assuré pour un déplacement à une distance de 500 m jusqu'à une vitesse de $5 \mathrm{~km} \cdot \mathrm{~h}^{-1}$. ."} \\
+\hline
+\end{tabular}
+\end{center}
+
+Figure 8 Diagramme partiel des exigences de la station totale LEICA
+
+\section*{- Objectif}
+Vérifier la capacité de positionnement angulaire des axes.
+
+Le processus de mesures en continu à l'aide de la station totale LEICA TCRa 1103 se compose de trois phases :
+
+\begin{itemize}
+  \item le suivi de la cible (le prisme optique rétro-réfléchissant) déplacée par l'opérateur ;
+  \item le recalage de la ligne de visée sur le centre de la cible lors de l'arrêt du déplacement ;
+  \item et la réalisation de la mesure.
+\end{itemize}
+
+Afin de pouvoir effectuer une mesure au moment et au point souhaités, le rayon réfléchi par le prisme optique rétro-réfléchissant doit être continûment reçu par la station totale lors du déplacement de l'opérateur, quelles que soient les variations de vitesse de déplacement dues aux irrégularités du sol entre deux points de mesure. Pour cela, le faisceau émis doit intercepter en permanence le prisme optique rétro-réfléchissant et le décalage angulaire lors du déplacement doit donc rester suffisamment faible pour garantir la réflexion.\\
+L'étude est limitée au cas où l'axe médian du prisme optique rétro-réfléchissant est situé dans le plan horizontal contenant la ligne de visée de l'optique : dans cette configuration, seul l'axe d'azimut est alimenté (l'étude serait identique pour l'analyse de l'axe d'élévation seul ou pour l'analyse de la commande couplée des deux axes).\\
+Afin de garantir le respect des exigences de la station totale, le faisceau laser doit continûment pointer vers le prisme optique rétro-réfléchissant, ce qui implique:
+
+\begin{itemize}
+  \item une vitesse angulaire suffisamment importante pour pouvoir suivre tout déplacement de l'opérateur ;
+  \item et un positionnement angulaire suffisamment précis pour assurer une mesure de qualité.
+\end{itemize}
+
+La station totale TCRA 1103 est utilisée en topographie pour des distances comprises entre $D_{\text {mini }}=1,5 \mathrm{~m}$ et $D_{\text {maxi }}=500 \mathrm{~m}$. Le système de visée doit suivre l'opérateur qui déplace le prisme optique rétro-réfléchissant, de rayon $R_{\mathrm{Pr}}=50 \mathrm{~mm}$ (figure A du document réponse), à une vitesse maximale $V_{\mathrm{maxi}}=5 \mathrm{~km} \cdot \mathrm{~h}^{-1}$.\\
+La mesure est réalisée lorsque le faisceau laser pointe au centre du prisme optique rétro-réfléchissant, l'écart initial dû au suivi étant compensé avant toute mesure.\\
+Q 6. Déterminer, en fonction des données, les expressions littérales puis calculer les valeurs numériques de la vitesse angulaire $\dot{\varphi}_{\mathrm{ref}}\left(\mathrm{entr} \cdot \mathrm{min}^{-1}\right.$ ) et de la résolution angulaire $\Delta \varphi_{\mathrm{ref}}$ (en degrés) en azimut permettant d'assurer le suivi de l'opérateur lorsqu'il déplace le prisme optique rétro-réfléchissant entre deux mesures.
+
+\section*{IV.C - Étude partielle de l'exigence = "1.2" "Identifier l'écart au centre du prisme optique rétro-réfléchissant et assurer le suivi au centre en continu »}
+\section*{Objectif}
+Développer un modèle de simulation afin de mettre en œuvre une synthèse des lois de commande permettant de réaliser des mesures en continu avec une précision conforme aux attentes des géomètres.
+
+\section*{IV.C.1) Données pour l'étude dynamique}
+Le modèle choisi pour l'étude dynamique est fourni figure 9 .\\
+\includegraphics[max width=\textwidth, center]{2024_12_07_51b7f57c7f055c2d8d29g-06}
+
+Figure 9 Modèle géométrique de la partie mécanique de la station totale\\
+Dans ce modèle, la fourche d'azimut $\underline{\mathbf{1}}$ ainsi que le bloc optique $\underline{\mathbf{2}}$ sont en mouvements relatifs par rapport au bâti $\underline{\mathbf{0}}$, supposé fixe par rapport à la terre. Le repère $R\left(O ; \vec{x}_{0}, \vec{y}_{0}, \vec{z}_{0}\right)$ lié au bâti $\underline{\mathbf{0}}$ est galiléen. L'accélération de la pesanteur $\vec{g}$ est selon la verticale terrestre locale (figure 9).
+
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+Grandeurs & Fourche d'azimut 1 & Bloc optique 2 \\
+\hline
+Repère associé $R_{i}\left(O ; \vec{x}_{i}, \vec{y}_{i}, \vec{z}_{i}\right)$ & $R_{1}\left(O ; \vec{x}_{1}, \vec{y}_{1}, \vec{z}_{1}\right)$ & $R_{2}\left(O ; \vec{x}_{2}, \vec{y}_{2}, \vec{z}_{2}\right)$ \\
+\hline
+Masse $M_{i}$ & $M_{1}$ & $M_{2}$ \\
+\hline
+Centre d'inertie $G_{i}$ & $G_{1} \equiv O$ & $G_{2} \equiv O$ \\
+\hline
+Matrice d'inertie $\mathbf{I}(O, i)$ exprimée & $\left[\begin{array}{ccc}J_{x 1} & 0 & 0 \\ 0 & J_{y 1} & 0 \\ 0 & 0 & J_{z 1}\end{array}\right]_{b_{1}}$ & $\left[\begin{array}{ccc}J_{x 2} & 0 & 0 \\ 0 & J_{y 2} & 0 \\ 0 & 0 & J_{z 2}\end{array}\right]_{b_{2}}$ \\
+\hline
+\end{tabular}
+\end{center}
+
+Figure 10 Données géométriques et cinétiques associés aux deux pièces mobiles\\
+Les deux axes asservis en azimut (angle $\varphi$ ) et en élévation (angle $\theta$ ) comportent chacun un réducteur de vitesse à deux étages et à rattrapage de jeu : un engrenage à dentures droites de rapport $\rho_{1 \mathrm{a}}$ (respectivement $\rho_{2 \mathrm{a}}$ ) suivi d'un engrenage à roue et vis sans fin de rapport $\rho_{1 \mathrm{~b}}$ (respectivement $\rho_{2 \mathrm{~b}}$ ).\\
+Les pertes en effort au niveau des axes de liaisons pivot sont modélisées par des facteurs de perte $k_{1}$ et $k_{2}$ (grandeurs sans unité, estimées par mesure), supposés constants dans toutes les configurations.
+
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+Grandeurs & Liaison $\boldsymbol{L}_{\mathbf{1 / 0}}$ & Liaison $\boldsymbol{L}_{\mathbf{2} / \mathbf{1}}$ \\
+\hline
+Modèle de liaison choisi & Pivot d'axe $\left(O, \vec{z}_{0}\right)$ & Pivot d'axe $\left(O, \vec{x}_{1}\right)$ \\
+\hline
+Paramètre angulaire & Angle d'azimut $\varphi$ & Angle d'élévation $\theta$ \\
+\hline
+\begin{tabular}{l}
+Rapports des réducteurs de la liaison motorisée : \\
+- étage a : réducteur à denture droite \\
+- étage b : réducteur à roue et vis sans fin \\
+\end{tabular} & $\frac{\omega_{1 / 0}}{\omega_{\mathrm{m} 1}}=\rho_{1 \mathrm{a}} \rho_{1 \mathrm{~b}}=\rho_{1}$ & $\frac{\omega_{2 / 1}}{\omega_{\mathrm{m} 2}}=\rho_{2 \mathrm{a}} \rho_{2 \mathrm{~b}}=\rho_{2}$ \\
+\hline
+Facteur de perte $k_{i}$ (sans unité) & $\rho_{1 \mathrm{a}}=-\frac{2}{7}$ et $\rho_{1 \mathrm{~b}}=-\frac{1}{210}$ & $\rho_{2 \mathrm{a}}=-\frac{2}{7}$ et $\rho_{2 \mathrm{~b}}=-\frac{1}{184}$ \\
+\hline
+\begin{tabular}{l}
+Couple moteur équivalent de la machine à courant \\
+continu au niveau de l'axe de la liaison $L_{j / i}(\mathrm{~N} \cdot \mathrm{~m})$ \\
+\end{tabular} & $\frac{k_{1}}{} \approx 0,74$ & $k_{2} \approx 0,82$ \\
+\hline
+\begin{tabular}{l}
+Moment résistant équivalent au niveau de l'axe de \\
+la liaison $L_{j / i}$, dû au frottement sec $(\mathrm{N} \cdot \mathrm{m})$ \\
+\end{tabular} & $\frac{k_{1}}{\rho_{1}} c_{\mathrm{m} 1}$ & $\frac{k_{2}}{\rho_{2}} c_{\mathrm{m} 2}$ \\
+\hline
+\begin{tabular}{l}
+Moment de frottement visqueux équivalent au \\
+niveau de l'axe de la liaison $L_{j / i}(\mathrm{~N} \cdot \mathrm{~m})$ \\
+\end{tabular} & $-\frac{k_{1}}{\rho_{1}} f_{\mathrm{Eq} 1} \dot{\varphi}$ & $\frac{k_{2}}{\rho_{2}} c_{\mathrm{r} 2}$ \\
+\hline
+\end{tabular}
+\end{center}
+
+Figure 11 Données et paramètres associés aux deux axes motorisés
+
+\section*{IV.C.2) Validation des exigences de suivi dynamique et de précision du positionnement}
+La mesure de la position angulaire sur chaque axe est réalisée par un codeur incrémental Faulhaber IE-512 fixé sur l'arbre moteur (figure 6) et qui délivre une information de 512 points par tour de l'arbre moteur.\\
+Q 7. La fonction de transfert $G_{\mathrm{p} 1}(p) / \Theta_{\mathrm{m} 1}(p)$ du codeur incrémental (figure C du document réponse) est assimilée à un gain pur $K_{\mathrm{c} 1}$ : calculer la valeur numérique et préciser l'unité de ce gain.\\
+Le moteur d'azimut a une vitesse angulaire maximale de rotation en charge de $7700 \mathrm{tr} \cdot \mathrm{min}^{-1}$.\\
+Q 8. Vérifier que le réducteur à deux étages et le codeur incrémental implantés permettent d'assurer à la fois le suivi en mouvement et la précision de positionnement en azimut, grandeurs déterminées question 6.
+
+\section*{IV.C.3) Modélisation du comportement dynamique}
+Q 9. Construire le graphe des liaisons du modèle proposé figure 9 et y ajouter les différentes actions mécaniques mises en évidence dans la présentation du modèle.\\
+Q 10. Répondre à cette question exclusivement sur la figure B du document réponse. Proposer, en la justifiant, une démarche de résolution permettant d'exprimer, à l'aide de deux équations différentielles en $\varphi$ et $\theta$, les équations de mouvement des solides $\underline{\mathbf{1}}$ et $\underline{\mathbf{2}}$ par rapport au bâti $\underline{\mathbf{0}}$ : il est attendu l'indication de l'ensemble isolé, du théorème utilisé en se limitant strictement au PFD (résultante ou moment avec indication du point d'écriture) et de la direction de projection.\\
+Q 11. Mettre en œuvre la démarche explicitée question 10 et montrer que les équations de mouvement s'écrivent
+
+$$
+\begin{aligned}
+& c_{\mathrm{m} 1}+c_{\mathrm{r} 1}=A_{1} \ddot{\varphi}+B_{1} \dot{\varphi}+\frac{\mathrm{d}}{\mathrm{~d} t}\left(\left(C_{11} \sin ^{2} \theta+C_{12} \cos ^{2} \theta\right) \dot{\varphi}\right) \\
+& c_{\mathrm{m} 2}+c_{\mathrm{r} 2}=A_{2} \ddot{\theta}+B_{2} \dot{\theta}+C_{2} \sin (2 \theta) \dot{\varphi}^{2}
+\end{aligned}
+$$
+
+où les coefficients constants $A_{1}, B_{1}, C_{11}, C_{12}, A_{2}, B_{2}$ et $C_{2}$ sont à exprimer en fonction de tout ou partie des données de la figure 10 et de la figure 11.
+
+\section*{IV.C.4) Identification des éléments cinétiques équivalents}
+La complexité des formes des pièces et de la structure géométrique ainsi que la présence de nombreux guidages impliquent une grande difficulté de détermination de l'inertie, du frottement visqueux et du couple résistant équivalents rapportés à l'axe moteur à partir du seul modèle de connaissance : il est donc nécessaire de procéder à une identification comportementale en charge des deux axes afin d'évaluer ces grandeurs.\\
+Afin de simplifier l'étude, l'identification des paramètres du modèle décrivant la dynamique des deux chaines va s'effectuer de façon découplée : les moteurs sont donc alimentés alternativement et on suppose par ailleurs que le bloc optique est positionné horizontalement, soit $\theta=0^{\circ}$, pour l'étude de l'axe d'azimut seul.\\
+Q 12. Dans le cadre de ces configurations découplées, simplifier les équations de la question 11. Donner les expressions des moments d'inertie équivalents $J_{\mathrm{Eq} \varphi}$ et $J_{\mathrm{Eq} \theta}$ respectivement par rapport aux axes d'azimut et d'élévation, en fonction des coefficients constants $A_{i}, B_{i}$ et $C_{i}$. Donner alors les expressions des inerties équivalentes $J_{\mathrm{Eq} 1}$ et $J_{\mathrm{Eq} 2}$ au niveau des arbres moteurs des deux machines à courant continu en fonction de ces mêmes coefficients et de tout ou partie des données de la figure 11.\\
+Le comportement d'une machine à courant continu utilisée en moteur est décrit par les équations de la figure 12.
+
+\begin{center}
+\begin{tabular}{|l|c|}
+\hline
+Théorème d'obtention de l'équation & Équation différentielle \\
+\hline
+\begin{tabular}{l}
+Loi des mailles appliquée au modèle électrique \\
+équivalent \\
+\end{tabular} & $u_{\mathrm{mi}}(t)=R i_{\mathrm{i}}(t)+L \frac{\mathrm{~d} i_{\mathrm{i}}(t)}{\mathrm{d} t}+e_{\mathrm{i}}(t)$ \\
+\hline
+\begin{tabular}{l}
+Théorème de l'énergie cinétique appliqué à l'ensemble \\
+mécanique entrainé par la machine à courant continu \\
+\end{tabular} & $J_{\mathrm{Eq} i} \frac{\mathrm{~d} \omega_{\mathrm{mi}}(t)}{\mathrm{d} t}=c_{\mathrm{mi}}(t)+c_{\mathrm{ri}}(t)-f_{\mathrm{Eqi}} \omega_{\mathrm{mi}}(t)$ \\
+\hline
+\begin{tabular}{l}
+Équations de couplage électro-mécanique dans l'induit \\
+de la machine à courant continu \\
+\end{tabular} & \begin{tabular}{c}
+$c_{\mathrm{mi}}(t)=K_{\mathrm{T}} i_{\mathrm{i}}(t) \quad$ et $\quad e_{\mathrm{i}}(t)=K_{\mathrm{E}} \omega_{\mathrm{mi}}(t)$ \\
+$\mathrm{avec} K_{\mathrm{T}}=K_{\mathrm{E}}=K$ \\
+\end{tabular} \\
+\hline
+\end{tabular}
+\end{center}
+
+Figure 12 Équations de modélisation du comportement d'une machine à courant continu\\
+La machine à courant continu Faulhaber 2224-U006-SR utilisée pour la motorisation des deux axes d'azimut et d'élévation a les caractéristiques suivantes:
+
+\begin{itemize}
+  \item tension nominale $U_{0}=6 \mathrm{~V}$;
+  \item résistance $R=1,94 \Omega$ et inductance d'induit $L=45 \mu \mathrm{H}$;
+  \item constante de couplage $K=K_{\mathrm{T}}=K_{\mathrm{E}}$ avec $K_{T}=6,92 \times 10^{-3} \mathrm{~N} \cdot \mathrm{~m} \cdot \mathrm{~A}^{-1}$ et $K_{E}=6,92 \times 10^{-3} \mathrm{~V} \cdot \mathrm{~s} \cdot \mathrm{rad}{ }^{-1}$.
+\end{itemize}
+
+Par ailleurs, pour chacun des axes (axe d'azimut, indice 1, et axe d'élévation, indice 2) :
+
+\begin{itemize}
+  \item $J_{\text {Eqi }}\left(\mathrm{en} \mathrm{kg} \cdot \mathrm{m}^{2}\right)$ et $f_{\text {Eqi }}\left(\mathrm{en} \mathrm{N} \cdot \mathrm{m} \cdot \mathrm{s} \cdot \mathrm{rad}^{-1}\right)$ sont respectivement l'inertie et le coefficient de frottement visqueux équivalents rapportés à l'axe de rotation de la machine à courant continu de l'axe $i$;
+  \item $u_{\mathrm{mi}}(t)(\mathrm{en} \mathrm{V}), i_{\mathrm{i}}(t)$ (en A$)$ et $e_{\mathrm{i}}(t)$ (en V$)$ sont respectivement la tension d'alimentation, l'intensité dans l'induit et la force contre-électromotrice de la machine à courant continu de l'axe $i$;
+  \item $\omega_{\mathrm{mi}}(t)\left(\mathrm{en} \mathrm{rad} \cdot \mathrm{s}^{-1}\right)$ est la vitesse de rotation de la machine à courant continu de l'axe $i$.
+\end{itemize}
+
+Les transformées de Laplace des fonctions temporelles seront notées en majuscule : ainsi, pour la vitesse angulaire du moteur, on notera $\Omega_{\mathrm{mi}}(p)=\mathcal{L}\left[\omega_{\mathrm{mi}}(t)\right]$ où $\mathcal{L}$ est l'opérateur et $p$ la variable symbolique de Laplace.\\
+Dans toute la suite du problème, les conditions initiales de Heaviside sont supposées être vérifiées.\\
+Q 13. Répondre à cette question exclusivement sur la figure B du document réponse. Compléter la partie correspondant au schéma-bloc associé à la machine à courant continu de l'axe d'azimut dont le fonctionnement est décrit par les équations données figure 12. Compléter également le dernier bloc vide de ce schéma d'asservissement.
+
+\section*{IV.C.5) Identification des constantes de la machine à courant continu de l'axe d'azimut en charge}
+Afin d'identifier les valeurs de ses constantes en charge, des essais ont été réalisés sur la machine à courant continu assurant la motorisation de l'axe d'azimut : pour ces essais, le bloc optique $\underline{\mathbf{2}}$ a été placé horizontalement (angle $\theta=0^{\circ}$ ), ce qui correspond à la configuration la plus contraignante au niveau du comportement dynamique.\\
+Pour réaliser l'identification des paramètres équivalents, la machine à courant continu est alimentée par une tension suivant une loi en échelon d'amplitude $u_{0}$ connue: le courant $i_{1}(t)$ dans l'induit est alors mesuré par une pince ampèremétrique et son évolution est affichée sur un oscilloscope. La figure D du document réponse regroupe les copies d'écran de trois mesures à différentes tensions ainsi qu'un zoom de la troisième mesure.\\
+Q 14. À partir de l'analyse des comportements en régime permanent, justifier que le frottement visqueux équivalent (coefficient $f_{E q 1}$ ) au niveau de l'axe d'azimut a une influence négligeable et que le couple résistant équivalent $c_{r 1}$ peut être considéré comme constant. Estimer la valeur $c_{\mathrm{r} 10}$ de ce couple résistant.\\
+Sur les courbes de mesure, la montée initiale de courant est quasi instantanée, ce qui est révélateur d'une influence faible de l'inductance $L$ et, par ailleurs, la question précédente a mis en évidence l'influence négligeable du frottement visqueux équivalent : par conséquent, dans la suite, on néglige ces termes, soit $L=0$ et $f_{\mathrm{Eq} 1}=0$. On donne les deux transformées inverses suivantes : $\frac{1}{\alpha p+\beta} \xrightarrow{\mathcal{L}^{-1}} \frac{1}{\alpha} \mathrm{e}^{-\frac{\beta}{\alpha} t}$ et $\frac{1}{p(\alpha p+\beta)} \xrightarrow{\mathcal{L}^{-1}} \frac{1}{\beta}\left(1-\mathrm{e}^{-\frac{\beta}{\alpha} t}\right)$ et, pour les calculs, il est possible de poser $T_{1}=\alpha / \beta$.
+
+Q 15. Montrer que, dans le cadre des simplifications précédentes et dans le cas d'un échelon de tension d'alimentation d'amplitude $u_{0}, I_{1}(p)=\frac{1}{K^{2}+R J_{\mathrm{Eq} 1} p}\left(J_{\mathrm{Eq} 1} u_{0}-K \frac{c_{\mathrm{r} 10}}{p}\right)$. En déduire l'expression temporelle de l'intensité $i_{1}(t)$ en utilisant les transformées symboliques inverses fournies précédemment.\\
+Q 16. En indiquant la méthode employée, estimer la valeur de la constante de temps $T_{1}$ associée à l'axe d'azimut dans cette configuration contraignante (laisser les traits de construction sur la figure D du document réponse). En déduire la valeur estimée de l'inertie équivalente $J_{\mathrm{Eq1}}$ rapportée à l'arbre moteur de l'axe d'azimut dans le cas où le bloc optique $\underline{2}$ est placé en position horizontale.
+
+\section*{IV.C.6) Modulation de la tension électrique d'alimentation de la machine à courant continu}
+La modulation de la tension électrique pour l'alimentation des machines à courant continu associées aux deux chaines est réalisée par des hacheurs à commande numérique à deux quadrants réversibles en tension.\\
+Le hacheur est un convertisseur statique qui permet d'alimenter la machine à courant continu dans les deux sens en gérant précisément la tension d'alimentation : la modulation de la tension électrique d'amplitude $U_{0}=6 \mathrm{~V}$ (tension nominale des moteurs) est réalisée de la façon présentée figure 13.\\
+\includegraphics[max width=\textwidth, center]{2024_12_07_51b7f57c7f055c2d8d29g-09}
+
+Figure 13 Tension hachée délivrée par le hacheur à la machine à courant continu : le signe de la tension et la valeur du rapport cyclique $0 \leqslant \alpha \leqslant 1$ sont définis par le mot binaire envoyé
+
+Dans la station totale Leica tcra 1103, la fréquence de hachage est d'environ $f_{\mathrm{h}}=20 \mathrm{kHz}$, ce qui correspond à une période de séquence $T_{\mathrm{h}}=50 \mu \mathrm{~s}$, très inférieure à la constante de temps identifiée question 16 : seule la valeur moyenne $\left\langle u_{\mathrm{m} 1}\right\rangle$ est donc ressentie par la machine à courant continu.\\
+Le pilotage du hacheur se fait par l'envoi, par la carte de commande selon une liaison série, d'un mot binaire de 10 bits noté $a_{9} a_{8} a_{7} a_{6} a_{5} a_{4} a_{3} a_{2} a_{1} a_{0}$. Le bit $a_{9}$ définit le signe avec, par choix, $a_{9}=0$ pour une rotation de l'arbre moteur dans le sens trigonométrique et $a_{9}=1$ pour une rotation dans le sens horaire. Les 9 bits suivants $a_{8}$ à $a_{0}$ permettent de définir la valeur du rapport cyclique $\alpha$ (figure 13):
+
+\begin{itemize}
+  \item le rapport cyclique $\alpha=0$ quand $a_{8} a_{7} a_{6} a_{5} a_{4} a_{3} a_{2} a_{1} a_{0}=000000000$ et, dans ce cas, le moteur ne tourne pas car la tension moyenne envoyée $\left\langle u_{\mathrm{m} 1}\right\rangle=0 \mathrm{~V}$;
+  \item le rapport cyclique $\alpha=1$ quand $a_{8} a_{7} a_{6} a_{5} a_{4} a_{3} a_{2} a_{1} a_{0}=111111111$ et, dans ce cas, le moteur tourne à sa vitesse maximale car la tension moyenne envoyée est $\left\langle u_{\mathrm{m} 1}\right\rangle= \pm U_{0}$ selon le signe défini par la variable $a_{9}$;
+  \item les combinaisons intermédiaires de $a_{0}$ à $a_{8}$ permettent de définir la valeur du rapport cyclique $\alpha$.
+\end{itemize}
+
+Q 17. On suppose que le comportement du hacheur est linéaire en fonction du rapport cyclique $\alpha$ : calculer la valeur du gain linéarisé $K_{\mathrm{h} 1}$ du hacheur, en $\mathrm{V} \cdot$ points ${ }^{-1}$, où les points correspondent à la valeur du nombre entier codé par le mot binaire $a_{8} a_{7} a_{6} a_{5} a_{4} a_{3} a_{2} a_{1} a_{0}$.
+
+\section*{IV.C.7) Réglage du gain de l'adaptateur}
+Les exigences associées à la mesure de distances variant en continu imposent la conception de lois de commande dédiées aux asservissements en position des deux axes. Ces lois permettent, d'une part, de suivre le déplacement dans le plan azimutal du prisme optique rétro-réfléchissant en s'adaptant aux variations de vitesse de l'opérateur et, d'autre part, de compenser les variations d'altitude inhérentes au profil du sol.\\
+Dans le cas de l'axe d'azimut, l'adaptateur situé entre l'entrée et le comparateur a un comportement assimilable à un gain pur $K_{\mathrm{ad} 1}$ (figure C du document réponse). Le réglage de sa valeur permet d'assurer un écart en sortie du comparateur $\varepsilon_{1}=0$ lorsque l'erreur de positionnement en azimut par rapport à la consigne $\zeta=\varphi_{\mathrm{c}}-\varphi=0$.\\
+Q 18. Justifier que $K_{\mathrm{ad} 1}=K_{\mathrm{c} 1} / \rho_{1}$. Donner sa valeur numérique et préciser son unité.
+
+\section*{IV.C.8) Synthèse de la loi de commande dédiée à la chaine d'azimut}
+Le moment d'inertie équivalent $J_{E q 1}$ est considéré constant et égal à sa valeur maximale, obtenue lorsque le bloc optique $\underline{\mathbf{2}}$ est en position horizontale (angle d'élévation $\theta=0^{\circ}$ ), tel que déterminé question 16.\\
+Afin de simplifier l'étude proposée, le déplacement du prisme optique rétro-réfléchissant par rapport au sol sera considéré comme horizontal dans la suite : dans ce cas, la chaine d'élévation (angle $\theta$ ) n'est pas sollicitée.\\
+La phase de modélisation a permis de construire un modèle de connaissance sous forme du schéma-bloc fourni figure C du document réponse. Suite aux conclusions sur l'identification réalisée précédemment sur le moteur en charge, les versions simplifiées des fonctions de transfert obtenues question 13 associées au modèle linéarisé de la machine à courant continu sont $M_{1}(p) \simeq \frac{K}{K^{2}+R J_{\text {Eq1 }} p}$ et $G_{1}(p) \simeq \frac{R}{K^{2}+R J_{\text {Eq1 }} p}$.\\
+Un correcteur à action proportionnelle de gain $C_{1}(p)=K_{\mathrm{p} 1}>0$ est tout d'abord choisi.\\
+Q 19. Donner les expressions, en fonction du gain $K_{\mathrm{p} 1}$ et des données du schéma-bloc de l'asservissement de l'axe d'azimut présenté sur la figure C du document réponse, des coefficients $K_{1 \mathrm{r}}, a_{1}$ et $a_{2}$ tels que
+
+$$
+\Phi(p)=\frac{\Phi_{\mathrm{c}}(p)+K_{1 \mathrm{r}} C_{\mathrm{r} 1}(p)}{1+a_{1} p+a_{2} p^{2}}
+$$
+
+Justifier que l'asservissement étudié reste stable pour toute valeur de $K_{\mathrm{p} 1}>0$.\\
+Afin de permettre un suivi en continu du prisme optique rétro-réfléchissant et un recalage de la ligne de visée sur son centre avant la mesure, il est nécessaire d'implanter un correcteur pouvant garantir une erreur de positionnement angulaire $\Delta \varphi \leqslant 1 \times 10^{-4} \mathrm{rad}$ pour une distance de mesure $D=500 \mathrm{~m}$.\\
+Q 20. Déterminer l'expression, en fonction des coefficients $K_{1 r}, a_{1}$ et $a_{2}$ établis question 19, de l'erreur en azimut $\zeta(p)=\Phi_{c}(p)-\Phi(p)$ lorsque la consigne angulaire est une rampe de pente $\Omega_{\mathrm{c} 0}$ (soit $\Phi_{\mathrm{c}}(p)=\Omega_{\mathrm{c} 0} / p^{2}$ ) et le couple résistant est un échelon d'amplitude $c_{\mathrm{r} 10}$ (soit $\left.C_{\mathrm{r} 1}(p)=c_{\mathrm{r} 10} / p\right)$.\\
+Q 21. Établir l'expression du gain minimal $K_{\mathrm{p} 1}$ permettant la réalisation d'une mesure en continu en fonction de tout ou partie des paramètres de la figure C du document réponse. Donner sa valeur numérique pour une pente de position $\Omega_{\mathrm{c} 0}=V_{\mathrm{Max}} / D \approx 2,78 \times 10^{-3} \mathrm{rad} \cdot \mathrm{s}^{-1}$ et un couple résistant $c_{\mathrm{r} 10} \approx-1,3 \times 10^{-3} \mathrm{~N} \cdot \mathrm{~m}$.\\
+La synthèse de ce correcteur doit garantir une marge de phase $M_{\mathrm{Ph}}=45^{\circ}$ à la pulsation $\omega_{1}=2 \times 10^{4} \mathrm{rad} \cdot \mathrm{s}^{-1}$ (ces valeurs sont obtenues suite à une étude non proposée dans le cadre de ce sujet).\\
+Le tracé, dans le plan de BODE, de la réponse fréquentielle de la fonction de transfert en boucle ouverte de l'asservissement de l'axe d'azimut pour une correction unitaire (gain $K_{\mathrm{p} 1}=1$, grandeur sans unité) est fournie, en trait continu fort, figure E du document réponse.\\
+Q 22. Répondre à cette question exclusivement sur la figure E du document réponse. Un correcteur à action proportionnelle permet-il de respecter les spécifications du cahier des charges (commenter les constructions sur le graphe et dans la zone prévue à cet effet)?\\
+Afin de répondre aux exigences du cahier des charges en terme de marge de phase, un correcteur à avance de phase de fonction de transfert $C_{1}(p)=K_{\mathrm{p} 1} \frac{1+a T_{\mathrm{d}} p}{1+T_{\mathrm{d}} p}$ est choisi : dans cette fonction de transfert, $K_{\mathrm{p} 1}>0$ est un gain sans unité, $a>1$ est un facteur sans unité et $T_{\mathrm{d}}>0$ est une constante de temps en seconde\\
+Q 23. Après avoir déterminé la valeur de la phase $\varphi_{\mathrm{m}}$ que le correcteur à avance de phase doit apporter à la pulsation $\omega_{1}=2 \times 10^{4} \mathrm{rad} \cdot \mathrm{s}^{-1}$ pour imposer la marge de phase $M_{\mathrm{Ph}}=45^{\circ}$ souhaitée, déterminer les valeurs numériques du facteur $a$ et de la constante de temps $T_{\mathrm{d}}$ sachant que $a=\frac{1+\sin \varphi_{\mathrm{m}}}{1-\sin \varphi_{\mathrm{m}}}$ et $\omega_{1}=\frac{1}{T_{\mathrm{d}} \sqrt{a}}$.\\
+Le tracé, dans le plan de BODE , de la réponse fréquentielle de la fonction de transfert en boucle ouverte de l'asservissement de l'axe d'azimut pour une correction à avance de phase de gain unitaire ( $K_{\mathrm{p} 1}=1$ sans unité) et les valeurs du facteur $a$ et de la constante de temps $T_{\mathrm{d}}$ déterminées question 23 est fournie, en trait pointillé, figure E du document réponse.\\
+Q 24. Répondre à cette question exclusivement sur la figure E du document réponse. Déterminer la valeur du gain $K_{\mathrm{p} 1}$ permettant d'avoir un gain unitaire à la pulsation $\omega_{1}=2 \times 10^{4} \mathrm{rad} \cdot \mathrm{s}^{-1}$ (commenter les constructions sur le graphe et dans la zone prévue à cet effet).\\
+Afin de réaliser des mesures rapidement, il est nécessaire d'assurer à la fois un suivi du prisme optique rétroréfléchissant lors de son déplacement et un recentrage rapide sur son centre après l'arrêt tel qu'indiqué dans le diagramme partiel des exigences de la figure 8.\\
+La figure 14 propose un zoom autour de l'instant $T_{\mathrm{op}}=2 \mathrm{~s}$ de la simulation du modèle avec la correction à avance de phase synthétisée aux questions 23 et 24 pour la consigne
+
+$$
+\begin{cases}\varphi_{\mathrm{c}}(t)=\frac{V_{\mathrm{Max}}}{D} t & \text { pour } t \in\left[0 ; T_{\mathrm{op}}\right] \\ \varphi_{\mathrm{c}}(t)=\frac{V_{\mathrm{Max}}}{D} T_{\mathrm{op}} & \text { pour } t \geqslant T_{\mathrm{op}}\end{cases}
+$$
+
+\begin{center}
+\includegraphics[max width=\textwidth]{2024_12_07_51b7f57c7f055c2d8d29g-11(1)}
+\end{center}
+
+Figure 14 Simulation temporelle de l'asservissement de la figure C du document réponse avec la correction à avance de phase (zoom au voisinage de l'instant $t=T_{\mathrm{op}}=2 \mathrm{~s}$ )
+
+Q 25. En indiquant les éléments de validation par rapport aux exigences du cahier des charges, justifier qu'il est possible de réaliser des mesures en continu avec la correction à avance de phase synthétisée.
+
+\section*{IV.D - Conclusion et perspectives de l'étude}
+\section*{Objectif}
+Analyser la démarche proposée dans ce sujet pour l'étude de la station totale LeICA TCRA 1103 et la comparer à la démarche de l'ingénieur abordée dans le programme de la filière MP.
+
+La démarche de l'ingénieur abordée dans le programme de sciences industrielles de l'ingénieur de la filière MP a pour objectif de quantifier les écarts entre trois performances: voir figure 15.\\
+\includegraphics[max width=\textwidth, center]{2024_12_07_51b7f57c7f055c2d8d29g-11}
+
+Figure 15 Synoptique de la démarche de l'ingénieur, telle que présentée dans le programme\\
+Q 26. Proposer, en moins de 50 mots, une synthèse sur ce qu'il reste à faire pour finaliser la démarche de l'ingénieur telle qu'abordée en sciences industrielles de l'ingénieur.
+
+
+\end{document}
