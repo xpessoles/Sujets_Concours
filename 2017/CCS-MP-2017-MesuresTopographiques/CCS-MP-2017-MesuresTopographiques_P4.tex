@@ -248,13 +248,11 @@ Théorème du moment dynamique en $O$ en projection sur $\vect{x_{12}}$.
 
 %Q 11. 
 \question{\label{CCS_MP_2017:q_11}Mettre en œuvre la démarche explicitée question \ref{CCS_MP_2017:q_10}  et montrer que les équations de mouvement s'écrivent :}
+\vspace{-.5cm}
+$$ c_{\mathrm{m} 1}+c_{\mathrm{r} 1}=A_{1} \ddot{\varphi}+B_{1} \dot{\varphi}+\frac{\mathrm{d}}{\mathrm{~d} t}\left(\left(C_{11} \sin ^{2} \theta+C_{12} \cos ^{2} \theta\right) \dot{\varphi}\right) 
+\quad \text{et} \quad
+c_{\mathrm{m} 2}+c_{\mathrm{r} 2}=A_{2} \ddot{\theta}+B_{2} \dot{\theta}+C_{2} \sin (2 \theta) \dot{\varphi}^{2}$$
 
-$$
-\begin{aligned}
-& c_{\mathrm{m} 1}+c_{\mathrm{r} 1}=A_{1} \ddot{\varphi}+B_{1} \dot{\varphi}+\frac{\mathrm{d}}{\mathrm{~d} t}\left(\left(C_{11} \sin ^{2} \theta+C_{12} \cos ^{2} \theta\right) \dot{\varphi}\right) \\
-& c_{\mathrm{m} 2}+c_{\mathrm{r} 2}=A_{2} \ddot{\theta}+B_{2} \dot{\theta}+C_{2} \sin (2 \theta) \dot{\varphi}^{2}
-\end{aligned}
-$$
 
 \textit{où les coefficients constants $A_{1}, B_{1}, C_{11}, C_{12}, A_{2}, B_{2}$ et $C_{2}$ sont à exprimer en fonction de tout ou partie des données de la figure \ref{CCS_MP_2017:fig_10} et de la figure \ref{CCS_MP_2017:fig_11}.}
 
@@ -266,6 +264,22 @@ $\sum \vectm{O}{\text{ext}}{1+2} \vect{z_{01}}  = \left(\vectmd{O}{1}{0} + \vect
 On a alors  
 $0+0+\dfrac{k_1}{\rho_1} \left(\indice{c}{m1}+\indice{c}{r1}-\indice{f}{Eq1} \varphip \right)=
 \deriv{\vectmc{O}{1}{0}\cdot \vect{z_{01}}}{} + \deriv{\vectmc{O}{2}{0}\cdot \vect{z_{01}}}{}$
+(car $O$ est centre d’inertie des pièces 1 et 2). Remarque : les deux « 0 » représentent le moment en $O$ sur $\vect{z_{01}}$ de la pesanteur et de la liaison pivot entre 0 et 1.
+
+$\vectmc{O}{2}{0} = \inertie{O}{2} \vecto{2}{0} 
+= \matinertie{J_{x2}}{J_{y2}}{J_{z2}}{0}{0}{0}{O,\mathcal{B}_2} \begin{pmatrix} \thetap \\ \varphip\sin\theta \\ \varphip \cos \theta \end{pmatrix}_{\mathcal{B}_2}$
+$=\begin{pmatrix} J_{x2} \thetap \\ J_{y2}\varphip\sin\theta \\ J_{z2}\varphip \cos \theta \end{pmatrix}_{\mathcal{B}_2}$  (car $O$ est centre d’inertie de 2). De plus $\vz{1}=\begin{pmatrix} 0 \\ \sin\theta \\ \cos \theta \end{pmatrix}_{\mathcal{B}_2}$.
+
+$\dfrac{k_1}{\rho_1} \left(\indice{c}{m1}  +\indice{c}{r1}  -\indice{f}{Eq1} \varphip \right)=\indice{J}{z1} \varphipp+\dfrac{\dd \left(\indice{J}{z2} \varphip  \cos^2 \theta+\indice{J}{y2} \varphip \sin^2 \theta\right)}{\dd t}$
+  
+$\indice{c}{m1}  +\indice{c}{r1}  =\indice{J}{z1}\dfrac{\rho_1}{k_1}\varphipp+\indice{f}{Eq1} \varphip+\dfrac{\dd \left(
+\indice{J}{z2}\dfrac{\rho_1}{k_1}\varphip \cos^2 \theta+\indice{J}{y2}\dfrac{\rho_1}{k_1}\varphip \sin^2 \theta \right)}{\dd t}$.
+
+
+Nous obtenons la première équation avec : $A_1=\indice{J}{z1}\dfrac{\rho_1}{k_1}$, $B_1=\indice{f}{Eq1}$, $\indice{C}{11}=\indice{J}{y2}\dfrac{\rho_1}{k_1}$, $\indice{C}{12}=\indice{J}{z2}\dfrac{\rho_1}{k_1}$.  
+
+\vspace{1cm}
+
 
 \end{corrige}
 \else
@@ -275,18 +289,12 @@ $0+0+\dfrac{k_1}{\rho_1} \left(\indice{c}{m1}+\indice{c}{r1}-\indice{f}{Eq1} \va
 \end{document}
 
 
-d(σ_ 1/0  ^O ┴→   .   \vect{z_{01}}   )/dt+d(σ_ 2/0  ^O ┴→   .   \vect{z_{01}}   )/dt $
-(car O est centre d’inertie des pièces 1 et 2). Remarque : les deux « 0 » représentent le moment en O sur \vect{z_{01}} de la pesanteur et de la liaison pivot entre 0 et 1.
-Avecσ_ 2/0  ^O ┴→  =I( O,2 )  .   Ω_ 2/0   ┴→=[■(J_ x2  &0&0@0&J_ y2  &0@0&0&J_ z2   )]_(( O,   B  _2))   .  [■(θ ̇@ϕ ̇ .sinθ  @ϕ ̇ .cosθ  )]_((B_2))=[■(J_ x2     .   θ   ̇@J_ y2     .  ϕ ̇  .sinθ  @J_ z2     .  ϕ ̇  .cosθ  )]_((B_2)) (car O est centre d’inertie de 2) ; de plus z ⃗_1=[■(0@ sinθ  @ cosθ  )]_((B_2))
-k_1/ρ_1 .(c_ m1  +c_ r1  -f_ Eq1  .ϕ ̇ )=J_ Z1     .  ϕ ̈+d(J_ z2     .  ϕ ̇  .co   s  ^2 θ+J_ y2     .  ϕ ̇  .si   n  ^2 θ)/ dt  
-c_ m1  +c_ r1  =J_ Z1     .   ρ_1/k_1    .  ϕ ̈+f_ Eq1  .ϕ ̇+d(J_ z2     .   ρ_1/k_1    .  ϕ ̇  .co   s  ^2 θ+J_ y2     .   ρ_1/k_1    .  ϕ ̇  .si   n  ^2 θ)/ dt  
-Nous obtenons la première équation avec : A_1=J_ Z1     .   ρ_1/k_1  ,  B_1=f_ Eq1   ;C_11=J_ y2     .   ρ_1/k_1  ;C_12=J_ z2     .   ρ_1/k_1 
 B) On isole (2) et on applique le théorème du moment dynamique en (O) en projection sur x ⃗_1,2:
 Σ M_( ext  →2)^O ┴→   .   x   ⃗_ 1,2  =δ_ 2/0  ^O ┴→   .   x  _ 1,2  =d(σ_ 2/0  ^O ┴→   .   x   ⃗_ 1,2   )/dt-σ_ 2/0  ^O ┴→   .  ((dx ⃗_ 1,2  )/dt)_0 (car O est centre d’inertie de la pièce 2).
-0+0+k_2/ρ_2 .(c_m2+c_r2-f_Eq2   .  θ ̇ )=J_x2   .  θ ̈-σ_ 2/0  ^O ┴→   .  ϕ ̇  .   y   ⃗_1 (remarque : les deux « 0 » représentent le moment en O sur x ⃗_1,2 de la pesanteur et de la liaison pivot entre 1 et 2).y ⃗_1=[■(0@ cosθ  @ -sinθ  )]_((B_2))
-k_2/ρ_2 .(c_m2+c_r2-f_Eq2   .  θ ̇ )=J_x2   .  θ ̈-(J_y2-J_z2 )  .  ϕ ̇^2   .sin  θ  .cos  θ
-c_m2+c_r2=J_x2   .   ρ_2/k_2    .  θ ̈+f_Eq2   .  θ ̇+(J_z2-J_y2 )  .   ρ_2/(2  .  k_2 )   .  ϕ ̇^2   .sin ( 2.  θ)
-Nous obtenons la deuxième équation avec : A_2=J_ x2     .   ρ_2/k_2  ,  B_2=f_ Eq2   ;C_2=(J_z2-J_y2 )  .   ρ_2/(2  .  k_2 )
+0+0+k_2/\rho_2 .(c_m2+c_r2-f_Eq2   .  \theta ̇ )=J_x2   .  \theta ̈-σ_ 2/0  ^O ┴→   .  \varphip  .   y   ⃗_1 (remarque : les deux « 0 » représentent le moment en O sur x ⃗_1,2 de la pesanteur et de la liaison pivot entre 1 et 2).y ⃗_1=[■(0@ cos\theta  @ -sin\theta  )]_((B_2))
+k_2/\rho_2 .(c_m2+c_r2-f_Eq2   .  \theta ̇ )=J_x2   .  \theta ̈-(J_y2-J_z2 )  .  \varphip^2   .sin  \theta  .cos  \theta
+c_m2+c_r2=J_x2   .   \rho_2/k_2    .  \theta ̈+f_Eq2   .  \theta ̇+(J_z2-J_y2 )  .   \rho_2/(2  .  k_2 )   .  \varphip^2   .sin ( 2.  \theta)
+Nous obtenons la deuxième équation avec : A_2=J_ x2     .   \rho_2/k_2  ,  B_2=f_ Eq2   ;C_2=(J_z2-J_y2 )  .   \rho_2/(2  .  k_2 )
 
 
 %IV.C.4) 
