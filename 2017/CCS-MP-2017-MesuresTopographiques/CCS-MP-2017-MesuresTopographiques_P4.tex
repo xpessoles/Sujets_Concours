@@ -131,7 +131,7 @@ Les pertes en effort au niveau des axes de liaisons pivot sont modélisées par 
 
 \begin{figure}[!h]
 \centering
-\begin{tabular}{|p{6cm}|c|c|}
+\begin{tabular}{|p{8cm}|c|c|}
 \hline
 Grandeurs & Liaison $\boldsymbol{L}_{\mathbf{1 / 0}}$ & Liaison $\boldsymbol{L}_{\mathbf{2} / \mathbf{1}}$ \\
 \hline
@@ -146,24 +146,16 @@ Rapports des réducteurs de la liaison motorisée :
 \item étage b : réducteur à roue et vis sans fin.
 \end{itemize}
 
- & $\frac{\omega_{1 / 0}}{\omega_{\mathrm{m} 1}}=\rho_{1 \mathrm{a}} \rho_{1 \mathrm{~b}}=\rho_{1}$ & $\frac{\omega_{2 / 1}}{\omega_{\mathrm{m} 2}}=\rho_{2 \mathrm{a}} \rho_{2 \mathrm{~b}}=\rho_{2}$ \\
+ & $\dfrac{\omega_{1 / 0}}{\omega_{\mathrm{m} 1}}=\rho_{1 \mathrm{a}} \rho_{1 \mathrm{~b}}=\rho_{1}$ & $\dfrac{\omega_{2 / 1}}{\omega_{\mathrm{m} 2}}=\rho_{2 \mathrm{a}} \rho_{2 \mathrm{~b}}=\rho_{2}$ \\
 \hline
-Facteur de perte $k_{i}$ (sans unité) & $\rho_{1 \mathrm{a}}=-\frac{2}{7}$ et $\rho_{1 \mathrm{~b}}=-\frac{1}{210}$ & $\rho_{2 \mathrm{a}}=-\frac{2}{7}$ et $\rho_{2 \mathrm{~b}}=-\frac{1}{184}$ \\
+Facteur de perte $k_{i}$ (sans unité) & $\rho_{1 \mathrm{a}}=-\dfrac{2}{7}$ et $\rho_{1 \mathrm{~b}}=-\frac{1}{210}$ & $\rho_{2 \mathrm{a}}=-\frac{2}{7}$ et $\rho_{2 \mathrm{~b}}=-\dfrac{1}{184}$ \\
 \hline
-\begin{tabular}{l}
-Couple moteur équivalent de la machine à courant \\
-continu au niveau de l'axe de la liaison $L_{j / i}(\mathrm{~N} \cdot \mathrm{~m})$ \\
-\end{tabular} & $\frac{k_{1}}{} \approx 0,74$ & $k_{2} \approx 0,82$ \\
+Couple moteur équivalent de la machine à courant continu au niveau de l'axe de la liaison $L_{j / i}(\mathrm{~N} \cdot \mathrm{~m})$  & $\frac{k_{1}}{} \approx 0,74$ & $k_{2} \approx 0,82$ \\
 \hline
-\begin{tabular}{l}
-Moment résistant équivalent au niveau de l'axe de \\
-la liaison $L_{j / i}$, dû au frottement sec $(\mathrm{N} \cdot \mathrm{m})$ \\
-\end{tabular} & $\frac{k_{1}}{\rho_{1}} c_{\mathrm{m} 1}$ & $\frac{k_{2}}{\rho_{2}} c_{\mathrm{m} 2}$ \\
+Moment résistant équivalent au niveau de l'axe de 
+la liaison $L_{j / i}$, dû au frottement sec $(\mathrm{N} \cdot \mathrm{m})$  & $\frac{k_{1}}{\rho_{1}} c_{\mathrm{m} 1}$ & $\frac{k_{2}}{\rho_{2}} c_{\mathrm{m} 2}$ \\
 \hline
-\begin{tabular}{l}
-Moment de frottement visqueux équivalent au \\
-niveau de l'axe de la liaison $L_{j / i}(\mathrm{~N} \cdot \mathrm{~m})$ \\
-\end{tabular} & $-\frac{k_{1}}{\rho_{1}} f_{\mathrm{Eq} 1} \dot{\varphi}$ & $\frac{k_{2}}{\rho_{2}} c_{\mathrm{r} 2}$ \\
+Moment de frottement visqueux équivalent au  niveau de l'axe de la liaison $L_{j / i}(\mathrm{~N} \cdot \mathrm{~m})$  & $-\frac{k_{1}}{\rho_{1}} f_{\mathrm{Eq} 1} \dot{\varphi}$ & $\frac{k_{2}}{\rho_{2}} c_{\mathrm{r} 2}$ \\
 \hline
 \end{tabular}
 %Figure 11 
@@ -275,11 +267,25 @@ $\dfrac{k_1}{\rho_1} \left(\indice{c}{m1}  +\indice{c}{r1}  -\indice{f}{Eq1} \va
 $\indice{c}{m1}  +\indice{c}{r1}  =\indice{J}{z1}\dfrac{\rho_1}{k_1}\varphipp+\indice{f}{Eq1} \varphip+\dfrac{\dd \left(
 \indice{J}{z2}\dfrac{\rho_1}{k_1}\varphip \cos^2 \theta+\indice{J}{y2}\dfrac{\rho_1}{k_1}\varphip \sin^2 \theta \right)}{\dd t}$.
 
-
 Nous obtenons la première équation avec : $A_1=\indice{J}{z1}\dfrac{\rho_1}{k_1}$, $B_1=\indice{f}{Eq1}$, $\indice{C}{11}=\indice{J}{y2}\dfrac{\rho_1}{k_1}$, $\indice{C}{12}=\indice{J}{z2}\dfrac{\rho_1}{k_1}$.  
 
 \vspace{1cm}
 
+On isole (2) et on applique le théorème du moment dynamique en ($O$) en projection sur $\vect{x_{1,2}}$
+
+$\sum \vectm{O}{\text{ext}}{2} \vect{x_{1,2}}  = \vectmd{O}{2}{0} \cdot \vect{x_{1,2}} = \deriv{\vectmc{O}{2}{0}\cdot \vect{x_{12}}}{} - \vectmc{O}{2}{0}\cdot\deriv{\vect{x_{12}}}{0}$ (car O est centre d’inertie de la pièce 2).
+
+$0+0+\dfrac{k_2}{\rho_2}\left(\indice{c}{m2}+\indice{c}{r2}-\indice{f}{Eq2}\thetap\right)=\indice{J}{x2}  \thetapp - 
+\vectmc{O}{2}{0} \varphip \vy{1}$. (remarque : les deux « 0 » représentent le moment en $O$ sur $\vect{x_{1,2}}$ de la pesanteur et de la liaison pivot entre 1 et 2). De plus $\vy{1}=\begin{pmatrix} 0 \\ \cos\theta \\ \sin \theta \end{pmatrix}_{\mathcal{B}_2}$.
+
+
+
+$\dfrac{k_2}{\rho_2}\left(\indice{c}{m2}+\indice{c}{r2}-\indice{f}{Eq2}\thetap \right)=\indice{J}{x2} \thetapp-(\indice{J}{y2}-\indice{J}{z2} )   \varphip^2   \sin  \theta  \cos  \theta$
+
+$\indice{c}{m2}+\indice{c}{r2}=\indice{J}{x2}\dfrac{\rho_2}{k_2} \thetapp+\indice{f}{Eq2}\thetap+(\indice{J}{z2}-\indice{J}{y2 })\dfrac{ \rho_2}{2  k_2}\varphip^2   \sin ( 2  \theta)$
+
+Nous obtenons la deuxième équation avec : 
+$A_2=\indice{J}{x2}  \dfrac{\rho_2}{k_2}$, $B_2=\indice{f}{Eq2}$ et $C_2=(\indice{J}{z2}-\indice{J}{y2})\dfrac{\rho_2}{2 k_2}$.
 
 \end{corrige}
 \else
@@ -289,12 +295,7 @@ Nous obtenons la première équation avec : $A_1=\indice{J}{z1}\dfrac{\rho_1}{k_
 \end{document}
 
 
-B) On isole (2) et on applique le théorème du moment dynamique en (O) en projection sur x ⃗_1,2:
-Σ M_( ext  →2)^O ┴→   .   x   ⃗_ 1,2  =δ_ 2/0  ^O ┴→   .   x  _ 1,2  =d(σ_ 2/0  ^O ┴→   .   x   ⃗_ 1,2   )/dt-σ_ 2/0  ^O ┴→   .  ((dx ⃗_ 1,2  )/dt)_0 (car O est centre d’inertie de la pièce 2).
-0+0+k_2/\rho_2 .(c_m2+c_r2-f_Eq2   .  \theta ̇ )=J_x2   .  \theta ̈-σ_ 2/0  ^O ┴→   .  \varphip  .   y   ⃗_1 (remarque : les deux « 0 » représentent le moment en O sur x ⃗_1,2 de la pesanteur et de la liaison pivot entre 1 et 2).y ⃗_1=[■(0@ cos\theta  @ -sin\theta  )]_((B_2))
-k_2/\rho_2 .(c_m2+c_r2-f_Eq2   .  \theta ̇ )=J_x2   .  \theta ̈-(J_y2-J_z2 )  .  \varphip^2   .sin  \theta  .cos  \theta
-c_m2+c_r2=J_x2   .   \rho_2/k_2    .  \theta ̈+f_Eq2   .  \theta ̇+(J_z2-J_y2 )  .   \rho_2/(2  .  k_2 )   .  \varphip^2   .sin ( 2.  \theta)
-Nous obtenons la deuxième équation avec : A_2=J_ x2     .   \rho_2/k_2  ,  B_2=f_ Eq2   ;C_2=(J_z2-J_y2 )  .   \rho_2/(2  .  k_2 )
+
 
 
 %IV.C.4) 
