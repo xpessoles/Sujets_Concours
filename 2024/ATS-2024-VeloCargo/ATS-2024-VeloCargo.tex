@@ -17,7 +17,7 @@ L'essor des vélos à assistance électrique (VAE) a libéré de nombreux cyclis
 
 La société Douze cycles conçoit et réalise des vélos cargo destinés aux professionnels comme aux particuliers. Cette société est implantée en Bourgogne où elle emploie 25 collaborateurs.
 
-Le système étudié est un biporteur à assistance électrique, le G4e, conçu et réalisé par Douze cycles. Soucieuse d'allier durabilité, praticité et esthétique, la société Douze cycles innove continument pour faire évoluer sa gamme de produits. Ce vélo, présenté par l'entreprise comme «une solution vélogistique tout-en-un répondant à la plupart des usages pour les familles ou les professionnels », a été lancé en 2017 pour le cinquième anniversaire de la marque.
+Le système étudié est un biporteur à assistance électrique, le G4e, conçu et réalisé par Douze cycles. Soucieuse d'allier durabilité, praticité et esthétique, la société Douze cycles innove continument pour faire évoluer sa gamme de produits. Ce vélo, présenté par l'entreprise comme «~une solution vélogistique tout-en-un répondant à la plupart des usages pour les familles ou les professionnels~», a été lancé en 2017 pour le cinquième anniversaire de la marque.
 
 \subsection{Étude proposée}
 Les études proposées dans ce sujet portent sur différentes problématiques spécifiques à la conception du vélo cargo étudié.
@@ -106,9 +106,9 @@ L'utilisateur garde son pied sur la béquille pour la plaquer au sol durant tout
 
 \begin{itemize}
   \item sphère/plan en \(I\) suivant \(\vec{y}\) entre la roue arrière (1) et le sol (0);
-  \item pivot d'axe ( \(B ; \vec{z}\) ) entre la roue (1) et le cadre (2);
+  \item pivot d'axe \(( B ; \vec{z})\)  entre la roue (1) et le cadre (2);
   \item pivot d'axe \((A ; \vec{z})\) entre le cadre (2) et la béquille (4);
-  \item pivot d'axe \((K ; \vec{z})\) entre la béquille (4) et le sol (0) (modélisation associée au blocage de la béquille par le pied);\\
+  \item pivot d'axe \((K ; \vec{z})\) entre la béquille (4) et le sol (0) (modélisation associée au blocage de la béquille par le pied).
 \end{itemize}
 
 \begin{figure}[!htb]
@@ -243,7 +243,7 @@ On estime alors l'effort minimal pour assurer le béquillage en charge maximale 
 
 \question{Conclure sur le respect de l'exigence 110 du cahier des charges du vélo (figure \ref{fig2.1}).}
 
-\section{Vérification du dimensionnement des organes participant au freinage}
+\section{Vérification du dimensionnement des organes participant au freinage \label{ATS_2024_sec3}}
 La sécurité des utilisateurs du vélo cargo passe par un freinage performant. Les pneumatiques et les freins doivent garantir une distance d'arrêt du vélo raisonnable même lorsque celui-ci est chargé au maximum. L'étude proposée dans cette partie vise à vérifier le dimensionnement de ces éléments à la lumière du cahier des charges précisé dans le diagramme des exigences de la figure \ref{fig_3_cargo}.
 
 \begin{figure}[!h]
@@ -312,7 +312,8 @@ Ces liaisons sont supposées parfaites.
 \begin{table}[!h]
 \centering
 \begin{tabular}{lll}
-Identifiant & Définition & Repère associé \\
+\hline
+\textbf{Identifiant} & \textbf{Définition} & \textbf{Repère associé} \\
 \hline
 \((0)\) & Sol & \((O ; \vec{x} ; \vec{y} ; \vec{z})\) \\
 \((1)\) & Roue arrière & \(\left(B ; \overrightarrow{x_{1}} ; \overrightarrow{y_{1}} ; \vec{z}\right)\) \\
@@ -338,22 +339,12 @@ Identifiant & Définition & Repère associé \\
 
 \begin{table}[!h]
 \centering
-\begin{tabular}{cccc}
-Ensemble & Masse & \begin{tabular}{c}
-Centre \\
-d'inertie \\
-\end{tabular} & \begin{tabular}{c}
-Moment d'inertie au centre \\
-d'inertie suivant \((\vec{z})\) \\
-\end{tabular} \\
+\begin{tabular}{p{4cm}p{3cm}p{3cm}p{4cm}}
+\hline
+\textbf{Ensemble} & \textbf{Masse} & \textbf{Centre d'inertie}&\textbf{Moment d'inertie au centre d'inertie suivant } \\
 \hline
 Roue arrière (1) & \(m_{1}=8 \mathrm{~kg}\) & \(B\) & \(I_{B 1}=0.78 \mathrm{~kg} \cdot \mathrm{~m}^{2}\) \\
-\hline
-\begin{tabular}{c}
-Ensemble \(\{\) Vélo privé de ses \\
-roues + pilote + charge \(\}(2)\) \\
-\end{tabular} & \(m_{2}=245 \mathrm{~kg}\) & \(G_{2}\) & - \\
-\hline
+Ensemble \{Vélo privé de ses roues + pilote + charge \} (2)  & \(m_{2}=245 \mathrm{~kg}\) & \(G_{2}\) & - \\
 Roue avant (3) & \(m_{3}=4 \mathrm{~kg}\) & \(C\) & \(I_{C 3}=0.26 \mathrm{~kg} \cdot \mathrm{~m}^{2}\) \\
 \hline
 \end{tabular}
@@ -364,11 +355,10 @@ Roue avant (3) & \(m_{3}=4 \mathrm{~kg}\) & \(C\) & \(I_{C 3}=0.26 \mathrm{~kg} 
 
 \begin{table}[!h]
 \centering
-\begin{tabular}{rcc}
- & Pneu neuf & Pneu anormalement usé \\
+\begin{tabular}{lll}
+ & \textbf{Pneu neuf} & \textbf{Pneu anormalement usé} \\
 \hline
 Route goudronnée sèche & 0.8 & 0.95 \\
-\hline
 Route goudronnée mouillée & 0.6 & 0.3 \\
 \hline
 \end{tabular}
@@ -385,8 +375,8 @@ $
 
 \paragraph*{Position, vitesse et accélération du point \(G_{2}\) par rapport au sol}
 \begin{itemize}
-\item La position selon \(\vec{x}\) du point \(G_{2}\) dans le repère du sol (0) est notée \(x_{G_{2}}: x_{G_{2}}(t)=\overrightarrow{O G_{2}} \cdot \vec{x}\);
-  \item La vitesse horizontale de \(G_{2}\) est notée \(v_{G_{2}}: v_{G_{2}}(t)=\dfrac{\mathrm{d} x_{G_{2}}(t)}{\mathrm{d} t}\);
+\item La position selon \(\vec{x}\) du point \(G_{2}\) dans le repère du sol (0) est notée \(x_{G_{2}}: x_{G_{2}}(t)=\overrightarrow{O G_{2}} \cdot \vec{x}\)/
+  \item La vitesse horizontale de \(G_{2}\) est notée \(v_{G_{2}}: v_{G_{2}}(t)=\dfrac{\mathrm{d} x_{G_{2}}(t)}{\mathrm{d} t}\)/
   \item L'accélération horizontale du point \(G_{2}\) est désignée par \(\gamma_{G_{2}}: \gamma_{G_{2}}(t)=\dfrac{\mathrm{d} v_{G_{2}}(t)}{\mathrm{d} t}\).
 \end{itemize}
 
@@ -396,6 +386,7 @@ Déterminer les conditions portant sur les pneumatiques qui permettent d'assurer
 \end{obj}
 
 \question{Déterminer l'expression des résultantes dynamiques :}
+\vspace{-.25cm}
 \textit{
 \begin{enumerate}
   \item du solide (1) dans son mouvement par rapport au sol (0) : \(\overrightarrow{R_{d}(1 / 0)}\),
@@ -403,14 +394,17 @@ Déterminer les conditions portant sur les pneumatiques qui permettent d'assurer
   \item du solide (3) dans son mouvement par rapport au sol (0) : \(\overrightarrow{R_{d}(3 / 0)}\).
 \end{enumerate}}
 
+\vspace{.25cm}
 
 \question{ En appliquant le théorème de la résultante dynamique au système matériel \(\{1,2,3\}\), déterminer les expressions :}
-\textit{
+\vspace{-.25cm}\textit{
 \begin{itemize}
   \item de la somme des composantes tangentielles \(\left(X_{01}+X_{03}\right)\) et
   \item de la somme des composantes normales \(\left(Y_{01}+Y_{03}\right)\)
 de l'action du sol sur les roues.
 \end{itemize}}
+
+\vspace{.25cm}
 
 On se propose d'équilibrer la répartition du freinage de telle façon que les composantes tangentielles exercées par le sol sur les roues soient identiquement proportionnelles aux composantes normales. On introduit dès lors le coefficient \(k_{f}\) de proportionnalité correspondant tel que :
 $
@@ -421,7 +415,7 @@ $
 
 \question{À partir de l'expression de la condition de non glissement des roues sur le sol, déterminer la valeur limite de \(\gamma_{G_{2}}(t)\) en fonction de \(f^{\prime}\) et \(g\). Montrer alors que toutes les configurations du tableau 3.3 ne permettent pas de satisfaire l'exigence 210.}
 
-On considère à présent uniquement la situation où le freinage peut être réalisé sans glissement. Quels que soient les résultats trouvés précédemment, on définit deux valeurs pour la décélération limite \(\gamma_{l i m}\) :
+On considère à présent uniquement la situation où le freinage peut être réalisé sans glissement. Quels que soient les résultats trouvés précédemment, on définit deux valeurs pour la décélération limite \(\gamma_{\text{lim}}\) :
 
 \begin{itemize}
   \item \(\gamma_{\text {lim }}=-4.5 \mathrm{~m} \cdot \mathrm{~s}^{-2}\) dans le cas du freinage en conditions normales (pneus neufs ou pneus usés sur chaussée sèche),
@@ -446,11 +440,13 @@ Cette sous-partie vise à établir l'expression du couple que les freins doivent
 \question{Déterminer l'expression du moment dynamique de l'ensemble (2) par rapport au sol (0) au point \(G_{2}: \overrightarrow{\delta\left(G_{2}, 2 / 0\right)}\).}
 
 \question{Déterminer l'expression de la projection sur \(\vec{z}\) :}
-\textit{
+\vspace{-.25cm}\textit{
 \begin{enumerate}
   \item du moment cinétique au point \(B\) de la roue arrière (1) par rapport au sol \((0): \overrightarrow{\sigma(B, 1 / 0)} \cdot \vec{z}\),
   \item du moment dynamique au point \(B\) de la roue arrière (1) par rapport au sol \((0): \overrightarrow{\delta(B, 1 / 0)} \cdot \vec{z}\).
 \end{enumerate}}
+
+\vspace{.25cm}
 
 \question{Déterminer l'expression de la projection sur \(\vec{z}\) du moment dynamique de la roue avant (3) par rapport au sol (0) au point \(C: \overrightarrow{\delta(C, 3 / 0)} \cdot \vec{z}\).}
 
@@ -488,12 +484,12 @@ En tenant compte de cette répartition optimale, les relations obtenues précéd
 
 \begin{figure}[!htb]
 \begin{center}
-\includegraphics[width=0.8\textwidth]{2024_12_06_8b2ce2e701dae8972925g-11}
+\includegraphics[width=0.6\textwidth]{2024_12_06_8b2ce2e701dae8972925g-11}
 \caption{Couples de freinage optimaux en fonction de la décélération visée \label{fig6}}
 \end{center}
 \end{figure}
 
-\question{Pour une décélération visée «dite d'urgence» conforme à l'exigence 210 de \(-4.5 \mathrm{~m} \cdot \mathrm{~s}^{-2}\), déterminer les couples de freinage optimaux à mettre en œuvre sur chacune des roues.}
+\question{Pour une décélération visée «dite d'urgence» conforme à l'exigence 210 de \SI{-4.5}{m.s^{-2}}, déterminer les couples de freinage optimaux à mettre en œuvre sur chacune des roues.}
 
 \question{Conclure quant au système de freins installé sachant que les freins installés sur le G4e permettent d'envisager un couple de freinage maximum de \(250 \mathrm{~N} \cdot \mathrm{~m}\) pour une distance parcourue de 6 m .}
 
@@ -502,7 +498,7 @@ Le contrôle du freinage, assuré par le conducteur, est réalisé par l'action 
 \question{Proposer une solution technologique de pilotage des freins qu'il serait possible d'intégrer pour optimiser les conditions de freinage.}
 
 
-\section{Étude du capteur de couple}
+\section{Étude du capteur de couple \label{ATS_2024_sec4}}
 
 Le groupe d'assistance dont est pourvu le vélo cargo assiste le cycliste en fonction du couple que celui-ci applique sur le pédalier. Ce groupe d'assistance comporte donc un capteur destiné à acquérir le couple appliqué par le cycliste sur le pédalier. Cette section vise à modéliser ce capteur et à en dimensionner certains éléments.\\
 
@@ -549,7 +545,7 @@ Le circuit magnétique constitué par la bobine de détection et les anneaux mag
 \subsection{Tension de sortie du transducteur}
 
 \begin{obj}
-\(\underline{\text { Exprimer la tension de sortie } v_{s} \text { du transducteur de couple en fonction de la variation d'inductance } \Delta L}\).
+Exprimer la tension de sortie  $v_{s}$ du transducteur de couple en fonction de la variation d'inductance  $\Delta L$.
 \end{obj}
 
 Le transducteur de couple est modélisé par deux bobines d'inductances respectives \(L_{1}\) (bobine de compensation) et \(L_{1}+\Delta L\) (bobine de détection). La résistance de ces bobines n'est pas négligée. Ces bobines sont insérées dans le montage schématisé figure \ref{fig_44}. Les deux sources de tension sinusoïdales \(v_{1}\) et \(v_{2}\) ont même valeur moyenne, même amplitude et sont en opposition de phase. La différence de potentiel \(v_{s}\) entre les points \(A\) et \(B\) du schéma de la figure \ref{fig_44} constitue la tension de sortie du transducteur.

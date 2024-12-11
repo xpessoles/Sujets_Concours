@@ -1,0 +1,520 @@
+
+\section{Étude du capteur de couple \label{ATS_2024_sec4}}
+
+Le groupe d'assistance dont est pourvu le vélo cargo assiste le cycliste en fonction du couple que celui-ci applique sur le pédalier. Ce groupe d'assistance comporte donc un capteur destiné à acquérir le couple appliqué par le cycliste sur le pédalier. Cette section vise à modéliser ce capteur et à en dimensionner certains éléments.\\
+
+\begin{figure}[!htb]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{2024_12_06_8b2ce2e701dae8972925g-12(1)}
+\caption{Extrait du cahier des charges relatif à la mesure du couple appliqué par l'utilisateur sur le pédalier. \label{fig_41}}
+\end{center}
+\end{figure}
+
+\subsection{Présentation du capteur}
+Le capteur utilisé est composé d'un transducteur à reluctance variable (présenté ci-dessous), d'un circuit d'amplification et de détection d'amplitude (non étudié) et d'un convertisseur analogique numérique.
+
+\begin{figure}[!htb]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{2024_12_06_8b2ce2e701dae8972925g-12}
+\caption{Architecture du capteur de couple \label{fig_42}}
+\end{center}
+\end{figure}
+
+Constitution du transducteur à reluctance variable Un schéma de principe du transducteur à reluctance variable autour duquel est construit le capteur de couple étudié est donné figure \ref{fig_43}. Ce transducteur est constitué de quatre ensembles :
+
+\begin{itemize}
+  \item l'arbre A1 sur lequel est monté un anneau magnétique Am1,
+  \item l'arbre A2 sur lequel sont montés les anneaux magnétiques Am21 et Am22,
+  \item l'arbre de torsion At qui relie les arbres A1 et A2,
+  \item un bâti (non représenté sur la figure 4.3). Les arbres A1 et A2 sont guidés en rotation par rapport à ce bâti. Les bobines de détection Bd et de compensation Bc sont solidaires du bâti.
+\end{itemize}
+
+Principe de la mesure Les bobines Bd et Bc sont alimentées par une source de tension sinusoïdale.
+
+Le circuit magnétique constitué par la bobine de compensation et les anneaux magnétiques Am21 et Am22 est indéformable. Son inductance est donc indépendante du couple transmis (cette bobine sert à compenser la dérive en température).
+
+Le circuit magnétique constitué par la bobine de détection et les anneaux magnétiques Am1 et Am21 se déforme en même temps que l'arbre de torsion. Cette déformation provoque une variation de l'inductance de la bobine de détection. Le transducteur est construit de telle sorte que cette variation d'inductance soit proportionnelle au couple à mesurer.
+
+\begin{figure}[!htb]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{2024_12_06_8b2ce2e701dae8972925g-13}
+\caption{Principaux éléments du transducteur de couple \label{fig_43}}
+\end{center}
+\end{figure}
+
+
+\subsection{Tension de sortie du transducteur}
+
+\begin{obj}
+Exprimer la tension de sortie  $v_{s}$ du transducteur de couple en fonction de la variation d'inductance  $\Delta L$.
+\end{obj}
+
+Le transducteur de couple est modélisé par deux bobines d'inductances respectives \(L_{1}\) (bobine de compensation) et \(L_{1}+\Delta L\) (bobine de détection). La résistance de ces bobines n'est pas négligée. Ces bobines sont insérées dans le montage schématisé figure \ref{fig_44}. Les deux sources de tension sinusoïdales \(v_{1}\) et \(v_{2}\) ont même valeur moyenne, même amplitude et sont en opposition de phase. La différence de potentiel \(v_{s}\) entre les points \(A\) et \(B\) du schéma de la figure \ref{fig_44} constitue la tension de sortie du transducteur.
+
+\paragraph*{Régime continu}
+On étudie dans un premier temps le fonctionnement du capteur en régime continu.
+
+
+\question{En supposant que l'amplitude \(A\) des tensions \(v_{1}\) et \(v_{2}\) est nulle, donner sans justification les valeurs :}
+\begin{enumerate}
+  \item de la tension \(v_{s}\),
+  \item de la puissance débitée par chacune des deux sources de tension \(v_{1}\) et \(v_{2}\).
+\end{enumerate}
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+\else
+\fi
+
+\paragraph*{Régime alternatif} L'étude du régime continu a permis de montrer qu'il est possible de remplacer les deux sources de tension \(v_{1}\) et \(v_{2}\) par une unique de source de tension \(v_{12}=v_{1}-v_{2}\). Le transducteur fonctionnant en régime sinusoïdal forcé, on utilise les notations complexes des grandeurs électriques. À partir de la question 33, l'étude est menée sur la base du schéma de la figure \ref{fig_45}. Les valeurs numériques définies figure \ref{fig_44} sont conservées. La tension
+
+$
+\underline{V_{12}}=\sqrt{2} \cdot 2 \cdot A \cdot e^{j \cdot \omega \cdot t} \quad(\omega=2 \cdot \pi \cdot f)
+$
+
+est prise pour référence de phases.\\
+
+\begin{figure}[!htb]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{2024_12_06_8b2ce2e701dae8972925g-14}
+\caption{ Modèle électrique du transducteur de couple et grandeurs associées \label{fig_44}}
+\end{center}
+\end{figure}
+
+$
+\begin{aligned}
+L_{1} & =5 \mathrm{mH} \\
+-\Delta L_{\text{Max}} \leq & \Delta L \leq 0 \mathrm{mH} \text { avec }: \Delta L_{\text{Max}}=1 \mathrm{mH} \\
+R_{1} & =5 \Omega \\
+v_{1} & =\dfrac{E}{2}+\sqrt{2} \cdot A \cdot \cos (2 \cdot \pi \cdot f \cdot t) \\
+v_{2} & =\dfrac{E}{2}-\sqrt{2} \cdot A \cdot \cos (2 \cdot \pi \cdot f \cdot t) \\
+E & =24 \mathrm{~V} \\
+A & =8 \mathrm{~V} \\
+f & =20 \mathrm{kHz}
+\end{aligned}
+$
+
+Figure \ref{fig_4_cargo}.4 - Modèle électrique du transducteur de couple et grandeurs associées\\
+
+\begin{figure}[!htb]
+\begin{center}
+\includegraphics[width=.8\linewidth]{2024_12_06_8b2ce2e701dae8972925g-14(1)}
+\caption{Modèle électrique du transducteur de couple en régime alternatif \label{fig10}}
+\end{center}
+\end{figure}
+
+\question{Exprimer les tensions \(\underline{V_{A}}\) et \(\underline{V_{B}}\) en fonction de \(\underline{V_{12}}\) et des paramètres définis figure 4.5.}
+
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+
+\else
+Question 34 : En déduire les expressions des paramètres \(X_{v a r}, R_{t o t}\) et \(X_{t o t}\) tels que:
+
+$
+\underline{V_{S}}=\dfrac{j \cdot X_{v a r}}{2 \cdot\left(R_{t o t}+j \cdot X_{t o t}\right)} \cdot \underline{V_{12}}
+$
+
+Question 35 : Calculer la valeur de \(R_{t o t}\) ainsi que les valeurs extrémales de \(X_{t o t}\). Proposer alors une simplification de la grandeur \(\left|\underline{V_{S}} / \underline{V_{12}}\right|\).
+
+Question 36 : Indiquer la condition que doivent satisfaire les grandeurs \(L_{1}\) et \(\Delta L\) afin de pouvoir considérer le transducteur linéaire.
+
+\subsection{4.3 Consommation énergétique du transducteur}
+\section{Objectif}
+Dimensionner les résistances \(R_{2}\).\\
+Rappel : le transducteur est étudié sur la base du modèle donné figure 4.5, les valeurs numériques relatives à ce modèle sont données figure 4.4.
+
+Exigence de consommation Afin de respecter l'exigence 330 (figure 4.1), la puissance consommée par le transducteur ne doit pas dépasser 0.5 W .
+
+Hypothèse supplémentaire L'étude de la consommation énergétique du transducteur est menée en supposant \(\Delta L=0 \mathrm{H}\).
+
+Question 37 : Exprimer, en fonction de \(A\) et des éléments du schéma du transducteur, le courant efficace \(I_{1}\). Calculer sa valeur.
+
+Question 38 : Exprimer la puissance \(P_{\text {trans }}\) absorbée par le transducteur en fonction de \(R_{1}, R_{2}\) et \(A\).\\
+\(\square\) Question 39 : Déduire des questions précédentes la valeur minimale de \(R_{2}\) qui permet de limiter la puissance \(P_{\text {trans }}\) absorbée par le transducteur à 0.5 W .
+
+\subsection{4.4 Dimensionnement du CAN}
+\section{Objectif}
+Estimer l'influence du convertisseur analogique \(\rightarrow\) numérique sur le respect de l'exigence de précision.
+
+\section{Modélisation des éléments du capteur}
+\begin{itemize}
+  \item L'étude de transducteur de couple a permis d'établir que ce transducteur a un comportement linéaire. On l'assimile donc à un gain, noté \(K_{\text {trans }}\) tel que l'amplitude de la tension \(v_{s}\) en sortie du transducteur soit égale à \(K_{\text {trans }} \cdot C_{p e d}\) où \(C_{p e d}\) désigne le couple à mesurer et \(K_{\text {trans }}=6.2 \cdot 10^{-3} \mathrm{~V} /(\mathrm{N} \cdot \mathrm{m})\).
+  \item L'étage d'amplification et de mesure d'amplitude est modélisé par un gain de valeur \(K_{a m p l}=4\).
+\end{itemize}
+
+Le modèle adopté pour la chaîne de traitement de l'information dans le capteur de couple est résumé par le diagramme de la figure 4.6.\\
+
+\begin{figure}[!htb]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{2024_12_06_8b2ce2e701dae8972925g-15}
+\caption{Chaîne de traitement de l'information dans le capteur de couple \label{fig11}}
+\end{center}
+\end{figure}
+
+Convertisseur analogique \(\rightarrow\) numérique Le CAN utilisé dans le capteur présente les caractéristiques suivantes:
+
+\begin{center}
+\begin{tabular}{lcl}
+Grandeur & Symbole & Valeur \\
+\hline
+Résolution & \(R\) & 16 bits \\
+Tension de référence basse & \(V_{\text {ref- }}\) & 0 V \\
+Tension de référence haute & \(V_{\text {reft }}\) & 5 V \\
+\hline
+\end{tabular}
+\end{center}
+
+Tableau 4.1 - Caractéristiques du CAN
+
+Question 40 : Calculer l'incertitude introduite sur la mesure du couple \(C_{p e d}\) par la conversion analogique \(\rightarrow\) numérique. Comparer cette incertitude à celle tolérée par l'exigence de précision (exigence 320, figure 4.1) et conclure quant au dimensionnement du CAN.
+
+\subsection{4.5 Durée de la conversion analogique \(\rightarrow\) numérique}
+Le CAN utilisé pour la mesure du couple pédalier est un CAN à approximations successives. Ce CAN, dont l'architecture est présentée figure 4.7, réalise la conversion analogique \(\rightarrow\) numérique en suivant l'agorithme décrit figure 4.8. Le fonctionnement de ce CAN est cadencé sur le signal d'horloge SCLK. On admet que chaque opération (comparaison, affectation, ...) est réalisée en un coup d'horloge.\\
+
+\begin{figure}[!htb]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{2024_12_06_8b2ce2e701dae8972925g-16}
+
+Le CNA a la même résolution et les mêmes tensions de référence que le CAN auquel il est intégré (voir tableau 4.1). La mise à 1 du bit de poids j dans le mot Nint incrémente la tension Vcna de
+
+$
+\dfrac{2^{j}}{2^{16}} \cdot(\text { Vref }+- \text { Vref }-)
+$
+
+Figure \ref{fig_4_cargo}.7 - Architecture d'un CAN à approximations successives
+
+\begin{verbatim}
+# Initialisation
+Nint = 0000 0000 0000 0000 #Nint est codé en binaire naturel
+j = 15
+# Conversion par approximations successives
+Tant que (j >= 0)
+{
+    Nint[j] = 1 #affecter 1 au bit de poids j de Nint
+    Appliquer Nint en entrée du CNA
+    Si (Vcna > Vech)
+    {
+            Nint[j] = 0 #Remettre le bit de poids j de Nint à 0
+        }
+        j = j-1 #passage au bit de poids inférieur
+}
+# Communication résultat
+Nout = Nint
+\end{verbatim}
+\caption{Algorithme de conversion par approximations successives (les \# désignent les commentaires) \label{fig12}}
+\end{center}
+\end{figure}
+
+Question 41 : Sur le document réponse C, pour les quatre premières itérations de la boucle Tant que,
+
+\begin{enumerate}
+  \item indiquer la valeur en binaire prise par Nint,
+  \item tracer l'évolution de la tension Vcna\\
+au moment de l'exécution de la ligne \(« j=j-1 \ldots\) dans le cas où la tension Vech vaut 4.0625 V .
+\end{enumerate}
+
+\fi
+\question{Déterminer, en nombre de coups d'horloge, la durée que met le CAN à réaliser une conversion dans le cas le plus défavorable (cas où le nombre d'opérations est le plus élevé).}
+
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+
+\else
+Question 43 : Déduire de la question précédente la fréquence minimale du signal d'horloge \(f_{S C L K}\) qui permet de réaliser 20000 conversions par seconde.
+
+\section{5 Modélisation de l'association \{ onduleur + machine synchrone \}}
+\section{Objectif}
+Modéliser le fonctionnement de l'association \{ Machine synchrone à fcem trapézoïdales + onduleur \}.\\
+Le groupe d'assistance est animé par une machine synchrone triphasée dont les forces contre-électromotrices présentent une évolution temporelle trapézoïdale (figure 5.1). Du fait de son comportement analogue à une machine à courant continu, l'association \{ machine à fcem trapézoïdales + onduleur \} porte la désignation commerciale de «machine à courant continu sans balais» (de l'anglais BLDC pour «BrushLess Direct Courant motor»). Cette partie vise à modéliser le fonctionnement de cette association machine - modulateur.
+
+Les grandeurs et notations utiles dans la suite de cette partie sont définies dans le tableau 5.1 ainsi que sur les figures 5.2 et 5.3. La figure 5.3 détaille l'architecture de l'association onduleur + machine. L'onduleur est piloté de telle sorte que les courants \(i_{1}, i_{2}\) et \(i_{3}\) absorbés par chaque phase suivent le profil idéal défini figure 5.2.\\
+
+\begin{figure}[!htb]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{2024_12_06_8b2ce2e701dae8972925g-17}
+
+\begin{center}
+\begin{tabular}{lll}
+Grandeur & Symbole & Valeur \\
+\hline
+Nombre de paires de pôles & \(p\) & 2 \\
+par phase &  &  \\
+Vitesse de rotation & \(\omega_{m}\) &  \\
+Phase électrique & \(\theta_{e}\) &  \\
+\hline
+\end{tabular}
+\end{center}
+
+Tableau 5.1 - Données et notations relatives à la machine étudiée
+
+Figure \ref{fig_5_cargo}.1 - Forces électromotrices induites lors de la mise en rotation de la machine
+
+Question 44 : À partir de la figure 5.1, calculer, dans les unités du système international, la constante \(k_{\phi}\) telle que \(E_{\max }=k_{\phi} \cdot \omega_{m}\).
+
+\subsection{5.1 Expression du couple électromagnétique}
+On note \(P_{\text {emg }}\) la puissance électromagnétique instantanée délivrée par la machine.
+
+Question 45 : Exprimer la puissance \(P_{e m g}\) quelle que soit la valeur de \(\theta_{e}\) en fonction des tensions et courants définis figure 5.3.
+
+Question 46 : Dans le cas particulier où \(\theta_{e}\) est compris entre 30 et \(90^{\circ}\), exprimer \(P_{e m g}\) en fonction de \(E_{\max }\) et \(i_{10}\).
+
+Question 47 : Déterminer la condition portant sur les courants \(i_{10}, i_{20}\) et \(i_{30}\) qui permet de rendre constante la puissance électromagnétique \(P_{e m g}\) délivrée par la machine.
+
+Question 48 : En supposant que la puissance \(P_{e m g}\) est constante, montrer que le couple électromagnétique délivré par la machine est proportionnel au courant \(i_{o n d}\) débité par l'onduleur : \(C_{m}=K_{m} \cdot i_{\text {ond }}\). Déterminer l'expression de \(K_{m}\).
+
+\subsection{5.2 Acquisition du courant}
+L'asservissement du courant absorbé par la machine est réalisé en appliquant une commande de type MLI (modulation de largeur d'impulsion) sur les transistors. Les transistors pilotés évoluent en fonction de la phase
+
+Phase 1\\
+\includegraphics[width=.8\linewidth]{2024_12_06_8b2ce2e701dae8972925g-18}
+
+Phase 2\\
+\includegraphics[width=.8\linewidth]{2024_12_06_8b2ce2e701dae8972925g-18(2)}
+
+Phase 3\\
+\includegraphics[width=.8\linewidth]{2024_12_06_8b2ce2e701dae8972925g-18(1)}
+
+FIGURE 5.2 - FCEM et courants idéaux dans chaque phase de la machine\\
+\includegraphics[width=.8\linewidth]{2024_12_06_8b2ce2e701dae8972925g-18(3)}
+\caption{Machine synchrone à FEM trapézoïdale et modulateur associé\\ \label{fig13}}
+\end{center}
+\end{figure}
+électrique \(\theta_{e}\). La résistance \(R_{s}\) (figure 5.3) est un shunt de \(3 \mathrm{~m} \Omega\) utilisé pour l'acquisition du courant absorbé par la machine.
+
+Séquence de commande des transistors On s'intéresse au cas où \(\theta_{e}\) est compris entre 30 et \(90^{\circ}\). Au cours de cette phase, l'onduleur est piloté de la manière suivante :
+
+\begin{itemize}
+  \item les transistors \(T_{3 b}\) et \(T_{3 h}\) sont constamment bloqués,
+  \item le transistor \(T_{2 b}\) est constamment saturé,
+  \item le transistor \(T_{1 h}\) est piloté de manière périodique. En notant \(T\) la période de découpage et \(\alpha\) le rapport cyclique de découpage, ce transistor est piloté de la manière suivante :
+  \item \(T_{1 h}\) est saturé pour \(t \in[0, \alpha \cdot T[\)
+  \item \(T_{1 h}\) est bloqué pour \(t \in[\alpha \cdot T, T[\)
+\end{itemize}
+
+La période de découpage \(T\) est choisie beaucoup plus petite que la période des FCEM.
+
+Question 49 : Sur le document réponse D, surligner la maille dans laquelle circule un courant au cours de chacun des deux temps de la période de découpage.
+
+Question 50 : Tracer alors l'évolution temporelle de la chute de tension aux bornes du shunt \(R_{s}\) au cours d'une période de découpage. Indiquer la condition à satisfaire pour réaliser l'acquisition du courant absorbé par la machine.
+
+\section{6 Asservissement du couple délivré par le groupe d'assistance}
+L'architecture du groupe d'assistance dont est pourvu le vélo est présentée figure 6.3. Ce groupe d'assistance ajoute au couple \(C_{p c}\) appliqué par le cycliste sur le pédalier un couple \(C_{p m}\) délivré par la motorisation. Ce système est asservi de telle sorte que le couple \(C_{p m}\) appliqué par la motorisation est proportionnel au couple \(C_{p c}\) fourni par le cycliste : \(C_{p m}=K_{a s} \cdot C_{p c}\) (le couple \(C_{p m}\) sature à \(90 \mathrm{~N} \cdot \mathrm{~m}\) ). Le cycliste peut faire varier le niveau d'assistance entre 0 (groupe d'assistance désactivé) et 4 (assistance maximale). Chaque niveau d'assistance correspond à une valeur du coefficient d'assistance \(K_{a s}\) (figure 6.1).
+
+Cahier des charges de l'asservissement en couple Les spécifications relatives à l'asservissement du couple appliqué par le groupe d'assistance au niveau de l'axe du pédalier sont données figure 6.2.\\
+
+\begin{figure}[!htb]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{2024_12_06_8b2ce2e701dae8972925g-20}
+\caption{Évolution du coefficient d'assistance \(K_{a s}\) en fonction du niveau d'assistance\\ \label{fig14}}
+\end{center}
+\end{figure}
+
+\begin{figure}[!htb]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{2024_12_06_8b2ce2e701dae8972925g-20(1)}
+\caption{Extrait du cahier des charges relatif au contrôle du couple d'assistance \label{fig15}}
+\end{center}
+\end{figure}
+
+\subsection{6.1 Modélisation de l'asservissement du couple \(C_{p m}\)}
+L'asservissement du couple délivré par le groupe d'assistance est modélisé sous la forme du schéma-bloc donné figure 6.4.
+
+\section{Notations et hypothèses}
+\begin{itemize}
+  \item \(p\) désigne la variable de Laplace, la transformée de Laplace d'une fonction du temps \(f(t)\) est notée \(F(p)\).
+  \item Les conditions de Heaviside sont supposées satisfaites.
+  \item Les grandeurs introduites sur le schéma de la figure 6.4 sont recensées dans le tableau 6.1.\\
+
+\begin{figure}[!htb]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{2024_12_06_8b2ce2e701dae8972925g-21(1)}
+\end{itemize}
+\caption{Schéma d'architecture du groupe d'assistance\\ \label{fig16}}
+\end{center}
+\end{figure}
+
+\begin{figure}[!htb]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{2024_12_06_8b2ce2e701dae8972925g-21}
+\caption{Schéma-bloc de l'asservissement du couple appliqué par le groupe d'assistance sur l'axe du pédalier \label{fig17}}
+\end{center}
+\end{figure}
+
+\begin{center}
+\begin{tabular}{clcc}
+ & Grandeur & Symbole & Valeur \\
+\hline
+ & Coefficient d'assistance & \(K_{a s}\) &  \\
+ & Fonction de transfert du correcteur & \(C(p)\) &  \\
+\hline
+Grandeurs & Rapport de transmission du réducteur du groupe d'assistance & \(K_{r}\) &  \\
+mécaniques & Moment d'inertie de tout l'ensemble en mouvement ramené & \(J_{e q}\) &  \\
+ & sur l'axe du pédalier &  &  \\
+ & Rapport de transmission du pédalier à la roue & \(K_{t}\) &  \\
+ & Rayon de la roue arrière & \(R_{1}\) &  \\
+ & Couple appliqué par le cycliste sur le pédalier & \(C_{p c}(p)\) &  \\
+ & Couple appliqué par la motorisation sur le pédalier & \(C_{p m}(p)\) &  \\
+ & Couple résistant ramené sur l'axe du pédalier & \(C_{p r}(p)\) &  \\
+ & Vitesse de rotation du pédalier & \(\Omega_{p e d}(p)\) &  \\
+ & Vitesse de déplacement du vélo & \(V_{v}(p)\) &  \\
+ & Masse de l'ensemble en mouvement & \(m_{T}\) &  \\
+\hline
+Machine & \(K_{m}\) & \(4 \cdot 10^{-2} \mathrm{~N} \cdot \mathrm{~m} / \mathrm{A}=\) &  \\
+ & Constante de couplage &  & \(4 \cdot 10^{-2} \mathrm{~V} \cdot \mathrm{~s} / \mathrm{rad}\) \\
+ &  & \(R_{m}\) & \(0.1 \Omega\) \\
+ & Résistance d'induit & \(L_{m}\) & \(7 \cdot 10^{-4} \mathrm{H}\) \\
+ & Inductance d'induit & \(E(p)\) &  \\
+ & Force contre-électromotrice & \(U_{m}(p)\) &  \\
+ & Tension d'induit &  &  \\
+\hline
+\end{tabular}
+\end{center}
+
+Tableau 6.1 - Grandeurs intervenant dans le schéma-bloc de la figure 6.4
+
+Énergies cinétiques et inertie équivalente Au cours de son mouvement, le vélo accumule de l'énergie cinétique :
+
+\begin{itemize}
+  \item de par son mouvement de translation par rapport au sol,
+  \item du fait des rotations par rapport à son cadre de certains éléments composent le vélo (roues, rotor du moteur, partie mobiles du réducteur, pédalier).\\
+On admet que l'énergie cinétique accumulée par le mouvement de translation du vélo par rapport au sol est très grande devant l'énergie cinétique accumulée par les mouvements de rotation.
+\end{itemize}
+
+Question 51 : Déterminer l'expression du moment d'inertie équivalent \(J_{e q}\) de l'ensemble du vélo ramené sur l'axe du pédalier en fonction de \(m_{T}, R_{1}\) et \(K_{t}\).
+
+\subsection{6.2 Simplification du modèle}
+Le schéma-blocs donné figure 6.4 peut se mettre sous la forme du schéma simplifié donné figure 6.5 ci-dessous.\\
+
+\begin{figure}[!htb]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{2024_12_06_8b2ce2e701dae8972925g-22}
+\caption{Schéma-bloc simplifié de l'asservissement du couple d'assistance \label{fig18}}
+\end{center}
+\end{figure}
+
+Question 52 : À partir du schéma-bloc donné figure 6.4, déterminer la dimension de \(C(p)\). Justifier alors que les grandeurs \(G_{c}\) et \(G_{p e d}\) sont homogènes.
+
+\fi
+\question{Déterminer la fonction de transfert}
+
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+
+\else
+$
+H_{G}(p)=\dfrac{C_{p m}(p)}{\Delta G(p)}
+$
+
+en fonction de \(C(p), R_{m}\) et \(L_{m}\).
+
+\fi
+\question{Déterminer l'expression de \(\Delta G(p)\) en fonction de \(C_{p c}(p), C_{p m}(p)\) et \(C_{p r}(p)\).}
+
+\ifprof
+\begin{corrige}
+
+\end{corrige}
+
+\else
+\fi
+
+\subsection{6.3 Correction proportionnelle (P)}
+\section{Objectif}
+Évaluer le respect des exigences dans le cas d'une correction proportionnelle.\\
+On opte dans un premier temps pour une correction proportionnelle : \(C(p)=K_{c}\).\\
+Question 55 : En supposant \(C_{p r}=0\), déterminer l'expression de la fonction de transfert :
+
+$
+H_{a s}(p)=\left.\dfrac{C_{p m}(p)}{C_{p c}(p)}\right|_{C_{p r}=0}
+$
+
+en fonction des grandeurs constantes définies dans le tableau 6.1.
+
+Question 56 : Montrer alors que la correction proportionnelle ne permet pas de satisfaire l'exigence 420 portant sur l'erreur statique.
+
+\subsection{6.4 Correction proportionnelle intégrale (PI)}
+\section{Objectif}
+Dimensionner un correcteur proportionnel intégral permettant de satisfaire le cahier des charges.\\
+On évalue désormais le comportement de l'asservissement du couple d'assistance dans le cas d'une correction proportionnelle-intégrale :
+
+$
+C(p)=K_{c} \dfrac{1+T_{i} \cdot p}{T_{i} \cdot p}
+$
+
+Avec ce correcteur, la fonction de transfert \(H_{a s}(p)\) devient :
+
+$
+H_{a s}(p)=\dfrac{K_{a s} \cdot\left(K_{r}\right)^{2} \cdot J_{e q} \cdot K_{c}-\left(K_{m}\right)^{2} \cdot T_{i}+K_{a s} \cdot\left(K_{r}\right)^{2} \cdot J_{e q} \cdot K_{c} \cdot T_{i} \cdot p}{K_{c} \cdot\left(K_{r}\right)^{2} \cdot J_{e q}+\left(K_{m}\right)^{2} \cdot T_{i}+\left(K_{r}\right)^{2} \cdot J_{e q} \cdot T_{i} \cdot\left[R_{m}+K_{c}\right] \cdot p+\left(K_{r}\right)^{2} \cdot J_{e q} \cdot L_{m} \cdot T_{i} \cdot p^{2}}
+$
+
+Exigence de précision Le respect de l'exigence 420 impose :
+
+$
+\dfrac{K_{c}}{T_{i}} \geq \dfrac{100+95 \cdot K_{a s}}{5 \cdot K_{a s}} \cdot \dfrac{\left(K_{m}\right)^{2}}{K_{r} \cdot J_{e q}} \text { soit : } \quad \dfrac{K_{c}}{T_{i}} \geq 12.3 \cdot 10^{-3} \dfrac{\mathrm{~V}}{\mathrm{~A} \cdot \mathrm{~s}} \quad \text { pour } K_{a s}=0.5 \text { (cas le plus sévère) }
+$
+
+Exigence de bande passante Afin de respecter l'exigence 440 portant sur la bande passante de l'asservissement, on impose \(\omega_{0}=252 \mathrm{rad} / \mathrm{s}\).
+
+Question 57 : Exprimer le dénominateur de \(H_{a s}\) sous forme canonique et en déduire l'expression de sa pulsation propre \(\omega_{0}\).
+
+Question 58 : Déterminer la valeur du rapport \(K_{c} / T_{i}\) qui permet d'obtenir \(\omega_{0}=252 \mathrm{rd} / \mathrm{s}\).
+
+Exigence portant sur les dépassements Le concepteur a choisi de régler le coefficient d'amortissement \(z\) à 1 ce qui conduit aux valeurs suivantes :
+
+$
+K_{c} \approx 0.253 \mathrm{~V} / \mathrm{A} \quad \text { et } \quad T_{i} \approx 5.69 \cdot 10^{-3} \mathrm{~s}
+$
+
+Simulation Le fonctionnement de l'asservissement du couple d'assistance est simulé pour \(K_{a s}=0.5\) avec les valeurs de \(K_{c}\) et \(T_{i}\) déterminées précédemment. De cette simulation sont extraits :
+
+\begin{itemize}
+  \item l'évolution du couple \(C_{p m}\) en réponse à un échelon de couple \(C_{p c}\) (figure 6.6),
+  \item le diagramme de Bode du rapport \(C_{p m} / C_{p c}\) (figure 6.7).
+\end{itemize}
+
+Question 59 : Au regard du diagramme de Bode de la figure 6.7, proposer une forme simplifiée pour la fonction de transfert \(H_{a s}\).
+
+Question 60 : À partir des figures 6.6 et 6.7, conclure quant au respect des exigences 420,430 et 440 du diagramme des exigences de la figure 6.2.
+
+Fin du sujet.\\
+
+\begin{figure}[!htb]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{2024_12_06_8b2ce2e701dae8972925g-24}
+\caption{Évolution du couple d'assistance \(C_{p m}\) pour \(K_{a s}=0.5\) en réponse à un échelon d'amplitude \(80 \mathrm{~N} \cdot \mathrm{~m}\) \(\operatorname{sur} C_{p c}\)\\ \label{fig19}}
+\end{center}
+\end{figure}
+
+\begin{figure}[!htb]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{2024_12_06_8b2ce2e701dae8972925g-24(1)}
+\caption{Diagramme de Bode de la fonction de transfert \(H_{a s}(p)\) pour \(K_{a s}=0.5\) \label{fig20}}
+\end{center}
+\end{figure}
+
+\section{Document réponse}
+DR A : Schéma cinématique - Question 3\\
+\includegraphics[width=.8\linewidth]{2024_12_06_8b2ce2e701dae8972925g-25(2)}
+
+DR B : Figures de calcul - Question 4\\
+\includegraphics[width=.8\linewidth]{2024_12_06_8b2ce2e701dae8972925g-25(1)}\\
+\includegraphics[width=.8\linewidth]{2024_12_06_8b2ce2e701dae8972925g-25}
+
+DR C : Évolution de la tension Vcna - Question 41\\
+\includegraphics[width=.8\linewidth]{2024_12_06_8b2ce2e701dae8972925g-26(1)}
+
+DR D : Mailles actives - Question 49\\
+\includegraphics[width=.8\linewidth]{2024_12_06_8b2ce2e701dae8972925g-26}
+
+\begin{enumerate}
+  \item 
+\end{enumerate}
+%
