@@ -66,7 +66,7 @@ La station totale TCRA 1103 est utilisée en topographie pour des distances comp
 La mesure est réalisée lorsque le faisceau laser pointe au centre du prisme optique rétro-réfléchissant, l'écart initial dû au suivi étant compensé avant toute mesure.\\
 
 %Q 6. 
-\question{\label{CCS_MP_2017:q_06}Déterminer, en fonction des données, les expressions littérales puis calculer les valeurs numériques de la vitesse angulaire $\dot{\varphi}_{\mathrm{ref}}\left(\mathrm{entr} \cdot \mathrm{min}^{-1}\right.$ ) et de la résolution angulaire $\Delta \varphi_{\mathrm{ref}}$ (en degrés) en azimut permettant d'assurer le suivi de l'opérateur lorsqu'il déplace le prisme optique rétro-réfléchissant entre deux mesures.}
+\question{\label{CCS_MP_2017:q_06}Déterminer, en fonction des données, les expressions littérales puis calculer les valeurs numériques de la vitesse angulaire $\dot{\varphi}_{\mathrm{ref}}\left(\mathrm{entr} \cdot \mathrm{min}^{-1}\right.$) et de la résolution angulaire $\Delta \varphi_{\mathrm{ref}}$ (en degrés) en azimut permettant d'assurer le suivi de l'opérateur lorsqu'il déplace le prisme optique rétro-réfléchissant entre deux mesures.}
 \ifprof
 \begin{corrige}
 La vitesse de déplacement du point de mesure (F) (défini à la question 3 du corrigé), situé à une distance $D$ de l’isocentre, s’exprime par la relation : $V=D\varphip$.Cette vitesse doit correspondre à la vitesse de déplacement de l’opérateur. 
@@ -87,7 +87,7 @@ A.N.  $\Delta \indice{\varphi}{ref}=\arctan(0,05/500)=5,73.10^{(-3)}\degres =1.1
 \fi
 
 
-\subsection{Étude partielle de l'exigence =  1.2   Identifier l'écart au centre du prisme optique rétro-réfléchissant et assurer le suivi au centre en continu »}
+\subsection{Étude partielle de l'exigence 1.2 : << Identifier l'écart au centre du prisme optique rétro-réfléchissant et assurer le suivi au centre en continu >>}
 \begin{obj}
 Développer un modèle de simulation afin de mettre en œuvre une synthèse des lois de commande permettant de réaliser des mesures en continu avec une précision conforme aux attentes des géomètres.
 \end{obj}
@@ -128,31 +128,42 @@ Les pertes en effort au niveau des axes de liaisons pivot sont modélisées par 
 
 \begin{figure}[!h]
 \centering
-\begin{tabular}{|p{8cm}|c|c|}
+\begin{tabular}{p{8cm}ll}
 \hline
-Grandeurs & Liaison $\boldsymbol{L}_{\mathbf{1 / 0}}$ & Liaison $\boldsymbol{L}_{\mathbf{2} / \mathbf{1}}$ \\
+\textbf{Grandeurs} & \textbf{Liaison} $\boldsymbol{L}_{\mathbf{1 / 0}}$ & \textbf{Liaison} $\boldsymbol{L}_{\mathbf{2} / \mathbf{1}}$ \\
 \hline
 Modèle de liaison choisi & Pivot d'axe $\left(O, \vec{z}_{0}\right)$ & Pivot d'axe $\left(O, \vec{x}_{1}\right)$ \\
-\hline
-Paramètre angulaire & Angle d'azimut $\varphi$ & Angle d'élévation $\theta$ \\
-\hline
 
-Rapports des réducteurs de la liaison motorisée : 
+Paramètre angulaire & Angle d'azimut $\varphi$ & Angle d'élévation $\theta$ \\
+
+Rapports des réducteurs de la liaison motorisée : & & \\
+
 \begin{itemize}
 \item étage a : réducteur à denture droite;
+\end{itemize}
+& $\dfrac{\omega_{1 / 0}}{\omega_{\mathrm{m} 1}}=\rho_{1 \mathrm{a}} \rho_{1 \mathrm{~b}}=\rho_{1}$ 
+& $\dfrac{\omega_{2 / 1}}{\omega_{\mathrm{m} 2}}=\rho_{2 \mathrm{a}} \rho_{2 \mathrm{~b}}=\rho_{2}$ \\
+\begin{itemize}
 \item étage b : réducteur à roue et vis sans fin.
 \end{itemize}
+& $\rho_{1 \mathrm{a}}=-\dfrac{2}{7}$ et $\rho_{1 \mathrm{~b}}=-\dfrac{1}{210}$ & 
+$\rho_{2 \mathrm{a}}=-\dfrac{2}{7}$ et $\rho_{2 \mathrm{~b}}=-\dfrac{1}{184}$\\
 
- & $\dfrac{\omega_{1 / 0}}{\omega_{\mathrm{m} 1}}=\rho_{1 \mathrm{a}} \rho_{1 \mathrm{~b}}=\rho_{1}$ & $\dfrac{\omega_{2 / 1}}{\omega_{\mathrm{m} 2}}=\rho_{2 \mathrm{a}} \rho_{2 \mathrm{~b}}=\rho_{2}$ \\
-\hline
-Facteur de perte $k_{i}$ (sans unité) & $\rho_{1 \mathrm{a}}=-\dfrac{2}{7}$ et $\rho_{1 \mathrm{~b}}=-\frac{1}{210}$ & $\rho_{2 \mathrm{a}}=-\frac{2}{7}$ et $\rho_{2 \mathrm{~b}}=-\dfrac{1}{184}$ \\
-\hline
-Couple moteur équivalent de la machine à courant continu au niveau de l'axe de la liaison $L_{j / i}(\mathrm{~N} \cdot \mathrm{~m})$  & $\frac{k_{1}}{} \approx 0,74$ & $k_{2} \approx 0,82$ \\
-\hline
+Facteur de perte $k_{i}$ (sans unité) &$k_{1} \approx 0,74$ & $k_{2} \approx 0,82$ \\
+
+Couple moteur équivalent de la machine à courant continu au niveau de l'axe de la liaison $L_{j / i}(\mathrm{~N} \cdot \mathrm{~m})$  &
+$\dfrac{k_{1}}{\rho_{1}} c_{\mathrm{m} 1}$ 
+& $\dfrac{k_{2}}{\rho_{2}} c_{\mathrm{m} 2}$ \\
+
 Moment résistant équivalent au niveau de l'axe de 
-la liaison $L_{j / i}$, dû au frottement sec $(\mathrm{N} \cdot \mathrm{m})$  & $\frac{k_{1}}{\rho_{1}} c_{\mathrm{m} 1}$ & $\frac{k_{2}}{\rho_{2}} c_{\mathrm{m} 2}$ \\
-\hline
-Moment de frottement visqueux équivalent au  niveau de l'axe de la liaison $L_{j / i}(\mathrm{~N} \cdot \mathrm{~m})$  & $-\frac{k_{1}}{\rho_{1}} f_{\mathrm{Eq} 1} \dot{\varphi}$ & $\frac{k_{2}}{\rho_{2}} c_{\mathrm{r} 2}$ \\
+la liaison $L_{j / i}$, dû au frottement sec $(\mathrm{N} \cdot \mathrm{m})$  & 
+$\dfrac{k_{1}}{\rho_{1}} c_{\mathrm{r} 1}$ 
+& $\dfrac{k_{2}}{\rho_{2}} c_{\mathrm{r} 2}$ \\
+
+
+Moment de frottement visqueux équivalent au  niveau de l'axe de la liaison $L_{j / i}(\mathrm{~N} \cdot \mathrm{~m})$  & 
+$-\dfrac{k_{1}}{\rho_{1}} f_{\mathrm{Eq} 1} \dot{\varphi}$ & 
+$-\dfrac{k_{2}}{\rho_{2}} f_{\mathrm{Eq} 2} \dot{\theta}$ \\
 \hline
 \end{tabular}
 %Figure 11 
@@ -301,7 +312,7 @@ La complexité des formes des pièces et de la structure géométrique ainsi que
 Afin de simplifier l'étude, l'identification des paramètres du modèle décrivant la dynamique des deux chaines va s'effectuer de façon découplée : les moteurs sont donc alimentés alternativement et on suppose par ailleurs que le bloc optique est positionné horizontalement, soit $\theta=0^{\circ}$, pour l'étude de l'axe d'azimut seul.\\
 
 %Q 12. 
-\question{\label{CCS_MP_2017:q_12}Dans le cadre de ces configurations découplées, simplifier les équations de la question \ref{CCS_MP_2017:q_11} . Donner les expressions des moments d'inertie équivalents $J_{\mathrm{Eq} \varphi}$ et $J_{\mathrm{Eq} \theta}$ respectivement par rapport aux axes d'azimut et d'élévation, en fonction des coefficients constants $A_{i}, B_{i}$ et $C_{i}$. Donner alors les expressions des inerties équivalentes $J_{\mathrm{Eq} 1}$ et $J_{\mathrm{Eq} 2}$ au niveau des arbres moteurs des deux machines à courant continu en fonction de ces mêmes coefficients et de tout ou partie des données de la figure \ref{CCS_MP_2017:fig_11}.}
+\question{\label{CCS_MP_2017:q_12}Dans le cadre de ces configurations découplées, simplifier les équations de la question \ref{CCS_MP_2017:q_11} . Donner les expressions des moments d'inertie équivalents $J_{\mathrm{Eq} \varphi}$ et $J_{\mathrm{Eq} \theta}$ respectivement par rapport aux axes d'azimut et d'élévation, en fonction des coefficients constants $A_{i}, B_{i}$ et $C_{i}$. Donner alors les expressions des moments d'inerties équivalents $J_{\mathrm{Eq} 1}$ et $J_{\mathrm{Eq} 2}$ au niveau des arbres moteurs des deux machines à courant continu en fonction de ces mêmes coefficients et de tout ou partie des données de la figure \ref{CCS_MP_2017:fig_11}.}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -317,11 +328,11 @@ Le comportement d'une machine à courant continu utilisée en moteur est décrit
 \hline
 Théorème d'obtention de l'équation & Équation différentielle \\
 \hline
-Loi des mailles appliquée au modèle électrique équivalent  & $u_{\mathrm{mi}}(t)=R i_{\mathrm{i}}(t)+L \frac{\mathrm{~d} i_{\mathrm{i}}(t)}{\mathrm{d} t}+e_{\mathrm{i}}(t)$ \\
+Loi des mailles appliquée au modèle électrique équivalent  & $u_{\mathrm{mi}}(t)=R i_{\mathrm{i}}(t)+L \dfrac{\mathrm{~d} i_{\mathrm{i}}(t)}{\mathrm{d} t}+e_{\mathrm{i}}(t)$ \\
 
 Théorème de l'énergie cinétique appliqué à l'ensemble mécanique entrainé par la machine à courant continu 
  & 
- $J_{\mathrm{Eq} i} \frac{\mathrm{~d} \omega_{\mathrm{mi}}(t)}{\mathrm{d} t}=c_{\mathrm{mi}}(t)+c_{\mathrm{ri}}(t)-f_{\mathrm{Eqi}} \omega_{\mathrm{mi}}(t)$ \\
+ $J_{\mathrm{Eq} i} \dfrac{\mathrm{~d} \omega_{\mathrm{mi}}(t)}{\mathrm{d} t}=c_{\mathrm{mi}}(t)+c_{\mathrm{ri}}(t)-f_{\mathrm{Eqi}} \omega_{\mathrm{mi}}(t)$ \\
 
 Équations de couplage électro-mécanique dans l'induit de la machine à courant continu & 
 $c_{\mathrm{mi}}(t)=K_{\mathrm{T}} i_{\mathrm{i}}(t) \quad$ et $\quad e_{\mathrm{i}}(t)=K_{\mathrm{E}} \omega_{\mathrm{mi}}(t)$ \\
@@ -337,8 +348,8 @@ La machine à courant continu Faulhaber 2224-U006-SR utilisée pour la motorisat
 d'élévation a les caractéristiques suivantes:
 
 \begin{itemize}
-  \item tension nominale $U_{0}=6 \mathrm{~V}$;
-  \item résistance $R=1,94 \Omega$ et inductance d'induit $L=45 \mu \mathrm{H}$;
+  \item tension nominale $U_{0}=\SI{6}{V}$;
+  \item résistance $R=1,94\,\Omega$ et inductance d'induit $L=45 \mu \mathrm{H}$;
   \item constante de couplage $K=K_{\mathrm{T}}=K_{\mathrm{E}}$ avec $K_{T}=6,92 \times 10^{-3} \mathrm{~N} \cdot \mathrm{~m} \cdot \mathrm{~A}^{-1}$ et $K_{E}=6,92 \times 10^{-3} \mathrm{~V} \cdot \mathrm{~s} \cdot \mathrm{rad}{ }^{-1}$.
 \end{itemize}
 
@@ -353,7 +364,7 @@ Par ailleurs, pour chacun des axes (axe d'azimut, indice 1, et axe d'élévation
 Les transformées de Laplace des fonctions temporelles seront notées en majuscule : ainsi, pour la vitesse angulaire du moteur, on notera $\Omega_{\mathrm{mi}}(p)=\mathcal{L}\left[\omega_{\mathrm{mi}}(t)\right]$ où $\mathcal{L}$ est l'opérateur et $p$ la variable symbolique de Laplace.\\
 Dans toute la suite du problème, les conditions initiales de Heaviside sont supposées être vérifiées.\\
 %Q 13. 
-\question{\label{CCS_MP_2017:q_13}Répondre à cette question exclusivement sur la figure B du document réponse. Compléter la partie correspondant au schéma-bloc associé à la machine à courant continu de l'axe d'azimut dont le fonctionnement est décrit par les équations données figure \ref{CCS_MP_2017:fig_12}. Compléter également le dernier bloc vide de ce schéma d'asservissement.}
+\question{\label{CCS_MP_2017:q_13}Répondre à cette question exclusivement sur la figure C du document réponse. Compléter la partie correspondant au schéma-bloc associé à la machine à courant continu de l'axe d'azimut dont le fonctionnement est décrit par les équations données figure \ref{CCS_MP_2017:fig_12}. Compléter également le dernier bloc vide de ce schéma d'asservissement.}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -375,10 +386,10 @@ Pour réaliser l'identification des paramètres équivalents, la machine à cour
 \fi
 
 
-Sur les courbes de mesure, la montée initiale de courant est quasi instantanée, ce qui est révélateur d'une influence faible de l'inductance $L$ et, par ailleurs, la question précédente a mis en évidence l'influence négligeable du frottement visqueux équivalent : par conséquent, dans la suite, on néglige ces termes, soit $L=0$ et $f_{\mathrm{Eq} 1}=0$. On donne les deux transformées inverses suivantes : $\frac{1}{\alpha p+\beta} \xrightarrow{\mathcal{L}^{-1}} \frac{1}{\alpha} \mathrm{e}^{-\frac{\beta}{\alpha} t}$ et $\frac{1}{p(\alpha p+\beta)} \xrightarrow{\mathcal{L}^{-1}} \frac{1}{\beta}\left(1-\mathrm{e}^{-\frac{\beta}{\alpha} t}\right)$ et, pour les calculs, il est possible de poser $T_{1}=\alpha / \beta$.
+Sur les courbes de mesure, la montée initiale de courant est quasi instantanée, ce qui est révélateur d'une influence faible de l'inductance $L$ et, par ailleurs, la question précédente a mis en évidence l'influence négligeable du frottement visqueux équivalent : par conséquent, dans la suite, on néglige ces termes, soit $L=0$ et $f_{\mathrm{Eq} 1}=0$. On donne les deux transformées inverses suivantes : $\dfrac{1}{\alpha p+\beta} \xrightarrow{\mathcal{L}^{-1}} \dfrac{1}{\alpha} \mathrm{e}^{-\dfrac{\beta}{\alpha} t}$ et $\dfrac{1}{p(\alpha p+\beta)} \xrightarrow{\mathcal{L}^{-1}} \dfrac{1}{\beta}\left(1-\mathrm{e}^{-\dfrac{\beta}{\alpha} t}\right)$ et, pour les calculs, il est possible de poser $T_{1}=\alpha / \beta$.
 
 %Q 15. 
-\question{\label{CCS_MP_2017:q_15}Montrer que, dans le cadre des simplifications précédentes et dans le cas d'un échelon de tension d'alimentation d'amplitude $u_{0}, I_{1}(p)=\frac{1}{K^{2}+R J_{\mathrm{Eq} 1} p}\left(J_{\mathrm{Eq} 1} u_{0}-K \frac{c_{\mathrm{r} 10}}{p}\right)$. En déduire l'expression temporelle de l'intensité $i_{1}(t)$ en utilisant les transformées symboliques inverses fournies précédemment.}
+\question{\label{CCS_MP_2017:q_15}Montrer que, dans le cadre des simplifications précédentes et dans le cas d'un échelon de tension d'alimentation d'amplitude $u_{0}, I_{1}(p)=\dfrac{1}{K^{2}+R J_{\mathrm{Eq} 1} p}\left(J_{\mathrm{Eq} 1} u_{0}-K \dfrac{c_{\mathrm{r} 10}}{p}\right)$. En déduire l'expression temporelle de l'intensité $i_{1}(t)$ en utilisant les transformées symboliques inverses fournies précédemment.}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -480,83 +491,85 @@ La synthèse de ce correcteur doit garantir une marge de phase $M_{\mathrm{Ph}}=
 Le tracé, dans le plan de BODE, de la réponse fréquentielle de la fonction de transfert en boucle ouverte de l'asservissement de l'axe d'azimut pour une correction unitaire (gain $K_{\mathrm{p} 1}=1$, grandeur sans unité) est fournie, en trait continu fort, figure E du document réponse.\\
 
 %Q 22. 
-\question{\label{CCS_MP_2017:q_22}Répondre à cette question exclusivement sur la figure E du document réponse. Un correcteur à action proportionnelle permet-il de respecter les spécifications du cahier des charges (commenter les constructions sur le graphe et dans la zone prévue à cet effet)?}
+\question{\label{CCS_MP_2017:q_22}
+%Répondre à cette question exclusivement sur la figure E du document réponse. 
+Un correcteur à action proportionnelle permet-il de respecter les spécifications du cahier des charges (commenter les constructions sur le graphe et dans la zone prévue à cet effet) ?}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
 
-
-Afin de répondre aux exigences du cahier des charges en terme de marge de phase, un correcteur à avance de phase de fonction de transfert $C_{1}(p)=K_{\mathrm{p} 1} \frac{1+a T_{\mathrm{d}} p}{1+T_{\mathrm{d}} p}$ est choisi : dans cette fonction de transfert, $K_{\mathrm{p} 1}>0$ est un gain sans unité, $a>1$ est un facteur sans unité et $T_{\mathrm{d}}>0$ est une constante de temps en seconde.\\
-
-%Q 23. 
-\question{\label{CCS_MP_2017:q_23}Après avoir déterminé la valeur de la phase $\varphi_{\mathrm{m}}$ que le correcteur à avance de phase doit apporter à la pulsation $\omega_{1}=2 \times 10^{4} \mathrm{rad} \cdot \mathrm{s}^{-1}$ pour imposer la marge de phase $M_{\mathrm{Ph}}=45^{\circ}$ souhaitée, déterminer les valeurs numériques du facteur $a$ et de la constante de temps $T_{\mathrm{d}}$ sachant que $a=\frac{1+\sin \varphi_{\mathrm{m}}}{1-\sin \varphi_{\mathrm{m}}}$ et $\omega_{1}=\frac{1}{T_{\mathrm{d}} \sqrt{a}}$.}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-Le tracé, dans le plan de BODE , de la réponse fréquentielle de la fonction de transfert en boucle ouverte de l'asservissement de l'axe d'azimut pour une correction à avance de phase de gain unitaire ( $K_{\mathrm{p} 1}=1$ sans unité) et les valeurs du facteur $a$ et de la constante de temps $T_{\mathrm{d}}$ déterminées question \ref{CCS_MP_2017:q_23} est fournie, en trait pointillé, figure E du document réponse.\\
-
-%Q 24. 
-\question{\label{CCS_MP_2017:q_24}Répondre à cette question exclusivement sur la figure E du document réponse. Déterminer la valeur du gain $K_{\mathrm{p} 1}$ permettant d'avoir un gain unitaire à la pulsation $\omega_{1}=2 \times 10^{4} \mathrm{rad} \cdot \mathrm{s}^{-1}$ (commenter les constructions sur le graphe et dans la zone prévue à cet effet).}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-Afin de réaliser des mesures rapidement, il est nécessaire d'assurer à la fois un suivi du prisme optique rétroréfléchissant lors de son déplacement et un recentrage rapide sur son centre après l'arrêt tel qu'indiqué dans le diagramme partiel des exigences de la figure \ref{CCS_MP_2017:fig_08}.\\
-La figure \ref{CCS_MP_2017:fig_14} propose un zoom autour de l'instant $T_{\mathrm{op}}=2 \mathrm{~s}$ de la simulation du modèle avec la correction à avance de phase synthétisée aux questions \ref{CCS_MP_2017:q_23} et \ref{CCS_MP_2017:q_24} pour la consigne
-
-$$
-\begin{cases}\varphi_{\mathrm{c}}(t)=\frac{V_{\mathrm{Max}}}{D} t & \text { pour } t \in\left[0 ; T_{\mathrm{op}}\right] \\ \varphi_{\mathrm{c}}(t)=\frac{V_{\mathrm{Max}}}{D} T_{\mathrm{op}} & \text { pour } t \geqslant T_{\mathrm{op}}\end{cases}
-$$
-
-\begin{figure}[!h]
-\centering
-\includegraphics[width=\textwidth]{2024_12_07_51b7f57c7f055c2d8d29g-11(1)}
-
-%Figure 14 
-\caption{Simulation temporelle de l'asservissement de la figure C du document réponse avec la correction à avance de phase (zoom au voisinage de l'instant $t=T_{\mathrm{op}}=2 \mathrm{~s}$ )
-\label{CCS_MP_2017:fig_14}}
-\end{figure}
-
-%Q 25. 
-\question{\label{CCS_MP_2017:q_25}En indiquant les éléments de validation par rapport aux exigences du cahier des charges, justifier qu'il est possible de réaliser des mesures en continu avec la correction à avance de phase synthétisée.}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
-
-
-\subsection{Conclusion et perspectives de l'étude}
-\begin{obj}
-Analyser la démarche proposée dans ce sujet pour l'étude de la station totale LeICA TCRA 1103 et la comparer à la démarche de l'ingénieur abordée dans les programmes.% de la filière MP.
-\end{obj}
-
-La démarche de l'ingénieur abordée dans le programme de sciences industrielles de l'ingénieur de la filière MP a pour objectif de quantifier les écarts entre trois performances: voir figure \ref{CCS_MP_2017:fig_15}.\\
-
-\begin{figure}[!h]
-\centering
-\includegraphics[width=\textwidth]{2024_12_07_51b7f57c7f055c2d8d29g-11}
-
-%Figure 15 
-\caption{Synoptique de la démarche de l'ingénieur, telle que présentée dans le programme\\
-\label{CCS_MP_2017:fig_15}}
-\end{figure}
-
-%Q 26. 
-\question{\label{CCS_MP_2017:q_26}Proposer, en moins de 50 mots, une synthèse sur ce qu'il reste à faire pour finaliser la démarche de l'ingénieur telle qu'abordée en sciences industrielles de l'ingénieur.}
-\ifprof
-\begin{corrige}
-\end{corrige}
-\else
-\fi
+%
+%Afin de répondre aux exigences du cahier des charges en terme de marge de phase, un correcteur à avance de phase de fonction de transfert $C_{1}(p)=K_{\mathrm{p} 1} \frac{1+a T_{\mathrm{d}} p}{1+T_{\mathrm{d}} p}$ est choisi : dans cette fonction de transfert, $K_{\mathrm{p} 1}>0$ est un gain sans unité, $a>1$ est un facteur sans unité et $T_{\mathrm{d}}>0$ est une constante de temps en seconde.\\
+%
+%%Q 23. 
+%\question{\label{CCS_MP_2017:q_23}Après avoir déterminé la valeur de la phase $\varphi_{\mathrm{m}}$ que le correcteur à avance de phase doit apporter à la pulsation $\omega_{1}=2 \times 10^{4} \mathrm{rad} \cdot \mathrm{s}^{-1}$ pour imposer la marge de phase $M_{\mathrm{Ph}}=45^{\circ}$ souhaitée, déterminer les valeurs numériques du facteur $a$ et de la constante de temps $T_{\mathrm{d}}$ sachant que $a=\frac{1+\sin \varphi_{\mathrm{m}}}{1-\sin \varphi_{\mathrm{m}}}$ et $\omega_{1}=\frac{1}{T_{\mathrm{d}} \sqrt{a}}$.}
+%\ifprof
+%\begin{corrige}
+%\end{corrige}
+%\else
+%\fi
+%
+%
+%Le tracé, dans le plan de BODE , de la réponse fréquentielle de la fonction de transfert en boucle ouverte de l'asservissement de l'axe d'azimut pour une correction à avance de phase de gain unitaire ( $K_{\mathrm{p} 1}=1$ sans unité) et les valeurs du facteur $a$ et de la constante de temps $T_{\mathrm{d}}$ déterminées question \ref{CCS_MP_2017:q_23} est fournie, en trait pointillé, figure E du document réponse.\\
+%
+%%Q 24. 
+%\question{\label{CCS_MP_2017:q_24}Répondre à cette question exclusivement sur la figure E du document réponse. Déterminer la valeur du gain $K_{\mathrm{p} 1}$ permettant d'avoir un gain unitaire à la pulsation $\omega_{1}=2 \times 10^{4} \mathrm{rad} \cdot \mathrm{s}^{-1}$ (commenter les constructions sur le graphe et dans la zone prévue à cet effet).}
+%\ifprof
+%\begin{corrige}
+%\end{corrige}
+%\else
+%\fi
+%
+%
+%Afin de réaliser des mesures rapidement, il est nécessaire d'assurer à la fois un suivi du prisme optique rétroréfléchissant lors de son déplacement et un recentrage rapide sur son centre après l'arrêt tel qu'indiqué dans le diagramme partiel des exigences de la figure \ref{CCS_MP_2017:fig_08}.\\
+%La figure \ref{CCS_MP_2017:fig_14} propose un zoom autour de l'instant $T_{\mathrm{op}}=2 \mathrm{~s}$ de la simulation du modèle avec la correction à avance de phase synthétisée aux questions \ref{CCS_MP_2017:q_23} et \ref{CCS_MP_2017:q_24} pour la consigne
+%
+%$$
+%\begin{cases}\varphi_{\mathrm{c}}(t)=\frac{V_{\mathrm{Max}}}{D} t & \text { pour } t \in\left[0 ; T_{\mathrm{op}}\right] \\ \varphi_{\mathrm{c}}(t)=\frac{V_{\mathrm{Max}}}{D} T_{\mathrm{op}} & \text { pour } t \geqslant T_{\mathrm{op}}\end{cases}
+%$$
+%
+%\begin{figure}[!h]
+%\centering
+%\includegraphics[width=\textwidth]{2024_12_07_51b7f57c7f055c2d8d29g-11(1)}
+%
+%%Figure 14 
+%\caption{Simulation temporelle de l'asservissement de la figure C du document réponse avec la correction à avance de phase (zoom au voisinage de l'instant $t=T_{\mathrm{op}}=2 \mathrm{~s}$ )
+%\label{CCS_MP_2017:fig_14}}
+%\end{figure}
+%
+%%Q 25. 
+%\question{\label{CCS_MP_2017:q_25}En indiquant les éléments de validation par rapport aux exigences du cahier des charges, justifier qu'il est possible de réaliser des mesures en continu avec la correction à avance de phase synthétisée.}
+%\ifprof
+%\begin{corrige}
+%\end{corrige}
+%\else
+%\fi
+%
+%
+%\subsection{Conclusion et perspectives de l'étude}
+%\begin{obj}
+%Analyser la démarche proposée dans ce sujet pour l'étude de la station totale LeICA TCRA 1103 et la comparer à la démarche de l'ingénieur abordée dans les programmes.% de la filière MP.
+%\end{obj}
+%
+%La démarche de l'ingénieur abordée dans le programme de sciences industrielles de l'ingénieur de la filière MP a pour objectif de quantifier les écarts entre trois performances: voir figure \ref{CCS_MP_2017:fig_15}.\\
+%
+%\begin{figure}[!h]
+%\centering
+%\includegraphics[width=\textwidth]{2024_12_07_51b7f57c7f055c2d8d29g-11}
+%
+%%Figure 15 
+%\caption{Synoptique de la démarche de l'ingénieur, telle que présentée dans le programme\\
+%\label{CCS_MP_2017:fig_15}}
+%\end{figure}
+%
+%%Q 26. 
+%\question{\label{CCS_MP_2017:q_26}Proposer, en moins de 50 mots, une synthèse sur ce qu'il reste à faire pour finaliser la démarche de l'ingénieur telle qu'abordée en sciences industrielles de l'ingénieur.}
+%\ifprof
+%\begin{corrige}
+%\end{corrige}
+%\else
+%\fi
 
 
