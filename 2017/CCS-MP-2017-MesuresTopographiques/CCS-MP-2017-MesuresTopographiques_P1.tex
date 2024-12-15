@@ -2,7 +2,8 @@
 
 \section{Réalisation d’un levé topographique \label{CCS_MP_2017:p1}}
 \subsection{Présentation de l'étude}
-
+\ifprof
+\else
 La mesure topographique permet la détermination précise des coordonnées de points de l’espace dans un repère $\rep{0}\repere{O_0}{x_0}{y_0}{z_0}$ où $\vz{0}$ est la direction verticale. Elle permet de réaliser la cartographie tridimensionnelle d’un
 terrain par mesure de l’altitude de points précis, opération appelée « levé topographique » et réalisée par un
 géomètre expert (la figure \ref{CCS_MP_2017:fig_01} est un exemple du résultat de cette opération).
@@ -27,8 +28,12 @@ Les mesures topographiques peuvent être réalisées au moyen de trois systèmes
 \begin{obj}
 L'objectif de ce sujet est d'étudier les mesures topographiques réalisées par l'ensemble théodolite et mire (partie \ref{CCS_MP_2017:p2}) puis par l'ensemble tachéomètre et prisme optique rétro-réféchissant (partie \ref{CCS_MP_2017:p3}) avant d'analyser l'optimisation de ces mesures en utilisant la station totale LeICA TCRA 1103 (partie \ref{CCS_MP_2017:p4}).
 \end{obj}
+\fi
 
 \subsection{Grandeurs mesurées}
+
+\ifprof
+\else
 Afin de s'adapter à tous les terrains, l'appareil de mesure est placé sur un plateau orientable, lui-même fixé sur un trépied télescopique. La parfaite verticalité de l'appareil, indispensable à la réalisation de levés topographiques précis, est réglée par des vis micrométriques (figure \ref{CCS_MP_2017:fig_02}). Une direction de référence $\vec{x}_{0}$ est choisie par le géomètre, ce qui permet de complètement définir les références des angles d'azimut $\varphi$ et d'élévation $\theta$.\\
 La détermination des valeurs des coordonnées $x, y$ et $z$ d'un point $P$ de l'espace dans le repère $R_{0}\left(O_{0} ; \vec{x}_{0}, \vec{y}_{0}, \vec{z}_{0}\right)$ est obtenue par les mesures de l'angle d'azimut $\varphi$, de l'angle d'élévation $\theta$ et de la distance $D$ entre l'isocentre $O$ de l'appareil (point d'intersection des axes de rotation, confondu avec l'origine $O_{0}$ ) et le point $P$ : voir figure \ref{CCS_MP_2017:fig_02}.\\
 
@@ -38,6 +43,8 @@ La détermination des valeurs des coordonnées $x, y$ et $z$ d'un point $P$ de l
 
 \caption{Éléments d'un appareil de mesure topographique et grandeurs déterminées \label{CCS_MP_2017:fig_02}}
 \end{figure}
+\fi
+
 %Q 1. 
 \question{\label{CCS_MP_2017:q_01}Tracer les figures de changement de base associées aux angles d'azimut $\varphi$ et d'élévation $\theta$ et déterminer les expressions des coordonnées $x, y$ et $z$ de la cible $P$ dans le repère de référence $R_{0}\left(O_{0} ; \vec{x}_{0}, \vec{y}_{0}, \vec{z}_{0}\right)$ en fonction des angles $\varphi$ et $\theta$ et de la distance $D$ entre l'isocentre $O$ de l'appareil et la cible $P$.}
 
