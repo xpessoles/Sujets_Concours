@@ -1,6 +1,7 @@
 %\section{Vélo cargo Douze G4e}
 \section{Introduction}
-
+\ifprof
+\else
 \begin{center}
 \includegraphics[width=0.8\textwidth]{2024_12_06_8b2ce2e701dae8972925g-01}
 \end{center}
@@ -13,13 +14,23 @@ Le secteur des transports est la première source d'émissions de gaz à effet d
 
 L'essor des vélos à assistance électrique (VAE) a libéré de nombreux cyclistes de l'appréhension du relief. Le développement des VAE s'est accompagné de celui des vélos cargos qui permettent d'effectuer des livraisons ou encore de transporter des enfants. Ce sujet porte sur un de ces vélos cargo.
 
+\fi
+
 \subsection{Présentation du système}
+
+\ifprof
+\else
 
 La société Douze cycles conçoit et réalise des vélos cargo destinés aux professionnels comme aux particuliers. Cette société est implantée en Bourgogne où elle emploie 25 collaborateurs.
 
 Le système étudié est un biporteur à assistance électrique, le G4e, conçu et réalisé par Douze cycles. Soucieuse d'allier durabilité, praticité et esthétique, la société Douze cycles innove continument pour faire évoluer sa gamme de produits. Ce vélo, présenté par l'entreprise comme «~une solution vélogistique tout-en-un répondant à la plupart des usages pour les familles ou les professionnels~», a été lancé en 2017 pour le cinquième anniversaire de la marque.
+\fi
 
 \subsection{Étude proposée}
+
+\ifprof
+\else
+
 Les études proposées dans ce sujet portent sur différentes problématiques spécifiques à la conception du vélo cargo étudié.
 
 \begin{itemize}
@@ -35,8 +46,11 @@ Les différentes parties de cette étude sont indépendantes.
 %  \item Données extraites de l'article « Bouger autrement au quotidien » publié par l'ADEME \href{https://librairie.ademe.fr/cadic/}{https://librairie.ademe.fr/cadic/} 7338/guide-bouger-autrement-au-quotidien.pdf
 %\end{enumerate}
 %}
+\fi
 
 \section{Effort de mise en stationnement \label{ATS_2024_sec2}}
+\ifprof
+\else
 
 \begin{obj}
 Déterminer l'effort à exercer par l'usager lors de la mise en stationnement sur béquille.
@@ -58,9 +72,13 @@ La mise en position parking du vélo cargo (le « béquillage») nécessite d'ex
 \caption{Paramétrage adopté pour la détermination des caractéristiques inertielles du vélo \label{fig2.2}}
 \end{center}
 \end{figure}
+\fi
 
 
 \subsection{Caractéristiques inertielles du vélo}
+\ifprof
+\else
+
 \paragraph*{Définition des ensembles}
 \begin{itemize}
   \item \(V\) : ensemble du vélo hors béquille (supposée de masse négligeable) et hors black-box;
@@ -75,7 +93,7 @@ On étudie le vélo G4e à vide (ensemble \(V\) ). La masse totale de cet ensemb
   \item avant, \(J: m_{J}=23 \mathrm{~kg}\).
 \end{itemize}
 La distance entre les points \(I\) et \(J\) est notée \(L=2050 \mathrm{~mm}\) (voir figure \ref{fig2.2}).\\
-
+\fi
 
 \question{Déterminer l'expression littérale de la position \(x_{G}\) suivant \(\vec{x}\) du centre de gravité de l'ensemble. En déduire la valeur de \(x_{G}\) en mm (on arrondira le résultat à la dizaine de mm ).}
 \ifprof
@@ -92,7 +110,10 @@ A.N. $x_G=\dfrac{23}{26+23}2050$ $\Rightarrow  x_G \simeq \SI{960}{mm}$.
 \fi
 
 \subsubsection{Centre de gravité \(G_{T}\) du vélo chargé}
+\ifprof
+\else
 On considère à présent que la black box est chargée à son maximum ( \(m_{B}=100 \mathrm{~kg}\) ). On appelle \(G_{B}\), le centre de gravité de la masse chargée où \(x_{B}=1250 \mathrm{~mm}\)
+\fi
 
 \question{Déterminer l'expression littérale de la position \(x_{T}\) suivant \(\vec{x}\) du centre de gravité de l'ensemble chargé. Calculer la valeur, arrondie à la dizaine de mm , de \(x_{T}\).}
 \ifprof
@@ -107,6 +128,9 @@ A.N. $x_T=\dfrac{100\times 1250+49\times 960}{100+49} \Leftrightarrow x_T=\SI{11
 \fi
 
 \subsection{Étude géométrique}
+\ifprof
+\else
+
 L'étude est menée dans le plan \((I ; \vec{x}, \vec{y})\) à partir du paramétrage défini figure \ref{fig_23}.
 
 \paragraph*{Procédure de béquillage} Le béquillage se réalise en poussant la béquille avec le pied sur le sol puis en exerçant une action de traction sur le guidon.
@@ -175,7 +199,7 @@ La partie basse du cadre est à l'horizontale avant le béquillage : \(\overrigh
 \caption{\label{fig_23} Paramétrage utilisé pour l'étude du béquillage}
 
 \end{figure}
-
+\fi
 
 
 \question{Recopier et compléter le schéma cinématique esquissé ci-dessous, conformément au modèle, proposé en faisant apparaître les liaisons, les solides et les repères qui leurs sont associés.}
@@ -240,15 +264,20 @@ D’après la figure \ref{fig_24}, $\indice{\beta}{max}=1,1\degres$. Cet angle e
 \else
 \fi
 
+\ifprof
+\else
 \begin{figure}[!htb]
 \begin{center}
 \includegraphics[width=.4\linewidth]{2024_12_06_8b2ce2e701dae8972925g-04}
 \caption{Évolution de \(\beta\) en fonction de \(\alpha\) au cours du béquillage. \label{fig_24}}
 \end{center}
 \end{figure}
+\fi
 
 
 \subsection{Effort de béquillage}
+\ifprof
+\else
 On se propose à présent d'estimer l'action mécanique que doit développer le cycliste sur le guidon lors du béquillage dans le cas où la béquille est perpendiculaire au cadre (\(\alpha=90^{\circ}\), on admet qu'il s'agit de la position critique en termes d'effort). Le paramétrage adopté pour cette étude est défini figure \ref{fig_25}.\\
 
 \begin{figure}[!htb]
@@ -278,6 +307,7 @@ $
   \item La masse de l'ensemble, pour rappel, est notée \(m_{T}\) et vaut \(m_{T}=149 \mathrm{~kg}\).
   \item On suppose les liaisons sans frottements à l'exception du contact Roue/Sol, où l'on suppose un frottement suivant le modèle de Coulomb de coefficient \(f=1\).
 \end{itemize}
+\fi
 
 \question{Donner la forme du torseur des actions mécaniques transmissibles du sol ( 0 ) sur la béquille (4) en \(K\) dans la base ( \(\vec{x}, \vec{y}, \vec{z})\).}
 \ifprof
@@ -351,35 +381,68 @@ Ainsi, $F_C=\dfrac{\mu Y_{04}-(\mu -k\cos\beta +q\sin\beta) m_T g}{a-d\sin\beta+
 On suppose que \(\beta\) est suffisamment petit pour considérer que \(\sin \beta \approx 0\) et \(\cos \beta \approx 1\).\\
 
 
-
+%Q12
 \question{Montrer qu'alors, on peut exprimer \(F_{C}\) sous la forme :
 $F_{C} \approx \dfrac{\mu \cdot Y_{04}-(\mu-k) \cdot m_{T} \cdot g}{y_{M}+a}$.
 Déterminer la condition sur \(y_{M}\) qui conduit alors à une action à développer par le cycliste \(F_{C}\) maximale.}
 \ifprof
 \begin{corrige}-- [UPSTI]
+Avec l’approximation des petits angles proposée, on obtient $F_C= \dfrac{\mu Y_{04}-(\mu -k) m_T g}{a+y_M}$ ce qui correspond bien à la forme donnée dans la question.
+$F_C$ est donc maximale quand $y_M$ est minimale donc quand $y_M=\SI{900}{mm}$.
 \end{corrige}
 \else
 \fi
 
+%Q13
 \question{En isolant l'ensemble \(\Sigma\) et en appliquant le théorème de la résultante statique, écrire les équations scalaires qui relient les différentes composantes des torseurs d'actions mécaniques exercées par le sol.}
 \ifprof
 \begin{corrige}-- [UPSTI]
+On reprend le même isolement (et par conséquent le même BAME) que dans la question 11**.
+On applique le PFS en résultante sur $\vect{x}$ et $\vect{y}$:
+$\left\{
+\begin{array}{l}
+X_{01}+X_{04}-F_C=0 \\
+Y_{01}+Y_{04}-m_T g=0 \\
+\end{array}
+\right.
+$.
+
 \end{corrige}
 \else
 \fi
-
+%Q14
 \question{Montrer alors, que même en supposant le glissement en \(I\), l'isolement de l'ensemble ne permet pas de déterminer l'action du cycliste.}
 \ifprof
 \begin{corrige}-- [UPSTI]
+En supposant le glissement en I on pourrait obtenir une équation entre $X_{01}$ et $Y_{01}$. À celle-ci s’ajoutent les 3 équations issues du PFS sur l’isolement de $\Sigma$. On a donc cinq inconnues ($X_{04}$, $Y_{04}$, $X_{01}$, $Y_{01}$ et $F_C$) pour seulement quatre équations. On ne peut donc pas déterminer $F_C$ avec ce seul isolement.
 \end{corrige}
 \else
 \fi
 
 On se propose à présent d'isoler la béquille (4) seule. On fait l'hypothèse que son poids est négligeable devant les autres actions mécaniques.
-
+%Q15
 \question{Montrer en appliquant le PFS à la béquille (4) et en choisissant une équation scalaire pertinente parmi celles disponibles, que pour la position étudiée (\(\alpha=90^{\circ}\)) et pour l'isolement choisi, \(X_{04}=0\) \footnote{$X_{03}$ dans le sujet initial.}.}
 \ifprof
 \begin{corrige}-- [UPSTI]
+On isole la béquille (4).
+BAME :
+\begin{itemize}
+\item $\torseurstat{T}{0}{4} = \torseurl{X_{04}\vx{}+Y_{04}\vy{}}{\vect{0}}{K}$;
+\item $\torseurstat{T}{2}{4}= \torseurl{X_{24}\vx{}+Y_{24}\vy{}}{\vect{0}}{A}$.
+\end{itemize}
+ 
+On déplace tous les moments au point $A$ :
+$\vectm{A}{0}{4}=\vectm{M}{0}{4}+\vect{AK}\wedge \left(X_{04}\vx{}+Y_{04}\vy{}\right)$
+$=\vect{0}  - a \vect{x_b} \wedge \left(X_{04}\vx{}+Y_{04}\vy{}\right)$
+$=- a \vect{y} \wedge \left(X_{04}\vx{}+Y_{04}\vy{}\right)$
+$=-aX_{04} \vect{z}$.
+
+On applique le PFS en moment au point 
+$A$ sur 
+$\vect{z}$: 
+$aX_{04}+0=0$ et donc 
+$X_{04}=0$.
+
 \end{corrige}
 \else
 \fi
@@ -389,14 +452,21 @@ $F_{C}=\dfrac{f \cdot k \cdot m_{T} \cdot g}{\mu+f \cdot\left(y_{M}+a\right)}$.
 
 On estime alors l'effort minimal pour assurer le béquillage en charge maximale à \(F_{C} \approx 80 \mathrm{~N}\).
 
+%Q16
 \question{Conclure sur le respect de l'exigence 110 du cahier des charges du vélo (figure \ref{fig2.1}).}
 \ifprof
 \begin{corrige}-- [UPSTI]
+
+D’après le sujet, il faut $F_C \simeq \SI{80}{N}$ pour assurer le béquillage. En se référant à la figure 2.1, un homme peut répéter, d’après la législation, l’opération 30 fois par période de 24 heures ce qui permet les livraisons mais une femme, toujours d’après la législation, ne peut répéter que 2 fois cette opération de béquillage en 24 heures ce qui ne permet pas de réaliser des livraisons. Ainsi l’exigence 110 du cahier des charges du vélo n’est pas respectée pour une utilisation en livraisons.
+
 \end{corrige}
 \else
 \fi
 
+
 \section{Vérification du dimensionnement des organes participant au freinage \label{ATS_2024_sec3}}
+\ifprof
+\else
 La sécurité des utilisateurs du vélo cargo passe par un freinage performant. Les pneumatiques et les freins doivent garantir une distance d'arrêt du vélo raisonnable même lorsque celui-ci est chargé au maximum. L'étude proposée dans cette partie vise à vérifier le dimensionnement de ces éléments à la lumière du cahier des charges précisé dans le diagramme des exigences de la figure \ref{fig_3_cargo}.
 
 \begin{figure}[!h]
@@ -405,9 +475,11 @@ La sécurité des utilisateurs du vélo cargo passe par un freinage performant. 
 \caption{\label{fig_3_cargo}Extrait du cahier des charges relatif au freinage d'urgence}
 \end{figure}
 
-
+\fi
 
 \subsection{Modèle d'étude}
+\ifprof
+\else
 \subsubsection{Définition des ensembles}
 On étudie le vélo G4 muni de sa «black box», chargé à son maximum et en mouvement de translation rectiligne dans la direction \(\vec{x}\) (figure \ref{fig_32}). Le cadre est supposé horizontal et la fourche avant est infiniment rigide. Les différents ensembles définis pour l'étude du freinage sont listés dans le tableau \ref{tab_31}. Ces ensembles sont supposés indéformables. Leurs caractéristiques inertielles sont recensées dans le tableau \ref{tab_32}.
 
@@ -530,12 +602,17 @@ $
   \item La vitesse horizontale de \(G_{2}\) est notée \(v_{G_{2}}: v_{G_{2}}(t)=\dfrac{\mathrm{d} x_{G_{2}}(t)}{\mathrm{d} t}\).
   \item L'accélération horizontale du point \(G_{2}\) est désignée par \(\gamma_{G_{2}}: \gamma_{G_{2}}(t)=\dfrac{\mathrm{d} v_{G_{2}}(t)}{\mathrm{d} t}\).
 \end{itemize}
+\fi
 
 \subsection{Capacité de freinage d'urgence}
+\ifprof
+\else
 \begin{obj}
 Déterminer les conditions portant sur les pneumatiques qui permettent d'assurer un freinage d'urgence conforme aux exigences de la figure \label{fig_31}.
 \end{obj}
+\fi
 
+%Q17
 \question{Déterminer l'expression des résultantes dynamiques :}
 \vspace{-.25cm}
 \textit{
@@ -546,6 +623,15 @@ Déterminer les conditions portant sur les pneumatiques qui permettent d'assurer
 \end{enumerate}}
 \ifprof
 \begin{corrige}-- [UPSTI]
+
+Par définition, on a 
+$\vectrd{1}{0} =  m_1 \vectg{B}{}{0}$.
+Ainsi $\vectrd{1}{0} = m_1 \vectg{G_2}{}{0}$
+$\vectrd{1}{0}=m_1 \gamma_{G_2}\vect{x}$.
+On a directement $\vectrd{2}{0}=m_2\gamma_{G_2}\vect{x}$.
+De même que pour le solide (1), on obtient 
+$\vectrd{3}{0}=m_3\gamma_{G_3}\vect{x}$.
+
 \end{corrige}
 \else
 \fi
@@ -561,30 +647,89 @@ de l'action du sol sur les roues.
 \end{itemize}}
 \ifprof
 \begin{corrige}-- [UPSTI]
+On isole {1,2,3}.
+BAME :
+ 
+ \begin{multicols}{2}
+ \begin{itemize}
+\item $\torseurstat{T}{0}{1} = \torseurl{-X_{01}\vx{}+Y_{01}\vy{}}{\vect{0}}{I}$;
+\item $\torseurstat{T}{0}{3} = \torseurl{-X_{03}\vx{}+Y_{03}\vy{}}{\vect{0}}{J}$;
+\item $\torseurstat{T}{\text{pes}}{1} = \torseurl{-m_1 g \vy{}}{\vect{0}}{B}$;
+\item $\torseurstat{T}{\text{pes}}{2} = \torseurl{-m_2 g \vy{}}{\vect{0}}{G_2}$;
+\item $\torseurstat{T}{\text{pes}}{3} = \torseurl{-m_3 g \vy{}}{\vect{0}}{C}$.
+\end{itemize}
+\end{multicols}
+
+On applique le PFD en résultante sur $\vx{}$ et $\vy{}$ :
+$\left\{
+\begin{array}{l}
+-X_{01}-X_{03}=(m_1+m_2+m_3 ) \gamma_{G_2} \\
+Y_{01}+Y_{03}-(m_1+m_2+m_3 )g=0
+\end{array}
+\right.$
+
+$ \Rightarrow 
+\left\{
+\begin{array}{l}
+-X_{01}-X_{03}=-(m_1+m_2+m_3 ) \gamma_{G_2} \\
+Y_{01}+Y_{03}=(m_1+m_2+m_3 )g
+\end{array}
+\right.
+$
+
+
 \end{corrige}
 \else
 \fi
 
-\vspace{.25cm}
 
+\vspace{.25cm}
+\ifprof
+\else
 On se propose d'équilibrer la répartition du freinage de telle façon que les composantes tangentielles exercées par le sol sur les roues soient identiquement proportionnelles aux composantes normales. On introduit dès lors le coefficient \(k_{f}\) de proportionnalité correspondant tel que :
 $
 X_{01}=k_{f} \cdot Y_{01} \quad \text { et } \quad X_{03}=k_{f} \cdot Y_{03}
 $
+\fi
 
+
+%Q19
 \question{Déterminer une expression de \(k_{f}\) en fonction de \(g\) et \(\gamma_{G_{2}}\).}
 \ifprof
 \begin{corrige}-- [UPSTI]
+En utilisant les deux relations données dans l’énoncé, on obtient : 
+$\left\{
+\begin{array}{l}
+k_f (Y_{01}+Y_{03} )=-(m_1+m_2+m_3 ) \gamma_{G_2 }\\
+Y_{01}+Y_{03}=(m_1+m_2+m_3 ) \\
+\end{array}
+\right.$
+
+$\Rightarrow k_f (m_1+m_2+m_3 )g=-(m_1+m_2+m_3 ) \gamma_{G_2}$
+$\Rightarrow  k_f g=-\gamma_{G_2}$
+$\Rightarrow  k_f =-\dfrac{\gamma_{G_2}}{g}$.
+
+
 \end{corrige}
 \else
 \fi
 
+% Q20
 \question{À partir de l'expression de la condition de non glissement des roues sur le sol, déterminer la valeur limite de \(\gamma_{G_{2}}(t)\) en fonction de \(f^{\prime}\) et \(g\). Montrer alors que toutes les configurations du tableau 3.3 ne permettent pas de satisfaire l'exigence 210.}
 \ifprof
 \begin{corrige}-- [UPSTI]
+Le sujet donne $X_{0i}<f'Y_{0i} \Rightarrow k_f<f'$ 
+$\Rightarrow -\gamma_{G_2}/g<f'$ 
+$\Rightarrow -\gamma_{G_2}<f'g$ 
+donc $\gamma_{G_2}>-f'g$.
+
+Dans le tableau 3.3, la pire condition correspond au pneu anormalement usé sur route goudronnée mouillée, on a alors $\gamma_{\text{lim}}=- \SI{2,9}{m.s^{-2}}$. La décélération est donc de \SI{2,9}{m.s^{-2}} ce qui est inférieur aux \SI{4,5}{m.s^{-2}} demandés par l’exigence 210. Cette exigence n’est donc pas satisfaite pour toutes les configurations du tableau 3.3.
+
 \end{corrige}
 \else
 \fi
+
+\ifprof\else
 
 On considère à présent uniquement la situation où le freinage peut être réalisé sans glissement. Quels que soient les résultats trouvés précédemment, on définit deux valeurs pour la décélération limite \(\gamma_{\text{lim}}\) :
 
@@ -594,33 +739,74 @@ On considère à présent uniquement la situation où le freinage peut être ré
 \end{itemize}
 
 On suppose de plus que la décélération maximale est immédiatement atteinte lorsque l'utilisateur agit sur les freins. La décélération est supposée constante pendant toute la durée du freinage.
+\fi
 
-
+%Q21
 \question{En étudiant le mouvement de l'ensemble \(\{1,2,3\}\) lors du freinage, montrer que la distance de freinage \(d_{f}\) définie par le passage de la vitesse initiale \(v_{0}\) à une vitesse nulle peut s'écrire : \(d_{f}=-\left(v_{0}\right)^{2} /\left(2 \cdot \gamma_{G_{2}}\right)\).}
 \ifprof
 \begin{corrige}-- [UPSTI]
+
+Comme la décélération est supposée constante, les expressions de la vitesse et la position sont de la forme :
+$\left\{
+\begin{array}{l}
+v(t)=v_0+\gamma_{G_2} \\
+x(t)=x_0+v_0 t+\gamma_{G_2}  \dfrac{t^2}{2} \\
+\end{array}
+\right.$
+en prenant $t=0$ comme origine des temps et $v(t=0)=v_0$.
+En appelant $t_f$ le temps de freinage, on a $v(t=t_f)=0$ et $x(t=t_f)=d_f$.
+$\Rightarrow 
+\left\{
+\begin{array}{l}
+0=v_0+\gamma_{G_2 } t_f \\
+d_f=v_0 t_f+\gamma_{G_2} \dfrac{t_f^2}{2} \\
+\end{array}
+\right.$
+$\Rightarrow 
+\left\{
+\begin{array}{l}
+t_f=-\dfrac{v_0}{\gamma_{G_2}} \\
+d_f=v_0 t_f+\gamma_{G_2} \dfrac{t_f^2}{2}
+\end{array}
+\right.$
+
+$\Rightarrow  d_f=-\dfrac{v_0^2}{\gamma_{G_2 }} +\dfrac{v_0^2}{2 \gamma_{G_2 }}$
+$\Rightarrow  d_f=-\dfrac{v_0^2}{2\gamma_{G_2 }} $
 \end{corrige}
 \else
 \fi
 
+%Q22
 \question{Conclure quant au respect de l'exigence 220 portant sur la distance de freinage et sur la responsabilité de l'utilisateur.}
+
 \ifprof
 \begin{corrige}-- [UPSTI]
+La question précédente nous permet de calculer $d_f$ :
+\begin{itemize}
+\item dans les conditions normales $d_f=\dfrac{ -(25/3,6)^2}{2\times (-4,5)}=\SI{5,36}{m}<\SI{6}{m}$;
+\item dans les conditions dégradées $d_f=\dfrac{-(25/3,6)^2}{2\times (-2,95)}=\SI{8,17}{m}>\SI{6}{m}$.
+\end{itemize}
+L’exigence 220 est donc bien respectée en conditions normales mais pas en conditions dégradées. L’utilisateur doit vérifier régulièrement l’état de ses pneumatiques et adapter son allure aux conditions de la chaussée pour ne pas devenir un danger pour lui-même et pour les autres.
+
 \end{corrige}
 \else
 \fi
 
 \subsection{Dimensionnement des organes de freinage}
-
+\ifprof
+\else
 \begin{obj}
 Valider le dimensionnement des organes de freinage.
 \end{obj}
 
 Cette sous-partie vise à établir l'expression du couple que les freins doivent appliquer sur chacune des roues. On établit donc ici une étude de dynamique du mobile lors du freinage en analysant entre autres le mouvement des roues.
+\fi
 
+%Q23
 \question{Déterminer l'expression du moment dynamique de l'ensemble (2) par rapport au sol (0) au point \(G_{2}: \overrightarrow{\delta\left(G_{2}, 2 / 0\right)}\).}
 \ifprof
 \begin{corrige}-- [UPSTI]
+L’ensemble (2) est en translation par rapport au sol (0) donc  $\vectmd{G_2}{2}{0} = \vect{0}$.
 \end{corrige}
 \else
 \fi
@@ -633,6 +819,23 @@ Cette sous-partie vise à établir l'expression du couple que les freins doivent
 \end{enumerate}}
 \ifprof
 \begin{corrige}-- [UPSTI]
+Comme le point $B$ est le centre de gravité de l’ensemble (1), on peut écrire $ \vectmc{B}{1}{0} = \inertie{B}{1}\vecto{1}{0}$.
+
+En utilisant la composition des vecteurs vitesse de rotation, on a : $\vecto{1}{0} = \vecto{1}{2}+\vecto{2}{0} = \omega_{12} \vect{z}$.
+
+D’où $\vectmc{B}{1}{0} =  \matinertie{X}{X}{I_{B1}}{X}{X}{X}{} \begin{pmatrix} 0 \\ 0 \\ \omega_{12} \end{pmatrix} = \begin{pmatrix} X \\X \\ I_{B1}\omega_{12} \end{pmatrix}$ où $X$ désigne un terme inconnu.
+
+Finalement $\vectmc{B}{1}{0} \cdot \vect{z} = I_{B1}\omega_{12}$.
+
+
+$\vectmd{B}{1}{0}= \deriv{\vectmc{B}{1}{0}}{\left(\vx{},\vy{},\vz{}\right)}$  car le point $B$ est le centre de gravité de l’ensemble (1).
+
+On utilise la formule 
+$\deriv{\vectmc{B}{1}{0} \vect{z}}{}
+=\deriv{\vectmc{B}{1}{0}}{\left(\vx{},\vy{},\vz{}\right)}\vect{z}+\vectmc{B}{1}{0}\deriv{\vect{z}}{\left(\vx{},\vy{},\vz{}\right)}$
+
+D'où $\vectmd{B}{1}{0} \cdot \vect{z} = \deriv{\vectmc{B}{1}{0}\cdot\vz{}}{} = I_{B1}\dot{\omega}_{32}$.
+
 \end{corrige}
 \else
 \fi
@@ -642,6 +845,8 @@ Cette sous-partie vise à établir l'expression du couple que les freins doivent
 \question{Déterminer l'expression de la projection sur \(\vec{z}\) du moment dynamique de la roue avant (3) par rapport au sol (0) au point \(C: \overrightarrow{\delta(C, 3 / 0)} \cdot \vec{z}\).}
 \ifprof
 \begin{corrige}-- [UPSTI]
+En utilisant la même démarche qu’à la question précédente, on obtient 
+$\vectmd{C}{3}{0} \cdot \vect{z} = I_{C3}\dot{\omega}_{32}$
 \end{corrige}
 \else
 \fi
@@ -649,6 +854,7 @@ Cette sous-partie vise à établir l'expression du couple que les freins doivent
 \question{En supposant qu'il y a roulement sans glissement en \(I\) (respectivement en \(J\)), déterminer la relation entre \(\omega_{12}\) et \(v_{G_{2}}(t)\) (respectivement entre \(\omega_{32}\) et \(v_{G_{2}}(t)\) ).}
 \ifprof
 \begin{corrige}-- [UPSTI]
+Avec l’hypothèse de roulement sans glissement, on a $v_{G_2} (t)=-R_1 \omega_{12}$ et $v_{G_2 }(t)=-R_3 \omega_{32}$.
 \end{corrige}
 \else
 \fi
@@ -658,6 +864,32 @@ $X_{01}=\dfrac{C_{f 1}+\dfrac{I_{B 1}}{R_{1}} \gamma_{G_{2}}}{R_{1}} \quad \text
 $
 \ifprof
 \begin{corrige}-- [UPSTI]
+On isole la roue (1).
+ 
+  \begin{multicols}{2}
+ \begin{itemize}
+\item $\torseurstat{T}{0}{1} = \torseurl{-X_{01}\vx{}+Y_{01}\vy{}}{\vect{0}}{I}$;
+\item $\torseurstat{T}{2}{1} = \torseurl{X_{21}\vx{}+Y_{21}\vy{}}{C_{f1}\vect{z}}{B}$;
+%\item $\torseurstat{T}{0}{3} = \torseurl{-X_{03}\vx{}+Y_{03}\vy{}}{\vect{0}}{J}$;
+\item $\torseurstat{T}{\text{pes}}{1} = \torseurl{-m_1 g \vy{}}{\vect{0}}{B}$.
+%\item $\torseurstat{T}{\text{pes}}{2} = \torseurl{-m_2 g \vy{}}{\vect{0}}{G_2}$;
+%\item $\torseurstat{T}{\text{pes}}{3} = \torseurl{-m_3 g \vy{}}{\vect{0}}{C}$.
+\end{itemize}
+\end{multicols}
+
+ 
+On calcule le moment au point B de l’action du torseur des actions mécaniques transmissibles du sol (0) sur la roue (1) : 
+$\vectm{B}{0}{1}=\vectm{I}{0}{1} + \vect{BI}\wedge \left( -X_{01}\vx{}+Y_{01}\vy{}\right)$
+$=-R_1 \vect{y} \wedge  \left( -X_{01}\vx{}+Y_{01}\vy{}\right)$
+$=-R_1 X_{01}\vect{z}$.
+
+On applique le PFD en moment au point $B$ sur $\vect{z}$:
+$-R_1 X_{01}+C_{f1}=I_{B1}\dot{\omega}_{12}=-I_{B1}  \gamma_{G_2}/R_1$
+$\Rightarrow  X_{01}=\dfrac{C_{f1}+I_{B1}  \gamma_{G_2}/R_1 }{R_1}$.
+
+Avec un raisonnement analogue, on obtient $X_{03}=\dfrac{C_{f3}+I_{C3} \dfrac{\gamma_{G_2}}{R_3} }{R_3}$.
+
+
 \end{corrige}
 \else
 \fi
@@ -670,11 +902,61 @@ Y_{03}=\dfrac{1}{L}\left[g\left(m_{2} \cdot x_{2}+m_{3} \cdot L\right)-\gamma_{G
 $
 \ifprof
 \begin{corrige}-- [UPSTI]
+On isole {1,2,3}.
+BAME : 
+ 
+\begin{multicols}{2}
+ \begin{itemize}
+\item $\torseurstat{T}{0}{1} = \torseurl{-X_{01}\vx{}+Y_{01}\vy{}}{\vect{0}}{I}$;
+%\item $\torseurstat{T}{2}{1} = \torseurl{X_{21}\vx{}+Y_{21}\vy{}}{C_{f1}\vect{z}}{B}$;
+\item $\torseurstat{T}{0}{3} = \torseurl{-X_{03}\vx{}+Y_{03}\vy{}}{\vect{0}}{J}$;
+\item $\torseurstat{T}{\text{pes}}{1} = \torseurl{-m_1 g \vy{}}{\vect{0}}{B}$;
+\item $\torseurstat{T}{\text{pes}}{2} = \torseurl{-m_2 g \vy{}}{\vect{0}}{G_2}$;
+\item $\torseurstat{T}{\text{pes}}{3} = \torseurl{-m_3 g \vy{}}{\vect{0}}{C}$.
+\end{itemize}
+\end{multicols}
+
+En déplaçant les moments avec la méthode des bras de levier, on obtient :
+
+\begin{multicols}{2}
+ \begin{itemize}
+\item $\torseurstat{T}{0}{1} = \torseurl{-X_{01}\vx{}+Y_{01}\vy{}}{\vect{0}}{I}$;
+%\item $\torseurstat{T}{2}{1} = \torseurl{X_{21}\vx{}+Y_{21}\vy{}}{C_{f1}\vect{z}}{B}$;
+\item $\torseurstat{T}{0}{3} = \torseurl{-X_{03}\vx{}+Y_{03}\vy{}}{\vect{0}}{J}$;
+\item $\torseurstat{T}{\text{pes}}{1} = \torseurl{-m_1 g \vy{}}{\vect{0}}{I}$;
+\item $\torseurstat{T}{\text{pes}}{2} = \torseurl{-m_2 g \vy{}}{-m_2 g x_2\vz{}}{I}$;
+\item $\torseurstat{T}{\text{pes}}{3} = \torseurl{-m_3 g \vy{}}{-m_3 g L\vz{}}{C}$.
+\end{itemize}
+\end{multicols}
+
+On déplace ensuite les moments dynamiques au point $I$ en utilisant la formule de Varignon et on ne s’intéresse qu’à la composante sur $\vect{z}$:
+
+$\vectmd{I}{1}{0} \cdot \vect{z}  
+= \vectmd{B}{1}{0} \cdot \vect{z} +\left(\vect{IB} \wedge \vectrd{1}{0} \right)\cdot \vect{z} $
+$= \vectmd{B}{1}{0} \cdot \vect{z} +\left(R_1 \vect{y} \wedge m_1 \gamma_{G2} \vect{x} \right)\cdot \vect{z} $
+$=I_B1 \dot{\omega}_{12}+(-R_1 m_1 \gamma_{G2} \vect{z} ) \vect{z}=I_B1 \dot{\omega}_{12}-R_1 m_1 \gamma_{G2}$
+
+De même :
+$\vectmd{I}{3}{0}\cdot \vect{z}=\vectmd{C}{3}{0}.\vect{z}+[\vect{IC}\wedge(\vectrd{3}{0}] \cdot \vect{z}$
+$=\indice{I}{C3} \dot{\omega}_{32}+[(L\vect{x}+R_3 \vect{y} )\wedge m_3 \gamma_{G2} \vect{x} ]\vect{z}$
+$=I_C3 \dot{\omega}_{32}-R_3 m_3 \gamma_{G2}$
+
+$\vectmd{I}{2}{0}.\vect{z}=\vectmd{G_2}{2}{0}.\vect{z}+[\vect{IG_2}\wedge\vectrd{2}{0}] \vect{z}$
+$=0+[(x_2 \vect{x}+y_2 \vect{y} )\wedge m_2 \gamma_{G2} \vect{x} ]\vect{z}$
+$=-y_2 m_2 \gamma_{G2}$.
+
+On applique le PFD en moment au point $I$ sur $\vect{z}$ :
+$Y_{03} L-m_2 gx_2-m_3 gL=I_B1 \dot{\omega}_{12}-R_1 m_1 \gamma_{G2}+I_C3 \dot{\omega}_{32}-R_3 m_3 \gamma_{G2}-y_2 m_2 \gamma_{G2}$.
+
+On retrouve ainsi l’équation demandée :
+$Y_{03}=\dfrac{1}{L} [g (m_2 x_2+m_3 L)-\gamma_{G2} (R_1 m_1+R_3 m_3+y_2 m_2 )+I_B1 \dot{\omega}_{12}+I_C3 \dot{\omega}_{32}]$
+
 \end{corrige}
 \else
 \fi
 
-
+\ifprof
+\else
 Les relations obtenues lors des questions précédentes amènent aux expressions suivantes :
 
 $
@@ -698,10 +980,13 @@ En tenant compte de cette répartition optimale, les relations obtenues précéd
 \caption{Couples de freinage optimaux en fonction de la décélération visée \label{fig6}}
 \end{center}
 \end{figure}
+\fi
 
-\question{Pour une décélération visée «dite d'urgence» conforme à l'exigence 210 de \SI{-4.5}{m.s^{-2}}, déterminer les couples de freinage optimaux à mettre en œuvre sur chacune des roues.}
+\question{Pour une décélération visée «~dite d'urgence~» conforme à l'exigence 210 de \SI{-4.5}{m.s^{-2}}, déterminer les couples de freinage optimaux à mettre en œuvre sur chacune des roues.}
 \ifprof
 \begin{corrige}-- [UPSTI]
+D’après la figure 3.3, pour la décélération visée de $\SI{-4,5}{m s^{-2}}$, on relève $\indice{C}{f1opt}=\SI{193}{Nm}$ et 
+$\indice{C}{f3opt}=\SI{172}{Nm}$.
 \end{corrige}
 \else
 \fi
@@ -709,6 +994,7 @@ En tenant compte de cette répartition optimale, les relations obtenues précéd
 \question{Conclure quant au système de freins installé sachant que les freins installés sur le G4e permettent d'envisager un couple de freinage maximum de \(250 \mathrm{~N} \cdot \mathrm{~m}\) pour une distance parcourue de \SI{6}{m}.}
 \ifprof
 \begin{corrige}-- [UPSTI]
+$\indice{C}{f1opt}=  \SI{193}{Nm}<\SI{250}{Nm}$ et $\indice{C}{f3opt}=\SI{172}{Nm}<\SI{250}{Nm}$ donc le système de freins installé permet bien la décélération d’urgence prévue.
 \end{corrige}
 \else
 \fi
@@ -718,6 +1004,9 @@ Le contrôle du freinage, assuré par le conducteur, est réalisé par l'action 
 \question{Proposer une solution technologique de pilotage des freins qu'il serait possible d'intégrer pour optimiser les conditions de freinage.}
 \ifprof
 \begin{corrige}-- [UPSTI]
+
+On peut proposer un système où quand le cycliste freine au-delà d’une certaine limite, on détecte un freinage d’urgence et au lieu de commander directement le couple de freinage appliqué, on utilise un asservissement pour optimiser les couples appliqués sur les deux roues.
+
 \end{corrige}
 \else
 \fi
