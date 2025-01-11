@@ -7,6 +7,9 @@
 \textit{Corrigé d'après Jérémy Larochette, Lycée Carnot, Dijon, UPS.}
 \else
 \fi
+
+\ifprof
+\else
 Ce sujet concerne la conception d'un logiciel d'étude de trafic routier. On modélise le déplacement d'un ensemble de voitures sur des files à sens unique (voir Figure~\ref{ccmp_2017_info_fig_01}). C'est un schéma simple qui peut permettre de comprendre l'apparition d'embouteillages et de concevoir des solutions pour fluidifier le trafic.
 
 Le sujet comporte des questions de programmation. Le langage à utiliser est Python.
@@ -73,15 +76,19 @@ la liste \lstinline{[0, 0, 0]}.
 	
 %\end{center}
 %\end{minipage}
+\fi
 
 \section{Préliminaires}
 
 
 
+\ifprof
+\else
 Dans un premier temps, on considère le cas d'une seule file, illustré par la Figure~\ref{ccmp_2017_info_fig_01}(a). Une file de
 longueur $n$ est représentée par $n$ cases. Une case peut contenir au plus une voiture. Les voitures
 présentes dans une file circulent toutes dans la même direction (sens des indices croissants, désigné
 par les flèches sur la Figure~\ref{ccmp_2017_info_fig_01}(a)) et sont indifférenciées.
+\fi
 
 \question{Expliquer comment représenter une file de voitures à l'aide d'une liste de booléens.}
 \ifprof
@@ -157,6 +164,8 @@ def egal(L1, L2):
 
 \section{Déplacement de voitures dans la file}
 
+\ifprof
+\else
 On identifie désormais une file de voitures à une liste. On considère les schémas de la Figure~\ref{f_etape_simulation_une_file}
 représentant des exemples de files. Une étape de simulation pour une file consiste à déplacer les
 voitures de la file, à tour de r\^ole, en commen\c cant par la voiture la plus à droite, d'après les règles
@@ -178,11 +187,12 @@ Par exemple, l'application de cette fonction à la liste illustrée par la Figur
 soit la liste illustrée par la Figure~\ref{f_etape_simulation_une_file}(b) lorsque l'on considère qu'aucune voiture nouvelle n'est
 introduite, soit la liste illustrée par la Figure~\ref{f_etape_simulation_une_file}(c) lorsque l'on considère qu'une voiture nouvelle est
 introduite.
+\fi
 
 
 
 
-\hfill
+%\hfill
 %\begin{pspicture}(-7,-2.65)(7,0.65)
 %\rput(-0.75,0){%liste initiale, on la centre
 %	\pspolygon(-2,0)(3.5,0)(3.5,0.5)(-2,0.5)%(-2,0)
@@ -221,14 +231,17 @@ introduite.
 %\uput[-90](0.75,0){(c) \lstinline{C = avancer(A, True)}}
 %}%fin liste c
 %\end{pspicture}
-\hfill {}
+%\hfill {}
 
+\ifprof
+\else
 \begin{center}
 	\includegraphics[width=.9\linewidth]{ccmp_2017_info_fig_02}
 	\captionof{figure}{\label{f_etape_simulation_une_file}étape de simulation}
 \end{center}
+\fi
 
-\question{étant donnée $A$ la liste définie à la question~2, que renvoie \lstinline{avancer(avancer(A, False),True)} ?}
+\question{\'Etant donnée $A$ la liste définie à la question~2, que renvoie \lstinline{avancer(avancer(A, False),True)} ?}
 \ifprof
 \begin{corrige}
 \lstinline{[True, False, True, False, True, True, False, False, False, False, False]}.
@@ -237,6 +250,8 @@ introduite.
 \fi
 
 
+\ifprof
+\else
 On considère $L$ une liste et $m$ l'indice d'une case de cette liste ($0 \leqslant m < len(L)$). On
 s'intéresse à une étape partielle où seules les voitures situées sur la case d'indice $m$ ou à droite de
 cette case peuvent avancer normalement, les autres voitures ne se déplaçant pas.
@@ -276,8 +291,9 @@ Par exemple, la file  \includegraphics[width=3cm]{ccmp_2017_info_fig_m_01}
 %}%fin (a)
 %\end{pspicture}
 
-\medskip
 
+
+\fi
 
 
 \question{Définir en Python la fonction \lstinline{avancer_fin(L, m)} qui réalise cette étape partielle de déplacement et renvoie le résultat dans une nouvelle liste sans modifier $L$.}
@@ -322,6 +338,8 @@ def avancer_fin(L, m):
 \else
 \fi
 
+\ifprof
+\else
 Soient $L$ une liste, $b$ un booléen et $m$ l'indice d'une case inoccupée de cette liste.
 On considère une étape partielle où seules les voitures situées à gauche de la case d'indice $m$ se
 déplacent, les autres voitures ne se déplacent pas. Le booléen $b$ indique si une nouvelle voiture est
@@ -366,6 +384,7 @@ Par exemple, la file \includegraphics[width=3cm]{ccmp_2017_info_fig_m_03}
 
 lorsque aucune nouvelle voiture n'est introduite.
 
+\fi
 
 
 \question{Définir en Python la fonction \lstinline{avancer_debut(L, b, m)} qui réalise cette étape partielle de déplacement et renvoie le résultat dans une nouvelle liste sans modifier $L$.}
@@ -409,6 +428,9 @@ def avancer_debut(L, b, m):
 \else
 \fi
 
+\ifprof
+\else
+
 On considère une liste $L$ dont la case d'indice $m > 0$ est temporairement inaccessible et
 bloque l'avancée des voitures. Une voiture située immédiatement à gauche de la case d'indice m ne
 peut pas avancer. Les voitures situées sur les cases plus à gauche peuvent avancer, à moins d'être
@@ -451,7 +473,7 @@ Par exemple, la file \includegraphics[width=3cm]{ccmp_2017_info_fig_m_05}
 %\end{pspicture}
 %\medskip
 lorsque aucune nouvelle voiture n'est introduite.
-
+\fi
 
 \question{Définir en Python la fonction  \lstinline{avancer_debut_bloque(L, b, m)} qui réalise cette étape partielle de déplacement et renvoie le résultat dans une nouvelle liste.}
 \ifprof
@@ -480,6 +502,8 @@ def avancer_debut_bloque(L, b, m):
 \else
 \fi
 
+\ifprof
+\else
 
 On considère dorénavant deux files \lstinline{L1} et \lstinline{L2} de même longueur impaire se croisant en leur
 milieu; on note $m$ l'indice de la case du milieu. La file \lstinline{L1} est toujours prioritaire sur la file \lstinline{L2}. Les
@@ -492,7 +516,7 @@ exemple, partant d'une configuration donnée par la Figure~\ref{f_etapes_simu_de
 données par les Figures~\ref{f_etapes_simu_deux_files}(b), \ref{f_etapes_simu_deux_files}(c), \ref{f_etapes_simu_deux_files}(d), \ref{f_etapes_simu_deux_files}(e) et \ref{f_etapes_simu_deux_files}(f) en considérant qu'aucune nouvelle voiture n'est
 introduite.
 
-
+\fi
 
 
 
@@ -648,24 +672,31 @@ introduite.
 %\end{pspicture}\hfill {}
 
 %\psset{unit = 1cm}
+
+\ifprof
+\else
 \begin{center}
 	\includegraphics[width=.9\linewidth]{ccmp_2017_info_fig_03}
 	\captionof{figure}{\label{f_etapes_simu_deux_files} étapes de simulation à deux files}
 \end{center}
 
-
+\fi
 
 
 \section{Une étape de simulation à deux files}
 
-L'objectif de cette partie est de définir en \lstinline{lstlisting} l'algorithme permettant d'effectuer une étape
+\ifprof
+\else
+L'objectif de cette partie est de définir en \lstinline{Python} l'algorithme permettant d'effectuer une étape
 de simulation pour ce système à deux files.
+\fi
 
 \question{En utilisant le langage  \lstinline{Python}, définir la fonction  \lstinline{avancer_files(L1, b1, L2, b2)} qui
 renvoie le résultat d'une étape de simulation sous la forme d'une liste de deux éléments notée
 $[R1, R2]$ sans changer les listes \lstinline{L1} et \lstinline{L2}. Les booléens $b1$ et $b2$ indiquent respectivement si une
 nouvelle voiture est introduite dans les files \lstinline{L1} et \lstinline{L2}. Les listes \lstinline{R1} et \lstinline{R2} correspondent aux listes
 après déplacement.}
+
 \ifprof
 \begin{corrige}~\\ \vspace{-.5cm}
 \begin{lstlisting}
@@ -683,7 +714,11 @@ def avancer_files(L1, b1, L2, b2):
 \else
 \fi
 
+
+\ifprof
+\else
 On considère les listes \lstinline{D = [False, True, False, True, False]} et \lstinline{E = [False, True, True, False, False]}
+\fi
 
 
 \question{Que renvoie l'appel  \lstinline{avancer_files(D, False, E, False)} ?}
