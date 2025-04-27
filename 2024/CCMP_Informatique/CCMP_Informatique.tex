@@ -27,9 +27,9 @@ Dans cette épreuve, nous allons nous intéresser uniquement à deux phases : la
 Le codage ASCII (American Standard Code for Information Interchange) définit une norme où 128 caractères sont codés sur 7 bits. Ce codage est illustré par les quelques lignes suivantes :
 
 \begin{center}
-\begin{tabular}{|c|c|c|}
+\begin{tabular}{ccc}
 \hline
-Caractère & Codage binaire & Équivalent numérique \\
+\textbf{Caractère} & \textbf{Codage binaire} & \textbf{Équivalent numérique} \\
 \hline
 \lstinline{'a'} & 1100001 & 97 \\
 \hline
@@ -43,9 +43,9 @@ Caractère & Codage binaire & Équivalent numérique \\
 Lorsqu'une chaîne de caractères n'utilise pas l'intégralité des 128 caractères proposés par le codage ASCII, il est possible de convenir d'une représentation différente, plus économique en nombre de symboles. Considérons la chaîne de caractères $s=$ 'abaabaca'. On peut proposer de coder celle-ci à l'aide du tableau suivant :
 
 \begin{center}
-\begin{tabular}{|c|c|}
+\begin{tabular}{cc}
 \hline
-Caractère & Code \\
+\textbf{Caractère} & \textbf{Code}\\
 \hline
 \lstinline{'a'} & 00 \\
 \hline
@@ -99,8 +99,8 @@ Que renvoie cette fonction lorsque \lstinline{s='abaabaca'} ? Expliquer succinct
 
 \question{En fonction de la longueur n de la chaîne et du nombre k de caractères distincts dans celle-ci, déterminer la complexité asymptotique dans le pire des cas de la fonction de la question Q3. Par exemple pour \lstinline{'abaabaca'}, on a $n=8$ et $k=3$. On négligera la complexité des append mais pas celle des tests d'appartenance de la forme \lstinline{i in L}. Autrement dit, la ligne 7 est considérée comme étant de complexité constante et la ligne 6 de complexité linéaire en la longueur de la liste \lstinline{listeCar}.}
 
-\question{On définit alors une fonction \lstinline{analyseTexte(s:str) -> list}}
-
+\question{On définit alors une fonction \lstinline{analyseTexte(s:str) -> list}.}
+\vspace{-.25cm}
 \begin{lstlisting}
 def analyseTexte(s:str):
     R = []
@@ -111,7 +111,7 @@ def analyseTexte(s:str):
     return R
 \end{lstlisting}
 
-Expliquer ce que fait cette fonction et donner la valeur renvoyée par la commande \lstinline{analyseTexte('babaaaabca')}.
+\textit{Expliquer ce que fait cette fonction et donner la valeur renvoyée par la commande \lstinline{analyseTexte('babaaaabca')}.}
 
 \question{En fonction de la longueur $n$ de \lstinline{s} et du nombre \lstinline{k} de caractères distincts présents dans \lstinline{s}, (autrement dit \lstinline{k} est la longueur de \lstinline{listeCaracteres(s)}), donner une estimation de la complexité asymptotique dans le pire des cas de la fonction \lstinline{analyseTexte}.}
 
@@ -179,13 +179,13 @@ La compression par codage arithmétique consiste à représenter une chaîne de 
 Initialement, on attribue à chaque caractère utile une portion de l'intervalle $[0 ; 1[$ proportionnelle à sa fréquence d'occurrences. Par exemple, pour un alphabet à 5 lettres 'abcde', on pourrait avoir un tableau comme ci-dessous :
 
 \begin{center}
-\begin{tabular}{|l|c|c|c|c|c|}
+\begin{tabular}{lccccc}
 \hline
-Caractère & ' $\mathrm{a}^{\prime}$ & ' b ' & $\mathrm{'c}^{\prime}$ & $\mathrm{'d}^{\prime}$ & $\mathrm{e}^{\prime}$ \\
+\textbf{Caractère} & \lstinline{'a'} & \lstinline{'b'} & \lstinline{'c'} & \lstinline{'d'} & \lstinline{'e'} \\
 \hline
-Fréquence & 0.2 & 0.1 & 0.2 & 0.4 & 0.1 \\
+\textbf{Fréquence} & 0.2 & 0.1 & 0.2 & 0.4 & 0.1 \\
 \hline
-Intervalle & $[0 ; 0.2[$ & $[0.2 ; 0.3[$ & $[0.3 ; 0.5[$ & $[0.5 ; 0.9[$ & $[0.9 ; 1[$ \\
+\textbf{Intervalle} & $[0 ; 0.2[$ & $[0.2 ; 0.3[$ & $[0.3 ; 0.5[$ & $[0.5 ; 0.9[$ & $[0.9 ; 1[$ \\
 \hline
 \end{tabular}
 \end{center}
@@ -227,11 +227,11 @@ Pour effectuer le décodage d'un flottant $\mathbf{x}$, il suffit de repérer da
 \begin{center}
 \begin{tabular}{lccccc}
 \hline
-Caractère & \lstinline{'a'} & \lstinline{'b'}  & \lstinline{'c'} & \lstinline{'d'} & \lstinline{'e'} \\
+\textbf{Caractère} & \lstinline{'a'} & \lstinline{'b'}  & \lstinline{'c'} & \lstinline{'d'} & \lstinline{'e'} \\
 \hline
-Fréquence & 0.2 & 0.1 & 0.2 & 0.4 & 0.1 \\
+\textbf{Fréquence} & 0.2 & 0.1 & 0.2 & 0.4 & 0.1 \\
 \hline
-Intervalle & $[0 ; 0.2[$ & $[0.2 ; 0.3[$ & $[0.3 ; 0.5[$ & $[0.5 ; 0.9[$ & $[0.9 ; 1[$ \\
+\textbf{Intervalle} & $[0 ; 0.2[$ & $[0.2 ; 0.3[$ & $[0.3 ; 0.5[$ & $[0.5 ; 0.9[$ & $[0.9 ; 1[$ \\
 \hline
 \end{tabular}
 \end{center}
