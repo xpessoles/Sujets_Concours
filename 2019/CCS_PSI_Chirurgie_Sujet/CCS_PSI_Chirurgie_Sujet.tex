@@ -16,14 +16,14 @@ Déterminer une valeur numérique pour la bande passante de l'asservissement en 
 \end{obj}
 
 Pour cette partie, on retient le modèle de signal de déplacement idéal $z^{*}(t)$ défini précédemment. L'objectif de cette partie est de déterminer la bande passante minimale $\omega_{0 \text { min }}$ en boucle fermée de la chaine d'asservissement permettant d'assurer la précision demandée par le diagramme des exigences.\\
-Pour cette pré-détermination, on utilise un modèle simple en raisonnant sur un mouvement selon un seul axe assuré par une chaine d'asservissement (non représentée) dont on note $F(p)$ la fonction de transfert en boucle fermée telle que $F(p)=\frac{Z(p)}{Z^{*}(p)}=\frac{\omega_{0}^{2}}{p^{2}+2 \xi \omega_{0} p+\omega_{0}^{2}}$ où $z^{*}(t)$ est la consigne de déplacement (en mm) et $z(t)$ la sortie de la chaine d'asservissement (en mm). Vis-à-vis de ce signal de consigne, on note l'écart
+Pour cette pré-détermination, on utilise un modèle simple en raisonnant sur un mouvement selon un seul axe assuré par une chaine d'asservissement (non représentée) dont on note $F(p)$ la fonction de transfert en boucle fermée telle que $F(p)=\dfrac{Z(p)}{Z^{*}(p)}=\dfrac{\omega_{0}^{2}}{p^{2}+2 \xi \omega_{0} p+\omega_{0}^{2}}$ où $z^{*}(t)$ est la consigne de déplacement (en mm) et $z(t)$ la sortie de la chaine d'asservissement (en mm). Vis-à-vis de ce signal de consigne, on note l'écart
 
 $$
 \varepsilon(t)=z^{*}(t)-z(t)=\varepsilon_{2} \sin \left(2 \pi f_{2} t+\Theta_{2}\right)=\varepsilon_{2} \sin \left(\omega_{2} t+\Theta_{2}\right)
 $$
 
 %Q 7. 
-\question{On note $H(p)=\frac{\varepsilon(p)}{Z^{*}(p)}$ la fonction de transfert de la consigne $Z^{*}(p)$ vers l'écart $\varepsilon(p)$. Déterminer $H(p)$ en fonction de $\omega_{0}$ et $\xi$. Donner les relations exprimant $\varepsilon_{2}$ et $\Theta_{2}$ en fonction de $\left\|H\left(\mathrm{i} \omega_{2}\right)\right\|$, $\arg \left(H\left(\mathrm{i} \omega_{2}\right)\right), A_{2}$ et $\Phi_{2}$.}
+\question{On note $H(p)=\dfrac{\varepsilon(p)}{Z^{*}(p)}$ la fonction de transfert de la consigne $Z^{*}(p)$ vers l'écart $\varepsilon(p)$. Déterminer $H(p)$ en fonction de $\omega_{0}$ et $\xi$. Donner les relations exprimant $\varepsilon_{2}$ et $\Theta_{2}$ en fonction de $\left\|H\left(\mathrm{i} \omega_{2}\right)\right\|$, $\arg \left(H\left(\mathrm{i} \omega_{2}\right)\right), A_{2}$ et $\Phi_{2}$.}
 \ifprof
 \begin{corrige}
 
@@ -128,7 +128,7 @@ Le schéma cinématique donné en figure \ref{fig_07} est une représentation de
 La liaison pivot entre le porte-outil 5 et le bras terminal 4 permet d'obtenir une rotation de l'outil utilisé autour de son axe principal. Elle ne sera pas utilisée dans cette étude, le porte-outil 5 est supposé être immobile par rapport au bras 4 .\\
 Les autres mouvements sont générés par des ensembles motoréducteurs:
   \item un premier motoréducteur entraine la roue dentée 6 , qui elle-même entraine une seconde roue dentée liée au bras primaire 2. L'action du motoréducteur sur la roue dentée 6 est modélisée par un couple dont le moment est noté $\vec{C}_{m 1}=C_{m 1} \vec{z}_{1}$
-  \item un second motoréducteur entraine l'arbre 7 sur lequel est installé le pignon d'attaque du réducteur 9 . Ce pignon entraine une roue dentée liée au bras secondaire 3 . Le rapport de transmission de ce réducteur 9 est noté $r_{9}$ avec $r_{9}=\frac{\dot{\theta}_{32}}{\dot{\theta}_{72}}=0,25$. Son rendement est noté $\eta_{9}$ avec $\eta_{9}=0,78$. L'action du motoréducteur sur l'arbre 7 est modélisée par un couple dont le moment est noté $\vec{C}_{m 2}=C_{m 2} \vec{z}_{2}{ }^{\prime}$;
+  \item un second motoréducteur entraine l'arbre 7 sur lequel est installé le pignon d'attaque du réducteur 9 . Ce pignon entraine une roue dentée liée au bras secondaire 3 . Le rapport de transmission de ce réducteur 9 est noté $r_{9}$ avec $r_{9}=\dfrac{\dot{\theta}_{32}}{\dot{\theta}_{72}}=0,25$. Son rendement est noté $\eta_{9}$ avec $\eta_{9}=0,78$. L'action du motoréducteur sur l'arbre 7 est modélisée par un couple dont le moment est noté $\vec{C}_{m 2}=C_{m 2} \vec{z}_{2}{ }^{\prime}$;
   \item enfin, le troisième motoréducteur entraine la vis 8 d'un système vis-écrou dont l'écrou est lié au bras terminal 4. Cette vis est de pas à droite $p=0,63 \mathrm{~mm}$. L'angle de rotation de la vis 8 par rapport au bras secondaire 3 est noté $\theta_{83}$ avec $\theta_{83}=\left(\vec{x}_{3}, \vec{x}_{8}\right)$. L'action du motoréducteur sur la vis 8 est modélisée par un couple dont le moment est noté $\vec{C}_{m 3}=C_{m 3} \vec{z}_{3}$.
 \end{itemize}
 
