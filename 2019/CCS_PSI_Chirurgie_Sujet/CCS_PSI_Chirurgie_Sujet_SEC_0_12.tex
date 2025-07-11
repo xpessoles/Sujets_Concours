@@ -12,15 +12,15 @@ Dans ce contexte, le Service d'Automatique et d'Analyse des Systèmes (SAAS) de 
 \caption{Structure d'un robot pour la chirurgie mini-invasive\label{ccs_psi_2019_fig_01}}
 \end{figure}
 
-La structure fonctionnelle du système robotisé développée par l'équipe du SAAS pour la chirurgie robotisée est représentée sur la figure \ref{ccs_psi_2019_fig_01}. Elle est composée en particulier
+La structure fonctionnelle du système robotisé développée par l'équipe du SAAS pour la chirurgie robotisée est représentée sur la figure \ref{ccs_psi_2019_fig_01}. Elle est composée en particulier :
 
 \begin{itemize}
   \item d'une interface haptique (robot maitre) permettant de générer les consignes d'un robot esclave à partir des mouvements du chirurgien et effectuant un retour d'effort permettant de restituer l'effort de contact entre les instruments chirurgicaux et l'environnement ;
   \item d'un robot esclave reproduisant les mouvements pilotés par le chirurgien.
 \end{itemize}
 
-En pratique, les consignes de déplacement du robot sont générées
 
+En pratique, les consignes de déplacement du robot sont générées :
 \begin{itemize}
   \item à partir d'une estimation des mouvements physiologiques de l'organe considéré à suivre ;
   \item auxquels sont ajoutés les déplacements demandés par le chirurgien.
@@ -258,7 +258,7 @@ def calculSpectre(Signal,Nf,fmax,Te):
 \fi
 
 Une liste (non exhaustive) de fonctions Python permettant de manipuler des tableaux et des nombres complexes est donnée dans le document réponse.\\
-L'application de cette procédure au signal enregistré conduit au contenu spectral représenté sur la figure 5 . L'analyse de ce contenu fait apparaitre deux composantes principales aux fréquences $f_{1}=0,24 \mathrm{~Hz}$ et $f_{2}=0,48 \mathrm{~Hz}$ d'amplitudes respectives $A_{1}=2,94 \mathrm{~mm}$ et $A_{2}=1,30 \mathrm{~mm}$. Dans la suite de cette partie, on ne prend en compte qu'une seule composante et on modélise le mouvement respiratoire sous la forme d'un signal de déplacement $z^{*}(t)=A_{2} \sin \left(2 \pi f_{2} t+\Phi_{2}\right)$, correspondant au cas le plus contraignant en terme de performance.\\
+L'application de cette procédure au signal enregistré conduit au contenu spectral représenté sur la figure \ref{ccs_psi_2019_fig_05} . L'analyse de ce contenu fait apparaitre deux composantes principales aux fréquences $f_{1}=0,24 \mathrm{~Hz}$ et $f_{2}=0,48 \mathrm{~Hz}$ d'amplitudes respectives $A_{1}=2,94 \mathrm{~mm}$ et $A_{2}=1,30 \mathrm{~mm}$. Dans la suite de cette partie, on ne prend en compte qu'une seule composante et on modélise le mouvement respiratoire sous la forme d'un signal de déplacement $z^{*}(t)=A_{2} \sin \left(2 \pi f_{2} t+\Phi_{2}\right)$, correspondant au cas le plus contraignant en terme de performance.
 
 
 \begin{figure}[!h]
