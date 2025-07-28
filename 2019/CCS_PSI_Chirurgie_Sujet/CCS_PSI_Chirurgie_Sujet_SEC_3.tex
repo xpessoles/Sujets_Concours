@@ -3,7 +3,8 @@
 \begin{obj}
 Définir le régulateur de la chaine d'asservissement du robot esclave, analyser ses performances vis-à-vis des perturbations en se limitant à celles dues aux couples de frottement sec et compléter la chaine d'asservissement par la compensation de ces efforts.
 \end{obj}
-
+\ifprof
+\else
 Un robot étant un système multivariable comportant en particulier des couplages entre les dynamiques des différents axes, la mise en place d'une loi de commande prenant en compte tous les axes peut se révéler complexe. Dans le cadre de ce sujet, on suppose
 
 \begin{itemize}
@@ -12,12 +13,15 @@ Un robot étant un système multivariable comportant en particulier des couplage
   \item que les couplages entre les axes sont modélisés comme des entrées de perturbation dans les chaines d'asservissement.\\
 L'objectif de cette partie est de déterminer la loi de commande permettant d'assurer l'asservissement de position des articulations $\theta_{32}$ et $\theta_{21}$ à des angles de référence issus du modèle cinématique inverse (figure \ref{fig_02}). Pour la suite de l'étude, on note les positions articulaires $q_{j}=\theta_{j}[j=32,21]$ et les consignes pour les chaines d'asservissement associées $q_{j}^{*}=\theta_{j}^{*}[j=32,21]$.
 \end{itemize}
+\fi
 
 \subsection{Calcul d'un correcteur et analyse partielle des performances de la chaine d'asservissement}
 \begin{obj}
 Déterminer un correcteur pour la chaine d'asservissement de la position angulaire des articulations. Afin d'aboutir à une démarche générale (indépendante d'une articulation particulière), la loi de commande sera paramétrée par le moment d'inertie équivalent de l'articulation considérée.
 \end{obj}
 
+\ifprof
+\else
 Au regard des hypothèses précédentes, la synthèse du correcteur associé à une articulation $j$ peut être effectuée en utilisant le modèle suivant
 
 $$
@@ -41,6 +45,7 @@ Les mesures disponibles étant réalisées au moyen de capteurs placés directem
 \includegraphics[max width=\textwidth]{2024_08_29_b4f920ed3822451bf72bg-11}
 \caption{\label{fig_12}Diagramme des exigences de la chaine d'asservissement}
 \end{figure}
+\fi
 
 %Q 24. 
 \question{Déterminer l'expression de $T(p)$. Exprimer, sous forme canonique, la fonction de transfert en boucle fermée $F_{j}(p)=\frac{Q_{j}(p)}{Q_{j}^{*}(p)}$ en fonction de $\indice{J}{eq}, K_{1}$ et $K_{2}$. Déterminer alors les expressions littérales de $K_{1}$ et $K_{2}$ en fonction de $\indice{J}{eq}$, de la pulsation propre $\omega_{0}$ et de l'amortissement $\xi$ (exigence 5.1.1 du cahier des charges figure \ref{fig_12}).}
@@ -69,8 +74,10 @@ On a donc $\dfrac{1}{\omega_0^2}=\dfrac{J_{\text{eq}}}{K_1}$ et $\dfrac{2\xi}{\o
 \else
 \fi
 
-
+\ifprof
+\else
 Un des problèmes majeurs de ce type de robot, surtout aux faibles vitesses de déplacement, est la présence d'efforts de frottement sec de valeur importante qui peuvent se traduire par des oscillations aux faibles vitesses ou encore par des erreurs en régime permanent. Pour l'analyse en régime permanent, une solution est de modéliser ce type d'effort comme un signal perturbateur externe constant.\\
+\fi
 
 %Q 25. 
 \question{En conservant les gains $K_{1}$ et $K_{2}$ déterminés précédemment, préciser la fonction de transfert en boucle fermée $D(p)=\frac{Q_{j}(p)}{C_{\text {ext }}(p)}$ en fonction de $\indice{J}{eq}, \omega_{0}$ et $\xi$. Déterminer alors littéralement l'écart en régime permanent, $\lim\limits_{t \rightarrow+\infty} \varepsilon(t)$, pour une variation en échelon de l'effort perturbateur $c_{\text {ext }}(t)=C_{\text {ext } 0} \Upsilon(t)$ d'amplitude $C_{\text {ext } 0}$ où $\Upsilon(t)$ représente l'échelon d'Heaviside. Conclure sur la performance associée.}
@@ -114,6 +121,9 @@ $=  -\dfrac{C_{\text{ext} 0}}{\indice{J}{eq}\omega_0^2}$.
 Améliorer les performances de la loi de commande vis-à-vis des couples perturbateurs extérieurs.
 \end{obj}
 
+\ifprof
+\else
+
 Une solution pour améliorer la performance en précision serait de compléter le correcteur en introduisant un terme intégral. Cependant, l'introduction de ce terme diminuera les marges de stabilité et son calcul peut s'avérer difficile au regard de la fonction de transfert en boucle ouverte s'il est nécessaire d'assurer un certain niveau de performance dynamique.
 
 Une solution alternative est de compenser le terme perturbateur en introduisant une loi de commande $c_{j}(t)=$ $\tilde{c}_{j}(t)-c_{\text {ext }}(t)$ (soit après compensation, un modèle du procédé à considérer $\indice{J}{eq} \ddot{q}_{j}(t)=\tilde{c}_{j}(t)$ ne faisant pas apparaître de terme perturbateur). Cependant, cette solution nécessite de disposer de la mesure du signal perturbateur, irréalisable en pratique. Afin de répondre à ce problème, une solution est de mettre en place un observateur permettant d'obtenir une estimée $\hat{c}_{\text {ext }}(t)$ du couple extérieur. Cet observateur est mis en place en utilisant les relations suivantes
@@ -126,6 +136,7 @@ $$
 $$
 
 où $K(p)$ est un correcteur à déterminer et $\hat{Q}_{j}(p)$ une estimation de $Q_{j}(p)$.\\
+\fi
 
 %Q 26. 
 \question{En utilisant ces équations, compléter le schéma bloc modélisant cet observateur (figure \ref{fig_B} du document réponse).}
@@ -279,6 +290,8 @@ $.
 \else
 \fi
 
+\ifprof
+\else
 
 Cette première structure de commande correspondant à la relation
 
@@ -297,6 +310,7 @@ peut être représentée par le schéma bloc de la figure \ref{fig_14}. Elle ser
 
 
 L'introduction de la compensation $C_{j}(p)=\left(K_{1}\left(Q_{j}^{*}(p)-Q_{j}(p)\right)-K_{2} p Q_{j}(p)\right)-\hat{C}_{\text {ext }}(p)$ de la perturbation modifie la structure de la boucle et la stabilité en boucle fermée n'est plus garantie à priori.
+\fi
 
 %Q 29. 
 \question{En utilisant cette compensation, déterminer la fonction de transfert $\frac{Q_{j}(p)}{C_{\text {ext }}}$ et l'exprimer en fonction de $T(p), K_{1}, K_{2}$ et $K(p)$ (on supposera que la consigne est nulle $Q_{j}^{*}=0$ et que le système est bouclé par le correcteur déterminé à la sous-partie III.A). En déduire le polynôme caractéristique puis, en justifiant la réponse, conclure sur la stabilité du système bouclé et sur l'écart en régime permanent lorsque le couple perturbateur $c_{\text {ext }}$ est constant.}

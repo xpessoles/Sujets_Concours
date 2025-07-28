@@ -1,4 +1,6 @@
 \section{Contexte et études préliminaires}
+\ifprof
+\else
 Les progrès en mécatronique et les systèmes numériques (vision, commande, etc.) associés à la robotique ont permis le développement de systèmes robotisés qui apportent une aide au geste chirurgical et permettent la diminution des traumatismes opératoires. Ce développement de robots dédiés aux applications chirurgicales est en progression depuis les années 1980 même si les aspects purement économiques sont difficiles à évaluer en raison de la multitude de critères à prendre en compte: cout du robot et de sa maintenance, réduction de la durée d'hospitalisation, suivi post-opératoire, diminution de la taille des cicatrices, etc.\\
 Ainsi, le développement de ces systèmes ne se réduit pas aux seuls aspects économiques, d'autres critères (diminution du traumatisme opératoire, du temps de récupération, du saignement, etc.) entrent en jeu. Du point de vue de la robotique, de nombreux travaux de recherche actuels portent sur l'amélioration de la précision du geste chirurgical en prenant en compte dans la commande du robot les mouvements physiologiques (périodiques) du patient comme les mouvements respiratoires ou ceux dus aux battements cardiaques. Ces mouvements perturbent le geste chirurgical, en particulier lorsqu'un niveau de précision important est exigé.\\
 Pour répondre à ce problème, différentes solutions peuvent être envisagées. L'une d'elles consiste à faire suivre à l'instrument un mouvement périodique synchronisé avec les mouvements physiologiques de la zone d'opération considérée. Un système de mesure et de traitement de l'information (hors du cadre de cette étude) permet de restituer au chirurgien une image virtuelle assimilable à une opération sur un organe fixe. Une des difficultés (objet des travaux de recherche actuels) réside dans le développement de systèmes robotisés et de méthodes de commande fiables aptes à assurer le déplacement synchrone du robot avec les mouvements physiologiques et avec le niveau de précision requis.
@@ -34,6 +36,7 @@ Le cadre de ce sujet porte plus spécifiquement sur l'analyse de la pertinence d
   \item la partie III portera sur la conception d'une loi de commande de base, en exploitant le modèle dynamique développé dans la partie II. Le but sera d'asservir le déplacement du robot aux consignes obtenues par l'addition des mouvements physiologiques périodiques et du déplacement demandé par le chirurgien dans le repère fixe virtuel ;
   \item enfin, dans la partie IV, une adaptation de la loi de commande de base sera envisagée en vue d'assurer le suivi des mouvements physiologiques avec le niveau de précision requis par le cahier des charges.
 \end{itemize}
+\fi
 
 %I 
 \section{Analyse des propriétés des signaux physiologiques}
@@ -43,6 +46,8 @@ Le cadre de ce sujet porte plus spécifiquement sur l'analyse de la pertinence d
 Analyser les propriétés des signaux physiologiques et en déduire des éléments du cahier des charges de la loi de commande pour assurer le déplacement du robot avec le niveau de précision requis.
 \end{obj}
 
+\ifprof
+\else
 L'architecture de commande adoptée dans le cadre de ce projet est illustrée par le schéma de la figure \ref{ccs_psi_2019_fig_02} :
 
 \begin{itemize}
@@ -74,6 +79,7 @@ Les exigences du cahier des charges sont indiquées sur le diagramme de la figur
 %Figure 3 \\
 \caption{Cahier des charges\label{ccs_psi_2019_fig_03}}
 \end{figure}
+\fi
 
 
 %I.A - 
@@ -83,6 +89,8 @@ Les exigences du cahier des charges sont indiquées sur le diagramme de la figur
 Proposer un algorithme permettant de mettre en évidence les propriétés des mouvements respiratoires.
 \end{obj}
 
+\ifprof
+\else
 Un enregistrement expérimental des mouvements physiologiques dus à la respiration est donné sur la figure \ref{ccs_psi_2019_fig_04} montrant les déplacements de l'organe considéré dans cette étude.
 
 
@@ -93,7 +101,7 @@ Un enregistrement expérimental des mouvements physiologiques dus à la respirat
 %Figure 4 \\
 \caption{Déplacement dû aux mouvements physiologiques\label{ccs_psi_2019_fig_04}}
 \end{figure}
-
+\fi
 
 %Q 1. 
 \question{Commenter l'allure de ce signal en précisant ses principales caractéristiques à considérer pour le calcul d'une loi de commande performante de la chaine d'asservissement.}
@@ -108,6 +116,8 @@ Soit une pulsation de $\omega\approx \SI{1,53}{rad.s^{-1}}$.
 \else
 \fi
 
+\ifprof
+\else
 Afin d'analyser les propriétés des mouvements respiratoires, une solution possible est d'analyser le contenu spectral du signal considéré. Pour cela, on peut utiliser la transformation de Fourier qui peut être appliquée à un signal quelconque, non nécessairement périodique, sur une fenêtre de temps finie. Si on note un signal temporel $s(t)$, sa transformée de Fourier $S(f)$ est donnée par $S(f)=\int_{-\infty}^{\infty} s(t) \mathrm{e}^{-\mathrm{i} 2 \pi f t} \mathrm{~d} t$ où $S(f)$ est une fonction complexe de la fréquence $f$. D'un point de vue du traitement numérique, le contenu spectral est estimé en utilisant un enregistrement sur une durée limitée $t \in\left[0, t_{\max }\right]$. La relation normée suivante permet d'obtenir directement les amplitudes des différentes composantes harmoniques
 
 $$
@@ -132,6 +142,7 @@ Dans ce contexte, $\hat{S}\left(f_{n}\right)$ est un nombre complexe
 
 Le signal $s(t)$ peut être alors approché sous la forme $\sum_{n=0}^{N_{f}-1} s_{n}(t)$.\\
 On note $S_{p}={ }^{t}\left(\begin{array}{lllll}\hat{S}(0) & \hat{S}\left(f_{1}\right) & \hat{S}\left(f_{2}\right) & \cdots & \hat{S}\left(f_{N-1}\right)\end{array}\right)$ la matrice colonne contenant les composantes spectrales correspondantes aux fréquences $f_{n} \in E_{f}$ et $V_{s}=^{t}\left(s[0] \quad s\left[T_{e}\right] \quad s\left[2 T_{e}\right] \quad \cdots \quad s\left[(N-1) T_{e}\right]\right)$ une matrice colonne contenant les échantillons du signal dans la fenêtre temporelle $\left[0,(N-1) T_{e}\right]$.\\
+\fi
 
 %Q 2. 
 \question{Formuler $\hat{S}\left(f_{n}\right)$ sous la forme $\hat{S}\left(f_{n}\right)=L_{n} \cdot V_{s}$ où $L_{n}$ est une matrice ligne. Exprimer les composantes $l_{k}\left(f_{n}\right)$ de la matrice $L_{n}$ en fonction de $k, T_{e}$ et des $f_{n}\left(0 \leqslant n \leqslant N_{f}-1\right)$.}
@@ -257,6 +268,9 @@ def calculSpectre(Signal,Nf,fmax,Te):
 \else
 \fi
 
+\ifprof
+\else
+
 Une liste (non exhaustive) de fonctions Python permettant de manipuler des tableaux et des nombres complexes est donnée dans le document réponse.\\
 L'application de cette procédure au signal enregistré conduit au contenu spectral représenté sur la figure \ref{ccs_psi_2019_fig_05} . L'analyse de ce contenu fait apparaitre deux composantes principales aux fréquences $f_{1}=0,24 \mathrm{~Hz}$ et $f_{2}=0,48 \mathrm{~Hz}$ d'amplitudes respectives $A_{1}=2,94 \mathrm{~mm}$ et $A_{2}=1,30 \mathrm{~mm}$. Dans la suite de cette partie, on ne prend en compte qu'une seule composante et on modélise le mouvement respiratoire sous la forme d'un signal de déplacement $z^{*}(t)=A_{2} \sin \left(2 \pi f_{2} t+\Phi_{2}\right)$, correspondant au cas le plus contraignant en terme de performance.
 
@@ -270,5 +284,5 @@ L'application de cette procédure au signal enregistré conduit au contenu spect
 \end{figure}
 
 
-
+\fi
 
