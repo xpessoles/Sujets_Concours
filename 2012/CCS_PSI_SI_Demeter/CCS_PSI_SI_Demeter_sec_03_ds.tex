@@ -67,7 +67,7 @@ Dans tous les modèles utilisés dans la suite, les angles sont exprimés en rad
 \else
 
 
-La figure \autoref{fig_11} montre la chaîne de régulation (monoaxe) où $H(p)$, $A(p)$ et $B(p)$ sont les fonctions de transfert modélisant respectivement le satellite, la roue de réaction et le capteur. On suppose dans un premier temps que l’actionneur et le capteur ont tous deux un gain statique unitaire mais sont affectés d’un retard pur : \SI{100}{ms} pour la roue de réaction et \SI{700}{ms} pour les capteurs stellaires. 
+La  \autoref{fig_11} montre la chaîne de régulation (monoaxe) où $H(p)$, $A(p)$ et $B(p)$ sont les fonctions de transfert modélisant respectivement le satellite, la roue de réaction et le capteur. On suppose dans un premier temps que l’actionneur et le capteur ont tous deux un gain statique unitaire mais sont affectés d’un retard pur : \SI{100}{ms} pour la roue de réaction et \SI{700}{ms} pour les capteurs stellaires. 
 %La fonction de transfert du satellite est obtenue à partir des relations obtenues à la question \ref{q_8} ; et au regard de la bande passante souhaitée, on admettra qu’elle peut être approchée par la fonction $H(p)$ donnée ci-dessous. 
 Ainsi, les fonctions de transfert correspondant aux différents éléments de la chaîne d’asservissement sont :
 $$
@@ -90,7 +90,21 @@ $F(p) = \dfrac{1}{1 + 1,5p}$ (en pratique, ces filtres sont d’ordre 2).
 \end{itemize}
 \fi
 
-\question{\label{q_15}}\textit{La figure du document réponse donne le diagramme de Bode de la fonction $A_r(p)H(p)F(p)$. Tracer directement sur cette figure les diagrammes asymptotiques associés à cette fonction (document réponse à rendre avec la copie).}
+\ifprof
+\else
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{images/fig_11}
+\caption{Schéma-bloc de la boucle d’asservissement d’attitude \label{fig_11}}
+\end{figure}
+
+\fi
+
+
+\question{\textit{Exprimer $\theta$ en fonction de $\indice{\theta}{ref}$, $\indice{C}{ext}$ et des différentes fonctions de transfert.}}
+
+\question{\textit{La figure du document réponse donne le diagramme de Bode de la fonction $A_r(p)H(p)F(p)$. Tracer directement sur cette figure les diagrammes asymptotiques associés à cette fonction (document réponse à rendre avec la copie). \label{q_15}}}
 \ifprof
 \begin{corrige}
 Les pentes des asympotes sont données par le tableau suivant. 
@@ -112,10 +126,10 @@ On a donc  en $\omega = \SI{0,01}{rad.s^{-1}}$, $G_{\text{dB}}(0,01)\simeq 20\lo
 \else
 \fi
 
-\question{\label{q_16}}\textit{En prenant $R(p) = 1$, préciser la fonction de transfert en boucle ouverte et tracer les diagrammes de
+\question{\textit{En prenant $R(p) = 1$, préciser la fonction de transfert en boucle ouverte et tracer les diagrammes de
 Bode réels (5 ou 6 points judicieusement choisis suffisent pour ces tracés) sur la figure B. Au regard des tracés
 effectués, justifier que des corrections proportionnelle ou proportionnelle-intégrale ne permettent pas d’assurer
-le cahier des charges escompté.}
+le cahier des charges escompté.\label{q_16}}}
 \ifprof
 \begin{corrige}
 On a $\text{FTBO}(p)=F(p)A(p)H(p)B(p)=\dfrac{1}{1 + 1,5p} \dfrac{1}{1+\dfrac{1}{0,87}p}e^{-0,1 p}  \dfrac{0,028}{p^2} e^{-0,7p}$. Il s'agit donc d'ajouter le retard $e^{-0,8 p}$.
@@ -144,8 +158,8 @@ Cahier des charges :
 \fi
 
 
-\question{\label{q_17}}\textit{En déduire les conditions sur le module et l’argument de $R(j\omega)$ pour assurer la pulsation de coupure et
-la marge de phase demandées par le cahier des charges associé au modèle nominal.}
+\question{\label{q_17}\textit{En déduire les conditions sur le module et l’argument de $R(j\omega)$ pour assurer la pulsation de coupure et
+la marge de phase demandées par le cahier des charges associé au modèle nominal.}}
 \ifprof
 \begin{corrige}
 En utilisant la BO non corrigée, on mesure :
@@ -165,16 +179,7 @@ Le cahier des charges demande
 \fi
 
 
-\ifprof
-\else
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=.8\linewidth]{images/fig_11}
-\caption{Schéma-bloc de la boucle d’asservissement d’attitude \label{fig_11}}
-\end{figure}
-
-\fi
 
 
 
@@ -194,7 +199,7 @@ précédemment : $C_{00} = C_{01} = \SI{30e-6}{N.m}$  et $\omega_0 = \SI{0,001}{
 \fi
 
 
-\question{\label{q_18}}\textit{En prenant une consigne $\theta_{\text{ref}} = 0$, déterminer la fonction de transfert $T(p) = \dfrac{\theta(p)}{C_{\text{ext}}(p)}$ entre les couples perturbateurs $C_{\text{ext}}(p)$ et la position $\theta(p)$ et l’exprimer à partir des fonctions de transfert de la \autoref{fig_11}.}
+\question{\label{q_18}\textit{En prenant une consigne $\theta_{\text{ref}} = 0$, déterminer la fonction de transfert $T(p) = \dfrac{\theta(p)}{C_{\text{ext}}(p)}$ entre les couples perturbateurs $C_{\text{ext}}(p)$ et la position $\theta(p)$ et l’exprimer à partir des fonctions de transfert de la \autoref{fig_11}.}}
 \ifprof
 \begin{corrige}
 On a $T(p)=\dfrac{H(p)}{1+H(p)B(p)A(p)C(p)}$ ou encore $T(p)=\dfrac{H(p)}{1+H(p)B(p)A(p)F(p)R(p)}$
@@ -202,7 +207,7 @@ On a $T(p)=\dfrac{H(p)}{1+H(p)B(p)A(p)C(p)}$ ou encore $T(p)=\dfrac{H(p)}{1+H(p)
 \else
 \fi
 
-\question{\label{q_19}}\textit{En utilisant les approximations fréquentielles 
+\question{\label{q_19}\textit{En utilisant les approximations fréquentielles 
 $||T_{\text{bo}}(j\omega)||>>1$ et
 $||T_{\text{bo}}(j\omega)||<<1$
 où $T_{\text{bo}}(p)$ est la fonction
@@ -210,7 +215,7 @@ de transfert en boucle ouverte, montrer que dans l’intervalle des pulsations d
 on peut écrire : 
 $||T(j\omega)||\simeq \dfrac{1}{|| R\left(j\omega\right) F\left(j\omega\right) A\left(j\omega\right) B\left(j\omega\right)|| }$. 
  Justifier que cette relation peut encore être simplifiée selon la formulation :
- $||T(j\omega)||\simeq \dfrac{1}{|| R\left(j\omega\right)||}$.}
+ $||T(j\omega)||\simeq \dfrac{1}{|| R\left(j\omega\right)||}$.}}
 
 \ifprof
 \begin{corrige}
@@ -224,12 +229,12 @@ Or, $||F\left(j\omega\right) A\left(j\omega\right) B\left(j\omega\right)|| \sime
 \else
 \fi
 
-\question{\label{q_20}}\textit{Donner l’expression de l’amplitude de  l'évolution temporelle de $\theta(t)$, en fonction de 
+\question{\label{q_20}\textit{Donner l’expression de l’amplitude de  l'évolution temporelle de $\theta(t)$, en fonction de 
 de $|| R\left(j \omega\right)||$,  en réponse
 au couple perturbateur sinusoïdal de pulsation $\omega_0$. En déduire la condition que doit vérifier $|| R\left(j \omega\right)||$ en vue de
 satisfaire la précision d’écart de pointage, pour une consigne $\theta_{\text{ref}} = 0$, lorsque le satellite est soumis à ce couple
 perturbateur. Reprendre cette analyse dans le cas du couple 
-perturbateur de pulsation $2\omega_0$.}
+perturbateur de pulsation $2\omega_0$.}}
 \ifprof
 \begin{corrige}
 La perturbation étant sinusoïdale de la forme 
@@ -250,11 +255,8 @@ De plus, $C_{00}=C_{01}$; donc $K C_{00} <  \SI{7e-4}{rad} \Rightarrow K < \dfra
 
 Pour la synthèse du régulateur $C(p)$, on recherche une solution de la forme : $R(p)=K \dfrac{\left(1+\tau p\right)^2}{p}$.
 
-\question{\label{q_21}}\textit{Déterminer la valeur de
-$\tau$  permettant d’obtenir 
-la marge de phase 
-$M \phi = 30\degres$
- exigée par le cahier des charges.}
+\question{\label{q_21}\textit{Déterminer la valeur de $\tau$  permettant d’obtenir la marge de phase $M_{\varphi} = 30\degres$
+ exigée par le cahier des charges.}}
 \ifprof
 \begin{corrige}
 On a $\arg{R(p)} = \arg{K}+ \arg{\left(1+\tau p\right)^2} - \arg{p}$
@@ -267,8 +269,7 @@ D'après la question \ref{q_17}, l'apport de phase ajouté doit être de \SI{55}
 
 
 
-\question{\label{q_22}}\textit{En conservant la valeur de $\tau$ déterminée précédemment, 
-calculer la valeur du gain $K$ qui assure la pulsation de coupure imposée par le cahier des charges.}
+\question{\label{q_22}\textit{En conservant la valeur de $\tau$ déterminée précédemment, calculer la valeur du gain $K$ qui assure la pulsation de coupure imposée par le cahier des charges.}}
 \ifprof
 \begin{corrige}
 On a $||T_{\text{bo}}(j\omega)||=||H(j\omega)B(j\omega)A(j\omega)F(j\omega)R(j\omega)||$
@@ -280,9 +281,9 @@ $||T_{\text{bo}}(j\omega_{\SI{0}{dB}})|| = 136,8 K$. On souhaite que le gain dB 
 \else
 \fi
 
-\question{\label{q_23}}\textit{Vérifier si le régulateur déterminé permet d’assurer les conditions nécessaires à satisfaire les performances,
+\question{\label{q_23}\textit{Vérifier si le régulateur déterminé permet d’assurer les conditions nécessaires à satisfaire les performances,
 en termes d’écart de l’angle de pointage, lorsque le satellite est soumis aux variations sinusoïdales du couple
-perturbateur.}
+perturbateur.}}
 \ifprof
 \begin{corrige}
 
@@ -334,7 +335,7 @@ où la condition initiale $\theta_0$ d’attitude est considérée comme un term
 
 %\question{\label{q_24}}\textit{Déterminer $T_d(p)=\dfrac{C_{\text{piloté}}(p)}{\theta_0(p)}$ à partir des différentes fonctions de transfert de la \autoref{fig_12}. On note $c_{\text{pa}}(p)=c_{\text{piloté}}(t+\tau_1)$, avec $\tau_1 = \SI{0,7}{s}$. En déduire à partir de $T_d(p)$ l'expression de $\dfrac{C_{\text{pa}}}{\theta_0(p)}$.}% QUESTION ORIGINALE
 
-\question{\label{q_24}}\textit{En considérant que  $\theta_{\text{ref}}=0$ et  $C_{\text{ext}}=0$, déterminer $T_d(p)=\dfrac{C_{\text{piloté}}(p)}{\theta_0(p)}$ à partir des différentes fonctions de transfert de la \autoref{fig_12}. On note $c_{\text{pa}}(t)=c_{\text{piloté}}(t+\tau_1)$, avec $\tau_1 = \SI{0,7}{s}$. En déduire à partir de $T_d(p)$ l'expression de $\dfrac{C_{\text{pa}}(p)}{\theta_0(p)}$.} % Question modifiée
+\question{\label{q_24}\textit{En considérant que  $\theta_{\text{ref}}=0$ et  $C_{\text{ext}}=0$, déterminer $T_d(p)=\dfrac{C_{\text{piloté}}(p)}{\theta_0(p)}$ à partir des différentes fonctions de transfert de la \autoref{fig_12}. On note $c_{\text{pa}}(t)=c_{\text{piloté}}(t+\tau_1)$, avec $\tau_1 = \SI{0,7}{s}$. En déduire à partir de $T_d(p)$ l'expression de $\dfrac{C_{\text{pa}}(p)}{\theta_0(p)}$.}} % Question modifiée
 \ifprof
 \begin{corrige}
 Dans les conditions énoncées : $C_{\text{piloté}}(p)=-\theta(p) B(p) C(p)$. De plus,$\theta(p)=\theta_0(p)+C_{\text{piloté}}(p) A(p) H(p)$. 
@@ -353,14 +354,14 @@ Or, $T_d(p)=\dfrac{C_{\text{piloté}}(p)}{\theta_0(p)}$; donc $T_d(p)=\dfrac{C_{
 \else
 \fi
 
-\question{\label{q_25}}\textit{En utilisant le théorème de la valeur initiale,
+\question{\label{q_25}\textit{En utilisant le théorème de la valeur initiale,
 ou toute autre méthode de votre choix, déterminer littéralement
 et numériquement $c_{\text{pa}}(0)$ en réponse à une condition initiale 
 $\theta_0(t)=\Theta_0 \gamma(t)$ d'amplitude $\Theta_0 = 20\degres$. En
 déduire $c_{\text{piloté}}(\tau_1)$. 
 [Remarques : $\gamma(t)$ désigne l’échelon d’Heaviside d’amplitude 1. On admettra que la valeur déterminée est proche de la 
 valeur maximale (en valeur absolue) de celle obtenue pour des cas d’utilisation
-de filtres $F(p)$ d'ordre supérieur à~1.]}
+de filtres $F(p)$ d'ordre supérieur à~1.]}}
 \ifprof
 \begin{corrige}
 
@@ -387,12 +388,12 @@ A REVOIR !!
 \else
 \fi
 
-\question{\label{q_26}}\textit{En réponse à une condition initiale  $\theta_0(t)=\Theta_0 \gamma(t)$ d’amplitude 20\degres, 
+\question{\label{q_26}\textit{En réponse à une condition initiale  $\theta_0(t)=\Theta_0 \gamma(t)$ d’amplitude 20\degres, 
 la \autoref{fig_13} montre l’évolution de la vitesse de rotation angulaire $\dot{\theta}$
 autour de l’axe $\vect{y}$. À partir de la relation obtenue à la question \ref{q_10}, déterminer
 la valeur maximale de la vitesse angulaire de la roue de réaction $\omega_r$.
 Effectuer l’application numérique pour
-$I_y = \SI{35,7}{kg.m^2}$ et $I_{\text{ry}}=\SI{4e-4}{kg.m^2}$.}
+$I_y = \SI{35,7}{kg.m^2}$ et $I_{\text{ry}}=\SI{4e-4}{kg.m^2}$.}}
 \ifprof
 \begin{corrige}
 La question \ref{q_10} a permis d'établir que $I_y \dot{\theta}(t)=-I_{\text{ry}}\omega_r(t)$. D'après la figure, $| \dot{\theta}|_{\text{max}} \simeq \SI{3}{\degres.s^{-1}}$. 
@@ -401,8 +402,8 @@ On a donc $\omega_r(t) =  \dfrac{I_y}{I_{\text{ry}}} \dot{\theta}$ $=- \dfrac{35
 \else
 \fi
 
-\question{\label{q_27}}\textit{Conclure alors sur la capacité de la loi de commande à satisfaire les contraintes imposées par l’actionneur
-à roue de réaction.}
+\question{\label{q_27}\textit{Conclure alors sur la capacité de la loi de commande à satisfaire les contraintes imposées par l’actionneur
+à roue de réaction.}}
 \ifprof
 \begin{corrige}
 D'après le cahier des charges : 
@@ -434,18 +435,18 @@ de la commutation entre les deux parties de la loi de commande est hors du cadre
 \fi
 
 
-\question{\label{q_28}}\textit{Justifier que pour $|\Delta \theta|> 0,3 \degres$, la deuxième composante de la loi de commande est une régulation de
-vitesse avec une consigne de vitesse $\dot{\theta}_c(t)$ constante.}
+\question{\label{q_28}\textit{Justifier que pour $|\Delta \theta|> 0,3 \degres$, la deuxième composante de la loi de commande est une régulation de
+vitesse avec une consigne de vitesse $\dot{\theta}_c(t)$ constante.}}
 \ifprof
 \begin{corrige}
 \end{corrige}
 \else
 \fi
 
-\question{\label{q_29}}\textit{On admet que $I_y \dot{\theta}(t)=-I_{\text{ry}}\omega_r(t)$. Déterminer la valeur maximale
+\question{\label{q_29}\textit{On admet que $I_y \dot{\theta}(t)=-I_{\text{ry}}\omega_r(t)$. Déterminer la valeur maximale
 $|\dot{\theta}_c|_{\text{max}}$ (en \si{\degres.s^{-1}}) 
 de la consigne de vitess $\dot{\theta}_c(t)$ que l’on peut imposer. Effectuer l’application numérique pour $I_y = \SI{35,7}{kg.m^2}$, $I_{\text{ry}}=\SI{4e-4}{kg.m^2}$ et une vitesse maximale de la roue de \SI{2800}{tr.min^{-1}} (correspondant à la vitesse maximale
-de l’actionneur donnée par le tableau de la \autoref{fig_09}).}
+de l’actionneur donnée par le tableau de la \autoref{fig_09}).}}
 \ifprof
 \begin{corrige}
 La question \ref{q_10} a permis d'établir que $I_y \dot{\theta}(t)=-I_{\text{ry}}\omega_r(t)$.
@@ -467,7 +468,7 @@ $=\dfrac{4\times 10^{-4}}{35,7} \times 2800 =\SI{0,03}{tr.min^{-1}}=\SI{0,19}{\d
 \fi
 
 
-\question{\label{q_30}}\textit{La \autoref{fig_14} montre les réponses obtenues (en utilisant un simulateur trois axes comportant en particulier les modes oscillants dus aux souplesses de la structure) avec la loi de commande définie précédemment pour un dépointage initial $\Theta_0 = 20\degres$. Commenter les réponses obtenues et conclure alors sur la capacité de la nouvelle loi de commande à satisfaire l’ensemble des contraintes imposées par le cahier des charges.}
+\question{\label{q_30}\textit{La \autoref{fig_14} montre les réponses obtenues (en utilisant un simulateur trois axes comportant en particulier les modes oscillants dus aux souplesses de la structure) avec la loi de commande définie précédemment pour un dépointage initial $\Theta_0 = 20\degres$. Commenter les réponses obtenues et conclure alors sur la capacité de la nouvelle loi de commande à satisfaire l’ensemble des contraintes imposées par le cahier des charges.}}
 \ifprof
 \begin{corrige}
 D'après le cahier des charges : 
@@ -495,8 +496,8 @@ Ces résultats permettent de valider la nouvelle loi de commande.
 L’objet de cette partie est d’analyser les performances de la loi de commande lorsque le satellite est soumis à
 un couple extérieur constant, $C_{\text{ext}}= C_0 \gamma(t)$ d’amplitude $C_0 =\SI{e-6}{Nm}$.
 
-\question{\label{q_31}}\textit{Sans calcul, mais en justifiant votre réponse, préciser l’écart en régime permanent en réponse à un couple
-perturbateur constant.}
+\question{\label{q_31}\textit{Sans calcul, mais en justifiant votre réponse, préciser l’écart en régime permanent en réponse à un couple
+perturbateur constant.}}
 \ifprof
 \begin{corrige}
 $C(p)=K\dfrac{\left(1+\tau p\right)^2}{p}$. Le correcteur contient une action intégrale en amont de la perturbation. Pour une perturbation constante, l'écart en régime permanent est donc nul.
