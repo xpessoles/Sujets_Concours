@@ -104,13 +104,25 @@ $F(p) = \dfrac{1}{1 + 1,5p}$ (en pratique, ces filtres sont d’ordre 2).
 
 \question{\textit{Exprimer $\theta$ en fonction de $\indice{\theta}{ref}$, $\indice{C}{ext}$ et des différentes fonctions de transfert.}}
 
-\question{\textit{La figure du document réponse donne le diagramme de Bode de la fonction $A_r(p)H(p)F(p)$. Tracer directement sur cette figure les diagrammes asymptotiques associés à cette fonction (document réponse à rendre avec la copie). \label{q_15}}}
+\question{\textit{La figure du document réponse donne le diagramme de Bode de la fonction $A_r(p)H(p)F(p)$. Tracer directement sur cette figure les diagrammes asymptotiques associés à cette fonction (document réponse à rendre avec la copie). Vous justifirez le tracé en utilisant un tableau de variation. \label{q_15}}}
 \ifprof
 \begin{corrige}
 Les pentes des asympotes sont données par le tableau suivant. 
 \begin{figure}[H]
 \centering
 \includegraphics[width=.8\linewidth]{images/cor_q15}
+
+%\includegraphics[width=.8\linewidth]{images/cor_q15_bode}
+%\caption{Architecture du système SCAO \label{fig_10}}
+\end{figure}
+
+
+\end{corrige}
+
+
+\begin{corrige}
+\begin{figure}[H]
+\centering
 
 \includegraphics[width=.8\linewidth]{images/cor_q15_bode}
 %\caption{Architecture du système SCAO \label{fig_10}}
@@ -141,9 +153,23 @@ On << descend >> donc la phase des valeurs suivantes.
 \begin{figure}[H]
 \centering
 \includegraphics[width=.8\linewidth]{images/cor_q16}
-\includegraphics[width=.8\linewidth]{images/cor_q16_bode}
 %\caption{Architecture du système SCAO \label{fig_10}}
 \end{figure}
+
+
+\end{corrige}
+
+\begin{corrige}
+
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.6\linewidth]{images/cor_q16_bis}
+%\caption{Architecture du système SCAO \label{fig_10}}
+\end{figure}
+
 
 Cahier des charges :
 \begin{itemize}
@@ -262,7 +288,7 @@ Pour la synthèse du régulateur $C(p)$, on recherche une solution de la forme :
 On a $\arg{R(p)} = \arg{K}+ \arg{\left(1+\tau p\right)^2} - \arg{p}$
 $ =-\dfrac{\pi}{2}  +2 \arctan\left(\tau \omega \right)$.
 
-D'après la question \ref{q_17}, l'apport de phase ajouté doit être de \SI{55}{\degres} pour une pulsation de $ \SI{0,13}{rad.s^{-1}}$; donc $55=-90  +2 \arctan\left(\tau 0,13 \right) $ et $\tau = \tan \left(\dfrac{55+180}{2}\right) \dfrac{1}{0,13} = \SI{24,4}{s}$.
+D'après la question \ref{q_17}, l'apport de phase ajouté doit être de \SI{55}{\degres} pour une pulsation de $ \SI{0,13}{rad.s^{-1}}$; donc $55=-90  +2 \arctan\left(\tau 0,13 \right) $ et $\tau = \tan \left(\dfrac{55+90}{2}\right) \dfrac{1}{0,13} = \SI{24,4}{s}$.
 \end{corrige}
 \else
 \fi 
@@ -308,6 +334,8 @@ Pour une perturbation sinusoïdale, l'amplitude de $\theta$ est donnée par $||T
 \fi
 
 \subsection{\label{sec:3:D} Validation de la loi de commande}
+\ifprof
+\else
 \begin{obj}
 L’objectif de cette partie est de vérifier que les commandes issues du régulateur précédent ne
 génèrent pas de contraintes excessives sur l’actionneur, en particulier que la vitesse maximale
@@ -316,6 +344,8 @@ Cette vérification se fera d’une part vis-à-vis d’un dépointage initial e
 différents couples perturbateurs. Enfin, une modification de la loi de commande sera envisagée en
 vue d’améliorer les performances.
 \end{obj}
+
+\fi
 
 \subsubsection{\label{sec:3:D:1} Amélioration des performances vis-à-vis du dépointage initial}
 
@@ -365,24 +395,30 @@ de filtres $F(p)$ d'ordre supérieur à~1.]}}
 \ifprof
 \begin{corrige}
 
-D'après la question précédente,  $C_{\text{pa}}(p) = T_d(p) \theta_0(p)  e^{\tau_1 p}$.
-
-Par application du théorème de la valeur initiale, 
-
-$c_{\text{pa}}(0) = \lim\limits_{p \to \infty} p T_d(p) \theta_0(p)  e^{\tau_1 p} $. Or $\theta_0(p) = \dfrac{\Theta_0}{p}$; donc 
-
-$c_{\text{pa}}(0) = \lim\limits_{p \to \infty}   -\dfrac{ B(p) C(p)}{ 1+ A(p) H(p) B(p) C(p)}  \Theta_0  e^{\tau_1 p}  $
-
-$c_{\text{pa}}(0) = \lim\limits_{p \to \infty}   -\dfrac{e^{-0,7p} C(p)}{ 1+ \dfrac{1}{1+\dfrac{1}{0,87}p}e^{-0,1 p}  \dfrac{0,028}{p^2} e^{-0,7p} C(p)}  \Theta_0  e^{\tau_1 p}  $
-
-$c_{\text{pa}}(0) = \lim\limits_{p \to \infty}   -\dfrac{e^{-0,7p}}{ 1+ \dfrac{1}{1+\dfrac{1}{0,87}p}e^{-0,1 p}  \dfrac{0,028}{p^2} e^{-0,7p} \dfrac{K(1+\tau p)^2}{p}}  \Theta_0  e^{0,7 p}   \dfrac{K(1+\tau p)^2}{p}$
-
-$c_{\text{pa}}(0) = \lim\limits_{p \to \infty}   -\dfrac{ 1+\dfrac{1}{0,87}p}{p^2+\dfrac{1}{0,87}p^3+  0,028 e^{-0,8p} K(1+\tau p)^2}   p^2\Theta_0  K(1+\tau p)^2  $
-
-
-A REVOIR !!
-
-
+\begin{center}
+\includegraphics[width=\linewidth]{images/cor_q25}
+\end{center}
+%
+%D'après la question précédente,  $C_{\text{pa}}(p) = T_d(p) \theta_0(p)  e^{\tau_1 p}$.
+%
+%Par application du théorème de la valeur initiale, 
+%
+%$c_{\text{pa}}(0) = \lim\limits_{p \to \infty} p T_d(p) \theta_0(p)  e^{\tau_1 p} $. Or $\theta_0(p) = \dfrac{\Theta_0}{p}$; donc 
+%
+%$c_{\text{pa}}(0) = \lim\limits_{p \to \infty}   -\dfrac{ B(p) C(p)}{ 1+ A(p) H(p) B(p) C(p)}  \Theta_0  e^{\tau_1 p}  $
+%
+%$c_{\text{pa}}(0) = \lim\limits_{p \to \infty}   -\dfrac{e^{-0,7p} C(p)}{ 1+ \dfrac{1}{1+\dfrac{1}{0,87}p}e^{-0,1 p}  \dfrac{0,028}{p^2} e^{-0,7p} C(p)}  \Theta_0  e^{\tau_1 p}  $
+%
+%$c_{\text{pa}}(0) = \lim\limits_{p \to \infty}   -\dfrac{e^{-0,7p}}{ 1+ \dfrac{1}{1+\dfrac{1}{0,87}p}e^{-0,1 p}  \dfrac{0,028}{p^2} e^{-0,7p} \dfrac{K(1+\tau p)^2}{p}}  \Theta_0  e^{0,7 p}   \dfrac{K(1+\tau p)^2}{p}$
+%
+%$c_{\text{pa}}(0) = \lim\limits_{p \to \infty}   -\dfrac{ 1+\dfrac{1}{0,87}p}{p^2+\dfrac{1}{0,87}p^3+  0,028 e^{-0,8p} K(1+\tau p)^2}   p^2\Theta_0  K(1+\tau p)^2  $
+%
+%
+%A REVOIR !!
+%
+%$c_{\text{pa}}(0) = \lim\limits_{p \to \infty}   -\dfrac{ B(p) C(p)}{ 1+ A(p) H(p) B(p) C(p)}  \Theta_0  e^{-\tau_1 p}  $
+%
+%$c_{\text{pa}}(0) = \lim\limits_{p \to \infty}   -\dfrac{ 0 K\tau^2/1,5}{ 1+ 0\times 0 \times 0 K\tau^2/1,5}  \Theta_0  \times 0 $
 
 \end{corrige}
 \else
