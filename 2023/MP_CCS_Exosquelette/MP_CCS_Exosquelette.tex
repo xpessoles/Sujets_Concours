@@ -211,7 +211,7 @@ Déterminer la course des actionneurs permettant de suivre les mouvements du cor
 \end{obj}
 
 
-L'exigence Id2 «Préserver l'activité musculaire » est composée de deux exigences Id2.1 et Id2.2 (tableau \ref{ccs_mp_2023_tab_02}). Le fonctionnement de l'exosquelette nécessite une mise en précontrainte. Pour cette mise en précontrainte, chaque actionneur linéaire doit exercer une force de \SI{40}{N}. Cette valeur est obtenue par déplacement vertical de la ceinture haute par rapport à la ceinture basse.
+L'exigence Id2 «~Préserver l'activité musculaire~» est composée de deux exigences Id2.1 et Id2.2 (tableau \ref{ccs_mp_2023_tab_02}). Le fonctionnement de l'exosquelette nécessite une mise en précontrainte. Pour cette mise en précontrainte, chaque actionneur linéaire doit exercer une force de \SI{40}{N}. Cette valeur est obtenue par déplacement vertical de la ceinture haute par rapport à la ceinture basse.
 
 \begin{table}[h]
 \begin{center}
@@ -228,6 +228,8 @@ Id2.2 & Permettre le mouvement de rotation de la ceinture haute par rapport à l
 \caption{\label{ccs_mp_2023_tab_02}Extrait du cahier des charges fonctionnel limité au mouvement dans le plan sagittal de l'exosquelette}
 \end{center}
 \end{table}
+
+\subsection{Analyse des exigences 2.1 et 2.2} % Ajout XP
 
 L'exigence Id2.1 correspond à la valeur du déplacement vertical nécessaire à la précontrainte. Cette valeur est propre à chaque utilisateur. Dans le cas extrême, cette valeur correspond à un déplacement vertical de \SI{50}{mm}. L'étude cinématique est limitée à un mouvement de flexion avant. La figure \ref{ccs_mp_2023_fig_06} décrit le mouvement ainsi que le positionnement de l'exosquelette dans le plan sagittal. La figure \ref{ccs_mp_2023_fig_07} décrit le modèle géométrique paramétré de l'exosquelette. La liaison sphère-cylindre en $C$ modélise les degrés de liberté supprimés par les éléments extérieurs au système (colonne vertébrale + tissus mous).\\
 
@@ -287,7 +289,7 @@ On définit la course d'un actionneur linéaire comme étant la distance que peu
 
 %Q 4. 
 \question{\label{ccs_mp_2023_q_04}
-Le point $C$ restant sur l'axe ( $O, \vec{y}$ ), déterminer la course du vérin 2 à partir du protocole défini précédemment pour les valeurs $a=100 \mathrm{~mm}, b=150 \mathrm{~mm}, h_{0}=100 \mathrm{~mm}$ et $\Delta h=50 \mathrm{~mm}$.}
+Le point $C$ restant sur l'axe $\axe{O}{y}$, déterminer la course du vérin 2 à partir du protocole défini précédemment pour les valeurs $a=100 \mathrm{~mm}, b=150 \mathrm{~mm}, h_{0}=100 \mathrm{~mm}$ et $\Delta h=50 \mathrm{~mm}$.}
 \ifprof
 \begin{corrige}
 \end{corrige}
@@ -299,6 +301,19 @@ Une étude équivalente montre que la course du vérin 2 est supérieure à cell
 
 La course obtenue permet donc de dimensionner géométriquement les actionneurs en fonction des positions des points d'accroche sur les ceintures haute et basse. On peut ainsi définir la valeur de contrôle à mettre en place sur le banc d'essai. Cette valeur est vérifiée pour chaque actionneur fabriqué.\\
 L'exigence sur la liberté de mouvement angulaire étant vérifiée, la suite de l'étude a pour but de caractériser la dynamique et la commande d'un des quatre actionneurs ce qui nécessite l'élaboration d'un modèle de connaissance. La validation sera faite à partir des résultats de la force de traction mesurée sur le banc d'essai.
+
+
+%%%% DEBUT AJOUT %%%
+\subsection{Analyse de la structure cinématique de l'exosquelette} % Ajout XP
+
+\question{Tracer le graphe des liaisons associé au modèle d'exosquelette proposé figure \ref{ccs_mp_2023_fig_07}.}
+
+\question{\text{Sans calcul}, proposer une méthode permettant de déterminer la liaison équivalente entre la ceinture basse \textbf{0} et la ceinture haute \textbf{3}.}
+
+
+
+
+
 
 \section{Élaboration du modèle de connaissance d'un actionneur linéaire placé sur un banc d'essai}% III
 %III.A - 
