@@ -71,6 +71,7 @@ Le modèle numérique biomécanique a permis d'obtenir les courbes de la figure 
 Après analyse des courbes de la figure \ref{ccs_mp_2023_fig_03}, justifier que la force de traction choisie par le constructeur, afin de limiter la pression intra-discale, est de 40 N par actionneur.}
 \ifprof
 \begin{corrige}
+On constate à la lecture des courbes qu'au-delà de \SI{40}{N} de traction des vérins, la pression discale n'est plus diminuée. C'est surement la raison qui a poussé le constructeur à limiter l'effort de traction à \SI{40}{N}.
 \end{corrige}
 \else
 \fi
@@ -139,12 +140,18 @@ Des capteurs de pression ont été positionnés sur un cadavre (équipé de l'ex
 
 
 
-Les résultats ont été normalisés afin de tenir compte des conditions initiales ( $t<0$ ) en divisant les pressions mesurées par la pression intervertébrale initiale.\\
+Les résultats ont été normalisés afin de tenir compte des conditions initiales ( $t<0$ ) en divisant les pressions mesurées par la pression intervertébrale initiale. Ils sont présentés sur la figure \ref{ccs_mp_2023_fig_04}.
 
 \question{\label{ccs_mp_2023_q_02}
 Déterminer, pour les trois positions du capteur de pression dans le disque intervertébral L3-L4, la diminution moyenne de la pression intra-discale (en \%) pendant les deux minutes d'application de l'effort de traction, sans prendre en compte la phase transitoire de 0 à $0,5 \mathrm{~min}$.}
 \ifprof
 \begin{corrige}
+\begin{itemize}
+\item Capteur en position avant : en régime permanent, la pression normalisée est de 0,78 soit une diminution de la pression de 22\; \%.
+\item Capteur en position arrière : en régime permanent, la pression normalisée est de 0,74 soit une diminution de la pression de 24\; \%.
+\item Capteur en position milieu : en régime permanent, la pression normalisée est de 0,52 soit une diminution de la pression de 48; \%.
+\end{itemize}
+Les vérins diminuent globalement la pression interdiscale, notamment sur la partie centrale du disque.
 \end{corrige}
 \else
 \fi
@@ -154,7 +161,7 @@ Cette pré-étude théorique ainsi que la validation expérimentale permettent d
 
 \begin{table}[h]
 \begin{center}
-\begin{tabular}{lp{5cm}p{5cm}p{3cm}p{2.5cm}}
+\begin{tabular}{lp{5cm}p{5cm}ll}
 \hline
 \textbf{Id} & \textbf{Exigence} & \textbf{Critère} & \textbf{Niveau} & \textbf{Flexibilité} \\
 \hline

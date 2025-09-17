@@ -16,7 +16,7 @@ Id & Exigence & Critère & Niveau & Flexibilité \\
 \hline
 Id2.1 & Permettre le mouvement de translation de la ceinture haute par rapport à la ceinture basse & Déplacement vertical $\Delta h$ de la ceinture haute par rapport à la ceinture basse & $\Delta h=50 \mathrm{~mm}$ & < 10 \% \\
 \hline
-Id2.2 & Permettre le mouvement de rotation de la ceinture haute par rapport à la ceinture basse & Amplitude de rotation $\varphi$ & [ $0,+20^{\circ}$ ] selon l'axe sagittal & < 10 \% \\
+Id2.2 & Permettre le mouvement de rotation de la ceinture haute par rapport à la ceinture basse & Amplitude de rotation $\varphi$ &  $[0,+20^{\circ}]$  selon l'axe sagittal & < 10 \% \\
 \hline
 \end{tabular}
 %\captionsetup{labelformat=empty}
@@ -32,6 +32,34 @@ L'exigence Id2.1 correspond à la valeur du déplacement vertical nécessaire à
 Déterminer l'expression de la longueur $l_{2}(t)$ en fonction de $\varphi(t), h(t), b$ et $a$.}
 \ifprof
 \begin{corrige}
+En utilisant une fermeture géométrique, on a ; 
+$ \vect{OE} + \vect{ED} + \vect{DC} + \vect{CO} = \vect{0} $ et 
+$a \vect{x} + l_2(t) \vect{y}_2 - b\vect{x}_3 - h(t) \vect{y} = \vect{0} $
+
+En projettant, l'équation vectorielle sur $\vect{x}$ et $\vect{y}$, on obtient :
+
+$$
+\left\{
+\begin{array}{l}
+a  + l_2(t) \sin\beta - b\cos\varphi = 0  \\
+ l_2(t) \cos\beta - b\sin\varphi - h(t)  = 0  \\
+\end{array}
+\right.
+$$
+
+
+$$
+\left\{
+\begin{array}{l}
+l_2(t) \sin\beta  = b\cos\varphi -a   \\
+ l_2(t) \cos\beta =   b\sin\varphi + h(t) 
+\end{array}
+\right.
+\quad
+\Rightarrow
+l_2^2(t) = \left(b\cos\varphi -a  \right)^2  + \left(b\sin\varphi + h(t) \right)^2 
+$$
+
 \end{corrige}
 \else
 \fi
