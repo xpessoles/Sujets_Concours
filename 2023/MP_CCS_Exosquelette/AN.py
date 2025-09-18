@@ -9,3 +9,8 @@ def calc_l2(h,phi):
     l2 = (b*m.cos(phi)-a)**2 + (b*m.sin(phi)+h)**2
     return l2**(.5)
 
+
+print(calc_l2(h0,0))
+
+print(calc_l2(h0+deltah,0))
+print(calc_l2(h0+deltah,m.radians(20)))
