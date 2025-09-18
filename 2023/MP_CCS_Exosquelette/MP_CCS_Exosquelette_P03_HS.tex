@@ -7,6 +7,9 @@
 Définir un modèle de connaissance de la dynamique du système permettant d'obtenir les équations d'un modèle de simulation comparable aux mesures du banc d'essai.
 \end{obj}
 
+\ifprof
+\else
+
 Le système est placé sur un banc d'essai en position horizontale (figure \ref{ccs_mp_2023_fig_08}). Dans cette configuration, la pesanteur est portée par la direction $\vec{z}_{0}$. On rappelle que le banc fonctionne selon deux protocoles distincts
 
 \begin{itemize}
@@ -128,12 +131,28 @@ Rendement & Rendement global de l'actionneur linéaire, supposé constant : $\et
 \caption{\label{ccs_mp_2023_tab_03} Caractéristiques principales de l'actionneur linéaire}
 \end{center}
 \end{table}
+\fi
+
 
 %Q 5. 
 \question{\label{ccs_mp_2023_q_05}
 En prenant soin de préciser le solide isolé et le théorème utilisé, déterminer l'expression littérale de la résultante $\vec{F}_{\text {cap } \rightarrow 4}$ en projection sur $\vec{y}_{0}$, en fonction de $K_{\text {res }}$ et $y(t)$.}
 \ifprof
 \begin{corrige}
+\begin{itemize}
+On isole le solide 4.
+\item BAME -- 4 est soumis à :
+\begin{itemize}
+\item l'action mécanique transmise par la liaison glissière entre 3 et 4 d'axe $\overrightarrow{y}_0$;
+\item l'action du capteur $\overrightarrow{F}_{\text{cap} \to 4}$;
+\item l'effort de rappel du ressort $-K_{\text{res}} y(t) \overrightarrow{y}_0$.
+\end{itemize}
+\end{itemize}
+
+Le Théorème de la Résultante Statique (solide (4) immobile) projetée selon $\overrightarrow{y}_0$ donne:
+
+$$ \boxed{0 = \overrightarrow{F}_{\text{cap} \to 4} \cdot \overrightarrow{y}_0 - K_{\text{res}} y(t)} $$
+
 \end{corrige}
 \else
 \fi
@@ -144,6 +163,14 @@ Déterminer le rapport $\frac{\omega_{1 / 3}}{\omega_{2 / 3}}$ en fonction de $Z
 }
 \ifprof
 \begin{corrige}
+On a un système pignon + roue dentée à axes fixes, donc: $\boxed{\dfrac{\omega_{1/3}}{\omega_{2/3}} = - \dfrac{Z_2}{Z_1} = -1}$.\\
+
+Par composition des vitesses: $\overrightarrow{V}_{J,3/R_0} = \overrightarrow{V}_{J,3/2} + \overrightarrow{V}_{J,2/R_0}$, or $\overrightarrow{V}_{J,3/2} = \overrightarrow{0}$ car $J$ est situé sur l'axe de rotation de la liaison pivot entre (3) et (2). De plus $\overrightarrow{V}_{J,2/R_0} = \dfrac{pas}{2\pi} \omega_{2/R_0}\overrightarrow{y}_0$.\\
+
+Encore par composition des vitesses $\omega_{2/R_0} = \omega_{2/3} + \omega_{3/R_0}$ et $\omega_{3/R_0} = 0$ par la liaison glissière entre (3) et (0). De plus $\omega_{2/3} = -\omega_{1/3} = - \lambda \omega_m(t)$.\\
+
+Pour conclure $\boxed{\overrightarrow{V}_{J,3/R_0} = - \dfrac{pas}{2\pi} \lambda \omega_m(t) \overrightarrow{y}_0}$.
+
 \end{corrige}
 \else
 \fi
@@ -237,6 +264,8 @@ Proposer un modèle de connaissance de l'asservissement en force, le valider par
 
 %\section{III.B.1) Mise en place d'un modèle de connaissance}
 \subsubsection{Mise en place d'un modèle de connaissance}%III.B.1) 
+\ifprof
+\else
 
 L'actionneur linéaire placé sur le banc d'essai et sa commande peuvent être modélisés par le schéma-blocs représenté figure \ref{ccs_mp_2023_fig_11}.\\
 Notations et hypothèses:
@@ -300,6 +329,7 @@ Avec :
 \caption{\label{ccs_mp_2023_fig_11}  Schéma-blocs de l'asservissement de force développée par un actionneur linéaire placé sur le banc d'essai}
 \end{figure}
 
+\fi
 
 
 %Q 14. \\
@@ -307,6 +337,14 @@ Avec :
 Après avoir transformé les équations précédentes dans le domaine de Laplace, exprimer les gains $K_{3}$ et $K_{5}$ en fonction de $Q, k_{c}$ et $T$.}
 \ifprof
 \begin{corrige}
+Dans le domaine de Laplace et en utilisant les conditions de Heaviside, on a :
+$U_I(p) = R I_m(p)$, 
+$I_{\text{eq}}p \Omega_m(p) = Q \cdot C_m(p) - C_r(p)$, 
+$C_r(p) = T \cdot Y(p)$, 
+$C_m(p) = k_c I_m(p)$.
+
+
+Ainsi on identifie dans le schéma-blocs: $\boxed{K_3 = Q \cdot k_c}$ et $\boxed{K_5 = T}$.
 \end{corrige}
 \else
 \fi
@@ -316,15 +354,21 @@ Après avoir transformé les équations précédentes dans le domaine de Laplace
 Exprimer la fonction de transfert $H_{6}(p)$ en fonction de $K_{\text {trans }}$.}
 \ifprof
 \begin{corrige}
+On a $\dot{y}(t) = K_{\text{trans}} \omega_m(t)$ soit dans le domaine de Laplace $\dfrac{K_{\text{trans}}}{p} \Omega_m(p) = Y(p)$. On identifie $\boxed{H_6(p)=\dfrac{K_{\text{trans}}}{p}}$.
 \end{corrige}
 \else
 \fi
 
 
 %Q 16. 
-\question{\label{ccs_mp_2023_q_16}En supposant le système stable, déterminer l'expression de $K_{\text {adapt }}$ en fonction de $K_{\text {trans }}$ et $K_{\text {res }}$ qui assure que l'écart en régime permanent ( $\varepsilon(t \rightarrow \infty)$ ) soit nul si l'erreur en régime permanent est nulle.}
+\question{\label{ccs_mp_2023_q_16}En supposant le système stable, déterminer l'expression de $K_{\text {adapt }}$ en fonction de $K_{\text {capt }}$ et $K_{\text {res }}$ qui assure que l'écart en régime permanent ( $\varepsilon(t \rightarrow \infty)$ ) soit nul si l'erreur en régime permanent est nulle.}
 \ifprof
 \begin{corrige}
+On ramène la grande boucle de retour (celle avec le gain $K_{\text{capt}}$) sur la sortie $F(p)$, le gain sur la boucle de retour devient alors $\dfrac{K_{\text{capt}}}{K_{\text{res}}}$.\\
+
+Ainsi pour valider la condition demandée il faut $\boxed{K_{\text{adapt}} = \dfrac{K_{\text{capt}}}{K_{\text{res}}}}$.
+
+
 \end{corrige}
 \else
 \fi
@@ -333,6 +377,11 @@ Exprimer la fonction de transfert $H_{6}(p)$ en fonction de $K_{\text {trans }}$
 
 %
 \subsubsection{Réglage de la boucle d'asservissement de la vitesse angulaire du moteur}%III.B.2) 
+
+
+\ifprof
+\else
+
 Le schéma-blocs décrivant la structure de l'asservissement de la vitesse angulaire du moteur est fourni sur la figure \ref{ccs_mp_2023_fig_12}. Cet asservissement doit respecter le cahier des charges fourni dans le tableau \ref{ccs_mp_2023_tab_04}.
 
 %\begin{figure}[h]
@@ -376,17 +425,25 @@ $$
 C_{v}(p)=K_{i} \frac{1+\tau_{i} p}{\tau_{i} p} .
 $$
 
-On note $\indice{H}{B O v}(p)=\frac{\Omega_{m}(p)}{\varepsilon_{v}(p)}$ la fonction de transfert en boucle ouverte de l'asservissement de vitesse angulaire du moteur.
+On note $\indice{H}{BOv}(p)=\frac{\Omega_{m}(p)}{\varepsilon_{v}(p)}$ la fonction de transfert en boucle ouverte de l'asservissement de vitesse angulaire du moteur.
+\fi
 
 %Q 17. 
 \question{\label{ccs_mp_2023_q_17}
-Déterminer l'expression littérale de la phase de $\indice{H}{B O v}(\mathrm{i} \omega)$. En déduire la valeur numérique de $\tau_{i}$ respectant les critères concepteur de la boucle de vitesse.}
+Déterminer l'expression littérale de la phase de $\indice{H}{BOv}(\mathrm{i} \omega)$. En déduire la valeur numérique de $\tau_{i}$ respectant les critères concepteur de la boucle de vitesse.}
 \ifprof
 \begin{corrige}
+Dans le domaine de Laplace: $H_{BOv}(p) = \dfrac{K_i K_1 K_3}{I_{\text{eq}}R} \cdot \dfrac{1 + \tau_i p}{\tau_i p^2}$.
+
+On calcule la phase en degrés dans le domaine fréquentiel: $\varphi(\omega) = \text{Arg}\left( H_{BOv}(\text{i}\omega) \right) = \arctan(\tau_i \omega) - 180$.\\
+
+On veut une marge de phase $M_{\varphi} = 180 + \varphi(\omega_{0\text{dB}}) \geq 80^\circ$, autrement dit $\arctan(\tau_i \omega_{0\text{dB}}) \geq 80^\circ$. Par croissance de la fonction arctan on trouve $\boxed{\tau_i \geq \dfrac{\tan(80)}{\omega_{0\text{dB}}} = 0,57\text{ s}}$
 \end{corrige}
 \else
 \fi
 
+\ifprof
+\else
 
 Le diagramme de Bode de la boucle ouverte $\indice{H}{B O v}(p)$, avec $K_{i}=1$ et $\tau_{i}$ déterminé à la question \ref{ccs_mp_2023_q_17}, est donné sur la figure \ref{ccs_mp_2023_fig_13}.
 
@@ -401,8 +458,9 @@ Le diagramme de Bode de la boucle ouverte $\indice{H}{B O v}(p)$, avec $K_{i}=1$
 \begin{figure}[!h]
 \centering
 \includegraphics[width=.8\textwidth]{2025_09_16_5f2d7643f7e649c6833dg-10(1)}
-\caption{\label{ccs_mp_2023_fig_13}   Diagramme de Bode de \$H\_\{B O v}(p)\$\}
+\caption{\label{ccs_mp_2023_fig_13}   Diagramme de Bode de $\indice{H}{BOv}(p)$}
 \end{figure}
+\fi
 
 
 
@@ -411,6 +469,19 @@ Le diagramme de Bode de la boucle ouverte $\indice{H}{B O v}(p)$, avec $K_{i}=1$
 Déterminer la valeur numérique de $K_{i}$ afin que la boucle d'asservissement de vitesse respecte les critères concepteur du tableau \ref{ccs_mp_2023_tab_04}.}
 \ifprof
 \begin{corrige}
+On veut une pulsation de coupure $\omega_{0\text{dB}} = 10$ rad/s, autrement dit d'après le diagramme de gain il faut diminuer le gain de 80dB environ (voir ci-dessous). Alors:
+
+$$ 20\log(K_i) = -80 \quad \Leftrightarrow \quad \boxed{K_i = 10^{-4} \text{ V.s/rad}} $$
+
+\begin{center}
+\includegraphics[width = .6\linewidth]{Bode_correcteur}
+\end{center}
+
+Tous les critères du tableau 4 sont respectés (marge de phase très légèrement inférieure à celle cherchée toutefois), le critère de précision et d'insensibilité à la perturbation l'étant forcément par la nature du correcteur PI.\\
+
+%\textbf{Remarque:} le choix de l'unité de $K_i$ est motivé par la dimension (unitaire je pense) du gain $K_1$.
+
+
 \end{corrige}
 \else
 \fi
@@ -418,6 +489,9 @@ Déterminer la valeur numérique de $K_{i}$ afin que la boucle d'asservissement 
 
 
 \subsubsection{Simplification du modèle de connaissance}%III.B.3) 
+\ifprof
+\else
+
 Il est possible de mettre le schéma-blocs de la figure \ref{ccs_mp_2023_fig_11} sous la forme du schéma-blocs de la figure \ref{ccs_mp_2023_fig_14}, afin de faciliter la prévision des performances simulées.
 
 %\begin{figure}[h]
@@ -434,19 +508,28 @@ Il est possible de mettre le schéma-blocs de la figure \ref{ccs_mp_2023_fig_11}
 \includegraphics[width=.8\textwidth]{2025_09_16_5f2d7643f7e649c6833dg-11(1)}
 \caption{\label{ccs_mp_2023_fig_14} Schéma-blocs de l'asservissement de la force développée par un actionneur linéaire }
 \end{figure}
+\fi
 
 
 
 %Q 19. 
 \question{\label{ccs_mp_2023_q_19}
-Déterminer les fonctions de transfert $H_{8}(p)$ et $H_{9}(p)$ en fonction de $K_{5}, I_{\text {eq }}$ et $H_{6}(p)$. Ne pas remplacer $K_{5}$ et $H_{6}(p)$ par les expressions trouvées précédemment.\\
-Pour faciliter l'analyse des performances simulées, le schéma-blocs de la figure \ref{ccs_mp_2023_fig_14} est adapté afin de disposer d'un schéma-blocs à retour unitaire, tel que décrit sur la figure \ref{ccs_mp_2023_fig_15}.}
+Déterminer les fonctions de transfert $H_{8}(p)$ et $H_{9}(p)$ en fonction de $K_{5}, I_{\text {eq }}$ et $H_{6}(p)$. Ne pas remplacer $K_{5}$ et $H_{6}(p)$ par les expressions trouvées précédemment.}
 \ifprof
 \begin{corrige}
+
+On décale la boucle du capteur angulaire de vitesse d'un cran vers la droite, on trouve alors immédiatement $\boxed{H_9(p) = \dfrac{1}{H_6(p)}}$.\\
+
+On peut ensuite appliquer la formule de Black à la boucle qui possède la chaîne de retour $K_5$, on trouve $\dfrac{Y(p)}{Q C_m(p)} = \dfrac{\dfrac{H_6(p)}{I_{\text{eq}}p}}{1+ \dfrac{H_6(p)}{I_{\text{eq}}p}K_5}$, par conséquent $\boxed{H_8(p) = \dfrac{H_6(p)}{1+ \dfrac{H_6(p)}{I_{\text{eq}}p}K_5}}$.
+
 \end{corrige}
 \else
 \fi
 
+\ifprof
+\else
+
+Pour faciliter l'analyse des performances simulées, le schéma-blocs de la figure \ref{ccs_mp_2023_fig_14} est adapté afin de disposer d'un schéma-blocs à retour unitaire, tel que décrit sur la figure \ref{ccs_mp_2023_fig_15}.
 
 %\begin{figure}[h]
 %\begin{center}
@@ -462,12 +545,18 @@ Pour faciliter l'analyse des performances simulées, le schéma-blocs de la figu
 \includegraphics[width=.6\textwidth]{2025_09_16_5f2d7643f7e649c6833dg-11}
 \caption{\label{ccs_mp_2023_fig_15} Schéma-blocs de l'asservissement de la force développée par un actionneur linéaire à retour unitaire}
 \end{figure}
+\fi
 
 %Q 20. \\
 \question{\label{ccs_mp_2023_q_20}
 Déterminer l'expression du gain $K_{10}$ en fonction de $K_{\text {capt }}$ et de $K_{\text {res }}$.}
 \ifprof
 \begin{corrige}
+On a déjà montré en question \ref{ccs_mp_2023_q_16} que $K_{\text{adapt}} = \dfrac{K_{\text{capt}}}{K_{\text{res}}}$, en factorisant dans la figure \ref{ccs_mp_2023_fig_14} on trouve le $\boxed{K_{10} = \dfrac{K_{\text{capt}}}{K_{\text{res}}}}$ de la figure \ref{ccs_mp_2023_q_15}.\\
+
+\textbf{Remarque:} l'écart $\varepsilon_f(p)$ de la figure \ref{ccs_mp_2023_fig_15} ne peut pas être le même que celui de la figure 14. En effet dans la figure \ref{ccs_mp_2023_fig_14} on a $\varepsilon_f(p) = \dfrac{K_{\text{capt}}}{K_{\text{res}}}\left( F_c(p) - F(p) \right)$ et dans la figure 15 $\varepsilon_f(p) = F_c(p) - F(p)$. Le $\varepsilon_f(p)$ de la figure \ref{ccs_mp_2023_fig_15} aurait dû se trouver derrière le gain $K_{10}$.
+
+
 \end{corrige}
 \else
 \fi
@@ -479,17 +568,25 @@ Déterminer l'expression du gain $K_{10}$ en fonction de $K_{\text {capt }}$ et 
 Déterminer la fonction de transfert $G(p)$ en fonction de $H_{2}(p), I_{\text {eq }}, H_{8}(p), H_{9}(p)$ et $K_{\text {res }}$. Ne pas remplacer $H_{2}(p), H_{8}(p)$ et $H_{9}(p)$ par les expressions trouvées précédemment.\\}
 \ifprof
 \begin{corrige}
+Par formule de Black sur la boucle interne on trouve $\boxed{G(p) = \dfrac{H_2(p) H_8(p)}{I_{\text{eq}}p + H_2(p)H_8(p)H_9(p)}}$.
 \end{corrige}
 \else
 \fi
 
+\ifprof
+\else
 
 Pour la suite, on donne la fonction de transfert $G(p)$, obtenue avec les valeurs de réglage correctes déterminées aux questions \ref{ccs_mp_2023_q_17} et \ref{ccs_mp_2023_q_18},
 $$
 G(p)=\frac{F(p)}{\Omega_{c}(p)}=\frac{1+\tau_{i} p}{p} \frac{1,2 \times 10^{-5}}{2 \times 10^{-4}+9,7 \times 10^{-5} p+5,3 \times 10^{-6} p^{2}} .
 $$
+\fi
 
 \subsubsection{Analyse des performances de l'asservissement en force développée par un actionneur linéaire}%III.B.4) 
+
+\ifprof
+\else
+
 Il est proposé dans cette section d'analyser les performances simulées de l'asservissement en force dont un extrait du cahier des charges est présenté dans le tableau \ref{ccs_mp_2023_tab_05}.
 
 \begin{table}[h]
@@ -533,14 +630,18 @@ On note $\indice{H}{B O f}(p)=\frac{F(p)}{\varepsilon_{f}(p)}$ la fonction de tr
 \caption{\label{ccs_mp_2023_fig_16}  Diagramme de Bode de $\indice{H}{BO f}(p)$}
 \end{figure}
 
+\fi
 
 %Q 22. \\
 Les courbes sur la figure \ref{ccs_mp_2023_fig_17} représentent les réponses temporelles du modèle de connaissance de la figure \ref{ccs_mp_2023_fig_11}, avec les correcteurs $C_{v}(p)$ et $C(p)$ correctement réglés, et de l'expérimentation sur le banc d'essai pour une consigne en échelon de force de \SI{40}{N}.
 
 \question{\label{ccs_mp_2023_q_22}
-Déterminer la valeur numérique limite de $K_{\text {cor }}$ afin que la boucle d'asservissement de force respecte les critères de marge de phase et de gain du tableau 5 .}
+Déterminer la valeur numérique limite de $K_{\text {cor }}$ afin que la boucle d'asservissement de force respecte les critères de marge de phase et de gain du tableau \ref{ccs_mp_2023_tab_05}.}
 \ifprof
 \begin{corrige}
+La marge de gain est infinie ici car la phase n'atteint jamais $-180^\circ$, regardons la marge de phase. Elle doit être de $60^\circ$ minimum, autrement dit il faut que la pulsation de coupure se situe à la phase $-120^\circ$ au maximum. Il faut alors augmenter le gain de 75dB minimum pour satisfaire le critère de marge de phase. Donc:
+
+$$ 20\log(K_{\text{corr}}) \geq + 75 \quad \Leftrightarrow \quad  \boxed{K_{\text{corr}} \geq 10^{\frac{75}{20}} \approx 5624 \text{rad/(s.V)}}$$
 \end{corrige}
 \else
 \fi
@@ -555,12 +656,17 @@ Déterminer la valeur numérique limite de $K_{\text {cor }}$ afin que la boucle
 %\end{figure}
 
 
+\ifprof
+\else
+
+
 \begin{figure}[!h]
 \centering
 \includegraphics[width=\textwidth]{2025_09_16_5f2d7643f7e649c6833dg-12}
 \caption{\label{ccs_mp_2023_fig_17} Réponses temporelles du modèle et expérimentale, pour une consigne en échelon de force de \SI{40}{N}}
 \end{figure}
 
+\fi
 
 
 
@@ -569,6 +675,16 @@ Déterminer la valeur numérique limite de $K_{\text {cor }}$ afin que la boucle
 Quel critère du tableau des exigences (tableau \ref{ccs_mp_2023_tab_05}) n'est pas pris en compte dans le modèle de connaissance? D'après la courbe expérimentale, ce critère est-il respecté par le système réel ?}
 \ifprof
 \begin{corrige}
+Sur la figure \ref{ccs_mp_2023_fig_17} la simulation s'arrête quand le dépassement vaut 2,5\%, soit 41N. On ne peut pas évaluer le temps de réponse du système puisque le régime stationnaire pour une consigne en échelon n'est pas atteint.\\
+
+Sur le relevé expérimental ce temps de réponse est clairement inférieur à la valeur 1s demandée par le cahier des charges et il n'y a pas de dépassement (saturation à 40N). Le cahier des charges concernant le temps de réponse à 5\% est validé expérimentalement.\\
+
+La vitesse de montée expérimentale vaut environ $\dfrac{36 - 4}{0,5 -0,1} = 80\text{N/s} < 100\text{N/s}$ donc le critère de vitesse de montée est aussi respecté. Toutefois la vitesse de montée maximale relevée sur la courbe de simulation vaut environ $\dfrac{41 - 7}{0,28 -0,12} = 212\text{N/s} > 100\text{N/s}$, le critère de vitesse en montée n'est pas respecté lors de la simulation.  
+
+\begin{center}
+\includegraphics[width = .6\linewidth]{Vitesse_montee}
+\end{center}
+
 \end{corrige}
 \else
 \fi
