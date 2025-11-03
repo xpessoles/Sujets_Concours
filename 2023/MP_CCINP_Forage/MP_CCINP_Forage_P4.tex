@@ -1,0 +1,79 @@
+\newpage
+
+\section*{ANNEXE 1 - Paramétrage mécanique \label{2023_MP_CCINP_ann_01}}
+\subsection*{Paramètres généraux :}
+Soient :
+
+\begin{itemize}
+  \item $\mathbf{0}$ le sol, $\mathbf{S 1}$ le châssis de la foreuse, $\mathbf{S 2}$ sa tourelle et son mât et $\mathbf{S 3}$ l'ensemble \{table de forage + outil\} ;
+  \item $\rep{0}=(O ; \vec{x}, \vec{y}, \vec{z})$ le repère attaché aux solides $\mathbf{S 0}$ et $\mathbf{S 1}$;
+  \item $\mathcal{B}_{2}=\left(\vec{x}_{2}, \vec{y}_{2}, \vec{z}\right)$ la base attachée aux solides $\mathbf{S 2}$ et $\mathbf{S} \mathbf{3}$ telle que $\left(\vec{x}, \vec{x}_{2}\right)=\theta$ où $\theta$ est connu ;
+  \item $\boldsymbol{\Sigma}=\{\mathbf{S} \mathbf{1}, \mathbf{S 2}, \mathbf{S 3}\}$ l'ensemble de la foreuse, de centre de gravité $G$ tel que $\overrightarrow{\mathrm{OG}}=r \vec{x}_{2}+\boldsymbol{z}_{G} \vec{z}$;
+  \item $M=186,5$ tonnes la masse de l'ensemble $\boldsymbol{\Sigma}$ et $m=18$ tonnes la masse de $\mathbf{S 3}$ seul ;
+  \item $2 F_{w} \vec{z}$, connu, l'effort du câble d'avance sur $\mathbf{S 3}$. La masse du câble est négligée dans la suite ;
+  \item $F_{\text {sol }} \vec{z}$, inconnu, l'effort de forage du sol $\mathbf{0}$ sur l'outil de forage $\mathbf{S} 3$ au point F , connu, défini par $\overrightarrow{\mathrm{OF}}=R \vec{x}_{2} ;$
+  \item $-g \vec{z}$ où $g=\SI{9,8}{m .s^{-2}}$, l'accélération de la pesanteur terrestre.
+\end{itemize}
+
+%\begin{figure}[h]
+%\begin{center}
+%  \includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-16(1)}
+%\captionsetup{labelformat=empty}
+%\caption{Système réel}
+%\end{center}
+%\end{figure}
+
+%\begin{figure}[h]
+\begin{center}
+%\captionsetup{labelformat=empty}
+%\caption{Modèle}
+  \includegraphics[width=\textwidth]{ann_01}
+\end{center}
+%\end{figure}
+
+\subsubsection*{Paramétrage 1 : modèle avec efforts ponctuels entre le sol et la foreuse}
+\begin{itemize}
+  \item $F_{g} \vect{z}$, inconnu, l'effort du sol $\mathbf{0}$ sur $\mathbf{S 1}$, supposé ponctuel au centre $I$ de la surface de contact entre la chenille gauche $c g$ et le sol tel que $\|\overrightarrow{OI}\|=a=\SI{2,1}{m}$;
+  \item $F_{d} \vec{z}$, inconnu, l'effort du sol $\mathbf{0}$ sur $\mathbf{S 1}$, supposé ponctuel au centre $J$ de la surface de contact entre la chenille droite $c d$ et le sol tel que $\|\overrightarrow{OJ}\|=a=\SI{2,1}{m}$.
+\end{itemize}
+
+\subsubsection*{Paramétrage 2 : modèle avec répartition de pression entre le sol et la foreuse}
+On note :
+
+\begin{itemize}
+  \item $\mathrm{P}(x, y, 0)$, un point courant de contact entre le sol et les chenilles. Attention, $x$ est négatif sur la figure ci-dessous. Les grandeurs $d x$ et $d y$ sont les dimensions du domaine surfacique élémentaire autour du point P entre le sol et les chenilles;
+  \item $p_{g}(y)=A \cdot \dfrac{y}{L}+B$, la pression du sol 0 sur la chenille gauche $c g$ au point $\mathrm{P}(x, y, 0)$ où $A$ et $B$, homogènes à des pressions, sont inconnues et à déterminer ;
+  \item $p_{d}(y)=C \cdot \dfrac{y}{L}+D$, la pression du sol 0 sur la chenille droite $c d$ au point $\mathrm{P}(x, y, 0)$ où $C$ et $D$, homogènes à des pressions, sont inconnues et à déterminer ;
+  \item $L=\SI{5,4}{m}$, la longueur et $I=\SI{1}{m}$ la largeur de chaque chenille ;
+  \item $a=\SI{2,1}{m}$, la distance moyenne sur l'axe $\vec{x}$ d'une chenille au centre O de la machine.\\
+\end{itemize}
+\begin{center}
+\includegraphics[width=.8\textwidth]{2025_10_26_292d8f726e32404b86d3g-17}
+\end{center}
+
+\section*{ANNEXE 2 - Rappels des syntaxes en Python}
+Pour ce sujet, on admet que les imports suivants ont été réalisés en amont :\\
+from numpy import *\\
+import matplotlib.pyplot as plt\\
+Le tableau suivant récapitule quelques éléments de syntaxe utiles :
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+ & Syntaxe Python \\
+\hline
+Définir un tableau à une dimension & \( \begin{aligned} & \mathrm{L}=[1,2,3] \text { (liste) } \\ & \mathrm{V}=\text { array }([1,2,3]) \text { (vecteur) } \end{aligned} \) \\
+\hline
+Accéder à un élément & v[0] renvoie 1 (L[0] également) \\
+\hline
+Créer une nouvelle figure & plt.figure() \\
+\hline
+Tracer une courbe & $\mathrm{plt} . \mathrm{plot}(\mathrm{X}, \mathrm{Y})$ où X et Y , de même taille, sont respectivement la liste des abscisses et des ordonnées de la courbe. \\
+\hline
+\end{tabular}
+\end{center}
+
+\section*{ANNEXE 3 - Exemple d'un rapport de chantier}
+\begin{center}
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-18}
+\end{center}

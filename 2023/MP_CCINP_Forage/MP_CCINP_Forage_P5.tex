@@ -1,0 +1,91 @@
+
+
+\section*{ANNEXE 4 - Algorithme ConcaveHull }
+L'algorithme ConcaveHull permet de trouver au sein d'un nuage de points les points qui, dans l'ordre, forment ensemble le polygone représentant l'enveloppe concave de ce nuage. Comme l'illustre la figure ci-contre, un même nuage de points possède plusieurs\\
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-19(1)}\\
+enveloppes concaves en fonction de la " rugosité " désirée.
+
+L'algorithme établi par Moreira et Yasmina-Santos en 2007 propose une approche itérative qui, à partir d'un point de départ dont il est certain qu'il appartienne à l'enveloppe (par exemple le point possédant\\
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-19}\\
+l'abscisse minimale), cherche le prochain sommet du polygone enveloppe parmi ses k -plus proches voisins dans le nuage de points considéré et ce jusqu'à retrouver le point de départ qui refermera l'enveloppe.\\
+Pour choisir le bon voisin parmi les k-plus proches, l'algorithme les trie d'abord par ordre décroissant de l'angle que chacun forme avec l'arête précédente du polygone enveloppe (voir ci-dessous), puis choisit le premier point de la liste. Si ce point, en l'ajoutant comme sommet du polygone, forme une arête qui coupe les arêtes déjà formées du polygone, il est rejeté et le suivant dans la liste est choisi à sa place.\\
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-19(2)}
+
+La fonction ProchesVoisins(Points,A,k) utilisée dans cet algorithme, permet, à partir des coordonnées ( $x, y$ ) d'un point A , de renvoyer la liste les coordonnées ( $x, y$ ) de ses $k$-plus proches voisins présents dans la liste de points Points. Cette fonction et ses sous-fonctions sont écrites cidessous.
+
+\begin{verbatim}
+def ProchesVoisins(Points,A,k):
+    # Calcule les distances de A aux Points
+    Dist=Distances(Points,A)
+    # Trouve les k-plus courtes distances
+    DistList=list(Dist)
+    Tri(DistList,0,len(DistList)-1,k)
+    kDist=DistList[:k]
+    # Trouve les points correspondants
+    Voisins=k*[0]
+    for i in range(len(Dist)):
+        test=Dist[i]
+        for j in range(k):
+            if test==kDist[j]:
+                Voisins[j]=Points[i]
+    return Voisins
+\end{verbatim}
+
+\begin{verbatim}
+def Tri(L,gauche,droite,k):
+    if gauche<droite:
+        rang=Segmentation(L,gauche,droite)
+        Tri(L,gauche,rang-1,k)
+        if rang<gauche+k:
+            Tri(L,rang+1,droite,k)
+def Segmentation(L,gauche,droite):
+    # Choisit un pivot
+    p = L[gauche]
+    # Segmente L
+    rang = gauche
+    for i in range(gauche,droite+1):
+            Partie à compléter
+            sur feuille de copie
+    # Place le pivot entre les 2 segments
+    L[gauche],L[rang] = L[rang],L[gauche]
+    return rang
+\end{verbatim}
+
+\begin{figure}[h]
+\begin{center}
+%\captionsetup{labelformat=empty}
+\caption{ANNEXE 5 -- Schéma-bloc : modélisation de l'asservissement}
+  \includegraphics[width=.8\textwidth]{2025_10_26_292d8f726e32404b86d3g-20}
+\end{center}
+\end{figure}
+
+FIN\\
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-21}
+
+\section*{DOCUMENT RÉPONSE}
+\section*{Ce Document Réponse doit être rendu dans son intégralité avec la copie.}
+\section*{DR1 - Diagramme d'états}
+\begin{figure}[h]
+\begin{center}
+\captionsetup{labelformat=empty}
+\caption{Q10}
+  \includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-21(1)}
+\end{center}
+\end{figure}
+
+\section*{NE RIEN ÉCRIRE DANS CE CADRE}
+\section*{DR2 - Évolutions théoriques des pressions estimées par l'ordinateur et du pourcentage d'atteinte de la posture critique de basculement}
+Q11\\
+\includegraphics[width=.6\textwidth]{2025_10_26_292d8f726e32404b86d3g-22(1)} \\
+\includegraphics[width=.6\textwidth]{2025_10_26_292d8f726e32404b86d3g-22}
+
+\section*{DR3 - Réponse fréquentielle}
+\section*{Q28 \& Q29}
+\includegraphics[width=.3\textwidth]{2025_10_26_292d8f726e32404b86d3g-23}
+\includegraphics[width=.3\textwidth]{2025_10_26_292d8f726e32404b86d3g-23(1)}
+
+Valeur de $K_{p}$ choisie : $\boldsymbol{K}_{\boldsymbol{p}}=$
+
+D4 - Réponses fréquentielles de la fonction de transfert en boucle ouverte corrigée du système sans (en train plein) et avec amortisseur (en pointillés)\\
+\includegraphics[width=.3\textwidth]{2025_10_26_292d8f726e32404b86d3g-24}\\
+\includegraphics[width=.3\textwidth]{2025_10_26_292d8f726e32404b86d3g-24(1)}

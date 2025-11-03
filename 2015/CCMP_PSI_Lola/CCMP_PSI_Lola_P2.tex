@@ -1,0 +1,173 @@
+\section{Contrôle de la posture de LOLA}%Partie 2 : 
+\label{ccmp_psi_2015:p02}
+Pour assurer une marche rapide et stable de LOLA, la méthode choisie est le contrôle de la verticalité du tronc du robot (figure 5). Le haut du corps (tronc, bras, tête) sera maintenu vertical en réalisant un asservissement de position angulaire au niveau de l'articulation de la hanche. L'action mécanique de redressement est développée par l'ensemble de motorisation de tangage autour de l'axe ( $\mathrm{O}_{\mathrm{T}}, \overrightarrow{\mathrm{x}}_{0}$ ). Les performances à vérifier dans cette partie sont définies par les exigences suivantes :
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-05}
+\captionsetup{labelformat=empty}
+\caption{Figure 5 \label{ccmp_psi_2015:fig05}}
+\end{center}
+\end{figure}
+
+La chaîne structurelle permettant de modifier la posture du haut du corps autour de l'axe de tangage est représentée sur la figure 6 (page 6 ). Elle est composée d'un moteur électrique $(1,2)$ synchrone à aimants\\
+permanents piloté par un variateur électronique, d'un réducteur Harmonic-Drive ${ }^{©}$ (3) de rapport de réduction $1 / 100$, d'un codeur incrémental (5) ainsi que d'un codeur angulaire absolu (6+7).
+
+Une centrale inertielle équipée d'un accéléromètre, d'un gyroscope et d'une unité de traitement permet d'obtenir en temps réel la valeur de l'angle d'inclinaison du haut du corps par rapport à la verticale.
+
+L'objectif de cette partie est de mettre en place un modèle du maintien vertical du tronc de LOLA et de déterminer une structure de commande permettant d'assurer les performances du cahier des charges de l'exigence 1.3.2.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-06}
+\captionsetup{labelformat=empty}
+\caption{Figure \label{ccmp_psi_2015:fig06}}
+\end{center}
+\end{figure}
+
+Les performances dynamiques de l'axe de tangage doivent vérifier les critères suivants:
+
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\multicolumn{3}{|c|}{Sous-exigence 1.3.2.d: la performance dynamique de chaque axe permet de modifier la posture} \\
+\hline
+Critère & Niveau & Flexibilité \\
+\hline
+Marge de phase & $\mathrm{M} \varphi=50^{\circ}$ & Mini \\
+\hline
+Erreur statique & $0^{\circ}$ & [ $-0.5^{\circ} ;+0.5^{\circ}$ ] \\
+\hline
+Bande passante à 0 dB en boucle ouverte & $\omega_{\text {BP }}=50 \mathrm{rad} . s^{-1}$ & Mini \\
+\hline
+Temps de réponse à 5\% & $0,2 \mathrm{~s}$ & Maxi \\
+\hline
+Dépassement & $1^{\circ}$ & Maxi \\
+\hline
+\end{tabular}
+\end{center}
+
+
+\subsection{Modèle de connaissance de la dynamique de tangage \label{ccmp_psi_2015:p21}}
+Le modèle mécanique utilisé pour mener notre étude est donné sur la figure 7. L'association des liaisons entre le tronc et les jambes au niveau de la hanche est équivalente, dans le plan sagittal ( $\mathrm{O}_{\mathrm{T}}, \overrightarrow{\mathrm{y}}_{0,}, \overrightarrow{\mathrm{z}}_{0}$ ), à une liaison pivot d'axe $\left(\mathrm{O}_{\mathrm{T}}, \overrightarrow{\mathrm{x}}_{0}\right)$. Le tronc sera considéré comme un solide admettant le plan ( $\mathrm{O}_{\mathrm{T}}, \overrightarrow{\mathrm{y}}_{0,}, \overrightarrow{\mathrm{z}}_{0}$ ) comme plan de symétrie. Le cahier des charges stipule que LOLA doit pouvoir marcher à la vitesse de $5 \mathrm{~km} / \mathrm{h}$. Cette vitesse est atteinte en 1 s lors de la première foulée. La loi de commande en vitesse correspondante est représentée
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-06(1)}
+\captionsetup{labelformat=empty}
+\caption{Figure 7\label{ccmp_psi_2015:fig07}}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-06(2)}
+\captionsetup{labelformat=empty}
+\caption{Figure 7 \label{ccmp_psi_2015:fig07bis}}
+\end{center}
+\end{figure}
+
+Le mouvement de marche est imposé et modélisé par le torseur cinématique en $\mathrm{O}_{\mathrm{T}}$ du mouvement du tronc 1 par rapport au sol 0 :
+
+$$
+\left\{V_{1 / 0}\right\}=\left\{\begin{array}{c}
+\dfrac{\d \alpha}{\d t} \vec{x}_{0} \\
+v(t) \vec{y}_{0}
+\end{array}\right\}_{\alpha_{\mathrm{T}}}
+$$
+
+Les caractéristiques d'inertie du tronc 1 de LOLA sont :
+
+\begin{itemize}
+  \item la matrice d'inertie en $\mathrm{O}_{\mathrm{T}}: \mathrm{I}\left(\mathrm{O}_{\mathrm{T}}, 1\right)=\left[\begin{array}{ccc}\mathrm{A}_{1} & 0 & 0 \\ 0 & \mathrm{~B}_{1} & -\mathrm{D}_{1} \\ 0 & -\mathrm{D}_{1} & \mathrm{C}_{1}\end{array}\right]_{\mathrm{B}_{1}}$
+  \item position du centre de gravité : $\overline{\mathrm{O}_{\mathrm{T}} \overrightarrow{\mathrm{G}}_{\mathrm{T}}}=\mathrm{Z}_{\mathrm{G}} \cdot \vec{Z}_{1}$
+  \item masse: $\mathrm{m}_{1}$
+  \item l'accélération de la pesanteur sera prise égale à $\mathrm{g}=9,81 \mathrm{~m} \cdot \mathrm{~s}^{-2}$.
+\end{itemize}
+
+L'axe de sortie du réducteur exerce un couple de redressement sur le tronc 1 modélisé par le torseur couple suivant : $\left\{T_{h d \rightarrow 1}\right\}=\left\{\begin{array}{c}\overrightarrow{0} \\ C_{R} \vec{x}_{0}\end{array}\right\}_{O_{T}}$. L'angle a sera supposé faible pendant le mouvement : ainsi $\cos \alpha \sim 1$ et $\sin \alpha \sim \alpha$
+
+%\section*{Question 7 :}
+\question{\label{ccmp_psi_2015:q07}
+Proposer une démarche de résolution afin d'obtenir l'équation différentielle du mouvement reliant $\alpha$ et ses dérivées successives aux données du problème. Effectuer un bilan des actions mécaniques extérieures au système matériel isolé.}
+
+%\section*{Question 8 :}
+\question{\label{ccmp_psi_2015:q08}Développer l'ensemble des calculs pour déterminer l'équation différentielle reliant $\alpha$ et ses dérivées successives aux données du problème.}
+
+Le contrôle de l'angle s'effectue par l'intermédiaire du moteur asservi en position, suivi du réducteur HarmonicDrive ${ }^{®}$ de rapport de réduction $\mathrm{r}=\frac{1}{100}$. Le moment d'inertie de l'arbre moteur suivant son axe de rotation est noté $\mathrm{J}_{\mathrm{m}}$, le couple moteur exercé sur l'arbre d'entrée du réducteur est noté $\mathrm{C}_{\mathrm{m}}$. Le réducteur HarmonicDrive ${ }^{®}$ sera considéré sans masse. La masse de l'arbre moteur est négligeable devant l'ensemble des autres grandeurs inertielles. Une étude dynamique a permis de montrer que : $C_{R}=\frac{C_{m}}{r}-\frac{J_{m}}{r^{2}} \cdot \frac{d^{2} \alpha(t)}{d t^{2}}$. Ainsi, l'équation différentielle du mouvement devient :
+
+
+\begin{equation*}
+J_{e q} \frac{d^{2} \alpha(t)}{d t^{2}}-m_{1} g Z_{G} \alpha(t)=m_{1} Z_{G} \frac{d v(t)}{d t}+\frac{C_{m}(t)}{r} \tag{1}
+\end{equation*}
+
+
+$\mathrm{J}_{\text {eq }}$ est le moment d'inertie équivalent de l'ensemble du tronc ramené sur l'axe moteur.
+
+%2. 
+\subsection{Modèle du contrôle actif de la position verticale. \label{ccmp_psi_2015:p22}}
+On note $\Gamma(t)=\frac{d v(t)}{d t}$. Les conditions de Heaviside sont vérifiées. Le schéma-bloc du contrôle de la position angulaire du tronc de LOLA est représenté sur l'annexe 2. La consigne angulaire est nulle afin de garder le tronc du robot vertical: $\alpha_{c}(t)=0$. Les transformées de Laplace des fonctions seront notées en majuscules et le paramètre de Laplace sera noté p.\\
+Le comportement du moteur sera considéré comme celui d'un moteur à courant continu dont les équations de comportement sont les suivantes: $u_{c}(t)=e(t)+L \frac{d i(t)}{d t}+R i(t) ; e(t)=k_{e} \omega_{m}(t)$ et $C_{m}(t)=k_{c} i(t)$.
+
+%\section*{Question 9 :}
+\question{\label{ccmp_psi_2015:q09}Indiquer sur le document-réponse les fonctions de transfert des blocs $B_{1}, B_{2}, B_{3}, B_{4}, B_{5}, B_{6}$ et $B_{7}$ ainsi que l'expression de la fonction de transfert $H_{1}(p)$.}
+
+Afin d'analyser la stabilité de cet asservissement, nous cherchons à déterminer la fonction de transfert en boucle ouverte du système non-corrigé : $F(p)=\frac{\alpha(p)}{U_{c}(p)}$ en supposant la perturbation nulle.
+
+%\section*{Question 10 :}
+\question{\label{ccmp_psi_2015:q10}
+Déterminer la fonction de transfert de la boucle dynamique $H_{\text {dyn }}(p)=\frac{\alpha(p)}{C_{m}(p)}$ en supposant la perturbation nulle.}
+
+%\section*{Question 11 :}
+\question{\label{ccmp_psi_2015:q11}Déterminer la fonction de transfert en boucle ouverte non-corrigée de l'asservissement $F(p)=\frac{\alpha(p)}{U_{c}(p)}$. Indiquer son ordre, sa classe et donner son gain statique $K$ en fonction des données.}
+
+Une simulation numérique permet de montrer que $F(p)$ est de la forme $\frac{K}{\left(1+\tau_{1} p\right)\left(-1+\tau_{1} p\right)\left(1+\tau_{2} p\right)}$. Les diagrammes de Bode de cette fonction de transfert sont donnés sur le document-réponse.
+
+%\section*{Question 12 :}
+\question{\label{ccmp_psi_2015:q12}En analysant les diagrammes de Bode du document-réponse, déterminer les valeurs de $\tau_{1}, \tau_{2}$ et K . Justifier en complétant les diagrammes du document-réponse avec les diagrammes asymptotiques de gain et de phase.}
+
+Pour la suite de l'étude, nous simplifierons $F(p)$ sous la forme suivante : $\frac{K}{\left(1+\tau_{1} p\right)\left(-1+\tau_{1} p\right)}$.
+
+%\section*{Question 13 :}
+\question{\label{ccmp_psi_2015:q13}Justifier le choix de cette simplification.}
+
+%\section*{Question 14 :}
+\question{\label{ccmp_psi_2015:q14}Expliquer pourquoi le critère du revers ne peut pas être appliqué pour étudier la stabilité en boucle fermée.}
+
+Afin de résoudre ce problème, il est décidé d'asservir la chaîne directe en position et en vitesse. Pour cela, la centrale inertielle permet de mesurer l'angle de tangage $\alpha(t)$ ainsi que la vitesse angulaire $\frac{d \alpha(t)}{d t}$. L'asservissement ainsi réalisé est présenté sous la forme du schéma-bloc de la figure 8 (page 9).\\
+$U_{c}(p)$ est la tension de commande en sortie du correcteur. La fonction de transfert de la centrale inertielle sera prise égale à $\mathrm{H}_{\mathrm{ci}}(\mathrm{p})=\mathrm{K}_{1}(\mathrm{p}+1)$.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-09}
+\captionsetup{labelformat=empty}
+\caption{Figure 8 \label{ccmp_psi_2015:fig08}}
+\end{center}
+\end{figure}
+
+%\section*{Question 15 :}
+\question{\label{ccmp_psi_2015:q15}Déterminer deux conditions sur $\mathrm{K}_{1}$ pour que la fonction de transfert en boucle ouverte non-corrigée $\frac{\alpha(p)}{U_{c}(p)}$ soit stable. En déduire la valeur minimale de $K_{1}$.}
+
+%\section*{Question 16 :}
+\question{\label{ccmp_psi_2015:q16}Déterminer $\mathrm{K}_{1}$ pour que la fonction de transfert $\frac{\alpha(\mathrm{p})}{\mathrm{U}_{\mathrm{C}}(\mathrm{p})}$ ait un facteur d'amortissement $\xi=1,7$. Vérifier que cette valeur est compatible avec les conditions obtenues précédemment. En déduire les valeurs de la pulsation propre $\omega_{0}$ et du gain statique de la boucle ouverte $\mathrm{K}_{\mathrm{B} 0}$.}
+
+Quels que soient les résultats trouvés précédemment, nous utiliserons les expressions suivantes pour la suite de l'étude: $\frac{\alpha(p)}{U_{C}(p)}=\frac{K_{B O}}{1+\frac{2 . \xi}{\omega_{0}} \cdot p+\frac{p^{2}}{\omega_{0}^{2}}}$ avec $K_{B O}=1,1.10^{-3}, \xi=1,7$ et $\omega_{0}=3$ rad. $s^{-1}$. Pour répondre au cahier des charges, il est décidé d'implanter un correcteur de fonction de transfert suivante : $H_{\text {cor }}(p)=K_{p .} \frac{1+a T_{d} p}{1+T_{d} p}$ avec $\mathrm{a}>1$.
+
+%\section*{Question 17 :}
+\question{\label{ccmp_psi_2015:q17}Nommer ce correcteur.}
+
+Les diagrammes de Bode de gain et de phase (pour $\mathrm{K}_{\mathrm{p}}=1$ ) de ce correcteur sont fournis en annexe 3. Afin d'assurer un gain significatif de phase, nous décidons de placer $\omega_{c}$ en $\omega_{B P}=50$ rad.s $^{-1}$, définissant ainsi la bande passante.
+
+%\section*{Question 18 :}
+\question{\label{ccmp_psi_2015:q18}Déterminer la valeur du paramètre a pour que le correcteur permette d'assurer la marge de phase du cahier des charges. En déduire la valeur de $T_{d}$.}
+
+%\section*{Question 19 :}
+\question{\label{ccmp_psi_2015:q19}
+Déterminer le gain $\mathrm{K}_{\mathrm{p}}$ pour que le critère de bande passante du cahier des charges soit bien vérifié.}
+
+La stabilité du tronc étant assurée, nous devons maintenant analyser les performances en précision et rapidité de l'asservissement de position angulaire. La consigne est nulle, ainsi seule la perturbation va écarter le tronc du robot de sa posture verticale. Cette perturbation provient du mouvement de marche souhaité c'est à dire de l'accélération subie $\Gamma(t)=\frac{d v(t)}{d t}$. Avec les réglages du correcteur, une simulation numérique a permis de tracer la réponse temporelle du système pour une perturbation $\Gamma(t)$ respectant la loi de vitesse représentée sur la figure 7 de la page 6. Cette réponse est tracée sur l'annexe 4.
+
+%\section*{Question 20 :}
+\question{\label{ccmp_psi_2015:q20}
+Justifier l'allure de la réponse temporelle. Déterminer graphiquement sur le document réponse le temps de réponse à $5 \%$, le dépassement maximal et l'erreur statique. Conclure sur la capacité du correcteur à vérifier l'ensemble des critères du cahier des charges.}
+

@@ -1,0 +1,263 @@
+
+%\section*{Partie III - Édition d'un rapport de chantier (Informatique Commune)}
+\section{Édition d'un rapport de chantier (Informatique Commune)\label{2023_MP_CCINP_sec_3}}
+L'objectif de cette partie est d'explorer des moyens d'éditer un rapport de chantier à partir de données récupérées par les capteurs de la machine de forage.
+
+%\section*{III. 1 - Exploitation des données d'opération enregistrées}
+\subsection{Exploitation des données d'opération enregistrées\label{2023_MP_CCINP_sec_31}}
+En option sur toutes les machines, l'équipementier propose un système de saisie de données d'opération qui enregistre en permanence les données importantes d'opérations pendant les travaux. Ces données peuvent ensuite être traitées sur un ordinateur par un logiciel qui permet d'établir des rapports de chantier.\\
+Les données sont enregistrées dans une base de données dont une structure simplifiée est la suivante : une table Site répertoriant les chantiers exploités, une table Forage répertoriant tous les pieux de chaque site et une table Operation répertoriant toutes les opérations sur chaque pieu.
+
+La structure détaillée est la suivante :
+
+\begin{itemize}
+  \item la table Site, contient les trois attributs suivants :
+  \item idsite (de type entier) : numéro indiquant la référence du site d'exploitation
+  \item nom (de type chaîne de caractères) : désignation du nom du lieu du site d'exploitation
+  \item dates (de type tuple) : tuple contenant les dates de début et de fin de chantier
+  \item la table Forage, contient les quatre attributs suivants :
+  \item pieunumero (de type entier) : numéro indiquant la référence du pieu de forage
+  \item idsite (de type entier) : numéro indiquant la référence du site d'exploitation du pieu considéré
+  \item coordonneesGPS (de type chaîne de caractères) : coordonnées GPS du pieu considéré
+  \item quantitebeton (de type flottant) : quantité de béton coulée dans le pieu considéré
+  \item la table Operation, contient les douze attributs suivants :
+  \item operationnumero (de type entier) : numéro indiquant la référence de l'opération réalisée
+  \item pieunumero (de type entier) : numéro indiquant la référence du pieu de forage considéré
+  \item idmachine (de type entier) : numéro indiquant la référence de la machine utilisée
+  \item idoutil (de type entier) : numéro indiquant la référence de l'outil utilisé
+  \item date (de type chaîne de caractères) : date de l'opération réalisée
+  \item duree (de type float) : durée (en seconde) de l'opération réalisée
+  \item temps (de type liste): liste des instants (en seconde) des prises de mesure des capteurs pendant l'opération considérée
+  \item pression (de type liste) : liste des mesures de la pression du sol (en Pa) lors de l'opération
+  \item effort (de type liste) : liste des mesures de l'effort de forage (en kN) lors de l'opération
+  \item profondeur (de type liste) : liste des mesures de profondeur (en cm) lors de l'opération
+  \item couple (de type liste) : liste des mesures du couple de forage (en kN.m) lors de l'opération
+  \item vitesserotation (de type liste) : liste des mesures de la vitesse de rotation (en tr/min) de l'outil lors de l'opération.
+\end{itemize}
+
+%Q31. 
+\question{\label{2023_MP_CCINP_q31}Écrire une requête SQL permettant de renvoyer les dates de début et de fin du chantier intitulé " Heilbronn ".}
+
+%Q32. 
+\question{\label{2023_MP_CCINP_q32}Écrire une requête SQL permettant de déterminer la quantité totale de béton qui a été coulée sur ce chantier.}
+
+%Q33. 
+\question{\label{2023_MP_CCINP_q33}Écrire une requête SQL permettant de renvoyer les listes temps, effort et profondeur de la première opération (numérotée 1) du premier pieu (numéroté 1) effectué sur ce chantier.}
+
+%\section*{III. 2 - Tracés des courbes significatives pour un rapport de chantier}
+\subsection{Tracés des courbes significatives pour un rapport de chantier \label{2023_MP_CCINP_sec_32}}
+
+L'annexe 3 montre un exemple de rapport de chantier. La dernière requête, demandée précédemment, fournit une liste de listes que l'on nomme " rapport " : rapport = [temps, effort, profondeur] où temps est une liste en seconde, effort en kN et profondeur en cm . On désire exploiter " rapport " grâce au langage Python. L'annexe $\mathbf{2}$ rappelle les syntaxes classiques de ce langage.
+
+%Q34. 
+\question{\label{2023_MP_CCINP_q34}Créer une fonction TrouverVitesse(profondeur, temps) qui renvoie la liste vitesse en $\mathrm{mm} / \mathrm{s}$ des vitesses verticales instantanées de cette opération. Elle aura la même longueur que temps et profondeur et on imposera la première valeur de la vitesse à 0 .}
+
+%Q35. 
+\question{\label{2023_MP_CCINP_q35}Écrire un script permettant de tracer la zone B de ce rapport, c'est-à-dire le temps, la vitesse et l'effort en fonction de la profondeur sur trois figures différentes. On s'assurera bien que l'axe vertical corresponde à la profondeur de forage. L'inversion du sens de l'axe des ordonnées, le titre des axes, la conversion de la profondeur en mètres, ainsi que la conversion du temps au format $h h: \min$ ne sont pas exigés ici.}
+
+
+On désire désormais tracer la zone A de ce rapport. Les courbes présentes dans cette zone témoignent de l'enveloppe théorique nominale (trait plein), fournie par le constructeur et expérimentale (trait pointillé), mesurée lors de l'opération, des points de fonctionnement ( $C, N$ ) du moteur de la table de forage mettant en rotation la barre Kelly. $C$ est son couple (en $\mathrm{kN} \cdot \mathrm{m}$ ) et $N$ sa vitesse de rotation (en tr/min). Une requête sur la base de données permet d'obtenir leurs valeurs expérimentales sous forme de deux listes de même taille C et N . Pour la suite, on considère que l'on dispose de ces listes.
+
+La figure \ref{2023_MP_CCINP_fig_13} montre le nuage des points de fonctionnement enregistrés à divers instants lors de l'opération considérée (à gauche) et l'enveloppe que l'on désire en tirer (à droite) pour une question de clarté et de lisibilité. On se propose donc de tracer l'enveloppe concave de ce nuage de points grâce à l'algorithme ConcaveHull présenté en annexe 4. Une dernière opération, non-détaillée dans ce sujet, ne gardera que la partie supérieure de cette enveloppe pour la visualisation finale.
+
+\begin{figure}[h]
+\centering
+  \includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-14}
+%Figure 13 - 
+\caption{\label{2023_MP_CCINP_fig_13}Nuage de points du couple en \si{kNm} en fonction de la fréquence de rotation en \si{tr/min} (à gauche) et la partie supérieure de son enveloppe concave (à droite)}
+
+\end{figure}
+
+%Q36. 
+\question{\label{2023_MP_CCINP_q36}De quel algorithme de tri la fonction Tri présente en annexe 4 est-elle une adaptation? Quelle est sa complexité au pire des cas et celle au meilleur des cas ?}
+
+%Q37. 
+\question{\label{2023_MP_CCINP_q37}Justifier la présence du test «if rang < gauche + k : » au sein de la fonction Tri.}
+
+%Q38. 
+\question{\label{2023_MP_CCINP_q38}Proposer sur la copie des lignes de code permettant de compléter la partie manquante de la fonction Segmentation.}
+
+%Q39. 
+\question{\label{2023_MP_CCINP_q39}Créer la fonction Distances(Points,A) présente dans la fonction ProchesVoisins qui renvoie une liste Dist de la distance de chaque point de Points (organisée comme une liste de tuples des coordonnées $(x, y))$ au point A (tuple de ses coordonnées $(x, y)$ ) de telle sorte que la distance Dist[i] corresponde au point Points[i].}
+
+On suppose désormais à disposition la fonction ConcaveHull (Points) qui renvoie la liste Hull des coordonnées $(x, y)$ des points présents dans la liste Points et qui forment le polygone enveloppe du nuage de points formé par Points.
+
+%Q40. 
+\question{\label{2023_MP_CCINP_q40}Écrire un script qui trace l'enveloppe concave des points de fonctionnement de la table de forage à partir des valeurs présentes dans les listes C et N . On rappelle ici que l'on ne s'occupera pas de l'opération permettant de garder seulement la partie haute de l'enveloppe générée.}
+
+%Q41. 
+\question{\label{2023_MP_CCINP_q41}Sans ligne de code, proposer, avec des explications claires, une solution alternative plus simple que\% l'algorithme ConcaveHull de Moreira et Yasmina-Santos pour retrouver l'enveloppe expérimentale des points de fonctionnement du moteur de la table de forage.}
+
+
+
+\end{document}
+
+
+\section*{ANNEXE 1 - Paramétrage mécanique}
+\section*{Paramètres généraux :}
+Soient :
+
+\begin{itemize}
+  \item $\mathbf{0}$ le sol, $\mathbf{S 1}$ le châssis de la foreuse, $\mathbf{S 2}$ sa tourelle et son mât et $\mathbf{S 3}$ l'ensemble \{table de forage + outil\} ;
+  \item $\Re_{0}=(O ; \vec{x}, \vec{y}, \vec{z})$ le repère attaché aux solides $\mathbf{S 0}$ et $\mathbf{S 1}$;
+  \item $B_{2}=\left(\vec{x}_{2}, \vec{y}_{2}, \vec{z}\right)$ la base attachée aux solides $\mathbf{S 2}$ et $\mathbf{S} \mathbf{3}$ telle que $\left(\vec{x}, \vec{x}_{2}\right)=\theta$ où $\theta$ est connu ;
+  \item $\boldsymbol{\Sigma}=\{\mathbf{S} \mathbf{1}, \mathbf{S 2}, \mathbf{S 3}\}$ l'ensemble de la foreuse, de centre de gravité $G$ tel que $\overrightarrow{\mathrm{OG}}=r \vec{x}_{2}+\boldsymbol{z}_{G} \vec{z}$;
+  \item $M=186,5$ tonnes la masse de l'ensemble $\boldsymbol{\Sigma}$ et $m=18$ tonnes la masse de $\mathbf{S 3}$ seul ;
+  \item $2 F_{w} \vec{z}$, connu, l'effort du câble d'avance sur $\mathbf{S 3}$. La masse du câble est négligée dans la suite ;
+  \item $F_{\text {sol }} \vec{z}$, inconnu, l'effort de forage du sol $\mathbf{0}$ sur l'outil de forage $\mathbf{S} 3$ au point F , connu, défini par $\overrightarrow{\mathrm{OF}}=R \vec{x}_{2} ;$
+  \item $-g \vec{z}$ où $g=9,8 m \cdot s^{-2}$, l'accélération de la pesanteur terrestre.
+\end{itemize}
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-16(1)}
+\captionsetup{labelformat=empty}
+\caption{Système réel}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\captionsetup{labelformat=empty}
+\caption{Modèle}
+  \includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-16}
+\end{center}
+\end{figure}
+
+\section*{Paramétrage $\mathbf{n}^{\boldsymbol{\circ}} \mathbf{1}$ : modèle avec efforts ponctuels entre le sol et la foreuse}
+\begin{itemize}
+  \item $F_{g} \vec{z}$, inconnu, l'effort du sol $\mathbf{0}$ sur $\mathbf{S 1}$, supposé ponctuel au centre I de la surface de contact entre la chenille gauche $c g$ et le sol tel que $\|\overrightarrow{\mathrm{O} l}\|=a=2,1 m$;
+  \item $F_{d} \vec{z}$, inconnu, l'effort du sol $\mathbf{0}$ sur $\mathbf{S 1}$, supposé ponctuel au centre J de la surface de contact entre la chenille droite $c d$ et le sol tel que $\|\overrightarrow{\mathrm{OJ}}\|=a=2,1 \mathrm{~m}$.
+\end{itemize}
+
+\section*{Paramétrage $\mathbf{n}^{\circ} \mathbf{2}$ : modèle avec répartition de pression entre le sol et la foreuse}
+On note :
+
+\begin{itemize}
+  \item $\mathrm{P}(x, y, 0)$, un point courant de contact entre le sol et les chenilles. Attention, $x$ est négatif sur la figure ci-dessous. Les grandeurs $d x$ et $d y$ sont les dimensions du domaine surfacique élémentaire autour du point P entre le sol et les chenilles;
+  \item $p_{g}(y)=A \cdot \frac{y}{L}+B$, la pression du sol 0 sur la chenille gauche $c g$ au point $\mathrm{P}(x, y, 0)$ où $A$ et $B$, homogènes à des pressions, sont inconnues et à déterminer ;
+  \item $p_{d}(y)=C \cdot \frac{y}{L}+D$, la pression du sol 0 sur la chenille droite $c d$ au point $\mathrm{P}(x, y, 0)$ où $C$ et $D$, homogènes à des pressions, sont inconnues et à déterminer ;
+  \item $L=5,4 \mathrm{~m}$, la longueur et $I=1 \mathrm{~m}$ la largeur de chaque chenille ;
+  \item $a=2,1 m$, la distance moyenne sur l'axe $\vec{x}$ d'une chenille au centre O de la machine.\\
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-17}
+\end{itemize}
+
+\section*{ANNEXE 2 - Rappels des syntaxes en Python}
+Pour ce sujet, on admet que les imports suivants ont été réalisés en amont :\\
+from numpy import *\\
+import matplotlib.pyplot as plt\\
+Le tableau suivant récapitule quelques éléments de syntaxe utiles :
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+ & Syntaxe Python \\
+\hline
+Définir un tableau à une dimension & \( \begin{aligned} & \mathrm{L}=[1,2,3] \text { (liste) } \\ & \mathrm{V}=\text { array }([1,2,3]) \text { (vecteur) } \end{aligned} \) \\
+\hline
+Accéder à un élément & v[0] renvoie 1 (L[0] également) \\
+\hline
+Créer une nouvelle figure & plt.figure() \\
+\hline
+Tracer une courbe & $\mathrm{plt} . \mathrm{plot}(\mathrm{X}, \mathrm{Y})$ où X et Y , de même taille, sont respectivement la liste des abscisses et des ordonnées de la courbe. \\
+\hline
+\end{tabular}
+\end{center}
+
+
+
+
+\section*{ANNEXE 3 - Exemple d'un rapport de chantier}
+\begin{center}
+\includegraphics[max width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-18}
+\end{center}
+
+\section*{ANNEXE 4 - Algorithme ConcaveHull }
+L'algorithme ConcaveHull permet de trouver au sein d'un nuage de points les points qui, dans l'ordre, forment ensemble le polygone représentant l'enveloppe concave de ce nuage. Comme l'illustre la figure ci-contre, un même nuage de points possède plusieurs\\
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-19(1)}\\
+enveloppes concaves en fonction de la " rugosité " désirée.
+
+L'algorithme établi par Moreira et Yasmina-Santos en 2007 propose une approche itérative qui, à partir d'un point de départ dont il est certain qu'il appartienne à l'enveloppe (par exemple le point possédant\\
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-19}\\
+l'abscisse minimale), cherche le prochain sommet du polygone enveloppe parmi ses k -plus proches voisins dans le nuage de points considéré et ce jusqu'à retrouver le point de départ qui refermera l'enveloppe.\\
+Pour choisir le bon voisin parmi les k-plus proches, l'algorithme les trie d'abord par ordre décroissant de l'angle que chacun forme avec l'arête précédente du polygone enveloppe (voir ci-dessous), puis choisit le premier point de la liste. Si ce point, en l'ajoutant comme sommet du polygone, forme une arête qui coupe les arêtes déjà formées du polygone, il est rejeté et le suivant dans la liste est choisi à sa place.\\
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-19(2)}
+
+La fonction ProchesVoisins(Points,A,k) utilisée dans cet algorithme, permet, à partir des coordonnées ( $x, y$ ) d'un point A , de renvoyer la liste les coordonnées ( $x, y$ ) de ses $k$-plus proches voisins présents dans la liste de points Points. Cette fonction et ses sous-fonctions sont écrites cidessous.
+
+\begin{verbatim}
+def ProchesVoisins(Points,A,k):
+    # Calcule les distances de A aux Points
+    Dist=Distances(Points,A)
+    # Trouve les k-plus courtes distances
+    DistList=list(Dist)
+    Tri(DistList,0,len(DistList)-1,k)
+    kDist=DistList[:k]
+    # Trouve les points correspondants
+    Voisins=k*[0]
+    for i in range(len(Dist)):
+        test=Dist[i]
+        for j in range(k):
+            if test==kDist[j]:
+                Voisins[j]=Points[i]
+    return Voisins
+\end{verbatim}
+
+\begin{verbatim}
+def Tri(L,gauche,droite,k):
+    if gauche<droite:
+        rang=Segmentation(L,gauche,droite)
+        Tri(L,gauche,rang-1,k)
+        if rang<gauche+k:
+            Tri(L,rang+1,droite,k)
+def Segmentation(L,gauche,droite):
+    # Choisit un pivot
+    p = L[gauche]
+    # Segmente L
+    rang = gauche
+    for i in range(gauche,droite+1):
+            Partie à compléter
+            sur feuille de copie
+    # Place le pivot entre les 2 segments
+    L[gauche],L[rang] = L[rang],L[gauche]
+    return rang
+\end{verbatim}
+
+\begin{figure}[h]
+\begin{center}
+\captionsetup{labelformat=empty}
+\caption{ANNEXE 5 －Schéma－bloc ：modélisation de l＇asservissement}
+  \includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-20}
+\end{center}
+\end{figure}
+
+FIN\\
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-21}
+
+\section*{DOCUMENT RÉPONSE}
+\section*{Ce Document Réponse doit être rendu dans son intégralité avec la copie.}
+\section*{DR1 - Diagramme d'états}
+\begin{figure}[h]
+\begin{center}
+\captionsetup{labelformat=empty}
+\caption{Q10}
+  \includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-21(1)}
+\end{center}
+\end{figure}
+
+\section*{NE RIEN ÉCRIRE DANS CE CADRE}
+\section*{DR2 - Évolutions théoriques des pressions estimées par l'ordinateur et du pourcentage d'atteinte de la posture critique de basculement}
+Q11\\
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-22(1)}\\
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-22}
+
+\section*{DR3 - Réponse fréquentielle}
+\section*{Q28 \& Q29}
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-23}\\
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-23(1)}
+
+Valeur de $K_{p}$ choisie : $\boldsymbol{K}_{\boldsymbol{p}}=$
+
+D4 - Réponses fréquentielles de la fonction de transfert en boucle ouverte corrigée du système sans (en train plein) et avec amortisseur (en pointillés)\\
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-24}\\
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-24(1)}

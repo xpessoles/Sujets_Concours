@@ -1,0 +1,103 @@
+
+\section*{Partie 1 : Stabilité du robot}
+Par définition, le robot humanoïde bipède s'appuie sur ses deux jambes. Comme tout système de solides en équilibre statique, LOLA est à l'équilibre si la projection de son centre de gravité sur le sol est contenu dans le polygone de sustentation qui est tracé en rouge autour de ses deux pieds sur la figure 2 . Lorsque le robot marche, il y a une phase où il n'est en appui que sur un seul pied. Dans ce cas, le polygone de sustentation est réduit à un seul pied.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-02}
+\captionsetup{labelformat=empty}
+\caption{Figure 2 : polygone de sustentation sur deux pieds}
+\end{center}
+\end{figure}
+
+L'objectif de cette partie est de trouver à quelle condition le maintien du contact sur le sol est possible lorsque le robot marche et si l'accélération est compatible avec le cahier des charges, dont un extrait est donné ciaprès.
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\multicolumn{2}{|l|}{Exigence 1.3 : Le robot ne doit pas basculer lors de la marche} \\
+\hline
+\multicolumn{2}{|c|}{Description : La position du ZMP* reste dans le polygone de sustentation * : défini dans la suite} \\
+\hline
+\multicolumn{2}{|l|}{Exigence 1.1 : Le robot doit pouvoir atteindre les performances cibles} \\
+\hline
+Sous-exigence & Description \\
+\hline
+$\mathrm{Id}=1.1 .4$ & La longueur d'une foulée est de 150 cm au maximum \\
+\hline
+$\mathrm{Id}=1.1 .3$ & Le robot peut accélérer jusqu'à $1,39 \mathrm{~m} . \mathrm{s}^{-2}$ \\
+\hline
+\end{tabular}
+\end{center}
+
+Le contact du pied sur le sol est modélisé sans frottement sur la figure 3.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-03}
+\captionsetup{labelformat=empty}
+\caption{Figure 3 : modélisation du contact entre le pied et le sol}
+\end{center}
+\end{figure}
+
+\section*{1. Modélisation de l'effort de contact entre le sol et le robot.}
+Sous la semelle du robot, la pression de contact avec le sol est supposée répartie de manière uniforme transversalement (suivant la direction $\overrightarrow{\mathrm{x}}_{0}$ ). Le problème se ramène donc à une répartition linéique de pression sur les deux segments de contact $\left[O_{S} ; A_{S}\right]$ et $\left[B_{S} ; C_{S}\right]$. En chaque point $M$ (d'ordonnée $y$ ) de ces segments, la densité d'efforts de contact est $p(M) \vec{z}_{0}$, avec $p(M)$ en $N . m^{-2}$. On notera que si le robot n'est pas équipé de semelles magnétiques ou adhésives, on a $p(M)>0$. Ainsi, en notant $b$ la largeur de la semelle suivant $\overrightarrow{\mathrm{X}}_{0}$ et $\Sigma=\left[\mathrm{O}_{\mathrm{S}}, \mathrm{A}_{\mathrm{S}}\right] \cup\left[\mathrm{B}_{\mathrm{S}}, \mathrm{C}_{\mathrm{S}}\right]$, le modèle global d'action mécanique de contact du sol sur le pied peut être donné par le torseur : $\left\{T_{\text {sol } \rightarrow \text { pied }}\right\}=\left\{\begin{array}{c}\vec{R}_{\text {sol } \rightarrow \text { pied }}=b \int_{(M \in \Sigma)} p(M) \overrightarrow{Z_{0}} d y \\ \vec{M}\left(O_{S}, \text { sol } \rightarrow \text { pied }\right)=b \int_{(M \in \Sigma)} \overrightarrow{O_{S}} \vec{M} \wedge p(M) \overrightarrow{Z_{0}} d y\end{array}\right\}$
+
+\section*{Question 1 :}
+Montrer que $\left\{T_{\text {sol } \rightarrow \text { pied }}\right\}$ est un glisseur.
+
+Soit $\mathrm{H}_{\mathrm{s}}$ le point de la droite $\left(\mathrm{O}_{\mathrm{s}}, \overrightarrow{\mathrm{y}}_{0}\right)$ tel que $\overrightarrow{\mathrm{M}}\left(\mathrm{H}_{\mathrm{s}}\right.$, sol $\rightarrow$ pied $)=\overrightarrow{0}$, on notera $\overrightarrow{\mathrm{O}_{\mathrm{s}} \mathrm{H}_{\mathrm{s}}}=\mathrm{Y}_{\mathrm{H}_{\mathrm{s}}} \overrightarrow{\mathrm{y}_{0}}$. Ce point est fondamental en robotique humanoïde, il prend le nom de Zero Moment Point (ZMP) : de l'anglais « point de moment nul ».
+
+\section*{Question 2 :}
+Montrer que $\mathrm{H}_{\mathrm{s}} \in\left[\mathrm{O}_{\mathrm{s}} ; \mathrm{C}_{\mathrm{s}}\right]$, c'est à-dire qu'il est situé sous le pied du robot.
+
+\section*{Question 3 :}
+Donner la forme du torseur $\left\{T_{\text {sol } \rightarrow \text { pied }}\right\}$ dans le cas d'un contact avec frottement dans le plan sagittal (c'est-à dire que la densité d'efforts de contact est $p(M) \vec{z}_{0}+t(M) \vec{y}_{0}$ ). Montrer que les résultats des questions 1 et 2 sont inchangés.
+
+\section*{2. Établissement de la condition de non-basculement.}
+Considérons le robot en marche avec le torse ayant un mouvement de translation vers l'avant (suivant $+\overrightarrow{\mathrm{y}}_{0}$ ). Le robot est toujours dans la phase d'appui d'un seul pied sur le sol, via une des deux jambes notées (2).
+
+\section*{Données et paramètres :}
+Torse (1) :
+
+\begin{itemize}
+  \item masse $m_{1}$, accélération de la pesanteur: $\vec{g}=-g \vec{z}_{0}$ avec $\mathrm{g}=9,81 \mathrm{~m} . \mathrm{s}^{-2} ;$
+  \item centre de gravité : G , tel que $\overrightarrow{\mathrm{O}_{\mathrm{S}} \mathrm{G}}=\mathrm{Y}_{\mathrm{G}}(\mathrm{t}) \overrightarrow{\mathrm{y}}_{0}+\mathrm{Z}_{\mathrm{G}}(\mathrm{t}) \overrightarrow{\mathrm{z}_{0}}$;
+  \item le torse est supposé en mouvement de translation rectiligne, de direction $\overrightarrow{\mathrm{y}}_{0}$ par rapport au sol, on a : $\left\{\mathrm{V}_{1 / \text { sol }}\right\}=\left\{\begin{array}{c}\overrightarrow{0} \\ \frac{\mathrm{~d} \mathrm{Y}_{\mathrm{G}}}{\mathrm{dt}} \overrightarrow{\mathrm{y}}_{0}\end{array}\right\}_{\mathrm{G}}$.
+\end{itemize}
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-04}
+\captionsetup{labelformat=empty}
+\caption{Figure 4 : modélisation du robot en marche}
+\end{center}
+\end{figure}
+
+\section*{Jambes avec les pieds (2) :}
+masses et inerties négligeables dans cette phase.\\
+N.B. : le pied d'appui est sans mouvement par rapport au sol.
+
+L'action mécanique du sol sur la semelle du pied est modélisée par le glisseur : $\left\{T_{\text {sol } \rightarrow \text { pied }}\right\}=\left\{\begin{array}{c}\vec{R}_{\text {sol } \rightarrow \text { pied }} \\ \overrightarrow{0}\end{array}\right\}_{H_{s}}$ où :
+
+\begin{itemize}
+  \item $\mathrm{H}_{\mathrm{S}}$ est le ZMP , point mis en évidence à la question 2 tel que $\overrightarrow{\mathrm{O}_{\mathrm{S}} \mathrm{H}_{\mathrm{S}}}=\mathrm{Y}_{\mathrm{H}_{\mathrm{S}}} \overrightarrow{\mathrm{y}_{0}}$;
+  \item $\quad \vec{R}_{\text {sol } \rightarrow \text { pied }}=N_{\text {sol } \rightarrow \text { pied }} \vec{Z}_{0}+T_{\text {sol } \rightarrow \text { pied }} \overrightarrow{\mathrm{y}}_{0}$, avec à la limite du glissement $\left|T_{\text {sol } \rightarrow \text { pied }}\right|=\mu\left|N_{\text {sol } \rightarrow \text { pied }}\right|$ où $\mu$ est le facteur de frottement du contact sol / semelle.
+\end{itemize}
+
+\section*{Question 4 :}
+En appliquant le théorème du moment dynamique, puis le théorème de la résultante dynamique au système $\{1+2\}$, montrer que la condition de stabilité (non basculement) s'écrit : $Y_{H_{s}}=Y_{G}-\frac{Z_{G}}{g} \frac{d^{2} Y_{G}}{d t^{2}}$
+
+Conformément au résultat de la question 2, le calculateur du robot contrôle en permanence la position du point $\mathrm{H}_{\mathrm{s}}(\mathrm{ZMP})$ : s'il est positionné à l'intérieur du segment $\left[\mathrm{O}_{\mathrm{s}} ; \mathrm{C}_{\mathrm{s}}\right]$, le robot ne bascule pas.
+
+On appelle foulée, la longueur entre deux emplacements successifs d'appui du même pied. Lors du premier pas, le centre de gravité se déplace de sorte que $Y_{G} \in\left[-\frac{\text { foulée }}{4} ;+\frac{\text { foulée }}{4}\right]$, car pour une accélération constante, les deux pas qui constituent une foulée sont de même longueur.
+
+Le cahier des charges stipule qu'à partir de la station immobile, le robot doit atteindre la vitesse cible de $5 \mathrm{~km} . \mathrm{h}^{-1}$ en une seconde, avec une accélération constante du centre de gravité $\frac{\mathrm{d}^{2} \mathrm{Y}_{\mathrm{G}}}{\mathrm{dt}^{2}}=1,39 \mathrm{~m} . \mathrm{s}^{-2}$.\\
+On rappelle que $Z_{G}=105 \mathrm{~cm}$.
+
+\section*{Question 5:}
+Sachant que la longueur de la semelle du robot $\left[\mathrm{O}_{\mathrm{S}} ; \mathrm{C}_{\mathrm{S}}\right]$ est $\mathrm{L}=300 \mathrm{~mm}$, déterminez la longueur de la première foulée du robot qui garantit la condition de non-basculement. Est-ce compatible avec le cahier des charges ?
+
+\section*{Question 6:}
+Dans le cas d'un sol relativement glissant, avec un facteur de frottement du contact sol /semelle $\mu=0,1$, quelle accélération maximale $\left\{\frac{d^{2} Y_{G}}{d t^{2}}\right\}_{\text {MAX }}$ le robot peut-il avoir? Est-ce compatible avec le cahier des charges pour la phase de démarrage ?
+

@@ -1,0 +1,770 @@
+\section*{Contrôle d'une machine de forage }
+\section*{Présentation générale \label{2023_MP_CCINP_sec_00}}
+Dans le domaine du génie civil, toute structure architecturale a besoin d'une fondation faisant office de liaison entre celle-ci et le sol. Elle permet d'assurer la transmission des charges et leur répartition dans le sol. Lorsque le sol résistant se trouve à une très grande profondeur, ou dans le cas d'une structure très importante, il est nécessaire de créer une fondation profonde composée de pieux en béton armé. L'excavation des terres se réalise alors grâce à un engin appelé foreuse (ou machine de forage).
+
+Comme l'illustre la figure \ref{2023_MP_CCINP_fig_01}, ces pieux de fondation profonde sont réalisés en plusieurs étapes :
+
+\begin{itemize}
+  \item étape 1 : positionnement de la foreuse et de l'outil au-dessus du point d'implantation du pieu ;
+  \item étape 2: forage profond jusqu'au sol résistant ;
+  \item étape 3: mise en place de l'armature (treillis de fer) du pieu ;
+  \item étape 4 : coulée du béton ;
+  \item étape 5 : retrait de la machine et séchage du pieu.
+\end{itemize}
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-02}
+%\captionsetup{labelformat=empty}
+%Figure 1 -
+\caption{Réalisation d'un pieu de forage profond\label{2023_MP_CCINP_fig_01}}
+\end{center}
+\end{figure}
+
+Une machine de forage est un système riche en sous-systèmes. Une description fonctionnelle partielle est donnée figure \ref{2023_MP_CCINP_fig_02} et une description structurelle, simplifiée, se situe en figure \ref{2023_MP_CCINP_fig_03}.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-02(1)}
+%\captionsetup{labelformat=empty}Figure 2 - 
+\caption{Diagramme des exigences partiel \label{2023_MP_CCINP_fig_02}}
+\end{center}
+\end{figure}
+
+
+Une tourelle, comportant la cabine de pilotage, les différents moteurs de la foreuse et des contrepoids à l'arrière, est montée sur un châssis équipé de chenilles. La tourelle est orientable autour d'un axe vertical à $360^{\circ}$ par rapport au châssis et porte un mât de levage. Ce mât, dont la portée et la verticalité par rapport à la tourelle sont réglables à l'aide de vérins, guide une table de forage en translation grâce à un câble d'avance lui-même actionné par un treuil d'avance. En phase de forage, pendant que la table de forage descend, celle-ci actionne en rotation la tige Kelly au bout de laquelle est montée l'outil, généralement une tarière (vis sans fin). Le mouvement d'avance combiné au mouvement de rotation de l'outil permet le forage. De plus, on note que la table de forage est équipée d'un système de suspension permettant d'amortir, pour le reste de la machine, les vibrations dues aux efforts de forage.
+
+Dans ce sujet, il ne sera étudié que la stabilité globale de la machine (Partie \ref{2023_MP_CCINP_p_01}) et l'axe d'avance (Partie \ref{2023_MP_CCINP_p_02}). Le contrôle de ces fonctionnalités est soumis aux exigences présentes dans le diagramme des exigences partiel de la figure \ref{2023_MP_CCINP_fig_02}. Enfin, une dernière partie explorera une manière d'éditer un rapport de chantier (Partie \ref{2023_MP_CCINP_p_03}). Toutes ces parties sont indépendantes.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=.6\textwidth]{2025_10_26_292d8f726e32404b86d3g-03(1)}
+%\captionsetup{labelformat=empty}Figure 3 - 
+\caption{Principaux constituants d'une foreuse \label{2023_MP_CCINP_fig_03}}
+\end{center}
+\end{figure}
+
+
+%Partie I -
+\section{Contrôle de la stabilité de la machine de forage \label{2023_MP_CCINP_sec_01}}
+Les objectifs de cette partie sont de valider l'exigence 1.2 et d'étudier ce que propose le constructeur face à l'exigence 1.1.
+
+%I. 1 - 
+\subsection{Condition de basculement statique \label{2023_MP_CCINP_sec_11}}
+En fonction de l'orientation de la tourelle par rapport au châssis et des efforts mis en jeu, il est possible que la machine de forage bascule. Ceci doit légitimement être évité. Pour cela, la connaissance de la position estimée du centre de gravité de la machine permet à l'ordinateur de bord d'afficher à tout instant sur l'écran de contrôle la marge de manœuvre possible avant basculement de la machine. La figure \ref{2023_MP_CCINP_fig_04} ci-contre illustre ce que l'opérateur peut observer dans un coin de son écran : le pourcentage $b_{\%}$ d'atteinte de la posture critique de basculement pour une orientation de tourelle donnée. On se propose dans cette souspartie de retrouver comment l'ordinateur de bord génère ce résultat. Pour cela, on se base sur le paramétrage $\mathrm{n}^{\circ} 1$ de la machine, avec efforts ponctuels entre le sol et les chenilles, présent en annexe \ref{2023_MP_CCINP_ann_01}.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=.5\textwidth]{2025_10_26_292d8f726e32404b86d3g-03}
+%\captionsetup{labelformat=empty} Figure 4 - 
+\caption{Aperçu du contrôle de $b_{\%}$\label{2023_MP_CCINP_fig_04}}
+\end{center}
+\end{figure}
+
+
+
+%Q1. 
+\question{\label{2023_MP_CCINP_q01}Expliquer par un raisonnement simple mais détaillé pourquoi mesurer l'effort $F_{w}$ dans le câble d'avance permet au constructeur, en quasi-statique, de connaître l'effort de forage $F_{\text {sol }}$ sans mesurer ce dernier.}
+
+On suppose désormais que $F_{\text {sol }}$ est estimé par l'expression $F_{\text {sol }}=m \cdot g-2 F_{w}$. Sauf indications contraires, on néglige également les effets dynamiques.
+
+
+%Q2. 
+\question{\label{2023_MP_CCINP_q02}En appliquant le principe fondamental de la statique en $O$ à l'isolement de votre choix, donner l'expression de $F_{g}$ et de $F_{d}$ en fonction des données connues du système, de $\theta$ et de $F_{\text {sol }}$.}
+
+Le problème étant symétrique pour $\theta \in\left[-\frac{\pi}{2} ; \frac{\pi}{2}\right]$ (tourelle orientée à droite) et $\theta \in\left[\frac{\pi}{2} ; \frac{3 \pi}{2}\right]$ (tourelle orientée à gauche), on n'étudie par la suite que le basculement statique à droite.
+
+%Q3. 
+\question{\label{2023_MP_CCINP_q03}Donner la condition en effort pour laquelle il y a basculement statique à droite. En absence d'effort de forage, en déduire la condition sur la position ( $r, \theta$ ) du centre de gravité $G$ pour laquelle le basculement à droite est alors évité.}
+
+Interpréter physiquement ce résultat et montrer que $b_{\%}$ peut être, dans ce cas, approximé par :
+
+$$
+b_{\%}=100 \frac{|r \cdot \cos (\theta)|}{a}
+$$
+
+On désire dimensionner le nombre de contrepoids de 8 tonnes à placer à l'arrière de la tourelle pour que, en l'absence de forage et en extension maximale, l'exigence 1.2 d'équilibrage statique initial soit respectée même dans le pire des cas où la tourelle est pleinement orientée à droite ( $\theta=0$ ). Dans cette posture, le schéma de la figure \ref{2023_MP_CCINP_fig_05} illustre où se situent, dans le même plan, les centres de gravité des différents éléments de la machine :
+
+\begin{itemize}
+  \item $\mathrm{G}_{\mathrm{t}}$ est le centre de gravité de la tourelle et du châssis. La masse de cet ensemble $\mathrm{S}_{\mathrm{t}}$ est notée $m_{\mathrm{t}}=44,7$ tonnes ;
+  \item $\mathrm{G}_{\mathrm{e}}$ est le centre de gravité de tous les équipements mobiles (tige Kelly, potences, vérins, mât, table de forage, outillage, terre à évacuer), positionnés dans la configuration la plus défavorable. La masse de cet ensemble $S_{e}$ est notée $m_{\mathrm{e}}=48,8$ tonnes.
+  \item $\mathrm{G}_{\mathrm{c}}$ est le centre de gravité des contrepoids. Il y a $n_{c p}$ contrepoids de masse totale $m_{\mathrm{c}}=n_{c p} \cdot m_{1}$, où $m_{1}=8$ tonnes est la masse d'un seul contrepoids.
+  \item L'accélération de la pesanteur est notée : $\vec{g}=-g \vec{z}=-9,8 \vec{z}$ (en $\mathrm{m} / \mathrm{s}^{2}$ ).\\
+On note (en mètres) : $\overrightarrow{O G_{t}}=2,2 \vec{z} ; \overrightarrow{O G_{e}}=4,4 \vec{x}+13 \vec{z}$; $\overrightarrow{O G_{c}}=-4,3 \vec{x}+2,3 \vec{z}$. On fait l'hypothèse que $\overrightarrow{O G_{c}}$ reste identique, indépendamment du nombre de contrepoids.
+\end{itemize}
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=.5\textwidth]{2025_10_26_292d8f726e32404b86d3g-04}
+%\captionsetup{labelformat=empty}Figure 5 - 
+\caption{Position des centres de gravité des différents solides \label{2023_MP_CCINP_fig_05}}
+\end{center}
+\end{figure}
+
+%Q4. 
+\question{\label{2023_MP_CCINP_q04}Exprimer la coordonnée sur $\vec{x}$, notée $r$, du centre de gravité $G$ total de la machine en fonction des paramètres connus et de $n_{c p}$. En déduire le nombre $n_{c p}$ minimum de contrepoids pour respecter l'exigence 1.2.}
+
+%1.2 - 
+\subsection{Contrôle de la pression du sol \label{2023_MP_CCINP_sec_12}}
+
+%I.2.1 - 
+\subsubsection{Modélisation des actions mécaniques \label{2023_MP_CCINP_sec_121}}
+Le basculement de la machine n'est pas toujours dû à un déport trop important du centre de gravité de la machine, comme étudié dans la partie précédente, ou à un effort $F_{\text {sol }}$ (estimé via $F_{w}$ ) trop important. En effet, une fondation profonde a particulièrement du sens si le sol de surface n'est pas très résistant. Ainsi, si la foreuse exerce trop de pression sur ce sol, celui-ci peut s'affaisser, ce qui peut déstabiliser de manière critique la machine. La foreuse doit donc contrôler à tout instant, par estimation, la pression qu'elle exerce sur le sol (et donc que le sol exerce sur elle).
+
+Le tableau \ref{2023_MP_CCINP_tab_01} récapitule les niveaux de pression que les sols peuvent supporter avant de risquer de s'affaisser.
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+Type de sol & Rocher & \begin{tabular}{c}
+Schiste \\
+argileux \\
+\end{tabular} & \begin{tabular}{c}
+Gravier \\
+compact \\
+\end{tabular} & Asphalte & \begin{tabular}{c}
+Sable \\
+compacté \\
+\end{tabular} & \begin{tabular}{c}
+Sable en \\
+vrac \\
+\end{tabular} & \begin{tabular}{c}
+Argile \\
+humide \\
+\end{tabular} \\
+\hline
+\begin{tabular}{c}
+Pression \\
+maximale \\
+admissible (kPa) \\
+\end{tabular} & 2000 & 800 & 400 & 200 & 200 & 100 & $<100$ \\
+\hline
+\end{tabular}
+%\captionsetup{labelformat=empty}%Tableau 1 - 
+\caption{Pressions admissibles par le sol selon le type de sol\label{2023_MP_CCINP_tab_01}}
+\end{center}
+\end{table}
+
+D'après les normes européennes, les efforts entre le sol et les chenilles ne doivent pas être modélisés comme ponctuels au centre de leur surface de contact comme cela a été supposé dans la partie précédente (avec $F_{d}$ et $F_{g}$ ). La répartition de pression du sol sur chaque chenille doit être modélisée comme trapézoïdale sur sa longueur et constante sur sa largeur. Un exemple de représentations 3D, 2D et " aplatie " (comme vue sur l'écran de contrôle dans la cabine) de telles répartitions est donné sur la figure \ref{2023_MP_CCINP_fig_06}. Sur la vue " aplatie ", la machine est vue de dessus et la visualisation de l'allure des pressions sous les chenilles est ramenée dans le plan de l'écran.
+
+Un des rôles de l'ordinateur de bord est d'estimer ces répartitions de pression afin de vérifier que la pression maximale supportée par le sol (rentrée par l'utilisateur en fonction du site) n'est pas atteinte à un coefficient de sécurité près.\\
+Si c'est le cas, l'ordinateur bloque tous les mouvements de la foreuse qui risqueraient d'empirer et renvoie une alarme.
+
+On se propose dans cette sous-partie d'étudier cette estimation.
+
+On base l'étude sur le paramétrage $\mathrm{n}^{\circ} 2$ de l'annexe \ref{2023_MP_CCINP_ann_01}, avec répartition de pression entre le sol et les chenilles. Puis, afin de résoudre le problème plus facilement, on somme les deux glisseurs (poids en $G$ et sol en $F$ ) pour en former un seul équivalent (en $E$ ), comme visualisé sur la figure \ref{2023_MP_CCINP_fig_07} et noté $\overrightarrow{F_{e q \rightarrow f}}=\indice{F}{eq} \vec{z}$ où $\indice{F}{eq}$ est négatif.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=.5\textwidth]{2025_10_26_292d8f726e32404b86d3g-05(1)}
+%\captionsetup{labelformat=empty}Figure 6 - 
+\caption{Modèles de répartitions trapézoïdales de pression du sol sur les chenilles\label{2023_MP_CCINP_fig_06}}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=.5\textwidth]{2025_10_26_292d8f726e32404b86d3g-05}
+%\captionsetup{labelformat=empty}Figure 7 - 
+\caption{Simplification et modèle équivalent \label{2023_MP_CCINP_fig_07}}
+\end{center}
+\end{figure}
+
+%Q5.
+\question{\label{2023_MP_CCINP_q05}Déterminer les expressions de $\indice{F}{eq}$ et de e en fonction de $M, m, F_{w}, R, r$ et de $g$.}
+
+
+La force élémentaire de réaction du sol 0 sur la chenille gauche $c g$ est notée $\overrightarrow{d F_{0 \rightarrow c g}(P)}$ : $\overrightarrow{d F_{0 \rightarrow c g}(P)}=p_{g}(y) \vec{z} d x d y$. La chenille droite est notée $c d$.
+
+%Q6. 
+\question{\label{2023_MP_CCINP_q06}En déduire l'expression de la force élémentaire $\overrightarrow{d F_{0 \rightarrow c g}(P)}$ et du moment élémentaire $\overrightarrow{d M_{O, 0 \rightarrow c g}(P)}$ au point $O$ qu'exercent le sol sur la chenille gauche en un point $P$ de contact en fonction de $A$ et de $B$.}
+
+%Q7. 
+\question{\label{2023_MP_CCINP_q07}Déterminer à l'aide de la question précédente les expressions de l'effort $\overline{F_{0 \rightarrow c g}}$ et du moment au point $\mathrm{O} \overrightarrow{M_{O, 0 \rightarrow c g}}$ en fonction de $B, D$ et des données connues du système.}
+
+De même, on pourrait, par analogie, déterminer $\overline{F_{0 \rightarrow c d}}$ et $\overline{M_{0,0 \rightarrow c d}}$ en fonction de $C$ et de $D$. Au final, on peut en déduire la force $\overline{F_{0 \rightarrow \Sigma}}$ qu'exerce le sol sur la foreuse et le moment en O qu'exerce le sol sur la foreuse $\overrightarrow{M_{O, 0 \rightarrow \Sigma}}$ (via uniquement les chenilles gauche et droite).
+
+Grâce à ces résultats, on trouve qu'à l'équilibre, les répartitions de pressions trapézoïdales doivent respecter le système d'équations (1).
+
+\[
+\left\{\begin{array}{c}
+(D+B) \cdot L \cdot l=-\indice{F}{eq}  \tag{1}\\
+(C+A) \cdot \frac{L^{2} \cdot l}{12}=-\indice{F}{eq} \cdot e \cdot \sin (\theta) \\
+(D-B) \cdot L \cdot l \cdot a=-\indice{F}{eq} \cdot e \cdot \cos (\theta)
+\end{array}\right.
+\]
+
+%Q8. 
+\question{\label{2023_MP_CCINP_q08}Quels théorèmes généraux ont permis d'établir les trois équations scalaires du système d'équations (1) ?}
+
+La figure \ref{2023_MP_CCINP_fig_08} permet de remarquer que $B$ (respectivement $D$ ), toujours positive, est la pression moyenne de la répartition trapézoïdale gauche (respectivement droite) et que $A$ (respectivement $C$ ), positive ou négative, en est l'écart entre sa pression avant et arrière. Ainsi, la pression maximale du sol sur la chenille gauche vaut toujours $B+\left|\frac{A}{2}\right|$ (respectivement $D+\left|\frac{C}{2}\right|$ à droite).
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=.8\textwidth]{2025_10_26_292d8f726e32404b86d3g-06}
+\captionsetup{labelformat=empty}
+\caption{Figure 8 - Aperçu des expressions des pressions minimale, maximale et moyenne \label{2023_MP_CCINP_fig_08}}
+\end{center}
+\end{figure}
+
+Ainsi, pour estimer la pression maximale exercée au sol, l'ordinateur de bord estime d'abord la position de $E$ et la valeur de $F_{\text {eq }}$ en fonction des données renvoyées à tout instant par les capteurs présents sur les différents axes de la foreuse. Ensuite, il détermine les valeurs des pressions $A, B$, $C$ et $D$ grâce aux équations précédentes avec l'hypothèse assez réaliste où $C=A$ et en déduit la pression maximale. Enfin, il renvoie à l'écran la visualisation " aplatie " des distributions de pression et sonne l'alarme en cas d'approche de la pression maximale autorisée rentrée par l'utilisateur.
+
+%Q9. 
+\question{\label{2023_MP_CCINP_q09}Après avoir précisé l'expression des paramètres $A, B, C$ et $D$, donner l'expression de la pression maximale de chacune des répartitions estimées (gauche et droite) en fonction des données connues par la machine ( $L, I, a, e, \theta$ et $\indice{F}{eq}$ uniquement).
+En déduire que l'expression unique de la pression maximale sous la foreuse s'écrit:}
+
+$$
+p_{\max }=\frac{-\indice{F}{eq}}{2 \cdot L \cdot I}\left(1+\frac{e \cdot|\cos (\theta)|}{a}+\frac{6 \cdot e \cdot|\sin (\theta)|}{L}\right)
+$$
+
+Toutefois, il est important de nuancer que la pression du sol sur la foreuse ne peut physiquement pas être négative. C'est pourquoi, lorsque la pression minimale calculée d'une répartition trapézoïdale devient négative ( $B-\left|\frac{A}{2}\right|$ pour la chenille gauche ou $D-\left|\frac{C}{2}\right|$ pour la droite), l'ordinateur de bord se doit de changer son modèle de répartition de pression trapézoïdale pour une répartition triangulaire où la pression minimale est imposée à 0 Pa . Dans ces moments-là, l'hypothèse où $C=A$ est rompue pour continuer à respecter le système d'équation précédent. On peut alors montrer dans ce cas que la pression maximale s'exprime de la façon suivante :
+
+$$
+p_{\max }=\frac{-e \cdot \indice{F}{eq}}{L \cdot I}\left(\frac{|\cos (\theta)|}{a}+\frac{6 \cdot|\sin (\theta)|}{L}\right) .
+$$
+
+%\section*{I.2.2 - Étude séquentielle}
+\subsubsection{Étude séquentielle \label{2023_MP_CCINP_sec_122}}
+En résumé, pour évaluer la pression du sol sous la foreuse, l'ordinateur de bord réalise en permanence les étapes suivantes :
+
+\begin{itemize}
+  \item évaluation de la position de $G$ et de $F$ et mesure de l'effort $F_{w}$. Déduction de la position de $E$ et de l'effort $\indice{F}{eq}$ et évaluation du pourcentage $b_{\%}$ d'atteinte de la posture critique de basculement ;
+  \item évaluation de la pression minimale $p_{\text {min }}$ dans le cas de répartitions trapézoïdales de pression :
+\end{itemize}
+
+$$
+p_{\min }=\frac{-\indice{F}{eq}}{2 \cdot L \cdot I}\left(1-\frac{e \cdot|\cos (\theta)|}{a}-\frac{6 \cdot e \cdot|\sin (\theta)|}{L}\right) ;
+$$
+
+\begin{itemize}
+  \item dans le cas d'une pression minimale positive, calcul de la pression maximale $p_{\max }$ :
+\end{itemize}
+
+$$
+p_{\max }=\frac{-\indice{F}{eq}}{2 \cdot L \cdot l}\left(1+\frac{e \cdot|\cos (\theta)|}{a}+\frac{6 \cdot e \cdot|\sin (\theta)|}{L}\right) ;
+$$
+
+\begin{itemize}
+  \item dans le cas d'une pression minimale négative, calcul de la pression maximale $p_{\max }$ :
+\end{itemize}
+
+$$
+p_{\max }=\frac{-e \cdot \indice{F}{eq}}{L \cdot I}\left(\frac{|\cos (\theta)|}{a}+\frac{6 \cdot|\sin (\theta)|}{L}\right) ;
+$$
+
+\begin{itemize}
+  \item comparaison de $p_{\max }$ avec la valeur $p_{\text {sol }}$ maximale autorisée ;
+  \item dans le cas où la valeur de $p_{\text {max }}$ dépasse la valeur de $p_{\text {sol }}$, ou si $b_{\%}$ dépasse $90 \%$, sonnerie de l'alarme et blocage des mouvements en cours de la foreuse jusqu'à ce que l'opérateur appuie sur l'arrêt d'urgence donnant accès à un mode de dégagement non-détaillé ici. La variable booléenne traduisant l'arrêt d'urgence est notée ARU et vaut 1 si l'arrêt est enclenché, 0 sinon ;
+  \item redémarrage du travail normal de la foreuse et du contrôle de sa stabilité une fois le dégagement terminé et l'arrêt d'urgence désenclenché. La variable booléenne de la fin de dégagement est notée FinDeg et vaut 1 si la demande de fin est enclenchée, 0 sinon.\\
+Ce fonctionnement séquentiel est illustré par le diagramme d'états du Document Réponse DR1.\\
+\end{itemize}
+
+%Q10. 
+\question{\label{2023_MP_CCINP_q10}À l'aide de la description du fonctionnement séquentiel précédente, compléter les cinq transitions manquantes du diagramme d'états fourni dans le DR1.}
+
+On propose sur le croquis du bas du DR2 une chronologie d'événements : déploiement, orientation puis positionnement de la tourelle. L'évolution théorique des pressions estimées par l'ordinateur et du pourcentage d'atteinte de la posture critique de basculement qui découle de ces événements est aussi donnée sur le DR2.
+
+%Q11. 
+\question{\label{2023_MP_CCINP_q11}Grâce au diagramme d'états complété, surligner sur le DR2 la valeur de $p_{\text {max }}$ retenue par l'ordinateur de bord au cours du temps. Indiquer clairement sur le DR2 l'instant où l'alarme se déclenchera sachant que ces opérations se déroulent sur du gravier compact (voir tableau \ref{2023_MP_CCINP_tab_01}) et que l'opérateur a réglé $p_{\text {sol }}$ à la limite maximale de ce matériau sans coefficient de sécurité.}
+
+%Q12. 
+\question{\label{2023_MP_CCINP_q12}Résumer en quoi les estimations de $b_{\%}$ et de $p_{\text {sol }}$ par la machine sont des indicateurs pertinents et complémentaires pour le contrôle de la stabilité, afin de satisfaire l'exigence 1.1.}
+
+%\section*{Partie II - Contrôle de la vitesse de la table de forage}
+\section{Contrôle de la vitesse de la table de forage\label{2023_MP_CCINP_sec_2}}
+Comme en usinage classique, la qualité d'un forage dépend énormément de la vitesse de rotation de l'outil ainsi que de sa vitesse d'avance. On souhaite maîtriser cette dernière par un asservissement en vitesse de la table de forage le long du mât de levage. L'objectif sera, dans cette partie, de valider les exigences de performances de l'axe (id. 2.1.1). Le schéma-bloc de l'annexe \ref{2023_MP_CCINP_ann_05} modélise toutes les parties du système à étudier pour obtenir un modèle de connaissance de cet asservissement.
+
+%\section*{II. 1 - Sous ensemble " Mécanisme " : étude cinématique de la table de forage}
+\subsection{Sous ensemble " Mécanisme " : étude cinématique de la table de forage \label{2023_MP_CCINP_sec_21}}
+On s'intéresse ici à la partie " Mécanisme " du schéma-bloc. Pour cela, il est nécessaire d'établir tout d'abord le lien entre la vitesse de rotation $\omega_{w}$ du treuil d'avance ("crowd winch") et la vitesse $V$ de déplacement de la table de forage. Ainsi, on travaillera désormais sur la modélisation proposée figure \ref{2023_MP_CCINP_fig_09}. Le schéma de gauche modélise notamment le système complet en trois dimensions. Le système est constitué :
+
+\begin{itemize}
+  \item d'un moteur hydraulique, suivi d'un réducteur à engrenages non représenté mettant en rotation le winch 1. Ce dernier est en liaison pivot d'axe ( $A ; \vec{x}$ ) avec le châssis $\mathbf{0}$ (immobile par rapport au sol). Le tambour de ce winch permet de tracter un câble qui s'enroule autour de celui-ci. Le rayon d'enroulement, noté $R_{1}$, est supposé constant. La vitesse de rotation du tambour du winch autour de son axe est notée $\omega_{w}=\omega_{1}=\omega_{1 / 0}$;
+  \item de trois poulies $\mathbf{2}, \mathbf{2}^{\prime}$ et $\mathbf{2}^{\prime \prime}$ chacune en liaison pivot avec le châssis d'axes respectifs ( $B ; \vec{x}$ ), $\left(B^{\prime} ; \vec{x}\right),\left(B^{\prime \prime} ; \vec{x}\right)$. Elles ont toutes trois un rayon $R_{2} ;$
+  \item de deux poulies mobiles 3 et $\mathbf{3}^{\prime}$ en liaison pivot avec la table de forage $\mathbf{4}$, d'axes respectifs $(C ; \vec{y})$ et $\left(C^{\prime} ; \vec{y}\right)$. Elles sont de même rayon $R_{3}$ et on note $\omega_{3}=\omega_{3 / 4}$ leur vitesse de rotation autour de leur axe ;
+  \item de la table de forage 4, mise en mouvement grâce au câble et par l'intermédiaire des poulies 3 et 3', qui est en liaison glissière de direction $\vec{z}$ avec le châssis $\mathbf{0}$. On note $V$ la vitesse d'avance de la table de forage telle que $\overline{V(D, 4 / 0)}=V \vec{z}$;
+  \item du câble, supposé inextensible, qui est attaché à ses extrémités au châssis au niveau des points O et O'. On suppose de plus que le câble s'enroule sans glisser autour de toutes les poulies et du tambour du winch d'avance.
+\end{itemize}
+
+Remarque : l'ensemble noté 5 avec le système d'amortisseur sera étudié ultérieurement.\\
+Le schéma de droite de la figure \ref{2023_MP_CCINP_fig_09} (schéma cinématique dans le plan ( $\vec{x}, \vec{z}$ )) représente uniquement la partie du système constitué du châssis $\mathbf{0}$, de la table de forage $\mathbf{4}$ et des deux poulies $\mathbf{3}$ et $\mathbf{3}$ '. On introduit deux points mobiles I et J, marquant le début et la fin de l'enroulement du câble autour de la poulie 3. Par analogie, on a les points l' et J' pour la poulie 3'.\\
+On a alors: $\overrightarrow{C I}=\overrightarrow{C^{\prime} I^{\prime}}=\overrightarrow{J C}=\overrightarrow{J^{\prime} C^{\prime}}=R_{3} \vec{x}$.\\
+La condition de roulement sans glissement du câble sur la poulie 3 et sur le tambour 1, associée à la composition du mouvement au point $I$, permettent de trouver l'équation suivante :
+
+$$
+\overrightarrow{V(J, 4 / 0)} \cdot \vec{z}=(\overrightarrow{V(J, 4 / 3)}+\overrightarrow{V(J, 3 / \text { câble })}+\overrightarrow{V(J, \text { câble / } 0)}) \cdot \vec{z}=V=-R_{3} \cdot \omega_{3}+R_{1} \cdot \omega_{1} .
+$$
+
+%Q13. 
+\question{\label{2023_MP_CCINP_q13}De la même manière, en utilisant la composition des vitesses au point I et en exprimant une condition de roulement sans glissement, montrer que : $\overline{V(I, 4 / 0)} \cdot \vec{z}=V=R_{3} \cdot \omega_{3}$.}
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-09(1)}
+% Figure 9 -  \captionsetup{labelformat=empty}
+\caption{Schéma cinématique 3D du système d'entraînement de la table de forage (à gauche) ; vue 2D simplifiée (à droite) \label{2023_MP_CCINP_fig_09}}
+\end{center}
+\end{figure}
+
+%Q14 
+\question{\label{2023_MP_CCINP_q14}Déduire de la question précédente l'expression du rayon équivalent, noté $R_{e q}$, dans le soussystème " Mécanisme " du schéma-bloc fourni en annexe $\mathbf{5}$, en fonction de $R_{1}$ seulement.}
+
+Un réducteur à engrenages de rapport de réduction $k_{r}$ permet d'adapter la vitesse de rotation du moteur hydraulique $\omega_{m}(t)$, tel que : $\omega_{w}(t)=k_{r} \cdot \omega_{m}(t)$.
+
+%\section*{II. 2 - Partie " Amortisseur " : étude dynamique de la table de forage}
+\subsection{Partie " Amortisseur " : étude dynamique de la table de forage \label{2023_MP_CCINP_sec_22}}
+
+Afin de modéliser l'asservissement en vitesse de la table de forage, il est possible de prendre en compte que, lors de l'étape de forage, un système d'" amortisseurs Kelly " (suspensions) permet d'amortir les chocs et vibrations. Chaque suspension est composée d'un ressort de raideur $k$ et d'un amortisseur de coefficient de frottement visqueux $\lambda$. Il y a $n$ suspensions équiréparties autour de l'axe de la tige Kelly (soient $n$ ressorts et $n$ amortisseurs) disposées en parallèle, comme l'indique le schéma de la figure 10. On précise que le guidage entre la table 4 et l'ensemble 5 est réalisé par une liaison glissière parfaite, non représentée.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-09}
+%Figure 10 - \captionsetup{labelformat=empty}
+\caption{Modélisation de liaison entre la table et la barre Kelly lors du forage\label{2023_MP_CCINP_fig_10}}
+\end{center}
+\end{figure}
+
+On note $z_{4}$ la position verticale de la table $\mathbf{4}$ de masse $M_{T}$ et $z_{5}$ la position verticale de l'ensemble $\mathbf{5}$ \{barre+outil\} de masse $M_{K}$. Elles sont toutes deux établies par rapport à une référence fixe, liée au châssis de la foreuse. L'allongement instantané du ressort est noté $\Delta z=z_{4}-z_{5}$. De plus, on note :
+
+\begin{itemize}
+  \item $\Delta \mathrm{z}_{0}$ : la valeur de l'allongement du ressort à vide ;
+  \item $\Delta z_{e}$ : la valeur de l'allongement du ressort à l'équilibre ( $\mathbf{5}$ suspendu sans action du sol sur lui).
+\end{itemize}
+
+\paragraph*{Bilan des actions mécaniques :}
+\begin{itemize}
+  \item action de traction du câble sur la table 4, modélisée par une force verticale $2 F_{w} \vec{z}$. Cette force de traction s'écrit $2 F_{w}$, sachant que : $2 F_{w}=2 F_{w e}+\delta F_{w}$ où :
+  \item $F_{\text {we }}$ est la force de maintien à l'équilibre de l'ensemble $\{\mathbf{4 + 5}\}$ (sans autre action supplémentaire),
+  \item $\delta F_{w}$ est la variation de cette force autour de la force $F_{w e}$ de maintien à l'équilibre ;
+  \item action du sol sur l'ensemble $\mathbf{5}$, modélisée par une force verticale $F_{\text {sol }} \vec{z}$;
+  \item action de la pesanteur : l'accélération de la pesanteur sera notée $\vec{g}=-g \vec{z}$;
+  \item action d'un ressort de raideur $k$ sur la table 4 : $\overrightarrow{F_{r}}=k \cdot\left(\Delta \mathrm{z}_{0}-\Delta \mathrm{z}\right) \overrightarrow{\boldsymbol{z}}$;
+  \item action d'un amortisseur sur la table 4 : $\overrightarrow{F_{a}}=-\lambda \cdot\left(\dot{z}_{4}-\dot{z}_{5}\right) \vec{z}=-\lambda \cdot \Delta \dot{z} \vec{z}$.
+\end{itemize}
+
+On souhaite simplifier la modélisation en retenant le schéma équivalent de droite sur la figure \ref{2023_MP_CCINP_fig_10}. Dans ce cas, l'action de l'ensemble des $n$ ressorts et des $n$ amortisseurs s'exprime par :
+
+\begin{itemize}
+  \item $\overrightarrow{F_{n r}}=k_{T} \cdot\left(\Delta z_{0}-\Delta z\right) \vec{z}$;
+  \item $\overrightarrow{F_{n a}}=-\lambda_{T} \cdot \Delta \dot{Z} \vec{Z}=-\lambda_{T} \cdot \frac{d \Delta Z}{d t} \vec{Z}$.
+\end{itemize}
+
+Toutes les suspensions (ressorts et amortisseurs) ont une masse négligeable devant les autres actions mécaniques mises en jeu.
+
+%Q15. 
+\question{\label{2023_MP_CCINP_q15}Exprimer $k_{T}$ et $\lambda_{T}$ en fonction de $n, k$ et de $\lambda$.}
+
+%Q16. 
+\question{\label{2023_MP_CCINP_q16}À l'équilibre, système suspendu, proposer et mettre en œuvre une stratégie de résolution en appliquant le principe fondamental de la statique, afin d'établir une première équation, liant $k_{T}$, $\Delta z_{e}, \Delta z_{0}, M_{K}$ et $g$ et une deuxième, liant $F_{w e}, M_{K}, M_{T}$ et $g$.}
+
+%Q17. 
+\question{\label{2023_MP_CCINP_q17}En fonctionnement, isoler la table 4 et déterminer son équation du mouvement vertical $\ddot{z}_{4}(t)$ en fonction des paramètres du problème en utilisant une équation issue du principe fondamental de la dynamique.}
+
+Par analogie, l'équation du mouvement vertical de l'ensemble $\mathbf{5}$ \{barre+outil\} s'écrit :
+
+$$
+M_{K} \cdot \ddot{z}_{5}(t)=F_{s o l}-k_{T} \cdot\left(\Delta z_{0}-\Delta z(t)\right)+\lambda_{T} \cdot \Delta \dot{z}(t)-M_{K} \cdot g .
+$$
+
+On pose le changement de variables suivant : $z_{5}(t)=\hat{z}_{5}(t)-\frac{\Delta z_{e}}{2}$ et $z_{4}(t)=\hat{z}_{4}(t)+\frac{\Delta z_{e}}{2}$, permettant de s'affranchir des actions de la pesanteur. On rappelle que $\Delta z_{e}$ est constant.
+
+%Q18. 
+\question{\label{2023_MP_CCINP_q18}En utilisant les résultats précédents et le changement de variables précédent, montrer que l'on obtient le système d'équations (2) suivant:}
+
+\[
+\left\{\begin{array}{l}
+M_{T} \cdot \ddot{\hat{z}}_{4}(t)+\lambda_{T} \cdot \dot{\hat{z}}_{4}(t)+k_{T} \cdot \hat{z}_{4}(t)=\lambda_{T} \cdot \dot{\hat{z}}_{5}(t)+k_{T} \cdot \hat{z}_{5}(t)+\delta F_{w}  \tag{2}\\
+M_{K} \cdot \ddot{z}_{5}(t)+\lambda_{T} \cdot \dot{\hat{z}}_{5}(t)+k_{T} \cdot \hat{z}_{5}(t)=\lambda_{T} \cdot \dot{\hat{z}}_{4}(t)+k_{T} \cdot \hat{z}_{4}(t)+F_{s o l}
+\end{array} .\right.
+\]
+
+Pour une fonction temporelle $f(t)$ ou $F(t)$, on note sa transformée de Laplace $F(p)=L[f(t)]$.\\
+Les conditions initiales sont considérées être toutes nulles dans tout le sujet.
+
+%Q19. 
+\question{\label{2023_MP_CCINP_q10}Traduire le système différentiel précédent (2) dans le domaine de Laplace, puis en déduire les expressions des trois fonctions de transfert $H_{6}(p), H_{7}(p)$ et $H_{8}(p)$ présentes sur l'annexe 5 (zone encadrée notée " Amortisseur " en précisant que $L\left[\dot{z}_{4}(t)\right]=V(p)$ ).}
+
+%\section*{II. 3 - Sous-systèmes Servo-pompe, Circuit hydraulique et Moteur hydraulique}
+
+\subsection{Sous-systèmes Servo-pompe, Circuit hydraulique et Moteur hydraulique\label{2023_MP_CCINP_sec_23}}
+
+Ces sous-systèmes sont représentés sur le schéma-bloc de l'annexe \ref{2023_MP_CCINP_ann_05}. Le dispositif de positionnement de la table de forage et de son outil utilisent de l'énergie hydraulique. Les modèles de connaissance pour ces systèmes hydrauliques sont donnés ci-dessous :
+
+\begin{itemize}
+  \item Le dispositif est contrôlé par une électrovanne proportionnelle de gain $K_{s}$. Le débit disponible est noté $q_{p}$, la tension délivrée par la partie commande est notée $U_{s}$ et on a :
+\end{itemize}
+
+$$
+q_{p}(t)=K_{s} \cdot U_{s}(t)
+$$
+
+\begin{itemize}
+  \item Les équations de mécanique des fluides dans un circuit fermé permettent d'écrire :
+\end{itemize}
+
+
+\begin{equation*}
+\frac{V_{0}}{B} \cdot \frac{d \Delta p(t)}{d t}=q_{p}(t)-q_{m}(t) \tag{ii}
+\end{equation*}
+
+
+$V_{0}$ désigne le volume dans le circuit et $B$ est le coefficient de compressibilité du fluide. $\Delta p$ désigne une différence de pression dans le circuit et $q_{m}$ un débit retour.
+
+\begin{itemize}
+  \item Les lois de comportement hydromécanique permettent d'introduire le lien entre la vitesse de rotation du moteur hydraulique $\omega_{m}$ et le débit $q_{m}$ d'une part et entre le couple moteur et le différentiel de pression $\Delta p$ d'autre part. On note $C_{Y}$ la cylindrée du moteur et on a :
+\end{itemize}
+
+$$
+\begin{aligned}
+& q_{m}(t)=C_{Y} \cdot \omega_{m}(t) \\
+& C_{m}(t)=C_{Y} \cdot \Delta p(t)
+\end{aligned}
+$$
+
+\begin{itemize}
+  \item L'équation du mouvement du mécanisme s'écrit :
+\end{itemize}
+
+
+\begin{equation*}
+J_{e q} \cdot \frac{d \omega_{m}(t)}{d t}+a \cdot \omega_{m}(t)=C_{m}(t)-C_{r}(t) \tag{v}
+\end{equation*}
+
+
+où $J_{e q}$ est l'inertie équivalente des solides en mouvement ramenée sur l'axe de rotation du moteur, a un coefficient de frottement visqueux équivalent et $C_{r}$ modélisant les couples résistants autres que ceux dus au frottement visqueux.
+
+
+%Q20.
+\question{\label{2023_MP_CCINP_q20} D'après les figures $\mathbf{9}$ et $\mathbf{1 0}$ et sans détailler les calculs, indiquer par quel théorème et par quel isolement peut être obtenue l'équation ( $\boldsymbol{v}$ ). Sans la mettre en œuvre, proposer une méthode permettant de déterminer l'expression théorique du paramètre $J_{\text {eq }}$.}
+
+%Q21. 
+\question{\label{2023_MP_CCINP_q21}Traduire les cinq équations (i), (ii), (iii), (iv) et (v) dans le domaine de Laplace.}
+
+
+%Q22. 
+\question{\label{2023_MP_CCINP_q22}Expliciter les cinq fonctions de transfert $H_{1}(p), H_{2}(p), H_{3}(p), H_{4}(p)$ et $H_{5}(p)$ à partir des résultats de la question précédente.}
+
+
+%\section*{II. 4 - Étude de l'asservissement de la vitesse d'avance de la table de forage}
+\subsection{Étude de l'asservissement de la vitesse d'avance de la table de forage \label{2023_MP_CCINP_sec_24}}
+
+%Q23. 
+\question{\label{2023_MP_CCINP_q23}Préciser le rôle du gain $K_{\text {ihm }}$ de la partie " Chaîne d'information " de l'annexe $\mathbf{5}$ et donner son expression en fonction des transmittances figurant dans le schéma-bloc pour que le système soit correctement asservi.}
+
+On décide dans la suite de ne pas prendre en compte l'amortisseur en considérant la tige Kelly en liaison complète rigide avec la table de forage, afin de valider les performances de l'asservissement en poursuite. Cette hypothèse sera validée en fin de partie II et permet pour l'instant de travailler sur le schéma-bloc simplifié de la figure \ref{2023_MP_CCINP_fig_11}.
+
+%Q24. 
+\question{\label{2023_MP_CCINP_q24}À partir de la figure 11, exprimer la fonction de transfert $\frac{\Omega_{m}(p)}{U_{s}(p)}$, notée $H(p)$, à partir des fonctions de transfert $H_{j}(p)$, où $j \in\{1 ; 2 ; 3 ; 4 ; 5\}$.}
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-12(1)}
+%\captionsetup{labelformat=empty}Figure 11 - 
+\caption{Schéma-bloc pour l'étude en poursuite de l'asservissement en vitesse \label{2023_MP_CCINP_fig_11}}
+\end{center}
+\end{figure}
+
+Quels que soient les résultats trouvés précédemment, on travaille désormais avec le schéma-bloc simplifié de la figure 12 où $K_{0}$ est un gain d'adaptation fixe.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=.7\textwidth]{2025_10_26_292d8f726e32404b86d3g-12}
+% \ref{2023_MP_CCINP_fig_12} \captionsetup{labelformat=empty} % Figure 12 - 
+\caption{Schéma-bloc de l'asservissement en vitesse simplifié \label{2023_MP_CCINP_fig_12}}
+\end{center}
+\end{figure}
+
+On prend dans un premier temps un correcteur $C(p)$ proportionnel : $C(p)=K_{p}$.\\
+
+
+%Q25
+\question{\label{2023_MP_CCINP_q25}Exprimer la fonction de transfert en boucle ouverte $G_{B O}(p)=\frac{V(p)}{\varepsilon(p)}$.}
+
+
+%Q26. 
+\question{\label{2023_MP_CCINP_q26}Avec un correcteur proportionnel, peut-on satisfaire l'exigence de précision de vitesse indiquée à l'exigence 2.1.1. ? Justifier.}
+
+On utilise dans un second temps un correcteur proportionnel intégral : $C(p)=K_{p} \cdot\left(1+\frac{1}{T_{i} \cdot p}\right)$.
+
+%Q27. 
+\question{\label{2023_MP_CCINP_q27}L'exigence de précision sur la vitesse est-elle satisfaite ? Justifier.}
+
+Ce correcteur est initialement réglé avec les valeurs suivantes: $K_{p}=1$ et $T_{i}=10 \mathrm{~s}$.
+
+%Q28. 
+\question{\label{2023_MP_CCINP_q28}Tracer les diagrammes de Bode asymptotique et réel de ce correcteur sur le DR3. Détailler les constructions.}
+
+Pour le réglage de la question précédente, on donne le diagramme de Bode de la fonction de transfert en boucle ouverte ainsi corrigée sur le DR3.
+
+%Q29. 
+\question{\label{2023_MP_CCINP_q29}Affiner le réglage du correcteur (sans modifier la valeur de $T_{i}$ ) en proposant une valeur de $K_{p}$ permettant de garantir la marge de phase spécifiée dans l'exigence 2.1.1. On répondra à cette question sur le DR3.}
+
+Enfin, on souhaite valider ou invalider l'hypothèse faite en début de cette sous-partie concernant la non-influence de l'amortisseur sur les performances d'asservissement en vitesse d'avance de la table de forage. Les diagrammes de Bode du document D4, donnés en dernière page du DR, illustrent la fonction de transfert en boucle ouverte corrigée sans (en train plein) et avec amortisseur (en pointillés).
+
+%Q30. 
+\question{\label{2023_MP_CCINP_q30}Sur quelle(s) performance(s) la présence de l'amortisseur peut-elle influer ? Justifier que le correcteur choisi permet de répondre aux exigences 2.1.1 en présence de l'amortisseur.}
+
+%\section*{Partie III - Édition d'un rapport de chantier (Informatique Commune)}
+\section{Édition d'un rapport de chantier (Informatique Commune)\label{2023_MP_CCINP_sec_3}}
+L'objectif de cette partie est d'explorer des moyens d'éditer un rapport de chantier à partir de données récupérées par les capteurs de la machine de forage.
+
+%\section*{III. 1 - Exploitation des données d'opération enregistrées}
+\subsection{Exploitation des données d'opération enregistrées\label{2023_MP_CCINP_sec_31}}
+En option sur toutes les machines, l'équipementier propose un système de saisie de données d'opération qui enregistre en permanence les données importantes d'opérations pendant les travaux. Ces données peuvent ensuite être traitées sur un ordinateur par un logiciel qui permet d'établir des rapports de chantier.\\
+Les données sont enregistrées dans une base de données dont une structure simplifiée est la suivante : une table Site répertoriant les chantiers exploités, une table Forage répertoriant tous les pieux de chaque site et une table Operation répertoriant toutes les opérations sur chaque pieu.
+
+La structure détaillée est la suivante :
+
+\begin{itemize}
+  \item la table Site, contient les trois attributs suivants :
+  \item idsite (de type entier) : numéro indiquant la référence du site d'exploitation
+  \item nom (de type chaîne de caractères) : désignation du nom du lieu du site d'exploitation
+  \item dates (de type tuple) : tuple contenant les dates de début et de fin de chantier
+  \item la table Forage, contient les quatre attributs suivants :
+  \item pieunumero (de type entier) : numéro indiquant la référence du pieu de forage
+  \item idsite (de type entier) : numéro indiquant la référence du site d'exploitation du pieu considéré
+  \item coordonneesGPS (de type chaîne de caractères) : coordonnées GPS du pieu considéré
+  \item quantitebeton (de type flottant) : quantité de béton coulée dans le pieu considéré
+  \item la table Operation, contient les douze attributs suivants :
+  \item operationnumero (de type entier) : numéro indiquant la référence de l'opération réalisée
+  \item pieunumero (de type entier) : numéro indiquant la référence du pieu de forage considéré
+  \item idmachine (de type entier) : numéro indiquant la référence de la machine utilisée
+  \item idoutil (de type entier) : numéro indiquant la référence de l'outil utilisé
+  \item date (de type chaîne de caractères) : date de l'opération réalisée
+  \item duree (de type float) : durée (en seconde) de l'opération réalisée
+  \item temps (de type liste): liste des instants (en seconde) des prises de mesure des capteurs pendant l'opération considérée
+  \item pression (de type liste) : liste des mesures de la pression du sol (en Pa) lors de l'opération
+  \item effort (de type liste) : liste des mesures de l'effort de forage (en kN) lors de l'opération
+  \item profondeur (de type liste) : liste des mesures de profondeur (en cm) lors de l'opération
+  \item couple (de type liste) : liste des mesures du couple de forage (en kN.m) lors de l'opération
+  \item vitesserotation (de type liste) : liste des mesures de la vitesse de rotation (en tr/min) de l'outil lors de l'opération.
+\end{itemize}
+
+%Q31. 
+\question{\label{2023_MP_CCINP_q31}Écrire une requête SQL permettant de renvoyer les dates de début et de fin du chantier intitulé " Heilbronn ".}
+
+%Q32. 
+\question{\label{2023_MP_CCINP_q32}Écrire une requête SQL permettant de déterminer la quantité totale de béton qui a été coulée sur ce chantier.}
+
+%Q33. 
+\question{\label{2023_MP_CCINP_q33}Écrire une requête SQL permettant de renvoyer les listes temps, effort et profondeur de la première opération (numérotée 1) du premier pieu (numéroté 1) effectué sur ce chantier.}
+
+%\section*{III. 2 - Tracés des courbes significatives pour un rapport de chantier}
+\subsection{Tracés des courbes significatives pour un rapport de chantier \label{2023_MP_CCINP_sec_32}}
+
+L'annexe 3 montre un exemple de rapport de chantier. La dernière requête, demandée précédemment, fournit une liste de listes que l'on nomme " rapport " : rapport = [temps, effort, profondeur] où temps est une liste en seconde, effort en kN et profondeur en cm . On désire exploiter " rapport " grâce au langage Python. L'annexe $\mathbf{2}$ rappelle les syntaxes classiques de ce langage.
+
+%Q34. 
+\question{\label{2023_MP_CCINP_q34}Créer une fonction TrouverVitesse(profondeur, temps) qui renvoie la liste vitesse en $\mathrm{mm} / \mathrm{s}$ des vitesses verticales instantanées de cette opération. Elle aura la même longueur que temps et profondeur et on imposera la première valeur de la vitesse à 0 .}
+
+%Q35. 
+\question{\label{2023_MP_CCINP_q35}Écrire un script permettant de tracer la zone B de ce rapport, c'est-à-dire le temps, la vitesse et l'effort en fonction de la profondeur sur trois figures différentes. On s'assurera bien que l'axe vertical corresponde à la profondeur de forage. L'inversion du sens de l'axe des ordonnées, le titre des axes, la conversion de la profondeur en mètres, ainsi que la conversion du temps au format $h h: \min$ ne sont pas exigés ici.}
+
+
+On désire désormais tracer la zone A de ce rapport. Les courbes présentes dans cette zone témoignent de l'enveloppe théorique nominale (trait plein), fournie par le constructeur et expérimentale (trait pointillé), mesurée lors de l'opération, des points de fonctionnement ( $C, N$ ) du moteur de la table de forage mettant en rotation la barre Kelly. $C$ est son couple (en $\mathrm{kN} \cdot \mathrm{m}$ ) et $N$ sa vitesse de rotation (en tr/min). Une requête sur la base de données permet d'obtenir leurs valeurs expérimentales sous forme de deux listes de même taille C et N . Pour la suite, on considère que l'on dispose de ces listes.
+
+La figure \ref{2023_MP_CCINP_fig_13} montre le nuage des points de fonctionnement enregistrés à divers instants lors de l'opération considérée (à gauche) et l'enveloppe que l'on désire en tirer (à droite) pour une question de clarté et de lisibilité. On se propose donc de tracer l'enveloppe concave de ce nuage de points grâce à l'algorithme ConcaveHull présenté en annexe 4. Une dernière opération, non-détaillée dans ce sujet, ne gardera que la partie supérieure de cette enveloppe pour la visualisation finale.
+
+\begin{figure}[h]
+\centering
+  \includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-14}
+%Figure 13 - 
+\caption{\label{2023_MP_CCINP_fig_13}Nuage de points du couple en \si{kNm} en fonction de la fréquence de rotation en \si{tr/min} (à gauche) et la partie supérieure de son enveloppe concave (à droite)}
+
+\end{figure}
+
+%Q36. 
+\question{\label{2023_MP_CCINP_q36}De quel algorithme de tri la fonction Tri présente en annexe 4 est-elle une adaptation? Quelle est sa complexité au pire des cas et celle au meilleur des cas ?}
+
+%Q37. 
+\question{\label{2023_MP_CCINP_q37}Justifier la présence du test «if rang < gauche + k : » au sein de la fonction Tri.}
+
+%Q38. 
+\question{\label{2023_MP_CCINP_q38}Proposer sur la copie des lignes de code permettant de compléter la partie manquante de la fonction Segmentation.}
+
+%Q39. 
+\question{\label{2023_MP_CCINP_q39}Créer la fonction Distances(Points,A) présente dans la fonction ProchesVoisins qui renvoie une liste Dist de la distance de chaque point de Points (organisée comme une liste de tuples des coordonnées $(x, y))$ au point A (tuple de ses coordonnées $(x, y)$ ) de telle sorte que la distance Dist[i] corresponde au point Points[i].}
+
+On suppose désormais à disposition la fonction ConcaveHull (Points) qui renvoie la liste Hull des coordonnées $(x, y)$ des points présents dans la liste Points et qui forment le polygone enveloppe du nuage de points formé par Points.
+
+%Q40. 
+\question{\label{2023_MP_CCINP_q40}Écrire un script qui trace l'enveloppe concave des points de fonctionnement de la table de forage à partir des valeurs présentes dans les listes C et N . On rappelle ici que l'on ne s'occupera pas de l'opération permettant de garder seulement la partie haute de l'enveloppe générée.}
+
+%Q41. 
+\question{\label{2023_MP_CCINP_q41}Sans ligne de code, proposer, avec des explications claires, une solution alternative plus simple que\% l'algorithme ConcaveHull de Moreira et Yasmina-Santos pour retrouver l'enveloppe expérimentale des points de fonctionnement du moteur de la table de forage.}
+
+
+
+\end{document}
+
+
+\section*{ANNEXE 1 - Paramétrage mécanique}
+\section*{Paramètres généraux :}
+Soient :
+
+\begin{itemize}
+  \item $\mathbf{0}$ le sol, $\mathbf{S 1}$ le châssis de la foreuse, $\mathbf{S 2}$ sa tourelle et son mât et $\mathbf{S 3}$ l'ensemble \{table de forage + outil\} ;
+  \item $\Re_{0}=(O ; \vec{x}, \vec{y}, \vec{z})$ le repère attaché aux solides $\mathbf{S 0}$ et $\mathbf{S 1}$;
+  \item $B_{2}=\left(\vec{x}_{2}, \vec{y}_{2}, \vec{z}\right)$ la base attachée aux solides $\mathbf{S 2}$ et $\mathbf{S} \mathbf{3}$ telle que $\left(\vec{x}, \vec{x}_{2}\right)=\theta$ où $\theta$ est connu ;
+  \item $\boldsymbol{\Sigma}=\{\mathbf{S} \mathbf{1}, \mathbf{S 2}, \mathbf{S 3}\}$ l'ensemble de la foreuse, de centre de gravité $G$ tel que $\overrightarrow{\mathrm{OG}}=r \vec{x}_{2}+\boldsymbol{z}_{G} \vec{z}$;
+  \item $M=186,5$ tonnes la masse de l'ensemble $\boldsymbol{\Sigma}$ et $m=18$ tonnes la masse de $\mathbf{S 3}$ seul ;
+  \item $2 F_{w} \vec{z}$, connu, l'effort du câble d'avance sur $\mathbf{S 3}$. La masse du câble est négligée dans la suite ;
+  \item $F_{\text {sol }} \vec{z}$, inconnu, l'effort de forage du sol $\mathbf{0}$ sur l'outil de forage $\mathbf{S} 3$ au point F , connu, défini par $\overrightarrow{\mathrm{OF}}=R \vec{x}_{2} ;$
+  \item $-g \vec{z}$ où $g=9,8 m \cdot s^{-2}$, l'accélération de la pesanteur terrestre.
+\end{itemize}
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-16(1)}
+\captionsetup{labelformat=empty}
+\caption{Système réel}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\captionsetup{labelformat=empty}
+\caption{Modèle}
+  \includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-16}
+\end{center}
+\end{figure}
+
+\section*{Paramétrage $\mathbf{n}^{\boldsymbol{\circ}} \mathbf{1}$ : modèle avec efforts ponctuels entre le sol et la foreuse}
+\begin{itemize}
+  \item $F_{g} \vec{z}$, inconnu, l'effort du sol $\mathbf{0}$ sur $\mathbf{S 1}$, supposé ponctuel au centre I de la surface de contact entre la chenille gauche $c g$ et le sol tel que $\|\overrightarrow{\mathrm{O} l}\|=a=2,1 m$;
+  \item $F_{d} \vec{z}$, inconnu, l'effort du sol $\mathbf{0}$ sur $\mathbf{S 1}$, supposé ponctuel au centre J de la surface de contact entre la chenille droite $c d$ et le sol tel que $\|\overrightarrow{\mathrm{OJ}}\|=a=2,1 \mathrm{~m}$.
+\end{itemize}
+
+\section*{Paramétrage $\mathbf{n}^{\circ} \mathbf{2}$ : modèle avec répartition de pression entre le sol et la foreuse}
+On note :
+
+\begin{itemize}
+  \item $\mathrm{P}(x, y, 0)$, un point courant de contact entre le sol et les chenilles. Attention, $x$ est négatif sur la figure ci-dessous. Les grandeurs $d x$ et $d y$ sont les dimensions du domaine surfacique élémentaire autour du point P entre le sol et les chenilles;
+  \item $p_{g}(y)=A \cdot \frac{y}{L}+B$, la pression du sol 0 sur la chenille gauche $c g$ au point $\mathrm{P}(x, y, 0)$ où $A$ et $B$, homogènes à des pressions, sont inconnues et à déterminer ;
+  \item $p_{d}(y)=C \cdot \frac{y}{L}+D$, la pression du sol 0 sur la chenille droite $c d$ au point $\mathrm{P}(x, y, 0)$ où $C$ et $D$, homogènes à des pressions, sont inconnues et à déterminer ;
+  \item $L=5,4 \mathrm{~m}$, la longueur et $I=1 \mathrm{~m}$ la largeur de chaque chenille ;
+  \item $a=2,1 m$, la distance moyenne sur l'axe $\vec{x}$ d'une chenille au centre O de la machine.\\
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-17}
+\end{itemize}
+
+\section*{ANNEXE 2 - Rappels des syntaxes en Python}
+Pour ce sujet, on admet que les imports suivants ont été réalisés en amont :\\
+from numpy import *\\
+import matplotlib.pyplot as plt\\
+Le tableau suivant récapitule quelques éléments de syntaxe utiles :
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+ & Syntaxe Python \\
+\hline
+Définir un tableau à une dimension & \( \begin{aligned} & \mathrm{L}=[1,2,3] \text { (liste) } \\ & \mathrm{V}=\text { array }([1,2,3]) \text { (vecteur) } \end{aligned} \) \\
+\hline
+Accéder à un élément & v[0] renvoie 1 (L[0] également) \\
+\hline
+Créer une nouvelle figure & plt.figure() \\
+\hline
+Tracer une courbe & $\mathrm{plt} . \mathrm{plot}(\mathrm{X}, \mathrm{Y})$ où X et Y , de même taille, sont respectivement la liste des abscisses et des ordonnées de la courbe. \\
+\hline
+\end{tabular}
+\end{center}
+
+
+
+
+\section*{ANNEXE 3 - Exemple d'un rapport de chantier}
+\begin{center}
+\includegraphics[max width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-18}
+\end{center}
+
+\section*{ANNEXE 4 - Algorithme ConcaveHull }
+L'algorithme ConcaveHull permet de trouver au sein d'un nuage de points les points qui, dans l'ordre, forment ensemble le polygone représentant l'enveloppe concave de ce nuage. Comme l'illustre la figure ci-contre, un même nuage de points possède plusieurs\\
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-19(1)}\\
+enveloppes concaves en fonction de la " rugosité " désirée.
+
+L'algorithme établi par Moreira et Yasmina-Santos en 2007 propose une approche itérative qui, à partir d'un point de départ dont il est certain qu'il appartienne à l'enveloppe (par exemple le point possédant\\
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-19}\\
+l'abscisse minimale), cherche le prochain sommet du polygone enveloppe parmi ses k -plus proches voisins dans le nuage de points considéré et ce jusqu'à retrouver le point de départ qui refermera l'enveloppe.\\
+Pour choisir le bon voisin parmi les k-plus proches, l'algorithme les trie d'abord par ordre décroissant de l'angle que chacun forme avec l'arête précédente du polygone enveloppe (voir ci-dessous), puis choisit le premier point de la liste. Si ce point, en l'ajoutant comme sommet du polygone, forme une arête qui coupe les arêtes déjà formées du polygone, il est rejeté et le suivant dans la liste est choisi à sa place.\\
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-19(2)}
+
+La fonction ProchesVoisins(Points,A,k) utilisée dans cet algorithme, permet, à partir des coordonnées ( $x, y$ ) d'un point A , de renvoyer la liste les coordonnées ( $x, y$ ) de ses $k$-plus proches voisins présents dans la liste de points Points. Cette fonction et ses sous-fonctions sont écrites cidessous.
+
+\begin{verbatim}
+def ProchesVoisins(Points,A,k):
+    # Calcule les distances de A aux Points
+    Dist=Distances(Points,A)
+    # Trouve les k-plus courtes distances
+    DistList=list(Dist)
+    Tri(DistList,0,len(DistList)-1,k)
+    kDist=DistList[:k]
+    # Trouve les points correspondants
+    Voisins=k*[0]
+    for i in range(len(Dist)):
+        test=Dist[i]
+        for j in range(k):
+            if test==kDist[j]:
+                Voisins[j]=Points[i]
+    return Voisins
+\end{verbatim}
+
+\begin{verbatim}
+def Tri(L,gauche,droite,k):
+    if gauche<droite:
+        rang=Segmentation(L,gauche,droite)
+        Tri(L,gauche,rang-1,k)
+        if rang<gauche+k:
+            Tri(L,rang+1,droite,k)
+def Segmentation(L,gauche,droite):
+    # Choisit un pivot
+    p = L[gauche]
+    # Segmente L
+    rang = gauche
+    for i in range(gauche,droite+1):
+            Partie à compléter
+            sur feuille de copie
+    # Place le pivot entre les 2 segments
+    L[gauche],L[rang] = L[rang],L[gauche]
+    return rang
+\end{verbatim}
+
+\begin{figure}[h]
+\begin{center}
+\captionsetup{labelformat=empty}
+\caption{ANNEXE 5 －Schéma－bloc ：modélisation de l＇asservissement}
+  \includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-20}
+\end{center}
+\end{figure}
+
+FIN\\
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-21}
+
+\section*{DOCUMENT RÉPONSE}
+\section*{Ce Document Réponse doit être rendu dans son intégralité avec la copie.}
+\section*{DR1 - Diagramme d'états}
+\begin{figure}[h]
+\begin{center}
+\captionsetup{labelformat=empty}
+\caption{Q10}
+  \includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-21(1)}
+\end{center}
+\end{figure}
+
+\section*{NE RIEN ÉCRIRE DANS CE CADRE}
+\section*{DR2 - Évolutions théoriques des pressions estimées par l'ordinateur et du pourcentage d'atteinte de la posture critique de basculement}
+Q11\\
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-22(1)}\\
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-22}
+
+\section*{DR3 - Réponse fréquentielle}
+\section*{Q28 \& Q29}
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-23}\\
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-23(1)}
+
+Valeur de $K_{p}$ choisie : $\boldsymbol{K}_{\boldsymbol{p}}=$
+
+D4 - Réponses fréquentielles de la fonction de transfert en boucle ouverte corrigée du système sans (en train plein) et avec amortisseur (en pointillés)\\
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-24}\\
+\includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-24(1)}
+

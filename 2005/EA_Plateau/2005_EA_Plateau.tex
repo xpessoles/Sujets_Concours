@@ -1,0 +1,636 @@
+\section*{Présentation}
+\ifprof
+\else
+Un hélicoptère crée sa portance grâce au mouvement de rotation du rotor principal entraîné à l’aide de la turbine. Pour permettre à l’hélicoptère de se déplacer suivant les différentes directions, les pales prennent, suivant un axe radial, une incidence qui varie au cours de la rotation du rotor.
+Le dispositif qui transmet les consignes du pilote et qui permet d’imposer cette variation est le plateau de pas cyclique dont l’orientation est fixée par l’intermédiaire de plusieurs vérins hydrauliques. 
+
+
+La figure \ref{fig:2005_EA_fig_01} présente le mécanisme complet. Sur ce schéma n’est pas représenté le mécanisme permettant l’entraînement en rotation suivant un axe vertical des solides 4, 5, 6 et 8 qui ne fera pas l’objet de l’étude.
+
+Les 3 figures \ref{fig:2005_EA_fig_234} présentent 3 configurations du dispositif de réglage de l’incidence des pales. 
+
+
+
+\begin{figure}[!h]
+  \centering
+  % Trois sous-figures côte à côte
+  \begin{subfigure}[b]{0.32\textwidth}
+    \centering
+    \includegraphics[width=.8\linewidth]{2005_EA_fig_02} % remplacer par votre fichier
+    \caption{Hélicoptère à l’arrêt -- Les pales sont en position horizontale (incidence nulle)}
+    \label{fig:2005_EA_fig_02}
+  \end{subfigure}\hfill
+  \begin{subfigure}[b]{0.32\textwidth}
+    \centering
+    \includegraphics[width=.8\linewidth]{2005_EA_fig_03}
+    \caption{Hélicoptère en vol stationnaire -- Les pales présentent la même incidence.}
+    \label{fig:2005_EA_fig_03}
+  \end{subfigure}\hfill
+  \begin{subfigure}[b]{0.32\textwidth}
+    \centering
+    \includegraphics[width=.8\linewidth]{2005_EA_fig_04}
+    \caption{Hélicoptère en déplacement
+Les pales ne présentent pas la même incidence.}
+    \label{fig:2005_EA_fig_04}
+  \end{subfigure}
+
+  % Légende globale (caption) — et vous pouvez ajouter une "mini-légende" explicite
+  \caption{Réglage de l’incidence des pales}
+  \label{fig:2005_EA_fig_234}
+\end{figure}
+
+
+On se propose de construire une modélisation simplifiée et d’étudier les lois entrées-sorties des sous blocs fonctionnels qui constituent le dispositif de réglage de l’incidence cyclique des pales.
+NB : Les trois parties sont indépendantes. 
+\fi
+
+\section{Etude spatiale du système complet}
+
+
+\ifprof
+\else
+\begin{minipage}[c]{.5\linewidth}
+La figure \ref{fig:2005_EA_fig_01} fait apparaître 13 solides (NB : l’indice ’ fait référence aux pièces de la partie gauche) : 
+\begin{itemize}
+\item bâti \textbf{0},
+\item corps \textbf{1} et \textbf{1’} (en liaison pivot avec le bâti \textbf{0}),
+\item tige \textbf{2} et \textbf{2’} (en liaison avec le corps du vérin, respectivement \textbf{1} et \textbf{1’}, et en liaison rotule avec le plateau cyclique non tournant \textbf{3}),
+\item plateau cyclique non tournant \textbf{3} (en liaison pivot avec le plateau tournant \textbf{4}),
+\item plateau cyclique tournant \textbf{4},
+\item rotule \textbf{5},
+\item biellettes \textbf{6} et \textbf{6’} (montées en liaison rotule à chacune de leur extrémité),
+\item pales \textbf{7} et \textbf{7’} (en liaison pivot avec l’axe rotor \textbf{8}),
+\item axe rotor \textbf{8} (en liaison pivot avec le bâti \textbf{0}).
+\end{itemize}
+\end{minipage} \hfill
+\begin{minipage}[c]{.45\linewidth}
+\begin{center}
+\includegraphics[width=\linewidth]{2005_EA_fig_01} % remplacer par votre fichier
+    \captionof{figure}{Mécanisme complet du rotor principal}
+    \label{fig:2005_EA_fig_01}
+\end{center}
+
+\end{minipage}
+Un dispositif extérieur bloque, au niveau de la liaison rotule entre le plateau cyclique \textbf{4} et la rotule \textbf{5}, la rotation suivant l’axe du rotor. La liaison équivalente entre le plateau cyclique tournant \textbf{4} et l’axe rotor \textbf{8} peut être modélisée par une liaison non normalisée à 3 degrés de liberté (une translation suivant l’axe du rotor, et deux rotations perpendiculaires à cet axe).
+
+\question{En supprimant le solide \textbf{5}, construire le graphe de structure du mécanisme présenté figure \ref{fig:2005_EA_fig_01}.%, en faisant apparaître sur chaque arc le nombre de degrés de liberté de la liaison considérée.
+}
+\ifprof
+\begin{corrige} ~\\
+
+\begin{center}
+\includegraphics[width=.5\linewidth]{2005_EA_cor_01} % remplacer par votre fichier
+\end{center}
+
+\end{corrige}
+\else
+\fi
+
+
+Le mécanisme ainsi modélisé est isostatique.
+\fi
+
+\question{À l’aide de la formule de l'hyperstatisme, identifier l’indice de mobilité cinématique qui définit le nombre de paramètres indépendants.% permettant de fixer de manière unique la position de chacune des pièces. 
+Décrire succinctement, les différents mouvements correspondants à l’indice trouvé. }
+\ifprof
+\begin{corrige}
+Méthode cinématique : 
+\begin{itemize}
+\item nombre de liaisons  : $L = 15$;
+\item nombre de solides (sommet du graphe) : $S = 12$
+\item nombre de chaînes fermées indépendantes (nombre cyclomatique)  : $\gamma = L – S + 1=15-12+1=4$;
+\item nombre d’équations de l’étude cinématique : $E_c = 6* \gamma  = 24$;
+\item nombres d’inconnues de l’étude cinématique : $I_c = 2*(3+2+1+3+3+1)+1+1+3=31$
+\end{itemize}
+
+La mobilité cinématique mc vaut : $m_c =  I_c- E_c - h = 31 -24 -0 = 7$.
+
+Mouvements associés :
+\begin{itemize}
+\item rotation de l’axe rotor 8 par rapport au bâti 0 (mouvement principal);
+\item déplacement de la tige 2 par rapport au corps 1 (loi de commande du 1er vérin);
+\item déplacement de la tige 2’ par rapport au corps 1’ (loi de commande du 2eme vérin);
+\item rotation de la tige 2 par rapport au corps 1 (mobilité interne du 1er vérin);
+\item rotation de la tige 2’ par rapport au corps 1’ (mobilité interne du 2eme vérin);
+\item rotation de la biellette  6 suivant son axe (mobilité interne);
+\item rotation de la biellette  6’ suivant son axe (mobilité interne).
+\end{itemize}
+\end{corrige}
+\else
+\fi
+
+\ifprof
+\else
+\begin{rem}
+L’indice de mobilité élevé interdit une étude cinématique du mécanisme complet, étant donné la lourdeur des calculs. On se propose d’étudier un mécanisme plan (objet de la deuxième partie), dont le fonctionnement permet d’appréhender le dispositif spatial. 
+\end{rem}
+\fi
+\section{Etude du bloc orientation du plateau cyclique}
+\ifprof
+\else
+On suppose connaître les vitesses de déplacement des tiges des vérins hydrauliques. Dans cette deuxième partie, on cherche les mouvements correspondants, du plateau cyclique non tournant \textbf{3}. 
+
+%\vspace{.5cm}
+\begin{minipage}[c]{.6\linewidth}
+Afin de simplifier l’étude, on construit un modèle plan de ce dispositif, constitué des solides suivants :
+\begin{itemize}
+\item bâti \textbf{0} : lié au corps de l’hélicoptère;
+\item plateau \textbf{3} en liaison linéaire annulaire (sphère -- cylindre) d’axe $\axe{E}{y}$ avec le bâti \textbf{0}.
+\end{itemize}
+
+Un premier vérin permet d’actionner le dispositif :
+\begin{itemize}
+\item corps \textbf{1} en liaison pivot d’axe $\axe{G}{z}$ avec le bâti \textbf{0};
+\item corps \textbf{1} en liaison pivot glissant d’axe $\axe{G}{y_1}$ avec la tige \textbf{2};
+\item tige \textbf{2} en liaison pivot d’axe $\axe{F}{z}$ avec le plateau \textbf{3}.
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{.37\linewidth}
+\begin{center}%[!h]
+%\centering
+\includegraphics[width=\linewidth]{2005_EA_fig_05} % remplacer par votre fichier
+    \captionof{figure}{Schéma cinématique}
+    \label{fig:2005_EA_fig_05}
+\end{center}
+\end{minipage}
+
+
+\textbf{Données :}
+\begin{itemize}
+\item $\beta = \angl{y}{y_1}$;
+\item $\vect{OG} = g\vect{x}$;
+\item $\vect{OF} = g\vect{x} + f(t) \vy{1}$;
+\item $\vect{OE} = e(t)\vect{y}$.
+\end{itemize}
+
+
+\textbf{Les variations de l’angle $\beta$ étant faibles, on pourra faire l’approximation que $\beta=0$, ce qui caractérise la position de référence.
+Toute l’étude cinématique sera effectuée autour de la position de référence, ce qui conduit à confondre $\vect{y}$ et $\vect{y_1}$. }
+
+Le schéma cinématique du dispositif est décrit figure \ref{fig:2005_EA_fig_05}, dans le plan $\left(O,\vect{x},\vect{y}\right)$.
+\fi
+
+
+%\question{Ecrire les torseurs cinématiques des différentes liaisons, dans le cadre d’une modélisation plane.}
+%\ifprof
+%\begin{corrige}
+%\begin{itemize}
+%\item Linéaire annulaire : $\torseurcin{V}{3}{0} = \torseurl{\omega(3/0)\vect{z}}{V(3/0)\vect{y}}{E}$.
+%\item Pivot : $\torseurcin{V}{3}{2} = \torseurl{\omega(3/2)\vect{z}}{\vect{0}}{F}$.
+%\item Pivot glissant : $\torseurcin{V}{2}{1} = \torseurl{\vect{0}}{V(2/1)\vect{y_1}}{F}$.
+%\item Pivot : $\torseurcin{V}{1}{0} = \torseurl{\dot{\beta}\vect{z}}{\vect{0}}{G}$.
+%\end{itemize}
+%\end{corrige}
+%\else
+%\fi
+
+%
+%\question{Ecrire la fermeture cinématique au point $O$, pour la position de référence.}
+%\ifprof
+%\begin{corrige}
+%\begin{itemize}
+%\item $\vectv{O}{3}{0} = V(3/0)\vect{y} + \vect{OE} \wedge \omega(3/0)\vect{z}$ $=V(3/0)\vect{y} + e(t) \vect{y} \wedge \omega(3/0)\vect{z}$ $=V(3/0)\vect{y} + e(t) \omega(3/0)\vect{y}$ 
+%\item $\vectv{O}{3}{2} = \vect{0}+ \vect{OF} \wedge \omega(3/2)\vect{z}$ $=\left( g\vect{x} + f(t) \vy{1}\right) \wedge \omega(3/2)\vect{z}$ $=g\vect{x} \wedge \omega(3/2)\vect{z} + f(t) \vy{1} \wedge \omega(3/2)\vect{z}$
+%$= -g \omega(3/2) \vect{y} + f(t) \omega(3/2)\vect{x_1}$
+%\item $\vectv{O}{2}{1} = V(2/1)\vect{y_1}+ \vect{OF} \wedge \vect{0}$ $=V(2/1)\vect{y_1}$
+%\item $\vectv{O}{1}{0} = \vect{0}+ \vect{OG} \wedge \dot{\beta}\vect{z}$ $=g\vect{x} \wedge \dot{\beta}\vect{z}$ $=-g\dot{\beta}\vect{y}$
+%\end{itemize}
+%
+%On a donc : 
+%$\left\{
+%\begin{array}{l}
+%\omega(3/0) =\omega(3/2) +\dot{\beta} \\
+%0 = f(t) \omega(3/2) \cos\beta - V(2/1) \sin \beta  \\
+%V(3/0) + e(t) \omega(3/0) =  -g \omega(3/2)   + f(t) \omega(3/2) \sin\beta + V(2/1) \cos \beta - g\dot{\beta} \\
+%\end{array}
+%\right.$
+%
+%\end{corrige}
+%\else
+%\fi
+
+%
+%\question{En déduire l’indice de mobilité cinématique, qui définit le nombre de paramètres indépendants permettant de fixer de manière unique la position de chacune des pièces.}
+%\ifprof
+%\begin{corrige}
+%\end{corrige}
+%\else
+%\fi
+
+\ifprof
+\else
+
+%\vspace{.5cm}
+\begin{minipage}[c]{.5\linewidth}
+On ajoute un deuxième vérin :
+\begin{itemize}
+\item corps \textbf{1’} en liaison pivot d’axe $\axe{G'}{z}$ avec le bâti \textbf{0}.
+\item corps \textbf{1’} en liaison pivot glissant d’axe $\axe{G'}{y_1}$ avec la tige \textbf{2’}.
+\item tige \textbf{2’} en liaison pivot d’axe $\axe{F’}{z}$ avec la pièce \textbf{3}.
+\end{itemize}
+
+\vspace{.5cm}
+
+\textbf{Données : } 
+\begin{itemize}
+\item l’indice \textbf{`} caractérise la partie située à gauche de l’axe $\axe{O}{y}$;
+\item $\vect{OG} = -g\vect{x}$;
+\item $\vect{OF'}=-g \vect{x} + f'(t)\vect{y_1'}$.
+\end{itemize}
+
+
+
+\end{minipage}
+\hfill
+\begin{minipage}[c]{.45\linewidth}
+\begin{center}%[!h]
+%\centering
+\includegraphics[width=.9\linewidth]{2005_EA_fig_08} % remplacer par votre fichier
+    \captionof{figure}{Schéma cinématique}
+    \label{fig:2005_EA_fig_08}
+\end{center}
+
+\end{minipage}
+
+\fi
+
+
+
+
+%Le schéma cinématique du dispositif à deux vérins est décrit figure \ref{fig:2005_EA_fig_08}, dans le plan $\left(O,\vect{x},\vect{y}\right)$.
+
+
+
+\question{Déterminer la mobilité du mécanisme et expliquer la nécessité d’utiliser deux vérins.}
+\ifprof
+\begin{corrige}
+2 mobilités, donc 2 vérins.
+\end{corrige}
+\else
+\fi
+
+%
+%\question{Construire le schéma cinématique du dispositif avec deux vérins.}
+%\ifprof
+%\begin{corrige}
+%\end{corrige}
+%\else
+%\fi
+%
+%
+%\question{Ecrire, au point $O$ et pour la position de référence, les fermetures cinématiques du dispositif complet en tenant compte des deux vérins.}
+%\ifprof
+%\begin{corrige}
+%\end{corrige}
+%\else
+%\fi
+%
+%
+%\question{En déduire l’indice de mobilité du mécanisme complet. Commenter la valeur trouvée.}
+%\ifprof
+%\begin{corrige}
+%\end{corrige}
+%\else
+%\fi
+
+
+\question{On étudie la loi entrée-sortie du point de vue cinématique autour de la position de référence et on fixe : $\vectv{M}{2}{1} \cdot \vect{y} = +v$ et $\vectv{M}{2'}{1'} \cdot \vect{y} = -v$.
+Déterminer $\vectv{E}{3}{0}$ et $\vecto{3}{0}$. Quel est le mouvement de \textbf{3} par rapport à \textbf{0}, dans ce cas ?}
+\ifprof
+\begin{corrige}
+D'une part :
+\begin{itemize}
+\item $\vectv{E}{3}{0} = \vectv{F}{3}{0} + \vect{EF}\wedge \vecto{3}{0}$
+
+$= \vectv{F}{3}{0} + \left( g\vect{x} + f(t) \vy{1} - e(t) \vy{} \right)\wedge \omega(3/0) \vect{z}$ 
+
+$= \vectv{F}{3}{0} + \left( -g\vect{y} + f(t) \vx{1} - e(t) \vx{} \right)\omega(3/0)$ 
+\item $\vectv{F}{3}{0} = \vectv{F}{3}{2} + \vectv{F}{2}{1}+ \vectv{F}{1}{0}$ 
+
+$= \vect{0} + \vectv{F}{2}{1}+ \vectv{G}{1}{0} + \vect{FG}\wedge \vecto{1}{0}$ 
+
+$=  \vectv{F}{2}{1}+ f(t)\vect{y_1}\wedge \betap \vect{z}$  
+
+$=  \vectv{F}{2}{1}+ f(t)  \betap  \vect{x_1}$.  
+
+\item $\left(\vectv{F}{3}{0} + \left( -g\vect{y} + f(t) \vx{1} - e(t) \vx{} \right)\omega(3/0)\right)\cdot \vect{y}$
+
+$=\left(\vectv{F}{2}{1}+ f(t)  \betap  \vect{x_1} + \left( -g\vect{y} + f(t) \vx{1} - e(t) \vx{} \right)\omega(3/0)\right)\cdot \vect{y}$
+
+$=\left(v+ f(t)  \betap  \sin\beta  + \left( -g + f(t) \sin\beta  \right)\omega(3/0)\right)$
+
+
+$=v -g \omega(3/0)$
+
+
+\end{itemize}
+
+De même, d'autre part : $\vectv{E}{3}{0} \cdot \vy{} = -v +g \omega(3/0)$.
+
+On a donc $v -g \omega(3/0) = -v +g \omega(3/0)$ soit $2v =  2g \omega(3/0)$ et $\dfrac{v}{g} =  \omega(3/0)$
+\end{corrige}
+\else
+\fi
+
+
+\question{Montrer que l’étude statique est possible dans le cadre d’une modélisation plane.}
+\ifprof
+\begin{corrige}
+On peut calculer le degré d'hyperstatisme en utilisant la méthode statique : $h =m-E_s+I_s $ :
+\begin{itemize}
+\item $m=2$;
+\item $E_S = 5 \times 3 = 15$; 
+\item $I_S = 4\times2 + 2\times 2 + 1= 13$ respectivement pour les pivots, pivot-glissant puis sphère cylindre;
+\end{itemize}
+$h=0$; donc dans le plan, toutes les inconnues statiques peuvent être déterminées. 
+\end{corrige}
+\else
+\fi
+
+\ifprof
+\else
+
+Les pales du rotor principal appliquent par l’intermédiaire des biellettes et du plateau cyclique tournant des actions mécaniques sur le solide \textbf{3} que l’on modélise par : 
+$\torseurstat{T}{\text{ext}}{3} = \torseurl{\vect{F}_{\text{ext}} = F_x\vect{x}+F_x\vect{y}}{\vectm{E}{\text{ext}}{3}=M_E \vect{z}}{}$.
+
+L’effort exercé par chacun des vérins est noté :
+$\torseurstat{T}{\text{fluide}}{2} = \torseurl{\vect{F_2}=F_2\vect{y}}{\vect{0} }{G}$ (action de 1 sur 2 exercée par le fluide), 
+$\torseurstat{T}{\text{fluide}}{2'} = \torseurl{\vect{F_{2'}}=F_{2'}\vect{y}}{\vect{0} }{G'}$
+(action de 1' sur 2' exercée par le fluide).
+
+NB : Dans le cadre de la partie 2, les biellettes et le plateau cyclique tournant ne sont pas pris en compte et donc non représentés.
+\fi
+
+
+\question{Tracer le graphe de structure associé au modèle de la figure \ref{fig:2005_EA_fig_08}.}
+
+\ifprof
+\begin{corrige} ~\\
+\begin{center}
+\includegraphics[width=.6\linewidth]{2005_EA_cor_02.png} 
+%    \captionof{figure}{Mécanisme complet du rotor principal}
+    \label{fig:2005_EA_cor_02}
+\end{center}
+
+\end{corrige}
+\else
+\fi
+
+\ifprof
+\else
+On cheche à déterminer l’effort exercé par chacun des vérins.
+On néglige la masse et les inerties des différentes pièces, et on suppose les liaisons parfaites.
+\fi
+
+\question{Donner une \textbf{méthode} permettant de déterminer l'effort dans les vérins. Aucun calcul n'est demandé ici. On précisera : la (ou les) pièces isolées, les bilans d'actions mécaniques et les équations du PFS à écrire.}
+\ifprof
+\begin{corrige}
+On isole respectivement \{1+2+Fluide\} puis \{1'+2'+Fluide\}.  Ces deux ensembles sont soumis à 2 glisseurs. Le PFS permet de déterminer la direction de l'action mécanique en F, G, F' et G' (suivant $\vy{}$).
+
+On isole 3, soumis l'action de 2, 2', 0 et l'action de l'extérieur. On réalise un TMS en $E$ en projection sur $\vect{z}$ ainsi qu'un TRS en projection sur $\vect{y}$. 
+\end{corrige}
+\else
+\fi
+
+\question{Mettre en \oe{}uvre la méthode permettant de déterminer l'effort dans les vérins.}
+\ifprof
+\begin{corrige}
+On isole 3. Le BAME a été réalisé à la question précédente. 
+
+\begin{itemize}
+\item TMS en $E$ en projection sur $\vect{z}$ :
+$\vectm{E}{2'}{3} \cdot \vect{z} + \vectm{E}{2}{3} \cdot \vect{z}+ \vectm{E}{0}{3} \cdot \vect{z}+ \vectm{E}{\text{ext}}{3} \cdot \vect{z} = 0$
+$\Rightarrow \vectm{E}{2'}{3} \cdot \vect{z} + \vectm{E}{2}{3} \cdot \vect{z}+ \vectm{E}{0}{3} \cdot \vect{z}+ \vectm{E}{\text{ext}}{3} \cdot \vect{z} = 0$
+$\Rightarrow -gF_2'+gF_2+ M_E = 0$
+\item TRS en projection sur $\vect{y}$ : $F_2+F_2'+ F_x = 0$.
+\end{itemize}
+
+$F_2 = -F_2'- F_x $ et $-gF_2'+g\left( -F_2'- F_x \right)+ M_E = 0$ 
+$ \Rightarrow -gF_2'-gF_2'-g F_x + M_E = 0$ 
+$ \Rightarrow F_2' =\dfrac{M_E  -g F_x}{2g}$ 
+Au final :
+\begin{itemize}
+\item $  F_2' =\dfrac{M_E  -g F_x}{2g}$ 
+\item $F_2 = -\dfrac{M_E  -g F_x}{2g}- F_x =\dfrac{-M_E  +g F_x- 2gF_x}{2g}=-\dfrac{M_E  +g F_x}{2g}$.
+\end{itemize}
+
+\end{corrige}
+\else
+\fi
+
+
+\section{Etude du bloc orientation des pales du rotor}
+
+\ifprof
+\else
+On suppose connaître la position du plateau cyclique non tournant \textbf{3}, et on cherche l’amplitude de rotation des pales lors de la révolution du rotor \textbf{8}.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.7\linewidth]{2005_EA_fig_07_bis} 
+    \caption{Mécanisme complet du rotor principal}
+    \label{fig:2005_EA_fig_06}
+\end{figure}
+
+
+On définit différents repères :
+
+\begin{minipage}[c]{.55\linewidth}
+\begin{itemize}
+\item $\rep{} : \left(E,\vect{x},\vect{y},\vect{z}\right)$ lié au bâti \textbf{0};
+\item $\rep{3} : \left(E,\vect{x_3},\vect{y_3},\vect{z}\right)$ lié au plateau cyclique non tournant \textbf{3};
+\item $\rep{4} : \left(E,\vect{x_4},\vect{y_3},\vect{z_4}\right)$ lié au plateau cyclique tournant \textbf{4};
+\item $\rep{8} : \left(D,\vect{x_8},\vect{y},\vect{z_8}\right)$ lié au rotor \textbf{8};
+\item $\rep{7} : \left(D,\vect{x_8},\vect{y_7},\vect{z_7}\right)$ lié à la pale \textbf{7}.
+\end{itemize} 
+\end{minipage}\hfill
+\begin{minipage}[c]{.4\linewidth}
+\textbf{Données :}
+\begin{itemize}
+\item $\theta_7 = \angl{y}{y_7}= \angl{z_8}{z_7}$;
+\item $\theta = \angl{x_3}{x_4}= \angl{z}{z_4}$;
+\item $\theta^{*} = \angl{x}{x_8}= \angl{z}{z_8}$;
+\item $\alpha = \angl{x}{x_3}= \angl{y}{y_3}$.
+\end{itemize}
+\end{minipage}
+
+L'angle $\alpha$ caractérise l'orientation du plateau cyclique non tournant \textbf{3}.
+
+$\vect{EA}=d\vect{x_3}$, 
+$\vect{AB}=\ell_6 \vect{u_{AB}}$, avec  $\vect{u_{AB}} = \dfrac{\vect{AB}}{|| \vect{AB} ||}$;
+$\vect{CB}=\ell_7\vect{z_7}$, 
+$\vect{DC}=d\vect{x_8}$, 
+$\vect{ED}=\lambda \vect{y}$,
+$\vect{CP}=L \vect{x_8}-H\vect{z_7}$.
+
+La figure \ref{fig:2005_EA_fig_07} illustre les figures de changements de base. 
+
+
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.7\linewidth]{2005_EA_fig_07} % remplacer par votre fichier
+    \caption{Paramétrage du mouvement}
+    \label{fig:2005_EA_fig_07}
+\end{figure}
+\fi
+
+\question{Déterminer $\vectv{P}{7}{0}$.}
+\ifprof
+\begin{corrige}
+\textbf{Méthode 1 -- Dérivation}
+
+$\vectv{P}{7}{0} = \deriv{DP}{\mathcal{R}}$ 
+$= \deriv{d\vx{8}+L\vx{8}-H\vz{7}}{\mathcal{R}}$
+
+On  a
+$\deriv{\vx{8}}{\mathcal{R}} = \vecto{8}{0}\wedge\vx{8} $ $=\thetap^* \vy{}\wedge\vx{8} = -\thetap^* \vz{8}$.
+
+De plus $\deriv{\vz{7}}{\mathcal{R}} = \vecto{7}{0}\wedge\vz{7} $ 
+$=\left(\thetap_7 \vx{7}+ \thetap^* \vy{}\right)\wedge\vz{7}$
+$=-\thetap_7 \vy{7}+ \thetap^*  \cos \theta_7 \vx{7}$.
+
+Au final,
+$\vectv{P}{7}{0} $
+$= -\thetap^* \vz{8} \left(d+L\right)    -H  \left(-\thetap_7 \vy{7}+ \thetap^*  \cos \theta_7 \vx{7} \right)$
+
+\end{corrige}
+\else
+\fi
+
+\question{Déterminer $\vectg{P}{7}{0}$.}
+\ifprof
+\begin{corrige}
+$\vectg{P}{7}{0} $
+%$= -\thetap^* \vz{8} \left(d+L\right)    -H  \left(-\thetap_7 \vy{7}+ \thetap^*  \cos \theta_7 \vx{7} \right)$
+
+
+\begin{itemize}
+\item $\deriv{\vz{8}}{\mathcal{R}} = \vecto{8}{0}\wedge\vz{8} $ $=\thetap^* \vy{}\wedge\vz{8} = \thetap^* \vx{8}$.
+\item $\deriv{\vx{7}}{\mathcal{R}} = \vecto{7}{0}\wedge\vx{7} $ 
+$=\left(\thetap_7 \vx{7}+ \thetap^* \vy{}\right)\wedge\vx{7}$
+$= \thetap^* \vy{}\wedge\vx{7}$
+$= -\thetap^* \vy{}\wedge\vz{8}$
+\item $\deriv{\vy{7}}{\mathcal{R}} = \vecto{7}{0}\wedge\vy{7} $ 
+$=\left(\thetap_7 \vx{7}+ \thetap^* \vy{}\right)\wedge\vy{7}$
+$=\thetap_7 \vz{7}+ \thetap^* \sin \theta_7 \vx{7}$
+\end{itemize}
+
+$\vectg{P}{7}{0} =  
+-\thetapp^* \vz{8} \left(d+L\right)    
+-\thetap^{*2} \vx{8} \left(d+L\right)    
+-H  \left(-\thetapp_7 \vy{7}+ \thetapp^*  \cos \theta_7 \vx{7} - \thetap^*  \thetap_7 \sin \theta_7 \vx{7} \right)$
+
+$-H  \left(-\thetap_7 \left(\thetap_7 \vz{7}+ \thetap^* \sin \theta_7 \vx{7} \right)+ \thetap^*  \cos \theta_7 \left( -\thetap^* \vy{}\wedge\vz{8}\right)\right) $
+\end{corrige}
+\else
+\fi
+
+\section{Données inertielles d'une pale}
+
+\ifprof
+\else
+\textbf{Les notations sont indépendantes des parties précédentes. %Aucun calcul intégral n'est attendu dans cette partie.
+}
+
+La figure \ref{fig:2005_EA_fig_09} illustre le paramétrage d'une pale d'hélicoptère (partielle). On note \textbf{1} la partie qui fit le raccord avec le rotor et \textbf{2} la pale.
+
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.7\linewidth]{2005_EA_fig_09} % remplacer par votre fichier
+    \caption{Paramétrage d'une pale}
+    \label{fig:2005_EA_fig_09}
+\end{figure}
+\fi
+
+\question{Déterminer la position du centre d'inertie $G_1$ de \textbf{1} dans le repère $\repere{O}{x}{y}{z}$.}
+\ifprof
+\begin{corrige}
+La portion 1 est un cylindre $\vect{OG_1} = -\dfrac{\ell}{2}\vx{}$.
+\end{corrige}
+\else
+\fi
+
+\question{Déterminer la masse $m_1$ du solide \textbf{1} et la masse $m_2$ du solide \textbf{2}.  On fera l'hypothèse que ce sont tous deux des solides homogènes de masse volumique $\mu$.}
+\ifprof
+\begin{corrige}
+$m_1 =\mu \pi r^2 \ell$
+
+$m_2 = \mu \dfrac{1}{2} \pi R^2 L + \mu RHL$
+\end{corrige}
+\else
+\fi
+
+\question{Déterminer la position du centre d'inertie $G_2$ de coordonnées $(a_2,b_2,c_2)$ de \textbf{2} dans le repère $\repere{O}{x}{y}{z}$.}
+\ifprof
+\begin{corrige}
+La portion $2_a$ est composée d'un demi cylindre de centre d'inertie $G_a$. Pour des raisons de symétrie, seule la composante suivant $\vz{}$ est à déterminer.
+
+On a donc $m_a \vect{OG_a}\cdot \vz{} = \iint \vect{OP}\cdot \vz{} \d m$ 
+$ =\iint \rho \sin \theta \mu      \rho \d\rho \d \theta \d z$  
+$ = - \mu    \dfrac{1}{3}R^3  L \left[ \cos \theta \right]_{0}^{\pi}  $  
+$ =  2 \mu    \dfrac{1}{3}R^3  L $
+
+Avec $m_a = \mu \pi R^2/2L$, on a $ \vect{OG_a}\cdot \vz{} = \dfrac{4}{3\pi}R  $.
+
+On a donc $\vect{OG_a}=-\left(\ell+\dfrac{L}{2}\right) \vx{}+\dfrac{4}{3\pi}R \vz{}$.
+
+La portion $2_b$ es un prisme. On a $\vect{OG_b}=-\left(\ell+\dfrac{L}{2}\right) \vx{}-\dfrac{1}{3}H \vz{}$. Elle est de masse $m_b = \mu RHL$.
+
+
+On a alors $\vect{OG_2} = \dfrac{m_a \vect{OG_a} + m_b \vect{OG_b} }{m_2}$
+\end{corrige}
+\else
+\fi
+
+
+
+\question{Donner la position du centre d'inertie $G$ de l'ensemble \textbf{1+2} dans le repère $\repere{O}{x}{y}{z}$.}
+\ifprof
+\begin{corrige}
+$\vect{OG} = \dfrac{m_1 \vect{OG_1} + m_2 \vect{OG_2} }{m_1+m_2} =-a\vx{}-c\vz{}$ .
+\end{corrige}
+\else
+\fi
+
+
+On note $\inertie{P}{i} = \matinertie{A_i}{B_i}{C_i}{-D_i}{-E_i}{-F_i}{\rep{}}$  la matrice d'inertie du solide $i$ au point $P$.
+
+\question{Donner, \textbf{en justifiant} la forme de $\inertie{O}{1}$, $\inertie{G_2}{2}$, $\inertie{O}{1+2}$. }
+\ifprof
+\begin{corrige}~\\
+
+En $O$ il y a une inifinité de plans de symétrie pour 1. De plus, $\vy{}$ et $\vz{}$ jouent le même rôle. 
+$\inertie{O}{1} = \matinertie{A_1}{B_1}{B_1}{0}{0}{0}{\rep{}}$.
+
+En $G_2$ il y a 2 plans de symétrie perpendiculaires pour 2 $(G_2\,\vy{},\vz{})$ et $(G_2\,\vz{},\vx{})$ .
+$\inertie{G_2}{2} = \matinertie{A_2}{B_2}{C_2}{0}{0}{0}{\rep{}}$.
+
+
+En $O$ il y a 1 plans de symétrie permendiculaires pour 1+2  $(G_2\,\vz{},\vx{})$ .
+$\inertie{O}{1+2} = \matinertie{A_{1+2}}{B_{1+2}}{C_{1+2}}{0}{-F_{1+2}}{0}{\rep{}}$.
+
+\end{corrige}
+\else
+\fi
+
+
+\question{Déterminer $\inertie{O}{1+2}$ en fonction des composantes des matrices $\inertie{O}{1}$ et $\inertie{G_2}{2}$ et des grandeurs que vous jugerez utiles. On notera $\vect{OG_2} = a\vx{}+b\vy{}+c\vz{}$ avec $(a,b,c)\in \mathbb{R}^3$ (on pourra éventuellement simplifier l'expression de $\vect{OG_2}$ en fonction des raisonnements précédents).}
+\ifprof
+\begin{corrige}
+
+On a  $\vect{OG_2} = a\vx{}+c\vz{}$ et 
+$\inertie{O}{2} = \inertie{G_2}{2} + \matinertie{m_2c^2}{m_2 \left(a^2+c^2\right)}{m_2a^2}{0}{-m_2 ac }{0}{}$
+
+$=\matinertie{A_2+m_2c^2}{B_2 + m_2 \left(a^2+c^2\right)}{C_2 + m_2a^2}{0}{-m_2 ac }{0}{}$
+
+
+
+$\inertie{O}{1+2} =\matinertie{A_1 + A_2+m_2c^2}{B_1 + B_2 + m_2 \left(a^2+c^2\right)}{C_1 + C_2 + m_2a^2}{0}{-m_2 ac }{0}{}$
+\end{corrige}
+\else
+\fi
+
+

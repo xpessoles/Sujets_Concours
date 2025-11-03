@@ -1,0 +1,265 @@
+
+
+%Partie I -
+\section{Contrôle de la stabilité de la machine de forage \label{2023_MP_CCINP_sec_01}}
+\begin{obj}
+Les objectifs de cette partie sont de valider l'exigence 1.2 et d'étudier ce que propose le constructeur face à l'exigence 1.1.
+\end{obj}
+%I. 1 - 
+\subsection{Condition de basculement statique \label{2023_MP_CCINP_sec_11}}
+En fonction de l'orientation de la tourelle par rapport au châssis et des efforts mis en jeu, il est possible que la machine de forage bascule. Ceci doit légitimement être évité. Pour cela, la connaissance de la position estimée du centre de gravité de la machine permet à l'ordinateur de bord d'afficher à tout instant sur l'écran de contrôle la marge de manœuvre possible avant basculement de la machine. La figure \ref{2023_MP_CCINP_fig_04} ci-contre illustre ce que l'opérateur peut observer dans un coin de son écran : le pourcentage $b_{\%}$ d'atteinte de la posture critique de basculement pour une orientation de tourelle donnée. On se propose dans cette souspartie de retrouver comment l'ordinateur de bord génère ce résultat. Pour cela, on se base sur le paramétrage $\mathrm{n}^{\circ} 1$ de la machine, avec efforts ponctuels entre le sol et les chenilles, présent en annexe 1.% \ref{2023_MP_CCINP_ann_01}.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=.4\textwidth]{2025_10_26_292d8f726e32404b86d3g-03}
+%\captionsetup{labelformat=empty} Figure 4 - 
+\caption{Aperçu du contrôle de $b_{\%}$\label{2023_MP_CCINP_fig_04}}
+\end{center}
+\end{figure}
+
+
+
+%Q1. 
+\question{\label{2023_MP_CCINP_q01}Expliquer par un raisonnement simple mais détaillé pourquoi mesurer l'effort $F_{w}$ dans le câble d'avance permet au constructeur, en quasi-statique, de connaître l'effort de forage $F_{\text {sol }}$ sans mesurer ce dernier.}
+\ifprof
+\begin{corrige}
+On isole le solide $S_3$. 
+
+BAME : 
+\begin{itemize}
+\item action du câble : $2F_w \vz{}$;
+\item action du sol : $\indice{F}{sol}\vz{}$;
+\item pesanteur sur S3 : $-mg\vz{}$
+\item glissière entre S2 et S3, tel que $\vectf{S2}{S3}   \vect{z} = 0$.
+\end{itemize}
+
+On applique le TRS en projection sur $\vect{z}$ et on a $2\indice{F}{w}+\indice{F}{sol} - mg=0$.
+
+Ainsi, en mesurant $\indice{F}{w}$ et connaissant $m$, on peut évaluer $\indice{F}{sol}$.
+\end{corrige}
+\else
+\fi
+
+\vspace{.5cm}
+On suppose désormais que $F_{\text {sol }}$ est estimé par l'expression $F_{\text {sol }}=m   g-2 F_{w}$. Sauf indications contraires, on néglige également les effets dynamiques.
+
+
+%Q2. 
+\question{\label{2023_MP_CCINP_q02}En appliquant le principe fondamental de la statique en $O$ à l'isolement de votre choix, donner l'expression de $F_{g}$ et de $F_{d}$ en fonction des données connues du système, de $\theta$ et de $F_{\text {sol }}$.}
+\ifprof
+\begin{corrige}
+On isole $\Sigma$.
+
+BAME : 
+\begin{itemize}
+\item Action de la chenille gauche.
+\item Action de la chenille droite.
+\item Action de la pesanteur sur $\Sigma$.
+\item Action du sol.
+\end{itemize}
+
+On applique le TRS suivant $\vect{z}$ : $F_g + F_d  + \indice{F}{sol} - Mg = 0$.
+
+On applique le TMS en $O$ :
+$\vect{OI}\wedge F_g\vz{}+\vect{OJ}\wedge F_d\vz{} + \vect{OG}\wedge \left(-Mg\vect{z}\right) + \vect{OF}\wedge F_w\vect{z} = \vect{0}$
+
+$ -a\vect{x}\wedge F_g\vz{}+a\vect{x}\wedge F_d\vz{} + \left( r\vx{2} + z_G\vz{}\right)\wedge \left(-Mg\vect{z}\right) + R\vx{2}\wedge F_w\vect{z} = \vect{0}$
+
+$ aF_g\vect{y}-aF_d\vect{y} +rMg\vy{2}  - R F_w\vy{2} = \vect{0}$.
+
+On peut alors projeter l'équation sur $\vect{y}$ (ou $\vect{y_2}$) :
+
+$ aF_g-aF_d +(rMg- R F_w)\cos \theta = 0$
+
+
+\textbf{Résolution :}
+
+$\left\{
+\begin{array}{l}
+aF_g + aF_d  + a\indice{F}{sol} - aMg = 0\\
+aF_g-aF_d +(rMg- R F_w)\cos \theta = 0
+\end{array}
+\right.
+$
+
+$
+\Rightarrow\left\{
+\begin{array}{l}
+F_g  = \dfrac{aMg -(rMg- R \indice{F}{sol})\cos \theta - a\indice{F}{sol}}{2a}= Mg\dfrac{a -r\cos \theta}{2a}+\dfrac{ R \cos \theta - a}{2a}\indice{F}{sol} \\
+F_d  = \dfrac{- a\indice{F}{sol} + aMg +(rMg- R \indice{F}{sol})\cos \theta }{2a}
+ = Mg\dfrac{a +r\cos \theta }{2a}-\indice{F}{sol}\dfrac{ a + R \cos \theta }{2a}
+\end{array}
+\right.
+$
+
+\end{corrige}
+\else
+\fi
+
+Le problème étant symétrique pour $\theta \in\left[-\dfrac{\pi}{2} ; \dfrac{\pi}{2}\right]$ (tourelle orientée à droite) et $\theta \in\left[\dfrac{\pi}{2} ; \dfrac{3 \pi}{2}\right]$ (tourelle orientée à gauche), on n'étudie par la suite que le basculement statique à droite.
+
+%Q3. 
+\question{\label{2023_MP_CCINP_q03}Donner la condition en effort pour laquelle il y a basculement statique à droite. En absence d'effort de forage, en déduire la condition sur la position  $(r, \theta)$  du centre de gravité $G$ pour laquelle le basculement à droite est alors évité. 
+Interpréter physiquement ce résultat et montrer que $b_{\%}$ peut être, dans ce cas, approximé par :
+$b_{\%}=100 \dfrac{|r   \cos (\theta)|}{a}$.}
+
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+On désire dimensionner le nombre de contrepoids de 8 tonnes à placer à l'arrière de la tourelle pour que, en l'absence de forage et en extension maximale, l'exigence 1.2 d'équilibrage statique initial soit respectée même dans le pire des cas où la tourelle est pleinement orientée à droite ( $\theta=0$ ). Dans cette posture, le schéma de la figure \ref{2023_MP_CCINP_fig_05} illustre où se situent, dans le même plan, les centres de gravité des différents éléments de la machine :
+
+\begin{itemize}
+  \item $\mathrm{G}_{\mathrm{t}}$ est le centre de gravité de la tourelle et du châssis. La masse de cet ensemble $\mathrm{S}_{\mathrm{t}}$ est notée $m_{\mathrm{t}}=44,7$ tonnes ;
+  \item $\mathrm{G}_{\mathrm{e}}$ est le centre de gravité de tous les équipements mobiles (tige Kelly, potences, vérins, mât, table de forage, outillage, terre à évacuer), positionnés dans la configuration la plus défavorable. La masse de cet ensemble $S_{e}$ est notée $m_{\mathrm{e}}=48,8$ tonnes.
+  \item $\mathrm{G}_{\mathrm{c}}$ est le centre de gravité des contrepoids. Il y a $\indice{n}{cp}$ contrepoids de masse totale $m_{\mathrm{c}}=\indice{n}{cp}   m_{1}$, où $m_{1}=8$ tonnes est la masse d'un seul contrepoids.
+  \item L'accélération de la pesanteur est notée : $\vec{g}=-g \vec{z}=-9,8 \vec{z}$ (en $\mathrm{m} / \mathrm{s}^{2}$ ).\\
+On note (en mètres) : $\overrightarrow{O G_{t}}=2,2 \vec{z} ; \overrightarrow{O G_{e}}=4,4 \vec{x}+13 \vec{z}$; $\overrightarrow{O G_{c}}=-4,3 \vec{x}+2,3 \vec{z}$. On fait l'hypothèse que $\overrightarrow{O G_{c}}$ reste identique, indépendamment du nombre de contrepoids.
+\end{itemize}
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=.5\textwidth]{2025_10_26_292d8f726e32404b86d3g-04}
+%\captionsetup{labelformat=empty}Figure 5 - 
+\caption{Position des centres de gravité des différents solides \label{2023_MP_CCINP_fig_05}}
+\end{center}
+\end{figure}
+
+%Q4. 
+\question{\label{2023_MP_CCINP_q04}Exprimer la coordonnée sur $\vect{x}$, notée $r$, du centre de gravité $G$ total de la machine en fonction des paramètres connus et de $\indice{n}{cp}$. En déduire le nombre $\indice{n}{cp}$ minimum de contrepoids pour respecter l'exigence 1.2.}
+
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+%1.2 - 
+\subsection{Contrôle de la pression du sol \label{2023_MP_CCINP_sec_12}}
+
+%I.2.1 - 
+\subsubsection{Modélisation des actions mécaniques \label{2023_MP_CCINP_sec_121}}
+Le basculement de la machine n'est pas toujours dû à un déport trop important du centre de gravité de la machine, comme étudié dans la partie précédente, ou à un effort $F_{\text {sol }}$ (estimé via $F_{w}$ ) trop important. En effet, une fondation profonde a particulièrement du sens si le sol de surface n'est pas très résistant. Ainsi, si la foreuse exerce trop de pression sur ce sol, celui-ci peut s'affaisser, ce qui peut déstabiliser de manière critique la machine. La foreuse doit donc contrôler à tout instant, par estimation, la pression qu'elle exerce sur le sol (et donc que le sol exerce sur elle).
+
+Le tableau \ref{2023_MP_CCINP_tab_01} récapitule les niveaux de pression que les sols peuvent supporter avant de risquer de s'affaisser.
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|p{3cm}|c|p{1.5cm}|p{1.5cm}|c|p{1.5cm}|p{1.5cm}|p{1.5cm}|}
+\hline
+Type de sol & Rocher & Schiste argileux & Gravier compact  & Asphalte & Sable compacté & Sable en vrac & Argile humide \\
+\hline
+Pression maximale admissible (kPa) 
+ & 2000 & 800 & 400 & 200 & 200 & 100 & $<100$ \\
+\hline
+\end{tabular}
+%\captionsetup{labelformat=empty}%Tableau 1 - 
+\caption{Pressions admissibles par le sol selon le type de sol\label{2023_MP_CCINP_tab_01}}
+\end{center}
+\end{table}
+
+D'après les normes européennes, les efforts entre le sol et les chenilles ne doivent pas être modélisés comme ponctuels au centre de leur surface de contact comme cela a été supposé dans la partie précédente (avec $F_{d}$ et $F_{g}$ ). La répartition de pression du sol sur chaque chenille doit être modélisée comme trapézoïdale sur sa longueur et constante sur sa largeur. Un exemple de représentations 3D, 2D et " aplatie " (comme vue sur l'écran de contrôle dans la cabine) de telles répartitions est donné sur la figure \ref{2023_MP_CCINP_fig_06}. Sur la vue " aplatie ", la machine est vue de dessus et la visualisation de l'allure des pressions sous les chenilles est ramenée dans le plan de l'écran.
+
+Un des rôles de l'ordinateur de bord est d'estimer ces répartitions de pression afin de vérifier que la pression maximale supportée par le sol (rentrée par l'utilisateur en fonction du site) n'est pas atteinte à un coefficient de sécurité près.\\
+Si c'est le cas, l'ordinateur bloque tous les mouvements de la foreuse qui risqueraient d'empirer et renvoie une alarme.
+
+On se propose dans cette sous-partie d'étudier cette estimation.
+
+On base l'étude sur le paramétrage $\mathrm{n}^{\circ} 2$ de l'annexe 1 \ref{2023_MP_CCINP_ann_01}, 
+avec répartition de pression entre le sol et les chenilles. Puis, afin de résoudre le problème plus facilement, on somme les deux glisseurs (poids en $G$ et sol en $F$ ) pour en former un seul équivalent (en $E$ ), comme visualisé sur la figure \ref{2023_MP_CCINP_fig_07} et noté $\overrightarrow{F_{e q \rightarrow f}}=\indice{F}{eq} \vec{z}$ où $\indice{F}{eq}$ est négatif.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=.5\textwidth]{2025_10_26_292d8f726e32404b86d3g-05(1)}
+%\captionsetup{labelformat=empty}Figure 6 - 
+\caption{Modèles de répartitions trapézoïdales de pression du sol sur les chenilles\label{2023_MP_CCINP_fig_06}}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=.5\textwidth]{2025_10_26_292d8f726e32404b86d3g-05}
+%\captionsetup{labelformat=empty}Figure 7 - 
+\caption{Simplification et modèle équivalent \label{2023_MP_CCINP_fig_07}}
+\end{center}
+\end{figure}
+
+%Q5.
+\question{\label{2023_MP_CCINP_q05}Déterminer les expressions de $\indice{F}{eq}$ et de e en fonction de $M, m, F_{w}, R, r$ et de $g$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+La force élémentaire de réaction du sol 0 sur la chenille gauche $\text{cg}$ est notée $\overrightarrow{\d F_{0 \rightarrow c g}(P)}$ : $\overrightarrow{\d F_{0 \rightarrow \text{cg}}(P)}=p_{g}(y) \vec{z} \d x \d y$. La chenille droite est notée $\text{cd}$.
+
+%Q6. 
+\question{\label{2023_MP_CCINP_q06}En déduire l'expression de la force élémentaire $\overrightarrow{\d F_{0 \rightarrow \text{cg}}(P)}$ et du moment élémentaire $\overrightarrow{\d M_{O, 0 \rightarrow \text{cg}}(P)}$ au point $O$ qu'exercent le sol sur la chenille gauche en un point $P$ de contact en fonction de $A$ et de $B$.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+%Q7. 
+\question{\label{2023_MP_CCINP_q07}Déterminer à l'aide de la question précédente les expressions de l'effort $\overline{F_{0 \rightarrow \text{cg}}}$ et du moment au point $\mathrm{O} \overrightarrow{M_{O, 0 \rightarrow \text{cg}}}$ en fonction de $B, D$ et des données connues du système.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+De même, on pourrait, par analogie, déterminer $\overline{F_{0 \rightarrow \text{cd}}}$ et $\overline{M_{0,0 \rightarrow \text{cd}}}$ en fonction de $C$ et de $D$. Au final, on peut en déduire la force $\overline{F_{0 \rightarrow \Sigma}}$ qu'exerce le sol sur la foreuse et le moment en O qu'exerce le sol sur la foreuse $\overrightarrow{M_{O, 0 \rightarrow \Sigma}}$ (via uniquement les chenilles gauche et droite).
+
+Grâce à ces résultats, on trouve qu'à l'équilibre, les répartitions de pressions trapézoïdales doivent respecter le système d'équations (1).
+
+\[
+\left\{\begin{array}{c}
+(D+B)   L   l=-\indice{F}{eq}  \tag{1}\\
+(C+A)   \dfrac{L^{2}   l}{12}=-\indice{F}{eq}   e   \sin (\theta) \\
+(D-B)   L   l   a=-\indice{F}{eq}   e   \cos (\theta)
+\end{array}\right.
+\]
+
+%Q8. 
+\question{\label{2023_MP_CCINP_q08}Quels théorèmes généraux ont permis d'établir les trois équations scalaires du système d'équations~(1) ?}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+La figure \ref{2023_MP_CCINP_fig_08} permet de remarquer que $B$ (respectivement $D$ ), toujours positive, est la pression moyenne de la répartition trapézoïdale gauche (respectivement droite) et que $A$ (respectivement $C$ ), positive ou négative, en est l'écart entre sa pression avant et arrière. Ainsi, la pression maximale du sol sur la chenille gauche vaut toujours $B+\left|\frac{A}{2}\right|$ (respectivement $D+\left|\frac{C}{2}\right|$ à droite).
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=.8\textwidth]{2025_10_26_292d8f726e32404b86d3g-06}
+\captionsetup{labelformat=empty}
+\caption{Figure 8 - Aperçu des expressions des pressions minimale, maximale et moyenne \label{2023_MP_CCINP_fig_08}}
+\end{center}
+\end{figure}
+
+Ainsi, pour estimer la pression maximale exercée au sol, l'ordinateur de bord estime d'abord la position de $E$ et la valeur de $F_{\text {eq }}$ en fonction des données renvoyées à tout instant par les capteurs présents sur les différents axes de la foreuse. Ensuite, il détermine les valeurs des pressions $A, B$, $C$ et $D$ grâce aux équations précédentes avec l'hypothèse assez réaliste où $C=A$ et en déduit la pression maximale. Enfin, il renvoie à l'écran la visualisation "aplatie" des distributions de pression et sonne l'alarme en cas d'approche de la pression maximale autorisée rentrée par l'utilisateur.
+
+%Q9. 
+\question{\label{2023_MP_CCINP_q09}Après avoir précisé l'expression des paramètres $A, B, C$ et $D$, donner l'expression de la pression maximale de chacune des répartitions estimées (gauche et droite) en fonction des données connues par la machine ( $L, I, a, e, \theta$ et $\indice{F}{eq}$ uniquement).
+En déduire que l'expression unique de la pression maximale sous la foreuse s'écrit:}
+
+$$
+p_{\max }=\frac{-\indice{F}{eq}}{2   L   I}\left(1+\frac{e  |\cos (\theta)|}{a}+\frac{6   e  |\sin (\theta)|}{L}\right)
+$$
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+Toutefois, il est important de nuancer que la pression du sol sur la foreuse ne peut physiquement pas être négative. C'est pourquoi, lorsque la pression minimale calculée d'une répartition trapézoïdale devient négative ( $B-\left|\frac{A}{2}\right|$ pour la chenille gauche ou $D-\left|\frac{C}{2}\right|$ pour la droite), l'ordinateur de bord se doit de changer son modèle de répartition de pression trapézoïdale pour une répartition triangulaire où la pression minimale est imposée à 0 Pa . Dans ces moments-là, l'hypothèse où $C=A$ est rompue pour continuer à respecter le système d'équation précédent. On peut alors montrer dans ce cas que la pression maximale s'exprime de la façon suivante :
+
+$$
+p_{\max }=\frac{-e   \indice{F}{eq}}{L   I}\left(\frac{|\cos (\theta)|}{a}+\frac{6  |\sin (\theta)|}{L}\right) .
+$$

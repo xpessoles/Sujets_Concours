@@ -1,0 +1,406 @@
+%(Durée de l'épreuve : 3 heures)\\
+%L'usage de la calculette est autorisé
+
+\section*{Sujet mis à disposition des concours : Ecoles des Mines, TÉLÉCOM SudParis, TPE-EIVP, Cycle international}
+Cet énoncé comporte 12 pages de texte numérotées de 1 à 12. Le travail doit être reporté sur le document-réponse de 12 pages distribué avec l'énoncé. Pour valider ce document-réponse, chaque candidat doit obligatoirement y inscrire à l'encre, à l'intérieur du rectangle d'anonymat situé en première page, ses nom, prénoms (souligner le prénom usuel), numéro d'inscription et signature, avant de commencer l'épreuve. Il est conseillé de lire rapidement la totalité du sujet avant de commencer l'épreuve. Un seul document-réponse est fourni au candidat. Le renouvellement de ce document en cours d'épreuve est interdit.
+
+Les questions sont organisées suivant une progression logique caractéristique de la discipline. Toutefois les parties peuvent être abordées indépendamment les unes des autres.
+
+La rédaction des réponses sera la plus concise possible : on évitera de trop longs développements de calculs en laissant subsister les articulations du raisonnement (la taille des zones réservées aux réponses n'est pas représentative de la longueur des réponses attendues).
+
+Si, au cours de l'épreuve, un candidat repère ce qui lui semble être une erreur d'énoncé, il le signale sur sa copie et poursuit sa composition en expliquant les raisons des initiatives qu'il est amené à prendre.
+
+\section*{LE ROBOT HUMANOIDE LOLA}
+Le développement de robots à forme humaine est en croissance constante depuis quelques dizaines d'années. En robotique, il est difficile d'affirmer que tous les robots remplaçant l'homme dans ses tâches doivent être de forme humaine. Les véhicules autonomes, par exemple, ne sont pas anthropomorphes. Les tâches auxquelles sont destinées les robots définissent leur forme idéale. Si nous souhaitons un jour que les robots remplacent l'homme dans ses tâches ennuyeuses, ils devront s'intégrer au mieux à notre société, à notre environnement et à notre ergonomie.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-01}
+\captionsetup{labelformat=empty}
+\caption{Figure 1 : le robot humanoïde LOLA et sa structure cinématique (sans la tête)}
+\end{center}
+\end{figure}
+
+Les dimensions d'une maison et la hauteur des meubles sont adaptées à notre forme humaine. L'avantage des robots humanoïdes devient alors économique : il n'est pas indispensable de modifier l'environnement quotidien pour les utiliser.
+
+Le robot humanoïde LOLA (figure 1), développé par l'Université de Munich, est un robot de forme humaine conçu pour un mode de marche rapide. LOLA possède une structure à 25 degrés de liberté lui permettant une flexibilité accrue. Chaque jambe possède 7 degrés de liberté, le haut du corps 8 et la tête 3 .
+
+Le robot est équipé d'une caméra stéréoscopique haute définition afin de percevoir son environnement, d'une centrale inertielle équipée de 3 gyroscopes et de 3 accéléromètres. Chaque articulation possède un codeur angulaire absolu et chaque pied est muni d'un capteur d'effort 6 axes permettant d'obtenir l'effort de contact avec le sol. Les caractéristiques techniques de LOLA sont données dans le tableau suivant :
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Caractéristiques & Valeurs \\
+\hline
+Hauteur & 180 cm \\
+\hline
+Masse & 55 kg \\
+\hline
+Nombre de degrés de liberté & 25 \\
+\hline
+Vitesse de marche & $5 \mathrm{~km} . \mathrm{h}^{-1} \mathrm{maxi}$ \\
+\hline
+Hauteur du centre de gravité & 105 cm \\
+\hline
+\end{tabular}
+\end{center}
+
+Le diagramme partiel des exigences est donné en annexe 1.
+
+L'objectif de l'étude proposée est de justifier le respect du cahier des charges. Elle se décomposera en 3 parties : l'étude de la stabilité du robot bipède, l'étude des performances de l'asservissement angulaire du tronc et enfin l'analyse des performances de la marche.
+
+\section*{Partie 1 : Stabilité du robot}
+Par définition, le robot humanoïde bipède s'appuie sur ses deux jambes. Comme tout système de solides en équilibre statique, LOLA est à l'équilibre si la projection de son centre de gravité sur le sol est contenu dans le polygone de sustentation qui est tracé en rouge autour de ses deux pieds sur la figure 2 . Lorsque le robot marche, il y a une phase où il n'est en appui que sur un seul pied. Dans ce cas, le polygone de sustentation est réduit à un seul pied.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-02}
+\captionsetup{labelformat=empty}
+\caption{Figure 2 : polygone de sustentation sur deux pieds}
+\end{center}
+\end{figure}
+
+L'objectif de cette partie est de trouver à quelle condition le maintien du contact sur le sol est possible lorsque le robot marche et si l'accélération est compatible avec le cahier des charges, dont un extrait est donné ciaprès.
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\multicolumn{2}{|l|}{Exigence 1.3 : Le robot ne doit pas basculer lors de la marche} \\
+\hline
+\multicolumn{2}{|c|}{Description : La position du ZMP* reste dans le polygone de sustentation * : défini dans la suite} \\
+\hline
+\multicolumn{2}{|l|}{Exigence 1.1 : Le robot doit pouvoir atteindre les performances cibles} \\
+\hline
+Sous-exigence & Description \\
+\hline
+$\mathrm{Id}=1.1 .4$ & La longueur d'une foulée est de 150 cm au maximum \\
+\hline
+$\mathrm{Id}=1.1 .3$ & Le robot peut accélérer jusqu'à $1,39 \mathrm{~m} . \mathrm{s}^{-2}$ \\
+\hline
+\end{tabular}
+\end{center}
+
+Le contact du pied sur le sol est modélisé sans frottement sur la figure 3.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-03}
+\captionsetup{labelformat=empty}
+\caption{Figure 3 : modélisation du contact entre le pied et le sol}
+\end{center}
+\end{figure}
+
+\section*{1. Modélisation de l'effort de contact entre le sol et le robot.}
+Sous la semelle du robot, la pression de contact avec le sol est supposée répartie de manière uniforme transversalement (suivant la direction $\overrightarrow{\mathrm{x}}_{0}$ ). Le problème se ramène donc à une répartition linéique de pression sur les deux segments de contact $\left[O_{S} ; A_{S}\right]$ et $\left[B_{S} ; C_{S}\right]$. En chaque point $M$ (d'ordonnée $y$ ) de ces segments, la densité d'efforts de contact est $p(M) \vec{z}_{0}$, avec $p(M)$ en $N . m^{-2}$. On notera que si le robot n'est pas équipé de semelles magnétiques ou adhésives, on a $p(M)>0$. Ainsi, en notant $b$ la largeur de la semelle suivant $\overrightarrow{\mathrm{X}}_{0}$ et $\Sigma=\left[\mathrm{O}_{\mathrm{S}}, \mathrm{A}_{\mathrm{S}}\right] \cup\left[\mathrm{B}_{\mathrm{S}}, \mathrm{C}_{\mathrm{S}}\right]$, le modèle global d'action mécanique de contact du sol sur le pied peut être donné par le torseur : $\left\{T_{\text {sol } \rightarrow \text { pied }}\right\}=\left\{\begin{array}{c}\vec{R}_{\text {sol } \rightarrow \text { pied }}=b \int_{(M \in \Sigma)} p(M) \overrightarrow{Z_{0}} d y \\ \vec{M}\left(O_{S}, \text { sol } \rightarrow \text { pied }\right)=b \int_{(M \in \Sigma)} \overrightarrow{O_{S}} \vec{M} \wedge p(M) \overrightarrow{Z_{0}} d y\end{array}\right\}$
+
+\section*{Question 1 :}
+Montrer que $\left\{T_{\text {sol } \rightarrow \text { pied }}\right\}$ est un glisseur.
+
+Soit $\mathrm{H}_{\mathrm{s}}$ le point de la droite $\left(\mathrm{O}_{\mathrm{s}}, \overrightarrow{\mathrm{y}}_{0}\right)$ tel que $\overrightarrow{\mathrm{M}}\left(\mathrm{H}_{\mathrm{s}}\right.$, sol $\rightarrow$ pied $)=\overrightarrow{0}$, on notera $\overrightarrow{\mathrm{O}_{\mathrm{s}} \mathrm{H}_{\mathrm{s}}}=\mathrm{Y}_{\mathrm{H}_{\mathrm{s}}} \overrightarrow{\mathrm{y}_{0}}$. Ce point est fondamental en robotique humanoïde, il prend le nom de Zero Moment Point (ZMP) : de l'anglais « point de moment nul ».
+
+\section*{Question 2 :}
+Montrer que $\mathrm{H}_{\mathrm{s}} \in\left[\mathrm{O}_{\mathrm{s}} ; \mathrm{C}_{\mathrm{s}}\right]$, c'est à-dire qu'il est situé sous le pied du robot.
+
+\section*{Question 3 :}
+Donner la forme du torseur $\left\{T_{\text {sol } \rightarrow \text { pied }}\right\}$ dans le cas d'un contact avec frottement dans le plan sagittal (c'est-à dire que la densité d'efforts de contact est $p(M) \vec{z}_{0}+t(M) \vec{y}_{0}$ ). Montrer que les résultats des questions 1 et 2 sont inchangés.
+
+\section*{2. Établissement de la condition de non-basculement.}
+Considérons le robot en marche avec le torse ayant un mouvement de translation vers l'avant (suivant $+\overrightarrow{\mathrm{y}}_{0}$ ). Le robot est toujours dans la phase d'appui d'un seul pied sur le sol, via une des deux jambes notées (2).
+
+\section*{Données et paramètres :}
+Torse (1) :
+
+\begin{itemize}
+  \item masse $m_{1}$, accélération de la pesanteur: $\vec{g}=-g \vec{z}_{0}$ avec $\mathrm{g}=9,81 \mathrm{~m} . \mathrm{s}^{-2} ;$
+  \item centre de gravité : G , tel que $\overrightarrow{\mathrm{O}_{\mathrm{S}} \mathrm{G}}=\mathrm{Y}_{\mathrm{G}}(\mathrm{t}) \overrightarrow{\mathrm{y}}_{0}+\mathrm{Z}_{\mathrm{G}}(\mathrm{t}) \overrightarrow{\mathrm{z}_{0}}$;
+  \item le torse est supposé en mouvement de translation rectiligne, de direction $\overrightarrow{\mathrm{y}}_{0}$ par rapport au sol, on a : $\left\{\mathrm{V}_{1 / \text { sol }}\right\}=\left\{\begin{array}{c}\overrightarrow{0} \\ \frac{\mathrm{~d} \mathrm{Y}_{\mathrm{G}}}{\mathrm{dt}} \overrightarrow{\mathrm{y}}_{0}\end{array}\right\}_{\mathrm{G}}$.
+\end{itemize}
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-04}
+\captionsetup{labelformat=empty}
+\caption{Figure 4 : modélisation du robot en marche}
+\end{center}
+\end{figure}
+
+\section*{Jambes avec les pieds (2) :}
+masses et inerties négligeables dans cette phase.\\
+N.B. : le pied d'appui est sans mouvement par rapport au sol.
+
+L'action mécanique du sol sur la semelle du pied est modélisée par le glisseur : $\left\{T_{\text {sol } \rightarrow \text { pied }}\right\}=\left\{\begin{array}{c}\vec{R}_{\text {sol } \rightarrow \text { pied }} \\ \overrightarrow{0}\end{array}\right\}_{H_{s}}$ où :
+
+\begin{itemize}
+  \item $\mathrm{H}_{\mathrm{S}}$ est le ZMP , point mis en évidence à la question 2 tel que $\overrightarrow{\mathrm{O}_{\mathrm{S}} \mathrm{H}_{\mathrm{S}}}=\mathrm{Y}_{\mathrm{H}_{\mathrm{S}}} \overrightarrow{\mathrm{y}_{0}}$;
+  \item $\quad \vec{R}_{\text {sol } \rightarrow \text { pied }}=N_{\text {sol } \rightarrow \text { pied }} \vec{Z}_{0}+T_{\text {sol } \rightarrow \text { pied }} \overrightarrow{\mathrm{y}}_{0}$, avec à la limite du glissement $\left|T_{\text {sol } \rightarrow \text { pied }}\right|=\mu\left|N_{\text {sol } \rightarrow \text { pied }}\right|$ où $\mu$ est le facteur de frottement du contact sol / semelle.
+\end{itemize}
+
+\section*{Question 4 :}
+En appliquant le théorème du moment dynamique, puis le théorème de la résultante dynamique au système $\{1+2\}$, montrer que la condition de stabilité (non basculement) s'écrit : $Y_{H_{s}}=Y_{G}-\frac{Z_{G}}{g} \frac{d^{2} Y_{G}}{d t^{2}}$
+
+Conformément au résultat de la question 2, le calculateur du robot contrôle en permanence la position du point $\mathrm{H}_{\mathrm{s}}(\mathrm{ZMP})$ : s'il est positionné à l'intérieur du segment $\left[\mathrm{O}_{\mathrm{s}} ; \mathrm{C}_{\mathrm{s}}\right]$, le robot ne bascule pas.
+
+On appelle foulée, la longueur entre deux emplacements successifs d'appui du même pied. Lors du premier pas, le centre de gravité se déplace de sorte que $Y_{G} \in\left[-\frac{\text { foulée }}{4} ;+\frac{\text { foulée }}{4}\right]$, car pour une accélération constante, les deux pas qui constituent une foulée sont de même longueur.
+
+Le cahier des charges stipule qu'à partir de la station immobile, le robot doit atteindre la vitesse cible de $5 \mathrm{~km} . \mathrm{h}^{-1}$ en une seconde, avec une accélération constante du centre de gravité $\frac{\mathrm{d}^{2} \mathrm{Y}_{\mathrm{G}}}{\mathrm{dt}^{2}}=1,39 \mathrm{~m} . \mathrm{s}^{-2}$.\\
+On rappelle que $Z_{G}=105 \mathrm{~cm}$.
+
+\section*{Question 5:}
+Sachant que la longueur de la semelle du robot $\left[\mathrm{O}_{\mathrm{S}} ; \mathrm{C}_{\mathrm{S}}\right]$ est $\mathrm{L}=300 \mathrm{~mm}$, déterminez la longueur de la première foulée du robot qui garantit la condition de non-basculement. Est-ce compatible avec le cahier des charges ?
+
+\section*{Question 6:}
+Dans le cas d'un sol relativement glissant, avec un facteur de frottement du contact sol /semelle $\mu=0,1$, quelle accélération maximale $\left\{\frac{d^{2} Y_{G}}{d t^{2}}\right\}_{\text {MAX }}$ le robot peut-il avoir? Est-ce compatible avec le cahier des charges pour la phase de démarrage ?
+
+\section*{Partie 2 : Contrôle de la posture de LOLA}
+Pour assurer une marche rapide et stable de LOLA, la méthode choisie est le contrôle de la verticalité du tronc du robot (figure 5). Le haut du corps (tronc, bras, tête) sera maintenu vertical en réalisant un asservissement de position angulaire au niveau de l'articulation de la hanche. L'action mécanique de redressement est développée par l'ensemble de motorisation de tangage autour de l'axe ( $\mathrm{O}_{\mathrm{T}}, \overrightarrow{\mathrm{x}}_{0}$ ). Les performances à vérifier dans cette partie sont définies par les exigences suivantes :
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-05}
+\captionsetup{labelformat=empty}
+\caption{Figure 5}
+\end{center}
+\end{figure}
+
+La chaîne structurelle permettant de modifier la posture du haut du corps autour de l'axe de tangage est représentée sur la figure 6 (page 6 ). Elle est composée d'un moteur électrique $(1,2)$ synchrone à aimants\\
+permanents piloté par un variateur électronique, d'un réducteur Harmonic-Drive ${ }^{©}$ (3) de rapport de réduction $1 / 100$, d'un codeur incrémental (5) ainsi que d'un codeur angulaire absolu (6+7).
+
+Une centrale inertielle équipée d'un accéléromètre, d'un gyroscope et d'une unité de traitement permet d'obtenir en temps réel la valeur de l'angle d'inclinaison du haut du corps par rapport à la verticale.
+
+L'objectif de cette partie est de mettre en place un modèle du maintien vertical du tronc de LOLA et de déterminer une structure de commande permettant d'assurer les performances du cahier des charges de l'exigence 1.3.2.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-06}
+\captionsetup{labelformat=empty}
+\caption{Figure 6}
+\end{center}
+\end{figure}
+
+Les performances dynamiques de l'axe de tangage doivent vérifier les critères suivants:
+
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\multicolumn{3}{|c|}{Sous-exigence 1.3.2.d: la performance dynamique de chaque axe permet de modifier la posture} \\
+\hline
+Critère & Niveau & Flexibilité \\
+\hline
+Marge de phase & $\mathrm{M} \varphi=50^{\circ}$ & Mini \\
+\hline
+Erreur statique & $0^{\circ}$ & [ $-0.5^{\circ} ;+0.5^{\circ}$ ] \\
+\hline
+Bande passante à 0 dB en boucle ouverte & $\omega_{\text {BP }}=50 \mathrm{rad} . s^{-1}$ & Mini \\
+\hline
+Temps de réponse à 5\% & $0,2 \mathrm{~s}$ & Maxi \\
+\hline
+Dépassement & $1^{\circ}$ & Maxi \\
+\hline
+\end{tabular}
+\end{center}
+
+\section*{1. Modèle de connaissance de la dynamique de tangage.}
+Le modèle mécanique utilisé pour mener notre étude est donné sur la figure 7. L'association des liaisons entre le tronc et les jambes au niveau de la hanche est équivalente, dans le plan sagittal ( $\mathrm{O}_{\mathrm{T}}, \overrightarrow{\mathrm{y}}_{0,}, \overrightarrow{\mathrm{z}}_{0}$ ), à une liaison pivot d'axe $\left(\mathrm{O}_{\mathrm{T}}, \overrightarrow{\mathrm{x}}_{0}\right)$. Le tronc sera considéré comme un solide admettant le plan ( $\mathrm{O}_{\mathrm{T}}, \overrightarrow{\mathrm{y}}_{0,}, \overrightarrow{\mathrm{z}}_{0}$ ) comme plan de symétrie. Le cahier des charges stipule que LOLA doit pouvoir marcher à la vitesse de $5 \mathrm{~km} / \mathrm{h}$. Cette vitesse est atteinte en 1 s lors de la première foulée. La loi de commande en vitesse correspondante est représentée
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-06(1)}
+\captionsetup{labelformat=empty}
+\caption{Figure 7}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-06(2)}
+\captionsetup{labelformat=empty}
+\caption{Figure 7}
+\end{center}
+\end{figure}
+
+Le mouvement de marche est imposé et modélisé par le torseur cinématique en $\mathrm{O}_{\mathrm{T}}$ du mouvement du tronc 1 par rapport au sol 0 :
+
+$$
+\left\{V_{1 / 0}\right\}=\left\{\begin{array}{c}
+\frac{d \alpha}{d t} \vec{x}_{0} \\
+v(t) \vec{y}_{0}
+\end{array}\right\}_{\alpha_{\mathrm{T}}}
+$$
+
+Les caractéristiques d'inertie du tronc 1 de LOLA sont :
+
+\begin{itemize}
+  \item la matrice d'inertie en $\mathrm{O}_{\mathrm{T}}: \mathrm{I}\left(\mathrm{O}_{\mathrm{T}}, 1\right)=\left[\begin{array}{ccc}\mathrm{A}_{1} & 0 & 0 \\ 0 & \mathrm{~B}_{1} & -\mathrm{D}_{1} \\ 0 & -\mathrm{D}_{1} & \mathrm{C}_{1}\end{array}\right]_{\mathrm{B}_{1}}$
+  \item position du centre de gravité : $\overline{\mathrm{O}_{\mathrm{T}} \overrightarrow{\mathrm{G}}_{\mathrm{T}}}=\mathrm{Z}_{\mathrm{G}} \cdot \vec{Z}_{1}$
+  \item masse: $\mathrm{m}_{1}$
+  \item l'accélération de la pesanteur sera prise égale à $\mathrm{g}=9,81 \mathrm{~m} \cdot \mathrm{~s}^{-2}$.
+\end{itemize}
+
+L'axe de sortie du réducteur exerce un couple de redressement sur le tronc 1 modélisé par le torseur couple suivant : $\left\{T_{h d \rightarrow 1}\right\}=\left\{\begin{array}{c}\overrightarrow{0} \\ C_{R} \vec{x}_{0}\end{array}\right\}_{O_{T}}$. L'angle a sera supposé faible pendant le mouvement : ainsi $\cos \alpha \sim 1$ et $\sin \alpha \sim \alpha$
+
+\section*{Question 7 :}
+Proposer une démarche de résolution afin d'obtenir l'équation différentielle du mouvement reliant $\alpha$ et ses dérivées successives aux données du problème. Effectuer un bilan des actions mécaniques extérieures au système matériel isolé.
+
+\section*{Question 8 :}
+Développer l'ensemble des calculs pour déterminer l'équation différentielle reliant $\alpha$ et ses dérivées successives aux données du problème.
+
+Le contrôle de l'angle s'effectue par l'intermédiaire du moteur asservi en position, suivi du réducteur HarmonicDrive ${ }^{®}$ de rapport de réduction $\mathrm{r}=\frac{1}{100}$. Le moment d'inertie de l'arbre moteur suivant son axe de rotation est noté $\mathrm{J}_{\mathrm{m}}$, le couple moteur exercé sur l'arbre d'entrée du réducteur est noté $\mathrm{C}_{\mathrm{m}}$. Le réducteur HarmonicDrive ${ }^{®}$ sera considéré sans masse. La masse de l'arbre moteur est négligeable devant l'ensemble des autres grandeurs inertielles. Une étude dynamique a permis de montrer que : $C_{R}=\frac{C_{m}}{r}-\frac{J_{m}}{r^{2}} \cdot \frac{d^{2} \alpha(t)}{d t^{2}}$. Ainsi, l'équation différentielle du mouvement devient :
+
+
+\begin{equation*}
+J_{e q} \frac{d^{2} \alpha(t)}{d t^{2}}-m_{1} g Z_{G} \alpha(t)=m_{1} Z_{G} \frac{d v(t)}{d t}+\frac{C_{m}(t)}{r} \tag{1}
+\end{equation*}
+
+
+$\mathrm{J}_{\text {eq }}$ est le moment d'inertie équivalent de l'ensemble du tronc ramené sur l'axe moteur.
+
+\section*{2. Modèle du contrôle actif de la position verticale.}
+On note $\Gamma(t)=\frac{d v(t)}{d t}$. Les conditions de Heaviside sont vérifiées. Le schéma-bloc du contrôle de la position angulaire du tronc de LOLA est représenté sur l'annexe 2. La consigne angulaire est nulle afin de garder le tronc du robot vertical: $\alpha_{c}(t)=0$. Les transformées de Laplace des fonctions seront notées en majuscules et le paramètre de Laplace sera noté p.\\
+Le comportement du moteur sera considéré comme celui d'un moteur à courant continu dont les équations de comportement sont les suivantes: $u_{c}(t)=e(t)+L \frac{d i(t)}{d t}+R i(t) ; e(t)=k_{e} \omega_{m}(t)$ et $C_{m}(t)=k_{c} i(t)$.
+
+\section*{Question 9 :}
+Indiquer sur le document-réponse les fonctions de transfert des blocs $B_{1}, B_{2}, B_{3}, B_{4}, B_{5}, B_{6}$ et $B_{7}$ ainsi que l'expression de la fonction de transfert $H_{1}(p)$.
+
+Afin d'analyser la stabilité de cet asservissement, nous cherchons à déterminer la fonction de transfert en boucle ouverte du système non-corrigé : $F(p)=\frac{\alpha(p)}{U_{c}(p)}$ en supposant la perturbation nulle.
+
+\section*{Question 10 :}
+Déterminer la fonction de transfert de la boucle dynamique $H_{\text {dyn }}(p)=\frac{\alpha(p)}{C_{m}(p)}$ en supposant la perturbation nulle.
+
+\section*{Question 11 :}
+Déterminer la fonction de transfert en boucle ouverte non-corrigée de l'asservissement $F(p)=\frac{\alpha(p)}{U_{c}(p)}$. Indiquer son ordre, sa classe et donner son gain statique $K$ en fonction des données.
+
+Une simulation numérique permet de montrer que $F(p)$ est de la forme $\frac{K}{\left(1+\tau_{1} p\right)\left(-1+\tau_{1} p\right)\left(1+\tau_{2} p\right)}$. Les diagrammes de Bode de cette fonction de transfert sont donnés sur le document-réponse.
+
+\section*{Question 12 :}
+En analysant les diagrammes de Bode du document-réponse, déterminer les valeurs de $\tau_{1}, \tau_{2}$ et K . Justifier en complétant les diagrammes du document-réponse avec les diagrammes asymptotiques de gain et de phase.\\
+Pour la suite de l'étude, nous simplifierons $F(p)$ sous la forme suivante : $\frac{K}{\left(1+\tau_{1} p\right)\left(-1+\tau_{1} p\right)}$.
+
+\section*{Question 13 :}
+Justifier le choix de cette simplification.
+
+\section*{Question 14 :}
+Expliquer pourquoi le critère du revers ne peut pas être appliqué pour étudier la stabilité en boucle fermée.
+
+Afin de résoudre ce problème, il est décidé d'asservir la chaîne directe en position et en vitesse. Pour cela, la centrale inertielle permet de mesurer l'angle de tangage $\alpha(t)$ ainsi que la vitesse angulaire $\frac{d \alpha(t)}{d t}$. L'asservissement ainsi réalisé est présenté sous la forme du schéma-bloc de la figure 8 (page 9).\\
+$U_{c}(p)$ est la tension de commande en sortie du correcteur. La fonction de transfert de la centrale inertielle sera prise égale à $\mathrm{H}_{\mathrm{ci}}(\mathrm{p})=\mathrm{K}_{1}(\mathrm{p}+1)$.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-09}
+\captionsetup{labelformat=empty}
+\caption{Figure 8}
+\end{center}
+\end{figure}
+
+\section*{Question 15 :}
+Déterminer deux conditions sur $\mathrm{K}_{1}$ pour que la fonction de transfert en boucle ouverte non-corrigée $\frac{\alpha(p)}{U_{c}(p)}$ soit stable. En déduire la valeur minimale de $K_{1}$.
+
+\section*{Question 16 :}
+Déterminer $\mathrm{K}_{1}$ pour que la fonction de transfert $\frac{\alpha(\mathrm{p})}{\mathrm{U}_{\mathrm{C}}(\mathrm{p})}$ ait un facteur d'amortissement $\xi=1,7$. Vérifier que cette valeur est compatible avec les conditions obtenues précédemment. En déduire les valeurs de la pulsation propre $\omega_{0}$ et du gain statique de la boucle ouverte $\mathrm{K}_{\mathrm{B} 0}$.
+
+Quels que soient les résultats trouvés précédemment, nous utiliserons les expressions suivantes pour la suite de l'étude: $\frac{\alpha(p)}{U_{C}(p)}=\frac{K_{B O}}{1+\frac{2 . \xi}{\omega_{0}} \cdot p+\frac{p^{2}}{\omega_{0}^{2}}}$ avec $K_{B O}=1,1.10^{-3}, \xi=1,7$ et $\omega_{0}=3$ rad. $s^{-1}$. Pour répondre au cahier des charges, il est décidé d'implanter un correcteur de fonction de transfert suivante : $H_{\text {cor }}(p)=K_{p .} \frac{1+a T_{d} p}{1+T_{d} p}$ avec $\mathrm{a}>1$.
+
+\section*{Question 17 :}
+Nommer ce correcteur.
+
+Les diagrammes de Bode de gain et de phase (pour $\mathrm{K}_{\mathrm{p}}=1$ ) de ce correcteur sont fournis en annexe 3. Afin d'assurer un gain significatif de phase, nous décidons de placer $\omega_{c}$ en $\omega_{B P}=50$ rad.s $^{-1}$, définissant ainsi la bande passante.
+
+\section*{Question 18 :}
+Déterminer la valeur du paramètre a pour que le correcteur permette d'assurer la marge de phase du cahier des charges. En déduire la valeur de $T_{d}$.
+
+\section*{Question 19 :}
+Déterminer le gain $\mathrm{K}_{\mathrm{p}}$ pour que le critère de bande passante du cahier des charges soit bien vérifié.
+
+La stabilité du tronc étant assurée, nous devons maintenant analyser les performances en précision et rapidité de l'asservissement de position angulaire. La consigne est nulle, ainsi seule la perturbation va écarter le tronc du robot de sa posture verticale. Cette perturbation provient du mouvement de marche souhaité c'est à dire de l'accélération subie $\Gamma(t)=\frac{d v(t)}{d t}$. Avec les réglages du correcteur, une simulation numérique a permis de tracer la réponse temporelle du système pour une perturbation $\Gamma(t)$ respectant la loi de vitesse représentée sur la figure 7 de la page 6. Cette réponse est tracée sur l'annexe 4.
+
+\section*{Question 20 :}
+Justifier l'allure de la réponse temporelle. Déterminer graphiquement sur le document réponse le temps de réponse à $5 \%$, le dépassement maximal et l'erreur statique. Conclure sur la capacité du correcteur à vérifier l'ensemble des critères du cahier des charges.
+
+\section*{Partie 3 : Alterner les phases d'appui sur les deux pieds (marche du robot)}
+A l'instar de la marche humaine, les jambes du robot alternent les phases d'appui avec le sol avec les phases de balancement, où la jambe en rotation autour de la hanche prépare l'appui suivant. La figure ci-dessous décrit cette alternance.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-10}
+\captionsetup{labelformat=empty}
+\caption{Figure 9 : chronogramme de la marche bipède en régime permanent}
+\end{center}
+\end{figure}
+
+Extrait du cahier des charges à valider dans cette partie :
+
+\begin{table}[h]
+\begin{center}
+\captionsetup{labelformat=empty}
+\caption{Exigence 1.1 : Le robot doit pouvoir atteindre les performances cibles}
+\begin{tabular}{|l|l|}
+\hline
+Sous-exigence & Description \\
+\hline
+$\mathrm{ld}=1.1 .1$ & L'amplitude maximale de balancement d'une jambe est de $45^{\circ}$ \\
+\hline
+$\mathrm{Id}=1.1 .2$ & Le robot peut se déplacer jusqu'à $5 \mathrm{~km} . \mathrm{h}^{-1}$ \\
+\hline
+$\mathrm{ld}=1.1 .4$ & La longueur d'une foulée est de 150 cm au maximum \\
+\hline
+ld=1.1.5 & La période d'une foulée ne peut être inférieure à 1 seconde \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+L'objectif de cette partie est d'analyser les solutions techniques mises en œuvre pour obtenir l'alternance des phases d'appui du robot et de vérifier les performances de la marche.
+
+Lorsque la jambe est tendue, la distance entre l'axe de tangage de la cheville et celui de tangage de la hanche est de 98 cm .
+
+\section*{Question 21:}
+Le critère de vitesse de déplacement de $5 \mathrm{~km} . \mathrm{h}^{-1}$ est-il cohérent avec ceux de longueur de foulée et de temps de cycle? Justifier.
+
+Compte-tenu des dimensions du robot, pour atteindre l'objectif de vitesse de déplacement de LOLA, la durée de la phase de balancement doit être inférieure à 0,4 secondes. C'est le moteur de tangage de la hanche qui assure ce mouvement. Alors que traditionnellement, le moteur d'articulation de la cheville est placé directement sur l'axe de la liaison considérée, une grande avancée technologique sur le robot LOLA a consisté à implanter les moteurs d'orientation de la cheville le plus haut possible sur la jambe afin de réduire le moment d'inertie $\mathrm{J}_{\mathrm{J}}$ de la jambe par rapport à l'axe ( $\mathrm{O}_{\mathrm{H}}, \overrightarrow{\mathrm{X}}_{0}$ ) : voir annexe 5 .
+
+La solution retenue nécessite une transmission de puissance du moteur jusqu'à l'axe de la cheville. La rotation de tangage de la cheville est obtenue par la chaîne décrite partiellement sur l'annexe 5 où l'on donne aussi le débattement angulaire de rotation en tangage de la cheville.
+
+\section*{Question 22:}
+Déterminer graphiquement sur le document-réponse la course $\Delta \mathrm{C}$ du chariot permettant d'obtenir le débattement angulaire spécifié en annexe 5 .
+
+Depuis le moteur implanté sur la cuisse, la puissance est transmise par un système composé de poulies, courroies, et d'un renvoi d'angle à pignons coniques comme le montre l'annexe 6.
+
+Les caractéristiques de la chaîne de transmission de puissance sont les suivantes:
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Vitesse nominale en sortie du moto-réducteur = vitesse nominale de la poulie motrice & $\mathrm{N}_{\mathrm{n}}=2200 \mathrm{tr} . \mathrm{min}^{-1}$ \\
+\hline
+Diamètre de la poulie motrice & 40 mm \\
+\hline
+Diamètre de la poulie réceptrice & 40 mm \\
+\hline
+Nombre de dents de l'engrenage conique lié à la poulie réceptrice & 22 \\
+\hline
+Nombre de dents de l'engrenage conique lié à la vis & 22 \\
+\hline
+Pas de la vis à billes & $\mathrm{P}_{\mathrm{V}}$ (à déterminer) \\
+\hline
+\end{tabular}
+\end{center}
+
+Le cahier des charges précise que ce débattement angulaire en tangage doit pouvoir être parcouru en moins de 0,8 s.
+
+\section*{Question 23:}
+En supposant la vitesse de rotation du moteur constante, déterminer le pas $\mathrm{P}_{\mathrm{v}}$ en mm de la vis à billes pour obtenir le temps d'inclinaison en tangage de la cheville spécifié par le cahier des charges.
+
+Comme sur le corps humain, l'articulation de la cheville possède deux degrés de liberté : une rotation en tangage étudiée précédemment et une rotation en roulis. Le mécanisme de transmission de puissance présenté précédemment est donc dupliqué de l'autre coté du tibia et un joint de cardan est placé entre le tibia et le pied : voir l'annexe 7. Les « vis droite » et « vis gauche » sont identiques.
+
+\section*{Question 24 :}
+Quels mouvements particuliers doit-on imposer simultanément aux «vis droite» et «vis gauche » pour obtenir une rotation uniquement en roulis de la cheville ? Pour une rotation uniquement en tangage ?
+
+\section*{Question 25 :}
+Dénombrer et décrire les mobilités (internes et utiles) du modèle de mécanisme présenté annexe 7 ? En déduire le degré d'hyperstatisme.
+
+\section*{Question 26 :}
+Comment réduire ce degré d'hyperstatisme en remplaçant les liaisons glissière par d'autres liaisons? Présenter la solution envisagée sous forme de schéma cinématique.
+
+\section*{Fin de l'énoncé.}
+
+\end{document}

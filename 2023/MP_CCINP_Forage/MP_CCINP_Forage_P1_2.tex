@@ -1,0 +1,62 @@
+
+%\section*{I.2.2 - Étude séquentielle}
+\subsubsection{Étude séquentielle \label{2023_MP_CCINP_sec_122}}
+En résumé, pour évaluer la pression du sol sous la foreuse, l'ordinateur de bord réalise en permanence les étapes suivantes :
+
+\begin{itemize}
+  \item évaluation de la position de $G$ et de $F$ et mesure de l'effort $F_{w}$. Déduction de la position de $E$ et de l'effort $\indice{F}{eq}$ et évaluation du pourcentage $b_{\%}$ d'atteinte de la posture critique de basculement ;
+  \item évaluation de la pression minimale $p_{\text {min }}$ dans le cas de répartitions trapézoïdales de pression :
+\end{itemize}
+
+$$
+p_{\min }=\frac{-\indice{F}{eq}}{2   L   I}\left(1-\frac{e  |\cos (\theta)|}{a}-\frac{6   e  |\sin (\theta)|}{L}\right) ;
+$$
+
+\begin{itemize}
+  \item dans le cas d'une pression minimale positive, calcul de la pression maximale $p_{\max }$ :
+\end{itemize}
+
+$$
+p_{\max }=\frac{-\indice{F}{eq}}{2   L   l}\left(1+\frac{e  |\cos (\theta)|}{a}+\frac{6   e  |\sin (\theta)|}{L}\right) ;
+$$
+
+\begin{itemize}
+  \item dans le cas d'une pression minimale négative, calcul de la pression maximale $p_{\max }$ :
+\end{itemize}
+
+$$
+p_{\max }=\frac{-e   \indice{F}{eq}}{L   I}\left(\frac{|\cos (\theta)|}{a}+\frac{6  |\sin (\theta)|}{L}\right) ;
+$$
+
+\begin{itemize}
+  \item comparaison de $p_{\max }$ avec la valeur $p_{\text {sol }}$ maximale autorisée ;
+  \item dans le cas où la valeur de $p_{\text {max }}$ dépasse la valeur de $p_{\text {sol }}$, ou si $b_{\%}$ dépasse $90 \%$, sonnerie de l'alarme et blocage des mouvements en cours de la foreuse jusqu'à ce que l'opérateur appuie sur l'arrêt d'urgence donnant accès à un mode de dégagement non-détaillé ici. La variable booléenne traduisant l'arrêt d'urgence est notée ARU et vaut 1 si l'arrêt est enclenché, 0 sinon ;
+  \item redémarrage du travail normal de la foreuse et du contrôle de sa stabilité une fois le dégagement terminé et l'arrêt d'urgence désenclenché. La variable booléenne de la fin de dégagement est notée FinDeg et vaut 1 si la demande de fin est enclenchée, 0 sinon.\\
+Ce fonctionnement séquentiel est illustré par le diagramme d'états du Document Réponse DR1.\\
+\end{itemize}
+
+%Q10. 
+\question{\label{2023_MP_CCINP_q10}À l'aide de la description du fonctionnement séquentiel précédente, compléter les cinq transitions manquantes du diagramme d'états fourni dans le DR1.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+On propose sur le croquis du bas du DR2 une chronologie d'événements : déploiement, orientation puis positionnement de la tourelle. L'évolution théorique des pressions estimées par l'ordinateur et du pourcentage d'atteinte de la posture critique de basculement qui découle de ces événements est aussi donnée sur le DR2.
+
+%Q11. 
+\question{\label{2023_MP_CCINP_q11}Grâce au diagramme d'états complété, surligner sur le DR2 la valeur de $p_{\text {max }}$ retenue par l'ordinateur de bord au cours du temps. Indiquer clairement sur le DR2 l'instant où l'alarme se déclenchera sachant que ces opérations se déroulent sur du gravier compact (voir tableau \ref{2023_MP_CCINP_tab_01}) et que l'opérateur a réglé $p_{\text {sol }}$ à la limite maximale de ce matériau sans coefficient de sécurité.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+%Q12. 
+\question{\label{2023_MP_CCINP_q12}Résumer en quoi les estimations de $b_{\%}$ et de $p_{\text {sol }}$ par la machine sont des indicateurs pertinents et complémentaires pour le contrôle de la stabilité, afin de satisfaire l'exigence 1.1.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi

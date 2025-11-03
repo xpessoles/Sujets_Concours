@@ -1,0 +1,90 @@
+%\label{ccmp_psi_2015:part3}
+%\section*{Partie 3 : Alterner les phases d'appui sur les deux pieds (marche du robot)}
+\section{Alterner les phases d'appui sur les deux pieds (marche du robot)}
+A l'instar de la marche humaine, les jambes du robot alternent les phases d'appui avec le sol avec les phases de balancement, où la jambe en rotation autour de la hanche prépare l'appui suivant. La figure \ref{ccmp_psi_2015:fig_09} décrit cette alternance.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-10}
+%\captionsetup{labelformat=empty}
+\caption{Chronogramme de la marche bipède en régime permanent \label{ccmp_psi_2015:fig_09}}
+\end{center}
+\end{figure}
+
+Extrait du cahier des charges à valider dans cette partie :
+
+\begin{table}[h]
+\begin{center}
+\captionsetup{labelformat=empty}
+\caption{Exigence 1.1 : Le robot doit pouvoir atteindre les performances cibles}
+\begin{tabular}{|l|l|}
+\hline
+Sous-exigence & Description \\
+\hline
+$\mathrm{ld}=1.1 .1$ & L'amplitude maximale de balancement d'une jambe est de $45^{\circ}$ \\
+\hline
+$\mathrm{Id}=1.1 .2$ & Le robot peut se déplacer jusqu'à $5 \mathrm{~km} . \mathrm{h}^{-1}$ \\
+\hline
+$\mathrm{ld}=1.1 .4$ & La longueur d'une foulée est de 150 cm au maximum \\
+\hline
+ld=1.1.5 & La période d'une foulée ne peut être inférieure à 1 seconde \\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+L'objectif de cette partie est d'analyser les solutions techniques mises en œuvre pour obtenir l'alternance des phases d'appui du robot et de vérifier les performances de la marche.
+
+Lorsque la jambe est tendue, la distance entre l'axe de tangage de la cheville et celui de tangage de la hanche est de 98 cm .
+
+
+%\section*{Question 21:}
+\question{\label{ccmp_psi_2015:q21}Le critère de vitesse de déplacement de $5 \mathrm{~km} . \mathrm{h}^{-1}$ est-il cohérent avec ceux de longueur de foulée et de temps de cycle? Justifier.}
+
+Compte-tenu des dimensions du robot, pour atteindre l'objectif de vitesse de déplacement de LOLA, la durée de la phase de balancement doit être inférieure à 0,4 secondes. C'est le moteur de tangage de la hanche qui assure ce mouvement. Alors que traditionnellement, le moteur d'articulation de la cheville est placé directement sur l'axe de la liaison considérée, une grande avancée technologique sur le robot LOLA a consisté à implanter les moteurs d'orientation de la cheville le plus haut possible sur la jambe afin de réduire le moment d'inertie $\mathrm{J}_{\mathrm{J}}$ de la jambe par rapport à l'axe ( $\mathrm{O}_{\mathrm{H}}, \overrightarrow{\mathrm{X}}_{0}$ ) : voir annexe 5 .
+
+La solution retenue nécessite une transmission de puissance du moteur jusqu'à l'axe de la cheville. La rotation de tangage de la cheville est obtenue par la chaîne décrite partiellement sur l'annexe 5 où l'on donne aussi le débattement angulaire de rotation en tangage de la cheville.
+
+%\section*{Question 22:}
+\question{\label{ccmp_psi_2015:q22}Déterminer graphiquement sur le document-réponse la course $\Delta \mathrm{C}$ du chariot permettant d'obtenir le débattement angulaire spécifié en annexe 5 .}
+
+Depuis le moteur implanté sur la cuisse, la puissance est transmise par un système composé de poulies, courroies, et d'un renvoi d'angle à pignons coniques comme le montre l'annexe 6.
+
+Les caractéristiques de la chaîne de transmission de puissance sont les suivantes:
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+Vitesse nominale en sortie du moto-réducteur = vitesse nominale de la poulie motrice & $\mathrm{N}_{\mathrm{n}}=2200 \mathrm{tr} . \mathrm{min}^{-1}$ \\
+\hline
+Diamètre de la poulie motrice & 40 mm \\
+\hline
+Diamètre de la poulie réceptrice & 40 mm \\
+\hline
+Nombre de dents de l'engrenage conique lié à la poulie réceptrice & 22 \\
+\hline
+Nombre de dents de l'engrenage conique lié à la vis & 22 \\
+\hline
+Pas de la vis à billes & $\mathrm{P}_{\mathrm{V}}$ (à déterminer) \\
+\hline
+\end{tabular}
+\end{center}
+
+Le cahier des charges précise que ce débattement angulaire en tangage doit pouvoir être parcouru en moins de 0,8 s.
+
+%\section*{Question 23:}
+\question{\label{ccmp_psi_2015:q23}En supposant la vitesse de rotation du moteur constante, déterminer le pas $\mathrm{P}_{\mathrm{v}}$ en mm de la vis à billes pour obtenir le temps d'inclinaison en tangage de la cheville spécifié par le cahier des charges.}
+
+Comme sur le corps humain, l'articulation de la cheville possède deux degrés de liberté : une rotation en tangage étudiée précédemment et une rotation en roulis. Le mécanisme de transmission de puissance présenté précédemment est donc dupliqué de l'autre coté du tibia et un joint de cardan est placé entre le tibia et le pied : voir l'annexe 7. Les « vis droite » et « vis gauche » sont identiques.
+
+%\section*{Question 24 :}
+\question{\label{ccmp_psi_2015:q24}Quels mouvements particuliers doit-on imposer simultanément aux «vis droite» et «vis gauche » pour obtenir une rotation uniquement en roulis de la cheville ? Pour une rotation uniquement en tangage ?}
+
+%\section*{Question 25 :}
+\question{\label{ccmp_psi_2015:q25}
+Dénombrer et décrire les mobilités (internes et utiles) du modèle de mécanisme présenté annexe 7 ? En déduire le degré d'hyperstatisme.}
+
+%\section*{Question 26 :}
+\question{\label{ccmp_psi_2015:q26}Comment réduire ce degré d'hyperstatisme en remplaçant les liaisons glissière par d'autres liaisons? Présenter la solution envisagée sous forme de schéma cinématique.}
+
+\section*{Fin de l'énoncé.}

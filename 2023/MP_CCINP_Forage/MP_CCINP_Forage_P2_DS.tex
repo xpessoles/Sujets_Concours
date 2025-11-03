@@ -1,0 +1,232 @@
+%\section*{Partie II - Contrôle de la vitesse de la table de forage}
+\section{Contrôle de la vitesse de la table de forage\label{2023_MP_CCINP_sec_02}}
+Comme en usinage classique, la qualité d'un forage dépend énormément de la vitesse de rotation de l'outil ainsi que de sa vitesse d'avance. On souhaite maîtriser cette dernière par un asservissement en vitesse de la table de forage le long du mât de levage. L'objectif sera, dans cette partie, de valider les exigences de performances de l'axe (id. 2.1.1). Le schéma-bloc de l'annexe \ref{2023_MP_CCINP_ann_05} modélise toutes les parties du système à étudier pour obtenir un modèle de connaissance de cet asservissement.
+
+%\section*{II. 1 - Sous ensemble " Mécanisme " : étude cinématique de la table de forage}
+\subsection{Sous ensemble " Mécanisme " : étude cinématique de la table de forage \label{2023_MP_CCINP_sec_21}}
+On s'intéresse ici à la partie " Mécanisme " du schéma-bloc. Pour cela, il est nécessaire d'établir tout d'abord le lien entre la vitesse de rotation $\omega_{w}$ du treuil d'avance ("crowd winch") et la vitesse $V$ de déplacement de la table de forage. Ainsi, on travaillera désormais sur la modélisation proposée figure \ref{2023_MP_CCINP_fig_09}. Le schéma de gauche modélise notamment le système complet en trois dimensions. Le système est constitué :
+
+\begin{itemize}
+  \item d'un moteur hydraulique, suivi d'un réducteur à engrenages non représenté mettant en rotation le winch 1. Ce dernier est en liaison pivot d'axe  $(A ; \vec{x})$  avec le châssis $\mathbf{0}$ (immobile par rapport au sol). Le tambour de ce winch permet de tracter un câble qui s'enroule autour de celui-ci. Le rayon d'enroulement, noté $R_{1}$, est supposé constant. La vitesse de rotation du tambour du winch autour de son axe est notée $\omega_{w}=\omega_{1}=\omega_{1 / 0}$;
+  \item de trois poulies $\mathbf{2}, \mathbf{2}^{\prime}$ et $\mathbf{2}^{\prime \prime}$ chacune en liaison pivot avec le châssis d'axes respectifs  $(B ; \vec{x})$ , $\left(B^{\prime} ; \vec{x}\right),\left(B^{\prime \prime} ; \vec{x}\right)$. Elles ont toutes trois un rayon $R_{2} ;$
+  \item de deux poulies mobiles 3 et $\mathbf{3}^{\prime}$ en liaison pivot avec la table de forage $\mathbf{4}$, d'axes respectifs $(C ; \vec{y})$ et $\left(C^{\prime} ; \vec{y}\right)$. Elles sont de même rayon $R_{3}$ et on note $\omega_{3}=\omega_{3 / 4}$ leur vitesse de rotation autour de leur axe ;
+  \item de la table de forage 4, mise en mouvement grâce au câble et par l'intermédiaire des poulies 3 et 3', qui est en liaison glissière de direction $\vec{z}$ avec le châssis $\mathbf{0}$. On note $V$ la vitesse d'avance de la table de forage telle que $\vect{V(D, 4 / 0)}=V \vec{z}$;
+  \item du câble, supposé inextensible, qui est attaché à ses extrémités au châssis au niveau des points O et O'. On suppose de plus que le câble s'enroule sans glisser autour de toutes les poulies et du tambour du winch d'avance.
+\end{itemize}
+
+Remarque : l'ensemble noté 5 avec le système d'amortisseur sera étudié ultérieurement.\\
+Le schéma de droite de la figure \ref{2023_MP_CCINP_fig_09} (schéma cinématique dans le plan ( $\vec{x}, \vec{z}$ )) représente uniquement la partie du système constitué du châssis $\mathbf{0}$, de la table de forage $\mathbf{4}$ et des deux poulies $\mathbf{3}$ et $\mathbf{3}$ '. On introduit deux points mobiles I et J, marquant le début et la fin de l'enroulement du câble autour de la poulie 3. Par analogie, on a les points l' et J' pour la poulie 3'.\\
+On a alors: $\overrightarrow{C I}=\overrightarrow{C^{\prime} I^{\prime}}=\overrightarrow{J C}=\overrightarrow{J^{\prime} C^{\prime}}=R_{3} \vec{x}$.\\
+La condition de roulement sans glissement du câble sur la poulie 3 et sur le tambour 1, associée à la composition du mouvement au point $I$, permettent de trouver l'équation suivante :
+
+$$
+\overrightarrow{V(J, 4 / 0)} \cdot \vec{z}=(\overrightarrow{V(J, 4 / 3)}+\overrightarrow{V(J, 3 / \text { câble })}+\overrightarrow{V(J, \text { câble / } 0)}) \cdot \vec{z}=V=-R_{3} \cdot \omega_{3}+R_{1} \cdot \omega_{1} .
+$$
+
+
+
+%% DS 
+On peut  montrer que : $\overline{V(I, 4 / 0)} \cdot \vec{z}=V=R_{3} \cdot \omega_{3}$.
+
+%%%
+%%Q13. 
+%\question{\label{2023_MP_CCINP_q13}De la même manière, en utilisant la composition des vitesses au point I et en exprimant une condition de roulement sans glissement, montrer que : $\overline{V(I, 4 / 0)} \cdot \vec{z}=V=R_{3} \cdot \omega_{3}$.}
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-09(1)}
+% Figure 9 -  \captionsetup{labelformat=empty}
+\caption{Schéma cinématique 3D du système d'entraînement de la table de forage (à gauche) ; vue 2D simplifiée (à droite) \label{2023_MP_CCINP_fig_09}}
+\end{center}
+\end{figure}
+
+%%Q14 
+%\question{\label{2023_MP_CCINP_q14}Déduire de la question précédente l'expression du rayon équivalent, noté $R_{e q}$, dans le sous-système "Mécanisme" du schéma-bloc fourni en annexe $\mathbf{5}$, en fonction de $R_{1}$ seulement.}
+
+On note $\indice{R}{eq}=\dfrac{R_1}{2}$ le rayon équivalent, dans le sous-système "Mécanisme" du schéma-bloc fourni en annexe $\mathbf{5}$,
+
+Un réducteur à engrenages de rapport de réduction $k_{r}$ permet d'adapter la vitesse de rotation du moteur hydraulique $\omega_{m}(t)$, tel que : $\omega_{w}(t)=k_{r} \cdot \omega_{m}(t)$.
+
+
+%\section*{II. 2 - Partie " Amortisseur " : étude dynamique de la table de forage}
+\subsection{Partie " Amortisseur " : étude dynamique de la table de forage \label{2023_MP_CCINP_sec_22}}
+
+Afin de modéliser l'asservissement en vitesse de la table de forage, il est possible de prendre en compte que, lors de l'étape de forage, un système d'" amortisseurs Kelly " (suspensions) permet d'amortir les chocs et vibrations. Chaque suspension est composée d'un ressort de raideur $k$ et d'un amortisseur de coefficient de frottement visqueux $\lambda$. Il y a $n$ suspensions équiréparties autour de l'axe de la tige Kelly (soient $n$ ressorts et $n$ amortisseurs) disposées en parallèle, comme l'indique le schéma de la figure \ref{2023_MP_CCINP_fig_10}. On précise que le guidage entre la table 4 et l'ensemble 5 est réalisé par une liaison glissière parfaite, non représentée.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-09}
+%Figure 10 - \captionsetup{labelformat=empty}
+\caption{Modélisation de liaison entre la table et la barre Kelly lors du forage\label{2023_MP_CCINP_fig_10}}
+\end{center}
+\end{figure}
+
+On note $z_{4}$ la position verticale de la table $\mathbf{4}$ de masse $M_{T}$ et $z_{5}$ la position verticale de l'ensemble $\mathbf{5}$ \{barre+outil\} de masse $M_{K}$. Elles sont toutes deux établies par rapport à une référence fixe, liée au châssis de la foreuse. L'allongement instantané du ressort est noté $\Delta z=z_{4}-z_{5}$. De plus, on note :
+
+\begin{itemize}
+  \item $\Delta \mathrm{z}_{0}$ : la valeur de l'allongement du ressort à vide ;
+  \item $\Delta z_{e}$ : la valeur de l'allongement du ressort à l'équilibre ( $\mathbf{5}$ suspendu sans action du sol sur lui).
+\end{itemize}
+
+\paragraph*{Bilan des actions mécaniques :}
+\begin{itemize}
+  \item action de traction du câble sur la table 4, modélisée par une force verticale $2 F_{w} \vec{z}$. Cette force de traction s'écrit $2 F_{w}$, sachant que : $2 F_{w}=2 F_{w e}+\delta F_{w}$ où :
+  \item $F_{\text {we }}$ est la force de maintien à l'équilibre de l'ensemble $\{\mathbf{4 + 5}\}$ (sans autre action supplémentaire),
+  \item $\delta F_{w}$ est la variation de cette force autour de la force $F_{w e}$ de maintien à l'équilibre ;
+  \item action du sol sur l'ensemble $\mathbf{5}$, modélisée par une force verticale $\indice{F}{sol} \vec{z}$;
+  \item action de la pesanteur : l'accélération de la pesanteur sera notée $\vec{g}=-g \vec{z}$;
+  \item action d'un ressort de raideur $k$ sur la table 4 : $\overrightarrow{F_{r}}=k \cdot\left(\Delta \mathrm{z}_{0}-\Delta \mathrm{z}\right) \overrightarrow{\boldsymbol{z}}$;
+  \item action d'un amortisseur sur la table 4 : $\overrightarrow{F_{a}}=-\lambda \cdot\left(\dot{z}_{4}-\dot{z}_{5}\right) \vec{z}=-\lambda \cdot \Delta \dot{z} \vec{z}$.
+\end{itemize}
+
+On souhaite simplifier la modélisation en retenant le schéma équivalent de droite sur la figure \ref{2023_MP_CCINP_fig_10}. Dans ce cas, l'action de l'ensemble des $n$ ressorts et des $n$ amortisseurs s'exprime par :
+
+\begin{itemize}
+  \item $\overrightarrow{\indice{F}{nr}}=k_{T} \cdot\left(\Delta z_{0}-\Delta z\right) \vec{z}$;
+  \item $\overrightarrow{\indice{F}{na}}=-\lambda_{T} \cdot \Delta \dot{Z} \vec{Z}=-\lambda_{T} \cdot \dfrac{\d \Delta Z}{\d t} \vec{Z}$.
+\end{itemize}
+
+Toutes les suspensions (ressorts et amortisseurs) ont une masse négligeable devant les autres actions mécaniques mises en jeu.
+
+%Q15. 
+\question{\label{2023_MP_CCINP_q15}Exprimer $k_{T}$ et $\lambda_{T}$ en fonction de $n, k$ et de $\lambda$.}
+
+%Q16. 
+\question{\label{2023_MP_CCINP_q16}À l'équilibre, système suspendu, proposer et mettre en œuvre une stratégie de résolution en appliquant le principe fondamental de la statique, afin d'établir une première équation, liant $k_{T}$, $\Delta z_{e}, \Delta z_{0}, M_{K}$ et $g$ et une deuxième, liant $F_{w e}, M_{K}, M_{T}$ et $g$.}
+
+%Q17. 
+\question{\label{2023_MP_CCINP_q17}En fonctionnement, isoler la table 4 et déterminer son équation du mouvement vertical $\ddot{z}_{4}(t)$ en fonction des paramètres du problème en utilisant une équation issue du principe fondamental de la dynamique.}
+
+Par analogie, l'équation du mouvement vertical de l'ensemble $\mathbf{5}$ \{barre+outil\} s'écrit :
+
+$$
+M_{K} \cdot \ddot{z}_{5}(t)=\indice{F}{sol}-k_{T} \cdot\left(\Delta z_{0}-\Delta z(t)\right)+\lambda_{T} \cdot \Delta \dot{z}(t)-M_{K} \cdot g .
+$$
+
+On pose le changement de variables suivant : $z_{5}(t)=\hat{z}_{5}(t)-\frac{\Delta z_{e}}{2}$ et $z_{4}(t)=\hat{z}_{4}(t)+\frac{\Delta z_{e}}{2}$, permettant de s'affranchir des actions de la pesanteur. On rappelle que $\Delta z_{e}$ est constant.
+
+%Q18. 
+\question{\label{2023_MP_CCINP_q18}En utilisant les résultats précédents et le changement de variables précédent, montrer que l'on obtient le système d'équations (2) suivant:}
+
+\[
+\left\{\begin{array}{l}
+M_{T} \cdot \ddot{\hat{z}}_{4}(t)+\lambda_{T} \cdot \dot{\hat{z}}_{4}(t)+k_{T} \cdot \hat{z}_{4}(t)=\lambda_{T} \cdot \dot{\hat{z}}_{5}(t)+k_{T} \cdot \hat{z}_{5}(t)+\delta F_{w}  \tag{2}\\
+M_{K} \cdot \ddot{z}_{5}(t)+\lambda_{T} \cdot \dot{\hat{z}}_{5}(t)+k_{T} \cdot \hat{z}_{5}(t)=\lambda_{T} \cdot \dot{\hat{z}}_{4}(t)+k_{T} \cdot \hat{z}_{4}(t)+F_{s o l}
+\end{array} .\right.
+\]
+
+Pour une fonction temporelle $f(t)$ ou $F(t)$, on note sa transformée de Laplace $F(p)=L[f(t)]$.\\
+Les conditions initiales sont considérées être toutes nulles dans tout le sujet.
+
+%Q19. 
+\question{\label{2023_MP_CCINP_q10}Traduire le système différentiel précédent (2) dans le domaine de Laplace, puis en déduire les expressions des trois fonctions de transfert $H_{6}(p), H_{7}(p)$ et $H_{8}(p)$ présentes sur l'annexe 5 (zone encadrée notée " Amortisseur " en précisant que $L\left[\dot{z}_{4}(t)\right]=V(p)$ ).}
+
+%\section*{II. 3 - Sous-systèmes Servo-pompe, Circuit hydraulique et Moteur hydraulique}
+
+\subsection{Sous-systèmes Servo-pompe, Circuit hydraulique et Moteur hydraulique\label{2023_MP_CCINP_sec_23}}
+
+Ces sous-systèmes sont représentés sur le schéma-bloc de l'annexe 5.%\ref{2023_MP_CCINP_ann_05}. 
+Le dispositif de positionnement de la table de forage et de son outil utilisent de l'énergie hydraulique. Les modèles de connaissance pour ces systèmes hydrauliques sont donnés ci-dessous :
+
+\begin{itemize}
+  \item Le dispositif est contrôlé par une électrovanne proportionnelle de gain $K_{s}$. Le débit disponible est noté $q_{p}$, la tension délivrée par la partie commande est notée $U_{s}$ et on a :
+$$q_{p}(t)=K_{s} \cdot U_{s}(t) \quad \quad \text{(i)}$$ 
+  \item Les équations de mécanique des fluides dans un circuit fermé permettent d'écrire :
+%\begin{equation*}
+$$\dfrac{V_{0}}{B} \cdot \dfrac{d \Delta p(t)}{d t}=q_{p}(t)-q_{m}(t)\quad \quad \text{(ii)} $$%\tag{ii}$
+%\end{equation*}
+\end{itemize}
+
+
+
+
+$V_{0}$ désigne le volume dans le circuit et $B$ est le coefficient de compressibilité du fluide. $\Delta p$ désigne une différence de pression dans le circuit et $q_{m}$ un débit retour.
+
+\begin{itemize}
+  \item Les lois de comportement hydromécanique permettent d'introduire le lien entre la vitesse de rotation du moteur hydraulique $\omega_{m}$ et le débit $q_{m}$ d'une part et entre le couple moteur et le différentiel de pression $\Delta p$ d'autre part. On note $C_{Y}$ la cylindrée du moteur et on a :
+\end{itemize}
+
+$$
+\begin{aligned}
+& q_{m}(t)=C_{Y} \cdot \omega_{m}(t) \quad \quad \text{(iii)} \\
+& C_{m}(t)=C_{Y} \cdot \Delta p(t) \quad \quad \text{(iv)}
+\end{aligned}
+$$
+
+\begin{itemize}
+  \item L'équation du mouvement du mécanisme s'écrit : 
+\end{itemize}
+  $$\indice{J}{eq}  \dfrac{\d \omega_{m}(t)}{\d t}+a \omega_{m}(t)=C_{m}(t)-C_{r}(t) \quad \text{(v)}$$
+
+où $\indice{J}{eq}$ est l'inertie équivalente des solides en mouvement ramenée sur l'axe de rotation du moteur, a un coefficient de frottement visqueux équivalent et $C_{r}$ modélisant les couples résistants autres que ceux dus au frottement visqueux.
+
+
+%Q20.
+%\question{\label{2023_MP_CCINP_q20} D'après les figures \ref{2023_MP_CCINP_fig_09} et \ref{2023_MP_CCINP_fig_10} et sans détailler les calculs, indiquer par quel théorème et par quel isolement peut être obtenue l'équation ( $\boldsymbol{v}$ ). Sans la mettre en œuvre, proposer une méthode permettant de déterminer l'expression théorique du paramètre $J_{\text {eq }}$.}
+
+%Q21. 
+\question{\label{2023_MP_CCINP_q21}Traduire les cinq équations (i), (ii), (iii), (iv) et (v) dans le domaine de Laplace.}
+
+
+%Q22. 
+\question{\label{2023_MP_CCINP_q22}Expliciter les cinq fonctions de transfert $H_{1}(p), H_{2}(p), H_{3}(p), H_{4}(p)$ et $H_{5}(p)$ à partir des résultats de la question précédente.}
+
+
+%\section*{II. 4 - Étude de l'asservissement de la vitesse d'avance de la table de forage}
+\subsection{Étude de l'asservissement de la vitesse d'avance de la table de forage \label{2023_MP_CCINP_sec_24}}
+
+%Q23. 
+\question{\label{2023_MP_CCINP_q23}Préciser le rôle du gain $K_{\text {ihm }}$ de la partie "Chaîne d'information" de l'annexe $\mathbf{5}$ et donner son expression en fonction des transmittances figurant dans le schéma-bloc pour que le système soit correctement asservi.}
+
+On décide dans la suite de ne pas prendre en compte l'amortisseur en considérant la tige Kelly en liaison complète rigide avec la table de forage, afin de valider les performances de l'asservissement en poursuite. Cette hypothèse sera validée en fin de partie II et permet pour l'instant de travailler sur le schéma-bloc simplifié de la figure \ref{2023_MP_CCINP_fig_11}.
+
+%Q24. 
+\question{\label{2023_MP_CCINP_q24}À partir de la figure \ref{2023_MP_CCINP_fig_11}, exprimer la fonction de transfert $\dfrac{\Omega_{m}(p)}{U_{s}(p)}$, notée $H(p)$, à partir des fonctions de transfert $H_{j}(p)$, où $j \in\{1 ; 2 ; 3 ; 4 ; 5\}$.}
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-12(1)}
+%\captionsetup{labelformat=empty}Figure 11 - 
+\caption{Schéma-bloc pour l'étude en poursuite de l'asservissement en vitesse \label{2023_MP_CCINP_fig_11}}
+\end{center}
+\end{figure}
+
+Quels que soient les résultats trouvés précédemment, on travaille désormais avec le schéma-bloc simplifié de la figure \ref{2023_MP_CCINP_fig_12} où $K_{0}$ est un gain d'adaptation fixe.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=.6\textwidth]{2025_10_26_292d8f726e32404b86d3g-12}
+% \ref{2023_MP_CCINP_fig_12} \captionsetup{labelformat=empty} % Figure 12 - 
+\caption{Schéma-bloc de l'asservissement en vitesse simplifié \label{2023_MP_CCINP_fig_12}}
+\end{center}
+\end{figure}
+
+On prend dans un premier temps un correcteur $C(p)$ proportionnel : $C(p)=K_{p}$.\\
+
+
+%Q25
+\question{\label{2023_MP_CCINP_q25}Exprimer la fonction de transfert en boucle ouverte $G_{B O}(p)=\dfrac{V(p)}{\varepsilon(p)}$.}
+
+
+%Q26. 
+\question{\label{2023_MP_CCINP_q26}Avec un correcteur proportionnel, peut-on satisfaire l'exigence de précision de vitesse indiquée à l'exigence 2.1.1. ? Justifier.}
+
+On utilise dans un second temps un correcteur proportionnel intégral : $C(p)=K_{p} \cdot\left(1+\dfrac{1}{T_{i}  p}\right)$.
+
+%Q27. 
+\question{\label{2023_MP_CCINP_q27}L'exigence de précision sur la vitesse est-elle satisfaite ? Justifier.}
+
+Ce correcteur est initialement réglé avec les valeurs suivantes: $K_{p}=1$ et $T_{i}=10 \mathrm{~s}$.
+
+%Q28. 
+\question{\label{2023_MP_CCINP_q28}Tracer les diagrammes de Bode asymptotique et réel de ce correcteur sur le DR3. Détailler les constructions.}
+
+Pour le réglage de la question précédente, on donne le diagramme de Bode de la fonction de transfert en boucle ouverte ainsi corrigée sur le DR3.
+
+%Q29. 
+\question{\label{2023_MP_CCINP_q29}Affiner le réglage du correcteur (sans modifier la valeur de $T_{i}$ ) en proposant une valeur de $K_{p}$ permettant de garantir la marge de phase spécifiée dans l'exigence 2.1.1. On répondra à cette question sur le DR3.}
+
+Enfin, on souhaite valider ou invalider l'hypothèse faite en début de cette sous-partie concernant la non-influence de l'amortisseur sur les performances d'asservissement en vitesse d'avance de la table de forage. Les diagrammes de Bode du document D4, donnés en dernière page du DR, illustrent la fonction de transfert en boucle ouverte corrigée sans (en train plein) et avec amortisseur (en pointillés).
+
+%Q30. 
+\question{\label{2023_MP_CCINP_q30}Sur quelle(s) performance(s) la présence de l'amortisseur peut-elle influer ? Justifier que le correcteur choisi permet de répondre aux exigences 2.1.1 en présence de l'amortisseur.}

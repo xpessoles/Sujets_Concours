@@ -1,0 +1,388 @@
+\section{Contrôle de la posture de LOLA}%Partie 2 : 
+
+\ifprof
+\else
+Le robot humanoïde, développé par l’Université de Munich, est un robot de forme humaine conçu pour un mode de marche rapide. LOLA possède une structure à 25 degrés de liberté lui permettant une flexibilité accrue. Chaque jambe possède 7 degrés de liberté, le haut du corps 8 et la tête 3. Le robot est équipé d’une caméra stéréoscopique haute définition afin de percevoir son environnement, d’une centrale inertielle équipée de 3 gyroscopes et de 3 accéléromètres. Chaque articulation possède un codeur angulaire absolu et chaque pied est muni d’un capteur d’effort 6 axes permettant d’obtenir l’effort de contact avec le sol.
+
+
+\label{ccmp_psi_2015:p02}
+Pour assurer une marche rapide et stable de LOLA, la méthode choisie est le contrôle de la verticalité du tronc du robot (figure \ref{ccmp_psi_2015:fig05}). Le haut du corps (tronc, bras, tête) sera maintenu vertical en réalisant un asservissement de position angulaire au niveau de l'articulation de la hanche. L'action mécanique de redressement est développée par l'ensemble de motorisation de tangage autour de l'axe $\axe{O_T}{x_0}$. Les performances à vérifier dans cette partie sont définies par les exigences suivantes.
+
+
+
+\begin{center}
+\begin{tabular}{ll}
+%\hline
+\multicolumn{2}{l}{Exigence 1.3 : le robot ne doit pas basculer lors de la marche} \\
+\hline
+\textbf{Sous-exigence} & \textbf{Description} \\
+\hline
+Id =1.3.2 & La posture du robot est adaptée à la position du ZMP \\
+Id =1.3.2.d & La performance dynamique de chaque axe permet de modifer la posture\\
+\hline
+\end{tabular}
+\end{center}
+
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{fig_05}
+%\captionsetup{labelformat=empty}
+\caption{Architecture du robot\label{ccmp_psi_2015:fig05}}
+\end{center}
+\end{figure}
+
+La chaîne structurelle permettant de modifier la posture du haut du corps autour de l'axe de tangage est représentée sur la figure \ref{ccmp_psi_2015:fig06}. 
+
+
+\noindent\begin{minipage}[c]{.69\linewidth}
+Elle est composée d'un moteur électrique $(1,2)$ synchrone à aimants permanents piloté par un variateur électronique, d'un réducteur Harmonic-Drive ${ }^{©}$ (3) de rapport de réduction $1 / 100$, d'un codeur incrémental (5) ainsi que d'un codeur angulaire absolu (6+7).
+
+Une centrale inertielle équipée d'un accéléromètre, d'un gyroscope et d'une unité de traitement permet d'obtenir en temps réel la valeur de l'angle d'inclinaison du haut du corps par rapport à la verticale.
+
+L'objectif de cette partie est de mettre en place un modèle du maintien vertical du tronc de LOLA et de déterminer une structure de commande permettant d'assurer les performances du cahier des charges de l'exigence 1.3.2.
+
+\end{minipage} \hfill
+\begin{minipage}[c]{.3\linewidth}
+%\begin{figure}[h]
+%\begin{center}
+%  \includegraphics[width=\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-06}
+%\captionsetup{labelformat=empty}
+%\caption{Figure \label{ccmp_psi_2015:fig06}}
+%\end{center}
+%\end{figure}
+
+\begin{center}
+  \includegraphics[width=.95\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-06}
+%\captionsetup{labelformat=empty}
+\captionof{figure}{Architecture de l'actionneur \label{ccmp_psi_2015:fig06}}
+\end{center}
+
+\end{minipage} 
+
+Les performances dynamiques de l'axe de tangage doivent vérifier les critères suivants:
+
+\begin{center}
+\begin{tabular}{lll}
+%\hline
+\multicolumn{3}{l}{Sous-exigence 1.3.2.d: la performance dynamique de chaque axe permet de modifier la posture} \\
+\hline
+\textbf{Critère} & \textbf{Niveau} & \textbf{Flexibilité} \\
+\hline
+Marge de phase & $\mathrm{M} \varphi=50^{\circ}$ & Mini \\
+Erreur statique & $0^{\circ}$ & [ $-0.5^{\circ} ;+0.5^{\circ}$ ] \\
+Bande passante à 0 dB en boucle ouverte & $\omega_{\text {BP }}=50 \mathrm{rad} . s^{-1}$ & Mini \\
+Temps de réponse à 5\% & $0,2 \mathrm{~s}$ & Maxi \\
+Dépassement & $1^{\circ}$ & Maxi \\
+\hline
+\end{tabular}
+\end{center}
+Le modèle mécanique utilisé pour mener notre étude est donné sur la figure \ref{ccmp_psi_2015:fig07}. L'association des liaisons entre le tronc et les jambes au niveau de la hanche est équivalente, dans le plan sagittal ( $O_T, \vy{0}, \vz{0}$ ), à une liaison pivot d'axe $\left(O_T, \vx{0}\right)$. Le tronc sera considéré comme un solide admettant le plan ( $O_T, \vy{0},\vz{0}$ ) comme plan de symétrie. Le cahier des charges stipule que LOLA doit pouvoir marcher à la vitesse de $5 \mathrm{~km} / \mathrm{h}$. Cette vitesse est atteinte en \SI{1}{s} lors de la première foulée. La loi de commande en vitesse correspondante est représentée
+
+\begin{figure}[h]
+\begin{center}
+%  \includegraphics[width=\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-06(1)}
+  \includegraphics[width=\textwidth]{fig_07}
+%\captionsetup{labelformat=empty}
+\caption{Modèle mécanique\label{ccmp_psi_2015:fig07}}
+\end{center}
+\end{figure}
+\fi
+
+%2. 
+\subsection{Modèle du contrôle actif de la position verticale. \label{ccmp_psi_2015:p22}}
+\ifprof
+\else
+On note $\Gamma(t)=\dfrac{\d v(t)}{\d t}$. Les conditions de Heaviside sont vérifiées. Le schéma-bloc du contrôle de la position angulaire du tronc de LOLA est représenté sur la figure \ref{ccmp_psi_2015:ann02}. La consigne angulaire est nulle afin de garder le tronc du robot vertical: $\alpha_{c}(t)=0$. Les transformées de Laplace des fonctions seront notées en majuscules et le paramètre de Laplace sera noté $p$.
+
+Le contrôle de l'angle s'effectue par l'intermédiaire du moteur asservi en position, suivi du réducteur HarmonicDrive ${ }^{®}$ de rapport de réduction $r=\dfrac{1}{100}$. Le moment d'inertie de l'arbre moteur suivant son axe de rotation est noté $\indice{J}{m}$, le couple moteur exercé sur l'arbre d'entrée du réducteur est noté $\indice{C}{m}$. Le réducteur HarmonicDrive ${ }^{®}$ sera considéré sans masse. La masse de l'arbre moteur est négligeable devant l'ensemble des autres grandeurs inertielles. Une étude dynamique a permis de montrer que : $C_{R}=\dfrac{C_{m}}{r}-\dfrac{J_{m}}{r^{2}} \cdot \dfrac{\d^{2} \alpha(t)}{\d t^{2}}$. Ainsi, l'équation différentielle du mouvement devient :
+
+
+\begin{equation*}
+\indice{J}{eq} \dfrac{\dd \alpha(t)}{\d t^{2}}-m_{1} g Z_{G} \alpha(t)=m_{1} Z_{G} \dfrac{\d v(t)}{\d t}+\dfrac{C_{m}(t)}{r} \tag{1}
+\end{equation*}
+
+$\indice{J}{eq}$ est le moment d'inertie équivalent de l'ensemble du tronc ramené sur l'axe moteur.
+
+
+
+
+\begin{center}
+  \includegraphics[width=\textwidth]{ann_02}
+%\captionsetup{labelformat=empty}
+\captionof{figure}{Schéma-bloc de l'asservissement de position angulaire \label{ccmp_psi_2015:ann02}}
+\end{center}
+
+
+Le comportement du moteur sera considéré comme celui d'un moteur à courant continu dont les équations de comportement sont les suivantes: $u_{c}(t)=e(t)+L \dfrac{\d i(t)}{\d t}+R i(t) ; e(t)=k_{e} \omega_{m}(t)$ et $C_{m}(t)=k_{c} i(t)$.
+\fi
+
+%\section*{Question 9 :}
+\question{\label{ccmp_psi_2015:q09}Indiquer les fonctions de transfert des blocs $B_{1}, B_{2}, B_{3}, B_{4}, B_{5}, B_{6}$ et $B_{7}$ ainsi que l'expression de la fonction de transfert $H_{1}(p)$.}
+\ifprof
+\begin{corrige}
+En utilisant l'équation de mouvement, on a 
+$\indice{J}{eq}p^2\alpha(p)-m_{1} g Z_{G} \alpha(p)=m_{1} Z_{G} \Gamma(p)+\dfrac{C_{m}(p)}{r}$.
+
+Nécessairement, on a donc $B_1 = m_{1} Z_{G}$, $B_3 = \dfrac{1}{r}$,  $B_2 =m_{1} g Z_{G}$ et $B_7 = \dfrac{1}{\indice{J}{eq}}$.
+
+On a de plus $B_4 = \dfrac{1}{r}$, $B_5 = k_c$, $B_6 = k_e$,  $H_1(p) = \dfrac{1}{R+Lp}$.
+\end{corrige}
+\else
+\fi
+
+Afin d'analyser la stabilité de cet asservissement, nous cherchons à déterminer la fonction de transfert en boucle ouverte du système non-corrigé : $F(p)=\dfrac{\alpha(p)}{U_{c}(p)}$ en supposant la perturbation nulle.
+
+%\section*{Question 10 :}
+\question{\label{ccmp_psi_2015:q10}
+Déterminer la fonction de transfert de la boucle dynamique $H_{\text {dyn }}(p)=\dfrac{\alpha(p)}{C_{m}(p)}$ en supposant la perturbation nulle.}
+\ifprof
+\begin{corrige}
+$\indice{H}{dyn}(p) = B_3 \dfrac{B_7 \dfrac{1}{p^2}}{1- B_2 B_7 \dfrac{1}{p^2}}$ $= B_3 \dfrac{B_7 }{p^2- B_2 B_7 }$
+
+En remplaçant les fonctions de transfert, on a : 
+$\indice{H}{dyn} = \dfrac{1}{r} \dfrac{\dfrac{1}{\indice{J}{eq}}}{p^2- m_{1} g Z_{G} \dfrac{1}{\indice{J}{eq}}}$
+$= \dfrac{1}{r} \dfrac{1}{\indice{J}{eq}p^2- m_{1} g Z_{G} }$
+\end{corrige}
+\else
+\fi
+
+%\section*{Question 11 :}
+\question{\label{ccmp_psi_2015:q11}Déterminer la fonction de transfert en boucle ouverte non-corrigée de l'asservissement $F(p)=\dfrac{\alpha(p)}{U_{c}(p)}$. Indiquer son ordre, sa classe et donner son gain statique $K$ en fonction des données.}
+\ifprof
+\begin{corrige}
+On décale la boucle de retour vers la droite ce qui ajoute un bloc $p$ dans le retour. 
+
+On a donc  $F(p)= \dfrac{\indice{H}{dyn}(p) H_1(p) B_5 }{1+\indice{H}{dyn}(p) H_1(p) B_5  B_4 B_6 p}$
+
+$= \dfrac{ k_c }{\left(\indice{J}{eq}p^2- m_{1} g Z_{G} \right) \left( R+Lp\right)r+  k_c  \dfrac{1}{r}  k_e p}$
+$= \dfrac{ k_c }{Rr\indice{J}{eq}p^2- Rrm_{1} g Z_{G} +Lr\indice{J}{eq}p^3- m_{1} g Z_{G} Lpr+    \dfrac{k_c   k_e}{r} p}$.
+
+Le gain statique est $K = -\dfrac{k_c}{Rrm_{1} g Z_{G}}$. L'ordre est 3 et la classe est nulle.
+
+\end{corrige}
+\else
+\fi
+
+\ifprof
+\else
+Une simulation numérique permet de montrer que $F(p)$ est de la forme $\dfrac{K}{\left(1+\tau_{1} p\right)\left(-1+\tau_{1} p\right)\left(1+\tau_{2} p\right)}$. Les diagrammes de Bode de cette fonction de transfert sont donnés ci-dessous..
+
+
+\begin{center}
+  \includegraphics[width=.8\textwidth]{q_12}
+%\captionsetup{labelformat=empty}
+%\captionof{figure}{Schéma-bloc de l'asservissement de position angulaire \label{ccmp_psi_2015:ann02}}
+\end{center}
+\fi
+
+%\section*{Question 12 :}
+\question{\label{ccmp_psi_2015:q12}En analysant les diagrammes de Bode ci-dessus, déterminer les valeurs de $\tau_{1}, \tau_{2}$ et K. Justifier le tracer des diagrammes de gain et de phase.} 
+%Justifier en complétant les diagrammes du document-réponse avec les diagrammes asymptotiques de gain et de phase.}
+\ifprof
+\begin{corrige}
+Soit $G(p)=\dfrac{1}{\tau_1 p - 1}\dfrac{1}{\tau_1 p + 1}$. 
+\begin{itemize}
+\item Le gain décibel est donné par $\indice{G}{dB}(\omega)= -20\log\left( \sqrt{ \tau_1^2 \omega^2 +1}\right) -20\log\left( \sqrt{ \tau_1^2 \omega^2 +1}\right)$.
+\item La phase de $G$ est donnée par $\varphi(\omega) = \arg(1) -\arg\left(j \omega \tau_1 -1 \right)-\arg\left(j \omega \tau_1 +1 \right)$
+
+$= -\arg\left(j \omega \tau_1 -1 \right)-\arg\left(j \omega \tau_1 +1 \right)$ $=-(\pi-\theta)-\theta =-\pi$.
+\end{itemize}
+
+Ainsi, en $\tau_1$, il y a un changement de pente pour le gain et la phase est de $-\pi$. On a donc $\tau_1 \simeq \SI{1}{s}$ et $\tau_2 = \dfrac{1}{10^3} = \SI{0,001}{s}$.
+
+De plus $20 \log K=-40$; donc $K = 0,01$ (en rad/V).
+
+\end{corrige}
+
+\else
+\fi
+
+Pour la suite de l'étude, nous simplifierons $F(p)$ sous la forme suivante : $\dfrac{K}{\left(1+\tau_{1} p\right)\left(-1+\tau_{1} p\right)}$.
+
+%\section*{Question 13 :}
+\question{\label{ccmp_psi_2015:q13}Justifier le choix de cette simplification.}
+\ifprof
+\begin{corrige}
+
+$\tau_1$ est un pôle dominant par rapport à $\tau_2$. Ce modèle est valable pour des pulsations inférieures à \SI{100}{rad/s}.
+\end{corrige}
+\else
+\fi
+
+%\section*{Question 14 :}
+\question{\label{ccmp_psi_2015:q14}Expliquer pourquoi le critère du revers ne peut pas être appliqué pour étudier la stabilité en boucle fermée.} 
+\ifprof
+\begin{corrige}
+Pour appliquer le critère du Revers, tous les pôles doivent être à partie réelle strictement négative. Ce n'est pas le cas ici.
+\end{corrige}
+\else
+\fi
+
+\ifprof
+\else
+Afin de résoudre ce problème, il est décidé d'asservir la chaîne directe en position et en vitesse. Pour cela, la centrale inertielle permet de mesurer l'angle de tangage $\alpha(t)$ ainsi que la vitesse angulaire $\dfrac{\d \alpha(t)}{\d t}$. L'asservissement ainsi réalisé est présenté sous la forme du schéma-bloc de la figure \ref{ccmp_psi_2015:fig08}. %(page 9).\\
+
+$U_{c}(p)$ est la tension de commande en sortie du correcteur. La fonction de transfert de la centrale inertielle sera prise égale à $H_{\mathrm{ci}}(p)=K_1(p+1)$.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=.6\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-09}
+%\captionsetup{labelformat=empty}
+\caption{Schéma-bloc de l'asservissement \label{ccmp_psi_2015:fig08}}
+\end{center}
+\end{figure}
+\fi
+
+%\section*{Question 15 :}
+\question{\label{ccmp_psi_2015:q15}Déterminer deux conditions sur $\mathrm{K}_{1}$ pour que la fonction de transfert en boucle ouverte non-corrigée $\dfrac{\alpha(p)}{U_{c}(p)}$ soit stable. En déduire la valeur minimale de $K_{1}$.}
+\ifprof
+\begin{corrige}
+On recalcule la FTBO non corrigée et on a $\text{FTBO}(p)= \dfrac{\dfrac{K}{\left(1+\tau_{1} p\right)\left(-1+\tau_{1} p\right)}}{1+\dfrac{K K_1(p+1)}{\left(1+\tau_{1} p\right)\left(-1+\tau_{1} p\right)}}$
+
+$= \dfrac{K}{\left(1+\tau_{1} p\right)\left(-1+\tau_{1} p\right)+K K_1(p+1)}$
+$= \dfrac{K}{-1-\tau_{1} p+\tau_1p+\tau_{1}^2 p^2+K K_1p+K K_1}$
+$= \dfrac{K}{K K_1-1+K K_1p+\tau_{1}^2 p^2}$.
+
+
+Il faut donc $K K_1-1>0$ et $K K_1>0$. Il faut donc $K_1>1/K$ et $K_1>0$ et donc $K_1>100$.
+\end{corrige}
+\else
+\fi
+
+%\section*{Question 16 :}
+\question{\label{ccmp_psi_2015:q16}Déterminer $\mathrm{K}_{1}$ pour que la fonction de transfert $\dfrac{\alpha(\mathrm{p})}{\mathrm{U}_{\mathrm{C}}(\mathrm{p})}$ ait un facteur d'amortissement $\xi=1,7$. Vérifier que cette valeur est compatible avec les conditions obtenues précédemment. En déduire les valeurs de la pulsation propre $\omega_{0}$ et du gain statique de la boucle ouverte $\indice{K}{B O}$.}
+\ifprof
+\begin{corrige}
+$\text{FTBO}(p)= \dfrac{K}{K K_1-1+K K_1p+\tau_{1}^2 p^2}$ 
+$= \dfrac{\dfrac{K}{K K_1-1}}{1+\dfrac{K K_1}{K K_1-1}p+\dfrac{\tau_{1}^2}{K K_1-1} p^2}$
+On a donc $\dfrac{1}{\omega_0^2} = \dfrac{\tau_{1}^2}{K K_1-1}$ et  ${\omega_0} = \dfrac{\sqrt{K K_1-1}}{\tau_{1}}$.
+
+De plus $\dfrac{2\xi}{\omega_0}= \dfrac{K K_1}{K K_1-1}$ et $\xi= \dfrac{K K_1}{K K_1-1} \dfrac{\sqrt{K K_1-1}}{2\tau_{1}}$ $= \dfrac{K K_1}{2\tau_1\sqrt{K K_1-1}} $.
+
+Il faut donc résoudre $\dfrac{K K_1}{2\tau_1\sqrt{K K_1-1}} = 1,9$
+$\Rightarrow \dfrac{K K_1}{2\tau_1\sqrt{K K_1-1}} = 1,9$
+$\Rightarrow K K_1 = 3,8\tau_1\sqrt{K K_1-1}$
+$\Rightarrow K^2 K_1^2 = 3,8^2\tau_1^2\left(K K_1-1\right)$
+$\Rightarrow K^2 K_1^2 - 3,8^2\tau_1^2 K K_1 + 3,8^2\tau_1^2 = 0$
+
+
+On a alors $\Delta = 3,8^4\tau_1^4 K^2 - 4 K^2 \times 3,8^2\tau_1^2 $
+$= \left( 3,8^2\tau_1^2  - 4   \right)3,8^2K^2\tau_1^2$
+
+Et donc $K_1 = \dfrac{3,8^2\tau_1^2 K \pm 3,8K\tau_1\sqrt{3,8^2\tau_1^2  - 4 }}{2K^2}$
+$K_1 = \dfrac{3,8^2\tau_1^2  \pm 3,8\tau_1\sqrt{3,8^2\tau_1^2  - 4 }}{2K}$
+
+
+Avec $\tau_1 = \SI{1}{s}$ et $K = 0,01$, on a 
+$K_1 = 1336$ ou $K_1 = 108$, compatibles avec les conditions déterminées précédentes. 
+
+On a respectivement $\indice{K}{BO} = 0,0008$ et $\indice{K}{BO} = 0,1236$ puis 
+$\omega_0 = \SI{3,5}{rad/s}$ et  $\omega_0 = \SI{0,3}{rad/s}$.
+\end{corrige}
+\else
+\fi
+
+\ifprof
+\else
+Quels que soient les résultats trouvés précédemment, nous utiliserons les expressions suivantes pour la suite de l'étude: $\dfrac{\alpha(p)}{U_{C}(p)}=\dfrac{\indice{K}{BO}}{1+\dfrac{2  \xi}{\omega_{0}} \cdot p+\dfrac{p^{2}}{\omega_{0}^{2}}}$ avec $\indice{K}{B O}=1,1.10^{-3}, \xi=1,7$ et $\omega_{0}=3$ rad. $s^{-1}$. Pour répondre au cahier des charges, il est décidé d'implanter un correcteur de fonction de transfert suivante : $H_{\text {cor }}(p)=K_{p} \dfrac{1+a T_{d} p}{1+T_{d} p}$ avec $\mathrm{a}>1$.
+\fi
+
+
+
+\question{\label{ccmp_psi_2015:q17_bis} Tracer l'allure du diagramme de Bode asymptotique de ce correcteur. Vous préciserez toutes les valeurs caractéristiques du tracé.}
+\ifprof
+\begin{corrige}
+\begin{center}
+  \includegraphics[width=.6\textwidth]{AvancePhase}
+%\captionsetup{labelformat=empty}
+%\caption{Schéma-bloc de l'asservissement \label{ccmp_psi_2015:fig08}}
+\end{center}
+
+Le gain tend vers $20\log K_p$ quand  $\omega$ tend vers 0 et vers  $20\log \left(a K_p\right)$
+quand  $\omega$ tend vers l'infini.
+ 
+ Les pulsation de cassures sont $\dfrac{1}{aT_d}$ et $\dfrac{1}{T_d}$
+\end{corrige}
+\else
+\fi
+
+
+\question{\label{ccmp_psi_2015:q17_bis} Donner la valeur de pulsation pour laquelle la phase est maximale.}
+\ifprof
+\begin{corrige}
+La courbe est symétrique dans le diagramme de Bode. On calcule le pulsation moyenne en log :
+$\dfrac{1}{2}\left(\log\left(\dfrac{1}{aT_d}\right) + \log\left(\dfrac{1}{T_d}\right)\right)$
+$=-\dfrac{1}{2}\left(\log\left(aT_d\right) + \log\left(T_d\right)\right)$
+$=-\dfrac{1}{2}\log\left(aT_d^2\right) $
+$=\log\left(\dfrac{1}{T_d\sqrt{a}}\right) $.
+\end{corrige}
+\else
+\fi
+
+
+%
+%%\section*{Question 17 :}
+%\question{\label{ccmp_psi_2015:q17}Nommer ce correcteur.}
+%\ifprof
+%\begin{corrige}
+%\end{corrige}
+%\else
+%\fi
+%
+%Les diagrammes de Bode de gain et de phase (pour $K_P=1$) de ce correcteur sont fournis figure \ref{ccmp_psi_2015:ann03}. Afin d'assurer un gain significatif de phase, nous décidons de placer $\omega_{c}$ en $\omega_{B P}=50$ rad.s $^{-1}$, définissant ainsi la bande passante.
+%
+%\begin{center}
+%  \includegraphics[width=.7\textwidth]{ann_03}
+%%\captionsetup{labelformat=empty}
+%\captionof{figure}{Diagrammes de Bode du correcteur pour $K_p=1$\label{ccmp_psi_2015:ann03}}
+%\end{center}
+%
+%
+%
+%%\section*{Question 18 :}
+%\question{\label{ccmp_psi_2015:q18}Déterminer la valeur du paramètre a pour que le correcteur permette d'assurer la marge de phase du cahier des charges. En déduire la valeur de $T_{d}$.}
+%\ifprof
+%\begin{corrige}
+%\end{corrige}
+%\else
+%\fi
+%
+%%\section*{Question 19 :}
+%\question{\label{ccmp_psi_2015:q19}
+%Déterminer le gain $\mathrm{K}_{\mathrm{p}}$ pour que le critère de bande passante du cahier des charges soit bien vérifié.}
+%\ifprof
+%\begin{corrige}
+%\end{corrige}
+%\else
+%\fi
+
+\ifprof
+\else
+La stabilité du tronc étant assurée, nous devons maintenant analyser les performances en précision et rapidité de l'asservissement de position angulaire. La consigne est nulle, ainsi seule la perturbation va écarter le tronc du robot de sa posture verticale. Cette perturbation provient du mouvement de marche souhaité c'est à dire de l'accélération subie $\Gamma(t)=\dfrac{\d v(t)}{\d t}$. Avec les réglages du correcteur, une simulation numérique a permis de tracer la réponse temporelle du système pour une perturbation $\Gamma(t)$ respectant la loi de vitesse représentée sur la figure \ref{ccmp_psi_2015:fig07}. Cette réponse est tracée sur la figure \ref{ccmp_psi_2015:ann04}.
+
+
+
+\begin{center}
+  \includegraphics[width=.7\textwidth]{ann_04}
+%\captionsetup{labelformat=empty}
+\captionof{figure}{Réponse temporelle\label{ccmp_psi_2015:ann04}}
+\end{center}
+\fi
+
+
+%\section*{Question 20 :}
+\question{\label{ccmp_psi_2015:q20}
+Justifier l'allure de la réponse temporelle. Déterminer graphiquement le temps de réponse à $5 \%$, le dépassement maximal et l'erreur statique. Conclure sur la capacité du correcteur à vérifier l'ensemble des critères du cahier des charges.}%Déterminer graphiquement sur le document réponse le temps de réponse à $5 \%$, le dépassement maximal et l'erreur statique. Conclure sur la capacité du correcteur à vérifier l'ensemble des critères du cahier des charges.}
+\ifprof
+\begin{corrige}
+Il s'agit d'un système régulé soumis à une perturbation. La consigne est donc d'avoir un angle de tangage nul, malgré la perturbation.
+\begin{itemize}
+\item Temps de réponse à 5\% : inférieur à \SI{50}{ms} < \SI{0,2}{s} CDC OK. 
+\item Dépassement : $3\times 10^{-3}\degres < 1\degres $ CDC OK.
+\item Angle$ 3\times 10^{-3}\degres < 0,5\degres $ CDC OK.
+\end{itemize}
+\end{corrige}
+\else
+\fi
+

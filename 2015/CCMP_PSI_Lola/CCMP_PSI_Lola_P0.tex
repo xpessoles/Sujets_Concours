@@ -1,0 +1,50 @@
+%(Durée de l'épreuve : 3 heures)\\
+%L'usage de la calculette est autorisé
+
+\section*{Sujet mis à disposition des concours : Ecoles des Mines, TÉLÉCOM SudParis, TPE-EIVP, Cycle international}
+Cet énoncé comporte 12 pages de texte numérotées de 1 à 12. Le travail doit être reporté sur le document-réponse de 12 pages distribué avec l'énoncé. Pour valider ce document-réponse, chaque candidat doit obligatoirement y inscrire à l'encre, à l'intérieur du rectangle d'anonymat situé en première page, ses nom, prénoms (souligner le prénom usuel), numéro d'inscription et signature, avant de commencer l'épreuve. Il est conseillé de lire rapidement la totalité du sujet avant de commencer l'épreuve. Un seul document-réponse est fourni au candidat. Le renouvellement de ce document en cours d'épreuve est interdit.
+
+Les questions sont organisées suivant une progression logique caractéristique de la discipline. Toutefois les parties peuvent être abordées indépendamment les unes des autres.
+
+La rédaction des réponses sera la plus concise possible : on évitera de trop longs développements de calculs en laissant subsister les articulations du raisonnement (la taille des zones réservées aux réponses n'est pas représentative de la longueur des réponses attendues).
+
+Si, au cours de l'épreuve, un candidat repère ce qui lui semble être une erreur d'énoncé, il le signale sur sa copie et poursuit sa composition en expliquant les raisons des initiatives qu'il est amené à prendre.
+
+\section*{LE ROBOT HUMANOIDE LOLA}
+Le développement de robots à forme humaine est en croissance constante depuis quelques dizaines d'années. En robotique, il est difficile d'affirmer que tous les robots remplaçant l'homme dans ses tâches doivent être de forme humaine. Les véhicules autonomes, par exemple, ne sont pas anthropomorphes. Les tâches auxquelles sont destinées les robots définissent leur forme idéale. Si nous souhaitons un jour que les robots remplacent l'homme dans ses tâches ennuyeuses, ils devront s'intégrer au mieux à notre société, à notre environnement et à notre ergonomie.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-01}
+\captionsetup{labelformat=empty}
+\caption{Figure 1 : le robot humanoïde LOLA et sa structure cinématique (sans la tête)}
+\end{center}
+\end{figure}
+
+Les dimensions d'une maison et la hauteur des meubles sont adaptées à notre forme humaine. L'avantage des robots humanoïdes devient alors économique : il n'est pas indispensable de modifier l'environnement quotidien pour les utiliser.
+
+Le robot humanoïde LOLA (figure 1), développé par l'Université de Munich, est un robot de forme humaine conçu pour un mode de marche rapide. LOLA possède une structure à 25 degrés de liberté lui permettant une flexibilité accrue. Chaque jambe possède 7 degrés de liberté, le haut du corps 8 et la tête 3 .
+
+Le robot est équipé d'une caméra stéréoscopique haute définition afin de percevoir son environnement, d'une centrale inertielle équipée de 3 gyroscopes et de 3 accéléromètres. Chaque articulation possède un codeur angulaire absolu et chaque pied est muni d'un capteur d'effort 6 axes permettant d'obtenir l'effort de contact avec le sol. Les caractéristiques techniques de LOLA sont données dans le tableau suivant :
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Caractéristiques & Valeurs \\
+\hline
+Hauteur & 180 cm \\
+\hline
+Masse & 55 kg \\
+\hline
+Nombre de degrés de liberté & 25 \\
+\hline
+Vitesse de marche & $5 \mathrm{~km} . \mathrm{h}^{-1} \mathrm{maxi}$ \\
+\hline
+Hauteur du centre de gravité & 105 cm \\
+\hline
+\end{tabular}
+\end{center}
+
+Le diagramme partiel des exigences est donné en annexe 1.
+
+L'objectif de l'étude proposée est de justifier le respect du cahier des charges. Elle se décomposera en 3 parties : l'étude de la stabilité du robot bipède, l'étude des performances de l'asservissement angulaire du tronc et enfin l'analyse des performances de la marche.
