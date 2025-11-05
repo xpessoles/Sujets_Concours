@@ -233,12 +233,12 @@ Grâce à ces résultats, on trouve qu'à l'équilibre, les répartitions de pre
 \else
 \fi
 
-La figure \ref{2023_MP_CCINP_fig_08} permet de remarquer que $B$ (respectivement $D$ ), toujours positive, est la pression moyenne de la répartition trapézoïdale gauche (respectivement droite) et que $A$ (respectivement $C$ ), positive ou négative, en est l'écart entre sa pression avant et arrière. Ainsi, la pression maximale du sol sur la chenille gauche vaut toujours $B+\left|\frac{A}{2}\right|$ (respectivement $D+\left|\frac{C}{2}\right|$ à droite).
+La figure \ref{2023_MP_CCINP_fig_08} permet de remarquer que $B$ (respectivement $D$), toujours positive, est la pression moyenne de la répartition trapézoïdale gauche (respectivement droite) et que $A$ (respectivement $C$ ), positive ou négative, en est l'écart entre sa pression avant et arrière. Ainsi, la pression maximale du sol sur la chenille gauche vaut toujours $B+\left|\frac{A}{2}\right|$ (respectivement $D+\left|\frac{C}{2}\right|$ à droite).
 
 \begin{figure}[h]
 \begin{center}
   \includegraphics[width=.8\textwidth]{2025_10_26_292d8f726e32404b86d3g-06}
-\captionsetup{labelformat=empty}
+%\captionsetup{labelformat=empty}
 \caption{Figure 8 - Aperçu des expressions des pressions minimale, maximale et moyenne \label{2023_MP_CCINP_fig_08}}
 \end{center}
 \end{figure}
@@ -246,7 +246,7 @@ La figure \ref{2023_MP_CCINP_fig_08} permet de remarquer que $B$ (respectivement
 Ainsi, pour estimer la pression maximale exercée au sol, l'ordinateur de bord estime d'abord la position de $E$ et la valeur de $F_{\text {eq }}$ en fonction des données renvoyées à tout instant par les capteurs présents sur les différents axes de la foreuse. Ensuite, il détermine les valeurs des pressions $A, B$, $C$ et $D$ grâce aux équations précédentes avec l'hypothèse assez réaliste où $C=A$ et en déduit la pression maximale. Enfin, il renvoie à l'écran la visualisation "aplatie" des distributions de pression et sonne l'alarme en cas d'approche de la pression maximale autorisée rentrée par l'utilisateur.
 
 %Q9. 
-\question{\label{2023_MP_CCINP_q09}Après avoir précisé l'expression des paramètres $A, B, C$ et $D$, donner l'expression de la pression maximale de chacune des répartitions estimées (gauche et droite) en fonction des données connues par la machine ( $L, I, a, e, \theta$ et $\indice{F}{eq}$ uniquement).
+\question{\label{2023_MP_CCINP_q09}Après avoir précisé l'expression des paramètres $A, B, C$ et $D$, donner l'expression de la pression maximale de chacune des répartitions estimées (gauche et droite) en fonction des données connues par la machine ($L, I, a, e, \theta$ et $\indice{F}{eq}$ uniquement).
 En déduire que l'expression unique de la pression maximale sous la foreuse s'écrit:}
 
 $$
@@ -258,7 +258,7 @@ $$
 \else
 \fi
 
-Toutefois, il est important de nuancer que la pression du sol sur la foreuse ne peut physiquement pas être négative. C'est pourquoi, lorsque la pression minimale calculée d'une répartition trapézoïdale devient négative ( $B-\left|\frac{A}{2}\right|$ pour la chenille gauche ou $D-\left|\frac{C}{2}\right|$ pour la droite), l'ordinateur de bord se doit de changer son modèle de répartition de pression trapézoïdale pour une répartition triangulaire où la pression minimale est imposée à 0 Pa . Dans ces moments-là, l'hypothèse où $C=A$ est rompue pour continuer à respecter le système d'équation précédent. On peut alors montrer dans ce cas que la pression maximale s'exprime de la façon suivante :
+Toutefois, il est important de nuancer que la pression du sol sur la foreuse ne peut physiquement pas être négative. C'est pourquoi, lorsque la pression minimale calculée d'une répartition trapézoïdale devient négative ( $B-\left|\frac{A}{2}\right|$ pour la chenille gauche ou $D-\left|\frac{C}{2}\right|$ pour la droite), l'ordinateur de bord se doit de changer son modèle de répartition de pression trapézoïdale pour une répartition triangulaire où la pression minimale est imposée à \SI{0}{Pa}. Dans ces moments-là, l'hypothèse où $C=A$ est rompue pour continuer à respecter le système d'équation précédent. On peut alors montrer dans ce cas que la pression maximale s'exprime de la façon suivante :
 
 $$
 p_{\max }=\frac{-e   \indice{F}{eq}}{L   I}\left(\frac{|\cos (\theta)|}{a}+\frac{6  |\sin (\theta)|}{L}\right) .

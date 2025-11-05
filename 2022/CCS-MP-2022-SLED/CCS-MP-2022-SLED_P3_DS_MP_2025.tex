@@ -4,7 +4,7 @@
 
 \ifprof
 \else
-Le bureau d'études décide de poursuivre le dimensionnement en modélisant l'asservissement du Sled. Il sera ainsi possible de définir la structure de commande de l'actionneur qui permettra de respecter les exigences définies dans le diagramme présenté en figure \ref{ccs_mp_2022_fig_A}.
+%Le bureau d'études décide de poursuivre le dimensionnement en modélisant l'asservissement du Sled. Il sera ainsi possible de définir la structure de commande de l'actionneur qui permettra de respecter les exigences définies dans le diagramme présenté en figure \ref{ccs_mp_2022_fig_A}.
 \fi
 
 
@@ -17,7 +17,7 @@ L'objectif consiste dans un premier temps à valider, à partir d'un modèle, le
 
 \ifprof
 \else
-Un premier modèle multiphysique (modèle $\mathrm{n}^{\circ} 1$, figure \ref{ccs_mp_2022_fig_20}) a été réalisé par les ingénieurs du bureau d'études à partir des éléments fournis par le prédimensionnement réalisé précédemment.
+%Un premier modèle multiphysique (modèle $\mathrm{n}^{\circ} 1$, figure \ref{ccs_mp_2022_fig_20}) a été réalisé par les ingénieurs du bureau d'études à partir des éléments fournis par le prédimensionnement réalisé précédemment.
 
 \subsubsection*{Hypothèses d'étude}
 Le modèle proposé comporte trois parties :
@@ -39,15 +39,15 @@ La particularité de ce modèle réside dans le fait qu'il s'agit d'une structur
 Les performances attendues (stabilité, précision, rapidité...) et définies dans le diagramme des exigences (figure \ref{ccs_mp_2022_fig_A}) sont donc des performances en accélération (sauf indication contraire). Cette consigne en accélération est adaptée pour permettre la commande en vitesse du moteur. Un asservissement en vitesse est réalisé à l'aide d'un capteur de vitesse de gain unitaire.
 \fi
 
-%Q 13. 
-\question{\label{ccs_mp_2022_sec_q_13}Quels sont les rôles respectifs des blocs A et B du modèle $\mathrm{n}^{\circ} 1$ (figure \ref{ccs_mp_2022_fig_20}) ?}
-\ifprof
-\begin{corrige}
-Le bloc A est un intégrateur : $A(p) = \dfrac{1}{p}$.
-Le bloc B est un dérivateur : $B(p) = p$.
-\end{corrige}
-\else
-\fi
+%%Q 13. 
+%\question{\label{ccs_mp_2022_sec_q_13}Quels sont les rôles respectifs des blocs A et B du modèle $\mathrm{n}^{\circ} 1$ (figure \ref{ccs_mp_2022_fig_20}) ?}
+%\ifprof
+%\begin{corrige}
+%Le bloc A est un intégrateur : $A(p) = \dfrac{1}{p}$.
+%Le bloc B est un dérivateur : $B(p) = p$.
+%\end{corrige}
+%\else
+%\fi
 
 \ifprof
 \else
@@ -97,7 +97,8 @@ $$
 G_{\mathrm{dB}-\mathrm{BO}}\left(\omega=\omega_{r}\right)=20 \log \left(\frac{K_{\mathrm{BO}}}{2 \xi_{\mathrm{BO}} \sqrt{1-\xi_{\mathrm{BO}}^{2}}}\right)
 $$
 
-Pour effectuer la commande en accélération du modèle $\mathrm{n}^{\circ} 1$ (figure \ref{ccs_mp_2022_fig_20}), les ingénieurs du bureau d'études proposent de travailler sur la commande en vitesse.
+Pour effectuer la commande en accélération du modèle %$\mathrm{n}^{\circ} 1$ %(figure \ref{ccs_mp_2022_fig_20}), 
+les ingénieurs du bureau d'études proposent de travailler sur la commande en vitesse.
 \fi
 
 %Q 14. 
@@ -113,13 +114,15 @@ L'intérêt de cette proposition est de pouvoir contrôler le système en vitess
 
 \ifprof
 \else
-Une première simulation avec ce modèle $\mathrm{n}^{\circ} 1$ (figure \ref{ccs_mp_2022_fig_20}) permet d'obtenir le diagramme de Bode de l'asservissement en vitesse en boucle ouverte $H_{\mathrm{BO}}(p)$, proposé en figure \ref{ccs_mp_2022_fig_08} .
+Une première simulation avec ce modèle %$\mathrm{n}^{\circ} 1$ (figure \ref{ccs_mp_2022_fig_20}) 
+permet d'obtenir le diagramme de Bode de l'asservissement en vitesse en boucle ouverte $H_{\mathrm{BO}}(p)$, proposé en figure \ref{ccs_mp_2022_fig_08} .
 
 \begin{figure}[!h]
 \centering
 \includegraphics[width=.75\textwidth]{2025_07_06_ec63d2f3afc18cdeeb83g-06}
 %Figure 8 
-\caption{\label{ccs_mp_2022_fig_08}Diagramme de Bode en boucle ouverte de l'asservissement en vitesse du modèle $\mathrm{n}^{\circ} 1$ (figure \ref{ccs_mp_2022_fig_20})}
+\caption{\label{ccs_mp_2022_fig_08}Diagramme de Bode en boucle ouverte de l'asservissement en vitesse %du modèle $\mathrm{n}^{\circ} 1$ (figure \ref{ccs_mp_2022_fig_20})
+}
 \end{figure}
 \fi
 
@@ -279,7 +282,7 @@ $ \varepsilon_\text{relatif} = \lim\limits_{t \to \infty}\dfrac{a_\text{consigne
  $= \dfrac{\dfrac{{0.3 g}}{1+K_\text{BO}}}{{0.3 g}}$
  $= \dfrac{1}{1+K_\text{BO}}$
 
-A.N. :$  \varepsilon_\text{relatif} = \dfrac{1}{1 + 8.4 \times 10^{-3}} \simeq 0.992 \quad \text{soit : } 99.2\%$. L'exigence \texttt{Id = 1.1.1.2.1} n'est donc pas respectée.
+A.N. : $\varepsilon_\text{relatif} = \dfrac{1}{1 + 8.4 \times 10^{-3}} \simeq 0.992 \quad \text{soit : } 99.2\%$. L'exigence \texttt{Id = 1.1.1.2.1} n'est donc pas respectée.
 \end{corrige}
 \else
 \fi
@@ -300,14 +303,15 @@ A.N. :$  \varepsilon_\text{relatif} = \dfrac{1}{1 + 8.4 \times 10^{-3}} \simeq 0
 \subsection{Introduction d'une correction \label{ccs_mp_2022_sec_3B}}
 
 \begin{obj}
-Pour pallier le non-respect de certaine(s) performance(s) du diagramme des exigences (figure \ref{ccs_mp_2022_fig_A}) sur le modèle $\mathrm{n}^{\circ} 1$ (figure \ref{ccs_mp_2022_fig_20}), le bureau d'études a choisi de mettre en place un correcteur dans la chaine directe, ou chaine d'action. L'objectif est de valider le choix du correcteur ainsi que son dimensionnement.
+Pour pallier le non-respect de certaine(s) performance(s) du diagramme des exigences (figure \ref{ccs_mp_2022_fig_A}) sur le modèle $\mathrm{n}^{\circ} 1$ %(figure \ref{ccs_mp_2022_fig_20})
+, le bureau d'études a choisi de mettre en place un correcteur dans la chaine directe, ou chaine d'action. L'objectif est de valider le choix du correcteur ainsi que son dimensionnement.
 \end{obj}
 
 %III.B.1) 
 \subsubsection{Réglage d'un correcteur proportionnel vis-à-vis du critère de précision \label{ccs_mp_2022_sec_3B1}}
 
 %Q 21. 
-\question{\label{ccs_mp_2022_sec_q_21}À partir de l'expression de $\varepsilon_{a}$ déterminée à la question 19 montrer qu'un correcteur proportionnel de gain pur $K_{\text {corr.gain.pur }}$ placé dans la chaine directe, ou chaine d'action, permet d'améliorer l'erreur relative observée à la question \ref{ccs_mp_2022_sec_q_20}.}
+\question{\label{ccs_mp_2022_sec_q_21}À partir de l'expression de $\varepsilon_{a}$ déterminée à la question \ref{ccs_mp_2022_sec_q_19} montrer qu'un correcteur proportionnel de gain pur $K_{\text {corr.gain.pur }}$ placé dans la chaine directe, ou chaine d'action, permet d'améliorer l'erreur relative observée à la question \ref{ccs_mp_2022_sec_q_20}.}
 \ifprof
 \begin{corrige}
 
@@ -353,7 +357,7 @@ On remarque que plus le $K_\text{corr. gain pur}$ augmente (lorsqu'il est supér
 
 
 %Q 24. 
-\question{\label{ccs_mp_2022_sec_q_24}Vérifier si l'exigence Id $=1.1 .1 .1 .2$ est respectée avec la valeur de $K_{\text {corr.gain.pur }}$ déterminée à la question \label{ccs_mp_2022_sec_q_22}.}
+\question{\label{ccs_mp_2022_sec_q_24}Vérifier si l'exigence Id $=1.1 .1 .1 .2$ est respectée avec la valeur de $K_{\text {corr.gain.pur}}$ déterminée à la question \ref{ccs_mp_2022_sec_q_22}.}
 \ifprof
 \begin{corrige}
 $ \xi_\text{BF} = \dfrac{\xi_\text{BO}}{\sqrt{1 + K_\text{corr. gain pur} \times K_\text{BO}}} $
@@ -603,31 +607,31 @@ On ne peut pas valider toutes les exigences avec les études réalisées jusqu'i
 %Figure 12 
 \caption{\label{ccs_mp_2022_fig_12}Réponse temporelle en accélération du système corrigé (au-dessus) et zoom (en dessous) sur l'échelon de consigne $0,3 g$}
 \end{figure}
-
-Les ingénieurs du bureau d'études décident d'arrêter en l'état la modélisation du Sled $0,3 g$ qui a permis de définir une première structure de commande. Ils souhaitent à présent s'investir dans la réalisation d'un Sled et mener des expérimentations.
+%
+%Les ingénieurs du bureau d'études décident d'arrêter en l'état la modélisation du Sled $0,3 g$ qui a permis de définir une première structure de commande. Ils souhaitent à présent s'investir dans la réalisation d'un Sled et mener des expérimentations.
 \fi
 
 
 
 
 
-
-\begin{figure}[!h]
-\centering
-
-\includegraphics[height=.95\textheight]{2025_07_06_ec63d2f3afc18cdeeb83g-15}
-%Figure 20 
-\caption{\label{ccs_mp_2022_fig_20}Modèle $n^{\circ} 1$ du Sled}
-\end{figure}
-
-
-\begin{figure}[!h]
-\centering
-\includegraphics[height=.9\textheight]{2025_07_06_ec63d2f3afc18cdeeb83g-16}
-
-%Figure 21 
-\caption{\label{ccs_mp_2022_fig_21}Modèle multiphysique $\mathrm{n}^{\circ} 2$}
-\end{figure}
+%
+%\begin{figure}[!h]
+%\centering
+%
+%\includegraphics[height=.95\textheight]{2025_07_06_ec63d2f3afc18cdeeb83g-15}
+%%Figure 20 
+%\caption{\label{ccs_mp_2022_fig_20}Modèle $n^{\circ} 1$ du Sled}
+%\end{figure}
+%
+%
+%\begin{figure}[!h]
+%\centering
+%\includegraphics[height=.9\textheight]{2025_07_06_ec63d2f3afc18cdeeb83g-16}
+%
+%%Figure 21 
+%\caption{\label{ccs_mp_2022_fig_21}Modèle multiphysique $\mathrm{n}^{\circ} 2$}
+%\end{figure}
 
 
 
