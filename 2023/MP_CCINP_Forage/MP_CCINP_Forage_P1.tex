@@ -105,6 +105,9 @@ $b_{\%}=100 \dfrac{|r   \cos (\theta)|}{a}$.}
 
 \ifprof
 \begin{corrige}
+On est à la limite du basculement lorsque $F_g = 0$. De plus, dans les conditions énoncées, $\indice{F}{sol}$ est nul. Par suite $F_g = 0 = Mg\dfrac{a-r\cos \theta}{2a}$  soit $a=r\cos \theta$.
+
+Interprétation physique : 
 \end{corrige}
 \else
 \fi
@@ -133,6 +136,7 @@ On note (en mètres) : $\overrightarrow{O G_{t}}=2,2 \vec{z} ; \overrightarrow{O
 
 \ifprof
 \begin{corrige}
+
 \end{corrige}
 \else
 \fi
@@ -243,7 +247,7 @@ La figure \ref{2023_MP_CCINP_fig_08} permet de remarquer que $B$ (respectivement
 \end{center}
 \end{figure}
 
-Ainsi, pour estimer la pression maximale exercée au sol, l'ordinateur de bord estime d'abord la position de $E$ et la valeur de $F_{\text {eq }}$ en fonction des données renvoyées à tout instant par les capteurs présents sur les différents axes de la foreuse. Ensuite, il détermine les valeurs des pressions $A, B$, $C$ et $D$ grâce aux équations précédentes avec l'hypothèse assez réaliste où $C=A$ et en déduit la pression maximale. Enfin, il renvoie à l'écran la visualisation "aplatie" des distributions de pression et sonne l'alarme en cas d'approche de la pression maximale autorisée rentrée par l'utilisateur.
+Ainsi, pour estimer la pression maximale exercée au sol, l'ordinateur de bord estime d'abord la position de $E$ et la valeur de $F_{\text {eq }}$ en fonction des données renvoyées à tout instant par les capteurs présents sur les différents axes de la foreuse. Ensuite, il détermine les valeurs des pressions $A, B$, $C$ et $D$ grâce aux équations précédentes avec l'hypothèse assez réaliste où $C=A$ et en déduit la pression maximale. Enfin, il renvoie à l'écran la visualisation << aplatie >> des distributions de pression et sonne l'alarme en cas d'approche de la pression maximale autorisée rentrée par l'utilisateur.
 
 %Q9. 
 \question{\label{2023_MP_CCINP_q09}Après avoir précisé l'expression des paramètres $A, B, C$ et $D$, donner l'expression de la pression maximale de chacune des répartitions estimées (gauche et droite) en fonction des données connues par la machine ($L, I, a, e, \theta$ et $\indice{F}{eq}$ uniquement).
@@ -258,7 +262,8 @@ $$
 \else
 \fi
 
-Toutefois, il est important de nuancer que la pression du sol sur la foreuse ne peut physiquement pas être négative. C'est pourquoi, lorsque la pression minimale calculée d'une répartition trapézoïdale devient négative ( $B-\left|\frac{A}{2}\right|$ pour la chenille gauche ou $D-\left|\frac{C}{2}\right|$ pour la droite), l'ordinateur de bord se doit de changer son modèle de répartition de pression trapézoïdale pour une répartition triangulaire où la pression minimale est imposée à \SI{0}{Pa}. Dans ces moments-là, l'hypothèse où $C=A$ est rompue pour continuer à respecter le système d'équation précédent. On peut alors montrer dans ce cas que la pression maximale s'exprime de la façon suivante :
+Toutefois, il est important de nuancer que la pression du sol sur la foreuse ne peut physiquement pas être négative. C'est pourquoi, lorsque la pression minimale calculée d'une répartition trapézoïdale devient négative 
+($B-\left|\frac{A}{2}\right|$ pour la chenille gauche ou $D-\left|\frac{C}{2}\right|$ pour la droite), l'ordinateur de bord se doit de changer son modèle de répartition de pression trapézoïdale pour une répartition triangulaire où la pression minimale est imposée à \SI{0}{Pa}. Dans ces moments-là, l'hypothèse où $C=A$ est rompue pour continuer à respecter le système d'équation précédent. On peut alors montrer dans ce cas que la pression maximale s'exprime de la façon suivante :
 
 $$
 p_{\max }=\frac{-e   \indice{F}{eq}}{L   I}\left(\frac{|\cos (\theta)|}{a}+\frac{6  |\sin (\theta)|}{L}\right) .

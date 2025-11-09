@@ -1,7 +1,24 @@
 
 %III 
+\section*{DEUXIEME PROBLEME}
 \section{Mise en place d'un modèle numérique pour le Sled $0,3 g$ \label{ccs_mp_2022_sec_3}}
 
+Le Sled est un système inspiré des crashtests réalisés dans le domaine automobile. Il est constitué de : 
+\begin{itemize}
+\item une plateforme est animée d’un mouvement de translation horizontale par rapport au bâti ;
+\item un passager (volontaire ou mannequin) peut prendre place sur cette plateforme via un siège ;
+\item un dispositif de mise en mouvement permet d’atteindre les accélérations et décélérations attendues.
+\end{itemize}
+
+\begin{minipage}[c]{.47\linewidth}
+\begin{center}
+\includegraphics[width=\linewidth]{fig_02}
+\end{center}
+\end{minipage} \hfill \begin{minipage}[c]{.47\linewidth}
+\begin{center}
+\includegraphics[width=\linewidth]{fig_03}
+\end{center}
+\end{minipage}
 \ifprof
 \else
 %Le bureau d'études décide de poursuivre le dimensionnement en modélisant l'asservissement du Sled. Il sera ainsi possible de définir la structure de commande de l'actionneur qui permettra de respecter les exigences définies dans le diagramme présenté en figure \ref{ccs_mp_2022_fig_A}.
@@ -36,7 +53,7 @@ La particularité de ce modèle réside dans le fait qu'il s'agit d'une structur
 \caption{\label{ccs_mp_2022_fig_04}Évolution de l'accélération au cours du temps}
 \end{figure}
 
-Les performances attendues (stabilité, précision, rapidité...) et définies dans le diagramme des exigences (figure \ref{ccs_mp_2022_fig_A}) sont donc des performances en accélération (sauf indication contraire). Cette consigne en accélération est adaptée pour permettre la commande en vitesse du moteur. Un asservissement en vitesse est réalisé à l'aide d'un capteur de vitesse de gain unitaire.
+Les performances attendues (stabilité, précision, rapidité...) et définies dans le diagramme des exigences (figure~\ref{ccs_mp_2022_fig_A}) sont donc des performances en accélération (sauf indication contraire). Cette consigne en accélération est adaptée pour permettre la commande en vitesse du moteur. Un asservissement en vitesse est réalisé à l'aide d'un capteur de vitesse de gain unitaire.
 \fi
 
 %%Q 13. 
