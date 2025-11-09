@@ -1,0 +1,656 @@
+
+\section{Présentation générale du rugosimètre à grande vitesse}
+\ifprof
+\else
+La rugosimétrie est la mesure de l’état de surface des pièces mécaniques. L’ordre de grandeur des défauts
+mesurés est le micron. Cette mesure des états de surfaces est aussi répandue et indispensable que la mesure
+des caractéristiques dimensionnelles et géométriques des pièces mécaniques (longueur, orientation,
+perpendicularité…). La \autoref{fig_01} représente un relevé rugosimétrique tridimensionnel d’une partie d’une
+aube de turbine de haute précision (à droite en fausses couleurs).
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.6\linewidth]{fig_01}
+\caption{\label{fig_01} Relevé rugosimétrique tridimensionnel d’une aube}
+\end{figure}
+
+La mesure de rugosimétrie repose traditionnellement sur deux éléments distincts : le capteur, qui peut être
+mécanique (palpeur) ou optique, et le traitement du signal et des données (algorithmes informatiques), qui
+permet de traduire les mesures physiques de base, produites par le capteur, en données numériques
+exploitables, représentatives des caractéristiques physiques de la surface analysée.
+
+
+De la conjonction des caractéristiques techniques du capteur et du traitement numérique vont découler les
+qualités essentielles du rugosimètre : sa rapidité ; sa résolution ; sa précision ; son amplitude de mesure.
+
+Lorsque l’ensemble est suffisamment rapide, il peut être utilisé pour réaliser des relevés de surface
+($z$ fonction de $(x, y)$, ou « mesure 3D ») et non plus simplement des profils linéaires ($z$ fonction de $x$, ou
+« mesure 2D »). Si, à cette exigence de rapidité, on ajoute celle de précision ainsi que celle de grande
+amplitude de mesure, on arrive, avec les technologies actuellement disponibles, à des capteurs très chers
+(de l’ordre de 50 000 euros). Cela fait que le développement de la rugosimétrie 3D de précision a été,
+jusqu'à présent, assez lent. Le projet, dont est tiré le sujet, a pour ambition de développer et de mettre sur le
+marché un rugosimètre 3D de précision à faible coût.
+
+L’objet de cette étude est de valider / critiquer / améliorer certaines techniques et technologies retenues
+pour le prototype du rugosimètre 2D. Ce prototype a été conçu par le laboratoire SATIE de l’École
+Normale Supérieure de Cachan. Ce projet est le fruit d’un travail pluridisciplinaire qui a impliqué des
+commerciaux, des scientifiques et des techniciens, et a été financé par l’Agence pour la Valorisation de la
+Recherche d’Ile-de-France.
+\fi
+\subsection{Structure générale du rugosimètre à grande vitesse}
+\ifprof
+\else
+Le principe d’un capteur opto-mécanique (association d’un capteur optique et d’un capteur mécanique) a
+été retenu, pour ce prototype. Il est décrit succinctement ci-après (\autoref{fig_02}) :
+\begin{itemize}
+\item un capteur optique assure une résolution verticale comparable à celle des meilleurs capteurs mécaniques actuels ($< \SI{10}{nm}$). Ce capteur, de faible amplitude de lecture (\SI{20}{\mu m}), permet une mesure rapide des hautes fréquences spatiales (variations rapides) des profils rugosimétriques mesurés ;
+\item un asservissement mécanique vertical à grande amplitude (environ \SI{10}{mm}) permet à la tête optique de suivre les moyennes et basses fréquences spatiales (variations plus lentes) des profils. Un second capteur donne la position verticale de la tête optique.
+\end{itemize}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.45\linewidth]{fig_02}
+\caption{\label{fig_02} Principe du système opto-mécanique}
+\end{figure}
+
+Le profil complet sera obtenu par la somme des signaux fournis par les deux capteurs. Le déplacement
+vertical du capteur optique est assuré par une Unité de Rotation (U.R.) portée par le coulisseau (2)
+(\autoref{fig_03}).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{fig_03}
+\caption{\label{fig_03} Schéma du prototype de rugosimètre 2D}
+\end{figure}
+
+Ce capteur opto-mécanique est lui-même déplacé au dessus de la surface à mesurer par une Unité de
+Translation (U.T.) à vitesse régulée (\autoref{fig_03}), ce qui permet d’obtenir un « profil 2D », $z$ fonction de $x$. La
+vitesse de déplacement visée par ce prototype est de \SI{20}{mm.s^{-1}}.
+
+Dans sa future version 3D, une seconde U.T. de direction ($\vect{y}$) permettra de donner une image de la surface
+par une juxtaposition de profils 2D : on « scannera » la surface.
+
+Le coût estimé de ce rugosimètre est de 10 000 euros.
+\fi
+\subsection{Principe de mesure du capteur optique}
+\ifprof
+\else
+Le principe de mesure du capteur optique est l’écartométrie. Ce procédé, déjà utilisé en robotique, n’a encore jamais servi en rugosimétrie industrielle. Un faisceau laser (« émission ») est focalisé sur la surface à mesurer. La tache focale se déplace devant les images de deux demi-disques de réception. L’intensité lumineuse d’émission se partage ainsi entre deux photorécepteurs.
+
+Cette différence d’intensité permet de calculer la position horizontale de la tache focale d’émission. Cette position horizontale de la tache focale est ensuite convertie en position verticale de la surface par rapport au point focal (qui sera noté par la suite (P)) (\autoref{fig_04}).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.5\linewidth]{fig_04}
+\caption{\label{fig_04} Principe du capteur optique : l’écartométrie}
+\end{figure}
+\fi
+
+\section{Caractérisation globale du rugosimètre}
+\ifprof
+\else
+Dans cette partie, nous vous demandons de caractériser de façon globale le système étudié puis de
+déterminer les liens existant entre les différents éléments de ce système. Ceci permettra d’étudier
+ultérieurement les caractéristiques de certains constituants, puis de les modifier si leur comportement ne
+donne pas satisfaction en ayant en permanence à l’esprit les contraintes qui lient ces éléments spécifiques
+aux autres éléments du système global.
+
+Le marché économique d’un tel instrument de mesure est très concurrentiel. Les acheteurs potentiels de ces
+capteurs choisissent plusieurs critères pour évaluer les différentes propositions commerciales qui peuvent
+leur être faites.
+
+\fi
+
+\question{\label{q_01}Donner les différents critères de performance et les niveaux associés du rugosimètre.}
+\ifprof
+\begin{corrige} ~\\
+
+\begin{center}
+\begin{tabular}{ll}
+\hline
+\textbf{Critères de performances} & \textbf{Niveaux associés} \\ \hline
+Résolution verticale du capteur optique & $< \SI{10}{nm}$ \\ 
+Amplitude de lecture & $\SI{20}{\mu m}$ \\ 
+Amplitude de l'asservissement (??) & $\SI{10}{mm}$ \\ 
+Vitesse de déplacement & $\SI{20}{mm.s^{-1}}$\\ \hline
+\end{tabular}
+\end{center}
+\end{corrige}
+\else
+\fi
+
+%\question{\label{q_02}Complétez les diagrammes S.A.D.T. « A-0 », puis « A.0 », du système « rugosimètre 3D » préfiguré par le prototype 2D décrit ci-dessus. Vous éviterez les confusions entre entrées, moyens et contrôles.}
+
+\section{Calculs prévisionnels des actionneurs \label{sec:3}}
+
+\ifprof
+\else
+Les calculs d’avant projet doivent permettre de dimensionner les différents composants qui seront utilisés
+et de définir certains paramètres de réglages (paramètres d’asservissement…).
+
+Les calculs prévisionnels visent, dans un premier temps, à déterminer les équations dynamiques qui
+permettront de déterminer les couples moteurs (minimum) des différents actionneurs en fonction des
+caractéristiques géométriques, massiques et inertielles des pièces ainsi que des conditions d’utilisation.
+
+Dans toute cette partie, nous considérerons que seules l'unité de translation ($\vect{x}$ ) et l’unité de rotation sont
+actionnées.
+\fi
+
+\subsection{Mise en place du problème}
+
+\ifprof
+\else
+\begin{figure}[H]
+\centering
+\includegraphics[width=.8\linewidth]{fig_05}
+\caption{\label{fig_05} Schéma paramétré du prototype de rugosimètre 2D (les actionneurs ne sont pas représentés)}
+\end{figure}
+
+La figure 5 présente le schéma et le paramétrage qui sera utilisé pour cette partie de l’étude. Ce système
+comporte quatre pièces :
+\begin{itemize}
+\item le bâti (0). On associe à cette pièce le repère ($\mathcal{R}_0\left(O, \vect{x_0}, \vect{y_0}, \vect{z_0}\right)$) que l’on considère galiléen ;
+\item le rotor (1) :
+\begin{itemize}
+\item moment d’inertie selon l’axe $\left(O,\vect{x_0}\right)$  noté $J_1$ avec $J_1 = \SI{1e-6}{kg.m^2}$;
+\item centre d’inertie ($G_1$), avec $\vect{OG_1} = -a\vect{x_0}$;
+\item la liaison pivot ($L_{0/1}$), dont le paramètre angulaire est $\varphi = \left(\vect{y_0},\vect{x_0}\right)$, présente un frottement visqueux de coefficient $f_1$, créant un moment : $\vectm{O}{0}{1} = -f_1 \dot{\varphi} \vect{x_0}$ ($f_1 = \SI{5e-5}{Nm.rad^{-1}.s}$);
+\item un moteur (M1) gère le mouvement de rotation de (1) par rapport à (0). Le couple moteur
+appliqué sur (1) est noté : $\vect{C}_{\text{Moteur 1}\rightarrow 1}=C_{m1}\vect{x_0}$;
+\end{itemize}
+\item le coulisseau (2) :
+\begin{itemize}
+\item masse : $m_2$ avec $m_2 = \SI{2}{kg}$ ;
+\item centre d’inertie ($G_2$),
+\item la liaison hélicoïdale ($L_{1/2}$) (supposée parfaite) possède un pas noté ($p_a$) ($p_a = \SI{0,5}{mm/tour}$).
+Ce pas est à droite (sens classique) ;
+\item la liaison glissière ($L_{0/2}$), dont le paramètre de position (translation) est noté ($x$) : $\vect{OA} = x\vect{x_0}$, présente un frottement visqueux de coefficient $f_2$, créant une force : $\vectf{0}{2}=-f_2 \dot{x}\vect{x_0}$ ($f_2 = \SI{5}{N.m^{-1}.s}$);
+\end{itemize}
+\item l’ensemble (3) :
+\begin{itemize}
+\item masse : $m_3$ (cette masse sera déterminée à la question \ref{q_03}) ;
+\item centre d’inertie ($G_3$) : $\vect{AG_3}=r\vect{x_3}$;
+\item matrice d’inertie en (A) : $\inertie{A}{3} = \matinertie{A}{B}{C}{-D}{-E}{-F}{A,\mathcal{B}_3}$, avec $\mathcal{B}_3=\left(\vect{x_3},\vect{y_3},\vect{z_3}\right)$
+\item la liaison pivot ($L_{2/3}$), de paramètre angulaire $\theta = \left(\vect{x_0} , \vect{x_3}\right)$, présente un frottement visqueux de coefficient $f_3$, créant un moment : $\vectm{A}{2}{3} = -f_3 \dot{\theta} \vect{y_0}$;
+\item un moteur (M3) gère la rotation de l’ensemble (3) par rapport à (2). Le couple moteur appliqué
+sur (3) est noté : $\vect{C}_{\text{Moteur 3}\rightarrow 3}=C_{m3}\vect{y_0}$;
+\item un système d’équilibrage (ressort de torsion) permet à la tête optique d’être horizontale ($\theta = 0\degres$)
+en position de repos, c’est-à-dire lorsque le moteur (M3) n’est pas alimenté. Ce système
+d’équilibrage exerce sur l’ensemble (3) un couple de rappel noté : $\vect{C}=C_r \vect{y_0}$, avec
+$C_r = -\left(K_{\text{tors}}\theta + C_0\right)$. Le terme $C_0$ permet d’équilibrer le moment en (A) créé par l’action de
+pesanteur sur (3) lorsque ($\theta = 0\degres$).
+\end{itemize}
+\end{itemize}
+\fi
+\subsection{Positionnement du centre d'inertie}
+
+
+\ifprof
+\else
+Comme le montre la \autoref{fig_06}, l’ensemble (3) est constitué de plusieurs solides en liaison encastrement :
+\begin{itemize}
+\item le bras (4) lié au moteur couple;
+\item la tête optique (5);
+\item un contrepoids (6).
+\end{itemize}
+Ce contrepoids (6) a été ajouté pour assurer que le centre d’inertie ($G_3$) soit sur l’axe $\axe{A}{x_3}$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.4\linewidth]{fig_06}
+\caption{\label{fig_06} Unité de rotation}
+\end{figure}
+
+Les caractéristiques géométriques de l’ensemble (3) étudié sont données ci-après :
+\begin{itemize}
+\item bras (4) du moteur couple : masse : $m_4=\SI{e-3}{kg}$; centre d’inertie : $\vect{AG_4} = - b_4 \vect{y_0}$ avec $b_4 =  \SI{4}{mm}$;
+\item tête optique (5) : masse : $m_5= \SI{5e-3}{kg}$; centre d’inertie : $\vect{AG_5}= a_5 \vect{x_3}+b_5 \vect{y_3}-c_5 \vect{z_3}$ avec $a_5 = \SI{40}{mm}$ ; $b_5 = \SI{0,8}{mm}$ ; $c_5 = \SI{10}{mm}$;
+\item contrepoids (6) : masse : $m_6$ (à déterminer à la question \ref{q_03}) ; centre d’inertie :
+$\vect{AG_6}= a_6 \vect{x_3}+c_6 \vect{z_3}$ avec $a_6 = \SI{10}{mm}$ ; $c_6 = \SI{25}{mm}$.
+\end{itemize}
+\fi
+
+\question{\label{q_03}Déterminez l’expression littérale de la masse du contrepoids (6) qui assure que le terme (c) de l’expression de la position du centre d’inertie ($\vect{AG_3}=r\vect{x_3} - b\vect{y_3} + c\vect{z_3}$) est nul. Réalisez l’application numérique. Montrez que dans ce cas, $r=\SI{27,5}{mm}$ avec $\vect{AG_3}=r\vect{x_3}$.}
+\ifprof
+\begin{corrige} ~\\
+\begin{minipage}[c]{.7\linewidth}
+Déterminons la position du centre d'inertie de l'ensemble (3) en utilisant le barycentre des centres d'inertie des pièces qui le compose.
+
+$\left(m_4 + m_5 +m_6 \right) \vect{AG_3} = m_4 \vect{AG_4}+m_5 \vect{AG_5}+m_6 \vect{AG_6} $. 
+
+On souhaite que  $\vect{AG_3}\cdot \vect{z_3}$ soit nul. En conséquences, 
+$ m_4 \vect{AG_4} \cdot \vect{z_3}+m_5 \vect{AG_5}\cdot \vect{z_3}+m_6 \vect{AG_6}\cdot \vect{z_3} = 0 $. 
+
+On a alors :$ - m_4 b_4 \vect{y_0} \cdot \vect{z_3} - m_5 c_5 +m_6 c_6  = 0 $
+$\Leftrightarrow  - m_5 c_5 +m_6 c_6  = 0 $.
+$\Leftrightarrow   m_6   = m_5 \dfrac{c_5}{c_6}$.
+ 
+\textit{Application numérique : } $m_6 = \dfrac{5\times 10^{-3} \times 10}{25} = \SI{2e-3}{kg}$.
+
+\end{minipage} \hfill
+\begin{minipage}[c]{.25\linewidth}
+\begin{center}
+\includegraphics[width=\linewidth]{cor_01}
+\end{center}
+\end{minipage}
+
+Par ailleurs, on cherche $r_3$; donc
+$\left(m_4 + m_5 +m_6 \right) \vect{AG_3}\cdot \vect{x_3} = m_4 \vect{AG_4}\cdot \vect{x_3}+m_5 \vect{AG_5}\cdot \vect{x_3}+m_6 \vect{AG_6}\cdot \vect{x_3} $  
+soit 
+$\left(m_4 + m_5 +m_6 \right) r =m_5 a_5+m_6 a_6 $; donc $ r =\dfrac{m_5 a_5+ m_6a_6}{m_4 + m_5 +m_6 } $.
+
+\textit{Application numérique : } $r = \dfrac{\num{5e-3}\times 40 + \num{2e-3}\times 10}{\num{e-3}+ \num{5e-3} + \num{2e-3}} = \dfrac{220}{8}=\SI{27,5}{mm}$.
+
+Pour finir, il faudrait vérifier que $b=\SI{0}{mm}$.
+\end{corrige}
+\else
+\fi
+\subsection{Équations dynamiques}
+
+\ifprof
+\else
+Le système étudié possède deux mobilités, il est donc nécessaire de déterminer deux équations pour
+pouvoir atteindre les grandeurs recherchées, le couple moteur dans l’actionneur de l’unité de rotation
+($C_{\text{m3}}$) et le couple moteur dans l’unité de translation ($C_{\text{m1}}$) en fonction des caractéristiques
+dimensionnelles et matérielles des pièces, des lois de mouvement et des dissipations dans les liaisons.
+\fi
+
+\question{Tracer le graphe de liaisons associé au système. Préciser les actions mécaniques.}
+
+\ifprof
+\begin{corrige}~\\
+\begin{center} 
+\includegraphics[width=.8\linewidth]{cor_03}
+\end{center}
+\end{corrige}
+\else
+\fi
+
+\question{Déterminer méthodiquement $\vectmd{A}{3}{0}\cdot \vect{y_3}$.}
+\ifprof
+\begin{corrige} ~\\
+Calcul de $\vectmd{A}{3}{0}\cdot \vect{y_3} = \deriv{\vectmc{A}{3}{0}}{\rep{0}}\cdot \vect{y_3} + m_3 \left(\vect{V(A/0)}\wedge\vectv{G_3}{3}{0}\right)\cdot \vect{y_3}$.
+\begin{itemize}
+
+\item  $\deriv{\vectmc{A}{3}{0}}{\rep{0}}\cdot \vect{y_3} =  \deriv{\vectmc{A}{3}{0}\cdot \vect{y_3}}{}+ \underbrace{\vectmc{A}{3}{0}\cdot \deriv{\vect{y_3}}{\rep{0}}}_{0}$.  
+
+\item De plus $\vectmc{A}{3}{0} = \inertie{A}{3} \vecto{3}{0}  + m_3 \vect{AG_3}\wedge \vectv{A}{3}{0}$ 
+$= \matinertie{A}{B}{C}{-D}{-E}{-F}{A,\mathcal{B}_3} \begin{pmatrix} 0  \\ \dot{\theta} \\ 0 \end{pmatrix}_{\rep{3}}
++ m_3 r\vect{x_3}\wedge \dot{x}\vect{x_0} $ 
+
+$ =\begin{pmatrix} -F\dot{\theta}  \\ B\dot{\theta} \\ -D\dot{\theta} \end{pmatrix}_{\rep{3}} -  m_3 r\sin\theta \dot{x}\vect{y_0} $. Par suite, $\deriv{\vectmc{A}{3}{0}\cdot \vect{y_3}}{} = B\ddot{\theta} - m_3 r\dot{x}\dot{\theta}\cos\theta - m_3 r\sin\theta \ddot{x}$.
+
+\item  $\vect{V(A/0)}  = \dot{x}\vect{x_0}$.
+
+\item  $\vectv{G_3}{3}{0}  = \vectv{A}{3}{0}  + \vect{G_3A} \wedge \vecto{3}{0}$  $=\dot{x}\vect{x_0} -r \vect{x_3} \wedge \dot{\theta}\vect{y_3}$ $=\dot{x}\vect{x_0} -r  \dot{\theta}\vect{z_3}$.
+
+\item $m_3 \left(\vect{V(A/0)}\wedge\vectv{G_3}{3}{0}\right)\cdot \vect{y_3}$ 
+$ = m_3 \left(\dot{x}\vect{x_0}\wedge\left( \dot{x}\vect{x_0} -r  \dot{\theta}\vect{z_3}\right)\right)\cdot \vect{y_3}$
+$ = m_3 \left(\dot{x}\vect{x_0}\wedge -r  \dot{\theta}\vect{z_3} \right)\cdot \vect{y_3}$
+$ =-r  \dot{\theta} m_3 \dot{x} \left(\vect{z_3}\wedge \vect{y_3} \right)\cdot \vect{x_0}$
+$ =r  \dot{\theta} m_3 \dot{x} \vect{x_3} \cdot \vect{x_0}$
+$ =r  \dot{\theta} m_3 \dot{x} \cos \theta $.
+\end{itemize}
+
+Au final,  $\vectmd{A}{3}{0}\cdot \vect{y_3} = B\ddot{\theta} - m_3 r\dot{x}\dot{\theta}\cos\theta - m_3 r\sin\theta \ddot{x}+r  \dot{\theta} m_3 \dot{x} \cos \theta$
+\end{corrige}
+\else
+\fi
+
+
+
+%Pour obtenir la première équation, vous êtes obligé d’appliquer la méthode demandée.
+
+\question{\label{q_04}Isoler l’ensemble (3) et réaliser le BAME puis écrire le théorème du moment dynamique en (A) en projection sur $\vect{y_0}$. Écrire votre résultat sous le forme $d\ddot{\theta}+e\ddot{x}+f\dot{\theta}+g\theta = h $ (les termes $d$, $e$, $f$, $g$ et $h$ peuvent dépendre de $\theta$).}
+\ifprof
+\begin{corrige} ~\\
+\begin{itemize}
+\item On isole 3.
+
+\item Bilan des actions mécaniques extérieures.
+\begin{itemize}
+\item Action de la liaison pivot de (2) sur (3) 	avec frottement visqueux : $\torseurstat{T}{2}{3}$ tel que $\vectm{A}{2}{3} \cdot \vect{y_3} =  -f_3 \dot{\theta} $.
+\item Action du moteur entre (2) et (3) : $\torseurstat{T}{2_{\text{m}}}{3}$ tel que $\vectm{A}{2_{\text{m}}}{3} \cdot \vect{y_3} = C_{\text{m3}} $. 
+\item Action du ressort entre (2) et (3) : $\torseurstat{T}{2_{\text{r}}}{3}$ tel que $\vectm{A}{2_{\text{r}}}{3} \cdot \vect{y_3} = C_{\text{r}}= -\left(K_{\text{tors}}\theta + C_0\right) $. 
+\item Action de pesanteur sur (3) : $\torseurstat{T}{\text{pes}}{3} = \torseurl{-m_3g \vect{z_0}}{\vect{0}}{G_3}$ avec 
+$\vectm{A}{\text{pes}}{3} \cdot \vect{y_3} = \left(\vect{AG_3} \wedge -m_3g \vect{z_0} \right) \cdot \vect{y_3}$
+$= \left(r  \vect{x_3} \wedge -m_3g \vect{z_0} \right) \cdot \vect{y_3}$
+$= -rm_3g\left(  \vect{y_3} \wedge \vect{x_3} \right) \cdot \vect{z_0} $
+$= rm_3g\vect{z_3} \cdot \vect{z_0} $
+$= rm_3g\cos \theta $.
+\end{itemize}
+
+%\item Calcul de $\vectmd{A}{3}{0}\cdot \vect{y_3} = \deriv{\vectmc{A}{3}{0}}{\rep{0}}\cdot \vect{y_3} + m_3 \left(\vect{V(A/0)}\wedge\vectv{G_3}{3}{0}\right)\cdot \vect{y_3}$.
+%\begin{itemize}
+%
+%\item  $\deriv{\vectmc{A}{3}{0}}{\rep{0}}\cdot \vect{y_3} =  \deriv{\vectmc{A}{3}{0}\cdot \vect{y_3}}{}+ \underbrace{\vectmc{A}{3}{0}\cdot \deriv{\vect{y_3}}{\rep{0}}}_{0}$.  
+%
+%\item De plus $\vectmc{A}{3}{0} = \inertie{A}{3} \vecto{3}{0}  + m_3 \vect{AG_3}\wedge \vectv{A}{3}{0}$ 
+%$= \matinertie{A}{B}{C}{-D}{-E}{-F}{A,\mathcal{B}_3} \begin{pmatrix} 0  \\ \dot{\theta} \\ 0 \end{pmatrix}_{\rep{3}}
+%+ m_3 r\vect{x_3}\wedge \dot{x}\vect{x_0} $ 
+%
+%$ =\begin{pmatrix} -F\dot{\theta}  \\ B\dot{\theta} \\ -D\dot{\theta} \end{pmatrix}_{\rep{3}} -  m_3 r\sin\theta \dot{x}\vect{y_0} $. Par suite, $\deriv{\vectmc{A}{3}{0}\cdot \vect{y_3}}{} = B\ddot{\theta} - m_3 r\dot{x}\dot{\theta}\cos\theta - m_3 r\sin\theta \ddot{x}$.
+%
+%\item  $\vect{V(A/0)}  = \dot{x}\vect{x_0}$.
+%
+%\item  $\vectv{G_3}{3}{0}  = \vectv{A}{3}{0}  + \vect{G_3A} \wedge \vecto{3}{0}$  $=\dot{x}\vect{x_0} -r \vect{x_3} \wedge \dot{\theta}\vect{y_3}$ $=\dot{x}\vect{x_0} -r  \dot{\theta}\vect{z_3}$.
+%
+%\item $m_3 \left(\vect{V(A/0)}\wedge\vectv{G_3}{3}{0}\right)\cdot \vect{y_3}$ 
+%$ = m_3 \left(\dot{x}\vect{x_0}\wedge\left( \dot{x}\vect{x_0} -r  \dot{\theta}\vect{z_3}\right)\right)\cdot \vect{y_3}$
+%$ = m_3 \left(\dot{x}\vect{x_0}\wedge -r  \dot{\theta}\vect{z_3} \right)\cdot \vect{y_3}$
+%$ =-r  \dot{\theta} m_3 \dot{x} \left(\vect{z_3}\wedge \vect{y_3} \right)\cdot \vect{x_0}$
+%$ =r  \dot{\theta} m_3 \dot{x} \vect{x_3} \cdot \vect{x_0}$
+%$ =r  \dot{\theta} m_3 \dot{x} \cos \theta $.
+%\end{itemize}
+\item On applique le TMD à 3 en $A$ : $ C_{\text{m3}}-f_3 \dot{\theta} -\left(K_{\text{tors}}\theta + C_0\right) +  rm_3g\cos \theta  = r  \dot{\theta} m_3 \dot{x} \cos \theta  + B\ddot{\theta} - m_3 r\dot{x}\dot{\theta}\cos\theta - m_3 r\sin\theta \ddot{x}$ et donc
+$ C_{\text{m3}}-f_3 \dot{\theta} -\left(K_{\text{tors}}\theta + C_0\right) +  rm_3g\cos \theta  = B\ddot{\theta} - m_3 r\sin\theta \ddot{x}$. 
+\item Par ailleurs à l'équilibre, lorsque $\theta=0$, le ressort doit équilibrer la charge, indépendamment du moteur 3; donc
+$ C_0 =  rm_3g  $. 
+\item Au final $ C_{\text{m3}}-f_3 \dot{\theta} -\left(K_{\text{tors}}\theta + rm_3g \right) +  rm_3g\cos \theta  = B\ddot{\theta} - m_3 r\sin\theta \ddot{x}$ soit
+
+$B\ddot{\theta} - m_3 r\sin\theta \ddot{x} + f_3 \dot{\theta} + K_{\text{tors}}\theta=  C_{\text{m3}} + rm_3g \left(\cos \theta - 1 \right) $
+\end{itemize}
+\end{corrige}
+\else
+\fi
+
+%\question{\label{q_04a}Réaliser le graphe de strcuture du mécanisme. Préciser l'ensemble des actions mécaniques en $A$.}
+%\question{\label{q_04_b}Calculer $\vectv{A}{3}{0}$ et $\vectv{G}{3}{0}$.}
+%\question{\label{q_04_c}Calculer le moment cinétique en $A$ de 3 par rapport à 0. On rappelle que pour un point quelconque, 
+%$\vectmc{A}{3}{0}=\inertie{A}{3}\vecto{3}{0}+m_3\vect{AG_3}\wedge \vectv{A}{3}{0}$.}
+%\question{\label{q_04_d}Calculer $\vectmd{A}{3}{0}\cdot\vect{y_0}$.}
+%\question{\label{q_04_e}Ecrire le théorème du moment dynamique en $A$ en projection sur $\vect{y_0}$. Ecrire votre résultat sous le forme $d\ddot{\theta}+e\ddot{x}+f\dot{\theta}+g\theta = h $ les termes $d$, $e$, $f$, $g$ et $h$ peuvent dependre de $\theta$.}
+ 
+
+\ifprof
+\else
+%Pour déterminer la relation permettant de calculer le couple moteur $C_{\text{m1}}$, vous êtes libre de la méthode,
+%mais vous procéderez obligatoirement en deux étapes (questions \ref{q_05} et \ref{q_06}). Cette relation peut nécessiter
+%l’écriture de plusieurs équations, mais elle ne doit pas, au final, contenir d’inconnues mécaniques
+%transmissibles dans les liaisons ($L_{\text{0/1}}$ , $L_{\text{1/2}}$ , $L_{\text{2/3}}$ , $L_{\text{0/2}}$).
+\fi
+
+\question{Isoler \{2+3\} et réaliser le Théorème de la Résultante dynamique en projection sur $\vx{0}$.}
+\ifprof
+\begin{corrige}
+\begin{itemize}
+\item On isole $\{2+3\}$.
+\item Bilan d'actions mécaniques 
+\begin{itemize}
+\item Hélicoïdale $ \torseurstat{T}{1}{2}$ avec $\vectf{1}{2}\cdot \vx{0}=X_{12}$.
+\item Glissière avec forttement $ \torseurstat{T}{0}{2}$ avec $\vectf{0}{2}\cdot \vx{0}=-f_2\dot{x}$.
+\item Pesanteur sur 2.
+\item Pesanteur sur 3.
+\end{itemize}
+\item On applique le TRD suivant $\vx{0}$.
+\begin{itemize}
+\item $\vectrd{2}{0} \cdot \vx{0} = m_2 \ddot{x}$.
+\item $\vectrd{3}{0} \cdot \vx{0} = m_3\left( \ddot{x} -r  \thetapp \vz{3}\cdot \vx{0}  -r \thetap \deriv{\vz{3}}{\rep{0}} \cdot \vx{0} \right)$ $= m_3\left( \ddot{x} +r  \thetapp \sin \theta  +r \thetap^2 \cos \theta \right)$.
+\item on a donc : $X_{12}-f_2\dot{x} = m_2 \ddot{x}+ m_3\left( \ddot{x} +r  \thetapp \sin \theta  +r \thetap^2 \cos \theta \right)$.
+\end{itemize}
+\end{itemize}
+\end{corrige}
+\else
+\fi
+
+
+\question{Isoler 1 et réaliser le Théorème du Moment Dynamique en projection sur $\vx{0}$ en O. Conclure.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+%
+%\question{\label{q_05}Sans faire de calcul, donner, très clairement et précisément, la démarche qui vous permet d’obtenir
+%le couple moteur $C_{\text{m1}}$. Préciser quel(s) est(sont) le(s) système(s) étudié(s), quel(s) est(sont) le(s)
+%théorème(s) ou principe(s) utilisés, quels sont les termes qu’il faut calculer. Justifier clairement vos
+%choix.}
+%\ifprof
+%\begin{corrige}
+%\begin{itemize}
+%\item On isole (1+2+3) et on réalise le théorème de l'énergie cinétique. Ainsi on ne fera pas apparaître d'actions de liaisons.
+%\item On réalise le bilan des puissances intérieures : 
+%\begin{itemize}
+%\item pas de frottement dans la glissière hélicoïdale;
+%\item pivot avec frottement entre 2 et 3;
+%\item puissance du couple moteur 3; 
+%\item puissance du couple ressort 3.
+%\end{itemize}
+%\item On réalise le bilan des puissances extérieures : 
+%\begin{itemize}
+%\item pivot avec frottement entre 0 et 1;
+%\item glissière avec frottement entre 0 et 2;
+%\item puissance du couple moteur 1; 
+%\item puissance de la pesanteur sur 1; 
+%\item puissance de la pesanteur sur 2; 
+%\item puissance de la pesanteur sur 3.
+%\end{itemize}
+%\item On calcule l'énergie cinétique de (1+2+3) :
+%\begin{itemize}
+%\item $\ec{1+2+3}{0}=\ec{1}{0}+\ec{2}{0}+\ec{3}{0}$.
+%\item $\ec{1}{0}$ : rotation autour d'un axe fixe.
+%\item $\ec{2}{0}$ : translation suivant une direction fixe.
+%\item $\ec{3}{0}$ : mouvement composé. 
+%\end{itemize}
+%\end{itemize}
+%\end{corrige}
+%\else
+%\fi
+%
+%\question{\label{q_06}Réaliser les calculs présentés à la question précédente et donner la relation recherchée. Dans cette équation, le paramètre $\varphi$ et ses dérivées ne doivent pas intervenir. Seuls
+%les paramètres $\theta$, $x$ et leurs dérivées sont autorisés.}
+%\ifprof
+%\begin{corrige}
+%\begin{itemize}
+%\item On isole (1+2+3) et on réalise le théorème de l'énergie cinétique. Ainsi on ne fera pas apparaître d'actions de liaisons.
+%\item On réalise le bilan des puissances intérieures : 
+%\begin{itemize}
+%\item pas de frottement dans la glissière hélicoïdale : $\pint{1}{2}{GH} = 0$;
+%\item pivot avec frottement entre 2 et 3 $\pint{2}{3}{Piv.} = \vectm{A}{2}{3} \cdot  \vecto{3}{2} = -f_3 \dot{\theta} \vect{y_0} \cdot \dot{\theta}\vect{y_0} = -f_3 \dot{\theta}^2$;
+%\item puissance du couple moteur 3 : $\pint{2}{3}{Mot.} =  C_{\text{m3}}\dot{\theta}$; 
+%\item puissance du couple ressort 3 : $\pint{2}{3}{Res.} =  -\left(K_{\text{tors}}\theta + C_0\right) \dot{\theta}$; 
+%\end{itemize}
+%\item On réalise le bilan des puissances extérieures : 
+%\begin{itemize}
+%\item pivot avec frottement entre 0 et 1 $\pext{0}{1}{0} =-f_1 \dot{\varphi}^2 $;
+%\item glissière avec frottement entre 0 et 2 $\pext{0}{2}{0} = - f_2 \dot{x}^2 $;
+%\item puissance du couple moteur 1 $\pext{0}{1}{0} =C_{\text{m1}} \dot{\varphi} $;
+%\item puissance de la pesanteur sur 1 $\pext{\text{pes}}{1}{0} = 0 $ car $\vectv{G_1}{1}{0}=\vect{0}$; 
+%\item puissance de la pesanteur sur 2 $\pext{\text{pes}}{2}{0} = 0 $ car $\vectv{G_2}{2}{0} = \dot{x}\vect{x_0}$ perpendiculaire à $-m_2 g \vect{z_0}$; 
+%\item puissance de la pesanteur sur 3 $\pext{\text{pes}}{3}{0} = -m_3 g \vect{z_0}\cdot \vectv{G_3}{3}{0}$ 
+%$=-m_3 g \vect{z_0}\cdot \left( \dot{x}\vect{x_0} -r  \dot{\theta}\vect{z_3}\right)$ 
+%$=rm_3 g   \dot{\theta} \cos \theta$.
+%\end{itemize}
+%\item On calcule l'énergie cinétique de (1+2+3) :
+%\begin{itemize}
+%\item $\ec{1+2+3}{0}=\ec{1}{0}+\ec{2}{0}+\ec{3}{0}$.
+%\item $\ec{1}{0} =\dfrac{1}{2}J_1 \dot{\varphi}^2 $ et $\deriv{\ec{1}{0}}{} = J_1 \dot{\varphi}\ddot{\varphi}$.
+%
+%\item $\ec{2}{0}= \dfrac{1}{2}m_2 \dot{x}^2$ et $\deriv{\ec{2}{0}}{} = m_2 \dot{x}\ddot{x}$.
+%
+%\item $\ec{3}{0} = \dfrac{1}{2} \torseurl{\dot{\theta} \vect{y_0}}{ \dot{x}\vect{x_0} }{A_3} \otimes \torseurl{m_3\left(\dot{x}\vect{x_0} -r  \dot{\theta}\vect{z_3}\right)}{-F\dot{\theta} \vect{x_3} + B\dot{\theta} \vect{y_3}  -D\dot{\theta}  \vect{z_3}  -  m_3 r\sin\theta \dot{x}\vect{y_0}}{A_3}$ 
+%
+%$=\dfrac{1}{2} \dot{\theta} \vect{y_3} \cdot\left(-F\dot{\theta} \vect{x_3} + B\dot{\theta} \vect{y_3}  -D\dot{\theta}  \vect{z_3}  -  m_3 r\sin\theta \dot{x}\vect{y_0} \right) + \dfrac{1}{2} \dot{x}\vect{x_0} \left(m_3\left(\dot{x}\vect{x_0} -r  \dot{\theta}\vect{z_3}\right)\right)  $
+%
+%$=\dfrac{1}{2} \dot{\theta}  \cdot\left( B\dot{\theta}   -  m_3 r\sin\theta \dot{x} \right) + \dfrac{1}{2} \dot{x}m_3\left(\dot{x} -r  \dot{\theta}\sin\theta\right)  $
+%$=\dfrac{1}{2}  B\dot{\theta}^2   + \dfrac{1}{2} m_3\dot{x}^2 - m_3 r\dot{\theta}\dot{x} \sin\theta$
+%
+%et
+%
+% $\deriv{\ec{3}{0}}{} =  B\dot{\theta}\ddot{\theta}   + m_3\dot{x}\ddot{x}- m_3 r\ddot{\theta}\dot{x} \sin\theta- m_3 r\dot{\theta}\ddot{x} \sin\theta- m_3 r\dot{\theta}^2\dot{x} \cos\theta$
+%\end{itemize}
+%\item On a de plus, $\dot{x}=-\dot{\varphi}\dfrac{\text{pas}}{2\pi}$ soit $-\dot{x}\dfrac{2\pi}{\text{pas}}=\dot{\varphi}$. 
+%
+%\item On applique le théorème de l'énergie cinétique : 
+%$$
+%m_3\left(\dot{x}\ddot{x}  - r\ddot{\theta}\dot{x}  \sin \theta- r\dot{\theta}\ddot{x}  \sin \theta- r\dot{\theta}^2\dot{x}  \cos \theta \right)+ B\dot{\theta}\ddot{\theta}
+%+ m_2 \dot{x}\ddot{x}
+%+ J_1 \dot{\varphi}\ddot{\varphi}
+%$$
+%$$=
+% -f_3 \dot{\theta}^2
+% +C_{\text{m3}}\dot{\theta}
+% -\left(K_{\text{tors}}\theta + C_0\right) \dot{\theta}
+%  -f_1 \dot{\varphi}^2  
+%  - f_2 \dot{x}^2 +C_{\text{m1}} \dot{\varphi} 
+%  +rm_3 g   \dot{\theta} \cos \theta
+%$$
+%
+%$$
+%\Leftrightarrow m_3\left(\dot{x}\ddot{x}  - r\ddot{\theta}\dot{x}  \sin \theta- r\dot{\theta}\ddot{x}  \sin \theta- r\dot{\theta}^2\dot{x}  \cos \theta \right)+ B\dot{\theta}\ddot{\theta}
+%+ m_2 \dot{x}\ddot{x}
+%+ J_1 \dot{x}\ddot{x}\dfrac{4\pi^2}{\text{pas}^2} 
+%$$
+%$$=
+% -f_3 \dot{\theta}^2
+% +C_{\text{m3}}\dot{\theta}
+% -\left(K_{\text{tors}}\theta +rm_3 g\right) \dot{\theta}
+%  -f_1 \dot{x}^2\dfrac{4\pi^2}{\text{pas}^2} 
+%  - f_2 \dot{x}^2 -C_{\text{m1}} \dot{x}\dfrac{2\pi}{\text{pas}}
+%  +rm_3 g   \dot{\theta} \cos \theta
+%$$
+%
+%$$
+%\Leftrightarrow m_3\left(
+%    \dot{x}\ddot{x} 
+%    - r\ddot{\theta}\dot{x}  \sin \theta
+%    - r\dot{\theta}^2\dot{x}  \cos \theta \right)
+%+ m_2 \dot{x}\ddot{x}
+%+ J_1 \dot{x}\ddot{x}\dfrac{4\pi^2}{\text{pas}^2}
+%$$
+%$$
+%       + \left(B\ddot{\theta} \dot{\theta}
+%       - m_3 r \sin \theta \ddot{x}   \dot{\theta}
+%        +f_3 \dot{\theta}^2
+%       +K_{\text{tors}}\theta \dot{\theta}
+%       - C_{\text{m3}}\dot{\theta}
+%       -rm_3 g   \dot{\theta} \cos \theta
+%       +rm_3 g \dot{\theta}\right)
+%=
+%  -f_1 \dot{x}^2\dfrac{4\pi^2}{\text{pas}^2} 
+%  - f_2 \dot{x}^2 -C_{\text{m1}} \dot{x}\dfrac{2\pi}{\text{pas}}
+%$$
+%
+%Or $B\ddot{\theta} - m_3 r\sin\theta \ddot{x} + f_3 \dot{\theta} + K_{\text{tors}}\theta-  C_{\text{m3}} - rm_3g \left(\cos \theta - 1 \right) = 0   $; donc
+%
+%$$ m_3\left(
+%    \dot{x}\ddot{x} 
+%    - r\ddot{\theta}\dot{x}  \sin \theta
+%    - r\dot{\theta}^2\dot{x}  \cos \theta \right)
+%+ m_2 \dot{x}\ddot{x}
+%+ J_1 \dot{x}\ddot{x}\dfrac{4\pi^2}{\text{pas}^2} 
+%$$
+%$$=
+%  -f_1 \dot{x}^2\dfrac{4\pi^2}{\text{pas}^2} 
+%  - f_2 \dot{x}^2 -C_{\text{m1}} \dot{x}\dfrac{2\pi}{\text{pas}}
+%$$
+% Et donc 
+%
+%$$ 
+%  C_{\text{m1}} \dot{x}\dfrac{2\pi}{\text{pas}}
+%  =
+%  -m_3\left(
+%    \dot{x}\ddot{x} 
+%    - r\ddot{\theta}\dot{x}  \sin \theta
+%    - r\dot{\theta}^2\dot{x}  \cos \theta \right)
+%- m_2 \dot{x}\ddot{x}
+%- J_1 \dot{x}\ddot{x}\dfrac{4\pi^2}{\text{pas}^2} 
+% -f_1 \dot{x}^2\dfrac{4\pi^2}{\text{pas}^2} 
+%  -f_2 \dot{x}^2 
+%$$
+% 
+% $$ 
+% \Longleftrightarrow C_{\text{m1}} 
+%  =
+%   - \dot{x}\left( f_1\dfrac{2\pi}{\text{pas}} +f_2  \dfrac{\text{pas}}{2\pi}\right)
+%- \ddot{x}\left( \left( m_3+m_2 \right)\dfrac{\text{pas}}{2\pi}+ J_1 \dfrac{2\pi}{\text{pas}} \right)
+%  +m_3r\dfrac{\text{pas}}{2\pi}\left(
+%    \ddot{\theta}\sin \theta
+%    +\dot{\theta}^2  \cos \theta \right)
+%$$
+%\end{itemize}
+%
+%\end{corrige}
+%\else
+%\fi
+
+\subsection{Détermination des couples moteurs}
+
+
+\ifprof
+\else
+
+Les deux équations que vous venez d’obtenir aux questions précédentes %\ref{q_04} et \ref{q_06} 
+sont des équations différentielles
+couplées et non linéaires.
+
+% :
+%$$ B\ddot{\theta} -m_3 r\ddot{x} \sin \theta + f_3\dot{\theta} + K_{\text{tor}} \theta = 
+%C_{\text{m3}}+m_3gr\left(\cos\theta - 1\right)$$
+%$$ C_{\text{m1}} = 
+%-f_1 \dfrac{2\pi }{p_a} \dot{x}
+%-f_2 \dfrac{p_a}{2\pi } \dot{x}
+%- \left( J_1 \dfrac{2\pi }{p_a} + \left(m_2+m_3\right)\dfrac{p_a}{2\pi } \right)\ddot{x}
+%+ m_3 r \dfrac{p_a}{2\pi }\left(\ddot{\theta}\sin\theta + \dot{\theta}^2\cos\theta\right)
+%$$
+
+
+
+ Pour résoudre algébriquement ce système d’équations, nous allons
+étudier le mécanisme dans des conditions
+particulières.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.4\linewidth]{fig_07}
+\caption{\label{fig_07} Consigne de vitesse}
+\end{figure}
+
+Lorsque le point focal de la tête optique suit le profil
+moyen de la surface, l’angle $\theta$ varie au voisinage
+de 0\degres. Nous montrerons %(partie V*** du sujet) 
+que cette
+variation de position est d’amplitude très faible, et
+qu’en conséquence, il est possible de réaliser une linéarisation de ces équations au voisinage de 0\degres ( $\theta$ reste
+petit). Nous supposons également que les termes de la forme $a\ddot{\theta}$  et $b\dot{\theta}^2$ sont négligeables devant le terme en $\ddot{x}$.
+La loi de commande de l’unité de translation est représentée à la \autoref{fig_07}. La vitesse nominale (constante)
+recherchée est notée ($V_0$). L’accélération maximale est notée ($A_{\text{cMax}}$).
+
+\fi
+
+\question{\label{q_07}En utilisant les simplifications mentionnées, déterminez, dans la phase d’accélération, puis dans la phase de déplacement à vitesse constante, les expressions littérales de $C_{\text{m1}}$ et $C_{\text{m3}}$.
+Calculez la valeur du couple $C_{\text{m1}}$ maximal ($V_0 = \SI{0,2}{m.s^{-1}}$, $A_{\text{cMax}}=\SI{0,2}{m.s^{-2}}$).}
+\ifprof
+\begin{corrige}
+En tenant compte des hyothèses : 
+$ C_{\text{m3}} = B\ddot{\theta}  - m_3 r\theta \ddot{x} + f_3 \dot{\theta}   $
+
+ $C_{\text{m1}} 
+  =
+   - \dot{x}\left( f_1\dfrac{2\pi}{\text{pas}} +f_2  \dfrac{\text{pas}}{2\pi}\right)
+- \ddot{x}\left( \left( m_3+m_2 \right)\dfrac{\text{pas}}{2\pi}+ J_1 \dfrac{2\pi}{\text{pas}} \right)
+$
+
+
+Le couple maximal est atteint en fin d'accélération. Dans les conditions données, le temps d'accélération est donné par 
+$V_0 = A_{\text{cMax}} t_a$ soit $ t_a  = \dfrac{A_{\text{cMax}}}{V_0} = \SI{1}{s}$.
+
+On a donc 
+ $C_{\text{m1 max}} 
+  =
+   - V_0\left( f_1\dfrac{2\pi}{\text{pas}} +f_2  \dfrac{\text{pas}}{2\pi}\right)
+-  A_{\text{cMax}}\left( \left( m_3+m_2 \right)\dfrac{\text{pas}}{2\pi}+ J_1 \dfrac{2\pi}{\text{pas}} \right) = -\SI{0,128}{Nm}$.
+
+\end{corrige}
+\else
+\fi
+
+\ifprof
+\else
+Le choix des moteurs (M1 et M3) se fera à partir d’un cahier des charges, dont le couple maximal
+transmissible par les moteurs est une des caractéristiques. Il existe bien d’autres spécifications comme, la
+vitesse et l’accélération maximale, la surintensité supportée, l’encombrement axial et longitudinal…
+\fi
