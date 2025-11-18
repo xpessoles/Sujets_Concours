@@ -7,6 +7,8 @@ Les objectifs de cette partie sont de valider l'exigence 1.2 et d'étudier ce qu
 \end{obj}
 %I. 1 - 
 \subsection{Condition de basculement statique \label{2023_MP_CCINP_sec_11}}
+\ifprof
+\else
 En fonction de l'orientation de la tourelle par rapport au châssis et des efforts mis en jeu, il est possible que la machine de forage bascule. Ceci doit légitimement être évité. Pour cela, la connaissance de la position estimée du centre de gravité de la machine permet à l'ordinateur de bord d'afficher à tout instant sur l'écran de contrôle la marge de manœuvre possible avant basculement de la machine. La figure \ref{2023_MP_CCINP_fig_04} ci-contre illustre ce que l'opérateur peut observer dans un coin de son écran : le pourcentage $b_{\%}$ d'atteinte de la posture critique de basculement pour une orientation de tourelle donnée. On se propose dans cette souspartie de retrouver comment l'ordinateur de bord génère ce résultat. Pour cela, on se base sur le paramétrage $\mathrm{n}^{\circ} 1$ de la machine, avec efforts ponctuels entre le sol et les chenilles, présent en annexe 1.% \ref{2023_MP_CCINP_ann_01}.
 
 \begin{figure}[h]
@@ -16,6 +18,7 @@ En fonction de l'orientation de la tourelle par rapport au châssis et des effor
 \caption{Aperçu du contrôle de $b_{\%}$\label{2023_MP_CCINP_fig_04}}
 \end{center}
 \end{figure}
+\fi
 
 
 
@@ -112,7 +115,8 @@ Interprétation physique :
 \else
 \fi
 
-
+\ifprof
+\else
 On désire dimensionner le nombre de contrepoids de 8 tonnes à placer à l'arrière de la tourelle pour que, en l'absence de forage et en extension maximale, l'exigence 1.2 d'équilibrage statique initial soit respectée même dans le pire des cas où la tourelle est pleinement orientée à droite ( $\theta=0$ ). Dans cette posture, le schéma de la figure \ref{2023_MP_CCINP_fig_05} illustre où se situent, dans le même plan, les centres de gravité des différents éléments de la machine :
 
 \begin{itemize}
@@ -130,6 +134,7 @@ On note (en mètres) : $\overrightarrow{O G_{t}}=2,2 \vec{z} ; \overrightarrow{O
 \caption{Position des centres de gravité des différents solides \label{2023_MP_CCINP_fig_05}}
 \end{center}
 \end{figure}
+\fi
 
 %Q4. 
 \question{\label{2023_MP_CCINP_q04}Exprimer la coordonnée sur $\vect{x}$, notée $r$, du centre de gravité $G$ total de la machine en fonction des paramètres connus et de $\indice{n}{cp}$. En déduire le nombre $\indice{n}{cp}$ minimum de contrepoids pour respecter l'exigence 1.2.}
@@ -159,6 +164,9 @@ Application numérique : $\indice{n}{cp}\geq E(2,7)$ (partie entière de 2,7) so
 
 %I.2.1 - 
 \subsubsection{Modélisation des actions mécaniques \label{2023_MP_CCINP_sec_121}}
+
+\ifprof
+\else
 Le basculement de la machine n'est pas toujours dû à un déport trop important du centre de gravité de la machine, comme étudié dans la partie précédente, ou à un effort $F_{\text {sol }}$ (estimé via $F_{w}$ ) trop important. En effet, une fondation profonde a particulièrement du sens si le sol de surface n'est pas très résistant. Ainsi, si la foreuse exerce trop de pression sur ce sol, celui-ci peut s'affaisser, ce qui peut déstabiliser de manière critique la machine. La foreuse doit donc contrôler à tout instant, par estimation, la pression qu'elle exerce sur le sol (et donc que le sol exerce sur elle).
 
 Le tableau \ref{2023_MP_CCINP_tab_01} récapitule les niveaux de pression que les sols peuvent supporter avant de risquer de s'affaisser.
@@ -203,6 +211,8 @@ avec répartition de pression entre le sol et les chenilles. Puis, afin de réso
 \caption{Simplification et modèle équivalent \label{2023_MP_CCINP_fig_07}}
 \end{center}
 \end{figure}
+
+\fi
 
 %Q5.
 \question{\label{2023_MP_CCINP_q05}Déterminer les expressions de $\indice{F}{eq}$ et de e en fonction de $M, m, F_{w}, R, r$ et de $g$.}
@@ -268,7 +278,8 @@ $ \vectm{O}{0}{cg} = \dfrac{lL^2}{12} A\vx{} + alLB\vy{}$.
 \end{corrige}
 \else
 \fi
-
+\ifprof
+\else
 De même, on pourrait, par analogie, déterminer $\overline{F_{0 \rightarrow \text{cd}}}$ et $\overline{M_{0,0 \rightarrow \text{cd}}}$ en fonction de $C$ et de $D$. Au final, on peut en déduire la force $\overline{F_{0 \rightarrow \Sigma}}$ qu'exerce le sol sur la foreuse et le moment en O qu'exerce le sol sur la foreuse $\overrightarrow{M_{O, 0 \rightarrow \Sigma}}$ (via uniquement les chenilles gauche et droite).
 
 Grâce à ces résultats, on trouve qu'à l'équilibre, les répartitions de pressions trapézoïdales doivent respecter le système d'équations (1).
@@ -280,6 +291,7 @@ Grâce à ces résultats, on trouve qu'à l'équilibre, les répartitions de pre
 (D-B)   L   l   a=-\indice{F}{eq}   e   \cos (\theta)
 \end{array}\right.
 \]
+\fi
 
 %Q8. 
 \question{\label{2023_MP_CCINP_q08}Quels théorèmes généraux ont permis d'établir les trois équations scalaires du système d'équations~(1) ?}
@@ -297,6 +309,9 @@ Dans l’ordre :
 \else
 \fi
 
+
+\ifprof
+\else
 La figure \ref{2023_MP_CCINP_fig_08} permet de remarquer que $B$ (respectivement $D$), toujours positive, est la pression moyenne de la répartition trapézoïdale gauche (respectivement droite) et que $A$ (respectivement $C$ ), positive ou négative, en est l'écart entre sa pression avant et arrière. Ainsi, la pression maximale du sol sur la chenille gauche vaut toujours $B+\left|\frac{A}{2}\right|$ (respectivement $D+\left|\frac{C}{2}\right|$ à droite).
 
 \begin{figure}[h]
@@ -308,6 +323,7 @@ La figure \ref{2023_MP_CCINP_fig_08} permet de remarquer que $B$ (respectivement
 \end{figure}
 
 Ainsi, pour estimer la pression maximale exercée au sol, l'ordinateur de bord estime d'abord la position de $E$ et la valeur de $F_{\text {eq }}$ en fonction des données renvoyées à tout instant par les capteurs présents sur les différents axes de la foreuse. Ensuite, il détermine les valeurs des pressions $A, B$, $C$ et $D$ grâce aux équations précédentes avec l'hypothèse assez réaliste où $C=A$ et en déduit la pression maximale. Enfin, il renvoie à l'écran la visualisation << aplatie >> des distributions de pression et sonne l'alarme en cas d'approche de la pression maximale autorisée rentrée par l'utilisateur.
+\fi
 
 %Q9. 
 \question{\label{2023_MP_CCINP_q09}Après avoir précisé l'expression des paramètres $A, B, C$ et $D$, donner l'expression de la pression maximale de chacune des répartitions estimées (gauche et droite) en fonction des données connues par la machine ($L, I, a, e, \theta$ et $\indice{F}{eq}$ uniquement).
@@ -332,9 +348,12 @@ $\indice{p}{max}=B+|A/2|$. Dans les deux cas, on trouve la relation demandée : 
 \else
 \fi
 
+\ifprof
+\else
 Toutefois, il est important de nuancer que la pression du sol sur la foreuse ne peut physiquement pas être négative. C'est pourquoi, lorsque la pression minimale calculée d'une répartition trapézoïdale devient négative 
 ($B-\left|\frac{A}{2}\right|$ pour la chenille gauche ou $D-\left|\frac{C}{2}\right|$ pour la droite), l'ordinateur de bord se doit de changer son modèle de répartition de pression trapézoïdale pour une répartition triangulaire où la pression minimale est imposée à \SI{0}{Pa}. Dans ces moments-là, l'hypothèse où $C=A$ est rompue pour continuer à respecter le système d'équation précédent. On peut alors montrer dans ce cas que la pression maximale s'exprime de la façon suivante :
 
 $$
 p_{\max }=\frac{-e   \indice{F}{eq}}{L   I}\left(\frac{|\cos (\theta)|}{a}+\frac{6  |\sin (\theta)|}{L}\right) .
 $$
+\fi

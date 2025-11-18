@@ -3,6 +3,9 @@
 \section*{DEUXIEME PROBLEME}
 \section{Mise en place d'un modèle numérique pour le Sled $0,3 g$ \label{ccs_mp_2022_sec_3}}
 
+\ifprof
+\else
+
 Le Sled est un système inspiré des crashtests réalisés dans le domaine automobile. Il est constitué de : 
 \begin{itemize}
 \item une plateforme est animée d’un mouvement de translation horizontale par rapport au bâti ;
@@ -19,8 +22,6 @@ Le Sled est un système inspiré des crashtests réalisés dans le domaine autom
 \includegraphics[width=\linewidth]{fig_03}
 \end{center}
 \end{minipage}
-\ifprof
-\else
 %Le bureau d'études décide de poursuivre le dimensionnement en modélisant l'asservissement du Sled. Il sera ainsi possible de définir la structure de commande de l'actionneur qui permettra de respecter les exigences définies dans le diagramme présenté en figure \ref{ccs_mp_2022_fig_A}.
 \fi
 
@@ -391,11 +392,15 @@ L'exigence \texttt{Id = 1.1.1.1.2} (dépassement inférieur à $20\%$) n'est don
 
 %III.B.3) 
 \subsubsection{Choix et réglage d'un correcteur proportionnel-intégral \label{ccs_mp_2022_sec_3B3}}
+\ifprof
+\else
+
 Le correcteur choisi par les ingénieurs du bureau d'études est un correcteur proportionnel-intégral, noté PI, de la forme
 
 $$
 C(p)=K_{\text {corr }}\left(\frac{1+T_{\text {corr }} p}{T_{\text {corr }} p}\right)=K_{\text {corr }}\left(1+\frac{1}{T_{\text {corr }} p}\right)=K_{\text {corr }}\left(1+\frac{\omega_{\text {corr }}}{p}\right) .
 $$
+\fi
 
 %Q 25. 
 
@@ -566,7 +571,10 @@ On obtient alors le diagramme de Bode suivant pour la phase :
 
 %III.B.4) 
 \subsubsection{Validation des exigences \label{ccs_mp_2022_sec_3B4}}
+\ifprof
+\else
 La réponse temporelle en accélération, du modèle $n^{\circ} 1$ corrigé, en réponse à la consigne d'accélération définie figure \ref{ccs_mp_2022_fig_04} est donnée sur la figure \ref{ccs_mp_2022_fig_12}.
+\fi
 
 %Q 33. 
 \question{\label{ccs_mp_2022_sec_q_33}Évaluer graphiquement la marge de phase du système corrigé et conclure au regard de l'exigence Id = 1.1.1.1.1.}
@@ -650,7 +658,8 @@ On ne peut pas valider toutes les exigences avec les études réalisées jusqu'i
 %\caption{\label{ccs_mp_2022_fig_21}Modèle multiphysique $\mathrm{n}^{\circ} 2$}
 %\end{figure}
 
-
+\ifprof
+\else
 
 \begin{figure}[!h]
 \centering
@@ -659,3 +668,5 @@ On ne peut pas valider toutes les exigences avec les études réalisées jusqu'i
 %Figure A 
 \caption{\label{ccs_mp_2022_fig_A}Diagramme partiel des exigences du Sled}
 \end{figure}
+\fi
+

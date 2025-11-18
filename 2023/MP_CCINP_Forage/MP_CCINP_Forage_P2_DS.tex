@@ -1,10 +1,15 @@
 %\section*{Partie II - Contrôle de la vitesse de la table de forage}
 \section{Contrôle de la vitesse de la table de forage\label{2023_MP_CCINP_sec_02}}
+
+\ifprof
+\else
 Comme en usinage classique, la qualité d'un forage dépend énormément de la vitesse de rotation de l'outil ainsi que de sa vitesse d'avance. On souhaite maîtriser cette dernière par un asservissement en vitesse de la table de forage le long du mât de levage. L'objectif sera, dans cette partie, de valider les exigences de performances de l'axe (id. 2.1.1). Le schéma-bloc de l'annexe~5 %\ref{2023_MP_CCINP_ann_05} 
 modélise toutes les parties du système à étudier pour obtenir un modèle de connaissance de cet asservissement.
-
+\fi
 %\section*{II. 1 - Sous ensemble " Mécanisme " : étude cinématique de la table de forage}
 \subsection{Sous ensemble << Mécanisme >> : étude cinématique de la table de forage \label{2023_MP_CCINP_sec_21}}
+\ifprof
+\else
 %On s'intéresse ici à la partie "Mécanisme" du schéma-bloc. Pour cela, il est nécessaire d'établir tout d'abord le lien entre la vitesse de rotation $\omega_{w}$ du treuil d'avance ("crowd winch") et la vitesse $V$ de déplacement de la table de forage. Ainsi, on travaillera désormais sur la modélisation proposée figure \ref{2023_MP_CCINP_fig_09}. Le schéma de gauche modélise notamment le système complet en trois dimensions. Le système est constitué :
 %
 %\begin{itemize}
@@ -48,10 +53,12 @@ On note $\indice{R}{eq}=\dfrac{R_1}{2}$ le rayon équivalent, dans le sous-syst�
 
 Un réducteur à engrenages de rapport de réduction $k_{r}$ permet d'adapter la vitesse de rotation du moteur hydraulique $\omega_{m}(t)$, tel que : $\omega_{w}(t)=k_{r} \cdot \omega_{m}(t)$.
 
+\fi
 
 %\section*{II. 2 - Partie " Amortisseur " : étude dynamique de la table de forage}
 \subsection{Partie << Amortisseur >> : étude dynamique de la table de forage \label{2023_MP_CCINP_sec_22}}
-
+\ifprof
+\else
 Afin de modéliser l'asservissement en vitesse de la table de forage, il est possible de prendre en compte que, lors de l'étape de forage, un système d'<< amortisseurs Kelly >> (suspensions) permet d'amortir les chocs et vibrations. Chaque suspension est composée d'un ressort de raideur $k$ et d'un amortisseur de coefficient de frottement visqueux $\lambda$. Il y a $n$ suspensions équiréparties autour de l'axe de la tige Kelly (soient $n$ ressorts et $n$ amortisseurs) disposées en parallèle, comme l'indique le schéma de la figure \ref{2023_MP_CCINP_fig_10}. On précise que le guidage entre la table 4 et l'ensemble 5 est réalisé par une liaison glissière parfaite, non représentée.
 
 \begin{figure}[h]
@@ -88,16 +95,61 @@ On souhaite simplifier la modélisation en retenant le schéma équivalent de dr
 \end{itemize}
 
 Toutes les suspensions (ressorts et amortisseurs) ont une masse négligeable devant les autres actions mécaniques mises en jeu.
+\fi
 
 %Q15. 
 \question{\label{2023_MP_CCINP_q15}Exprimer $k_{T}$ et $\lambda_{T}$ en fonction de $n, k$ et de $\lambda$.}
+\ifprof
+ \begin{corrige}
+ \textbf{UPSTI} --  
+ Les ressorts étant en parallèle, les allongements sont tous identiques. L'actions du ressort équivalent est la somme des actions de chacun des ressorts : $\overrightarrow{F_{n r}}=\sum_{i=1}^{n} k\left(\Delta z_{0}-\Delta z\right) \vec{z}=n k\left(\Delta z_{0}-\Delta z\right) \vec{z}$.
+
+Par identification on trouve $k_{T}=n k$.
+
+De même, pour les amortisseurs : $\lambda_{T}=n \lambda$.
+\end{corrige}
+\else
+\fi
 
 %Q16. 
 \question{\label{2023_MP_CCINP_q16}À l'équilibre, système suspendu, proposer et mettre en œuvre une stratégie de résolution en appliquant le principe fondamental de la statique, afin d'établir une première équation, liant $k_{T}$, $\Delta z_{e}, \Delta z_{0}, M_{K}$ et $g$ et une deuxième, liant $\indice{F}{we}, M_{K}, M_{T}$ et $g$.}
+\ifprof
+ \begin{corrige}
+ \textbf{UPSTI} --  
+ 
+Isolons (5), soumis aux actions mécaniques extérieures du poids $M_{K} g$, des ressorts et amortisseurs et de la liaison glissière 4-5.
+
+A l'équilibre, le théorème de la résultante statique en projection sur $\vec{Z}$ donne :\\
+$-M_{K} \mathrm{~g}-k_{T}\left(\Delta z_{0}-\Delta z_{e}\right)+\lambda_{T} \Delta \dot{z}+F_{\text {sol }}=0$, avec $\Delta \dot{z}=0$ à l'équilibre et $F_{\text {sol }}=0$ car le système est suspendu.\\
+D'où: $-M_{K} g-k_{T}\left(\Delta z_{0}-\Delta z_{e}\right)=0$
+
+Isolons ( $4+5$ ), soumis aux actions mécaniques extérieures des poids sur ( 4 ) et ( 5 ), des câbles et de la liaison glissière 4-0.
+
+A l'équilibre, le théorème de la résultante statique en projection sur $\vec{z}$ donne : $2 F_{w e}-\left(M_{T}+M_{K}\right) g=0$.
+
+\end{corrige}
+\else
+\fi
+
 
 %Q17. 
 \question{\label{2023_MP_CCINP_q17}En fonctionnement, isoler la table 4 et déterminer son équation du mouvement vertical $\ddot{z}_{4}(t)$ en fonction des paramètres du problème en utilisant une équation issue du principe fondamental de la dynamique.}
+\ifprof
+ \begin{corrige}
+ \textbf{UPSTI} --  
+ Les actions mécaniques extérieures à 4 proviennent des câbles, de son poids, des ressorts et amortisseurs et des liaisons glissières avec 0 et 5 .
 
+Le théorème de la résultante dynamique, en projection sur $\vec{z}$ donne :
+
+$$
+M_{T} \ddot{z}_{4}=2 F_{w}-M_{T} g+k_{T}\left(\Delta z_{0}-\Delta z\right)-\lambda_{T} \Delta \dot{z}
+$$
+\end{corrige}
+\else
+\fi
+
+\ifprof
+\else
 Par analogie, l'équation du mouvement vertical de l'ensemble $\mathbf{5}$ \{barre+outil\} s'écrit :
 
 $$
@@ -105,6 +157,7 @@ M_{K} \cdot \ddot{z}_{5}(t)=\indice{F}{sol}-k_{T} \cdot\left(\Delta z_{0}-\Delta
 $$
 
 On pose le changement de variables suivant : $z_{5}(t)=\hat{z}_{5}(t)-\frac{\Delta z_{e}}{2}$ et $z_{4}(t)=\hat{z}_{4}(t)+\frac{\Delta z_{e}}{2}$, permettant de s'affranchir des actions de la pesanteur. On rappelle que $\Delta z_{e}$ est constant.
+\fi
 
 %Q18. 
 \question{\label{2023_MP_CCINP_q18}En utilisant les résultats précédents et le changement de variables précédent, montrer que l'on obtient le système d'équations (2) suivant:}
@@ -114,17 +167,68 @@ M_{T} \cdot \ddot{\hat{z}}_{4}(t)+\lambda_{T} \cdot \dot{\hat{z}}_{4}(t)+k_{T} \
 M_{K} \cdot \ddot{z}_{5}(t)+\lambda_{T} \cdot \dot{\hat{z}}_{5}(t)+k_{T} \cdot \hat{z}_{5}(t)=\lambda_{T} \cdot \dot{\hat{z}}_{4}(t)+k_{T} \cdot \hat{z}_{4}(t)+\indice{F}{sol}
 \end{array} .\right.
 \]
+`\ifprof
+ \begin{corrige}
+ \textbf{UPSTI} --  
+ Avec le changement de variable proposé : $\Delta z=z_{4}-z_{5}=\hat{z}_{4}-\hat{z}_{5}+\Delta z_{e}$.\\
+L'équation de la question précédente devient:
 
+$$
+\begin{gathered}
+M_{T} \ddot{\hat{Z}}_{4}=2 F_{w e}+\delta F_{w}-M_{T} g+k_{T}\left(\Delta z_{0}-\hat{z}_{4}+\hat{z}_{5}-\Delta z_{e}\right)-\lambda_{T}\left(\dot{\hat{z}}_{4}-\dot{\hat{z}}_{5}\right) \\
+\Leftrightarrow M_{T} \ddot{\hat{z}}_{4}=2 F_{w e}-M_{T} g+k_{T}\left(\Delta z_{0}-\Delta z_{e}\right)+\delta F_{w}+k_{T}\left(-\hat{z}_{4}+\hat{z}_{5}\right)-\lambda_{T}\left(\dot{\hat{z}}_{4}-\dot{\hat{z}}_{5}\right)
+\end{gathered}
+$$
+
+Avec, à l'équilibre : $2 F_{w e}-M_{T} g=M_{K} g$, soit $2 F_{w e}-M_{T} g+k_{T}\left(\Delta z_{0}-\Delta z_{e}\right)=M_{K} g+k_{T}\left(\Delta z_{0}-\Delta z_{e}\right)=0$.\\
+D'où, par rapport à la position d'équilibre: $M_{T} \ddot{\hat{Z}}_{4}=\delta F_{w}+k_{T}\left(-\hat{z}_{4}+\hat{z}_{5}\right)-\lambda_{T}\left(\dot{\hat{z}}_{4}-\dot{\hat{z}}_{5}\right)$.\\
+En regroupant les termes, on obtient la première équation recherchée : $M_{T} \ddot{\hat{Z}}_{4}+\lambda_{T} \dot{\hat{Z}}_{4}+k_{T} \hat{Z}_{4}=\lambda_{T} \dot{\hat{Z}}_{5}+k_{T} \hat{Z}_{5}+ \delta F_{w}$.
+
+L'équation donnée dans le sujet, s'écrit, après changement de variables :
+
+$$
+\begin{gathered}
+M_{K} \ddot{\hat{z}}_{5}=F_{s o l}-k_{T}\left(\Delta z_{0}-\hat{z}_{4}+\hat{z}_{5}-\Delta z_{e}\right)+\lambda_{T}\left(\dot{\hat{z}}_{4}-\dot{\hat{z}}_{5}\right)-M_{K} g \\
+\Leftrightarrow M_{K} \ddot{\hat{z}}_{5}=2 F_{s o l}-k_{T}\left(\Delta z_{0}-\Delta z_{e}\right)-M_{K} g-k_{T}\left(\hat{z}_{5}-\hat{z}_{4}\right)+\lambda_{T}\left(\dot{\hat{z}}_{4}-\dot{\hat{z}}_{5}\right)
+\end{gathered}
+$$
+
+A l'équilibre, $-k_{T}\left(\Delta z_{0}-\Delta z_{e}\right)-M_{K} g=0$, d'où $M_{K} \ddot{\hat{z}}_{5}=2 F_{\text {sol }}-k_{T}\left(\hat{z}_{5}-\hat{z}_{4}\right)+\lambda_{T}\left(\dot{\hat{z}}_{4}-\dot{\hat{z}}_{5}\right)$.\\
+En regroupant les termes, on obtient la deuxième équation recherchée.\\
+\end{corrige}
+\else
+\fi
+
+\ifprof
+\else
 Pour une fonction temporelle $f(t)$ ou $F(t)$, on note sa transformée de Laplace $F(p)=L[f(t)]$.\\
 Les conditions initiales sont considérées être toutes nulles dans tout le sujet.
+\fi
 
 %Q19. 
 \question{\label{2023_MP_CCINP_q10}Traduire le système différentiel précédent (2) dans le domaine de Laplace, puis en déduire les expressions des trois fonctions de transfert $H_{6}(p), H_{7}(p)$ et $H_{8}(p)$ présentes sur l'annexe 5 (zone encadrée notée << Amortisseur >> en précisant que $L\left[\dot{z}_{4}(t)\right]=V(p)$).}
+\ifprof
+ \begin{corrige}
+ \textbf{UPSTI} --  
+ La première équation donne : $Z_{4}(p)\left(M_{T}+\lambda_{T} p+k_{T} p^{2}\right)=\left(k_{T}+\lambda_{T} p\right) Z_{5}(p)+\Delta F_{w}(p)$.\\
+De plus, $v(t)=\frac{d z_{4}(t)}{d t}$, soit $Z_{4}(p)=\frac{V(p)}{p}$.\\
+On obtient $\Delta F_{w}(p)=\frac{k_{T}+\lambda_{T} p+M_{T} p^{2}}{p} V(p)-\left(k_{T}+\lambda_{T} p\right) Z_{5}(p)$
+
+On en déduit $H_{8}(p)=\frac{k_{T}+\lambda_{T} p+M_{T} p^{2}}{p}$\\
+La deuxième équation donne : $Z_{5}(p)=\frac{1}{k_{T}+\lambda_{T} p+M_{K} p^{2}}\left[\left(k_{T}+\lambda_{T} p\right) \frac{V(p)}{p}+F_{\text {sol }}(p)\right]$.\\
+On en déduit $H_{6}(p)=\frac{k_{T}+\lambda_{T} p}{p}$\\
+Et, en replaçant $Z_{5}(p)$ dans (i) : $H_{7}(p)=\frac{k_{T}+\lambda_{T} p}{k_{T}+\lambda_{T} p+M_{K} p^{2}}$
+\end{corrige}
+\else
+\fi
+
 
 %\section*{II. 3 - Sous-systèmes Servo-pompe, Circuit hydraulique et Moteur hydraulique}
 
 \subsection{Sous-systèmes Servo-pompe, Circuit hydraulique et Moteur hydraulique\label{2023_MP_CCINP_sec_23}}
 
+\ifprof
+\else
 Ces sous-systèmes sont représentés sur le schéma-bloc de l'annexe 5.%\ref{2023_MP_CCINP_ann_05}. 
 Le dispositif de positionnement de la table de forage et de son outil utilisent de l'énergie hydraulique. Les modèles de connaissance pour ces systèmes hydrauliques sont donnés ci-dessous :
 
@@ -159,6 +263,7 @@ $$
   $$\indice{J}{eq}  \dfrac{\d \omega_{m}(t)}{\d t}+a \omega_{m}(t)=C_{m}(t)-C_{r}(t) \quad \text{(v)}$$
 
 où $\indice{J}{eq}$ est l'inertie équivalente des solides en mouvement ramenée sur l'axe de rotation du moteur, a un coefficient de frottement visqueux équivalent et $C_{r}$ modélisant les couples résistants autres que ceux dus au frottement visqueux.
+\fi
 
 
 %Q20.
@@ -166,10 +271,36 @@ où $\indice{J}{eq}$ est l'inertie équivalente des solides en mouvement ramené
 
 %Q21. 
 \question{\label{2023_MP_CCINP_q21}Traduire les cinq équations (i), (ii), (iii), (iv) et (v) dans le domaine de Laplace.}
+\ifprof
+ \begin{corrige}
+ \textbf{UPSTI} --  
+ On obtient:
+$Q_{p}(p)=K_{s} U_{s}(p)$,
+$\frac{V_{0}}{B} p \Delta P(p)=Q_{p}(p)-Q_{m}(p)$,
+$Q_{m}(p)=C_{Y} \Omega_{m}(p)$,
+$C_{m}(p)=C_{Y} \Delta P(p)$,
+$\left(a+J_{e q} p\right) \Omega_{m}(p)=C_{m}(p)-C_{r}(p)$/
+
+\end{corrige}
+\else
+\fi
+
 
 
 %Q22. 
 \question{\label{2023_MP_CCINP_q22}Expliciter les cinq fonctions de transfert $H_{1}(p), H_{2}(p), H_{3}(p), H_{4}(p)$ et $H_{5}(p)$ à partir des résultats de la question précédente.}
+\ifprof
+ \begin{corrige}
+ \textbf{UPSTI} --  
+$H_{1}(p)=K_{s} $,
+$H_{2}(p)=\frac{B}{V_{0} p}$,
+$H_{3}(p)=C_{Y}$,
+$H_{4}(p)=C_{Y}$,
+$H_{5}(p)=\frac{1}{a+J_{e q} p}$.
+\end{corrige}
+\else
+\fi
+
 
 
 %\section*{II. 4 - Étude de l'asservissement de la vitesse d'avance de la table de forage}
@@ -177,12 +308,36 @@ où $\indice{J}{eq}$ est l'inertie équivalente des solides en mouvement ramené
 
 %Q23. 
 \question{\label{2023_MP_CCINP_q23}Préciser le rôle du gain $K_{\text {ihm }}$ de la partie "Chaîne d'information" de l'annexe $\mathbf{5}$ et donner son expression en fonction des transmittances figurant dans le schéma-bloc pour que le système soit correctement asservi.}
+\ifprof
+ \begin{corrige}
+ \textbf{UPSTI} --  
+ $K_{i h m}$ permet de s'assurer qu'en régime permanent, l'image de l'erreur $\epsilon_{V}$ est nulle lorsque l'erreur est nulle, qu'elle que soit la consigne.
 
+Condition vérifiée si $K_{i h m}=K_{g e n} \frac{2}{R_{2}}$.
+\end{corrige}
+\else
+\fi
+
+\ifprof
+\else
 On décide dans la suite de ne pas prendre en compte l'amortisseur en considérant la tige Kelly en liaison complète rigide avec la table de forage, afin de valider les performances de l'asservissement en poursuite. Cette hypothèse sera validée en fin de partie II et permet pour l'instant de travailler sur le schéma-bloc simplifié de la figure \ref{2023_MP_CCINP_fig_11}.
+\fi
 
 %Q24. 
 \question{\label{2023_MP_CCINP_q24}À partir de la figure \ref{2023_MP_CCINP_fig_11}, exprimer la fonction de transfert $\dfrac{\Omega_{m}(p)}{U_{s}(p)}$, notée $H(p)$, à partir des fonctions de transfert $H_{j}(p)$, où $j \in\{1 ; 2 ; 3 ; 4 ; 5\}$.}
+\ifprof
+ \begin{corrige}
+ \textbf{UPSTI} --  
+ $$
+\frac{\Omega_{m}(p)}{U_{S}(p)}=H_{1}(p) \frac{H_{2}(p) H_{3}(p) H_{5}(p)}{1+H_{2}(p) H_{3}(p) H_{4}(p) H_{5}(p)}
+$$
 
+\end{corrige}
+\else
+\fi
+
+\ifprof
+\else
 \begin{figure}[h]
 \begin{center}
   \includegraphics[width=\textwidth]{2025_10_26_292d8f726e32404b86d3g-12(1)}
@@ -202,24 +357,74 @@ Quels que soient les résultats trouvés précédemment, on travaille désormais
 \end{figure}
 
 On prend dans un premier temps un correcteur $C(p)$ proportionnel : $C(p)=K_{p}$.\\
+\fi
 
 
 %Q25
 \question{\label{2023_MP_CCINP_q25}Exprimer la fonction de transfert en boucle ouverte $G_{B O}(p)=\dfrac{V(p)}{\varepsilon(p)}$.}
+\ifprof
+ \begin{corrige}
+ \textbf{UPSTI} --  
+ $$
+G_{B O}(p)=\frac{K_{0} K_{p} K_{h}}{1+\frac{2 z_{h}}{\omega_{h}} p+\frac{p^{2}}{\omega_{h}^{2}}}
+$$
+\end{corrige}
+\else
+\fi
 
 
 %Q26. 
 \question{\label{2023_MP_CCINP_q26}Avec un correcteur proportionnel, peut-on satisfaire l'exigence de précision de vitesse indiquée à l'exigence 2.1.1. ? Justifier.}
+\ifprof
+ \begin{corrige}
+ \textbf{UPSTI} --  
+ La fonction de transfert en boucle ouverte est d'ordre 2 et de classe 0 .\\
+Le modèle est stable, mais l'erreur statique n'est pas nulle. L'exigence 2.1.1 ne peut être satisfaite.\\
 
+\end{corrige}
+\else
+\fi
+
+\ifprof
+\else
 On utilise dans un second temps un correcteur proportionnel intégral : $C(p)=K_{p} \cdot\left(1+\dfrac{1}{T_{i}  p}\right)$.
+\fi
 
 %Q27. 
 \question{\label{2023_MP_CCINP_q27}L'exigence de précision sur la vitesse est-elle satisfaite ? Justifier.}
+\ifprof
+ \begin{corrige}
+ \textbf{UPSTI} --  
+ $C(p)=K_{p} \dfrac{1+T_{i} p}{p}$ et $G_{B O}(p)=\dfrac{K_{0} K_{p} K_{h}\left(1+T_{i} p\right)}{p\left(1+\frac{2 z_{h}}{\omega_{h}} p+\frac{p^{2}}{\omega_{h}^{2}}\right)}$, d'ordre 3 et de classe 1.\\
+Si le modèle est stable, l'erreur statique sera nulle. L'exigence de précision est satisfaite.
+\end{corrige}
+\else
+\fi
 
 Ce correcteur est initialement réglé avec les valeurs suivantes: $K_{p}=1$ et $T_{i}=10 \mathrm{~s}$.
 
 %Q28. 
 \question{\label{2023_MP_CCINP_q28}Tracer les diagrammes de Bode asymptotiques de ce correcteur. Détailler les constructions.}%et réel de ce correcteur sur le DR3. Détailler les constructions.}
+\ifprof
+ \begin{corrige}
+ \textbf{UPSTI} --  
+ Avec $K_{p}=1$ et $T_{i}=10 \mathrm{~s}, C(p)=\frac{1}{10 p}(1+10 p)$.\\
+Comportement asymptotique :
+
+\begin{itemize}
+  \item aux basses fréquences : asymptote du gain de pente - $20 \mathrm{~dB} /$ décade passant par le point ( $1 / 10 \mathrm{rad} / \mathrm{s}$, 0 dB ) ; phase à $-90^{\circ}$;
+  \item pulsation de cassure à $0,1 \mathrm{rad} / \mathrm{s}$. A cette valeur, le gain réel est 3 dB au-dessus du point de cassure, la phase vaut $-45^{\circ}$;
+  \item aux hautes fréquences : asymptote horizontale pour le gain à 0 dB ; phase à $0^{\circ}$.
+\end{itemize}
+
+La courbe réelle de phase passe aussi à $-84^{\circ}$ pour $0,01 \mathrm{rad} / \mathrm{s}$ et à $6^{\circ}$ pour $1 \mathrm{rad} / \mathrm{s}$.\\
+
+\includegraphics[width=\textwidth]{2025_11_18_4629eebff5f7da0db94bg-11}
+
+\end{corrige}
+\else
+\fi
+
 
 %Pour le réglage de la question précédente, on donne le diagramme de Bode de la fonction de transfert en boucle ouverte ainsi corrigée sur le DR3.
 %
