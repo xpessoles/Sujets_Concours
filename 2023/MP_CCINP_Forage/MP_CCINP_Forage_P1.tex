@@ -135,7 +135,20 @@ On note (en mètres) : $\overrightarrow{O G_{t}}=2,2 \vec{z} ; \overrightarrow{O
 \question{\label{2023_MP_CCINP_q04}Exprimer la coordonnée sur $\vect{x}$, notée $r$, du centre de gravité $G$ total de la machine en fonction des paramètres connus et de $\indice{n}{cp}$. En déduire le nombre $\indice{n}{cp}$ minimum de contrepoids pour respecter l'exigence 1.2.}
 
 \ifprof
-\begin{corrige}
+ \begin{corrige}
+\textbf{UPSTI} -- L’exigence 1.2 impose $b_{\%}<0,5$, outil levé ($\indice{F}{sol}=0$) et dans le cas le plus défavorable, soit pour $\theta =0$ ou $\pi$.
+On obtient : $r<0,5a$.
+
+$G$ est le barycentre du système $\left\{(G_t,m_t),(G_e,m_e),(G_c,m_c)\right\}$ et vérifie 
+$(m_t+m_e+m_c)\vect{OG} = m_t \vect{OG_t}+m_e \vect{OG_e}+m_c\vect{OG_c}$.
+
+En projection sur $\vect{x}$ : $(m_c+m_e+m_t )r=4,4m_e-4,3m_c$
+soit  $r=\dfrac{4,4m_e-4,3m_c}{m_c+m_e+m_t}$.
+
+On en déduit : $m_c=\dfrac{4,4m_e-(m_e+m_t)r}{r+4,3}$ , avec $m_c=\indice{n}{cp} m_1$ et $\indice{n}{cp}$ valeur entière et $r<0,5a$.
+
+D’où la condition : $\indice{n}{cp}\geq \dfrac{4,4m_e-(m_e+m_t )0,5a}{(0,5a+4,3) m_1}$ . 
+Application numérique : $\indice{n}{cp}\geq E(2,7)$ (partie entière de 2,7) soit ($\indice{n}{cp}=3$).
 
 \end{corrige}
 \else
@@ -194,7 +207,18 @@ avec répartition de pression entre le sol et les chenilles. Puis, afin de réso
 %Q5.
 \question{\label{2023_MP_CCINP_q05}Déterminer les expressions de $\indice{F}{eq}$ et de e en fonction de $M, m, F_{w}, R, r$ et de $g$.}
 \ifprof
-\begin{corrige}
+ \begin{corrige}
+ \textbf{UPSTI} -- Par définition, $\indice{F}{eq}$ vérifie : $\indice{F}{eq}\vz{}=\indice{F}{sol} \vz{}-Mg\vz{}$, d’où $\indice{F}{eq}=\indice{F}{sol}-Mg$ avec $\indice{F}{sol}=mg-2F_w$.
+On obtient : $\indice{F}{eq}=-(M-m)g-2F_w$.
+
+La position de E vérifie : $\vectm{E}{\text{eq}}{f}=\vectm{E}{\text{sol}}{3}+\vectm{E}{\text{pes}}{\Sigma} = \vect{0}$.
+avec : 
+$\vectm{E}{\text{sol}}{3} = (R-e)\indice{F}{sol}\vy{2}$ et 
+$\vectm{E}{\text{pes}}{\Sigma}= (e-r)Mg\vy{2}$.
+
+En projection sur $\vy{2}$, on obtient : $e=\dfrac{R\indice{F}{sol}-rMg}{\indice{F}{sol}-Mg}$, soit 
+$e=\dfrac{R(mg-2F_w)-rMg}{-(M-m)g-2F_w}$.
+
 \end{corrige}
 \else
 \fi
@@ -205,6 +229,15 @@ La force élémentaire de réaction du sol 0 sur la chenille gauche $\text{cg}$ 
 \question{\label{2023_MP_CCINP_q06}En déduire l'expression de la force élémentaire $\overrightarrow{\d F_{0 \rightarrow \text{cg}}(P)}$ et du moment élémentaire $\overrightarrow{\d M_{O, 0 \rightarrow \text{cg}}(P)}$ au point $O$ qu'exercent le sol sur la chenille gauche en un point $P$ de contact en fonction de $A$ et de $B$.}
 \ifprof
 \begin{corrige}
+\textbf{UPSTI} -- L’action élémentaire est un glisseur qui passe par $P$ : 
+$\vect{\d F_{0\rightarrow \text{cg}} (P) }=\left(A \dfrac{y}{L}+B\right) \dd x \dd y \vz{}$
+
+Et : ${\dd \vectm{O}{0}{cg}} = \vect{0} + \vect{OP} \wedge \dd \vectf{0}{\text{cg}} = 
+\left(x\vect{x} + y\vect{y}\right) \wedge \left(A \dfrac{y}{L}+B\right) \dd x \dd y \vz{}$.
+
+On obtient : 
+${\dd \vectm{O}{0}{cg}} =\left(A \dfrac{y}{L}+B\right) \left(y\vect{x} -x\vect{y}\right) \dd x \dd y$
+
 \end{corrige}
 \else
 \fi
@@ -213,6 +246,25 @@ La force élémentaire de réaction du sol 0 sur la chenille gauche $\text{cg}$ 
 \question{\label{2023_MP_CCINP_q07}Déterminer à l'aide de la question précédente les expressions de l'effort $\overline{F_{0 \rightarrow \text{cg}}}$ et du moment au point $\mathrm{O} \overrightarrow{M_{O, 0 \rightarrow \text{cg}}}$ en fonction de $B, D$ et des données connues du système.}
 \ifprof
 \begin{corrige}
+\textbf{UPSTI} --  
+Par intégration sur la surface de contact sol / chenille gauche :
+$\vectf{0}{cg} $
+$= \iint \dd \vectf{0}{cg}$
+$ = \vect{z} \int\limits_{-L/2}^{L/2} \int\limits_{a-l/2}^{a+l/2} \left(\dfrac{A}{L}y + B\right) \dd x \dd y $
+$ = \vect{z} \int\limits_{-L/2}^{L/2} \left(\dfrac{A}{L}y + B\right) \dd y \int\limits_{a-l/2}^{a+l/2}  \dd x$
+$ = \vect{z} l \left[\dfrac{A}{2L}y^2 + By   \right]_{-L/2}^{L/2} $
+
+On obtient : $ \vectf{0}{cg} = Ll B\vect{z}$.
+
+
+%
+%Pour le moment en O :
+%█((M_(O,0→cg) ) ⃗=∬▒(dM_(O,0→cg) (P)) ⃗ =x ⃗∫_(-L/2)^(L⁄2)▒〖∫_(a-l/2)^(a+l/2)▒(A/L y+B)  " " y〗 " " dx" " dy-y ⃗∫_(-L/2)^(L⁄2)▒〖∫_(-a-l/2)^(-a+l/2)▒(A/L y+B)  " " x〗 " " dx" " dy@=x ⃗∫_(-L/2)^(L⁄2)▒〖(A/L y+B)y" " dy〗 ∫_(-a-l/2)^(-a+l/2)▒dx-y ⃗∫_(-L/2)^(L⁄2)▒(A/L y+B)dy ∫_(-a-l/2)^(-a+l/2)▒〖x" " dx〗@=x ⃗" " l" " [A/3L y^3+B/2 y^2 ]_(-L/2)^(L⁄2)-y ⃗[A/2L y^2+By]_(-L/2)^(L⁄2)×[x^2/2]_(-a-l/2)^(-a+l/2) ) 
+
+On obtient : 
+$ \vectm{O}{0}{cg} = \dfrac{lL^2}{12} A\vx{} + alLB\vy{}$.
+
+
 \end{corrige}
 \else
 \fi
@@ -232,7 +284,15 @@ Grâce à ces résultats, on trouve qu'à l'équilibre, les répartitions de pre
 %Q8. 
 \question{\label{2023_MP_CCINP_q08}Quels théorèmes généraux ont permis d'établir les trois équations scalaires du système d'équations~(1) ?}
 \ifprof
-\begin{corrige}
+ \begin{corrige}
+ \textbf{UPSTI} --  
+Dans l’ordre :
+\begin{itemize} 
+\item théorème de la résultante statique en projection sur $\vz{}$;
+\item théorème du moment statique en $O$, en projection sur$\vx{}$ ;
+\item théorème du moment statique en $O$, en projection sur $\vy{}$ appliqués à l’ensemble $\Sigma$.
+\end{itemize}
+
 \end{corrige}
 \else
 \fi
@@ -254,10 +314,20 @@ Ainsi, pour estimer la pression maximale exercée au sol, l'ordinateur de bord e
 En déduire que l'expression unique de la pression maximale sous la foreuse s'écrit:}
 
 $$
-p_{\max }=\frac{-\indice{F}{eq}}{2   L   I}\left(1+\frac{e  |\cos (\theta)|}{a}+\frac{6   e  |\sin (\theta)|}{L}\right)
+p_{\max }=-\dfrac{\indice{F}{eq}}{2   L   I}\left(1+\frac{e  |\cos (\theta)|}{a}+\frac{6   e  |\sin (\theta)|}{L}\right)
 $$
 \ifprof
-\begin{corrige}
+ \begin{corrige}
+ \textbf{UPSTI} --  
+ En notant (i), (ii) et (iii) les 3 équations (1) :
+ \begin{itemize}
+\item avec $A=C$, (ii) donne :  $A = -\dfrac{\indice{F}{eq}}{lL} \dfrac{6e\sin\theta }{L}$; % $A=\dfrac{\indice{F}{eq}}{lL} \dfrac{6e \sin⁡\theta}{L}$ ,
+\item (i)+(iii) donne : $D=-\dfrac{\indice{F}{eq}}{2lL} \left(1+e\cos\theta /a\right)$ ,
+\item (i)-(iii) donne : $B=-\dfrac{\indice{F}{eq}}{2lL }\left(1-e \cos\theta /a\right)$.
+\end{itemize}
+Si $\theta \in \left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]$, $\indice{p}{max}=D+|A/2|$, sinon 
+$\indice{p}{max}=B+|A/2|$. Dans les deux cas, on trouve la relation demandée : $\indice{p}{max}=-\dfrac{F_eq}{2lL} \left(1+\dfrac{e|\cos \theta |}{a}+ \dfrac{6e|\sin \theta |}{L}\right)$.
+
 \end{corrige}
 \else
 \fi
