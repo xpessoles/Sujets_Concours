@@ -211,13 +211,13 @@ Les conditions initiales sont considérées être toutes nulles dans tout le suj
  \begin{corrige}
  \textbf{UPSTI} --  
  La première équation donne : $Z_{4}(p)\left(M_{T}+\lambda_{T} p+k_{T} p^{2}\right)=\left(k_{T}+\lambda_{T} p\right) Z_{5}(p)+\Delta F_{w}(p)$.\\
-De plus, $v(t)=\frac{d z_{4}(t)}{d t}$, soit $Z_{4}(p)=\frac{V(p)}{p}$.\\
-On obtient $\Delta F_{w}(p)=\frac{k_{T}+\lambda_{T} p+M_{T} p^{2}}{p} V(p)-\left(k_{T}+\lambda_{T} p\right) Z_{5}(p)$
+De plus, $v(t)=\dfrac{\dd z_{4}(t)}{\dd t}$, soit $Z_{4}(p)=\dfrac{V(p)}{p}$.\\
+On obtient $\Delta F_{w}(p)=\dfrac{k_{T}+\lambda_{T} p+M_{T} p^{2}}{p} V(p)-\left(k_{T}+\lambda_{T} p\right) Z_{5}(p)$
 
-On en déduit $H_{8}(p)=\frac{k_{T}+\lambda_{T} p+M_{T} p^{2}}{p}$\\
-La deuxième équation donne : $Z_{5}(p)=\frac{1}{k_{T}+\lambda_{T} p+M_{K} p^{2}}\left[\left(k_{T}+\lambda_{T} p\right) \frac{V(p)}{p}+F_{\text {sol }}(p)\right]$.\\
-On en déduit $H_{6}(p)=\frac{k_{T}+\lambda_{T} p}{p}$\\
-Et, en replaçant $Z_{5}(p)$ dans (i) : $H_{7}(p)=\frac{k_{T}+\lambda_{T} p}{k_{T}+\lambda_{T} p+M_{K} p^{2}}$
+On en déduit $H_{8}(p)=\dfrac{k_{T}+\lambda_{T} p+M_{T} p^{2}}{p}$\\
+La deuxième équation donne : $Z_{5}(p)=\dfrac{1}{k_{T}+\lambda_{T} p+M_{K} p^{2}}\left[\left(k_{T}+\lambda_{T} p\right) \dfrac{V(p)}{p}+F_{\text {sol }}(p)\right]$.\\
+On en déduit $H_{6}(p)=\dfrac{k_{T}+\lambda_{T} p}{p}$\\
+Et, en replaçant $Z_{5}(p)$ dans (i) : $H_{7}(p)=\dfrac{k_{T}+\lambda_{T} p}{k_{T}+\lambda_{T} p+M_{K} p^{2}}$
 \end{corrige}
 \else
 \fi
@@ -276,10 +276,10 @@ où $\indice{J}{eq}$ est l'inertie équivalente des solides en mouvement ramené
  \textbf{UPSTI} --  
  On obtient:
 $Q_{p}(p)=K_{s} U_{s}(p)$,
-$\frac{V_{0}}{B} p \Delta P(p)=Q_{p}(p)-Q_{m}(p)$,
+$\dfrac{V_{0}}{B} p \Delta P(p)=Q_{p}(p)-Q_{m}(p)$,
 $Q_{m}(p)=C_{Y} \Omega_{m}(p)$,
 $C_{m}(p)=C_{Y} \Delta P(p)$,
-$\left(a+J_{e q} p\right) \Omega_{m}(p)=C_{m}(p)-C_{r}(p)$/
+$\left(a+\indice{J}{eq} p\right) \Omega_{m}(p)=C_{m}(p)-C_{r}(p)$
 
 \end{corrige}
 \else
@@ -293,10 +293,10 @@ $\left(a+J_{e q} p\right) \Omega_{m}(p)=C_{m}(p)-C_{r}(p)$/
  \begin{corrige}
  \textbf{UPSTI} --  
 $H_{1}(p)=K_{s} $,
-$H_{2}(p)=\frac{B}{V_{0} p}$,
+$H_{2}(p)=\dfrac{B}{V_{0} p}$,
 $H_{3}(p)=C_{Y}$,
 $H_{4}(p)=C_{Y}$,
-$H_{5}(p)=\frac{1}{a+J_{e q} p}$.
+$H_{5}(p)=\dfrac{1}{a+\indice{J}{eq} p}$.
 \end{corrige}
 \else
 \fi
@@ -311,9 +311,9 @@ $H_{5}(p)=\frac{1}{a+J_{e q} p}$.
 \ifprof
  \begin{corrige}
  \textbf{UPSTI} --  
- $K_{i h m}$ permet de s'assurer qu'en régime permanent, l'image de l'erreur $\epsilon_{V}$ est nulle lorsque l'erreur est nulle, qu'elle que soit la consigne.
+ $\indice{K}{ihm}$ permet de s'assurer qu'en régime permanent, l'image de l'erreur $\varepsilon_{V}$ est nulle lorsque l'erreur est nulle, qu'elle que soit la consigne.
 
-Condition vérifiée si $K_{i h m}=K_{g e n} \frac{2}{R_{2}}$.
+Condition vérifiée si $\indice{K}{ihm}=\indice{K}{gen} \dfrac{2}{R_{2}}$.
 \end{corrige}
 \else
 \fi
@@ -366,7 +366,7 @@ On prend dans un premier temps un correcteur $C(p)$ proportionnel : $C(p)=K_{p}$
  \begin{corrige}
  \textbf{UPSTI} --  
  $$
-G_{B O}(p)=\frac{K_{0} K_{p} K_{h}}{1+\frac{2 z_{h}}{\omega_{h}} p+\frac{p^{2}}{\omega_{h}^{2}}}
+G_{B O}(p)=\frac{K_{0} K_{p} K_{h}}{1+\dfrac{2 z_{h}}{\omega_{h}} p+\dfrac{p^{2}}{\omega_{h}^{2}}}
 $$
 \end{corrige}
 \else
@@ -378,9 +378,9 @@ $$
 \ifprof
  \begin{corrige}
  \textbf{UPSTI} --  
- La fonction de transfert en boucle ouverte est d'ordre 2 et de classe 0 .\\
-Le modèle est stable, mais l'erreur statique n'est pas nulle. L'exigence 2.1.1 ne peut être satisfaite.\\
-
+ La fonction de transfert en boucle ouverte est d'ordre 2 et de classe 0 .
+ 
+Le modèle est stable, mais l'erreur statique n'est pas nulle. L'exigence 2.1.1 ne peut être satisfaite.
 \end{corrige}
 \else
 \fi
@@ -395,7 +395,7 @@ On utilise dans un second temps un correcteur proportionnel intégral : $C(p)=K_
 \ifprof
  \begin{corrige}
  \textbf{UPSTI} --  
- $C(p)=K_{p} \dfrac{1+T_{i} p}{p}$ et $G_{B O}(p)=\dfrac{K_{0} K_{p} K_{h}\left(1+T_{i} p\right)}{p\left(1+\frac{2 z_{h}}{\omega_{h}} p+\frac{p^{2}}{\omega_{h}^{2}}\right)}$, d'ordre 3 et de classe 1.\\
+ $C(p)=K_{p} \dfrac{1+T_{i} p}{p}$ et $G_{B O}(p)=\dfrac{K_{0} K_{p} K_{h}\left(1+T_{i} p\right)}{p\left(1+\dfrac{2 z_{h}}{\omega_{h}} p+\dfrac{p^{2}}{\omega_{h}^{2}}\right)}$, d'ordre 3 et de classe 1.\\
 Si le modèle est stable, l'erreur statique sera nulle. L'exigence de précision est satisfaite.
 \end{corrige}
 \else
@@ -408,7 +408,7 @@ Ce correcteur est initialement réglé avec les valeurs suivantes: $K_{p}=1$ et 
 \ifprof
  \begin{corrige}
  \textbf{UPSTI} --  
- Avec $K_{p}=1$ et $T_{i}=10 \mathrm{~s}, C(p)=\frac{1}{10 p}(1+10 p)$.\\
+ Avec $K_{p}=1$ et $T_{i}=10 \mathrm{~s}, C(p)=\dfrac{1}{10 p}(1+10 p)$.\\
 Comportement asymptotique :
 
 \begin{itemize}
