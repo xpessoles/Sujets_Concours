@@ -1,0 +1,524 @@
+\section*{Tour en fosse utilisé pour le reprofilage des roues ferroviaires}
+
+
+\section{Contexte et étude préliminaire}
+\begin{obj}
+Valider la pertinence de l'utilisation d'une machine spéciale appelée tour en fosse pour le reprofilage des roues ferroviaires.
+\end{obj}
+
+La croissance des zones urbaines et le souhait des autorités publiques de réduire la pollution atmosphérique imposent le développement de réseaux de transports en commun fiables et performants tels que les réseaux ferrés (tramways, métropolitains ou trains) qui offrent une capacité de transport largement supérieure à celle des réseaux routiers (bus, taxis, covoiturage) et qui produisent des émissions de $\mathrm{CO}_{2}$ par passager beaucoup plus faibles.
+
+Afin de garantir la fiabilité d'un réseau ferré, la norme européenne EN-15313 préconise une maintenance régulière des trains, notamment de leurs roues. L'usure excessive d'une roue, due principalement aux frottements sur les rails, peut engendrer une rupture de celle-ci et paralyser pendant plusieurs heures le réseau ferré d'une ville.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-01_693_881_1247_584}
+%\captionsetup{labelformat=empty}
+\caption{Dimensions recommandées par la norme EN-15313 concernant le profil d'une roue \label{ccs_psi_2018_fig_01}}
+\end{center}
+\end{figure}
+
+La solution retenue pour redonner une forme correcte (figure 1) à une roue usée est une opération de reprofilage, c'est-à-dire une opération d'enlèvement de matière réalisée par un outil coupant. Les roues étant axisymétriques, l'opération de reprofilage consiste à entrainer en rotation la roue autour de son axe de révolution et à donner à l'outil une trajectoire correspondant à une génératrice du profil désiré.\\
+Cette opération peut être réalisée selon deux méthodes différentes :\\
+\begin{enumerate}
+\item sur une machine appelée tour, sur laquelle l'opérateur installe la roue après l'avoir démontée de l'essieu ;
+\item sur une machine spéciale, appelée tour en fosse, sur laquelle l'opérateur installe la voiture et réalise le reprofilage sans démontage de la roue (figure 2).\\
+\end{enumerate}
+
+Afin de garantir le confort des passagers lors de leur trajet, toutes les roues de la voiture doivent avoir les mêmes dimensions. Par conséquent, lors d'une opération de maintenance, toutes les roues doivent être reprofilées.\\
+Sur les réseaux à forte densité de circulation, la durée d'immobilisation d'une rame pour maintenance doit être la plus faible possible afin de minimiser l'impact sur le trafic.\\
+Valider la pertinence de l'utilisation d'un tour en fosse revient à comparer le temps d'immobilisation d'une rame lorsque les roues sont reprofilées sur un tour avec le temps d'immobilisation d'une rame lorsque les roues sont
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-02_739_1209_109_429}
+%\captionsetup{labelformat=empty}
+\caption{Implantation du tour en fosse dans la zone de maintenance du réseau ferré \label{ccs_psi_2018_fig_02}}
+\end{center}
+\end{figure}
+
+reprofilées sur un tour en fosse. La rame considérée est constituée de six voitures comportant chacune trois essieux, supportant chacun deux roues.\\
+Certaines étapes sont communes aux méthodes a et b :
+
+\begin{itemize}
+  \item le trajet, d'une durée $t_{1}=15 \mathrm{~min}$, de la zone d'exploitation à la zone de maintenance (la même durée $t_{1}$ étant nécessaire pour ramener la rame vers la zone d'exploitation) ;
+  \item le temps nécessaire à la séparation des voitures de la rame, d'une durée $t_{2}=30 \mathrm{~min}$ (la même durée $t_{2}$ étant nécessaire à l'assemblage des voitures de la rame).\\
+Lorsqu'un tour est utilisé (méthode a), une durée $t_{3}=4 \mathrm{~h}$ est nécessaire au démontage ou au remontage de toutes les roues de la rame. Le reprofilage de toutes les roues est effectué en une durée $t_{4}=10 \mathrm{~h}$.\\
+Lorsqu'un tour en fosse est utilisé (méthode b), une durée $t_{5}=15 \mathrm{~min}$ est nécessaire au reprofilage d'une roue (la durée $t_{5}$ prend en compte le temps nécessaire pour positionner la voiture au-dessus du tour en fosse). Le tour en fosse ne peut reprofiler que les roues situées d'un même côté de la voie (figure 2), il est donc nécessaire de retourner la voiture après le reprofilage des trois roues accessibles afin de pouvoir reprofiler les trois autres roues de la voiture. La durée nécessaire au retournement de la voiture est $t_{6}=5 \mathrm{~min}$. La voiture sera de nouveau retournée après le reprofilage complet de ses six roues.
+\end{itemize}
+
+\question{À partir des informations précédentes :}
+\begin{itemize}
+  \item exprimer le temps d'immobilisation $t_{i 1}$ de la rame lorsque les roues sont reprofilées sur un tour (méthode a) puis effectuer l'application numérique ;
+  \item exprimer le temps d'immobilisation $t_{i 2}$ de la rame lorsque les roues sont reprofilées sur un tour en fosse (méthode b) puis effectuer l'application numérique ;
+  \item calculer le gain de temps $\Delta t_{i}=t_{i 1}-t_{i 2}$ puis conclure sur la pertinence de l'utilisation d'un tour en fosse pour le reprofilage des roues ferroviaires.
+  \end{itemize}
+
+
+L'utilisation du tour en fosse pour la maintenance des roues étant retenue dans la suite de l'étude, l'objet de ce sujet est de vérifier la capacité du tour en fosse à reprofiler les roues usées.\\
+L'étude proposée se décompose en deux parties :
+\begin{itemize}
+  \item une première partie a pour objet de valider la modélisation du dispositif utilisé pour entrainer en rotation une roue, puis de vérifier le choix de la motorisation de ce dispositif par le constructeur au moyen du modèle développé ;
+  \item une deuxième partie consiste à concevoir la commande du dispositif de déplacement de l'outil par rapport au bâti afin de minimiser l'effet de la déformation de l'outil lors du reprofilage.
+\end{itemize}
+
+\section{Analyse de l'entrainement en rotation d'une roue}
+\subsection{Description fonctionnelle et structurelle du tour en fosse}
+Le dispositif de levage et d'immobilisation de la voiture n'est pas détaillé. Sa fonction est de soulever la voiture de quelques centimètres afin de décoller les roues des rails (figure 3). Après verrouillage du vérin hydraulique actionnant le dispositif de levage, le rail situé sous la roue à reprofiler est rétracté (liaison glissière de direction $\vec{x}_{0}$ entre le rail rétractable et le bâti du tour en fosse), ce qui permet de reprofiler la roue sans risque de collision entre l'outil et le rail.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-03_551_1378_91_347}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_fig_03}Schéma de la voiture pendant son levage (à gauche) et modélisation retenue (à droite)}
+\end{center}
+\end{figure}
+
+La modélisation retenue est donnée figure 3. La liaison entre la voiture et le bâti du tour en fosse est modélisée par une liaison encastrement (après levage et immobilisation de la voiture). La liaison entre une roue et un essieu est modélisée par un encastrement. La liaison entre un essieu et une voiture est modélisée par une liaison pivot.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-03_764_1545_913_260}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_fig_04}Diagramme de définition de blocs du tour en fosse}
+\end{center}
+\end{figure}
+
+Dans la suite de l'énoncé, on note (figure 3 ) $\mathcal{R}_{0}\left(O, \vec{x}_{0}, \vec{y}_{0}, \vec{z}_{0}\right)$ le repère supposé galiléen lié au bâti du tour en fosse avec :
+
+\begin{itemize}
+  \item $\vec{x}_{0}$ le vecteur unitaire dirigé selon la direction d'avance du train;
+  \item $\vec{y}_{0}$ le vecteur unitaire colinéaire à l'axe de rotation de l'essieu par rapport à la voiture ;
+  \item $\vec{z}_{0}$ un vecteur unitaire vertical ascendant.
+\end{itemize}
+
+\subsection{Modélisation du dispositif de mise en rotation d'une roue}
+\begin{obj}
+Vérifier que la modélisation et les hypothèses retenues permettent de déterminer toutes les actions mécaniques nécessaires pour dimensionner les actionneurs des chaines d'énergie.
+\end{obj}
+
+Le mouvement de rotation nécessaire au reprofilage d'une roue est créé par un dispositif de mise en rotation dont les différents composants sont détaillés dans le diagramme de définition de blocs de la figure 4. L'annexe figurant dans le document réponse détaille la modélisation et les hypothèses retenues pour ce dispositif ainsi que le paramétrage utilisé pour toute la suite de l'étude.\\
+La rotation des rouleaux d'entrainement ( $r e_{1}$ ) et ( $r e_{2}$ ) par rapport à leur support ( $s r e$ ) est pilotée par deux motoréducteurs ( $M R_{1}$ ) et ( $M R_{2}$ ). Chaque motoréducteur ( $M R_{i}$ ), $i \in \llbracket 1 ; 2 \rrbracket$ est composé d'une machine électrique ( $M_{i}$ ) et d'un réducteur ( $R_{i}$ ). La vitesse de rotation des machines électriques est modulée par un variateur électronique.\\
+La sortie de la tige (2) du vérin $\{1 ; 2\}$ permet de mettre en contact les rouleaux d'entrainement ( $r e_{1}$ ) et ( $r e_{2}$ ) avec la roue (3) à reprofiler en pilotant la rotation par rapport au bâti ( 0 ) de leur support (sre).
+
+Dans la suite de cette partie, l'étude de l'hyperstatisme du mécanisme de la figure A de l'annexe sera réalisée en considérant que les solides (1), (2) et (sre) sont solidaires du bâti ( 0 ). En effet, la chaine de solides composée de ( 0 ), (1), (2) et (sre) est isostatique, et ainsi n'augmente pas le degré d'hyperstatisme.\\
+Q 2. Déterminer, en prenant soin de les détailler, le nombre de mobilités $m$ du modèle du mécanisme de mise en rotation d'une roue. En déduire son degré d'hyperstatisme $h$.\\
+L'effort de poussée du vérin est supposé permettre l'entrainement de la roue (3) sans glissement des rouleaux d'entrainement sur la roue (3).\\
+
+%Q 3. 
+\question{Écrire les deux conditions de roulement sans glissement aux points de contact $I_{1}$ et $I_{2}$, puis les deux relations scalaires entre les vitesses de rotation $\omega_{3}, \omega_{r e_{1}}$ et $\omega_{r e_{2}}$. En déduire le nombre de mobilités $m^{\prime}$ et le degré d'hyperstatisme $h^{\prime}$ du mécanisme avec les conditions de roulement sans glissement.}
+
+Le choix d'une motorisation adaptée nécessite le calcul des couples $\mathcal{C}_{\mathrm{mi}}, \mathrm{i} \in \llbracket 1 ; 2 \rrbracket$ que les machines électriques doivent développer afin d'entrainer en rotation la roue (3) par l'intermédiaire des rouleaux d'entrainement.\\
+Q4. Conclure sur la possibilité de déterminer les couples $\mathcal{C}_{m i}$ développés par les machines électriques à partir des hypothèses et de la modélisation retenues.
+
+\subsection{Motorisation du dispositif de mise en rotation d'une roue}
+\begin{obj}
+Analyser la chaine d'entrainement en rotation d'une roue et vérifier le choix de la machine électrique.
+\end{obj}
+
+La roue est entrainée en rotation par deux chaines d'énergie indépendantes détaillées en figure 5 .
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-04_263_1217_1037_424}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_fig_05}Schéma fonctionnel de la mise en rotation d'une roue}
+\end{center}
+\end{figure}
+
+\section*{Hypothèses de modélisation et notations}
+\begin{itemize}
+  \item Le schéma cinématique (figure A , document réponse) donne la configuration normale de travail dans laquelle le vérin $\{1 ; 2\}$ est supposé parfaitement vertical $\left(\overrightarrow{A B}=L_{v} \vec{z}_{0}\right)$, et le support des rouleaux d'entrainement dans le plan horizontal ( $\vec{x}_{0}, \vec{y}_{0}$ ). Cette configuration est utilisée pour toute la suite de l'étude.
+  \item Les deux chaines d'énergie et les deux rouleaux d'entrainement sont identiques, donc $\mathcal{C}_{\mathrm{m} 1}=\mathcal{C}_{\mathrm{m} 2}=\mathcal{C}_{\mathrm{m}}$;
+  \item Le profil simplifié, décrit en figure B du document réponse, est retenu pour cette étude. Seule la seconde opération [OP2] est étudiée.
+  \item La résultante selon $\vec{x}_{0}$ de l'action mécanique transmise par la roue à l'outil est considérée constante et égale à $2 \mathrm{kN}\left(f_{c x}=\vec{R}_{3 \rightarrow \text { outil }} \cdot \vec{x}_{0}=2 \mathrm{kN}\right)$.
+  \item Les actions mécaniques transmises par les rouleaux d'entrainement à la roue sont modélisées par
+\end{itemize}
+
+$$
+\left\{\mathcal{T}_{r e_{1} \rightarrow 3}\right\}=\left\{\begin{array}{c}
+F_{z 1} \vec{z}_{1}+F_{x 1} \vec{x}_{1} \\
+\overrightarrow{0}
+\end{array}\right\}_{I_{1}} \text { et }\left\{\mathcal{T}_{r e_{2} \rightarrow 3}\right\}=\left\{\begin{array}{c}
+F_{z 2} \vec{z}_{2}+F_{x 2} \vec{x}_{2} \\
+\overrightarrow{0}
+\end{array}\right\}_{I_{2}} .
+$$
+
+\begin{itemize}
+  \item Le modèle de frottement retenu est celui de Coulomb avec un facteur de frottement $f=0,2$.
+  \item Les rouleaux d'entrainement roulent sans glisser sur la roue (3).
+  \item Le tableau 1 détaille les caractéristiques des composants de la chaine d'énergie. Tous les solides sont équilibrés dynamiquement.
+\end{itemize}
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\multirow{2}{*}{Roue (3)} & Moment d'inertie autour de l'axe ( $O_{3}, \vec{y}_{0}$ ) & $J_{3}$ \\
+\hline
+ & Vitesse de rotation & $\vec{\Omega}_{3 / 0}=\omega_{3} \vec{y}_{0}$ avec $\omega_{3}<0$ \\
+\hline
+\multirow{2}{*}{Rouleau d'entrainement ( $r e_{i}$ )} & Moment d'inertie autour de son axe de rotation ( $O_{i}, \vec{y}_{0}$ ) & $J_{r e}$ \\
+\hline
+ & Vitesse de rotation & $\vec{\Omega}_{r e_{1} / s r e}=\vec{\Omega}_{r e_{2} / s r e}=\omega_{r e} \vec{y}_{0}$ \\
+\hline
+\multirow{2}{*}{Machine électrique ( $M_{i}$ )} & Moment d'inertie ramené sur l'arbre moteur & $J_{m}$ \\
+\hline
+ & Vitesse de rotation & $\vec{\Omega}_{M_{1} / s r e}=\vec{\Omega}_{M_{2} / s r e}=\omega_{m} \vec{y}_{0}$ \\
+\hline
+\multirow{2}{*}{Réducteur ( $R_{i}$ )} & Moment d'inertie ramené sur l'axe de sortie du réducteur & $J_{\text {red }}$ \\
+\hline
+ & Rapport de transmission & $k=\frac{\omega_{r e}}{\omega_{m}}=0,1$ \\
+\hline
+\end{tabular}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_tab_01}Caractéristiques des composants de la chaine d'énergie ( $i \in \llbracket 1 ; 2 \rrbracket$ )}
+\end{center}
+\end{table}
+
+%Q 5. 
+\question{Exprimer littéralement l'énergie cinétique galiléenne notée $T\left(E_{1} / 0\right)$ de l'ensemble $E_{1}$ comprenant le rotor de la machine électrique ( $M_{1}$ ), les éléments en rotation du réducteur ( $R_{1}$ ) et le rouleau d'entrainement $\left(r e_{1}\right)$. En déduire l'inertie équivalente $J_{\text {eq }}$ ramenée sur l'axe moteur de l'ensemble $E_{1}$.}
+
+%Q6. 
+\question{Appliquer le théorème de l'énergie cinétique à l'ensemble $E_{1}$ en supposant que le réducteur ( $R_{1}$ ) est parfait. En déduire l'expression de $F_{x 1}$ en fonction de $\mathcal{C}_{\mathrm{m}}, \dot{\omega}_{m}=\frac{\mathrm{d} \omega_{m}}{\mathrm{~d} t}, J_{\mathrm{eq}}, k$ et de paramètres géométriques.}
+
+%Q7. 
+\question{Montrer que $F_{x 1}=F_{x 2}$.}
+
+%Q 8. 
+\question{Exprimer la relation entre $\omega_{3}$ et $\omega_{r e}$ déduite de l'hypothèse du roulement sans glissement en $I_{1}$ et $I_{2}$ entre les rouleaux et la roue. En déduire une relation entre $\omega_{3}$ et $\omega_{m}$, puis une relation entre les accélérations angulaires $\dot{\omega}_{m}$ et $\dot{\omega}_{3}$.}
+
+%Q 9. 
+\question{Par une étude dynamique de la roue (3), exprimer $\mathcal{C}_{\mathrm{m}}$ en fonction de $f_{c x}, J_{\mathrm{eq}}, J_{3}, \dot{\omega}_{m}, k, R_{r e}, R_{c}$ et $R$.}
+
+%Q 10. 
+\question{En déduire la valeur de $R_{c} \in\left[R_{m} ; R_{M}\right]$ pour laquelle $\left|\mathcal{C}_{\mathrm{m}}\right|$ est maximal (l'accélération angulaire $\dot{\omega}_{m}$ est constante).}
+
+La relation obtenue montre que la connaissance de l'accélération angulaire des machines électriques $\dot{\omega}_{m}$ est nécessaire pour déterminer la valeur maximale du couple moteur $\mathcal{C}_{m}$ (l'effort $f_{c x}$ étant supposé constant et connu).\\
+La variation de la vitesse de rotation des machines électriques est due à la nécessité de conserver une vitesse $V_{c}=-\vec{V}(C \in$ outil $/ 3) \cdot \vec{x}_{0}$ constante lors du reprofilage de la roue, c'est-à-dire lorsque le point $C$ parcourt le segment $\left[C_{0} C_{1}\right]$ (figure B , document réponse).
+
+\subsubsection*{Hypothèses de modélisation et notations}
+\begin{itemize}
+  \item À $t=0$, les points $C$ et $C_{0}$ sont confondus et la vitesse de rotation de la roue par rapport au bâti du tour en fosse vaut $\omega_{3}(t=0)=\omega_{C_{0}}$.
+  \item Le point $C$ atteint le point $C_{1}$ à l'instant $t=t_{1}$, la vitesse de rotation de la roue par rapport au bâti du tour en fosse vaut $\omega_{3}\left(t=t_{1}\right)=\omega_{C_{1}}$.
+  \item La durée $t_{1}$ correspond donc à la durée nécessaire à l'outil pour parcourir le segment $\left[C_{0} C_{1}\right]$. La longueur $l(t)=\left\|\overrightarrow{C_{0} C}\right\|$ correspond à la longueur du profil reprofilé à l'instant $t \in\left[0 ; t_{1}\right]$ et telle que $l\left(t_{1}\right)=\left\|\overrightarrow{C_{0} C_{1}}\right\|$.
+  \item Les vitesses de rotation $\omega_{C_{0}}$ et $\omega_{C_{1}}$ sont négatives. L'accélération angulaire $\dot{\omega}_{3}$ de la roue par rapport au bâti est constante.
+  \item Le diagramme des exigences donné en figure C du document réponse fixe les valeurs de la vitesse $V_{c}= -\vec{V}(C \in \operatorname{outil} / 3) \cdot \vec{x}_{0}$ et du déplacement $b$, selon la direction $\vec{u}$, de l'outil par rapport au bâti lorsque la roue tourne d'un radian.\\
+\end{itemize}
+s
+%Q 11. 
+\question{Exprimer $\vec{V}(C \in$ outil $/ 3)$ en fonction de $R_{C}(t), \omega_{3}(t)$ et $V_{f}(t)=\vec{V}(C \in$ outil $/ 0) \cdot \vec{u}$. En déduire l'expression des vitesses de rotation $\omega_{C_{0}}$ puis $\omega_{C_{1}}$ en fonction de $V_{c}=-\vec{V}(C \in \operatorname{outil} / 3) \cdot \vec{x}_{0}, R_{m}$ et $R_{M}$.}
+
+%Q 12. 
+\question{Tracer l'allure de l'évolution de la vitesse de rotation $\omega_{3}(t)$ en fonction du temps sur la durée $t_{1}$. Exprimer, en fonction de $\omega_{C_{0}}, \omega_{C_{1}}$ et $t_{1}$, la vitesse de rotation $\omega_{3}(t)$.}
+
+%Q 13. 
+\question{Exprimer $l(t)$ en fonction de $b, \omega_{C_{0}}, \omega_{C_{1}}$ et $t_{1}$, sachant que $V_{f}(t)=\vec{V}(C \in$ outil $/ 0) \cdot \vec{u}=-b \omega_{3}(t)$.}
+
+%Q 14. 
+\question{Exprimer $l\left(t_{1}\right)=\left\|\overrightarrow{C_{0} C_{1}}\right\|$ en fonction de $R_{m}, R_{M}$ et $e$ (figure B , document réponse). En déduire l'expression de la durée $t_{1}$ en fonction de $\omega_{C_{0}}, \omega_{C_{1}}, R_{m}, R_{M}, e$ et $b$.}
+
+%Q 15. 
+\question{Exprimer $\dot{\omega}_{3}$ en fonction de $b, V_{c}, R_{m}, R_{M}$ et $e$; en déduire l'expression de $\dot{\omega}_{m}$ puis sa valeur numérique. L'accélération angulaire des machines électriques étant connue, il est alors possible de calculer la valeur maximale du couple moteur qui est de $22 \mathrm{~N} \cdot \mathrm{~m}$.}
+
+%Q16. 
+\question{En déduire la puissance mécanique maximale que doit fournir chacune des machines électriques. Le constructeur a choisi le modèle ME\_5\_15 parmi les trois modèles proposés par le tableau 2 . Vérifier la pertinence de ce choix.}
+
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Modèle & \begin{tabular}{c}
+Vitesse de rotation \\
+maximale \\
+\end{tabular} & \begin{tabular}{c}
+Couple maximal \\
+développé \\
+\end{tabular} & \begin{tabular}{c}
+Puissance électrique \\
+consommée \\
+\end{tabular} & Rendement \\
+\hline
+$\mathrm{ME} \_12 \_08$ & $12000 \mathrm{tr} \cdot \mathrm{min}^{-1}$ & $15 \mathrm{~N} \cdot \mathrm{~m}$ & 8 kW & 0,7 \\
+\hline
+$\mathrm{ME} \_10 \_10$ & $10000 \mathrm{tr} \cdot \mathrm{min}^{-1}$ & $22,5 \mathrm{~N} \cdot \mathrm{~m}$ & 10 kW & 0,8 \\
+\hline
+$\mathrm{ME} \_5 \_15$ & $5000 \mathrm{tr} \cdot \mathrm{min}^{-1}$ & $25 \mathrm{~N} \cdot \mathrm{~m}$ & 15 kW & 0,8 \\
+\hline
+\end{tabular}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_tab_02}Caractéristiques des machines électriques proposées pour actionner les chaines d'énergie}
+\end{center}
+\end{table}
+
+Le dimensionnement du dispositif de mise en rotation d'une roue permet donc de générer la puissance mécanique de rotation nécessaire au reprofilage de la roue. La seconde partie de cette étude est consacrée à l'analyse de la commande du dispositif de mise en translation de l'outil. Cette commande doit permettre de compenser au mieux l'effet de la déformation de l'outil lors du reprofilage.
+
+\section{Analyse de la commande du dispositif de mise en translation de l'outil}
+\begin{obj}
+Analyser la chaine d'asservissement en position et en vitesse du porte-outil afin de proposer puis de régler un correcteur permettant d'assurer le niveau de précision attendu pour le profil de la roue.
+\end{obj}
+
+\subsection{Effet de la déformation de l'outil sur la forme de la roue reprofilée}
+Lors du reprofilage de la roue, l'enlèvement de matière génère un effort sur l'outil qui entraine des déformations de celui-ci dont les principales sont :
+
+\begin{itemize}
+  \item une déformation en compression de l'outil dans la direction $\vec{z}_{0}$ due à l'effort radial (composante de l'effort selon $\vec{z}_{0}$, cf. schéma A1. figure 7) ;
+  \item une déformation en flexion de l'outil dans le plan ( $\vec{z}_{0}, \vec{x}_{0}$ ) due à l'effort tangentiel (composante de l'effort selon $\vec{x}_{0}$, cf. schéma B1. figure 7).
+  \end{itemize}
+  
+À cause de ces déformations, le point C de contact entre la roue et l'outil se décale de sa position de référence.
+
+La différence entre les rayons des cercles enveloppes intérieur et extérieur du profil réalisé est appelée défaut et est notée $\Delta u$ (cf. schéma C2. figure 7).\\
+Des relevés expérimentaux ont montré que, lors du reprofilage de la partie cylindrique d'une roue de rayon $R=0,47 \mathrm{~m}$, la déformation en compression de l'outil entraine une amplitude maximale de déplacement $\Delta z_{2}= \max \left(z_{2}(t)\right)-\min \left(z_{2}(t)\right)$ du point $C$ d'environ $5 \mu \mathrm{~m}$ (cf. schéma A2. figure 7) et que la déformation en flexion de l'outil entraine une amplitude maximale de déplacement $\Delta x_{2}=\max \left(x_{2}(t)\right)-\min \left(x_{2}(t)\right)$ du point $C$ d'environ $0,5 \mathrm{~mm}$ (dans le cas de la flexion, le déplacement du point $C$ selon $\vec{z}_{0}$ est négligé, cf. schéma B2. figure 7).\\
+
+%Q17. 
+\question{Exprimer la relation entre le défaut $\Delta u_{1}$ et le déplacement $\Delta z_{2}$ du point $C$ dû à la déformation en compression de l'outil. Exprimer la relation entre le défaut $\Delta u_{2}$ et le déplacement $\Delta x_{2}$ du point $C$ dû à la déformation en flexion de l'outil. Effectuer les applications numériques pour $\Delta u_{1}$ et $\Delta u_{2}$, puis justifier que le défaut $\Delta u$ est principalement dû à la déformation en compression de l'outil.}
+
+Dans la suite de l'étude, seule la déformation en compression de l'outil sera prise en compte. L'outil est donc sollicité, lors du reprofilage, par un effort $\vec{f}_{c}(t)=f_{c}(t) \vec{z}_{0}$ appliqué au point de contact $C$ entre l'outil et la roue. Une roue est reprofilée lorsque son profil présente des défauts trop importants dus à l'usure créée par le contact avec les rails. Ainsi, lors du reprofilage, l'épaisseur de matière enlevée par l'outil varie en fonction de la position angulaire de la roue (figure 6), ce qui engendre des variations de l'effort $f_{c}(t)$.
+
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-06_515_659_1553_703}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_fig_06}Modélisation du profil de la roue avant son reprofilage}
+\end{center}
+\end{figure}
+
+Dans la suite de cette étude, les défauts dus à l'usure sont modélisés par une variation sinusoïdale. Cette modélisation permet alors de considérer que $f_{c}(t)=\left(f_{c 0}+f_{c 1} \sin (\omega t)\right) \mathcal{H}(t)$ avec $f_{c 0}$ la valeur moyenne de l'effort transmis par la roue à l'outil au point $C, f_{c 1}$ l'amplitude de la variation sinusoïdale de cet effort autour de sa valeur moyenne et $\mathcal{H}(t)$ la fonction échelon.\\
+L'effort $f_{c}(t)$ peut être considéré comme un effort perturbateur extérieur appliqué à l'outil lors du reprofilage. Sa variation peut conduire à des vibrations trop importantes de l'outil, en particulier lorsque la fréquence de ce signal perturbateur correspond à la fréquence propre de la structure. Lors du reprofilage, ces vibrations sont alors responsables d'un défaut de la roue beaucoup plus important que celui attendu. La valeur maximale $\Delta u$ du défaut ainsi que les conditions à respecter pour générer le profil souhaité sont données par le diagramme des exigences de la figure 8.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-07_2356_1684_114_187}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_fig_07}Déformations de l'outil et défauts $\Delta u_{i}$ de la roue reprofilée}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-08_904_1657_95_205}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_fig_08}Diagramme des exigences de la chaine d'asservissement}
+\end{center}
+\end{figure}
+
+\subsection{Analyse d'une solution avec un porte-outil fixé au bâti}
+\begin{obj}
+Déterminer les variations de position du point de contact $C$ entre la roue et l'outil pour une variation sinusoïdale de l'effort perturbateur $f_{c}(t)$.
+\end{obj}
+
+L'outil est modélisé par un solide de masse $m_{2}=788 \mathrm{~kg}$ suspendu à une structure composée, en parallèle, d'un ressort $R_{0}$ de raideur $K=28 \times 10^{6} \mathrm{~N} \cdot \mathrm{~m}^{-1}$ et d'un amortisseur $A_{0}$ de coefficient de frottement visqueux $\lambda=14854 \mathrm{~N} \cdot \mathrm{~s} \cdot \mathrm{~m}^{-1}$ (figure 9). La compression de l'outil soumis à l'effort perturbateur $\vec{f}_{c}(t)=f_{c}(t) \vec{z}_{0}$ génère un déplacement $z_{2}(t)$ selon $\vec{z}_{0}\left(z_{2}(t)\right.$ étant une grandeur algébrique) du point de contact $C$ entre l'outil et la roue. Les conditions initiales sont supposées nulles. La liaison entre le porte-outil et l'outil est modélisée par une liaison encastrement. Le porte outil est considéré rigide et immobile (sa déformation est négligée devant celle de l'outil). L'effet de la pesanteur est négligé.\\
+
+%Q 18. 
+\question{Exprimer l'équation différentielle liant $z_{2}(t)$ et $f_{c}(t)$, puis la fonction de transfert $S(p)=\frac{Z_{2}(p)}{F_{c}(p)}$ sous forme canonique. Calculer les valeurs des paramètres caractéristiques de $S(p)$. Tracer le diagramme de Bode asymptotique et l'allure du diagramme de Bode réel associés à la fonction de transfert $S(p)$. Déterminer littéralement l'amplitude $z_{2 m}$ maximale de $z_{2}(t)$, ainsi que la pulsation correspondante, lorsque $f_{c}(t)=\left(f_{c 0}+\right. \left.f_{c 1} \sin (\omega t)\right) \mathcal{H}(t)$ avec $f_{c 1}=100 \mathrm{~N}$. Effectuer l'application numérique et conclure quant au respect du critère concernant le défaut $\Delta u$ de la roue.}
+
+L'amortissement de l'outil peut être accru en ajoutant une structure active d'amortisseurs en parallèle. La contrainte d'encombrement aux abords du point de contact $C$, ainsi que la présence de nouveaux actionneurs en amont de cette suspension active justifient l'abandon de cette solution. Le fonctionnement retenu se trouve dans le pilotage direct des actionneurs du porte-outil.
+
+\subsection{Analyse des asservissements du porte-outil}
+\subsubsection{Modélisation du mouvement pour la commande}
+\begin{obj}
+Modéliser le comportement dynamique de l'outil et du porte-outil, puis étudier une commande en position $z_{1}(t)$ comprenant un correcteur proportionnel.
+\end{obj}
+
+Le système composé de l'outil et du porte-outil est modélisé sur la figure 10. Le porte-outil, de masse $m_{1}=5522 \mathrm{~kg}$, est considéré indéformable et en liaison glissière de direction $\vec{z}_{0}$ avec le bâti. Une chaine de motorisation électrique permet de déplacer le porte-outil et une structure de commande associée permet d'asservir la position $z_{1}(t)$ par rapport à une position de référence. La chaine de motorisation exerce une force motrice $\vec{f}_{m}(t)=f_{m}(t) \vec{z}_{0}$ sur le porte-outil.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-09_1027_899_95_584}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_fig_09} Modèle de déformation de l'outil avec le porte-outil fixe}
+\end{center}
+\end{figure}
+
+Les positions du porte-outil et du point $C$ par rapport à leur position de référence sont respectivement paramétrées par $z_{1}(t) \vec{z}_{0}$ et $z_{2}(t) \vec{z}_{0}$, avec $z_{1}(t)$ et $z_{2}(t)$ des grandeurs algébriques (figure 10). Les conditions initiales sont toujours supposées nulles.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-09_1296_889_1359_589}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_fig_10}Modèle de déformation de l'outil avec le porte-outil piloté}
+\end{center}
+\end{figure}
+
+Le théorème de la résultante dynamique appliqué au porte-outil puis à l'outil permet d'obtenir les deux relations suivantes:
+
+$$
+\begin{gathered}
+m_{1} \ddot{z}_{1}(t)+\lambda \dot{z}_{1}(t)+K z_{1}(t)=\lambda \dot{z}_{2}(t)+K z_{2}(t)+f_{m}(t) \\
+m_{2} \ddot{z}_{2}(t)+\lambda \dot{z}_{2}(t)+K z_{2}(t)=\lambda \dot{z}_{1}(t)+K z_{1}(t)+f_{c}(t)
+\end{gathered}
+$$
+
+Le modèle correspondant est représenté par le schéma bloc de la figure 11.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-10_294_1102_376_482}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_fig_11}Modèle de l'outil et porte-outil}
+\end{center}
+\end{figure}
+
+%Q19. 
+\question{Exprimer les fonctions $H_{1}(p), H_{2}(p), H_{3}(p)$ et $H_{4}(p)$ en fonction de $K, \lambda, m_{1}$ et $m_{2}$. Le modèle de la figure 11 est réduit au modèle équivalent de la figure 12 .}
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-10_231_687_845_689}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_fig_12}Modèle équivalent}
+\end{center}
+\end{figure}
+
+%Q 20. 
+\question{Exprimer $N_{1}(p)$ et $N_{2}(p)$ en fonction de $H_{1}(p), H_{2}(p), H_{3}(p)$ et $H_{4}(p)$.}
+
+%Q 21. 
+\question{Montrer que $N_{2}(p)$ peut s'écrire sous la forme $N_{2}(p)=A \frac{p^{2}+2 \xi_{1} \omega_{1} p+\omega_{1}^{2}}{p^{2}\left(p^{2}+2 \xi_{2} \omega_{2} p+\omega_{2}^{2}\right)}$. Exprimer $\xi_{1}$, $\xi_{2}$, $\omega_{1}$, $\omega_{2}$ et $A$ en fonction de $m_{1}, m_{2}, \lambda$ et $K$.}
+
+Le diagramme de Bode associé à la fonction de transfert $N_{2}(p)$ est représenté dans le document réponse.\\
+
+%Q 22. 
+\question{Compléter ce diagramme par les tracés asymptotiques en module et en phase, et conclure sur la cohérence du diagramme donné.}
+
+%Q 23.
+\question{Au regard des valeurs numériques, montrer que la fonction de transfert $N_{2}(p)$ peut être approchée par la fonction $N_{2 \text { app }}(p)=\frac{A}{p^{2}}$. En utilisant une couleur différente, tracer le diagramme de Bode associé à la fonction de transfert $N_{2 \text { app }}(p)$ sur le document réponse et conclure sur la validité de ce modèle approché.}
+
+Le modèle approché ( $N_{2 \text { app }}(p)$ ) est retenu pour la suite de l'étude. Le schéma bloc modélisant la régulation de la position $z_{1}(t)$ est donné en figure 13, en considérant un correcteur proportionnel de gain $K_{p}$.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-10_392_961_1754_552}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_fig_13}Modèle de synthèse de la régulation en position $z_{1}(t)$ du porte-outil}
+\end{center}
+\end{figure}
+
+%Q 24. 
+\question{Justifier qu'une correction proportionnelle ne permet pas de respecter l'ensemble des critères du diagramme des exigences de la figure 8.}
+
+\subsubsection{Calcul des paramètres des correcteurs de la loi de commande}
+\begin{obj}
+Déterminer les paramètres d'une loi de commande afin de valider les performances statiques et dynamiques du cahier des charges.
+\end{obj}
+
+Au regard de ce problème, une boucle de vitesse est implantée en complément de la boucle de position pour asservir la position $z_{1}(t)$. Le modèle retenu est représenté sur le schéma bloc de la figure 14. La boucle de vitesse est corrigée au moyen d'un correcteur proportionnel-intégral de fonction de transfert $H_{\mathrm{PI}}(p)=K_{v}\left(1+\frac{1}{T_{i} p}\right)$.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-11_412_1459_105_303}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_fig_14}Modèle de la régulation en position et en vitesse du porte-outil}
+\end{center}
+\end{figure}
+
+En utilisant le modèle approché $N_{2 \text { app }}(p)$, la fonction de transfert en boucle ouverte de l'asservissement en position du porte-outil $z_{1}(t)$ est:
+
+$$
+H_{\mathrm{BO}}(p)=\frac{A K_{v}\left(p+\frac{1}{T_{i}}\right)\left(p+K_{p}\right)}{p^{3}}
+$$
+
+%Q 25. 
+\question{Exprimer $\arg \left(H_{\mathrm{BO}}(j \omega)\right)$, l'argument de $H_{\mathrm{BO}}(j \omega)$, en fonction de $T_{i}, K_{p}$ et $\omega$. En déduire, en fonction de $K_{p}$ et $\omega_{0 \mathrm{~dB}}$ (la pulsation de coupure à 0 dB ), l'expression de $T_{i}$ permettant de vérifier le critère de marge de phase du diagramme des exigences défini en figure 8.}
+
+%Q 26.
+\question{Exprimer $\left|H_{\mathrm{BO}}(j \omega)\right|$, le module de $H_{\mathrm{BO}}(j \omega)$, en fonction de $A$, $\omega$ et des paramètres inconnus $K_{v}, K_{p}$ et $T_{i}$. En déduire, en fonction de $K_{p}, T_{i}, A$ et $\omega_{0 \mathrm{~dB}}$, l'expression de $K_{v}$ permettant d'assurer la pulsation de coupure à 0 dB .}
+
+La fonction de transfert $S(p)=\frac{Z_{2}(p)}{F_{c}(p)}$ peut alors s'exprimer uniquement en fonction du paramètre $K_{p}$. La valeur optimale de $K_{p}$ est celle permettant de minimiser le maximum de $|S(j \omega)|$. Ainsi, pour une perturbation sinusoïdale $f_{c}(t)=f_{c 1} \sin (\omega t)$, la variation de la position $z_{2}(t)$ du point $C$ aura une amplitude minimale.\\
+La solution adoptée pour déterminer la valeur optimale de $K_{p}$ consiste à balayer l'ensemble des solutions possibles de $K_{v}$ et $T_{i}$ pour $K_{p}$ variant de 0 à $K_{p \max }$, pour des pas de calcul $\Delta K_{p}=\frac{K_{p \max }}{N_{K_{p}}}$, où $N_{K_{p}}+1$ est le nombre de points de calcul.\\
+Le début d'un algorithme de résolution de ce problème est présenté dans le document réponse. Les valeurs maximales $\left|S_{K_{p}}\right|_{\text {max }}$ du module $|S(j \omega)|$ sont calculées avec un échantillonnage de pas $\Delta \omega=\frac{\omega_{\text {max }}}{N_{\omega}}$ où $\omega$ prend $N_{\omega}+1$ valeurs de 0 à $\omega_{\max }$. L'algorithme sera complété dans les questions 27 et 28 en utilisant les fonctions $|S(j \omega)|, T_{i}\left(K_{p}\right)$ et $K_{v}\left(K_{p}\right)$.\\
+
+
+%Q 27. 
+\question{Compléter le cadre «Algorithme 1 » du document réponse. Cet algorithme doit permettre le calcul approché du maximum $\left|S_{K_{p}}\right|_{\text {max }}$, en admettant que $|S(j \omega)|$ n'admet qu'un seul maximum.}
+
+%Q 28. 
+\question{Compléter le cadre «Algorithme 2 » du document réponse. Cet algorithme doit permettre l'extraction du minimum min $\left(\left|S_{K_{p}}\right|_{\max }\right)$ et des valeurs optimales correspondantes $K_{p}^{\text {opt }}, T_{i}^{\text {opt }}$ et $K_{v}^{\text {opt }}$ de $K_{p}, T_{i}$ et $K_{v}$.}
+
+\subsection{Analyse de l'influence du paramètre b (défini en figure $C$ du document réponse)}
+\begin{obj}
+Déterminer la valeur maximale de $b$ permettant de conserver la stabilité de l'asservissement.
+\end{obj}
+
+Une modélisation plus fine du comportement de l'outil montre que l'effort $f_{c}(t)$ est lié à la quantité de matière enlevée $q(t)$ selon une relation faisant apparaitre la consigne de quantité de matière $q_{c}(t)$ à enlever.
+
+Cette modélisation conduit aux relations empiriques:
+
+\begin{itemize}
+  \item effort $f_{c}(t)=b K_{f} q(t)$;
+  \item quantité de matière enlevée $q(t)=q_{c}(t)-z_{2}(t)+z_{2}(t-\tau)$ où $\tau$ est la durée nécessaire à la roue pour effectuer un tour complet.\\
+D'un point de vue numérique, $K_{f}=1,5 \times 10^{9} \mathrm{~N} \cdot \mathrm{~m}^{-2}$ et $\tau=1 \mathrm{~s}$. Le modèle de la chaine d'asservissement ainsi complété est représenté par le schéma de la figure 15 .
+\end{itemize}
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-12_563_1595_98_228}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_fig_15}Modèle de la chaine d'asservissement complète}
+\end{center}
+\end{figure}
+
+%Q29. 
+\question{Déterminer $H_{r}(p)$ en fonction de $\tau$.}
+
+En prenant $Z_{c}(p)=0$, le modèle de la figure 15 peut se mettre sous la forme du modèle équivalent de la figure 16.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-12_234_803_861_630}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_fig_16}Modèle équivalent de la chaine d'asservissement complète}
+\end{center}
+\end{figure}
+
+La figure 17 représente le diagramme de Bode de la fonction de transfert en boucle ouverte du système modélisé figure 16, avec $b=\frac{5 \times 10^{-2}}{\pi} \mathrm{~mm} \cdot \mathrm{rad}^{-1}$.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-12_968_1577_1324_244}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_fig_17}Diagramme de Bode de la boucle ouverte du schéma bloc de la figure 16}
+\end{center}
+\end{figure}
+
+Les «zéros de transmission» d'une fonction de transfert $H(p)$ correspondent aux pulsations $\omega$ pour lesquelles $H(j \omega)$ est nul.\\
+%Q 30. 
+\question{Préciser l'expression de la fonction de transfert en boucle ouverte de la figure 16 puis vérifier la cohérence du diagramme de Bode de la figure 17 en analysant les «zéros de transmission».}
+%Q 31. 
+\question{Déterminer un ordre de grandeur du paramètre $b$ permettant de conserver la stabilité du système en boucle fermée. Conclure sur la compatibilité de cette valeur maximale avec un bon amortissement de l'asservissement.}
+
+\section{Synthèse}
+Les résultats issus de simulations du comportement de l'asservissement corrigé en position, ainsi que la réponse fréquentielle en boucle ouverte corrigée, sont présentés en figures 18, 19 et 20.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-13_862_1555_267_262}
+%\captionsetup{labelformat=empty}
+\caption{Figure 18 Diagramme de Bode de la boucle ouverte, avec $N_{2}(p)$ et $N_{2 \text { app }}(p)$ (exigences 1.1 et 1.2)}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-13_465_1556_1210_258}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_fig_19}Évolution de la position $z_{2}(t)$ lorsque $\left\{\begin{array}{l}z_{c}(t)=z_{c 0} \mathcal{H}\left(t-t_{0}\right) \\ f_{c}(t)=f_{c 0} \mathcal{H}\left(t-t_{1}\right)\end{array}\right.$}
+\end{center}
+\end{figure}
+
+avec $z_{c 0}=0,1 \mathrm{~mm}, f_{c 0}=1000 \mathrm{~N}, t_{0}=0,1 \mathrm{~s}, t_{1}=0,4 \mathrm{~s} \quad$ (exigence 1.4)
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-13_478_1549_1850_258}
+%\captionsetup{labelformat=empty}
+\caption{Figure 20 Évolution de la position $z_{2}(t)$ lorsque $\left\{\begin{array}{l}z_{c}(t)=z_{c 0} \mathcal{H}(t) \\ f_{c}(t)=\left(f_{c 0}+f_{c 1} \sin \left(\omega_{r} t\right)\right) \mathcal{H}(t)\end{array}\right.$ avec $z_{c 0}=0,1 \mathrm{~mm}, f_{c 0}=1000 \mathrm{~N}, f_{c 1}=100 \mathrm{~N}, \omega_{r}=$ pulsation de résonance de $S(j \omega) \quad$ (exigence 1.5)}
+\end{center}
+\end{figure}
+
+\question{Déterminer graphiquement le défaut de la roue $\Delta u$, l'erreur $\Delta e$ et les performances en stabilité des modèles avec et sans l'approximation de $N_{2}(p)$. Conclure sur la capacité du tour en fosse à générer un profil de roue satisfaisant l'ensemble des critères du diagramme des exigences de la figure 8.}
+
