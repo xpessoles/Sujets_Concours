@@ -1,0 +1,65 @@
+\section*{Tour en fosse utilisé pour le reprofilage des roues ferroviaires}
+
+
+\section{Contexte et étude préliminaire}
+\begin{obj}
+Valider la pertinence de l'utilisation d'une machine spéciale appelée tour en fosse pour le reprofilage des roues ferroviaires.
+\end{obj}
+
+La croissance des zones urbaines et le souhait des autorités publiques de réduire la pollution atmosphérique imposent le développement de réseaux de transports en commun fiables et performants tels que les réseaux ferrés (tramways, métropolitains ou trains) qui offrent une capacité de transport largement supérieure à celle des réseaux routiers (bus, taxis, covoiturage) et qui produisent des émissions de $\mathrm{CO}_{2}$ par passager beaucoup plus faibles.
+
+Afin de garantir la fiabilité d'un réseau ferré, la norme européenne EN-15313 préconise une maintenance régulière des trains, notamment de leurs roues. L'usure excessive d'une roue, due principalement aux frottements sur les rails, peut engendrer une rupture de celle-ci et paralyser pendant plusieurs heures le réseau ferré d'une ville.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=.6\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-01_693_881_1247_584}
+%\captionsetup{labelformat=empty}
+\caption{Dimensions recommandées par la norme EN-15313 concernant le profil d'une roue \label{ccs_psi_2018_fig_01}}
+\end{center}
+\end{figure}
+
+La solution retenue pour redonner une forme correcte (figure \ref{ccs_psi_2018_fig_01}) à une roue usée est une opération de reprofilage, c'est-à-dire une opération d'enlèvement de matière réalisée par un outil coupant. Les roues étant axisymétriques, l'opération de reprofilage consiste à entrainer en rotation la roue autour de son axe de révolution et à donner à l'outil une trajectoire correspondant à une génératrice du profil désiré.\\
+Cette opération peut être réalisée selon deux méthodes différentes :\\
+\begin{enumerate}
+\item sur une machine appelée tour, sur laquelle l'opérateur installe la roue après l'avoir démontée de l'essieu ;
+\item sur une machine spéciale, appelée tour en fosse, sur laquelle l'opérateur installe la voiture et réalise le reprofilage sans démontage de la roue (figure \ref{ccs_psi_2018_fig_02}).\\
+\end{enumerate}
+
+Afin de garantir le confort des passagers lors de leur trajet, toutes les roues de la voiture doivent avoir les mêmes dimensions. Par conséquent, lors d'une opération de maintenance, toutes les roues doivent être reprofilées.\\
+Sur les réseaux à forte densité de circulation, la durée d'immobilisation d'une rame pour maintenance doit être la plus faible possible afin de minimiser l'impact sur le trafic.\\
+Valider la pertinence de l'utilisation d'un tour en fosse revient à comparer le temps d'immobilisation d'une rame lorsque les roues sont reprofilées sur un tour avec le temps d'immobilisation d'une rame lorsque les roues sont
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=.7\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-02_739_1209_109_429}
+%\captionsetup{labelformat=empty}
+\caption{Implantation du tour en fosse dans la zone de maintenance du réseau ferré \label{ccs_psi_2018_fig_02}}
+\end{center}
+\end{figure}
+
+reprofilées sur un tour en fosse. La rame considérée est constituée de six voitures comportant chacune trois essieux, supportant chacun deux roues.\\
+Certaines étapes sont communes aux méthodes a et b :
+
+\begin{itemize}
+  \item le trajet, d'une durée $t_{1}=15 \mathrm{~min}$, de la zone d'exploitation à la zone de maintenance (la même durée $t_{1}$ étant nécessaire pour ramener la rame vers la zone d'exploitation) ;
+  \item le temps nécessaire à la séparation des voitures de la rame, d'une durée $t_{2}=30 \mathrm{~min}$ (la même durée $t_{2}$ étant nécessaire à l'assemblage des voitures de la rame).\\
+Lorsqu'un tour est utilisé (méthode a), une durée $t_{3}=4 \mathrm{~h}$ est nécessaire au démontage ou au remontage de toutes les roues de la rame. Le reprofilage de toutes les roues est effectué en une durée $t_{4}=10 \mathrm{~h}$.\\
+Lorsqu'un tour en fosse est utilisé (méthode b), une durée $t_{5}=15 \mathrm{~min}$ est nécessaire au reprofilage d'une roue (la durée $t_{5}$ prend en compte le temps nécessaire pour positionner la voiture au-dessus du tour en fosse). Le tour en fosse ne peut reprofiler que les roues situées d'un même côté de la voie (figure 2), il est donc nécessaire de retourner la voiture après le reprofilage des trois roues accessibles afin de pouvoir reprofiler les trois autres roues de la voiture. La durée nécessaire au retournement de la voiture est $t_{6}=5 \mathrm{~min}$. La voiture sera de nouveau retournée après le reprofilage complet de ses six roues.
+\end{itemize}
+
+\question{À partir des informations précédentes :}
+\begin{itemize}
+  \item exprimer le temps d'immobilisation $t_{i 1}$ de la rame lorsque les roues sont reprofilées sur un tour (méthode a) puis effectuer l'application numérique ;
+  \item exprimer le temps d'immobilisation $t_{i 2}$ de la rame lorsque les roues sont reprofilées sur un tour en fosse (méthode b) puis effectuer l'application numérique ;
+  \item calculer le gain de temps $\Delta t_{i}=t_{i 1}-t_{i 2}$ puis conclure sur la pertinence de l'utilisation d'un tour en fosse pour le reprofilage des roues ferroviaires.
+  \end{itemize}
+
+
+L'utilisation du tour en fosse pour la maintenance des roues étant retenue dans la suite de l'étude, l'objet de ce sujet est de vérifier la capacité du tour en fosse à reprofiler les roues usées.\\
+L'étude proposée se décompose en deux parties :
+\begin{itemize}
+  \item une première partie a pour objet de valider la modélisation du dispositif utilisé pour entrainer en rotation une roue, puis de vérifier le choix de la motorisation de ce dispositif par le constructeur au moyen du modèle développé ;
+  \item une deuxième partie consiste à concevoir la commande du dispositif de déplacement de l'outil par rapport au bâti afin de minimiser l'effet de la déformation de l'outil lors du reprofilage.
+\end{itemize}
+
+

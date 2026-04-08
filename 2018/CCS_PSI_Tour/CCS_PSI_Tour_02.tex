@@ -1,0 +1,192 @@
+\section{Analyse de l'entrainement en rotation d'une roue}
+\subsection{Description fonctionnelle et structurelle du tour en fosse}
+Le dispositif de levage et d'immobilisation de la voiture n'est pas détaillé. Sa fonction est de soulever la voiture de quelques centimètres afin de décoller les roues des rails (figure \ref{ccs_psi_2018_fig_03}). Après verrouillage du vérin hydraulique actionnant le dispositif de levage, le rail situé sous la roue à reprofiler est rétracté (liaison glissière de direction $\vec{x}_{0}$ entre le rail rétractable et le bâti du tour en fosse), ce qui permet de reprofiler la roue sans risque de collision entre l'outil et le rail.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-03_551_1378_91_347}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_fig_03}Schéma de la voiture pendant son levage (à gauche) et modélisation retenue (à droite)}
+\end{center}
+\end{figure}
+
+La modélisation retenue est donnée figure \ref{ccs_psi_2018_fig_03}. La liaison entre la voiture et le bâti du tour en fosse est modélisée par une liaison encastrement (après levage et immobilisation de la voiture). La liaison entre une roue et un essieu est modélisée par un encastrement. La liaison entre un essieu et une voiture est modélisée par une liaison pivot.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-03_764_1545_913_260}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_fig_04}Diagramme de définition de blocs du tour en fosse}
+\end{center}
+\end{figure}
+
+Dans la suite de l'énoncé, on note (figure \ref{ccs_psi_2018_fig_03}) $\mathcal{R}_{0}\left(O, \vec{x}_{0}, \vec{y}_{0}, \vec{z}_{0}\right)$ le repère supposé galiléen lié au bâti du tour en fosse avec :
+
+\begin{itemize}
+  \item $\vec{x}_{0}$ le vecteur unitaire dirigé selon la direction d'avance du train;
+  \item $\vec{y}_{0}$ le vecteur unitaire colinéaire à l'axe de rotation de l'essieu par rapport à la voiture ;
+  \item $\vec{z}_{0}$ un vecteur unitaire vertical ascendant.
+\end{itemize}
+
+\subsection{Modélisation du dispositif de mise en rotation d'une roue}
+\begin{obj}
+Vérifier que la modélisation et les hypothèses retenues permettent de déterminer toutes les actions mécaniques nécessaires pour dimensionner les actionneurs des chaines d'énergie.
+\end{obj}
+
+Le mouvement de rotation nécessaire au reprofilage d'une roue est créé par un dispositif de mise en rotation dont les différents composants sont détaillés dans le diagramme de définition de blocs de la figure \ref{ccs_psi_2018_fig_04}. L'annexe figurant dans le document réponse détaille la modélisation et les hypothèses retenues pour ce dispositif ainsi que le paramétrage utilisé pour toute la suite de l'étude.\\
+La rotation des rouleaux d'entrainement ( $r e_{1}$ ) et ( $r e_{2}$ ) par rapport à leur support ( $s r e$ ) est pilotée par deux motoréducteurs ( $M R_{1}$ ) et ( $M R_{2}$ ). Chaque motoréducteur ( $M R_{i}$ ), $i \in \llbracket 1 ; 2 \rrbracket$ est composé d'une machine électrique ( $M_{i}$ ) et d'un réducteur ( $R_{i}$ ). La vitesse de rotation des machines électriques est modulée par un variateur électronique.\\
+La sortie de la tige (2) du vérin $\{1 ; 2\}$ permet de mettre en contact les rouleaux d'entrainement ( $r e_{1}$ ) et ( $r e_{2}$ ) avec la roue (3) à reprofiler en pilotant la rotation par rapport au bâti ( 0 ) de leur support (sre).
+
+Dans la suite de cette partie, l'étude de l'hyperstatisme du mécanisme de la figure \ref{ccs_psi_2018_fig_A} de l'annexe sera réalisée en considérant que les solides (1), (2) et (sre) sont solidaires du bâti ( 0 ). En effet, la chaine de solides composée de ( 0 ), (1), (2) et (sre) est isostatique, et ainsi n'augmente pas le degré d'hyperstatisme.\\
+Q 2. Déterminer, en prenant soin de les détailler, le nombre de mobilités $m$ du modèle du mécanisme de mise en rotation d'une roue. En déduire son degré d'hyperstatisme $h$.\\
+L'effort de poussée du vérin est supposé permettre l'entrainement de la roue (3) sans glissement des rouleaux d'entrainement sur la roue (3).\\
+
+%Q 3. 
+\question{Écrire les deux conditions de roulement sans glissement aux points de contact $I_{1}$ et $I_{2}$, puis les deux relations scalaires entre les vitesses de rotation $\omega_{3}, \omega_{r e_{1}}$ et $\omega_{r e_{2}}$. En déduire le nombre de mobilités $m^{\prime}$ et le degré d'hyperstatisme $h^{\prime}$ du mécanisme avec les conditions de roulement sans glissement.}
+
+Le choix d'une motorisation adaptée nécessite le calcul des couples $\mathcal{C}_{\mathrm{mi}}, \mathrm{i} \in \llbracket 1 ; 2 \rrbracket$ que les machines électriques doivent développer afin d'entrainer en rotation la roue (3) par l'intermédiaire des rouleaux d'entrainement.\\
+Q4. Conclure sur la possibilité de déterminer les couples $\mathcal{C}_{m i}$ développés par les machines électriques à partir des hypothèses et de la modélisation retenues.
+
+\subsection{Motorisation du dispositif de mise en rotation d'une roue}
+\begin{obj}
+Analyser la chaine d'entrainement en rotation d'une roue et vérifier le choix de la machine électrique.
+\end{obj}
+
+La roue est entrainée en rotation par deux chaines d'énergie indépendantes détaillées en figure \ref{ccs_psi_2018_fig_05}.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-04_263_1217_1037_424}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_fig_05}Schéma fonctionnel de la mise en rotation d'une roue}
+\end{center}
+\end{figure}
+
+\section*{Hypothèses de modélisation et notations}
+\begin{itemize}
+  \item Le schéma cinématique (figure \ref{ccs_psi_2018_fig_A} , document réponse) donne la configuration normale de travail dans laquelle le vérin $\{1 ; 2\}$ est supposé parfaitement vertical $\left(\overrightarrow{A B}=L_{v} \vec{z}_{0}\right)$, et le support des rouleaux d'entrainement dans le plan horizontal ( $\vec{x}_{0}, \vec{y}_{0}$ ). Cette configuration est utilisée pour toute la suite de l'étude.
+  \item Les deux chaines d'énergie et les deux rouleaux d'entrainement sont identiques, donc $\mathcal{C}_{\mathrm{m} 1}=\mathcal{C}_{\mathrm{m} 2}=\mathcal{C}_{\mathrm{m}}$;
+  \item Le profil simplifié, décrit en figure \ref{ccs_psi_2018_fig_B} du document réponse, est retenu pour cette étude. Seule la seconde opération [OP2] est étudiée.
+  \item La résultante selon $\vec{x}_{0}$ de l'action mécanique transmise par la roue à l'outil est considérée constante et égale à $2 \mathrm{kN}\left(f_{c x}=\vec{R}_{3 \rightarrow \text { outil }} \cdot \vec{x}_{0}=2 \mathrm{kN}\right)$.
+  \item Les actions mécaniques transmises par les rouleaux d'entrainement à la roue sont modélisées par
+\end{itemize}
+
+$$
+\left\{\mathcal{T}_{r e_{1} \rightarrow 3}\right\}=\left\{\begin{array}{c}
+F_{z 1} \vec{z}_{1}+F_{x 1} \vec{x}_{1} \\
+\overrightarrow{0}
+\end{array}\right\}_{I_{1}} \text { et }\left\{\mathcal{T}_{r e_{2} \rightarrow 3}\right\}=\left\{\begin{array}{c}
+F_{z 2} \vec{z}_{2}+F_{x 2} \vec{x}_{2} \\
+\overrightarrow{0}
+\end{array}\right\}_{I_{2}} .
+$$
+
+\begin{itemize}
+  \item Le modèle de frottement retenu est celui de Coulomb avec un facteur de frottement $f=0,2$.
+  \item Les rouleaux d'entrainement roulent sans glisser sur la roue (3).
+  \item Le tableau 1 détaille les caractéristiques des composants de la chaine d'énergie. Tous les solides sont équilibrés dynamiquement.
+\end{itemize}
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\multirow{2}{*}{Roue (3)} & Moment d'inertie autour de l'axe ( $O_{3}, \vec{y}_{0}$ ) & $J_{3}$ \\
+\hline
+ & Vitesse de rotation & $\vec{\Omega}_{3 / 0}=\omega_{3} \vec{y}_{0}$ avec $\omega_{3}<0$ \\
+\hline
+\multirow{2}{*}{Rouleau d'entrainement ( $r e_{i}$ )} & Moment d'inertie autour de son axe de rotation ( $O_{i}, \vec{y}_{0}$ ) & $J_{r e}$ \\
+\hline
+ & Vitesse de rotation & $\vec{\Omega}_{r e_{1} / s r e}=\vec{\Omega}_{r e_{2} / s r e}=\omega_{r e} \vec{y}_{0}$ \\
+\hline
+\multirow{2}{*}{Machine électrique ( $M_{i}$ )} & Moment d'inertie ramené sur l'arbre moteur & $J_{m}$ \\
+\hline
+ & Vitesse de rotation & $\vec{\Omega}_{M_{1} / s r e}=\vec{\Omega}_{M_{2} / s r e}=\omega_{m} \vec{y}_{0}$ \\
+\hline
+\multirow{2}{*}{Réducteur ( $R_{i}$ )} & Moment d'inertie ramené sur l'axe de sortie du réducteur & $J_{\text {red }}$ \\
+\hline
+ & Rapport de transmission & $k=\dfrac{\omega_{r e}}{\omega_{m}}=0,1$ \\
+\hline
+\end{tabular}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_tab_01}Caractéristiques des composants de la chaine d'énergie ( $i \in \llbracket 1 ; 2 \rrbracket$ )}
+\end{center}
+\end{table}
+
+%Q 5. 
+\question{Exprimer littéralement l'énergie cinétique galiléenne notée $T\left(E_{1} / 0\right)$ de l'ensemble $E_{1}$ comprenant le rotor de la machine électrique ( $M_{1}$ ), les éléments en rotation du réducteur ( $R_{1}$ ) et le rouleau d'entrainement $\left(r e_{1}\right)$. En déduire l'inertie équivalente $J_{\text {eq }}$ ramenée sur l'axe moteur de l'ensemble $E_{1}$.}
+
+%Q6. 
+\question{Appliquer le théorème de l'énergie cinétique à l'ensemble $E_{1}$ en supposant que le réducteur ( $R_{1}$ ) est parfait. En déduire l'expression de $F_{x 1}$ en fonction de $\mathcal{C}_{\mathrm{m}}, \dot{\omega}_{m}=\dfrac{\mathrm{d} \omega_{m}}{\mathrm{~d} t}, J_{\mathrm{eq}}, k$ et de paramètres géométriques.}
+
+%Q7. 
+\question{Montrer que $F_{x 1}=F_{x 2}$.}
+
+%Q 8. 
+\question{Exprimer la relation entre $\omega_{3}$ et $\omega_{r e}$ déduite de l'hypothèse du roulement sans glissement en $I_{1}$ et $I_{2}$ entre les rouleaux et la roue. En déduire une relation entre $\omega_{3}$ et $\omega_{m}$, puis une relation entre les accélérations angulaires $\dot{\omega}_{m}$ et $\dot{\omega}_{3}$.}
+
+%Q 9. 
+\question{Par une étude dynamique de la roue (3), exprimer $\mathcal{C}_{\mathrm{m}}$ en fonction de $f_{c x}, J_{\mathrm{eq}}, J_{3}, \dot{\omega}_{m}, k, R_{r e}, R_{c}$ et $R$.}
+
+%Q 10. 
+\question{En déduire la valeur de $R_{c} \in\left[R_{m} ; R_{M}\right]$ pour laquelle $\left|\mathcal{C}_{\mathrm{m}}\right|$ est maximal (l'accélération angulaire $\dot{\omega}_{m}$ est constante).}
+
+La relation obtenue montre que la connaissance de l'accélération angulaire des machines électriques $\dot{\omega}_{m}$ est nécessaire pour déterminer la valeur maximale du couple moteur $\mathcal{C}_{m}$ (l'effort $f_{c x}$ étant supposé constant et connu).\\
+La variation de la vitesse de rotation des machines électriques est due à la nécessité de conserver une vitesse $V_{c}=-\vec{V}(C \in$ outil $/ 3) \cdot \vec{x}_{0}$ constante lors du reprofilage de la roue, c'est-à-dire lorsque le point $C$ parcourt le segment $\left[C_{0} C_{1}\right]$ (figure \ref{ccs_psi_2018_fig_B} , document réponse).
+
+\subsubsection*{Hypothèses de modélisation et notations}
+\begin{itemize}
+  \item À $t=0$, les points $C$ et $C_{0}$ sont confondus et la vitesse de rotation de la roue par rapport au bâti du tour en fosse vaut $\omega_{3}(t=0)=\omega_{C_{0}}$.
+  \item Le point $C$ atteint le point $C_{1}$ à l'instant $t=t_{1}$, la vitesse de rotation de la roue par rapport au bâti du tour en fosse vaut $\omega_{3}\left(t=t_{1}\right)=\omega_{C_{1}}$.
+  \item La durée $t_{1}$ correspond donc à la durée nécessaire à l'outil pour parcourir le segment $\left[C_{0} C_{1}\right]$. La longueur $l(t)=\left\|\overrightarrow{C_{0} C}\right\|$ correspond à la longueur du profil reprofilé à l'instant $t \in\left[0 ; t_{1}\right]$ et telle que $l\left(t_{1}\right)=\left\|\overrightarrow{C_{0} C_{1}}\right\|$.
+  \item Les vitesses de rotation $\omega_{C_{0}}$ et $\omega_{C_{1}}$ sont négatives. L'accélération angulaire $\dot{\omega}_{3}$ de la roue par rapport au bâti est constante.
+  \item Le diagramme des exigences donné en figure \ref{ccs_psi_2018_fig_C} du document réponse fixe les valeurs de la vitesse $V_{c}= -\vec{V}(C \in \operatorname{outil} / 3) \cdot \vec{x}_{0}$ et du déplacement $b$, selon la direction $\vec{u}$, de l'outil par rapport au bâti lorsque la roue tourne d'un radian.\\
+\end{itemize}
+
+%Q 11. 
+\question{Exprimer $\vec{V}(C \in$ outil $/ 3)$ en fonction de $R_{C}(t), \omega_{3}(t)$ et $V_{f}(t)=\vec{V}(C \in$ outil $/ 0) \cdot \vec{u}$. En déduire l'expression des vitesses de rotation $\omega_{C_{0}}$ puis $\omega_{C_{1}}$ en fonction de $V_{c}=-\vec{V}(C \in \operatorname{outil} / 3) \cdot \vec{x}_{0}, R_{m}$ et $R_{M}$.}
+
+%Q 12. 
+\question{Tracer l'allure de l'évolution de la vitesse de rotation $\omega_{3}(t)$ en fonction du temps sur la durée $t_{1}$. Exprimer, en fonction de $\omega_{C_{0}}, \omega_{C_{1}}$ et $t_{1}$, la vitesse de rotation $\omega_{3}(t)$.}
+
+%Q 13. 
+\question{Exprimer $l(t)$ en fonction de $b, \omega_{C_{0}}, \omega_{C_{1}}$ et $t_{1}$, sachant que $V_{f}(t)=\vec{V}(C \in$ outil $/ 0) \cdot \vec{u}=-b \omega_{3}(t)$.}
+
+%Q 14. 
+\question{Exprimer $l\left(t_{1}\right)=\left\|\overrightarrow{C_{0} C_{1}}\right\|$ en fonction de $R_{m}, R_{M}$ et $e$ (figure \ref{ccs_psi_2018_fig_B}, document réponse). En déduire l'expression de la durée $t_{1}$ en fonction de $\omega_{C_{0}}, \omega_{C_{1}}, R_{m}, R_{M}, e$ et $b$.}
+
+%Q 15. 
+\question{Exprimer $\dot{\omega}_{3}$ en fonction de $b, V_{c}, R_{m}, R_{M}$ et $e$; en déduire l'expression de $\dot{\omega}_{m}$ puis sa valeur numérique. L'accélération angulaire des machines électriques étant connue, il est alors possible de calculer la valeur maximale du couple moteur qui est de $22 \mathrm{~N} \cdot \mathrm{~m}$.}
+
+%Q16. 
+\question{En déduire la puissance mécanique maximale que doit fournir chacune des machines électriques. Le constructeur a choisi le modèle ME\_5\_15 parmi les trois modèles proposés par le tableau 2 . Vérifier la pertinence de ce choix.}
+
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Modèle & \begin{tabular}{c}
+Vitesse de rotation \\
+maximale \\
+\end{tabular} & \begin{tabular}{c}
+Couple maximal \\
+développé \\
+\end{tabular} & \begin{tabular}{c}
+Puissance électrique \\
+consommée \\
+\end{tabular} & Rendement \\
+\hline
+$\mathrm{ME} \_12 \_08$ & $12000 \mathrm{tr} \cdot \mathrm{min}^{-1}$ & $15 \mathrm{~N} \cdot \mathrm{~m}$ & 8 kW & 0,7 \\
+\hline
+$\mathrm{ME} \_10 \_10$ & $10000 \mathrm{tr} \cdot \mathrm{min}^{-1}$ & $22,5 \mathrm{~N} \cdot \mathrm{~m}$ & 10 kW & 0,8 \\
+\hline
+$\mathrm{ME} \_5 \_15$ & $5000 \mathrm{tr} \cdot \mathrm{min}^{-1}$ & $25 \mathrm{~N} \cdot \mathrm{~m}$ & 15 kW & 0,8 \\
+\hline
+\end{tabular}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_tab_02}Caractéristiques des machines électriques proposées pour actionner les chaines d'énergie}
+\end{center}
+\end{table}
+
+Le dimensionnement du dispositif de mise en rotation d'une roue permet donc de générer la puissance mécanique de rotation nécessaire au reprofilage de la roue. La seconde partie de cette étude est consacrée à l'analyse de la commande du dispositif de mise en translation de l'outil. Cette commande doit permettre de compenser au mieux l'effet de la déformation de l'outil lors du reprofilage.

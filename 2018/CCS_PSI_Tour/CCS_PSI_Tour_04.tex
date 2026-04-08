@@ -1,0 +1,32 @@
+
+\section{Synthèse}
+Les résultats issus de simulations du comportement de l'asservissement corrigé en position, ainsi que la réponse fréquentielle en boucle ouverte corrigée, sont présentés en figures \ref{ccs_psi_2018_fig_18}, \ref{ccs_psi_2018_fig_19} et \ref{ccs_psi_2018_fig_20}.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-13_862_1555_267_262}
+%\captionsetup{labelformat=empty}
+%Figure 18 
+\caption{\label{ccs_psi_2018_fig_18} Diagramme de Bode de la boucle ouverte, avec $N_{2}(p)$ et $N_{2 \text { app }}(p)$ (exigences 1.1 et 1.2)}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-13_465_1556_1210_258}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_fig_19}Évolution de la position $z_{2}(t)$ lorsque $\left\{\begin{array}{l}z_{c}(t)=z_{c 0} \mathcal{H}\left(t-t_{0}\right) \\ f_{c}(t)=f_{c 0} \mathcal{H}\left(t-t_{1}\right)\end{array}\right.$}
+\end{center}
+\end{figure}
+
+avec $z_{c 0}=0,1 \mathrm{~mm}, f_{c 0}=1000 \mathrm{~N}, t_{0}=0,1 \mathrm{~s}, t_{1}=0,4 \mathrm{~s} \quad$ (exigence 1.4)
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-13_478_1549_1850_258}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_fig_20}Évolution de la position $z_{2}(t)$ lorsque $\left\{\begin{array}{l}z_{c}(t)=z_{c 0} \mathcal{H}(t) \\ f_{c}(t)=\left(f_{c 0}+f_{c 1} \sin \left(\omega_{r} t\right)\right) \mathcal{H}(t)\end{array}\right.$ avec $z_{c 0}=0,1 \mathrm{~mm}, f_{c 0}=1000 \mathrm{~N}, f_{c 1}=100 \mathrm{~N}, \omega_{r}=$ pulsation de résonance de $S(j \omega) \quad$ (exigence 1.5)}
+\end{center}
+\end{figure}
+
+\question{Déterminer graphiquement le défaut de la roue $\Delta u$, l'erreur $\Delta e$ et les performances en stabilité des modèles avec et sans l'approximation de $N_{2}(p)$. Conclure sur la capacité du tour en fosse à générer un profil de roue satisfaisant l'ensemble des critères du diagramme des exigences de la figure 8.}
