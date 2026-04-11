@@ -413,57 +413,57 @@ Le début d'un algorithme de résolution de ce problème est présenté dans le 
 \fi
 
 
-%%Q 27. 
-%\question{Compléter le cadre «Algorithme 1 » du document réponse. Cet algorithme doit permettre le calcul approché du maximum $\left|S_{K_{p}}\right|_{\text {max }}$, en admettant que $|S(j \omega)|$ n'admet qu'un seul maximum.}
-%\ifprof
-%\begin{corrige}
-%
-%\noindent \hspace{.4cm} $|$ Pour $i$ allant de 0 à $N_{K_P}$ :  
-%
-%\noindent \hspace{.8cm} $|$ Calcul de $K_P=i\times \Delta K_P$ 
-%
-%\noindent \hspace{.8cm} $|$ Calcul de $T_i \left( K_P\right)$ 
-%
-%\noindent \hspace{.8cm} $|$ Calcul de $K_v\left( K_P\right)$ 
-%
-%\noindent \hspace{.8cm} $|$ Calcul de $\left| S_{K_P} \right|_{\text{max}}=\left| S\left( j \times 0\right) \right|$
-%
-%\noindent \hspace{.8cm} $|$ Pour $j$ allant de 0 à $N_{\omega}$ :  
-%
-%\noindent \hspace{1.2cm} $|$ Calcul de $\omega=j\times \Delta \omega$ 
-%
-%\noindent \hspace{1.2cm} $|$ Calcul de $\left| S_{K_P} \right|_{\text{tmp}}=\left| S\left( j \times \omega \right) \right|$
-%
-%\noindent \hspace{1.2cm} $|$ Si $\left| S_{K_P} \right|_{\text{max}}< \left| S_{K_P} \right|_{\text{tmp}}$ :
-%
-%\noindent \hspace{1.6cm} $|$ $\left| S_{K_P} \right|_{\text{max}}= \left| S_{K_P} \right|_{\text{tmp}}$.
-%
-%\noindent \hspace{.8cm} $|$ On stocke $\left| S_{K_P} \right|_{\text{max}}$, $K_P$, $K_v$, $T_i$ dans un liste
-%
-%
-%\end{corrige}
-%\else
-%\fi
-%
-%%Q 28. 
-%\question{Compléter le cadre «Algorithme 2 » du document réponse. Cet algorithme doit permettre l'extraction du minimum min $\left(\left|S_{K_{p}}\right|_{\max }\right)$ et des valeurs optimales correspondantes $K_{p}^{\text {opt}}, T_{i}^{\text {opt }}$ et $K_{v}^{\text {opt }}$ de $K_{p}, T_{i}$ et $K_{v}$.}
-%\ifprof
-%\begin{corrige}
-%
-%\noindent \hspace{.4cm} $|$ On initialise $i_{\text{min}}$ et   $S_{\text{min}}$
-%
-%\noindent \hspace{.4cm} $|$ Pour $i$ allant de 0 à $N_{K_P}$ :  
-%
-%\noindent \hspace{.8cm} $|$ Si $S[i]<S_{\text{min}}$ :
-%
-%\noindent \hspace{1.2cm} $|$ $i_{\text{min}}\leftarrow i$
-%
-%\noindent \hspace{1.2cm} $|$ $S_{\text{min}}\leftarrow S[i]$
-%
-%\noindent \hspace{.4cm} $|$ On retourne  $K_P$, $K_v$, $T_i$ associés à $i_{\text{min}}$.
-%\end{corrige}
-%\else
-%\fi
+%Q 27. 
+\question{Compléter le cadre «Algorithme 1 » du document réponse. Cet algorithme doit permettre le calcul approché du maximum $\left|S_{K_{p}}\right|_{\text {max }}$, en admettant que $|S(j \omega)|$ n'admet qu'un seul maximum.}
+\ifprof
+\begin{corrige}
+
+\noindent \hspace{.4cm} $|$ Pour $i$ allant de 0 à $N_{K_P}$ :  
+
+\noindent \hspace{.8cm} $|$ Calcul de $K_P=i\times \Delta K_P$ 
+
+\noindent \hspace{.8cm} $|$ Calcul de $T_i \left( K_P\right)$ 
+
+\noindent \hspace{.8cm} $|$ Calcul de $K_v\left( K_P\right)$ 
+
+\noindent \hspace{.8cm} $|$ Calcul de $\left| S_{K_P} \right|_{\text{max}}=\left| S\left( j \times 0\right) \right|$
+
+\noindent \hspace{.8cm} $|$ Pour $j$ allant de 0 à $N_{\omega}$ :  
+
+\noindent \hspace{1.2cm} $|$ Calcul de $\omega=j\times \Delta \omega$ 
+
+\noindent \hspace{1.2cm} $|$ Calcul de $\left| S_{K_P} \right|_{\text{tmp}}=\left| S\left( j \times \omega \right) \right|$
+
+\noindent \hspace{1.2cm} $|$ Si $\left| S_{K_P} \right|_{\text{max}}< \left| S_{K_P} \right|_{\text{tmp}}$ :
+
+\noindent \hspace{1.6cm} $|$ $\left| S_{K_P} \right|_{\text{max}}= \left| S_{K_P} \right|_{\text{tmp}}$.
+
+\noindent \hspace{.8cm} $|$ On stocke $\left| S_{K_P} \right|_{\text{max}}$, $K_P$, $K_v$, $T_i$ dans un liste
+
+
+\end{corrige}
+\else
+\fi
+
+%Q 28. 
+\question{Compléter le cadre «Algorithme 2 » du document réponse. Cet algorithme doit permettre l'extraction du minimum min $\left(\left|S_{K_{p}}\right|_{\max }\right)$ et des valeurs optimales correspondantes $K_{p}^{\text {opt}}, T_{i}^{\text {opt }}$ et $K_{v}^{\text {opt }}$ de $K_{p}, T_{i}$ et $K_{v}$.}
+\ifprof
+\begin{corrige}
+
+\noindent \hspace{.4cm} $|$ On initialise $i_{\text{min}}$ et   $S_{\text{min}}$
+
+\noindent \hspace{.4cm} $|$ Pour $i$ allant de 0 à $N_{K_P}$ :  
+
+\noindent \hspace{.8cm} $|$ Si $S[i]<S_{\text{min}}$ :
+
+\noindent \hspace{1.2cm} $|$ $i_{\text{min}}\leftarrow i$
+
+\noindent \hspace{1.2cm} $|$ $S_{\text{min}}\leftarrow S[i]$
+
+\noindent \hspace{.4cm} $|$ On retourne  $K_P$, $K_v$, $T_i$ associés à $i_{\text{min}}$.
+\end{corrige}
+\else
+\fi
 
 \subsection{Analyse de l'influence du paramètre b (défini en figure \ref{ccs_psi_2018_fig_C} du document réponse)}
 \begin{obj}
