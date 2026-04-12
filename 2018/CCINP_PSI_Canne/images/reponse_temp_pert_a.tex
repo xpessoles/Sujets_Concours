@@ -1,0 +1,30 @@
+\pdfminorversion=3
+\documentclass[tikz,border=0mm]{standalone}
+\usepackage{alain}
+\pagestyle{rien}
+
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[
+ymajorgrids=true,yminorgrids=true,xmajorgrids=true,tick label style={/pgf/number format/fixed},scaled ticks=false,/pgf/number format/1000 sep = {\,},/pgf/number format/use comma,
+ytick={0,0.002,0.004,.006,.008,.01},
+yticklabels={0,\num{0.002},\num{0.004},\num{.006},\num{.008},\num{.01}},
+minor y tick num=1,
+minor x tick num=4,
+%xlabel = {Temps (s)},
+%ylabel = {Tension moteur (V)},
+%legend entries={$K_{corr}=K_{corr}^{MAX}$,$K_{corr}=1500$,Consigne},
+%legend style={at={(0.65,0.05)},anchor=south west},
+%legend columns=3,
+axis lines=left,
+xmin=0,xmax=.5,
+ymin=0,ymax=0.01,
+height=5cm,
+width=8.5cm,
+font=\footnotesize,
+]
+\addplot [ultra thick] table[x index=0,y index =1,col sep=semicolon]{Images/reponse_temp_pert.txt};
+\addplot [gray,ultra thick] table[x index=0,y index =2,col sep=semicolon]{Images/reponse_temp_pert.txt};
+\end{axis}
+\end{tikzpicture}
+\end{document}

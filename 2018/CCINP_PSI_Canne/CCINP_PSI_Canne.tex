@@ -1,0 +1,2160 @@
+\section*{MOBILIT\'E ASSIST\'EE \`A L'AIDE D'UNE CANNE ROBOTIS\'EE}
+
+\paragraph{Présentation générale} 
+
+\noindent L'amélioration de la mobilité des personnes âgées ou rencontrant des troubles de la marche demeure un des enjeux majeurs de l'assistance à la personne.
+
+Un dispositif d'assistance à la marche peut être prescrit lors de l'apparition de troubles de la locomotion. Parmi les nombreux dispositifs proposés, la canne et le déambulateur demeurent les plus utilisés ; l'utilisation de la canne étant privilégiée lors de troubles mineurs ou n'affectant qu'une des deux jambes.
+
+Afin de contribuer à l'amélioration de l'assistance apportée par ces deux dispositifs conventionnels, la robotisation de ceux-ci a été entreprise. Ainsi, de nombreux déambulateurs robotisés ont été conçus afin d'offrir une assistance continue lors de la marche. En revanche, le développement des cannes robotisées s'est traduit par une différenciation marquée par rapport aux cannes conventionnelles (voir \ref{tab:evolution_canne}). En effet, l'utilisation de bases mobiles stables sur lesquelles sont fixées des cannes, conduit à l'obtention de dispositif encombrant.
+
+% Tableau evolution canne
+\begin{table}[!ht]
+\centering
+%\begin{tabular}{ccc}
+\begin{tabular}{|c|c|c|}
+  \hline
+  {\footnotesize Canne} & {\footnotesize Canne à base mobile stable} & {\footnotesize Prototype de canne robotisée  } \\ 
+  {\footnotesize conventionnelle} & {\footnotesize composée de 3 roues} & {\footnotesize étudié dans ce sujet}
+  \\ 
+%  \hline
+    \includegraphics[width=.09\linewidth]{canne_conventionnelle.jpg}
+%   &
+%    \includegraphics[width=.13\linewidth]{canne_base_mobile.jpg}
+   &
+    \includegraphics[width=.125\linewidth]{canne_base_mobile2.jpg}
+%  &
+%   \includegraphics[width=.08\linewidth]{prototype_canne.jpg}
+   &
+    \includegraphics[width=.07\linewidth]{prototype_canne2.jpg}
+    \\
+    \hline
+
+\end{tabular} 
+\caption{{Évolution des dispositifs d'assistance à la locomotion de type canne}\label{tab:evolution_canne}}
+\end{table}
+
+\vspace{-0.25cm}
+Pour plus de compacité et pour garder les attributs d'une canne conventionnelle, le prototype de canne étudié dans ce sujet est composé d'un axe télescopique et d'une roue à son extrémité, tous deux motorisés. Il conserve ainsi un encombrement réduit et permet de synchroniser les mouvements avec le cycle de la marche. La canne suit ainsi activement le mouvement de la jambe \og invalide\fg{} durant la phase de balancement et offre un point d'appui stable pendant la phase d'appui.
+
+
+L'objectif de cette étude est de concevoir et valider une commande permettant au prototype de canne d'assister au mieux la marche du patient.
+La démarche proposée est la suivante : 
+\begin{itemize}
+\item partie I : analyse du cycle de marche afin de justifier l'intérêt de l'utilisation d'une canne ; 
+\item partie II : présentation du prototype de canne robotisée étudié ;
+\item partie III : étude de l'architecture du système de transformation de mouvement de l'axe linéaire ;
+\item partie IV : étude de l'exigence 3.1.6 \og Commande des axes asservis\fg{} ;
+\item partie V : modélisation et analyse de la commande lors de la phase de balancement ; 
+\item partie VI : modélisation et analyse de la commande lors de la phase d'appui ;
+\item partie VII : synthèse -- étude de l'exigence 3.1 \og Assistance de la marche\fg{}.
+\end{itemize}
+
+
+%\newpage 
+\section{Analyse du cycle de marche}
+L'objectif de cette partie est d'étudier des cycles de marches saines et perturbées afin de mettre en évidence l'apport d'une canne d'assistance pour améliorer la marche.
+
+
+L'observation des jambes, effectuée dans le cadre d'un \og cycle de marche\fg{}, permet de distinguer pour chacune d'entre elle une phase d'appui et une phase de balancement (\ref{fig:cycle_marche}). Ce cycle débute par un appui simple de la jambe droite et le début du balancement de la jambe gauche. Il s'achève lors du décollement du pied gauche du sol.
+
+% Figure Cycle de marche
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=.6\linewidth]{cycle_marche.pdf}
+%\begin{minipage}[c]{.85\linewidth}
+\caption{{ Représentation du cycle de la marche adopté dans le cadre de notre étude}
+\label{fig:cycle_marche}}
+%\end{minipage}
+\end{figure}
+
+
+La marche se distingue de la course à pied par le fait qu'à un moment les deux pieds sont en appui sur le sol (double contact). Durant ce moment, la jambe précédemment en balancement entre en contact avec le sol et un transfert de charge vers celle-ci est initié. Ce transfert de charge est accompagné d'une propulsion du corps vers l'avant exercée par la jambe précédemment en appui. 
+
+
+L'initiation du cycle de la marche sera définie comme indiquée sur la \ref{fig:cycle_marche} par un appui simple sur la jambe droite. Les \textbf{figures \ref{fig:def_mvt_jambe}} et \textbf{\ref{fig:evol_angle_jambe}} présentent respectivement la définition des différents mouvements des jambes et les évolutions des articulations lors d'un cycle de marche normale.
+
+% Figures def mvt jambe et évolution des angles
+\begin{figure}[h!]
+   \begin{minipage}[c]{.4\linewidth}
+      \centering
+      \includegraphics[width=0.8\linewidth]{def_mvt_jambe.pdf}
+ 	  \caption{{ Représentation des mouvements} \label{fig:def_mvt_jambe}}
+   \end{minipage} \hfill
+   \begin{minipage}[c]{.55\linewidth}
+	  \centering     
+      \includegraphics[width=0.9\linewidth]{evol_angle_jambe.pdf}
+      \caption{Évolution des articulations de la jambe \mbox{durant} un cycle de marche normale\label{fig:evol_angle_jambe} }
+   \end{minipage}
+\end{figure}
+
+
+Par définition, la position de référence (configuration où les angles de l'articulation de la hanche, du genou et de la cheville sont à 0\degre) correspond à la position debout jambes tendues. 
+Ainsi, la flexion de la hanche, caractérisée par un angle positif, est définie comme le mouvement rapprochant la cuisse vers le buste. Le mouvement opposé correspond à l'extension.
+
+Afin de mieux caractériser le rôle de la canne, les déambulations de 16 sujets sains à différentes allures (lente, moyenne et rapide) dans le cadre de marches saines, perturbées (genou de la jambe gauche immobilisé à \SI{20}{\degree} à l'aide d'une attelle) et assistées (canne conventionnelle  instrumentée avec un capteur d'efforts 6 axes) sont analysées. Les caractéristiques moyennes du groupe ayant participé au protocole sont détaillées dans le \ref{tab:donne_essais_sujet}. Ces caractéristiques  étant différentes, les résultats des essais sont nor\-ma\-li\-sés, en divisant chaque donnée par les nombres adimensionnels du \ref{tab:adimension_essais_sujet2} avec $g = 9,81$ m.s$^{-2}$ l'accélération gravitationnelle terrestre.  
+
+\medskip
+\begin{footnotesize}
+   \begin{minipage}[t]{.49\linewidth}
+      % Tableau caractéristiques sujet essais
+%\begin{table}[h]
+~
+%\vspace*{1mm}
+\centering
+\begin{tabular}{|c|c|c|}
+  \hline
+  \textbf{Données} & \textbf{Unités} & \textbf{Valeur moyenne}  \\ 
+  \hline
+  \^Age & Années & $25,8 \pm 2,3$ \\ 
+  \hline
+  Taille & cm & $179 \pm 5,3$ \\ 
+  \hline
+  Masse ($m_{sujet}$) & kg & $71,4 \pm 8,5$ \\ 
+  \hline
+  Longueur jambe ($L_{jambe}$) & cm & $101 \pm 3,5$ \\
+\hline
+\end{tabular} 
+\captionof{table}{{ Caractéristiques moyennes du \newline groupe avec écarts-types ($\pm$)}\label{tab:donne_essais_sujet}}
+
+%\end{table}
+
+   \end{minipage} \hfill
+   \begin{minipage}[t]{.49\linewidth}
+      % Tableau caractéristiques nombre adimension
+      ~\vspace*{1mm}
+\centering
+\begin{tabular}{|c|c|}
+  \hline
+  \textbf{Résultats} & \textbf{Nombre adimensionnel}  \\ 
+  \hline
+  Vitesse & $\sqrt{g.L_{jambe}}$  \\ 
+  \hline
+  Durée & $\sqrt{L_{jambe}/g}$ \\ 
+  \hline
+  Force & $m_{sujet}.g$ \\
+\hline
+\end{tabular} 
+\captionof{table}{{ Grandeurs d'adimensionnement}\label{tab:adimension_essais_sujet2}}
+
+%\end{table}
+
+   \end{minipage}
+   \end{footnotesize}
+%\end{figure}
+
+
+Les résultats obtenus pour les différentes conditions sont présentés en \textbf{figures} \textbf{\ref{fig:Fn_marche_saine}}, \textbf{\ref{fig:Fn_marche_perturbee}}, \textbf{\ref{fig:Fn_marche_assistee}} et \textbf{\ref{fig:Fn_canne}}.
+Ces courbes représentent l'évolution des efforts normaux exercés par les jambes ou la canne sur le sol.
+ Afin de faciliter l'observation des résultats, ceux relatifs à la jambe droite sont représentés en trait fort et les résultats de la jambe gauche en trait fin. Les écarts-types associés aux résultats sont représentés en pointillés. Le trait continu représente la moyenne.
+
+Pour rappel, le cycle de la marche adopté durant l'étude débute par l'appui simple sur la jambe droite. La jambe gauche sera la jambe équipée des dispositifs contraignants dans le cadre de la marche perturbée et assistée d'une canne. Pour ce dernier cas, la canne est placée du côté de la jambe valide, c'est-à-dire du côté de la jambe droite.
+
+% Figures Efforts normaux marche saine / marche perturbee
+\begin{figure}[!ht]
+%   \begin{minipage}[c]{.49\linewidth}
+      \centering
+      \includegraphics[width=.8\linewidth]{Fn_marche_saine_.pdf}
+ 	  \caption{{ Efforts normaux générés par les jambes durant un cycle de marche normale à \newline $V = 0,45$ m/s} \label{fig:Fn_marche_saine}}
+%   \end{minipage} \hfill
+\end{figure}
+
+\begin{figure}[!ht]
+%   \begin{minipage}[c]{.49\linewidth}
+	  \centering     
+      \includegraphics[width=.8\linewidth]{Fn_marche_perturbee_}
+      \caption{{ Efforts normaux générés par les jambes durant un cycle marche perturbée à allure moyenne,  $V = 0,22$ m/s} \label{fig:Fn_marche_perturbee} }
+%   \end{minipage}
+   \end{figure}
+   
+%\end{figure}
+% Figures Efforts normaux marche assistee / canne
+\begin{figure}[!ht]
+%   \begin{minipage}[c]{.49\linewidth}
+      \centering
+      \includegraphics[width=.7\linewidth]{Fn_marche_assistee_}
+ 	  \caption{{ Efforts normaux générés par les jambes durant un cycle de marche assistée à allure moyenne, $V = 0,22$ m/s } \label{fig:Fn_marche_assistee}}
+%   \end{minipage} \hfill
+\end{figure}
+
+\begin{figure}[!ht]
+%   \begin{minipage}[c]{.49\linewidth}
+	  \centering     
+      \includegraphics[width=.7\linewidth]{Fn_canne_}
+      \caption{{ Efforts normaux générés par la canne durant un cycle de marche assistée à allure moyenne,\newline $V = 0,22$ m/s \label{fig:Fn_canne}} }
+%   \end{minipage}
+\end{figure}
+%\fi%%%%
+
+\question{À partir de l'étude des \textbf{figures \ref{fig:Fn_marche_saine}} et \textbf{\ref{fig:Fn_marche_perturbee}}, comparer et commenter les évolutions des efforts normaux de chacune des jambes sur le sol et les durées de chacune des phases pour les différents cas : marche saine et marche perturbée.}
+
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+Selon la figure 4, en marche saine, les évolutions des efforts normaux sur chaque jambe et les durées de chacune des phases sont identiques. La figure 5 montre que, lors d'une marche perturbée, la phase de double appui est plus longue (phase rassurante et moins douloureuse) et que la jambe invalide (gauche ici) est moins sollicitée avec un temps d'appui plus court. Les efforts normaux sont en moyenne équivalent en intensité pour les deux marches, cependant leurs évolutions diffèrent dans le cas de la marche perturbée avec un effort quasi constant lors de l'appui de la jambe invalide et un effort également plus constant lors de l'appui de la jambe valide.}
+\end{minipage}
+}
+\fi
+
+
+
+\question{À partir de l'étude de la  \ref{fig:Fn_marche_assistee} et  de la \ref{fig:Fn_canne} (page \pageref{fig:Fn_canne}), préciser le rôle de la canne lors d'une marche assistée. Préciser, en Newton, la valeur moyenne maximale des efforts exercés sur la canne.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+La canne prend en charge une partie des efforts normaux supportés par la jambe invalide. On relève une valeur moyenne maximale $N_{MAX} \approx 0,25 \times  F_{MAX}$ avec $F_{MAX}=m_{sujet} \times g=71,4 \times 9,81 \approx 700$ $N$. 
+Donc $N_{MAX} \approx 175$ $N$.}
+\end{minipage}
+}
+\fi
+
+\ifprof
+\else
+%\FloatBarrier
+\section{Présentation du prototype de canne robotisée étudié}
+La partie précédente a montré l'intérêt d'une canne pour assister un patient à mobilité réduite. 
+
+Le prototype de canne robotisée envisagé conserve une forme longiligne, un point d'appui au sol ainsi qu'un encombrement et un poids réduits. La canne robotisée, dont la structure mécanique est présentée en \ref{fig:schema_general_canne}, se compose d'un axe linéaire motorisé et d'une roue motorisée située à son extrémité.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=.55\linewidth]{schema_general_canne2.pdf}
+%\includegraphics[width=.6\linewidth]{schema_general_canne.jpg}
+\caption{{ Schéma cinématique et photographie du prototype de canne robotisée}}
+\label{fig:schema_general_canne}
+\end{figure}
+
+%%\FloatBarrier
+%~
+\newpage
+Les deux degrés de mobilité, rendus possibles par cette structure, permettent de suivre la marche d'un sujet et lui offre un point d'appui. L'avantage est d'éviter aux utilisateurs la manipulation de la canne (levée et positionnement) pendant la marche, la roue restant toujours en contact avec le sol.
+
+Le système de commande, détaillé par la suite, récupère les angles de rotation des deux centrales inertielles équipant respectivement la canne supérieure et le patient. La centrale inertielle du patient est placée sur la hanche de la jambe invalide et permet la synchronisation du mouvement de la canne avec celle-ci, comme nous le verrons par la suite.
+
+On donne dans le \ref{Annexe_diag_exigences} le diagramme partiel des exigences du prototype de canne robotisée. Le diagramme des blocs internes du \ref{Annexe_diag_BDI} présente son architecture ainsi que les caractéristiques de ses principaux constituants. La figure du \ref{Annexe_schema_cine_3D} donne une représentation schématique de la cinématique de l'ensemble du prototype de canne.
+
+L'actionnement de l'axe linéaire de la canne est assuré par un moteur brushless Maxon ECMax 30 équipé d'un codeur incrémental. La roue 1, située à l'extrémité de la canne, est actionnée par un moteur brushless Maxon EC 60. Les caractéristiques des moteurs sont récapitulées dans le \ref{tab:donne_moteurs}.
+
+%L'actionnement de l'axe linéaire de la canne est assuré par un moteur brushless Maxon ECMax 30 équipé d'un codeur incrémental (de résolution 500 impulsions/tour). Ce moteur entraîne un mécanisme vis-écrou (pas = 3 mm/tr) convertissant le mouvement de rotation de la vis 4 en une translation de l'écrou lié à la canne supérieure 3. L'amplitude de 15 cm de cette translation permet une variation de la longueur de la canne comprise entre 85 cm et 1 m.
+%
+%La roue 1, de diamètre 100 mm, située à l'extrémité de la canne est actionnée par un moteur brushless Maxon EC 60 via un réducteur planétaire de rapport r = 1/30 et un système poulie/courroie crantée de rapport 1 avec galet tendeur. La mesure du déplacement effectué par la roue est obtenue par un capteur à effet Hall positionné sur l'axe moteur (résolution 10 bits).
+
+
+
+% Tableau des caractéristiques des moteurs
+\begin{table}[!ht]
+\centering
+\begin{footnotesize}
+\begin{tabular}{|l|l|l|}
+  \cline{2-3}
+  \multicolumn{1}{c|}{} & \multicolumn{1}{|c|}{\textbf{Moteur axe linéaire}} & \multicolumn{1}{|c|}{\textbf{Moteur roue}}  \\ 
+  \multicolumn{1}{c|}{} & \multicolumn{1}{|c|}{brushless Maxon ECMax 30} & \multicolumn{1}{|c|}{brushless Maxon EC60} \\
+  \hline
+  Puissance maximale & $P_{MAX} = 60$ W & $P_{MAX} = 100$ W \\ 
+  
+  Vitesse nominale & $Nn = \num{6590}$ tr/min & $Nn = \num{3260}$ tr/min \\ 
+  
+  Couple nominal & $Cn = {0,0636}\ \si{N.m}$ & $Cn = \SI{0,279}{N.m}$ \\ 
+  
+  Tension nominale & $Un = 12$ V & $Un = 12$ V \\ 
+  
+  Courant nominal & $In = 4,72$ A & $In = 9,25$ A \\ 
+  
+  Courant maximal & \multirow{2}{*}{$I_{MAX}$ = 26,8 A} &   \multirow{2}{*}{$I_{MAX}$ = 93,5 A} \\ 
+  
+  \hspace*{1.5cm} au démarrage &  &  \\ 
+  
+  Constante de couple & $Kc = 14,2.10^{-3}$ \si{N.m/A} & $Kc = 30,5.10^{-3}$ \si{N.m/A} \\
+  
+  Constante de vitesse & $Ke = 14,2.10^{-3}$ V/s & $Ke = 30,5.10^{-3}$ V/s \\ 
+
+  Résistance aux bornes & $R = 0,447$ $\Omega$ & $R = 0,128$ $\Omega$ \\
+  
+  Inductance aux bornes & $L = 49 . 10^{-3}$ mH &  $L = 62 . 10^{-3}$ mH \\
+  
+  Moment d'inertie du rotor & $J_{rotor} = 21,9 . 10^{-7}$ \si{kg.m^2} & $J_{rotor} = 1,2 . 10^{-4}$ \si{kg.m^2} \\
+  \hline  
+\end{tabular} 
+\caption{{ Caractéristiques des moteurs brushless du prototype de canne}}
+\label{tab:donne_moteurs}
+\end{footnotesize}
+\end{table}
+
+Le contrôle des moteurs est assuré par deux contrôleurs de vitesse ELMO. Ces variateurs reçoivent les consignes de vitesse du microcontrôleur MBED LPC1768. L'Arduino Due récupère les angles de deux centrales inertielles équipant la canne (par liaison série) et son utilisateur (par liaison Bluetooth).
+
+%Le contrôle des moteurs est assuré par deux contrôleurs de vitesse ELMO. Ces variateurs reçoivent les consignes de vitesse du microcontrôleur MBED LPC1768 par un bus CAN.
+%
+%En plus du calcul et de l'envoi de la commande aux variateurs, le microcontrôleur communique en série avec deux autres microcontrôleurs : un autre MBED LPC1768 et un Arduino Due. 
+%Le microcontrôleur MBED LPC1768 reçoit toutes les informations relatives à l'asservissement en cours pour les stocker sur une carte mémoire. L'Arduino Due récupère les angles de deux centrales inertielles équipant la canne et son utilisateur. La communication avec la centrale inertielle positionnée sur la canne s'effectue en utilisant une liaison série filaire. La centrale inertielle équipant le sujet transmet ses données par l'intermédiaire d'une liaison Bluetooth.
+%
+%Les variateurs et les différentes cartes électroniques que nous venons de présenter sont alimentés par la batterie 12 V embarquée dans la partie inférieure de la canne.
+
+\paragraph{Notation à utiliser dans les parties suivantes} 
+
+\noindent Les axes du repère $\mathcal{R}_i$ associé au solide $i$ sont notés $x_i$, $y_i$ et $z_i$ et sa base $\mathcal{B}_i$ associée est notée ($\vect{i}_i$,$\vect{j}_i$,$\vect{k}_i$).
+
+On notera $\left\lbrace T_{i \rightarrow j} \right\rbrace=
+\left\lbrace \begin{array}{c}
+\vect{R}_{i \rightarrow j} \\
+\vect{M}_{P,i \rightarrow j}
+\end{array} 
+\right\rbrace_{P}
+=
+\left\lbrace \begin{array}{cc}
+X_{ij} & L_{ij} \\ 
+Y_{ij} & M_{ij} \\ 
+Z_{ij} & N_{ij}
+\end{array} 
+\right\rbrace_{P,\mathcal{B}_k}$, 
+l'expression au point $P$, en projection dans la base $\mathcal {B}_k$, du torseur de l'action mécanique exercée par le solide $i$ sur le solide $j$.
+
+On notera $\left\lbrace V_{i/j} \right\rbrace=
+\left\lbrace \begin{array}{c}
+\vect{\Omega}(i/j) \\
+\vect{V}(P,i/j)
+\end{array} 
+\right\rbrace_{P}
+=
+\left\lbrace \begin{array}{cc}
+\omega^x_{P} & V^x_{P} \\ 
+\omega^y_{P} & V^y_{P} \\ 
+\omega^z_{P} & V^z_{P}
+\end{array} 
+\right\rbrace_{P,\mathcal{B}_k}$, 
+l'expression au point $P$, en projection dans la base $\mathcal {B}_k$, du torseur cinématique du mouvement du solide $i$ par rapport au solide $j$.
+
+
+\newpage
+
+\section{Étude de l'architecture du système de transformation de mouvement de l'axe linéaire}
+Cette partie porte sur l'analyse de la structure retenue pour le système de transformation de mouvement de l'axe linéaire motorisé.
+
+
+La \ref{fig:schema_transfo_mvt_axe_lin} représente les solutions technologiques retenues pour la transformation de mouvement et le guidage de l'axe linéaire. Le dispositif vis/écrou à billes permet la transformation du mouvement de rotation de la vis 4 en translation de l'écrou lié à 3. Le guidage en translation de la canne supérieure 3 par rapport à la canne inférieure 2 est assuré par deux axes de guidage avec douilles à billes placés en parallèle.
+
+\begin{figure}[!ht]
+   \begin{minipage}[c]{.5\linewidth}
+      \centering
+\includegraphics[width=1\linewidth]{Architecture_transfo_mvt_axe_lineaire.pdf}
+   \caption{{ Solutions technologiques retenues pour la transformation de mouvement et le guidage de l'axe linéaire} \label{fig:schema_transfo_mvt_axe_lin}}
+\end{minipage} \hfill
+   \begin{minipage}[c]{.45\linewidth}
+	  \centering
+\includegraphics[width=1\linewidth]{schema_cine_2PG.pdf}
+\caption{{ Modèle cinématique de la transformation de mouvement et du guidage de l'axe linéaire} \label{fig:schema_cine_2PG}}
+   \end{minipage}
+\end{figure}
+
+\fi
+
+%\begin{figure}[h]
+%\centering
+%\includegraphics[width=.6\linewidth]{Architecture_transfo_mvt_axe_lineaire.jpg}
+%\begin{minipage}[c]{.8\linewidth}
+%   \caption{Solutions technologiques retenues pour la transformation de mouvement et le guidage de l'axe linéaire. \label{fig:schema_transfo_mvt_axe_lin}}
+%\end{minipage}
+%\end{figure}
+
+\question{Quelles sont les exigences qui justifient l'utilisation des éléments roulants dans la réalisation des liaisons de cette partie du système ? En citer au moins 2.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+L'utilisation des éléments roulants dans la réalisation des liaisons permet de satisfaire au mieux aux exigences suivantes : pas de jeu radial, faible résistance au déplacement (Id 3.1.6.2.1 - Guider l'axe en translation), limiter la consommation énergétique (Id 4 - Respecter l'environnement), système réversible (Id8) et l'autonomie (Id3.11).}
+\end{minipage}
+}
+\fi
+
+\ifprof
+\else
+\vspace{0.5cm}
+Le modèle cinématique retenu pour la transformation de mouvement et du guidage de l'axe linéaire est donné en \ref{fig:schema_cine_2PG}.
+
+%\begin{figure}[h]
+%\centering
+%\includegraphics[width=.5\linewidth]{schema_cine_2PG.jpg}
+%\caption{Modèle cinématique de la transformation de mouvement et du guidage de l'axe linéaire. \label{fig:schema_cine_2PG}}
+%\end{figure}
+\fi
+
+\question{Déterminer le degré d'hyperstatisme du modèle retenu constitué des solides 2, 3 et 4.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+$h = N_S - E_S + m$ avec :\\
+$N_S$, le nombre d'inconnues statiques, $N_S = 2 \times 4 + 5 + 5 = 18$,\\
+$E_S$, le nombre d'équations statiques, $E_S = 6 \times (3 - 1) = 12$,\\
+$m$ le nombre de mobilité, ici m = 1 une seule mobilité utile et pas de mobilité interne.\\
+Finalement, $h = 18-12+1=7$. Le modèle proposé est hyperstatique d'ordre 7.}
+\end{minipage}
+}
+\fi
+
+\ifprof
+\else
+\enlargethispage{1em}
+Ce modèle est fortement hyperstatique. Dans la suite, on se propose d'analyser uniquement les contraintes géométriques liées au guidage en translation de 3 par rapport à 2. 
+\fi
+
+\question{Préciser les conditions géométriques (longueur et/ou orientation) à respecter pour assurer le guidage entre 3 et 2 dans de bonnes conditions.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+Le guidage en translation est réalisé par deux liaisons pivot glissant en parallèle. Ce guidage est hyperstatique d'ordre $h=2\times4-6+1=3$. Les conditions géométriques à respecter pour les pièces 2 et 3 sont donc :\\
+- que les axes $(O_3,y_2)$ et $(O_3',y_2)$ pour chaque pièce soient parallèles (contraintes d'orientation $\theta_{x_2}$ et $\theta_{z_2}$),\\
+- que la distance $O_3$ et $O_3'$ soit la même pour chaque pièce (contrainte de distance $\delta_{x_2}$).}
+\end{minipage}
+}
+\fi
+
+\question{Quel(s) avantage(s)/inconvénient(s) procure(nt) un tel guidage avec deux éléments ? Justifier le choix de cette solution vis-à-vis des exigences.} 
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+L'avantage d'un guidage avec deux éléments est une plus grande raideur, ce qui permet de satisfaire à l'exigence 3.1.6.2.1. L'inconvénient est qu'il impose des contraintes d'orientation et dimensionnelle qui doivent être considérées lors de la fabrication et l'assemblage des pièces.}
+\end{minipage}
+}
+\fi
+
+\question{Déterminer par un calcul analytique la liaison équivalente entre les ensembles 2 et 3. On notera $\vect{O_3O_4} = \vect{O_4O_3'} = a\,\vect{i}_2$.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+Les liaisons pivot glissant sont en parallèle, donc $\left\lbrace V_{3/2}^{O_3} \right\rbrace = \left\lbrace V_{3/2}^{O_{3'}} \right\rbrace = \left\lbrace V_{3/2}^{eq} \right\rbrace $ en $O_{3'}$.\\
+On pose 
+$\left\lbrace V_{3/2}^{O_3} \right\rbrace = \left\lbrace \begin{array}{cc}
+0 & 0 \\ 
+\omega^y_{O_3} & V^y_{O_3} \\ 
+0 & 0
+\end{array} 
+\right\rbrace_{O_3,\mathcal{B}_2}$
+et 
+$\left\lbrace V_{3/2}^{O_{3'}} \right\rbrace = \left\lbrace \begin{array}{cc}
+0 & 0 \\ 
+\omega^y_{O_{3'}} & V^y_{O_{3'}} \\ 
+0 & 0
+\end{array} 
+\right\rbrace_{O_{3'},\mathcal{B}_2}$. Or  \\
+
+   $
+   \begin{array}{rcl}
+    \vect{V}(O_{3'},3/2) &=& \vect{V}(O_{3},3/2)+ \vect{\Omega}(3/2) \wedge \vect{O_{3}O_{3'}} \\
+      &=& V^y_{O_3}.\vect{j}_2+ \omega^y_{O_3}.\vect{j}_2 \wedge 2a.\vect{i}_2\\
+      &=& V^y_{O_3}.\vect{j}_2 - 2a.\omega^y_{O_3}.\vect{k}_2 
+   \end{array}
+   $
+
+L'égalité précédentes des torseurs en $O_{3'}$ conduit au système suivant :\\
+\begin{minipage}[c]{.45\linewidth}
+      \centering
+   $\left\lbrace
+   \begin{array}{l}
+    0 = 0 = \omega^x_{eq}  \\
+    \omega^y_{O_3}  =\omega^y_{O_{3'}}=\omega^y_{eq}\\
+    0 = 0 = \omega^z_{eq}  \\
+    0 = 0 = V^x_{eq}  \\
+    V^y_{O_3} = V^y_{O_{3'}} = V^y_{eq}  \\
+    - 2a.\omega^y_{O_3} =0= V^z_{eq}
+   \end{array}
+   \right.
+   $
+\end{minipage} \hfill
+   \begin{minipage}[c]{.45\linewidth}
+	  \centering
+La dernière ligne donne $\omega^y_{O_3}=0$ \\
+donc $ \omega^y_{eq} = \omega^y_{O_3}=0 $
+   \end{minipage}
+
+On obtient finalement \\
+\begin{minipage}[c]{.45\linewidth}
+      \centering
+   
+   $\left\lbrace V_{3/2}^{O_3} \right\rbrace = \left\lbrace \begin{array}{cc}
+0 & 0 \\ 
+0 & V^y_{eq} \\ 
+0 & 0
+\end{array} 
+\right\rbrace_{O_{3'},\mathcal{B}_2}$
+   
+\end{minipage} \hfill
+   \begin{minipage}[c]{.45\linewidth}
+	  \centering
+Le torseur équivalent est donc celui d'une liaison glissière de direction $y_2$.
+   \end{minipage}
+   
+}
+\end{minipage}
+}
+\fi
+
+
+\ifprof
+\else
+\vspace{0.25cm}
+C'est cette modélisation avec liaison équivalente qui sera adoptée pour la suite du problème.
+
+
+\newpage
+
+\section{Étude de l'exigence 3.1.6 \og Commande des axes asservis\fg{}}
+Cette partie a pour objectif d'analyser le mode de distinction des différentes phases de fonctionnement de la canne robotisée.
+
+
+Lors de la marche avec une canne conventionnelle, il est possible de constater une synchronisation du mouvement de la canne conventionnelle avec celui de la jambe qu'elle assiste. Ainsi, une forte corré\-la\-tion est observée entre l'angle de la canne et celui de la hanche de la jambe invalide.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=.8\linewidth]{synchro_marche_canne.pdf}
+%\begin{minipage}[c]{.9\linewidth}
+   \caption{{ Synchronisation souhaitée du prototype de canne robotisée avec la marche} \label{fig:synchro_marche_canne}}
+%\end{minipage}
+\end{figure}
+
+%\newpage
+Selon la \ref{fig:synchro_marche_canne}, le mode de commande suivant a été retenu pour contrôler le mouvement du prototype de canne robotisée.
+\begin{itemize}
+\item Lors de la phase de balancement de la jambe invalide, l'angle de la canne active par rapport à la verticale est asservi sur l'angle de la hanche de la jambe invalide. Cette tâche est accomplie en gardant la hauteur de la poignée $h_0$ constante afin de ne pas perturber la position de la main de l'utilisateur.
+
+\item Lors de la phase d'appui de la jambe invalide, la roue est asservie à une vitesse nulle afin d'offrir un point d'appui immobile pour le patient. La longueur de l'axe télescopique est asservie pour garder la hauteur de la poignée $h_0$ constante de la canne.
+\end{itemize}
+
+Il est donc nécessaire de maintenir la hauteur de poignée $h_0$ constante pour les deux phases. Ceci impose une relation entre l'inclinaison de la canne et sa longueur.
+
+La figure du \ref{Annexe_schema_cine} présente le modèle cinématique et les notations retenues pour le paramétrage du prototype de canne. Sur cette figure, $\ell(t)$ représente la longueur AH, $\theta(t)$ correspond à l'angle d'inclinaison de la canne avec la verticale et $R$ est le rayon de la roue. On note de plus $h$ la hauteur de poignée de la canne par rapport au sol.
+\fi
+
+\question{Établir \label{question_hauteur} la relation entre $\ell(t)$, $\theta(t)$ et $R$ pour assurer une hauteur constante $h = h_0$. }
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+On peut écrire la fermeture géométrique suivante : $\vect{IA} + \vect{AH} = \vect{IH} $, c'est à dire $R.\vect{j}_0 + \ell(t).\vect{j}_3=x.\vect{i}_0+h.\vect{j}_0 $.\\
+Par projection sur $\vect{j}_0$, il vient :
+\begin{center}
+$R + \ell(t).cos(\theta(t)) = h= h_0 $
+\end{center}
+}
+\end{minipage}
+}
+\fi
+
+\ifprof
+\else
+La détection des phases d'appui et de balancement de la jambe invalide est basée sur une mesure du gyromètre inclus dans la centrale inertielle attachée à la jambe invalide. Lorsque la jambe est en balancement, la rotation de la cuisse s'effectue dans le sens trigonométrique, la rotation a lieu en sens inverse lors de la phase d'appui. 
+
+La \ref{fig:vitesse_angulaire_gyro_S}, page suivante donne l'évolution de la vitesse angulaire fournie par le gyromètre \linebreak (facteur $\times~100$) et l'évolution de la variable $S$ identifiant les phases de balancement ($S=0$)  et d'appui ($S=1$) au cours d'un cycle de marche. Pour éviter la prise en compte des bruits de mesure du gyromètre dans le changements d'état de $S$, on introduit une valeur réglable de détection appelée {\it{Seuil}}. 
+
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}
+\node{\includegraphics[width=.8\linewidth]{vitesse_angulaire_gyro_S_.pdf}};
+\draw[fill=white,white] (-6,2.9) rectangle (6.6,3.5);
+\draw[fill=white,white] (-7,-.5) rectangle (6.6,-1);
+\node[fill=white,scale=.95] at (0.8,3.2) {Vitesse angulaire $\dot\theta$ fournie par le gyromètre $\times$ 100 notée $\Omega$ en rad/s};
+\node[rotate=90,fill=white,scale=.95] at (-5.8,1.7) {$\Omega = 100 \times \dot\theta$};
+
+\node[fill=white,scale=.95] at (0.8,-0.7) {\'Evolution de l'état de la variable $S$ (Balancement : $S=0$ / Appui : $S=1$)};
+
+\end{tikzpicture}
+\begin{minipage}[c]{.9\linewidth}
+   \caption{{ Évolution de la vitesse angulaire fournie par le gyromètre (facteur $\times\ 100$) et évolution de la variable $S$ au cours d'un cycle de marche} \label{fig:vitesse_angulaire_gyro_S}}
+\end{minipage}
+\end{figure}
+
+\newpage
+La stratégie retenue pour la commande des deux degrés de liberté du prototype de canne au cours d'un cycle de marche peut être décrite par le diagramme d'états du \ref{DR_diagramme_etats}. Le  \ref{tab:table_var_etat_activite} récapitule les variables, états et activités associées, utilisés dans ce diagramme.
+
+\begin{table}[!ht]
+\centering
+%\begin{footnotesize}
+ \begin{tabular}{|l|l|l|}
+  \hline
+  \multicolumn{1}{|c|}{\textbf{Variables}} & \multicolumn{1}{|c|}{\textbf{États}} & \multicolumn{1}{|c|}{\textbf{Activités associées}}  \\ 
+  \hline
+  $\bullet$ $S$ : balancement $S = 0$ & $\bullet$ Initialisation & $\bullet$ Lancer le cycle d'initialisation \\ 
+  
+  \hspace{0.8cm} appui $S = 1$ & $\bullet$ Appui & $\bullet$ Asservir la hauteur de la canne \\ 
+  
+  $\bullet$ {\it{Seuil}} : valeur réglable de & $\bullet$ Balancement & $\bullet$ Maintenir une vitesse de roue nulle \\ 
+  
+  \hspace{1.2cm} détection & $\bullet$ Analyse & $\bullet$ Asservir la vitesse de roue \\ 
+  
+  $\bullet$ {\it{Marche}} : mise en route du & $\bullet$ Procédure d'arrêt & $\bullet$ Générer le signal $S$ \\ 
+  
+  \hspace{1.5cm} système  &  &  $\bullet$ Lancer la procédure d'arrêt \\ 
+  
+ $\bullet$  {\it{Power off}} : arrêt de  &  &  \\ 
+  
+  \hspace{1.8cm} l'alimentation &  &  \\
+    
+  \hline  
+\end{tabular}
+%\end{footnotesize} 
+\caption{{ Variables, états et activités du diagramme d'états de la commande du prototype de canne}}
+\label{tab:table_var_etat_activite}
+\end{table}
+\fi
+
+\question{Compléter le diagramme d'états du \ref{DR_diagramme_etats} afin de gérer les asservissements en phase de balancement et d'appui. Pour cela, préciser les valeurs (0 ou 1) de la variable $S$ et les activités associées aux états des phases d'appui et de balancement.\label{Q:diag_etat}}
+
+\ifprof
+{\bf
+On propose le diagramme d'états suivant :}
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=.9\linewidth]{diag_etats_corrige.jpg}
+\begin{minipage}[c]{.7\linewidth}
+   {\bf{Correction du diagramme d'états, document réponse DR1.}}
+\end{minipage}
+\end{figure}
+\fi
+
+\ifprof
+\else
+On s'intéresse désormais à l'élaboration de la variable notée $S$. Pour cela, on décrira l'activité \og Générer le signal $S$\fg{} par un algorigramme. Le cahier des charges lié à cette activité est :
+\begin{itemize}
+\item l'algorigramme est actif tant que $Marche = 1$;
+\item le signal $S$ est élaboré à partir de la vitesse angulaire issue du gyromètre;
+\item la valeur de {\it{Seuil}} est fixée à 1 $\%$ de la valeur absolue maximale de $\Omega = 100\,\dot{\theta}$;
+\item la variable $S$ doit conserver sa valeur antérieure dans la zone où $\Omega$ est comprise entre $\pm ${\it{Seuil}}.
+\end{itemize}
+\fi
+
+\vspace{1em}
+\question{Déterminer la valeur numérique à donner à la variable {\it{Seuil}} à partir de la \ref{fig:vitesse_angulaire_gyro_S}.}
+
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+La valeur maximale de $\Omega$ est environ 130 rad/s. On choisit donc une valeur de la variable {\it{Seuil}} telle que  {\it{Seuil}} = 1,3 rad/s.
+}
+\end{minipage}
+}
+\fi
+
+\question{Compléter l'algorigramme du \ref{DR_algorigramme} afin de répondre au cahier des charges de l'activité \og Générer le signal $S$\fg.\label{Q:algorigramme}}
+
+
+\ifprof
+\newpage
+{\bf
+On propose l'algorigramme suivant :
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=.7\linewidth]{algorigramme_corrige.jpg}
+\begin{minipage}[c]{.7\linewidth}
+   {\bf{Correction de l'algorigramme, document réponse DR2.}}
+\end{minipage}
+\end{figure}
+}
+\fi
+
+\ifprof
+\else
+\newpage
+
+\section{Modélisation et analyse de la commande lors de la phase de balancement}
+Cette partie a pour objectif de déterminer les caractéristiques cinématiques de la chaîne d'énergie de la canne pour satisfaire aux exigences du cahier des charges.
+
+\paragraph{Étude de l'exigence 3.1.6.1 \og Commande de la roue\fg{}}
+
+\noindent Afin de permettre à la canne de s'asservir sur l'orientation de la jambe à assister, il est nécessaire de déterminer la vitesse de rotation de la roue motorisée. Cependant, ce déplacement de la canne induit par la roue ne doit pas produire de déplacement non-désiré de la main du patient.
+
+On veut donc vérifier à chaque instant $\vect{V}(H,3/0)\cdot\vect{j}_0 = 0$ et $\vect{V}(H,3/0)\cdot\vect{i}_0 = V$, où $V$ est la vitesse de marche du patient. Le \ref{Annexe_schema_cine} rappelle les notations et le paramétrage retenus pour cette étude cinématique. La base $\mathcal{B}_0$ notée, $(\vect i_0, \vect j_0, \vect k_0)$ est associé au repère $\mathcal{R}_0$.
+
+On rappelle qu'au point $I$ le contact entre la roue 1 et le sol 0 est supposé sans glissement.
+
+On note $\vect{\Omega}(1/2)= -\ \omega(t)\vect{k}_0$.
+\fi
+
+\question{Déterminer l'expression de $\vect{V}(H,3/2)$ en fonction de $\dot{\ell}(t)$.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+$\vect{V}(H,3/2) = \left[ \frac{d}{dt}\vect{AH} \right]_{\mathcal{B}_2}=\left[ \frac{d}{dt} \left(\ell(t).\vect{j}_2 \right) \right]_{\mathcal{B}_2}  = \dot{\ell}(t).\vect{j}_2$}
+\end{minipage}
+}
+\fi
+
+\question{Déterminer l'expression de  $\vect{V}(H,2/0)$ en fonction de $R$, $\ell(t)$, $\dot{\theta}(t)$ et $\omega(t)$.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+$\vect{V}(H,2/0) = \vect{V}(H,2/1) + \vect{V}(H,1/0)$ \\
+or \\
+$\begin{array}{rcl}
+\vect{V}(H,2/1) & = & \vect{V}(A,2/1) + \vect{\Omega}(2/1) \wedge \vect{AH} \\
+              & = & \vect{0} + \omega.\vect{k}_0 \wedge \ell.\vect{j}_2\\
+              & = & - \ell.\omega.\vect{i}_2
+\end{array}$\\
+et \\
+$\begin{array}{rcl}
+\vect{V}(H,1/0) & = & \vect{V}(I,1/0) + \vect{\Omega}(1/0) \wedge \vect{IH} \\
+              & = & \vect{0} + \left(\vect{\Omega}(1/2)+\vect{\Omega}(2/0) \right) \wedge \left( R.\vect{j}_0+\ell.\vect{j}_2 \right)\\
+              & = & \left(- \omega.\vect{k}_0 + \dot{\theta}.\vect{k}_0 \right) \wedge \left( R.\vect{j}_0+\ell.\vect{j}_2 \right)\\
+              & = & \left( \omega - \dot{\theta}\right).R.\vect{i}_0 + \left(\omega - \dot{\theta}\right).\ell.\vect{i}_2
+\end{array} $\\
+Finalement,\\
+$\vect{V}(H,2/0) = \left(\omega - \dot{\theta} \right).R.\vect{i}_0 - \dot{\theta}.\ell.\vect{i}_2$
+}
+\end{minipage}
+}
+\fi
+
+\question{Par composition des vecteurs vitesse, en déduire l'expression de $\vect{V}(H,3/0)$. }
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+$\vect{V}(H,3/0)=\vect{V}(H,3/2)+\vect{V}(H,2/0)$ donc \\
+$\vect{V}(H,3/0) = \dot{\ell}.\vect{j}_2 + \left(\omega - \dot{\theta} \right).R.\vect{i}_0 - \dot{\theta}.\ell.\vect{i}_2$
+}
+\end{minipage}
+}
+\fi
+
+\question{Projeter cette expression dans la base du repère $\mathcal{R}_0$ lié au sol. En déduire l'expression de $\omega(t)$ uniquement en fonction de $R$, $\ell(t)$, $\theta(t)$, $\dot{\theta}(t)$ et $V$.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+D'après le cahier des charges, \\
+$\left\lbrace \begin{array}{c}
+\vect{V}(H,3/0).\vect{i}_0=V\\
+\vect{V}(H,3/0).\vect{j}_0=0
+\end{array} \right.$\\
+En réalisant les projections, il vient :\\
+$\left\lbrace \begin{array}{l}
+-\dot{\ell}.sin(\theta)-\ell.\dot{\theta}.cos(\theta)+ \left(\omega - \dot{\theta} \right).R = V \\
+ \dot{\ell}.cos(\theta)-\ell.\dot{\theta}.sin(\theta)= 0
+\end{array} \right.$\\
+La première équation permet d'isoler $\omega$, tel que :\\
+$\omega = \frac{1}{R} \left( V + R.\dot{\theta} + \dot{\ell}.sin(\theta) + \ell.\dot{\theta}.cos(\theta) \right)$.\\
+La seconde équation, en remarquant que $\theta \neq \frac{\pi}{2}$ lors du cycle de marche, permet d'isoler $\dot{\ell}$ :\\
+$\dot{\ell} = \ell.\dot{\theta}.tan(\theta)$.\\
+Il vient : \\
+$\omega = \frac{V}{R} + \left( 1 + \ell.\frac{tan(\theta).sin(\theta)}{R} + \ell.\frac{cos(\theta)}{R}  \right).\dot{\theta} $\\
+ou encore :\\
+$\omega = \frac{V}{R} + \left(1 + \ell.\frac{sin^2(\theta)}{R.cos(\theta)} + \ell.\frac{cos^2(\theta)}{R.cos(\theta)}  \right).\dot{\theta} $\\
+et après simplification :\\
+$\omega = \frac{V}{R} + \left(1 + \frac{\ell}{R.cos(\theta)} \right).\dot{\theta} $
+}
+\end{minipage}
+}
+\fi
+
+\ifprof
+\else
+Lors de cette phase de balancement et d'après les variations de $\ell(t)$, de $\theta(t)$ et $\dot{\theta}(t)$, la vitesse de rotation nominale de la roue dans le cas d'une marche à allure rapide est de 11 rad/s.
+\fi
+
+\question{À partir des caractéristiques du moteur données dans le \ref{tab:donne_moteurs}, page {\pageref{tab:donne_moteurs}}, justifier la valeur de 1/30 du rapport de réduction du réducteur de la roue.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+D'après le \ref{tab:donne_moteurs}, la vitesse de rotation nominale du moteur est $Nn = 3260$ tr/min, soit environ 341 rad/s. Avec le rapport de transmission retenu de 1/30 pour le réducteur de roue, la vitesse nominale de la roue est de : $341/30 \simeq 11,36$ rad/s $ > 11$ rad/s, ce qui permet de satisfaire aux conditions de vitesse de rotation dans le cas d'une marche à allure rapide.}
+\end{minipage}
+}
+\fi
+
+\ifprof
+\else
+Le réducteur planétaire choisi est modulaire, composé de plusieurs étages tous identiques selon la demande. Le \ref{Annexe_reducteur} donne la modélisation cinématique de la transmission du moteur de roue à la roue. Sur ce document, un seul des étages du réducteur est représenté.
+
+Les performances souhaitées imposent donc un rapport de réduction $r = \frac{\omega_{R/2}}{\omega_{mR/2}}= \frac{1}{30} $ au niveau du réducteur placé entre la roue et le moteur de roue.
+\fi
+
+\question{Calculer le rapport de réduction $R_1 = \frac{\omega_{PS/2}}{\omega_{P1/2}}$ du premier étage du réducteur. En déduire le nombre d'étages nécessaire pour obtenir le rapport de réduction $r$ souhaitée.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+On applique la méthode de Willis au train épicycloïdal. Le roulement sans glissement au niveau des engrènements donne : \\
+$\frac{\omega_{P2/PS}}{\omega_{P1/PS}}=- \frac{Z_{P1}}{Z_{S}} \times \frac{Z_{S}}{Z_{P2}} = - \frac{Z_{P1}}{Z_{P2}}$,\\
+la relation de Willis s'écrit donc : $\frac{\omega_{P2/2}-\omega_{PS/2}}{\omega_{P1/2}-\omega_{PS/2}}= - \frac{Z_{P1}}{Z_{P2}}$\\
+or ici $\omega_{P2/2} = 0$, il vient :\\
+$\frac{\omega_{PS/2}}{\omega_{P1/2}-\omega_{PS/2}}= \frac{Z_{P1}}{Z_{P2}}$ \\
+$\Leftrightarrow \left( Z_{P1}+ Z_{P2} \right).\omega_{PS/2}= Z_{P1}.\omega_{P1/2}$\\
+$\Leftrightarrow R_1 = \frac{\omega_{PS/2}}{\omega_{P1/2}} = \frac{Z_{P1}}{Z_{P1}+ Z_{P2}}$\\
+L'application numérique donne : $ R_1 = \frac{18}{18+ 82} = 0,18$.\\
+Pour obtenir le rapport de $r$ = 1/30 du réducteur, il est donc nécessaire d'utiliser 2 étages de réduction car $R_1 \times R_1 = 0,0324 \simeq 1/30$.
+}
+\end{minipage}
+}
+\fi
+
+
+%\newpage
+\ifprof
+\else
+\newpage
+\section{Modélisation et analyse de la commande lors de la phase d'appui}
+
+Cette étude permettra d'une part, de vérifier qu'il n'y aura pas glissement de la roue par rapport au sol lors de la phase d'appui et d'autre part, de comparer différents modèles de la structure asservie.
+
+%\newpage
+\paragraph{Étude de l'exigence 3.1.3 \og Transmission des efforts du patient\fg{}}
+
+%~
+%\vspace{-3mm}
+% 
+%\piccaption{
+%   Modélisation et paramétrage du prototype de canne robotisée. La droite ($IH$) de vecteur directeur $\vec{v}$ est le support de l'action $\vec{F}_p$ appliquée en $H$. On note de plus $\beta(t)=(\vec{j}_0,\vec{v})$.
+% \label{fig:schema_stat_par}}
+%\parpic[r]{
+%\begin{tikzpicture}
+%\node {\includegraphics[width=.57\linewidth]{schema_stat_par.pdf}};
+%\begin{scope}[every node/.style={scale=.8},scale=1,xshift=2.5cm,yshift=-1.5cm]
+%\draw[->,>=latex] (0,0) -- (2,0) node[right] {$\vect i_0$};
+%\draw[->,>=latex] (0,0) -- (15:2) node[above] {$\vect u$};
+%\draw[->,>=latex] (0,0) -- (90:2) node[above] {$\vect j_0$};
+%\draw[->,>=latex] (0,0) -- (105:2) node[above left,xshift=2mm] {$\vect v$};
+%\draw[->,>=latex] (1.2,0) arc (0:15:1.2) node[midway, right] {$\beta$};
+%\draw[->,>=latex] (90:1.2) arc (90:105:1.2) node[midway, above] {$\beta$};
+%\node[scale=2] {$\odot$};
+%\node[left,xshift=-3mm] {$\vect k_0$};
+%\end{scope}
+%\node[align=left,scale=.8] at (4,2){$\vect{AH}=\ell(t)\vect j_3$\\$\vect{IA}=R\vect j_0$\\$\vect{IH}=\lambda(t)\vect v$};
+%\end{tikzpicture}}
+
+%\medskip
+%\begin{minipage}{11cm}
+Dans cette étude, on se place en phase d'appui et on considère l'action mécanique en $H$ du patient sur la canne immobile.
+Lors de cette phase, la vitesse de rotation de la roue $\omega(t)$ est nulle mais le moteur de la roue exerce un couple de maintien non nul de manière à supporter l'action du patient dans les limites d'adhérence de la roue. La \ref{fig:schema_stat_par} présente les notations retenues pour cette étude où $\Delta \vect F_p$ est le support de la force $\vect F_p$. 
+%\end{minipage}
+
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}
+\node {\includegraphics[width=.57\linewidth]{schema_stat_par.pdf}};
+\node[scale=.8] at (1.7,3.2) {$\theta(t)$};
+\node[scale=.8] at (-.7,-1.5) {$\beta(t)$};
+\node[scale=.8] at (-1,0.3) {$\ell(t)$};
+\begin{scope}[every node/.style={scale=.8},scale=1,xshift=4.5cm,yshift=-1.5cm]
+\draw[->,>=latex] (0,0) -- (2,0) node[right] {$\vect i_0$};
+\draw[->,>=latex] (0,0) -- (15:2) node[above] {$\vect u$};
+\draw[->,>=latex] (0,0) -- (90:2) node[above] {$\vect j_0$};
+\draw[->,>=latex] (0,0) -- (105:2) node[above left,xshift=2mm] {$\vect v$};
+\draw[->,>=latex] (1.2,0) arc (0:15:1.2) node[midway, right] {$\beta$};
+\draw[->,>=latex] (90:1.2) arc (90:105:1.2) node[midway, above] {$\beta$};
+\node[scale=2] {$\odot$};
+\node[left,xshift=-3mm] {$\vect k_0$};
+\end{scope}
+\node[align=left,scale=.8] at (5,2){$\vect{AH}=\ell(t)\vect j_3$\\$\vect{IA}=R\vect j_0$\\$\vect{IH}=\lambda(t)\vect v$};
+\end{tikzpicture}
+\begin{minipage}[c]{.95\linewidth}
+   \caption{{
+   Modélisation et paramétrage du prototype de canne robotisée 
+ \label{fig:schema_stat_par} }}
+\end{minipage}
+\end{figure}
+
+%\begin{minipage}{6.5cm}
+
+
+Hypothèses de l'étude :
+\begin{itemize}
+\item modélisation plane dans le plan d'étude $(O, x_0, y_0)$ ;
+\item l'action de pesanteur sur la canne est négligée devant l'intensité des autres actions ;
+\item l'action en $H$ est modélisée par un glisseur de résultante $F_p = 175$ N et de support $(IH)$ ;
+\item la droite ($IH$) de vecteur directeur $\vec{v}$ est le support de l'action $\vec{F}_p$ appliquée en $H$. On note de plus $\beta(t)=(\vec{j}_0,\vec{v})$;
+\item le contact entre la roue 1 et le sol 0 est considéré ponctuel en $I$ (la résistance au roulement est négligée). Le facteur de frottement $f$ du couple de matériau roue 1 / sol en béton 0 est noté $f = \tan(\varphi) = 0,4$ où $\varphi$ est l'angle de frottement.
+\end{itemize} 
+%\end{minipage}
+
+%\picskip{1}
+\vspace{1em}
+\fi
+
+\question{À partir d'un isolement à préciser et d'un théorème à énoncer, justifier le support de l'action de contact en $I$ et de l'action en $H$. Pour cette question, l'écriture des torseurs associés aux actions mécaniques n'est pas demandée. }
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+La liaison entre la roue 1 et le sol 0 est une liaison ponctuelle, l'action mécanique du sol 0 sur la roue 1 en I peut dont être modélisée par un glisseur. \\
+On isole la canne complète, ensemble \{ 1 + 2 + 3 \}. Cet ensemble est à l'équilibre sous l'action de deux glisseurs en I et en H. D'après le théorème du moment statique, ces glisseurs sont de même support la droite d'action (IH) et d'après le théorème de la résultante, ils sont opposés.
+}
+\end{minipage}
+}
+\fi
+
+\question{Quelle doit être la condition entre l'angle $\beta(t)$ et l'angle de frottement $\varphi$ pour que l'équilibre de la canne soit assuré ? Cet équilibre est-il remis en question si l'intensité de l'action $\vect{F}_p$ du patient en $H$ évolue (augmente ou diminue) ? Justifier votre réponse et préciser le nom donné à ce type d'équilibre.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+L'équilibre est assuré si $\beta(t) <\varphi$. Si l'intensité de l'action $\vect{F}_p$ du patient en $H$ évolue, l'équilibre reste inchangé car le support est toujours la droite d'action (IH). L'équilibre sera assuré tant que le moteur est capable de fournir le couple nécessaire pour maintenir la position angulaire de la roue. Cet équilibre est un équilibre de type arc-boutement.
+}
+\end{minipage}
+}
+\fi
+
+\ifprof
+\else
+Dans la suite, on se propose de déterminer par une étude géométrique la relation entre $\beta(t)$, les données dimensionnelles $R$ et $h$ et l'angle $\theta(t)$. Pour cela, on introduit la base $(\vect{u}, \vect{v}, \vect{k}_0)$ et on note $\lambda(t)$ la distance $IH$, telle que $\vect{IH} = \lambda(t)\vect{v}$. 
+\fi
+
+\question{En développant une fermeture vectorielle en projection dans la base $\mathcal{B}_0$, donner deux équations algébriques. En déduire la relation entre $\beta(t)$, $\theta(t)$, $\ell(t)$ et $R$.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+La fermeture géométrique $\vect{IA} + \vect{AH} = \vect{IH}$ s'écrit avec la paramétrage donné :\\
+$R.\vect{j}_0 + \ell.\vect{j}_2 = \lambda(t).\vect{v}$. En projetant cette équation dans la base $\mathcal{R}_0$, on obtient :\\
+$/\vect{i}_0 : 0 - \ell.sin(\theta) = - \lambda.sin(\beta)$ (eq1)\\
+$/\vect{j}_0 : R + \ell.cos(\theta) = \lambda.cos(\beta)$ (eq2)\\
+On obtient la relation demandée en éliminant le paramètre $\lambda$. Pour cela on considère $\frac{(eq1)}{(eq2)}$ en s'assurant que $\beta \neq \pi/2$, il vient :\\
+$tan(\beta) = \frac{\ell.sin(\theta)}{R + \ell.cos(\theta)}$
+}
+\end{minipage}
+}
+\fi
+
+\ifprof
+\else
+%La relation précédente et l'équation obtenue en \textbf{Q\ref{question_hauteur}} permettent d'obtenir l'expression suivante : 
+La relation précédente et l'équation obtenue en \textbf{Q8} permettent d'obtenir l'expression suivante : 
+\begin{center}
+$\tan(\beta(t)) = \frac{(h-R)}{h}.\tan(\theta(t))$.
+\end{center}
+\fi
+
+\question{Relever sur la \ref{fig:evol_angle_jambe}, page {\pageref{fig:evol_angle_jambe}} la valeur maximale d'inclinaison de la canne lors de la phase d'appui (on rappelle que la canne suit le mouvement de la hanche du patient) et en déduire la valeur minimale du facteur de frottement assurant l'équilibre. Conclure sur l'utilisation du prototype de canne sur un sol de type béton.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+On relève sur la \ref{fig:evol_angle_jambe} un angle maximal de la hanche de l'ordre de 15\degre~ lors du cycle de marche. Donc  $\theta \le$ 15\degre, ce qui implique : $\tan\beta \le \frac{(h-R)}{h}.\tan(\theta)$, l'application numérique donne avec  R=0,05 et h $\in[$0,85;1$]$: \\
+$\beta \le $ 14,28\degre pour h = 1 m,\\
+$\beta \le $ 14,15\degre pour h = 0,85 m.\\
+Il faut donc avoir un angle de frottement $\varphi >$ 14,3\degre, donc un coefficient de frottement f $=tan(\varphi)$ > 0.255.
+Le cahier des charges stipule un coefficient de frottement minimal de 0,4 (exigence Id 3.1.3), la condition est donc bien vérifiée.
+}
+\end{minipage}
+}
+\fi
+
+\ifprof
+\else
+\begin{minipage}[c]{.65\linewidth}
+\noindent Pour la suite, on se place à la limite de l'adhérence :
+
+{\centering$\beta = \varphi = \arctan(0,4).$\par}
+
+On note $C_R$ le couple de maintien au niveau de la roue en sortie de la chaîne d'énergie de la roue. 
+
+On donne donc $\left\lbrace T_{red \rightarrow 1} \right\rbrace=
+\left\lbrace \begin{array}{c}
+\vect{0} \\
+-\ C_R.\vect{k}_0
+\end{array} 
+\right\rbrace_{A}$. 
+
+La roue 1, de diamètre $D = 0,1$ m, est en liaison pivot sans frottement en $A$ avec la canne inférieure 2.
+
+Le bilan des actions mécaniques est partiellement représenté sur la \ref{fig:BAME_roue}.
+
+\end{minipage} \hfill
+\begin{minipage}[c]{.3\linewidth}
+	\includegraphics[width=\linewidth]{BAME_roue.pdf}
+    \captionof{figure}{{ Bilan partiel des actions mécaniques exercées sur la roue 1}\label{fig:BAME_roue} }
+    
+   \end{minipage}
+   \vspace{.5em}
+\fi
+
+\question{Isoler la roue 1 et, à partir d'un théorème à préciser, déterminer l'expression puis la valeur numérique du couple en sortie du réducteur $C_R$, permettant d'assurer l'équilibre de la canne.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+On isole la roue 1. Le bilan des actions mécaniques est :\\
+- l'action de 2 sur 1 en A, liaison pivot parfaite d'axe $(A,z_0)$,\\
+- l'action du sol 0 sur 1 en I, glisseur de résultante $\vect{I}_{0 \rightarrow 1}$,\\
+- l'action de l'arbre de sortie du reducteur, moment de résultante $-C_R.\vect{k}_0$.\\
+La roue 1 est supposée à l'équilibre, d'après le théorème des moments statiques en A selon $\vect{k}_0$, il vient :\\
+$-C_R + \left( \vect{I}_{0 \rightarrow 1} \wedge \vect{IA} \right) . \vect{k}_0 = 0 $,\\
+$C_R = \left( I_{0 \rightarrow 1}.\vect{v} \wedge R.\vect{j}_0 \right) . \vect{k}_0$,\\
+$C_R = -R.I_{0 \rightarrow 1}.sin(\beta)$.\\
+Or d'après la Question 18, $\| \vect{I}_{0 \rightarrow 1} \| = \| \vect{F}_P \| $ = 175 N.\\
+L'application numérique donne, à la limite de l'adhérence $\beta = \varphi = \arctan(0,4)$ :\\
+ $|C_R| \simeq $ 3,25 N.m.
+}
+\end{minipage}
+}
+\else
+%\vspace{0.5cm}
+Quel que soit le résultat trouvé précédemment, on donne $C_R = \SI{5}{N.m}$.
+\fi
+
+
+\question{Valider le choix du moteur. On précise que le rapport de réduction de la transmission (réducteur planétaire et poulie/courroie) est $r = 1/30$ et que le rendement de l'ensemble est $\eta_{trans} = 0,9$. }
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+Le couple à fournir par le moteur est donc $C_{mR}=\frac{C_R}{30.\eta_{trans}}$, soit $C_{mR} = \frac{5}{30.0,9} \simeq $ 0,185 N.m.\\
+Le couple nominal du moteur est donné dans \ref{tab:donne_moteurs} : $Cn =$ 0,279 N.m. \\
+Le moteur est donc capable de fournir le couple nécessaire.
+}
+\end{minipage}
+}
+\fi
+
+\ifprof
+\else
+
+\paragraph{Étude de l'exigence 3.1.6.2 \og Commande de l'axe linéaire\fg{}}
+
+\noindent Le maintien d'une hauteur constante lors de la phase d'appui revient finalement à asservir en position le déplacement $x(t)$ de la canne supérieure 3 par rapport à la canne inférieure 2.
+%Le maintien d'une hauteur constante lors de la phase d'appui revient finalement à asservir en position le déplacement $x(t) = \ell(t) - \ell_0$ avec $\ell_0$ la longueur désirée de la canne supérieure 3 par rapport à la canne inférieure 2. 
+Au cours de cette phase, l'angle de la hanche varie de \SI{+15}{\degree} à \SI{-10}{\degree}. Cette variation impose un déplacement relatif $x(t)$ quasi linéaire de l'ordre de quelques centimètres. Pour la suite, afin d'ajuster le réglage du correcteur réalisé par le contrôleur ELMO du moteur de l'axe linéaire, on se place dans le cas plus contraignant. Ce cas correspond à une consigne en échelon de 10 mm tout en prenant en compte l'action $F_p$ du patient en $H$, agissant ainsi comme une perturbation pour le déplacement $x(t)$.
+
+
+% rappelé en \ref{fig:schema_bloc}.
+%
+%\begin{figure}[h]
+%\centering
+%\includegraphics[width=0.9\linewidth]{schema_bloc.jpg}
+%\begin{minipage}[c]{.95\linewidth}
+%   \caption{{ Schéma-bloc du modèle causal retenu pour l'étude du comportement de l'axe linéaire perturbé.}
+%\label{fig:schema_bloc}}
+%\end{minipage}
+%\end{figure}
+
+
+Le modèle causal retenu pour l'étude du comportement de l'axe linéaire perturbé est représenté par le schéma-bloc du \ref{DR_schema_bloc}. Dans ce modèle, on note :
+\begin{itemize}
+\item $X_c(p)$ la transformée de Laplace de la consigne de déplacement  $x_c(t)$ en mètre,
+\item $X(p)$ la transformée de Laplace du déplacement $x(t)$ en mètre,
+\item $F_p(p)$ la transformée de Laplace de   l'effort exercé par le patient sur la canne $F_p(t)$ en N,
+\item $\Omega_m(p)$ la transformée de Laplace de la vitesse de rotation du moteur $\omega_m(t)$ en rad/s,
+\item $C_m(p)$ la transformée de Laplace du couple moteur $C_m(t)$ en \si{N.m},
+\item $C(p)$ la fonction de transfert du bloc correcteur.
+\end{itemize}
+
+
+\paragraph{Élaboration du modèle de connaissance de la partie dynamique de l'axe linéaire}
+
+\noindent Le modèle cinématique de l'axe linéaire retenu pour cette étude est donné en \ref{fig:schema_cine_Glissiere}.\\
+Les données et hypothèses de cette étude sont :
+\begin{itemize}
+\item le référentiel lié à la canne est supposé galiléen. Les effets d'inertie dus au mouvement de balancement sont donc négligés devant les autres grandeurs ;
+\item l'action du patient sur la canne supérieure 3 est considérée selon l'axe $(O_2,y_2)$, tel que \linebreak$\vect{F}_p(t) =  - F_p(t)\vect{j}_2$ ;
+\item l'ensemble des effets des frottements visqueux ramené au niveau de l'arbre moteur est \linebreak $f = 1,17.10^{-5}$ \si{N.m.s} ;
+\item la liaison glissière réalisée par deux douilles à billes est considérée sans frottement ;
+\item la vis 4 de moment d'inertie $J_{vis} = 1,53.10^{-6}$ \si{kg.m^2} est liée au rotor du moteur de moment d'inertie $J_{rotor} = 21,9.10^{-7}$ \si{kg.m^2} ;
+\item le pas de la vis sera noté $pas$ ;
+\item le couple qu'exerce le moteur sur la vis 4 est noté $C_m(t)$ ;
+\item la vitesse de rotation du moteur et de la vis sera notée $\omega_m(t)$ ;
+\item la vitesse de déplacement de 3 par rapport à 2 est notée $V_m(t)$ ;
+\item la masse de la canne supérieure est $M_3 = 1$ kg.
+%\item la masse de la canne inférieure est $M_2 = 4,7$ Kg.
+\end{itemize}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.65\linewidth]{schema_cine_Glissiere.pdf}
+%\begin{minipage}[c]{.95\linewidth}
+   \caption{{ Modélisation cinématique de l'axe linéaire}
+\label{fig:schema_cine_Glissiere}}
+%\end{minipage}
+\end{figure}
+
+On isole l'ensemble $\mathcal{S} =\{3+4\}$.
+\fi
+
+\question{Écrire l'énergie cinétique de l'ensemble $\mathcal{S}$. Mettre cette énergie sous la forme  $\frac{1}{2}J_{eq}\omega_m^2(t)$. En déduire l'expression et la valeur numérique de l'inertie équivalente $J_{eq}$ (certaines valeurs sont dans le diagramme de blocs internes IBD \ref{Annexe_diag_BDI}).}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+Dans le référentiel lié à la canne et supposé galiléen, le solide 3 a un mouvement de translation de direction $y_2$, donc :\\
+$Ec_3 = \frac{1}{2}.M_3.V_m^2$,\\
+le solide 4, constitué de la vis et du rotor du moteur, a un mouvement de rotation d'axe $(O_2,y_2)$, donc :\\
+$Ec_4 = \frac{1}{2}.\left( J_{rotor} + J_{vis} \right).\omega_m^2$.\\
+L'énergie cinétique de l'ensemble $\mathcal{S}$ s'écrit :\\
+$Ec_\mathcal{S} = \frac{1}{2}. \left( M_3.V_m^2 + \left( J_{rotor} + J_{vis} \right).\omega_m^2 \right) $ et avec $V_m = \frac{pas}{2\pi}.\omega_m$, on peut mettre $Ec_\mathcal{S}$ sous la forme :\\
+$Ec_\mathcal{S} = \frac{1}{2}. \left(  M_3.\left( \frac{pas}{2\pi} \right)^2 + J_{rotor} + J_{vis} \right).\omega_m^2 $. \\
+On identifie alors $J_{eq} =  M_3.\left( \frac{pas}{2\pi} \right)^2 + J_{rotor} + J_{vis}$.\\
+L'application numérique donne : $J_{eq} =  1.\left( \frac{3.10^{-3}}{2\pi} \right)^2 + 21,9.10^{-7} + 1,53.10^{-6} \simeq 3,95.10^{-6}$ kg.m$^2$.
+}
+\end{minipage}
+}
+\fi
+
+\question{Déterminer les expressions des puissances extérieures et intérieures.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+Les puissances extérieurs au système sont :\\
+- la puissance du moteur $P_{mot} = C_m . \omega_m$ \\
+- la puissance due à l'action du patient $P_{patient} = - F_p . V_m$.\\
+La puissance intérieure due à l'ensemble des effets des frottements visqueux s'exprime : $P_{int} = - f.\omega_m^2$.
+}
+\end{minipage}
+}
+\fi
+
+\question{Énoncer le théorème de l'énergie-puissance appliqué à l'ensemble $\mathcal{S}$ et en déduire l'équation du mouvement.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+Dans le référentiel lié à la canne et supposé galiléen, le théorème de l'énergie-puissance appliqué à l'ensemble $\mathcal{S}$ s'écrit : \\
+$ \frac{d}{dt}Ec_\mathcal{S} = P_{mot} + P_{patient} + P_{int} $.\\
+Donc $\frac{d}{dt} \left( \frac{1}{2}.J_{eq}.\omega_m^2 \right) = C_m . \omega_m - F_p . V_m - f.\omega_m^2 $,\\
+$ \Leftrightarrow J_{eq}.\cancel{\omega_m}.\dot{\omega}_m = C_m . \cancel{\omega_m} - F_p . \frac{pas}{2\pi}.\cancel{\omega_m} - f.\omega_m^{\cancel{2}} $. \\
+L'équation du mouvement s'écrit donc : \\
+$J_{eq}.\dot{\omega}_m + f.\omega_m = C_m - F_p . \frac{pas}{2\pi} $.
+}
+\end{minipage}
+}
+\fi
+
+\question{En supposant\label{Q:schema_bloc_1} les conditions initiales nulles, réaliser la transformée de Laplace de l'équation du mouvement précédente et compléter les blocs correspondants du \ref{DR_schema_bloc}. }
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+En considérant nulle les conditions initiales, la transformée de Laplace de l'équation de mouvement est :\\
+$\left( J_{eq}.p + f \right).\Omega_m(p) = C_m(p) - \frac{pas}{2\pi}. F_p(p)$.\\
+On peut alors compléter les blocs du document réponse DR3.
+}
+
+%\begin{figure}[!ht]
+%\centering
+\begin{center}
+\resizebox{.7\linewidth}{!}{
+\begin{tikzpicture}
+\sbEntree{B}
+\sbComp[5.5]{C2}{B}
+\sbBloc[1]{C}{$\dfrac{1}{R+L p}$}{C2}
+\sbBloc[1]{D}{$K_c$}{C}
+\sbComph[6]{C3}{D}
+\sbBloc[1]{E}{\textcolor{red}{$\dfrac{1}{f+J_{eq} p}$}}{C3}
+\sbSortie{S}{E}
+
+
+\sbRelier[$U_m(p)$]{B}{C2}
+\sbRelier{C2}{C}
+\sbRelier{C}{D}
+\sbRelier[$C_m(p)$]{D}{C3}
+\sbRelier{C3}{E}
+\sbRelier[ $\quad \quad \Omega_m(p)$]{E}{S}
+
+\sbDecaleNoeudy[4]{Ddroite}{H0}
+\sbBlocr[0]{H}{$K_e$}{H0}
+
+\sbRelieryx{E-S}{H}
+\sbRelierxy{H}{C2}
+
+\sbDecaleNoeudy[-4]{Ddroite}{J0}
+\sbBlocr[0]{J}{\textcolor{red}{$\dfrac{pas}{2\pi}$}}{J0}
+\sbDecaleNoeudx[-5]{J}{E2}
+\sbRelier[$F_p(p)$]{E2}{J}
+\sbRelierxy{J}{C3}
+
+\end{tikzpicture}}
+\end{center}
+%\end{figure}
+\end{minipage}
+}
+\fi
+
+\ifprof
+\else
+\paragraph{Modélisation de la chaîne d'énergie de l'axe linéaire}
+
+On considère pour la suite que le moteur brushless adopte le même comportement que celui d'un moteur à courant continu. Les équations de comportement sont rappelées ci-après :
+%La modélisation du comportement d'un moteur sans balai, dit brushless, est délicate compte tenu de la complexité de la machine synchrone. Cependant le résolveur implanté sur le rotor permet à la commande électronique associée de jouer le même rôle que l'ensemble balai-collecteur d'un moteur à courant continu. On pourra donc se ramener globalement à un comportement équivalent à celui d'une machine à courant continu.
+%Pour ces raisons, les lois de comportement du moteur brushless seront supposées identiques à celles d'un moteur à courant continu. Elles sont rappelées ci-après.
+
+%\enlargethispage{2em}
+
+{\centering
+$u_m(t)=e(t)+R.i_m(t)+L.\frac{d i_m(t)}{d t}$,\hspace{0.5cm}  $e(t) = K_e.\omega_m(t)$ \hspace{0.5cm} et \hspace{0.5cm}  $C_m(t) = K_c.i_m(t)$.  
+\par}
+
+On notera $U_m(p)$ respectivement $I_m(p)$, $C_m(p)$ et $E(p)$ les transformées de Laplace des variables $u_m(t)$ la tension moteur, respectivement $i_m(t)$, le courant moteur, $C_m(t)$, le couple moteur et $e(t)$, la force contre-électromotrice.
+
+Le dispositif vis/écrou permettant la transformation de l'angle de rotation de la vis (en radians) en déplacement de l'écrou (en mètre) est modélisé par le bloc de gain pur $K_{ve}$.
+Le comportement du codeur incrémental est modélisé par un gain pur $K_{codeur}$. On précise que la sortie de ce bloc est de type numérique (en incréments) et l'entrée est une position angulaire (en radians).
+\fi
+
+\question{Déterminer, à partir des données du diagramme de blocs internes, les expressions puis les valeurs numériques de $K_{ve}$ et $K_{codeur}$.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+D'après les données, $K_{ve} = \frac{pas}{2\pi} = \frac{3.10^{-3}}{2\pi} \simeq $ 4,77.10$^{-4}$ m/rad.\\
+Le codeur a une résolution de 500 impulsions par tour, donc $K_{codeur} = \frac{500}{2\pi} \simeq $ 79,6 imp/rad.
+}
+\end{minipage}
+}
+%\enlargethispage{2em}
+\fi
+
+\ifprof
+\else
+\vspace*{1em}
+On place en amont du comparateur un bloc de gain pur $K_{adapt}$ de manière à convertir la consigne $X_c(p)$ en une grandeur en incréments directement comparable à la sortie $\theta_{mes}(p)$ du capteur. La valeur du gain pur $K_{adapt}$ est prise de manière à ce que l'écart $\varepsilon(p)$ soit nul lorsque $X_c(p) =  X(p)$.
+
+%En sortie du codeur incrémental on place un bloc de gain pur $K_{adapt}$ de manière à convertir la sortie en incréments du capteur en une grandeur $X_{mes}(p)$ correspondant à l'image mesurée du déplacement $X(p)$ de l'écrou. Cette grandeur $X_{mes}(p)$ en mètre est ainsi directement comparable à la consigne $X_c(p)$. L'erreur $\epsilon(p)$ sera donc nulle lorsque $X_c(p) = X_{mes}(p)$.
+
+%\newpage
+\fi
+
+\question{Donner l'expression, puis la valeur numérique du gain pur $K_{adapt}$ permettant de satisfaire cette condition.}
+
+\ifprof
+
+%\vspace*{-1em}
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+D'après le schéma-bloc, $\varepsilon(p) = K_{adapt}. X_c(p) - K_{codeur}.\frac{X(p)}{K_{ve}} $. Ainsi pour vérifier  $\varepsilon(p) = 0$ lorsque $X_c(p) =  X(p)$, il faut prendre :\\
+$K_{adapt} = \frac{K_{codeur}}{K_{ve}} $. L'application numérique donne $K_{adapt} = \frac{79,6}{4,77.10^{-4}} \simeq $ 166 700 imp/m.
+}
+\end{minipage}
+}\\
+\fi
+
+\ifprof
+\else
+%\newpage
+%\vspace*{-1em}
+\paragraph{Modèle comportemental}
+
+Afin de proposer une modélisation simplifiée de la chaîne d'énergie de l'axe linéaire, une simulation du modèle précédent en boucle ouverte, non perturbé, a été réalisée. Le \ref{bode_BO_sans_corr}  présente la réponse fréquentielle du système en boucle ouverte à l'aide du diagramme de Bode (courbe de gain $G_{BO}(\omega)$ et courbe de phase $\varphi_{BO}(\omega)$). 
+
+%Pour cette simulation : $C(p) = 1$, $G_{BO}(\omega) = 20 \log(H_{BO}(\omega)) = 20 \log (X_{mes}(\omega) / X_c(\omega))$ et $\phi_{BO} = arg(H_{BO}(\omega)) = arg(X_{mes}(\omega) / X_c(\omega))$.
+
+%\begin{figure}[h]
+%\centering
+%\includegraphics[width=0.9\linewidth]{bode_BO_sans_corr.jpg}
+%\begin{minipage}[c]{.8\linewidth}
+%   \caption{{ Diagramme de Bode (Courbe de Gain et courbe de Phase) du système non perturbé en boucle ouverte \textbf{\underline{pour C(p) = 1}}.}
+%\label{fig:bode_BO_sans_corr}}
+%\end{minipage}
+%\end{figure}
+\fi
+
+\question{À partir\label{Q_Bode} du diagramme de Bode, proposer un modèle de comportement du système en boucle ouverte. Soit $H_{BO\_1}(p)$ cette fonction de transfert, donner sa forme canonique factorisée. Soient $T_1$ et $T_2$, telles que $T_1 < T_2$, les constantes de temps introduites et $K_{BO}$ le gain de $H_{BO\_1}(p)$, préciser les valeurs numériques et unités de $T_1$, $T_2$ et $K_{BO}$. Vous laisserez apparaître les traits de construction nécessaires à l'identification du modèle sur le \ref{bode_BO_sans_corr}.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+L'allure des courbes de gain et de phase de la réponse fréquentielle du système en boucle ouverte montre clairement que le comportement est équivalent à celui d'un système du second ordre (avec coefficient d'amortissement $z>1$, car les courbes présentent deux cassures nettes en $\omega_{c1}=1/T_1$ et $\omega_{c2}=1/T_2$) associé à un intégrateur pur (pente de -20 dB/dec quand $\omega \rightarrow 0$ pour la courbe de gain et asymptote à -90\degre quand $\omega \rightarrow 0$ pour la courbe de phase). La forme canonique factorisée peut donc se mettre sous la forme : \\
+$H_{BO\_1}(p) = K_{BO} . \frac{1}{p}. \frac{1}{1+T_1.p} . \frac{1}{1+T_2.p} $\\
+On relève sur les courbes :\\
+$\omega_{c1} \simeq 10^4$ rad/s, donc $T_1 = 10^{-4}$ s = 0,1 ms,\\
+$\omega_{c2} \simeq 10^2$ rad/s, donc $T_2 = 10^{-2}$ s = 10 ms,\\
+et en remarquant que pour $\omega = 10^0=1$ rad/s, $G_{BO}=20.log(K_{BO})= -30 dB$, on obtient $ K_{BO} = 10^{-30/20} \simeq $ 0,032 s$^{-1}$.
+ }
+\end{minipage}
+}
+\fi
+
+\ifprof
+\else
+\vspace*{1em}
+Lors d'une marche saine à allure rapide la cadence moyenne est de 113 pas par minute.
+\fi
+
+\question{Déterminer la fréquence moyenne en Hz de la marche saine à allure rapide.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+Une cadence de 113 pas par minute correspond à une fréquence de marche de l'ordre de $\frac{113}{60} \simeq $ 1,88 Hz.
+ }
+\end{minipage}
+}
+\fi
+
+\ifprof
+\else
+\vspace*{1em}
+Pour la suite, on considérera que la fréquence maximale de déplacement de l'axe linéaire de  la canne (liée au mouvement de la marche) est fixée à $F_{MAX} = 4$ Hz. On propose alors en première approximation une modélisation du comportement du système en boucle ouverte par une fonction de transfert $H_{BO}(p)$ de la forme $H_{BO}(p) = K_{BO}/p$ avec $K_{BO} = 1/30$.
+\fi
+
+\question{Justifier, à l'aide de la réponse fréquentielle du système en boucle ouverte, la validité de cette modélisation approchée.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+$F_{MAX} = 4$ Hz correspond à une sollicitation de pulsation $\omega_{MAX} = 4 \times 2 \pi \simeq $ 25 rad/s. \\
+On constate que $\omega_{MAX}  <  \omega_{c2} = 100$ rad/s $<< \omega_{c1} = 10^{4}$ rad/s. \\
+Pour $\omega < \omega_{MAX}$, le système se comporte donc comme un intégrateur pur de gain égal à $K_{BO}$. L'approximation de $H_{BO}(p)$ par $K_{BO}/p$ avec $K_{BO} = 1/30 \simeq 0,032$ est donc acceptable.
+ }
+\end{minipage}
+}
+\fi
+
+\ifprof
+\else
+%\vspace*{-1em}
+\paragraph{Correction proportionnelle}
+
+Pour la suite, on modélise le comportement du système en boucle ouverte par $H_{BO}(p) = K_{BO}/p$ avec $K_{BO} = 1/30$. On considère un correcteur à action proportionnelle tel que $C(p) = K_{corr} = 1$. \\
+Le schéma-bloc du système non perturbé correspond alors à celui de la \ref{fig:schema_bloc_simplifie}, page suivante.
+
+\begin{figure}[!ht]
+\centering
+
+\begin{tikzpicture}
+\sbEntree{E1}
+\sbComp{C1}{E1}
+\sbBloc[2]{A}{$K_{corr}$}{C1}
+\sbBloc[2]{B}{$\dfrac{K_{BO}}{p}$}{A}
+\sbSortie[3]{S}{B}
+
+\sbRelier[$X_c(p)$]{E1}{C1}
+\sbRelier{C1}{A}
+\sbRelier{A}{B}
+\sbRelier[$X(p)$]{B}{S}
+
+\sbRenvoi[3]{B-S}{C1}{}{}{}
+
+\end{tikzpicture}%}
+\caption{{ Schéma-bloc  simplifié du système non perturbé avec $C(p) = K_{corr}$}
+\label{fig:schema_bloc_simplifie}}
+\end{figure}
+
+\fi
+
+\question{Déterminer l'expression de $H_{BF}(p)= X(p)/X_c(p)$, la fonction de transfert en boucle fermée de la modélisation de la \ref{fig:schema_bloc_simplifie}. Déterminer les paramètres caractéristiques de $H_{BF}(p)$ et en déduire les performances de cette  modélisation pour $C(p) = K_{corr} = 1$. Conclure vis-à vis des exigences d'asservissement de l'axe linéaire.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+En appliquant la formule de Black, il vient $H_{BF}(p)= \frac{K_{corr}.K_{BO}/p}{1+K_{corr}.K_{BO}/p}$, avec $K_{corr} = 1$, on obtient :\\
+$H_{BF}(p)= \frac{K_{BO}}{p+K_{BO}}$, soit sous forme canonique : $H_{BF}(p)= \frac{1}{1+\frac{1}{K_{BO}}.p}$.\\
+La fonction de transfert est donc celle d'un système du 1er ordre, de gain unitaire $K_{BF}=1$ et de constante de temps $1/K_{BO} =$ 30 s.\\
+Les performances de ce système sont donc :\\
+- système stable car système du 1er ordre $ \Rightarrow $ cdcf vérifié,\\
+- système précis car de gain unitaire $ \Rightarrow $ cdcf vérifié,\\
+- système ne présente pas de dépassement car système du 1er ordre $ \Rightarrow $ cdcf vérifié,\\
+- tr$5\% = 3 \times 30 = 90$ s $ \Rightarrow $ cdcf non vérifié car le temps de réponse attendu est de 60 ms.\\
+Le système avec $K_{corr} = 1$ est donc trop lent.
+ }
+\end{minipage}
+}
+\fi
+
+\ifprof
+\else
+\vspace*{1em}
+On se propose de modifier la valeur de $K_{corr}$ de manière à vérifier l'exigence de rapidité de l'asservissement.
+\fi
+
+\question{Déterminer la valeur numérique à donner à $K_{corr}$ pour assurer le temps de réponse à 5\ \% lié à l'exigence de rapidité de l'asservissement de l'axe linéaire.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+Il faut alors augmenter $K_{corr}$, tel que tr$5\% = 3 \times \frac{1}{K_{corr}.K_{BO}} \le 60$ ms. Donc \\
+$K_{corr} \ge \frac{3}{60.10^{-3}.K_{BO}}$.
+L'application numérique donne $K_{corr} \ge  1500$.
+ }
+\end{minipage}
+}
+\fi
+
+\ifprof
+\else
+\vspace*{1em}
+La \ref{fig:reponse_Kcorr_1500}  donne l'évolution de la réponse temporelle $x(t)$ du système réel non perturbé à un échelon en déplacement de valeur finale $X_c = 10$ mm, pour une correction proportionnelle $K_{corr}$ = \num{1500}.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{figure}[!ht]
+%\centering
+%%\includegraphics[width=0.5\linewidth]{reponse_Kcorr_1500.pdf}
+%\begin{tikzpicture}
+%\begin{axis}[
+%grid=major,tick label style={/pgf/number format/fixed},scaled ticks=false,/pgf/number format/1000 sep = {\,},/pgf/number format/use comma,
+%ytick={0,0.002,0.004,.006,.008,.01},
+%yticklabels={0,\num{0.002},\num{0.004},\num{.006},\num{.008},\num{.01}},
+%%minor y tick num=3,
+%minor x tick num=4,
+%xlabel = {Temps (s)},
+%ylabel = {Déplacement $x(t)$ (mm)},
+%legend entries={Réponse,Consigne},
+%legend style={at={(0.65,0.05)},anchor=south west},
+%%legend columns=3,
+%axis lines=left,
+%xmin=0,xmax=.35,
+%ymin=0,ymax=0.0103,
+%height=5.5cm,
+%width=8.5cm,
+%font=\footnotesize,
+%]
+%\addplot [ultra thick] table[x index=0,y index =1,col sep=semicolon]{reponse_non_pert.csv};
+%\addplot [gray,dashed, ultra thick] table[x index=0,y index =2,col sep=semicolon]{reponse_non_pert.csv};
+%\end{axis}
+%\end{tikzpicture}
+%
+%
+%%\begin{minipage}[c]{.8\linewidth}
+%   \captionof{figure}{{ Évolution de la réponse temporelle $x(t)$ du système réel non perturbé à un échelon de valeur $X_c = 10$ mm, pour $K_{corr}$ = \num{1500}}\label{fig:reponse_Kcorr_1500}}
+%%\end{minipage}
+%\end{figure}
+%\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\question{L'évolution de la réponse du système est-elle cohérente avec le comportement du modèle retenu ? Justifier. Quelle modification faudrait-il apporter au modèle approché pour retrouver cette forme de réponse temporelle ?}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+L'allure de la réponse ne correspond pas à celle d'un système du 1er ordre car un dépassement est observé. Avec $K_{corr} = 1500$, le système en boucle ouverte ne peut plus être modélisé par un intégrateur pur de gain $K_{BO}$, en effet cette valeur élevée de $K_{corr}$ fait monter la courbe de gain, le système a une bande passante plus élevée et l'action du terme $\frac{1}{1+T_2.p}$ ne peut plus être négligée. Le comportement du système doit donc être modélisé par celui d'un système du second ordre pour se rapprocher du comportement observé.
+ }
+\end{minipage}
+}
+\fi
+
+\ifprof
+\else
+\vspace{1em}
+Pour la suite, on modélise la fonction de transfert en boucle ouverte du système par \linebreak $H_{BO}(p) = \frac{1}{p}.\frac{K_{BO}}{1+\tau_{BO}p}$ avec $K_{BO} = 1/30$ (unité en \si{s^{-1}}) et $\tau_{BO} = 9$ ms.
+\fi
+
+\question{Quelle valeur maximale de $K_{corr}$, notée $K_{corr}^{MAX}$, permet de vérifier les critères de précision et de dépassement de l'asservissement de l'axe linéaire ?}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+Le critère de précision est satisfait du fait de la présence du terme intégrateur en $\frac{1}{p}$ dans la fonction de transfert en boucle ouverte du système.\\
+Pour assurer un 1er dépassement $D1\% \leq 5 \%$, il faut que le système du second ordre ait un coefficient d'amortissement $z$, tel que $z \ge 0,7$. On détermine l'expression de $H_{BF}(p)$, la fonction de transfert en boucle fermée, afin d'identifier $z$.\\
+D'après la formule de Black, $H_{BF}(p) = \frac{K_{corr}.H_{BO}(p)}{1+K_{corr}.H_{BO}(p)} = \frac{K_{corr}.K_{BO}}{K_{corr}.K_{BO} + p.\left( 1+ \tau_{BO}.p \right)}$.\\
+La forme canonique de $H_{BF}(p)$ est donc :\\
+$H_{BF}(p) = \frac{1}{1+\frac{1}{K_{corr}.K_{BO}}.p+ \frac{\tau_{BO}}{K_{corr}.K_{BO}}.p^2} $\\
+Par identification,\\
+$\omega_0 = \sqrt{\frac{K_{corr}.K_{BO}}{\tau_{BO}}} $ et $z=\frac{1}{2}.\omega_0.\frac{1}{K_{corr}.K_{BO}}$,\\
+donc, $z = \frac{1}{2}.\frac{1}{\sqrt{\tau_{BO}.K_{corr}.K_{BO}}}$.\\
+La condition $z \ge 0,7$ implique donc $K_{corr} \leq \frac{1}{(2 \times 0,7)^2.\tau_{BO}.K_{BO}}$.\\
+L'application numérique donne $K_{corr} \leq 1700$. On prend donc $K_{corr}^{MAX} = 1700$.
+ }
+\end{minipage}
+}
+
+\fi
+
+\question{Déterminer la valeur du temps de réponse à $5\ \%$, $tr_{5\%}$ de ce modèle pour $K_{corr} = K_{corr}^{MAX}$ à partir de l'abaque du temps de réponse réduit donné dans le \ref{Annexe_Abaque_tr_reduit}.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+D'après l'abaque du temps de réponse réduit donné en \ref{Annexe_Abaque_tr_reduit}, pour $z = 0,7$ on relève $tr_{5\%}.\omega_0 \simeq 3$. Or $\omega_0 = \sqrt{\frac{K_{corr}^{MAX}.K_{BO}}{\tau_{BO}}} $, donc $tr_{5\%} = 3.\sqrt{\frac{\tau_{BO}}{K_{corr}^{MAX}.K_{BO}}}$. \\
+L'application numérique donne : $tr_{5\%} \simeq $ 38 ms $<$ 60 ms $ \Rightarrow $ cdcf vérifié !
+ }
+\end{minipage}
+}
+\fi
+
+\ifprof
+\else
+\newpage
+La \ref{fig:reponse_kcorr_kcorrmax} donne les évolutions des réponses temporelles $x(t)$ du système réel avec prise en compte de la perturbation ($F_p$ constante et égale à 175 N) à un échelon en déplacement de valeur finale $X_c = 10$ mm, pour une correction proportionnelle $K_{corr} = \num{1500}$ et pour $K = K_{corr}^{MAX}$.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%\begin{figure}[!ht]
+%\centering
+%%\includegraphics[width=0.6\linewidth]{reponse_kcorr_kcorrmax.pdf}
+%\begin{tikzpicture}
+%\begin{axis}[
+%grid=major,tick label style={/pgf/number format/fixed},scaled ticks=false,/pgf/number format/1000 sep = {\,},/pgf/number format/use comma,
+%ytick={0,0.002,0.004,.006,.008,.01,0.012},
+%yticklabels={0,\num{0.002},\num{0.004},\num{.006},\num{.008},\num{.01},\num{0.012}},
+%%minor y tick num=3,
+%minor x tick num=4,
+%xlabel = {Temps (s)},
+%ylabel = {Déplacement $x(t)$ (mm)},
+%legend entries={$K_{corr}=K_{corr}^{MAX}$,$K_{corr}=\num{1500}$,Consigne},
+%legend style={at={(0.55,0.05)},anchor=south west},
+%%legend columns=3,
+%axis lines=left,
+%xmin=0,xmax=.35,
+%ymin=0,ymax=0.0103,
+%height=5.5cm,
+%width=8.5cm,
+%font=\footnotesize,
+%]
+%\addplot [ultra thick] table[x index=0,y index =3,col sep=semicolon]{reponse_pert.csv};
+%\addplot [gray,ultra thick] table[x index=0,y index =1,col sep=semicolon]{reponse_pert.csv};
+%\addplot [gray,dashed, ultra thick] table[x index=0,y index =2,col sep=semicolon]{reponse_pert.csv};
+%\end{axis}
+%\end{tikzpicture}
+%
+%
+%%\begin{minipage}[c]{.8\linewidth}
+%   \captionof{figure}{{ Réponses temporelles $x(t)$ du système réel perturbé à un échelon en déplacement de valeur finale $X_c = 10$ mm, pour une correction proportionnelle $K_{corr} = \num{1500}$ et pour $K = K_{corr}^{MAX}$}
+%\label{fig:reponse_kcorr_kcorrmax}
+%}
+%%\end{minipage}
+%\end{figure}
+%\fi
+
+%%%%%%%%%%%%%%%%%%
+
+
+\question{Conclure sur les capacités de la correction à action proportionnelle pure vis-à-vis des performances à atteindre.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+Les performances de stabilité, rapidité et de 1er dépassement sont vérifiées. Cependant, le système avec correction proportionnelle n'arrive pas à atténuer suffisamment la perturbation (l'erreur est de l'ordre de 15 à 20$\%$ bien supérieure au 5$\%$ du cahier des charges). Un autre type de correction doit donc être envisagé pour satisfaire l'ensemble des critères.
+ }
+\end{minipage}
+}
+\fi
+
+%\newpage
+%\paragraphe{Correction avec action proportionnelle et intégrale pure}
+%
+%En vue d'améliorer les performances du système, un correcteur avec action intégrale pure est ajouté, si bien que $C(p) = K_{corr}/p$. Les diagrammes de Bode (courbe de Gain et courbe de Phase) du système en boucle ouverte sont donnés en \ref{fig:Bode_correction_int_pure}. Pour cette simulation : $C(p) = K_{corr}/p$, $G_{BO}(\omega) = 20 \log(H_{BO}(\omega)) = 20 \log (X_{mes}(\omega) / X_c(\omega))$ et $\phi_{BO} = \arg(H_{BO}(\omega)) = arg(X_{mes}(\omega) / X_c(\omega))$. La \ref{fig:reponse_correction_int_pure} donne la réponse temporelle $x(t)$ du système perturbé en boucle fermée à un échelon de valeur finale $X_c = 10$ mm.
+%
+%\begin{figure}[h]
+%   \begin{minipage}[c]{.59\linewidth}
+%      \centering
+%      \includegraphics[width=1\linewidth]{Bode_correction_int_pure.jpg}
+% 	  \caption{Réponse fréquentielle en boucle ouverte avec correction intégrale pure : $C(p) = 1700/p$. \label{fig:Bode_correction_int_pure}}
+%   \end{minipage} \hfill
+%   \begin{minipage}[c]{.39\linewidth}
+%	  \centering     
+%      \includegraphics[width=1\linewidth]{reponse_correction_int_pure.jpg}
+%      \caption{Réponse temporelle à un échelon de valeur finale $X_c = 10$ mm du système perturbé en boucle fermée avec correction intégrale pure : $C(p) = 1700/p$.\label{fig:reponse_correction_int_pure} }
+%   \end{minipage}
+%\end{figure}
+%
+%\question{Déterminer la marge de Gain $M_G$ et la marge de Phase $M_{\phi}$ du système en boucle ouverte avec correction intégrale pure. Conclure sur les performances d'une action proportionnelle et intégrale pure.}
+
+%\newpage
+
+\ifprof
+\else
+%\vspace{-1em}
+\paragraph{Correction avec action proportionnelle et intégrale généralisée -- correcteur PI généralisé}
+
+%Les résultats des corrections précédentes montrent qu'il est nécessaire d'introduire une action dérivée pour augmenter les marges de Gain et de Phase du système en boucle ouverte.
+
+Le correcteur finalement retenu est un correcteur avec action proportionnelle et intégrale généralisée. La fonction de transfert $C(p)$ prend alors la forme suivante :
+
+{\centering
+$C(p)= K_{corr} . \frac{1+T_d p}{p}$  avec $K_{corr} >> 1$ et $T_d < 1$ s.
+\par}
+On donne dans le \ref{DR_Bode_corrige} le diagramme de Bode (courbe de Gain et de Phase) du système en boucle ouverte avec correcteur PI Généralisé pour $K_{corr} = \num{1000}$ et $T_d = 0,2$ s. 
+\fi
+
+\question{Représenter sur le \ref{DR_Bode_corrige} les marges de Gain $M_G$ et de Phase $M_{\phi}$ du système corrigé.\label{Q:Bode_corrige}}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+D'après la figure ci-dessous, on relève une marge de Gain $M_G \simeq$ 60 dB et une marge de Phase $M_{\varphi} \simeq$ 50\degre. Avec ces valeurs le cahier des charges ($M_G =$ 45 dB et $M_{\varphi} =$ 35\degre) est vérifié.
+ }
+ 
+%\begin{figure}[!ht]
+%   \begin{minipage}[c]{.95\linewidth}
+%      \centering
+\begin{center}
+      \includegraphics[width=1\linewidth]{Bode_correction_int_pure_marge}
+\end{center}
+%   \end{minipage}
+%\end{figure}
+\end{minipage}
+}
+
+\fi
+
+\ifprof
+\else
+Avec cette correction, le système est précis mais les valeurs des marges de gain et de phase sont telles que le système n'est pas assez rapide. Il est donc nécessaire d'augmenter la valeur de $K_{corr}$, tout en conservant $T_d = 0,2$ s, de manière à augmenter la bande passante du système et ainsi se rapprocher des valeurs limites de marge de Gain et de Phase autorisées.
+\fi
+
+\question{En déduire la valeur maximale à donner au gain $K_{corr}$, en conservant $T_d = 0,2$ s, afin de respecter les performances en stabilité de l'asservissement de l'axe linéaire tout en augmentant au maximum la bande passante du système. }
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+La modification de la valeur du gain $K_{corr}$ n'affecte que la courbe de gain. L'augmentation de $K_{corr}$ va faire remonter la courbe de gain du système en boucle ouverte. Graphiquement, on observe que c'est le critère sur la marge de Gain qui limite la remonté de la courbe de gain (voir figure ci-dessous). La courbe de gain peut donc être remontée de +15 dB, on relève alors une marge de Gain $M_G \simeq$ 45 dB et une marge de Phase $M_{\phi} \simeq$ 65\degre. \\
+Initialement on avait $K_{corr}^{init} = 1000$, pour remonter la courbe de gain de +15 dB, il faudra prendre $K_{corr}^{new}$ tel que : \\
+$20 \times log(K_{corr}^{new}) = 20 \times log(K_{corr}^{init}) + 15$\\
+$\Leftrightarrow K_{corr}^{new} = K_{corr}^{init} \times 10^{15/20}$\\
+L'application numérique donne $K_{corr}^{new} \simeq$ 5620. 
+ }
+ 
+\begin{center}
+       \includegraphics[width=1\linewidth]{Bode_correction_int_pure_lim_marge}
+
+ \end{center} 
+ 
+\end{minipage}
+}
+
+\fi
+
+\ifprof
+\else
+\vspace{1em}
+%La \ref{fig:reponse_perturbe_corr_PI_gen}\textbf{(a)} donne la réponse temporelle à un échelon de consigne $X_c = 10$ mm du système simulé, perturbé et corrigé. La \ref{fig:reponse_perturbe_corr_PI_gen}\textbf{(b)} donne l'évolution de l'intensité simulée (en Ampères) circulant au sein du moteur lors de cette réponse.   
+Les \textbf{figures \ref{fig:reponse_perturbe_corr_PI_gen}\textbf{a}} et \textbf{\ref{fig:reponse_perturbe_corr_PI_gen}\textbf{b}}, page suivante, donnent la réponse temporelle à un échelon de consigne \linebreak $X_c = 10$ mm du système simulé, perturbé et corrigé du déplacement $x(t)$ (en mm)  ainsi que l'évolution de l'intensité simulée (en Ampères) circulant au sein du moteur.
+
+
+\begin{figure}[!ht]
+\subfigure[Déplacement (mm) en fonction du temps~(s)]
+{
+\includestandalone{reponse_temp_pert_a}
+}%\hfill
+\subfigure[Intensité simulée (A) en fonction \newline du temps~(s)]{
+\includestandalone{reponse_temp_pert_b}
+}
+\caption{{Réponses temporelles à un échelon d'amplitude $X_c = 10$ mm du système simulé, perturbé et corrigé} \label{fig:reponse_perturbe_corr_PI_gen}}
+\end{figure}
+\fi
+
+
+
+
+
+\question{Conclure sur les performances du système perturbé vis-à-vis des exigences de l'asservissement de l'axe linéaire. Commenter l'évolution de l'intensité simulée avec les caractéristiques de la carte de commande du moteur.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+Avec cette correction la réponse temporelle respecte l'ensemble des critères du cahier des charges :\\
+- le système est stable et $M_G \simeq$ 45 dB et $M_{\phi} \simeq$ 65\degre $ \Rightarrow $ cdcf vérifié,\\
+- le système est précis $ \Rightarrow $ cdcf vérifié,\\
+- système ne présente pas de dépassement $ \Rightarrow $ cdcf vérifié,\\
+- tr$5\% \simeq$ 50 ms $ \Rightarrow $ cdcf vérifié (< 60 ms).\\
+Par contre, on relève un courant $I_{mot}^{MAX} \simeq$ 35 A. Or la carte ELMO ne supporte qu'un courant maximal de 20 A. Le contrôleur ELMO ne permet donc pas de réaliser cette commande. 
+}
+
+\begin{center}
+      \includegraphics[width=0.7\linewidth]{reponse_perturbe_corr_PI_gen_tr5.jpg}
+
+\end{center}
+\end{minipage}
+}
+
+\fi
+
+\ifprof
+\else
+%\FloatBarrier
+Le variateur du moteur permet de protéger les éléments électroniques des surintensités qui pourraient apparaître lors de la commande. Afin de prendre en compte cette protection, on décide d'ajouter dans le modèle causal représenté dans le  \ref{DR_schema_bloc} un bloc saturation de valeur $\pm$ 20 A. 
+\vspace{1em}
+\fi
+
+\question{Préciser, à l'aide d'une flèche sur le \ref{DR_schema_bloc}, la position de ce bloc saturation. Justifier.\label{Q:schema_bloc2}}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+Dans la modélisation proposée, ce bloc saturation doit être placé entre le bloc $\frac{1}{R+Lp}$ et le bloc $K_C$, car c'est sur cette branche que l'on retrouve la variable intensité (on rappelle que $C_m(p) = K_C.I_m(p)$).
+}
+
+\begin{center}
+      \includegraphics[width=0.9\linewidth]{schema_bloc_avec_saturation.jpg}
+
+\end{center}
+\end{minipage}
+}
+
+%\newpage
+\fi
+
+\ifprof
+\else
+%\FloatBarrier
+\vspace{1em}
+Les \textbf{figures \ref{fig:reponse_perturbe_corr_PI_gen_sat}\textbf{a}} et \textbf{\ref{fig:reponse_perturbe_corr_PI_gen_sat}b} donnent respectivement la réponse temporelle du déplacement (en mm) à un échelon de consigne $X_c = 10$ mm et l'évolution de l'intensité simulée (en Ampère) circulant au sein du moteur pour le système corrigé avec perturbation et ajout du bloc saturation $\pm$ 20 A.
+
+\begin{figure}[!ht]
+%   \begin{minipage}[c]{.48\linewidth}
+%      \centering
+%      \includegraphics[width=1\linewidth]{reponse_perturbe_corr_PI_gen_sat.jpg}
+%   \end{minipage} \hfill
+%   \begin{minipage}[c]{.48\linewidth}
+%	  \centering     
+%      \includegraphics[width=1\linewidth]{intensite_reponse_perturbe_corr_PI_gen_sat.jpg}
+%  \end{minipage}
+  
+  \subfigure[Déplacement (mm) en fonction du temps (s)]
+{
+\includestandalone{reponse_temp_pert_sat_a}
+}\hfill
+\subfigure[Intensité simulée (A) en fonction du \newline temps (s)]{
+\includestandalone{reponse_temp_pert_sat_b}
+} 
+  
+\caption{{ Réponses temporelles à un échelon d'amplitude $X_c = 10$ mm du système simulé, perturbé et corrigé \underline{\textbf{avec bloc de saturation $\pm$ 20 A}}} \label{fig:reponse_perturbe_corr_PI_gen_sat}}
+\end{figure}
+\fi
+
+\question{Quel est l'effet de l'ajout du bloc saturation en intensité sur les performances du système ? Conclure vis-à-vis des exigences du cahier des charges.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+La prise en compte de la saturation rend le système un plus lent, on a alors tr$5\% \simeq$ 55 ms ce qui reste acceptable vis-à-vis du cahier des charges (< 60 ms). Les autres performances restent inchangées. 
+}
+\end{minipage}
+}
+\fi
+
+\ifprof
+\else
+\newpage
+\section{Synthèse -- Étude de l'exigence 3.1 \og Assistance de la marche\fg{}}
+
+L'objectif de cette synthèse est de vérifier que les paramètres d'asservissement mis finalement en place sur la commande de l'axe linéaire et sur la commande de la roue permettent d'atteindre les performances de l'exigence 3.1 \og Assistance de la marche\fg{}.
+
+\begin{figure}[ht!]
+%\begin{minipage}[c]{1\linewidth}
+\centering
+\includegraphics[width=0.9\linewidth]{evol_hauteur_main.pdf}
+%\begin{minipage}[c]{.9\linewidth}
+   \caption{
+   { Hauteur de la main au cours de la marche pour $V = 0,22$ m/s
+%Trait gris continu système non corrigé, trait noir pointillé système avec correction PI généralisée.
+}
+\label{fig:evol_hauteur_main}
+}
+%\end{minipage}
+%\end{minipage}
+\end{figure}
+
+La \ref{fig:evol_hauteur_main} donne les évolutions de la hauteur de main mesurées lors d'une marche assistée avec le prototype de canne à la vitesse $V = 0,22$ m/s.\\ La courbe grise en trait continu correspond au cas où l'axe linéaire est sans correction ($C(p) = 1$).\\ La courbe noire en trait pointillé correspond au cas où l'axe linéaire est corrigé (correction PI généralisée avec paramètres optimisés). \\Il est à remarquer que lors de cet essai, le patient avait pour consigne de conserver sa main immobile lors du déplacement. Cette condition est difficilement vérifiable en pratique car le patient ne peut pas vraiment se concentrer sur la position de sa main pendant la marche.
+\vspace{1em}
+\fi
+
+\question{Conclure sur l'influence de la correction de l'axe linéaire sur le respect de l'exigence de maintien de la hauteur de main.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+Le cahier des charges (performance Id 7) impose un écart de hauteur de main de 3 cm pour un cycle de marche. Sans correction, l'écart peut atteindre jusqu'à 4,5 cm, avec correction l'écart est limité à 2,5 cm maxi ce qui vérifie le cdcf.\\
+Avec correction les variations de hauteur de la main sont donc moins importantes au commencement de la phase d'appui. Ceci apporte un confort dans l'utilisation avec le sentiment d'avoir une canne plus rigide (moins d'affaissement) lors de l'appui.
+}
+\end{minipage}
+}
+\fi
+
+\ifprof
+\else
+\vspace{1em}
+La \ref{fig:suivi_pied_orientation_normale}, respectivement \ref{fig:suivi_pied_orientation_rapide}, page suivante,  donnent pour $V = 0,22$ m/s (allure normale), respectivement pour $V = 0,29$ m/s (allure rapide), le suivi du pied de la jambe gauche par la canne observé au niveau du sol et le suivi de l'orientation de la cuisse gauche (angle $\theta_g$) par la canne (angle~$\theta$).
+
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=0.75\linewidth]{suivi_pied_orientation_normale_.pdf}
+   \caption{{ $V = 0,22$ m/s, allure normale -- (a) : suivi du pied de la jambe gauche par la canne observé au niveau du sol -- (b) : suivi de l'orientation de la cuisse gauche (angle $\theta_g$) par la canne (angle $\theta$)} 
+\label{fig:suivi_pied_orientation_normale}}
+\end{figure}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.75\linewidth]{suivi_pied_orientation_rapide_.pdf}
+   \caption{{ $V = 0,29$ m/s, allure rapide -- (a) : suivi du pied de la jambe gauche par la canne observé au niveau du sol -- (b) : suivi de l'orientation de la cuisse gauche (angle $\theta_g$) par la canne (angle $\theta$)}
+\label{fig:suivi_pied_orientation_rapide}}
+\end{figure}
+
+%%\FloatBarrier
+
+\fi
+
+\question{Conclure sur le réglage des paramètres d'asservissement mis en place vis-à-vis des performances liées à la synchronisation de la canne avec le cycle locomoteur à différentes allures.}
+
+\ifprof
+\fbox{
+\begin{minipage}{0.95\textwidth}
+{\bf
+Le cahier des charges stipule comme performance à atteindre pour l'assistance de la marche (cadre Id 7) :\\
+- un écart maximal sur l'angle d'orientation entre la canne et la jambe de 20\degre,\\
+- le respect de l'exigence de suivi du pied, l'appui au sol de la canne doit se situer entre l'avant et l'arrière du pied de la jambe invalide.\\
+Pour les deux allures de marche, l'exigence de suivi de pied est respectée car la courbe de position de la canne reste comprise entre les courbes de position de l'avant du pied et de l'arrière du pied (c'est à la limite de l'avant du pied pour le cas de la marche rapide).\\
+Pour ce qui concerne l'exigence sur l'angle d'orientation, pour les deux allures l'exigence est respectée car les écarts restent inférieurs à 20\degre. Mise à part la phase d'appui en allure normale, l'orientation de la canne est en retard par rapport à l'orientation de la jambe, et ce retard est d'autant plus important que l'allure de la marche est élevée.\\
+On peut donc conclure que ce réglage des paramètres d'asservissement permet de satisfaire les performances liées à la synchronisation de la canne avec le cycle locomoteur à différentes allures.
+}
+\end{minipage}
+}
+\fi
+
+\ifprof
+\label{fin}
+\else
+
+%%%%%%%%%%%%%%%%   LES ANNEXES  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\FloatBarrier
+\bigskip
+\centerline{\bf \LARGE FIN}
+
+\newpage
+
+{\centering {\Large \textbf{ANNEXE}} \par}
+\title{ANNEXES}
+\vspace{0.5cm}
+%\doc{Annexe_diag_cas_utilisation}{diagramme de cas d'utilisation}{
+%\centering\includegraphics[width=.5\linewidth]{uc.pdf}
+%}
+%\vspace{1cm}
+\doc{Annexe_diag_exigences}{Diagramme partiel des exigences}{
+%\centering\includegraphics[width=.98\linewidth]{req.pdf}
+
+\centering\includegraphics[height=.98\linewidth,angle=90]{req_.pdf}
+}
+
+%\newpage
+\doc{Annexe_diag_BDI}{Diagramme de blocs internes}{
+\centering\includegraphics[width=0.9\linewidth]{ibd.pdf}
+}
+\vspace{0.5cm}
+\doc{Annexe_schema_cine_3D}{Représentation schématique de la cinématique du prototype de canne}{
+\centering\includegraphics[width=.6\linewidth,angle=-90]{schema_cine_3D_.pdf}
+}
+
+\newpage
+\doc{Annexe_schema_cine}{Modélisation cinématique et paramétrage du prototype de canne robotisée}{
+\centering
+\hspace{.5cm}
+\begin{tikzpicture}[every node/.style={scale=.8},scale=1.25]
+\node at (-4,1){\includegraphics[angle=-90,width=0.8\linewidth]{schema_cine_parametre_.pdf}};
+\node[scale=1.2] at (-5.35,1.2) {$\ell(t)$};
+\draw[->,>=latex] (0,0) -- (2,0) node[above] {$\textrm{x}_0$};
+\draw[->,>=latex] (0,0) -- (15:2) node[above] {$\textrm{x}_2=\textrm{x}_3$};
+\draw[->,>=latex] (0,0) -- (90:2) node[above] {$\textrm{y}_0$};
+\draw[->,>=latex] (0,0) -- (105:2) node[above left,xshift=2mm] {$\textrm{y}_2=\textrm{y}_3$};
+\draw[->,>=latex] (1.2,0) arc (0:15:1.2) node[midway, right] {$\theta$};
+\draw[->,>=latex] (90:1.2) arc (90:105:1.2) node[midway, above] {$\theta$};
+\node[scale=2] {$\odot$};
+\node[left,xshift=-3mm] {$\textrm{z}_0$};
+\node at (0,0) {};
+\end{tikzpicture}
+}
+\vspace{0.5cm}
+\doc{Annexe_reducteur}{Modélisation cinématique de la transmission du moteur de roue à la roue}{
+\centering\includegraphics[width=.8\linewidth]{reducteur.pdf}
+}
+\vspace{0.5cm}
+\doc{Annexe_Abaque_tr_reduit}{Abaque du temps de réponse réduit}{
+\centering%\includegraphics[width=.6\linewidth]{Abaque_tr_reduit.jpg}
+\includestandalone{abaque_tr5_001_100}
+}
+
+
+%___________________________________________
+% Obligatoire a la fin du texte 
+
+\label{fin}
+%===========================================
+
+
+\newpage
+\pagestyle{Standard2}
+\setcounter{figure}{0}
+\pagenumbering{arabic}
+\def\figurename{DR}
+
+\vspace*{3.5cm}
+
+\begin{center}
+ \textbf{{\Large{{DOCUMENT R\'EPONSE}}}}
+
+\end{center}
+
+\vspace{2cm}
+
+%%%%%%%%%%%   Les Documents Réponses  ENLEVER LA NUMEROTATION DES PAGES
+%\textbf{Q\ref{Q:diag_etat} :}
+\textbf{Q9}
+
+{\centering
+\centering\includegraphics[width=1\linewidth]{stm.pdf}
+\captionof{figure}{Diagramme d'états représentant la stratégie de commande des deux degrés de liberté du prototype de canne robotisée}
+\label{DR_diagramme_etats}
+\par}
+
+%\doc{DR_diagramme_etats}{Diagramme d'états représentant la stratégie de commande des deux degrés de liberté du prototype de canne robotisée}{
+%\centering\includegraphics[width=0.9\linewidth]{diag_etats.jpg}
+%}
+
+%\vspace{0.5cm}
+%\textbf{Q\ref{Q:algorigramme} :}
+\newpage
+\textbf{Q11}
+
+{\centering
+\includegraphics[width=.6\linewidth]{algorigramme.pdf}
+\captionof{figure}{Algorigramme de l'activité \og Générer le signal $S$\fg{}}
+\label{DR_algorigramme}
+\par}
+
+%\doc{DR_algorigramme}{Algorigramme de l'activité \og Générer le signal S\fg{}}{
+%\centering\includegraphics[width=.5\linewidth]{algorigramme.jpg}
+%}
+
+\vspace{2.5cm}
+
+\textbf{Q27 et Q42}
+%\textbf{Q\ref{Q:schema_bloc_1} et Q\ref{Q:schema_bloc_2} :}
+\begin{figure}[!ht]
+%\centering
+\hspace*{-2em}
+\resizebox{1.1\linewidth}{!}{
+\begin{tikzpicture}
+\sbEntree{E1}
+\sbBloc[3]{A}{$K_\textrm{adapt}$}{E1}
+\sbComp{C1}{A}
+\sbBloc{B}{$C(p)$}{C1}
+\sbComp[5.5]{C2}{B}
+\sbBloc[1]{C}{$\dfrac{1}{R+L p}$}{C2}
+\sbBloc[1]{D}{$K_c$}{C}
+\sbComph[6]{C3}{D}
+\sbBloc[1]{E}{\textcolor{white}{$\dfrac{1}{f+J_{eq} p}$}}{C3}
+%\sbBloc[1]{E}{}{C3}
+\sbBloc[3]{F}{$\dfrac{1}{p}$}{E}
+\sbBloc{G}{$K_{ve}$}{F}
+\sbSortie{S}{G}
+
+\sbRelier[$X_c(p)$]{E1}{A}
+\sbRelier{A}{C1}
+\sbRelier[$\varepsilon(p)$]{C1}{B}
+\sbRelier[$U_m(p)$]{B}{C2}
+\sbRelier{C2}{C}
+\sbRelier{C}{D}
+\sbRelier[$C_m(p)$]{D}{C3}
+\sbRelier{C3}{E}
+\sbRelier[$\Omega_m(p)$]{E}{F}
+\sbRelier{F}{G}
+\sbRelier[$\quad X(p)$]{G}{S}
+
+\sbDecaleNoeudy[4]{Ddroite}{H0}
+\sbBlocr[0]{H}{$K_e$}{H0}
+\sbDecaleNoeudy[4]{H0}{I0}
+\sbBlocr[0]{I}{$K_\textrm{codeur}$}{I0}
+
+\sbRelieryx{E-F}{H}
+\sbRelierxy{H}{C2}
+\sbRelieryx{F-G}{I}
+\sbRelierxy[$\theta_\textrm{mes}(p)$]{I}{C1}
+
+\sbDecaleNoeudy[-4]{Ddroite}{J0}
+\sbBlocr[0]{J}{}{J0}
+\sbDecaleNoeudx[-5]{J}{E2}
+\sbRelier[$F_p(p)$]{E2}{J}
+\sbRelierxy{J}{C3}
+
+\end{tikzpicture}}
+\caption{Schéma-bloc du modèle causal retenu pour l'étude du comportement de l'axe linéaire perturbé}
+\label{DR_schema_bloc}
+\end{figure}
+
+
+\newpage
+\textbf{Q30}
+%\textbf{Q\ref{Q_Bode} :}
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}
+\node {\begin{tikzpicture}
+\begin{axis}[
+xmode=log,
+grid=major,tick label style={/pgf/number format/fixed},scaled ticks=false,/pgf/number format/1000 sep = {\,},/pgf/number format/use comma,
+%ytick={0,0.1,...,0.6},
+minor y tick num=4,
+minor x tick num=4,
+%xlabel = {Pulsation (\si{rad.s^{-1}})},
+ylabel = {Gain (dB)},
+%legend entries={Consigne,Déphasage},
+%legend style={at={(0.65,0.75)},anchor=south west},
+%legend columns=3,
+%axis lines=left,
+xmin=0.01,xmax=100000,
+ymin=-200,ymax=20,
+height=6cm,
+width=16cm,
+font=\footnotesize,
+]
+\addplot [black,thick] table[x index=1,y index =2]{Bode_1.txt};
+\end{axis}
+\end{tikzpicture}};
+
+\node[yshift=-4.7cm] {
+\begin{tikzpicture}
+\begin{axis}[
+xmode=log,
+grid=major,tick label style={/pgf/number format/fixed},scaled ticks=false,/pgf/number format/1000 sep = {\,},/pgf/number format/use comma,
+ytick={-270,-180,-90},
+minor y tick num=3,
+minor x tick num=4,
+xlabel = {Pulsation (\si{rad.s^{-1}})},
+ylabel = {Phase (\si{\degree})},
+%legend entries={Consigne,Déphasage},
+%legend style={at={(0.65,0.75)},anchor=south west},
+%legend columns=3,
+%axis lines=left,
+xmin=0.01,xmax=100000,
+ymin=-270,ymax=-90,
+height=4cm,
+width=16cm,
+font=\footnotesize,
+]
+\addplot [black,thick] table[x index=1,y index =0]{Bode_1.txt};
+\end{axis}
+\end{tikzpicture}};
+
+\end{tikzpicture}
+
+\caption{Diagramme de Bode (courbe de Gain et courbe de Phase) du système non perturbé en boucle ouverte \textbf{\underline{pour C(p) = 1}}}
+\label{bode_BO_sans_corr}
+\end{figure}
+
+
+%\newpage
+%\begin{landscape}
+%
+%%{
+%%\centering\includegraphics[width=1\linewidth]{schema_bloc.jpg}
+%%}
+%\vspace{0.5cm}
+%\doc{bode_BO_sans_corr}{Diagrammes de Bode (Courbe de Gain et courbe de Phase) du système non perturbé en boucle ouverte \textbf{\underline{pour C(p) = 1}}}{
+%\centering\includegraphics[width=.55\linewidth]{bode_BO_sans_corr.jpg}
+%}
+%\end{landscape}
+
+
+
+\textbf{Q39}
+%\textbf{Q\ref{Q:Bode_corrige} :}
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}
+\node {\begin{tikzpicture}
+\begin{axis}[
+xmode=log,
+grid=major,tick label style={/pgf/number format/fixed},scaled ticks=false,/pgf/number format/1000 sep = {\,},/pgf/number format/use comma,
+%ytick={0,0.1,...,0.6},
+minor y tick num=3,
+minor x tick num=4,
+%xlabel = {Pulsation (\si{rad.s^{-1}})},
+ylabel = {Gain (dB)},
+%legend entries={Consigne,Déphasage},
+%legend style={at={(0.65,0.75)},anchor=south west},
+%legend columns=3,
+%axis lines=left,
+xmin=1,xmax=2000,
+ymin=-80,ymax=40,
+height=6cm,
+width=16cm,
+font=\footnotesize,
+]
+\addplot [black,thick] table[x index=0,y index =1]{Bode_2.txt};
+\addplot [black,dashed] table[x index=0,y index =1]{Bode_2_asymp_gain.txt};
+\end{axis}
+\end{tikzpicture}};
+
+\node[yshift=-4.7cm] {
+\begin{tikzpicture}
+\begin{axis}[
+xmode=log,
+grid=major,tick label style={/pgf/number format/fixed},scaled ticks=false,/pgf/number format/1000 sep = {\,},/pgf/number format/use comma,
+ytick={-180,-150,-120,-90},
+minor y tick num=2,
+minor x tick num=4,
+xlabel = {Pulsation (\si{rad.s^{-1}})},
+ylabel = {Phase (\si{\degree})},
+%legend entries={Consigne,Déphasage},
+%legend style={at={(0.65,0.75)},anchor=south west},
+%legend columns=3,
+%axis lines=left,
+xmin=1,xmax=2000,
+ymin=-190,ymax=-90,
+height=4cm,
+width=16cm,
+font=\footnotesize,
+]
+\addplot [black,thick] table[x index=2,y index =3]{Bode_2.txt};
+\addplot [black,dashed] table[x index=0,y index =1]{Bode_2_asymp_phase.txt};
+\end{axis}
+\end{tikzpicture}};
+
+\end{tikzpicture}
+
+\caption{Réponse fréquentielle du système en boucle ouverte avec correcteur PI Généralisé en prenant $K_{corr} =\num{1000}$ et $T_d = \SI{0,2}{s}$}
+\label{DR_Bode_corrige}
+\end{figure}
+
+
+%
+%\doc{DR_Bode_corrige}{Réponse fréquentielle du système en boucle ouverte avec correcteur PI Généralisé $K_{coor}$=1000 et $T_d$ = 0.2 s}{
+%\centering\includegraphics[width=.9\linewidth]{Bode_corrige.jpg}
+%}
+
+
+\label{theend2}
+\fi
+
+
+
+
+
