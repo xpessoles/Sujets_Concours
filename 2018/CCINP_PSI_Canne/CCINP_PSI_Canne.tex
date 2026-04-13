@@ -254,29 +254,29 @@ L'actionnement de l'axe linéaire de la canne est assuré par un moteur brushles
   \multicolumn{1}{c|}{} & \multicolumn{1}{|c|}{\textbf{Moteur axe linéaire}} & \multicolumn{1}{|c|}{\textbf{Moteur roue}}  \\ 
   \multicolumn{1}{c|}{} & \multicolumn{1}{|c|}{brushless Maxon ECMax 30} & \multicolumn{1}{|c|}{brushless Maxon EC60} \\
   \hline
-  Puissance maximale & $P_{MAX} = 60$ W & $P_{MAX} = 100$ W \\ 
+  Puissance maximale & $\indice{P}{MAX} = 60$ W & $\indice{P}{MAX} = 100$ W \\ 
   
-  Vitesse nominale & $Nn = \num{6590}$ tr/min & $Nn = \num{3260}$ tr/min \\ 
+  Vitesse nominale & $N_n = \num{6590}$ tr/min & $N_n = \num{3260}$ tr/min \\ 
   
-  Couple nominal & $Cn = {0,0636}\ \si{N.m}$ & $Cn = \SI{0,279}{N.m}$ \\ 
+  Couple nominal & $C_n = {0,0636}\ \si{N.m}$ & $C_n = \SI{0,279}{N.m}$ \\ 
   
-  Tension nominale & $Un = 12$ V & $Un = 12$ V \\ 
+  Tension nominale & $U_n = 12$ V & $U_n = 12$ V \\ 
   
-  Courant nominal & $In = 4,72$ A & $In = 9,25$ A \\ 
+  Courant nominal & $I_n = 4,72$ A & $I_n = 9,25$ A \\ 
   
-  Courant maximal & \multirow{2}{*}{$I_{MAX}$ = 26,8 A} &   \multirow{2}{*}{$I_{MAX}$ = 93,5 A} \\ 
+  Courant maximal & \multirow{2}{*}{$\indice{I}{MAX}$ = 26,8 A} &   \multirow{2}{*}{$\indice{I}{MAX}$ = 93,5 A} \\ 
   
   \hspace*{1.5cm} au démarrage &  &  \\ 
   
-  Constante de couple & $Kc = 14,2.10^{-3}$ \si{N.m/A} & $Kc = 30,5.10^{-3}$ \si{N.m/A} \\
+  Constante de couple & $K_c = 14,2.10^{-3}$ \si{N.m/A} & $K_c = 30,5.10^{-3}$ \si{N.m/A} \\
   
-  Constante de vitesse & $Ke = 14,2.10^{-3}$ V/s & $Ke = 30,5.10^{-3}$ V/s \\ 
+  Constante de vitesse & $K_e = 14,2.10^{-3}$ V/s & $K_e = 30,5.10^{-3}$ V/s \\ 
 
   Résistance aux bornes & $R = 0,447$ $\Omega$ & $R = 0,128$ $\Omega$ \\
   
   Inductance aux bornes & $L = 49 . 10^{-3}$ mH &  $L = 62 . 10^{-3}$ mH \\
   
-  Moment d'inertie du rotor & $J_{rotor} = 21,9 . 10^{-7}$ \si{kg.m^2} & $J_{rotor} = 1,2 . 10^{-4}$ \si{kg.m^2} \\
+  Moment d'inertie du rotor & $J_{\text{rotor}} = 21,9 . 10^{-7}$ \si{kg.m^2} & $J_{\text{rotor}} = 1,2 . 10^{-4}$ \si{kg.m^2} \\
   \hline  
 \end{tabular} 
 \caption{{ Caractéristiques des moteurs brushless du prototype de canne}}
@@ -627,7 +627,7 @@ On propose le diagramme d'états suivant :}
 \else
 On s'intéresse désormais à l'élaboration de la variable notée $S$. Pour cela, on décrira l'activité \og Générer le signal $S$\fg{} par un algorigramme. Le cahier des charges lié à cette activité est :
 \begin{itemize}
-\item l'algorigramme est actif tant que $Marche = 1$;
+\item l'algorigramme est actif tant que $\text{Marche} = 1$;
 \item le signal $S$ est élaboré à partir de la vitesse angulaire issue du gyromètre;
 \item la valeur de {\it{Seuil}} est fixée à 1 $\%$ de la valeur absolue maximale de $\Omega = 100\,\dot{\theta}$;
 \item la variable $S$ doit conserver sa valeur antérieure dans la zone où $\Omega$ est comprise entre $\pm ${\it{Seuil}}.
@@ -676,7 +676,7 @@ Cette partie a pour objectif de déterminer les caractéristiques cinématiques 
 
 \noindent Afin de permettre à la canne de s'asservir sur l'orientation de la jambe à assister, il est nécessaire de déterminer la vitesse de rotation de la roue motorisée. Cependant, ce déplacement de la canne induit par la roue ne doit pas produire de déplacement non-désiré de la main du patient.
 
-On veut donc vérifier à chaque instant $\vect{V}(H,3/0)\cdot\vect{j}_0 = 0$ et $\vect{V}(H,3/0)\cdot\vect{i}_0 = V$, où $V$ est la vitesse de marche du patient. Le \ref{Annexe_schema_cine} rappelle les notations et le paramétrage retenus pour cette étude cinématique. La base $\mathcal{B}_0$ notée, $(\vect i_0, \vect j_0, \vect k_0)$ est associé au repère $\mathcal{R}_0$.
+On veut donc vérifier à chaque instant $\vect{V}(H,3/0)\cdot\vect{j_0} = 0$ et $\vect{V}(H,3/0)\cdot\vect{i}_0 = V$, où $V$ est la vitesse de marche du patient. Le \ref{Annexe_schema_cine} rappelle les notations et le paramétrage retenus pour cette étude cinématique. La base $\mathcal{B}_0$ notée, $(\vect{i_0}, \vect{j_0}, \vect {k_0})$ est associé au repère $\mathcal{R}_0$.
 
 On rappelle qu'au point $I$ le contact entre la roue 1 et le sol 0 est supposé sans glissement.
 
@@ -689,7 +689,7 @@ On note $\vect{\Omega}(1/2)= -\ \omega(t)\vect{k}_0$.
 \fbox{
 \begin{minipage}{0.95\textwidth}
 {\bf
-$\vect{V}(H,3/2) = \left[ \frac{d}{dt}\vect{AH} \right]_{\mathcal{B}_2}=\left[ \frac{d}{dt} \left(\ell(t).\vect{j}_2 \right) \right]_{\mathcal{B}_2}  = \dot{\ell}(t).\vect{j}_2$}
+$\vect{V}(H,3/2) = \left[ \dfrac{d}{dt}\vect{AH} \right]_{\mathcal{B}_2}=\left[ \dfrac{d}{dt} \left(\ell(t).\vect{j}_2 \right) \right]_{\mathcal{B}_2}  = \dot{\ell}(t).\vect{j}_2$}
 \end{minipage}
 }
 \fi
@@ -751,15 +751,15 @@ $\left\lbrace \begin{array}{l}
  \dot{\ell}.cos(\theta)-\ell.\dot{\theta}.sin(\theta)= 0
 \end{array} \right.$\\
 La première équation permet d'isoler $\omega$, tel que :\\
-$\omega = \frac{1}{R} \left( V + R.\dot{\theta} + \dot{\ell}.sin(\theta) + \ell.\dot{\theta}.cos(\theta) \right)$.\\
-La seconde équation, en remarquant que $\theta \neq \frac{\pi}{2}$ lors du cycle de marche, permet d'isoler $\dot{\ell}$ :\\
+$\omega = \dfrac{1}{R} \left( V + R.\dot{\theta} + \dot{\ell}.sin(\theta) + \ell.\dot{\theta}.cos(\theta) \right)$.\\
+La seconde équation, en remarquant que $\theta \neq \dfrac{\pi}{2}$ lors du cycle de marche, permet d'isoler $\dot{\ell}$ :\\
 $\dot{\ell} = \ell.\dot{\theta}.tan(\theta)$.\\
 Il vient : \\
-$\omega = \frac{V}{R} + \left( 1 + \ell.\frac{tan(\theta).sin(\theta)}{R} + \ell.\frac{cos(\theta)}{R}  \right).\dot{\theta} $\\
+$\omega = \dfrac{V}{R} + \left( 1 + \ell.\dfrac{tan(\theta).sin(\theta)}{R} + \ell.\dfrac{cos(\theta)}{R}  \right).\dot{\theta} $\\
 ou encore :\\
-$\omega = \frac{V}{R} + \left(1 + \ell.\frac{sin^2(\theta)}{R.cos(\theta)} + \ell.\frac{cos^2(\theta)}{R.cos(\theta)}  \right).\dot{\theta} $\\
+$\omega = \dfrac{V}{R} + \left(1 + \ell.\dfrac{sin^2(\theta)}{R.cos(\theta)} + \ell.\dfrac{cos^2(\theta)}{R.cos(\theta)}  \right).\dot{\theta} $\\
 et après simplification :\\
-$\omega = \frac{V}{R} + \left(1 + \frac{\ell}{R.cos(\theta)} \right).\dot{\theta} $
+$\omega = \dfrac{V}{R} + \left(1 + \dfrac{\ell}{R.cos(\theta)} \right).\dot{\theta} $
 }
 \end{minipage}
 }
@@ -785,23 +785,23 @@ D'après le \ref{tab:donne_moteurs}, la vitesse de rotation nominale du moteur e
 \else
 Le réducteur planétaire choisi est modulaire, composé de plusieurs étages tous identiques selon la demande. Le \ref{Annexe_reducteur} donne la modélisation cinématique de la transmission du moteur de roue à la roue. Sur ce document, un seul des étages du réducteur est représenté.
 
-Les performances souhaitées imposent donc un rapport de réduction $r = \frac{\omega_{R/2}}{\omega_{mR/2}}= \frac{1}{30} $ au niveau du réducteur placé entre la roue et le moteur de roue.
+Les performances souhaitées imposent donc un rapport de réduction $r = \dfrac{\omega_{R/2}}{\omega_{mR/2}}= \dfrac{1}{30} $ au niveau du réducteur placé entre la roue et le moteur de roue.
 \fi
 
-\question{Calculer le rapport de réduction $R_1 = \frac{\omega_{PS/2}}{\omega_{P1/2}}$ du premier étage du réducteur. En déduire le nombre d'étages nécessaire pour obtenir le rapport de réduction $r$ souhaitée.}
+\question{Calculer le rapport de réduction $R_1 = \dfrac{\omega_{PS/2}}{\omega_{P1/2}}$ du premier étage du réducteur. En déduire le nombre d'étages nécessaire pour obtenir le rapport de réduction $r$ souhaitée.}
 
 \ifprof
 \fbox{
 \begin{minipage}{0.95\textwidth}
 {\bf
 On applique la méthode de Willis au train épicycloïdal. Le roulement sans glissement au niveau des engrènements donne : \\
-$\frac{\omega_{P2/PS}}{\omega_{P1/PS}}=- \frac{Z_{P1}}{Z_{S}} \times \frac{Z_{S}}{Z_{P2}} = - \frac{Z_{P1}}{Z_{P2}}$,\\
-la relation de Willis s'écrit donc : $\frac{\omega_{P2/2}-\omega_{PS/2}}{\omega_{P1/2}-\omega_{PS/2}}= - \frac{Z_{P1}}{Z_{P2}}$\\
+$\dfrac{\omega_{P2/PS}}{\omega_{P1/PS}}=- \dfrac{Z_{P1}}{Z_{S}} \times \dfrac{Z_{S}}{Z_{P2}} = - \dfrac{Z_{P1}}{Z_{P2}}$,\\
+la relation de Willis s'écrit donc : $\dfrac{\omega_{P2/2}-\omega_{PS/2}}{\omega_{P1/2}-\omega_{PS/2}}= - \dfrac{Z_{P1}}{Z_{P2}}$\\
 or ici $\omega_{P2/2} = 0$, il vient :\\
-$\frac{\omega_{PS/2}}{\omega_{P1/2}-\omega_{PS/2}}= \frac{Z_{P1}}{Z_{P2}}$ \\
+$\dfrac{\omega_{PS/2}}{\omega_{P1/2}-\omega_{PS/2}}= \dfrac{Z_{P1}}{Z_{P2}}$ \\
 $\Leftrightarrow \left( Z_{P1}+ Z_{P2} \right).\omega_{PS/2}= Z_{P1}.\omega_{P1/2}$\\
-$\Leftrightarrow R_1 = \frac{\omega_{PS/2}}{\omega_{P1/2}} = \frac{Z_{P1}}{Z_{P1}+ Z_{P2}}$\\
-L'application numérique donne : $ R_1 = \frac{18}{18+ 82} = 0,18$.\\
+$\Leftrightarrow R_1 = \dfrac{\omega_{PS/2}}{\omega_{P1/2}} = \dfrac{Z_{P1}}{Z_{P1}+ Z_{P2}}$\\
+L'application numérique donne : $ R_1 = \dfrac{18}{18+ 82} = 0,18$.\\
 Pour obtenir le rapport de $r$ = 1/30 du réducteur, il est donc nécessaire d'utiliser 2 étages de réduction car $R_1 \times R_1 = 0,0324 \simeq 1/30$.
 }
 \end{minipage}
@@ -931,8 +931,8 @@ La fermeture géométrique $\vect{IA} + \vect{AH} = \vect{IH}$ s'écrit avec la 
 $R.\vect{j}_0 + \ell.\vect{j}_2 = \lambda(t).\vect{v}$. En projetant cette équation dans la base $\mathcal{R}_0$, on obtient :\\
 $/\vect{i}_0 : 0 - \ell.sin(\theta) = - \lambda.sin(\beta)$ (eq1)\\
 $/\vect{j}_0 : R + \ell.cos(\theta) = \lambda.cos(\beta)$ (eq2)\\
-On obtient la relation demandée en éliminant le paramètre $\lambda$. Pour cela on considère $\frac{(eq1)}{(eq2)}$ en s'assurant que $\beta \neq \pi/2$, il vient :\\
-$tan(\beta) = \frac{\ell.sin(\theta)}{R + \ell.cos(\theta)}$
+On obtient la relation demandée en éliminant le paramètre $\lambda$. Pour cela on considère $\dfrac{(eq1)}{(eq2)}$ en s'assurant que $\beta \neq \pi/2$, il vient :\\
+$tan(\beta) = \dfrac{\ell.sin(\theta)}{R + \ell.cos(\theta)}$
 }
 \end{minipage}
 }
@@ -943,7 +943,7 @@ $tan(\beta) = \frac{\ell.sin(\theta)}{R + \ell.cos(\theta)}$
 %La relation précédente et l'équation obtenue en \textbf{Q\ref{question_hauteur}} permettent d'obtenir l'expression suivante : 
 La relation précédente et l'équation obtenue en \textbf{Q8} permettent d'obtenir l'expression suivante : 
 \begin{center}
-$\tan(\beta(t)) = \frac{(h-R)}{h}.\tan(\theta(t))$.
+$\tan(\beta(t)) = \dfrac{(h-R)}{h}.\tan(\theta(t))$.
 \end{center}
 \fi
 
@@ -953,7 +953,7 @@ $\tan(\beta(t)) = \frac{(h-R)}{h}.\tan(\theta(t))$.
 \fbox{
 \begin{minipage}{0.95\textwidth}
 {\bf
-On relève sur la \ref{fig:evol_angle_jambe} un angle maximal de la hanche de l'ordre de 15\degre~ lors du cycle de marche. Donc  $\theta \le$ 15\degre, ce qui implique : $\tan\beta \le \frac{(h-R)}{h}.\tan(\theta)$, l'application numérique donne avec  R=0,05 et h $\in[$0,85;1$]$: \\
+On relève sur la \ref{fig:evol_angle_jambe} un angle maximal de la hanche de l'ordre de 15\degre~ lors du cycle de marche. Donc  $\theta \le$ 15\degre, ce qui implique : $\tan\beta \le \dfrac{(h-R)}{h}.\tan(\theta)$, l'application numérique donne avec  R=0,05 et h $\in[$0,85;1$]$: \\
 $\beta \le $ 14,28\degre pour h = 1 m,\\
 $\beta \le $ 14,15\degre pour h = 0,85 m.\\
 Il faut donc avoir un angle de frottement $\varphi >$ 14,3\degre, donc un coefficient de frottement f $=tan(\varphi)$ > 0.255.
@@ -972,7 +972,7 @@ Le cahier des charges stipule un coefficient de frottement minimal de 0,4 (exige
 
 On note $C_R$ le couple de maintien au niveau de la roue en sortie de la chaîne d'énergie de la roue. 
 
-On donne donc $\left\lbrace T_{red \rightarrow 1} \right\rbrace=
+On donne donc $\left\lbrace T_{\text{red} \rightarrow 1} \right\rbrace=
 \left\lbrace \begin{array}{c}
 \vect{0} \\
 -\ C_R.\vect{k}_0
@@ -1024,7 +1024,7 @@ Quel que soit le résultat trouvé précédemment, on donne $C_R = \SI{5}{N.m}$.
 \fbox{
 \begin{minipage}{0.95\textwidth}
 {\bf
-Le couple à fournir par le moteur est donc $C_{mR}=\frac{C_R}{30.\eta_{trans}}$, soit $C_{mR} = \frac{5}{30.0,9} \simeq $ 0,185 N.m.\\
+Le couple à fournir par le moteur est donc $C_{mR}=\dfrac{C_R}{30.\eta_{trans}}$, soit $C_{mR} = \dfrac{5}{30.0,9} \simeq $ 0,185 N.m.\\
 Le couple nominal du moteur est donné dans \ref{tab:donne_moteurs} : $Cn =$ 0,279 N.m. \\
 Le moteur est donc capable de fournir le couple nécessaire.
 }
@@ -1095,21 +1095,21 @@ Les données et hypothèses de cette étude sont :
 On isole l'ensemble $\mathcal{S} =\{3+4\}$.
 \fi
 
-\question{Écrire l'énergie cinétique de l'ensemble $\mathcal{S}$. Mettre cette énergie sous la forme  $\frac{1}{2}J_{eq}\omega_m^2(t)$. En déduire l'expression et la valeur numérique de l'inertie équivalente $J_{eq}$ (certaines valeurs sont dans le diagramme de blocs internes IBD \ref{Annexe_diag_BDI}).}
+\question{Écrire l'énergie cinétique de l'ensemble $\mathcal{S}$. Mettre cette énergie sous la forme  $\dfrac{1}{2}J_{eq}\omega_m^2(t)$. En déduire l'expression et la valeur numérique de l'inertie équivalente $J_{eq}$ (certaines valeurs sont dans le diagramme de blocs internes IBD \ref{Annexe_diag_BDI}).}
 
 \ifprof
 \fbox{
 \begin{minipage}{0.95\textwidth}
 {\bf
 Dans le référentiel lié à la canne et supposé galiléen, le solide 3 a un mouvement de translation de direction $y_2$, donc :\\
-$Ec_3 = \frac{1}{2}.M_3.V_m^2$,\\
+$Ec_3 = \dfrac{1}{2}.M_3.V_m^2$,\\
 le solide 4, constitué de la vis et du rotor du moteur, a un mouvement de rotation d'axe $(O_2,y_2)$, donc :\\
-$Ec_4 = \frac{1}{2}.\left( J_{rotor} + J_{vis} \right).\omega_m^2$.\\
+$Ec_4 = \dfrac{1}{2}.\left( J_{rotor} + J_{vis} \right).\omega_m^2$.\\
 L'énergie cinétique de l'ensemble $\mathcal{S}$ s'écrit :\\
-$Ec_\mathcal{S} = \frac{1}{2}. \left( M_3.V_m^2 + \left( J_{rotor} + J_{vis} \right).\omega_m^2 \right) $ et avec $V_m = \frac{pas}{2\pi}.\omega_m$, on peut mettre $Ec_\mathcal{S}$ sous la forme :\\
-$Ec_\mathcal{S} = \frac{1}{2}. \left(  M_3.\left( \frac{pas}{2\pi} \right)^2 + J_{rotor} + J_{vis} \right).\omega_m^2 $. \\
-On identifie alors $J_{eq} =  M_3.\left( \frac{pas}{2\pi} \right)^2 + J_{rotor} + J_{vis}$.\\
-L'application numérique donne : $J_{eq} =  1.\left( \frac{3.10^{-3}}{2\pi} \right)^2 + 21,9.10^{-7} + 1,53.10^{-6} \simeq 3,95.10^{-6}$ kg.m$^2$.
+$Ec_\mathcal{S} = \dfrac{1}{2}. \left( M_3.V_m^2 + \left( J_{rotor} + J_{vis} \right).\omega_m^2 \right) $ et avec $V_m = \dfrac{pas}{2\pi}.\omega_m$, on peut mettre $Ec_\mathcal{S}$ sous la forme :\\
+$Ec_\mathcal{S} = \dfrac{1}{2}. \left(  M_3.\left( \dfrac{pas}{2\pi} \right)^2 + J_{rotor} + J_{vis} \right).\omega_m^2 $. \\
+On identifie alors $J_{eq} =  M_3.\left( \dfrac{pas}{2\pi} \right)^2 + J_{rotor} + J_{vis}$.\\
+L'application numérique donne : $J_{eq} =  1.\left( \dfrac{3.10^{-3}}{2\pi} \right)^2 + 21,9.10^{-7} + 1,53.10^{-6} \simeq 3,95.10^{-6}$ kg.m$^2$.
 }
 \end{minipage}
 }
@@ -1137,11 +1137,11 @@ La puissance intérieure due à l'ensemble des effets des frottements visqueux s
 \begin{minipage}{0.95\textwidth}
 {\bf
 Dans le référentiel lié à la canne et supposé galiléen, le théorème de l'énergie-puissance appliqué à l'ensemble $\mathcal{S}$ s'écrit : \\
-$ \frac{d}{dt}Ec_\mathcal{S} = P_{mot} + P_{patient} + P_{int} $.\\
-Donc $\frac{d}{dt} \left( \frac{1}{2}.J_{eq}.\omega_m^2 \right) = C_m . \omega_m - F_p . V_m - f.\omega_m^2 $,\\
-$ \Leftrightarrow J_{eq}.\cancel{\omega_m}.\dot{\omega}_m = C_m . \cancel{\omega_m} - F_p . \frac{pas}{2\pi}.\cancel{\omega_m} - f.\omega_m^{\cancel{2}} $. \\
+$ \dfrac{d}{dt}Ec_\mathcal{S} = P_{mot} + P_{patient} + P_{int} $.\\
+Donc $\dfrac{d}{dt} \left( \dfrac{1}{2}.J_{eq}.\omega_m^2 \right) = C_m . \omega_m - F_p . V_m - f.\omega_m^2 $,\\
+$ \Leftrightarrow J_{eq}.\cancel{\omega_m}.\dot{\omega}_m = C_m . \cancel{\omega_m} - F_p . \dfrac{pas}{2\pi}.\cancel{\omega_m} - f.\omega_m^{\cancel{2}} $. \\
 L'équation du mouvement s'écrit donc : \\
-$J_{eq}.\dot{\omega}_m + f.\omega_m = C_m - F_p . \frac{pas}{2\pi} $.
+$J_{eq}.\dot{\omega}_m + f.\omega_m = C_m - F_p . \dfrac{pas}{2\pi} $.
 }
 \end{minipage}
 }
@@ -1154,7 +1154,7 @@ $J_{eq}.\dot{\omega}_m + f.\omega_m = C_m - F_p . \frac{pas}{2\pi} $.
 \begin{minipage}{0.95\textwidth}
 {\bf
 En considérant nulle les conditions initiales, la transformée de Laplace de l'équation de mouvement est :\\
-$\left( J_{eq}.p + f \right).\Omega_m(p) = C_m(p) - \frac{pas}{2\pi}. F_p(p)$.\\
+$\left( J_{eq}.p + f \right).\Omega_m(p) = C_m(p) - \dfrac{pas}{2\pi}. F_p(p)$.\\
 On peut alors compléter les blocs du document réponse DR3.
 }
 
@@ -1209,23 +1209,23 @@ On considère pour la suite que le moteur brushless adopte le même comportement
 %\enlargethispage{2em}
 
 {\centering
-$u_m(t)=e(t)+R.i_m(t)+L.\frac{d i_m(t)}{d t}$,\hspace{0.5cm}  $e(t) = K_e.\omega_m(t)$ \hspace{0.5cm} et \hspace{0.5cm}  $C_m(t) = K_c.i_m(t)$.  
+$u_m(t)=e(t)+R i_m(t)+L.\dfrac{\d i_m(t)}{\d t}$,\hspace{0.5cm}  $e(t) = K_e.\omega_m(t)$ \hspace{0.5cm} et \hspace{0.5cm}  $C_m(t) = K_c.i_m(t)$.  
 \par}
 
 On notera $U_m(p)$ respectivement $I_m(p)$, $C_m(p)$ et $E(p)$ les transformées de Laplace des variables $u_m(t)$ la tension moteur, respectivement $i_m(t)$, le courant moteur, $C_m(t)$, le couple moteur et $e(t)$, la force contre-électromotrice.
 
-Le dispositif vis/écrou permettant la transformation de l'angle de rotation de la vis (en radians) en déplacement de l'écrou (en mètre) est modélisé par le bloc de gain pur $K_{ve}$.
-Le comportement du codeur incrémental est modélisé par un gain pur $K_{codeur}$. On précise que la sortie de ce bloc est de type numérique (en incréments) et l'entrée est une position angulaire (en radians).
+Le dispositif vis/écrou permettant la transformation de l'angle de rotation de la vis (en radians) en déplacement de l'écrou (en mètre) est modélisé par le bloc de gain pur $\indice{K}{ve}$.
+Le comportement du codeur incrémental est modélisé par un gain pur $\indice{K}{codeur}$. On précise que la sortie de ce bloc est de type numérique (en incréments) et l'entrée est une position angulaire (en radians).
 \fi
 
-\question{Déterminer, à partir des données du diagramme de blocs internes, les expressions puis les valeurs numériques de $K_{ve}$ et $K_{codeur}$.}
+\question{Déterminer, à partir des données du diagramme de blocs internes, les expressions puis les valeurs numériques de $\indice{K}{ve}$ et $\indice{K}{codeur}$.}
 
 \ifprof
 \fbox{
 \begin{minipage}{0.95\textwidth}
 {\bf
-D'après les données, $K_{ve} = \frac{pas}{2\pi} = \frac{3.10^{-3}}{2\pi} \simeq $ 4,77.10$^{-4}$ m/rad.\\
-Le codeur a une résolution de 500 impulsions par tour, donc $K_{codeur} = \frac{500}{2\pi} \simeq $ 79,6 imp/rad.
+D'après les données, $\indice{K}{ve} = \dfrac{pas}{2\pi} = \dfrac{3.10^{-3}}{2\pi} \simeq $ 4,77.10$^{-4}$ m/rad.\\
+Le codeur a une résolution de 500 impulsions par tour, donc $\indice{K}{codeur} = \dfrac{500}{2\pi} \simeq $ 79,6 imp/rad.
 }
 \end{minipage}
 }
@@ -1235,14 +1235,14 @@ Le codeur a une résolution de 500 impulsions par tour, donc $K_{codeur} = \frac
 \ifprof
 \else
 \vspace*{1em}
-On place en amont du comparateur un bloc de gain pur $K_{adapt}$ de manière à convertir la consigne $X_c(p)$ en une grandeur en incréments directement comparable à la sortie $\theta_{mes}(p)$ du capteur. La valeur du gain pur $K_{adapt}$ est prise de manière à ce que l'écart $\varepsilon(p)$ soit nul lorsque $X_c(p) =  X(p)$.
+On place en amont du comparateur un bloc de gain pur $\indice{K}{adapt}$ de manière à convertir la consigne $X_c(p)$ en une grandeur en incréments directement comparable à la sortie $\theta_{mes}(p)$ du capteur. La valeur du gain pur $\indice{K}{adapt}$ est prise de manière à ce que l'écart $\varepsilon(p)$ soit nul lorsque $X_c(p) =  X(p)$.
 
-%En sortie du codeur incrémental on place un bloc de gain pur $K_{adapt}$ de manière à convertir la sortie en incréments du capteur en une grandeur $X_{mes}(p)$ correspondant à l'image mesurée du déplacement $X(p)$ de l'écrou. Cette grandeur $X_{mes}(p)$ en mètre est ainsi directement comparable à la consigne $X_c(p)$. L'erreur $\epsilon(p)$ sera donc nulle lorsque $X_c(p) = X_{mes}(p)$.
+%En sortie du codeur incrémental on place un bloc de gain pur $\indice{K}{adapt}$ de manière à convertir la sortie en incréments du capteur en une grandeur $X_{mes}(p)$ correspondant à l'image mesurée du déplacement $X(p)$ de l'écrou. Cette grandeur $X_{mes}(p)$ en mètre est ainsi directement comparable à la consigne $X_c(p)$. L'erreur $\epsilon(p)$ sera donc nulle lorsque $X_c(p) = X_{mes}(p)$.
 
 %\newpage
 \fi
 
-\question{Donner l'expression, puis la valeur numérique du gain pur $K_{adapt}$ permettant de satisfaire cette condition.}
+\question{Donner l'expression, puis la valeur numérique du gain pur $\indice{K}{adapt}$ permettant de satisfaire cette condition.}
 
 \ifprof
 
@@ -1250,8 +1250,8 @@ On place en amont du comparateur un bloc de gain pur $K_{adapt}$ de manière à 
 \fbox{
 \begin{minipage}{0.95\textwidth}
 {\bf
-D'après le schéma-bloc, $\varepsilon(p) = K_{adapt}. X_c(p) - K_{codeur}.\frac{X(p)}{K_{ve}} $. Ainsi pour vérifier  $\varepsilon(p) = 0$ lorsque $X_c(p) =  X(p)$, il faut prendre :\\
-$K_{adapt} = \frac{K_{codeur}}{K_{ve}} $. L'application numérique donne $K_{adapt} = \frac{79,6}{4,77.10^{-4}} \simeq $ 166 700 imp/m.
+D'après le schéma-bloc, $\varepsilon(p) = \indice{K}{adapt}. X_c(p) - \indice{K}{codeur}.\dfrac{X(p)}{\indice{K}{ve}} $. Ainsi pour vérifier  $\varepsilon(p) = 0$ lorsque $X_c(p) =  X(p)$, il faut prendre :\\
+$\indice{K}{adapt} = \dfrac{\indice{K}{codeur}}{\indice{K}{ve}} $. L'application numérique donne $\indice{K}{adapt} = \dfrac{79,6}{4,77.10^{-4}} \simeq $ 166 700 imp/m.
 }
 \end{minipage}
 }\\
@@ -1265,7 +1265,7 @@ $K_{adapt} = \frac{K_{codeur}}{K_{ve}} $. L'application numérique donne $K_{ada
 
 Afin de proposer une modélisation simplifiée de la chaîne d'énergie de l'axe linéaire, une simulation du modèle précédent en boucle ouverte, non perturbé, a été réalisée. Le \ref{bode_BO_sans_corr}  présente la réponse fréquentielle du système en boucle ouverte à l'aide du diagramme de Bode (courbe de gain $G_{BO}(\omega)$ et courbe de phase $\varphi_{BO}(\omega)$). 
 
-%Pour cette simulation : $C(p) = 1$, $G_{BO}(\omega) = 20 \log(H_{BO}(\omega)) = 20 \log (X_{mes}(\omega) / X_c(\omega))$ et $\phi_{BO} = arg(H_{BO}(\omega)) = arg(X_{mes}(\omega) / X_c(\omega))$.
+%Pour cette simulation : $C(p) = 1$, $G_{BO}(\omega) = 20 \log(\indice{H}{BO}(\omega)) = 20 \log (X_{mes}(\omega) / X_c(\omega))$ et $\phi_{BO} = arg(\indice{H}{BO}(\omega)) = arg(X_{mes}(\omega) / X_c(\omega))$.
 
 %\begin{figure}[h]
 %\centering
@@ -1277,18 +1277,18 @@ Afin de proposer une modélisation simplifiée de la chaîne d'énergie de l'axe
 %\end{figure}
 \fi
 
-\question{À partir\label{Q_Bode} du diagramme de Bode, proposer un modèle de comportement du système en boucle ouverte. Soit $H_{BO\_1}(p)$ cette fonction de transfert, donner sa forme canonique factorisée. Soient $T_1$ et $T_2$, telles que $T_1 < T_2$, les constantes de temps introduites et $K_{BO}$ le gain de $H_{BO\_1}(p)$, préciser les valeurs numériques et unités de $T_1$, $T_2$ et $K_{BO}$. Vous laisserez apparaître les traits de construction nécessaires à l'identification du modèle sur le \ref{bode_BO_sans_corr}.}
+\question{À partir\label{Q_Bode} du diagramme de Bode, proposer un modèle de comportement du système en boucle ouverte. Soit $H_{BO\_1}(p)$ cette fonction de transfert, donner sa forme canonique factorisée. Soient $T_1$ et $T_2$, telles que $T_1 < T_2$, les constantes de temps introduites et $\indice{K}{BO}$ le gain de $H_{BO\_1}(p)$, préciser les valeurs numériques et unités de $T_1$, $T_2$ et $\indice{K}{BO}$. Vous laisserez apparaître les traits de construction nécessaires à l'identification du modèle sur le \ref{bode_BO_sans_corr}.}
 
 \ifprof
 \fbox{
 \begin{minipage}{0.95\textwidth}
 {\bf
 L'allure des courbes de gain et de phase de la réponse fréquentielle du système en boucle ouverte montre clairement que le comportement est équivalent à celui d'un système du second ordre (avec coefficient d'amortissement $z>1$, car les courbes présentent deux cassures nettes en $\omega_{c1}=1/T_1$ et $\omega_{c2}=1/T_2$) associé à un intégrateur pur (pente de -20 dB/dec quand $\omega \rightarrow 0$ pour la courbe de gain et asymptote à -90\degre quand $\omega \rightarrow 0$ pour la courbe de phase). La forme canonique factorisée peut donc se mettre sous la forme : \\
-$H_{BO\_1}(p) = K_{BO} . \frac{1}{p}. \frac{1}{1+T_1.p} . \frac{1}{1+T_2.p} $\\
+$H_{BO\_1}(p) = \indice{K}{BO} . \dfrac{1}{p}. \dfrac{1}{1+T_1.p} . \dfrac{1}{1+T_2.p} $\\
 On relève sur les courbes :\\
 $\omega_{c1} \simeq 10^4$ rad/s, donc $T_1 = 10^{-4}$ s = 0,1 ms,\\
 $\omega_{c2} \simeq 10^2$ rad/s, donc $T_2 = 10^{-2}$ s = 10 ms,\\
-et en remarquant que pour $\omega = 10^0=1$ rad/s, $G_{BO}=20.log(K_{BO})= -30 dB$, on obtient $ K_{BO} = 10^{-30/20} \simeq $ 0,032 s$^{-1}$.
+et en remarquant que pour $\omega = 10^0=1$ rad/s, $G_{BO}=20.log(\indice{K}{BO})= -30 dB$, on obtient $ \indice{K}{BO} = 10^{-30/20} \simeq $ 0,032 s$^{-1}$.
  }
 \end{minipage}
 }
@@ -1306,7 +1306,7 @@ Lors d'une marche saine à allure rapide la cadence moyenne est de 113 pas par m
 \fbox{
 \begin{minipage}{0.95\textwidth}
 {\bf
-Une cadence de 113 pas par minute correspond à une fréquence de marche de l'ordre de $\frac{113}{60} \simeq $ 1,88 Hz.
+Une cadence de 113 pas par minute correspond à une fréquence de marche de l'ordre de $\dfrac{113}{60} \simeq $ 1,88 Hz.
  }
 \end{minipage}
 }
@@ -1315,7 +1315,7 @@ Une cadence de 113 pas par minute correspond à une fréquence de marche de l'or
 \ifprof
 \else
 \vspace*{1em}
-Pour la suite, on considérera que la fréquence maximale de déplacement de l'axe linéaire de  la canne (liée au mouvement de la marche) est fixée à $F_{MAX} = 4$ Hz. On propose alors en première approximation une modélisation du comportement du système en boucle ouverte par une fonction de transfert $H_{BO}(p)$ de la forme $H_{BO}(p) = K_{BO}/p$ avec $K_{BO} = 1/30$.
+Pour la suite, on considérera que la fréquence maximale de déplacement de l'axe linéaire de  la canne (liée au mouvement de la marche) est fixée à $F_{MAX} = 4$ Hz. On propose alors en première approximation une modélisation du comportement du système en boucle ouverte par une fonction de transfert $\indice{H}{BO}(p)$ de la forme $\indice{H}{BO}(p) = \indice{K}{BO}/p$ avec $\indice{K}{BO} = 1/30$.
 \fi
 
 \question{Justifier, à l'aide de la réponse fréquentielle du système en boucle ouverte, la validité de cette modélisation approchée.}
@@ -1326,7 +1326,7 @@ Pour la suite, on considérera que la fréquence maximale de déplacement de l'a
 {\bf
 $F_{MAX} = 4$ Hz correspond à une sollicitation de pulsation $\omega_{MAX} = 4 \times 2 \pi \simeq $ 25 rad/s. \\
 On constate que $\omega_{MAX}  <  \omega_{c2} = 100$ rad/s $<< \omega_{c1} = 10^{4}$ rad/s. \\
-Pour $\omega < \omega_{MAX}$, le système se comporte donc comme un intégrateur pur de gain égal à $K_{BO}$. L'approximation de $H_{BO}(p)$ par $K_{BO}/p$ avec $K_{BO} = 1/30 \simeq 0,032$ est donc acceptable.
+Pour $\omega < \omega_{MAX}$, le système se comporte donc comme un intégrateur pur de gain égal à $\indice{K}{BO}$. L'approximation de $\indice{H}{BO}(p)$ par $\indice{K}{BO}/p$ avec $\indice{K}{BO} = 1/30 \simeq 0,032$ est donc acceptable.
  }
 \end{minipage}
 }
@@ -1337,7 +1337,7 @@ Pour $\omega < \omega_{MAX}$, le système se comporte donc comme un intégrateur
 %\vspace*{-1em}
 \paragraph{Correction proportionnelle}
 
-Pour la suite, on modélise le comportement du système en boucle ouverte par $H_{BO}(p) = K_{BO}/p$ avec $K_{BO} = 1/30$. On considère un correcteur à action proportionnelle tel que $C(p) = K_{corr} = 1$. \\
+Pour la suite, on modélise le comportement du système en boucle ouverte par $\indice{H}{BO}(p) = \indice{K}{BO}/p$ avec $\indice{K}{BO} = 1/30$. On considère un correcteur à action proportionnelle tel que $C(p) = \indice{K}{corr} = 1$. \\
 Le schéma-bloc du système non perturbé correspond alors à celui de la \ref{fig:schema_bloc_simplifie}, page suivante.
 
 \begin{figure}[!ht]
@@ -1346,8 +1346,8 @@ Le schéma-bloc du système non perturbé correspond alors à celui de la \ref{f
 \begin{tikzpicture}
 \sbEntree{E1}
 \sbComp{C1}{E1}
-\sbBloc[2]{A}{$K_{corr}$}{C1}
-\sbBloc[2]{B}{$\dfrac{K_{BO}}{p}$}{A}
+\sbBloc[2]{A}{$\indice{K}{corr}$}{C1}
+\sbBloc[2]{B}{$\dfrac{\indice{K}{BO}}{p}$}{A}
 \sbSortie[3]{S}{B}
 
 \sbRelier[$X_c(p)$]{E1}{C1}
@@ -1358,27 +1358,27 @@ Le schéma-bloc du système non perturbé correspond alors à celui de la \ref{f
 \sbRenvoi[3]{B-S}{C1}{}{}{}
 
 \end{tikzpicture}%}
-\caption{{ Schéma-bloc  simplifié du système non perturbé avec $C(p) = K_{corr}$}
+\caption{{ Schéma-bloc  simplifié du système non perturbé avec $C(p) = \indice{K}{corr}$}
 \label{fig:schema_bloc_simplifie}}
 \end{figure}
 
 \fi
 
-\question{Déterminer l'expression de $H_{BF}(p)= X(p)/X_c(p)$, la fonction de transfert en boucle fermée de la modélisation de la \ref{fig:schema_bloc_simplifie}. Déterminer les paramètres caractéristiques de $H_{BF}(p)$ et en déduire les performances de cette  modélisation pour $C(p) = K_{corr} = 1$. Conclure vis-à vis des exigences d'asservissement de l'axe linéaire.}
+\question{Déterminer l'expression de $\indice{H}{BF}(p)= X(p)/X_c(p)$, la fonction de transfert en boucle fermée de la modélisation de la \ref{fig:schema_bloc_simplifie}. Déterminer les paramètres caractéristiques de $\indice{H}{BF}(p)$ et en déduire les performances de cette  modélisation pour $C(p) = \indice{K}{corr} = 1$. Conclure vis-à vis des exigences d'asservissement de l'axe linéaire.}
 
 \ifprof
 \fbox{
 \begin{minipage}{0.95\textwidth}
 {\bf
-En appliquant la formule de Black, il vient $H_{BF}(p)= \frac{K_{corr}.K_{BO}/p}{1+K_{corr}.K_{BO}/p}$, avec $K_{corr} = 1$, on obtient :\\
-$H_{BF}(p)= \frac{K_{BO}}{p+K_{BO}}$, soit sous forme canonique : $H_{BF}(p)= \frac{1}{1+\frac{1}{K_{BO}}.p}$.\\
-La fonction de transfert est donc celle d'un système du 1er ordre, de gain unitaire $K_{BF}=1$ et de constante de temps $1/K_{BO} =$ 30 s.\\
+En appliquant la formule de Black, il vient $\indice{H}{BF}(p)= \dfrac{\indice{K}{corr}.\indice{K}{BO}/p}{1+\indice{K}{corr}.\indice{K}{BO}/p}$, avec $\indice{K}{corr} = 1$, on obtient :\\
+$\indice{H}{BF}(p)= \dfrac{\indice{K}{BO}}{p+\indice{K}{BO}}$, soit sous forme canonique : $\indice{H}{BF}(p)= \dfrac{1}{1+\dfrac{1}{\indice{K}{BO}}.p}$.\\
+La fonction de transfert est donc celle d'un système du 1er ordre, de gain unitaire $K_{BF}=1$ et de constante de temps $1/\indice{K}{BO} =$ 30 s.\\
 Les performances de ce système sont donc :\\
 - système stable car système du 1er ordre $ \Rightarrow $ cdcf vérifié,\\
 - système précis car de gain unitaire $ \Rightarrow $ cdcf vérifié,\\
 - système ne présente pas de dépassement car système du 1er ordre $ \Rightarrow $ cdcf vérifié,\\
 - tr$5\% = 3 \times 30 = 90$ s $ \Rightarrow $ cdcf non vérifié car le temps de réponse attendu est de 60 ms.\\
-Le système avec $K_{corr} = 1$ est donc trop lent.
+Le système avec $\indice{K}{corr} = 1$ est donc trop lent.
  }
 \end{minipage}
 }
@@ -1387,18 +1387,18 @@ Le système avec $K_{corr} = 1$ est donc trop lent.
 \ifprof
 \else
 \vspace*{1em}
-On se propose de modifier la valeur de $K_{corr}$ de manière à vérifier l'exigence de rapidité de l'asservissement.
+On se propose de modifier la valeur de $\indice{K}{corr}$ de manière à vérifier l'exigence de rapidité de l'asservissement.
 \fi
 
-\question{Déterminer la valeur numérique à donner à $K_{corr}$ pour assurer le temps de réponse à 5\ \% lié à l'exigence de rapidité de l'asservissement de l'axe linéaire.}
+\question{Déterminer la valeur numérique à donner à $\indice{K}{corr}$ pour assurer le temps de réponse à 5\ \% lié à l'exigence de rapidité de l'asservissement de l'axe linéaire.}
 
 \ifprof
 \fbox{
 \begin{minipage}{0.95\textwidth}
 {\bf
-Il faut alors augmenter $K_{corr}$, tel que tr$5\% = 3 \times \frac{1}{K_{corr}.K_{BO}} \le 60$ ms. Donc \\
-$K_{corr} \ge \frac{3}{60.10^{-3}.K_{BO}}$.
-L'application numérique donne $K_{corr} \ge  1500$.
+Il faut alors augmenter $\indice{K}{corr}$, tel que tr$5\% = 3 \times \dfrac{1}{\indice{K}{corr}.\indice{K}{BO}} \le 60$ ms. Donc \\
+$\indice{K}{corr} \ge \dfrac{3}{60.10^{-3}.\indice{K}{BO}}$.
+L'application numérique donne $\indice{K}{corr} \ge  1500$.
  }
 \end{minipage}
 }
@@ -1407,7 +1407,7 @@ L'application numérique donne $K_{corr} \ge  1500$.
 \ifprof
 \else
 \vspace*{1em}
-La \ref{fig:reponse_Kcorr_1500}  donne l'évolution de la réponse temporelle $x(t)$ du système réel non perturbé à un échelon en déplacement de valeur finale $X_c = 10$ mm, pour une correction proportionnelle $K_{corr}$ = \num{1500}.
+La \ref{fig:reponse_Kcorr_1500}  donne l'évolution de la réponse temporelle $x(t)$ du système réel non perturbé à un échelon en déplacement de valeur finale $X_c = 10$ mm, pour une correction proportionnelle $\indice{K}{corr}$ = \num{1500}.
 
 
 
@@ -1442,7 +1442,7 @@ La \ref{fig:reponse_Kcorr_1500}  donne l'évolution de la réponse temporelle $x
 %
 %
 %%\begin{minipage}[c]{.8\linewidth}
-%   \captionof{figure}{{ Évolution de la réponse temporelle $x(t)$ du système réel non perturbé à un échelon de valeur $X_c = 10$ mm, pour $K_{corr}$ = \num{1500}}\label{fig:reponse_Kcorr_1500}}
+%   \captionof{figure}{{ Évolution de la réponse temporelle $x(t)$ du système réel non perturbé à un échelon de valeur $X_c = 10$ mm, pour $\indice{K}{corr}$ = \num{1500}}\label{fig:reponse_Kcorr_1500}}
 %%\end{minipage}
 %\end{figure}
 %\fi
@@ -1454,7 +1454,7 @@ La \ref{fig:reponse_Kcorr_1500}  donne l'évolution de la réponse temporelle $x
 \fbox{
 \begin{minipage}{0.95\textwidth}
 {\bf
-L'allure de la réponse ne correspond pas à celle d'un système du 1er ordre car un dépassement est observé. Avec $K_{corr} = 1500$, le système en boucle ouverte ne peut plus être modélisé par un intégrateur pur de gain $K_{BO}$, en effet cette valeur élevée de $K_{corr}$ fait monter la courbe de gain, le système a une bande passante plus élevée et l'action du terme $\frac{1}{1+T_2.p}$ ne peut plus être négligée. Le comportement du système doit donc être modélisé par celui d'un système du second ordre pour se rapprocher du comportement observé.
+L'allure de la réponse ne correspond pas à celle d'un système du 1er ordre car un dépassement est observé. Avec $\indice{K}{corr} = 1500$, le système en boucle ouverte ne peut plus être modélisé par un intégrateur pur de gain $\indice{K}{BO}$, en effet cette valeur élevée de $\indice{K}{corr}$ fait monter la courbe de gain, le système a une bande passante plus élevée et l'action du terme $\dfrac{1}{1+T_2.p}$ ne peut plus être négligée. Le comportement du système doit donc être modélisé par celui d'un système du second ordre pour se rapprocher du comportement observé.
  }
 \end{minipage}
 }
@@ -1463,38 +1463,38 @@ L'allure de la réponse ne correspond pas à celle d'un système du 1er ordre ca
 \ifprof
 \else
 \vspace{1em}
-Pour la suite, on modélise la fonction de transfert en boucle ouverte du système par \linebreak $H_{BO}(p) = \frac{1}{p}.\frac{K_{BO}}{1+\tau_{BO}p}$ avec $K_{BO} = 1/30$ (unité en \si{s^{-1}}) et $\tau_{BO} = 9$ ms.
+Pour la suite, on modélise la fonction de transfert en boucle ouverte du système par \linebreak $\indice{H}{BO}(p) = \dfrac{1}{p}.\dfrac{\indice{K}{BO}}{1+\indice{\tau}{BO}p}$ avec $\indice{K}{BO} = 1/30$ (unité en \si{s^{-1}}) et $\indice{\tau}{BO} = 9$ ms.
 \fi
 
-\question{Quelle valeur maximale de $K_{corr}$, notée $K_{corr}^{MAX}$, permet de vérifier les critères de précision et de dépassement de l'asservissement de l'axe linéaire ?}
+\question{Quelle valeur maximale de $\indice{K}{corr}$, notée $\indice{K}{corr}^{\text{MAX}}$, permet de vérifier les critères de précision et de dépassement de l'asservissement de l'axe linéaire ?}
 
 \ifprof
 \fbox{
 \begin{minipage}{0.95\textwidth}
 {\bf
-Le critère de précision est satisfait du fait de la présence du terme intégrateur en $\frac{1}{p}$ dans la fonction de transfert en boucle ouverte du système.\\
-Pour assurer un 1er dépassement $D1\% \leq 5 \%$, il faut que le système du second ordre ait un coefficient d'amortissement $z$, tel que $z \ge 0,7$. On détermine l'expression de $H_{BF}(p)$, la fonction de transfert en boucle fermée, afin d'identifier $z$.\\
-D'après la formule de Black, $H_{BF}(p) = \frac{K_{corr}.H_{BO}(p)}{1+K_{corr}.H_{BO}(p)} = \frac{K_{corr}.K_{BO}}{K_{corr}.K_{BO} + p.\left( 1+ \tau_{BO}.p \right)}$.\\
-La forme canonique de $H_{BF}(p)$ est donc :\\
-$H_{BF}(p) = \frac{1}{1+\frac{1}{K_{corr}.K_{BO}}.p+ \frac{\tau_{BO}}{K_{corr}.K_{BO}}.p^2} $\\
+Le critère de précision est satisfait du fait de la présence du terme intégrateur en $\dfrac{1}{p}$ dans la fonction de transfert en boucle ouverte du système.\\
+Pour assurer un 1er dépassement $D1\% \leq 5 \%$, il faut que le système du second ordre ait un coefficient d'amortissement $z$, tel que $z \ge 0,7$. On détermine l'expression de $\indice{H}{BF}(p)$, la fonction de transfert en boucle fermée, afin d'identifier $z$.\\
+D'après la formule de Black, $\indice{H}{BF}(p) = \dfrac{\indice{K}{corr}.\indice{H}{BO}(p)}{1+\indice{K}{corr}.\indice{H}{BO}(p)} = \dfrac{\indice{K}{corr}.\indice{K}{BO}}{\indice{K}{corr}.\indice{K}{BO} + p.\left( 1+ \indice{\tau}{BO}.p \right)}$.\\
+La forme canonique de $\indice{H}{BF}(p)$ est donc :\\
+$\indice{H}{BF}(p) = \dfrac{1}{1+\dfrac{1}{\indice{K}{corr}.\indice{K}{BO}}.p+ \dfrac{\indice{\tau}{BO}}{\indice{K}{corr}.\indice{K}{BO}}.p^2} $\\
 Par identification,\\
-$\omega_0 = \sqrt{\frac{K_{corr}.K_{BO}}{\tau_{BO}}} $ et $z=\frac{1}{2}.\omega_0.\frac{1}{K_{corr}.K_{BO}}$,\\
-donc, $z = \frac{1}{2}.\frac{1}{\sqrt{\tau_{BO}.K_{corr}.K_{BO}}}$.\\
-La condition $z \ge 0,7$ implique donc $K_{corr} \leq \frac{1}{(2 \times 0,7)^2.\tau_{BO}.K_{BO}}$.\\
-L'application numérique donne $K_{corr} \leq 1700$. On prend donc $K_{corr}^{MAX} = 1700$.
+$\omega_0 = \sqrt{\dfrac{\indice{K}{corr}.\indice{K}{BO}}{\indice{\tau}{BO}}} $ et $z=\dfrac{1}{2}.\omega_0.\dfrac{1}{\indice{K}{corr}.\indice{K}{BO}}$,\\
+donc, $z = \dfrac{1}{2}.\dfrac{1}{\sqrt{\indice{\tau}{BO}.\indice{K}{corr}.\indice{K}{BO}}}$.\\
+La condition $z \ge 0,7$ implique donc $\indice{K}{corr} \leq \dfrac{1}{(2 \times 0,7)^2.\indice{\tau}{BO}.\indice{K}{BO}}$.\\
+L'application numérique donne $\indice{K}{corr} \leq 1700$. On prend donc $\indice{K}{corr}^{\text{MAX}} = 1700$.
  }
 \end{minipage}
 }
 
 \fi
 
-\question{Déterminer la valeur du temps de réponse à $5\ \%$, $tr_{5\%}$ de ce modèle pour $K_{corr} = K_{corr}^{MAX}$ à partir de l'abaque du temps de réponse réduit donné dans le \ref{Annexe_Abaque_tr_reduit}.}
+\question{Déterminer la valeur du temps de réponse à $5\ \%$, $tr_{5\%}$ de ce modèle pour $\indice{K}{corr} = \indice{K}{corr}^{\text{MAX}}$ à partir de l'abaque du temps de réponse réduit donné dans le \ref{Annexe_Abaque_tr_reduit}.}
 
 \ifprof
 \fbox{
 \begin{minipage}{0.95\textwidth}
 {\bf
-D'après l'abaque du temps de réponse réduit donné en \ref{Annexe_Abaque_tr_reduit}, pour $z = 0,7$ on relève $tr_{5\%}.\omega_0 \simeq 3$. Or $\omega_0 = \sqrt{\frac{K_{corr}^{MAX}.K_{BO}}{\tau_{BO}}} $, donc $tr_{5\%} = 3.\sqrt{\frac{\tau_{BO}}{K_{corr}^{MAX}.K_{BO}}}$. \\
+D'après l'abaque du temps de réponse réduit donné en \ref{Annexe_Abaque_tr_reduit}, pour $z = 0,7$ on relève $tr_{5\%}.\omega_0 \simeq 3$. Or $\omega_0 = \sqrt{\dfrac{\indice{K}{corr}^{\text{MAX}}.\indice{K}{BO}}{\indice{\tau}{BO}}} $, donc $tr_{5\%} = 3.\sqrt{\dfrac{\indice{\tau}{BO}}{\indice{K}{corr}^{\text{MAX}}.\indice{K}{BO}}}$. \\
 L'application numérique donne : $tr_{5\%} \simeq $ 38 ms $<$ 60 ms $ \Rightarrow $ cdcf vérifié !
  }
 \end{minipage}
@@ -1504,7 +1504,7 @@ L'application numérique donne : $tr_{5\%} \simeq $ 38 ms $<$ 60 ms $ \Rightarro
 \ifprof
 \else
 \newpage
-La \ref{fig:reponse_kcorr_kcorrmax} donne les évolutions des réponses temporelles $x(t)$ du système réel avec prise en compte de la perturbation ($F_p$ constante et égale à 175 N) à un échelon en déplacement de valeur finale $X_c = 10$ mm, pour une correction proportionnelle $K_{corr} = \num{1500}$ et pour $K = K_{corr}^{MAX}$.
+La \ref{fig:reponse_kcorr_kcorrmax} donne les évolutions des réponses temporelles $x(t)$ du système réel avec prise en compte de la perturbation ($F_p$ constante et égale à 175 N) à un échelon en déplacement de valeur finale $X_c = 10$ mm, pour une correction proportionnelle $\indice{K}{corr} = \num{1500}$ et pour $K = \indice{K}{corr}^{\text{MAX}}$.
 
 
 
@@ -1521,7 +1521,7 @@ La \ref{fig:reponse_kcorr_kcorrmax} donne les évolutions des réponses temporel
 %minor x tick num=4,
 %xlabel = {Temps (s)},
 %ylabel = {Déplacement $x(t)$ (mm)},
-%legend entries={$K_{corr}=K_{corr}^{MAX}$,$K_{corr}=\num{1500}$,Consigne},
+%legend entries={$\indice{K}{corr}=\indice{K}{corr}^{\text{MAX}}$,$\indice{K}{corr}=\num{1500}$,Consigne},
 %legend style={at={(0.55,0.05)},anchor=south west},
 %%legend columns=3,
 %axis lines=left,
@@ -1539,7 +1539,7 @@ La \ref{fig:reponse_kcorr_kcorrmax} donne les évolutions des réponses temporel
 %
 %
 %%\begin{minipage}[c]{.8\linewidth}
-%   \captionof{figure}{{ Réponses temporelles $x(t)$ du système réel perturbé à un échelon en déplacement de valeur finale $X_c = 10$ mm, pour une correction proportionnelle $K_{corr} = \num{1500}$ et pour $K = K_{corr}^{MAX}$}
+%   \captionof{figure}{{ Réponses temporelles $x(t)$ du système réel perturbé à un échelon en déplacement de valeur finale $X_c = 10$ mm, pour une correction proportionnelle $\indice{K}{corr} = \num{1500}$ et pour $K = \indice{K}{corr}^{\text{MAX}}$}
 %\label{fig:reponse_kcorr_kcorrmax}
 %}
 %%\end{minipage}
@@ -1564,7 +1564,7 @@ Les performances de stabilité, rapidité et de 1er dépassement sont vérifiée
 %\newpage
 %\paragraphe{Correction avec action proportionnelle et intégrale pure}
 %
-%En vue d'améliorer les performances du système, un correcteur avec action intégrale pure est ajouté, si bien que $C(p) = K_{corr}/p$. Les diagrammes de Bode (courbe de Gain et courbe de Phase) du système en boucle ouverte sont donnés en \ref{fig:Bode_correction_int_pure}. Pour cette simulation : $C(p) = K_{corr}/p$, $G_{BO}(\omega) = 20 \log(H_{BO}(\omega)) = 20 \log (X_{mes}(\omega) / X_c(\omega))$ et $\phi_{BO} = \arg(H_{BO}(\omega)) = arg(X_{mes}(\omega) / X_c(\omega))$. La \ref{fig:reponse_correction_int_pure} donne la réponse temporelle $x(t)$ du système perturbé en boucle fermée à un échelon de valeur finale $X_c = 10$ mm.
+%En vue d'améliorer les performances du système, un correcteur avec action intégrale pure est ajouté, si bien que $C(p) = \indice{K}{corr}/p$. Les diagrammes de Bode (courbe de Gain et courbe de Phase) du système en boucle ouverte sont donnés en \ref{fig:Bode_correction_int_pure}. Pour cette simulation : $C(p) = \indice{K}{corr}/p$, $G_{BO}(\omega) = 20 \log(\indice{H}{BO}(\omega)) = 20 \log (X_{mes}(\omega) / X_c(\omega))$ et $\phi_{BO} = \arg(\indice{H}{BO}(\omega)) = arg(X_{mes}(\omega) / X_c(\omega))$. La \ref{fig:reponse_correction_int_pure} donne la réponse temporelle $x(t)$ du système perturbé en boucle fermée à un échelon de valeur finale $X_c = 10$ mm.
 %
 %\begin{figure}[h]
 %   \begin{minipage}[c]{.59\linewidth}
@@ -1593,9 +1593,9 @@ Les performances de stabilité, rapidité et de 1er dépassement sont vérifiée
 Le correcteur finalement retenu est un correcteur avec action proportionnelle et intégrale généralisée. La fonction de transfert $C(p)$ prend alors la forme suivante :
 
 {\centering
-$C(p)= K_{corr} . \frac{1+T_d p}{p}$  avec $K_{corr} >> 1$ et $T_d < 1$ s.
+$C(p)= \indice{K}{corr} . \dfrac{1+T_d p}{p}$  avec $\indice{K}{corr} >> 1$ et $T_d < 1$ s.
 \par}
-On donne dans le \ref{DR_Bode_corrige} le diagramme de Bode (courbe de Gain et de Phase) du système en boucle ouverte avec correcteur PI Généralisé pour $K_{corr} = \num{1000}$ et $T_d = 0,2$ s. 
+On donne dans le \ref{DR_Bode_corrige} le diagramme de Bode (courbe de Gain et de Phase) du système en boucle ouverte avec correcteur PI Généralisé pour $\indice{K}{corr} = \num{1000}$ et $T_d = 0,2$ s. 
 \fi
 
 \question{Représenter sur le \ref{DR_Bode_corrige} les marges de Gain $M_G$ et de Phase $M_{\phi}$ du système corrigé.\label{Q:Bode_corrige}}
@@ -1622,20 +1622,20 @@ D'après la figure ci-dessous, on relève une marge de Gain $M_G \simeq$ 60 dB e
 
 \ifprof
 \else
-Avec cette correction, le système est précis mais les valeurs des marges de gain et de phase sont telles que le système n'est pas assez rapide. Il est donc nécessaire d'augmenter la valeur de $K_{corr}$, tout en conservant $T_d = 0,2$ s, de manière à augmenter la bande passante du système et ainsi se rapprocher des valeurs limites de marge de Gain et de Phase autorisées.
+Avec cette correction, le système est précis mais les valeurs des marges de gain et de phase sont telles que le système n'est pas assez rapide. Il est donc nécessaire d'augmenter la valeur de $\indice{K}{corr}$, tout en conservant $T_d = 0,2$ s, de manière à augmenter la bande passante du système et ainsi se rapprocher des valeurs limites de marge de Gain et de Phase autorisées.
 \fi
 
-\question{En déduire la valeur maximale à donner au gain $K_{corr}$, en conservant $T_d = 0,2$ s, afin de respecter les performances en stabilité de l'asservissement de l'axe linéaire tout en augmentant au maximum la bande passante du système. }
+\question{En déduire la valeur maximale à donner au gain $\indice{K}{corr}$, en conservant $T_d = 0,2$ s, afin de respecter les performances en stabilité de l'asservissement de l'axe linéaire tout en augmentant au maximum la bande passante du système. }
 
 \ifprof
 \fbox{
 \begin{minipage}{0.95\textwidth}
 {\bf
-La modification de la valeur du gain $K_{corr}$ n'affecte que la courbe de gain. L'augmentation de $K_{corr}$ va faire remonter la courbe de gain du système en boucle ouverte. Graphiquement, on observe que c'est le critère sur la marge de Gain qui limite la remonté de la courbe de gain (voir figure ci-dessous). La courbe de gain peut donc être remontée de +15 dB, on relève alors une marge de Gain $M_G \simeq$ 45 dB et une marge de Phase $M_{\phi} \simeq$ 65\degre. \\
-Initialement on avait $K_{corr}^{init} = 1000$, pour remonter la courbe de gain de +15 dB, il faudra prendre $K_{corr}^{new}$ tel que : \\
-$20 \times log(K_{corr}^{new}) = 20 \times log(K_{corr}^{init}) + 15$\\
-$\Leftrightarrow K_{corr}^{new} = K_{corr}^{init} \times 10^{15/20}$\\
-L'application numérique donne $K_{corr}^{new} \simeq$ 5620. 
+La modification de la valeur du gain $\indice{K}{corr}$ n'affecte que la courbe de gain. L'augmentation de $\indice{K}{corr}$ va faire remonter la courbe de gain du système en boucle ouverte. Graphiquement, on observe que c'est le critère sur la marge de Gain qui limite la remonté de la courbe de gain (voir figure ci-dessous). La courbe de gain peut donc être remontée de +15 dB, on relève alors une marge de Gain $M_G \simeq$ 45 dB et une marge de Phase $M_{\phi} \simeq$ 65\degre. \\
+Initialement on avait $\indice{K}{corr}^{init} = 1000$, pour remonter la courbe de gain de +15 dB, il faudra prendre $\indice{K}{corr}^{new}$ tel que : \\
+$20 \times log(\indice{K}{corr}^{new}) = 20 \times log(\indice{K}{corr}^{init}) + 15$\\
+$\Leftrightarrow \indice{K}{corr}^{new} = \indice{K}{corr}^{init} \times 10^{15/20}$\\
+L'application numérique donne $\indice{K}{corr}^{new} \simeq$ 5620. 
  }
  
 \begin{center}
@@ -1654,19 +1654,42 @@ L'application numérique donne $K_{corr}^{new} \simeq$ 5620.
 %La \ref{fig:reponse_perturbe_corr_PI_gen}\textbf{(a)} donne la réponse temporelle à un échelon de consigne $X_c = 10$ mm du système simulé, perturbé et corrigé. La \ref{fig:reponse_perturbe_corr_PI_gen}\textbf{(b)} donne l'évolution de l'intensité simulée (en Ampères) circulant au sein du moteur lors de cette réponse.   
 Les \textbf{figures \ref{fig:reponse_perturbe_corr_PI_gen}\textbf{a}} et \textbf{\ref{fig:reponse_perturbe_corr_PI_gen}\textbf{b}}, page suivante, donnent la réponse temporelle à un échelon de consigne \linebreak $X_c = 10$ mm du système simulé, perturbé et corrigé du déplacement $x(t)$ (en mm)  ainsi que l'évolution de l'intensité simulée (en Ampères) circulant au sein du moteur.
 
+%
+%\begin{figure}[!ht]
+%\subfigure[Déplacement (mm) en fonction du temps~(s)]
+%{
+%%\includestandalone{reponse_temp_pert_a}
+% \includegraphics[width=0.7\linewidth]{reponse_temp_pert_a.pdf}
+%}%\hfill
+%\subfigure[Intensité simulée (A) en fonction \newline du temps~(s)]{
+%%\includestandalone{reponse_temp_pert_b}
+% \includegraphics[width=0.7\linewidth]{reponse_temp_pert_b.pdf}
+%}
+%\caption{{Réponses temporelles à un échelon d'amplitude $X_c = 10$ mm du système simulé, perturbé et corrigé} \label{fig:reponse_perturbe_corr_PI_gen}}
+%\end{figure}
+%\fi
 
 \begin{figure}[!ht]
-\subfigure[Déplacement (mm) en fonction du temps~(s)]
-{
-\includestandalone{reponse_temp_pert_a}
-}%\hfill
-\subfigure[Intensité simulée (A) en fonction \newline du temps~(s)]{
-\includestandalone{reponse_temp_pert_b}
-}
-\caption{{Réponses temporelles à un échelon d'amplitude $X_c = 10$ mm du système simulé, perturbé et corrigé} \label{fig:reponse_perturbe_corr_PI_gen}}
+\includegraphics[width=0.7\linewidth]{reponse_temp_pert_a.pdf}
+\caption{Déplacement (mm) en fonction du temps~(s)}
 \end{figure}
-\fi
 
+\begin{figure}[!ht]
+\includegraphics[width=0.7\linewidth]{reponse_temp_pert_b.pdf}
+\caption{Intensité simulée (A) en fonction du temps~(s)}
+\end{figure}
+
+%{
+%%\includestandalone{reponse_temp_pert_a}
+% \
+%}%\hfill
+%\subfigure[Intensité simulée (A) en fonction \newline du temps~(s)]{
+%%\includestandalone{reponse_temp_pert_b}
+% \includegraphics[width=0.7\linewidth]{reponse_temp_pert_b.pdf}
+%}
+%\caption{{Réponses temporelles à un échelon d'amplitude $X_c = 10$ mm du système simulé, perturbé et corrigé} \label{fig:reponse_perturbe_corr_PI_gen}}
+%\end{figure}
+%
 
 
 
@@ -1682,7 +1705,7 @@ Avec cette correction la réponse temporelle respecte l'ensemble des critères d
 - le système est précis $ \Rightarrow $ cdcf vérifié,\\
 - système ne présente pas de dépassement $ \Rightarrow $ cdcf vérifié,\\
 - tr$5\% \simeq$ 50 ms $ \Rightarrow $ cdcf vérifié (< 60 ms).\\
-Par contre, on relève un courant $I_{mot}^{MAX} \simeq$ 35 A. Or la carte ELMO ne supporte qu'un courant maximal de 20 A. Le contrôleur ELMO ne permet donc pas de réaliser cette commande. 
+Par contre, on relève un courant $I_{mot}^{\text{MAX}} \simeq$ 35 A. Or la carte ELMO ne supporte qu'un courant maximal de 20 A. Le contrôleur ELMO ne permet donc pas de réaliser cette commande. 
 }
 
 \begin{center}
@@ -1707,7 +1730,7 @@ Le variateur du moteur permet de protéger les éléments électroniques des sur
 \fbox{
 \begin{minipage}{0.95\textwidth}
 {\bf
-Dans la modélisation proposée, ce bloc saturation doit être placé entre le bloc $\frac{1}{R+Lp}$ et le bloc $K_C$, car c'est sur cette branche que l'on retrouve la variable intensité (on rappelle que $C_m(p) = K_C.I_m(p)$).
+Dans la modélisation proposée, ce bloc saturation doit être placé entre le bloc $\dfrac{1}{R+Lp}$ et le bloc $K_C$, car c'est sur cette branche que l'on retrouve la variable intensité (on rappelle que $C_m(p) = K_C.I_m(p)$).
 }
 
 \begin{center}
@@ -1726,26 +1749,27 @@ Dans la modélisation proposée, ce bloc saturation doit être placé entre le b
 \vspace{1em}
 Les \textbf{figures \ref{fig:reponse_perturbe_corr_PI_gen_sat}\textbf{a}} et \textbf{\ref{fig:reponse_perturbe_corr_PI_gen_sat}b} donnent respectivement la réponse temporelle du déplacement (en mm) à un échelon de consigne $X_c = 10$ mm et l'évolution de l'intensité simulée (en Ampère) circulant au sein du moteur pour le système corrigé avec perturbation et ajout du bloc saturation $\pm$ 20 A.
 
-\begin{figure}[!ht]
-%   \begin{minipage}[c]{.48\linewidth}
-%      \centering
-%      \includegraphics[width=1\linewidth]{reponse_perturbe_corr_PI_gen_sat.jpg}
-%   \end{minipage} \hfill
-%   \begin{minipage}[c]{.48\linewidth}
-%	  \centering     
-%      \includegraphics[width=1\linewidth]{intensite_reponse_perturbe_corr_PI_gen_sat.jpg}
-%  \end{minipage}
-  
-  \subfigure[Déplacement (mm) en fonction du temps (s)]
-{
-\includestandalone{reponse_temp_pert_sat_a}
-}\hfill
-\subfigure[Intensité simulée (A) en fonction du \newline temps (s)]{
-\includestandalone{reponse_temp_pert_sat_b}
-} 
-  
-\caption{{ Réponses temporelles à un échelon d'amplitude $X_c = 10$ mm du système simulé, perturbé et corrigé \underline{\textbf{avec bloc de saturation $\pm$ 20 A}}} \label{fig:reponse_perturbe_corr_PI_gen_sat}}
-\end{figure}
+%\begin{figure}[!ht]
+%%   \begin{minipage}[c]{.48\linewidth}
+%%      \centering
+%%      \includegraphics[width=1\linewidth]{reponse_perturbe_corr_PI_gen_sat.jpg}
+%%   \end{minipage} \hfill
+%%   \begin{minipage}[c]{.48\linewidth}
+%%	  \centering     
+%%      \includegraphics[width=1\linewidth]{intensite_reponse_perturbe_corr_PI_gen_sat.jpg}
+%%  \end{minipage}
+%  
+%  \subfigure[Déplacement (mm) en fonction du temps (s)]
+%{
+%\includestandalone{reponse_temp_pert_sat_a}
+%}\hfill
+%\subfigure[Intensité simulée (A) en fonction du \newline temps (s)]{
+%\includestandalone{reponse_temp_pert_sat_b}
+%} 
+%  
+%\caption{{ Réponses temporelles à un échelon d'amplitude $X_c = 10$ mm du système simulé, perturbé et corrigé \underline{\textbf{avec bloc de saturation $\pm$ 20 A}}} \label{fig:reponse_perturbe_corr_PI_gen_sat}}
+%\end{figure}
+
 \fi
 
 \question{Quel est l'effet de l'ajout du bloc saturation en intensité sur les performances du système ? Conclure vis-à-vis des exigences du cahier des charges.}
@@ -1852,26 +1876,49 @@ On peut donc conclure que ce réglage des paramètres d'asservissement permet de
 \newpage
 
 {\centering {\Large \textbf{ANNEXE}} \par}
+
 \title{ANNEXES}
 \vspace{0.5cm}
-%\doc{Annexe_diag_cas_utilisation}{diagramme de cas d'utilisation}{
-%\centering\includegraphics[width=.5\linewidth]{uc.pdf}
+%%\doc{Annexe_diag_cas_utilisation}{diagramme de cas d'utilisation}{
+%%\centering\includegraphics[width=.5\linewidth]{uc.pdf}
+%%}
+%%\vspace{1cm}
+%\doc{Annexe_diag_exigences}{Diagramme partiel des exigences}{
+%%\centering\includegraphics[width=.98\linewidth]{req.pdf}
+%
+%\centering\includegraphics[height=.98\linewidth,angle=90]{req_.pdf}
 %}
-%\vspace{1cm}
-\doc{Annexe_diag_exigences}{Diagramme partiel des exigences}{
-%\centering\includegraphics[width=.98\linewidth]{req.pdf}
 
+\begin{figure}[!ht]
 \centering\includegraphics[height=.98\linewidth,angle=90]{req_.pdf}
-}
+\caption{Diagramme partiel des exigences \label{Annexe_diag_exigences}}
+\end{figure}
 
-%\newpage
-\doc{Annexe_diag_BDI}{Diagramme de blocs internes}{
+%%\newpage
+%\doc{Annexe_diag_BDI}{Diagramme de blocs internes}{
+%\centering\includegraphics[width=0.9\linewidth]{ibd.pdf}
+%}
+%\vspace{0.5cm}
+%\doc{Annexe_schema_cine_3D}{Représentation schématique de la cinématique du prototype de canne}{
+%\centering\includegraphics[width=.6\linewidth,angle=-90]{schema_cine_3D_.pdf}
+%}
+
+\begin{figure}[!ht]
 \centering\includegraphics[width=0.9\linewidth]{ibd.pdf}
-}
-\vspace{0.5cm}
-\doc{Annexe_schema_cine_3D}{Représentation schématique de la cinématique du prototype de canne}{
+\caption{Diagramme de blocs internes \label{Annexe_diag_BDI}}
+\end{figure}
+
+
+\begin{figure}[!ht]
 \centering\includegraphics[width=.6\linewidth,angle=-90]{schema_cine_3D_.pdf}
-}
+\caption{Représentation schématique de la cinématique du prototype de canne \label{Annexe_schema_cine_3D}}
+\end{figure}
+
+
+
+\end{document}
+
+
 
 \newpage
 \doc{Annexe_schema_cine}{Modélisation cinématique et paramétrage du prototype de canne robotisée}{
@@ -1973,7 +2020,7 @@ On peut donc conclure que ce réglage des paramètres d'asservissement permet de
 \sbBloc[1]{E}{\textcolor{white}{$\dfrac{1}{f+J_{eq} p}$}}{C3}
 %\sbBloc[1]{E}{}{C3}
 \sbBloc[3]{F}{$\dfrac{1}{p}$}{E}
-\sbBloc{G}{$K_{ve}$}{F}
+\sbBloc{G}{$\indice{K}{ve}$}{F}
 \sbSortie{S}{G}
 
 \sbRelier[$X_c(p)$]{E1}{A}
@@ -2140,7 +2187,7 @@ font=\footnotesize,
 
 \end{tikzpicture}
 
-\caption{Réponse fréquentielle du système en boucle ouverte avec correcteur PI Généralisé en prenant $K_{corr} =\num{1000}$ et $T_d = \SI{0,2}{s}$}
+\caption{Réponse fréquentielle du système en boucle ouverte avec correcteur PI Généralisé en prenant $\indice{K}{corr} =\num{1000}$ et $T_d = \SI{0,2}{s}$}
 \label{DR_Bode_corrige}
 \end{figure}
 
