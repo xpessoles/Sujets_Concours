@@ -1,73 +1,100 @@
+\section*{Mise en situation}
+Afin de garantir la fiabilité d'un réseau ferré, la norme européenne EN-15313 préconise une maintenance régulière des trains, notamment de leurs roues. L'usure excessive d'une roue, due principalement aux frottements sur les rails, peut engendrer une rupture de celle-ci et paralyser pendant plusieurs heures le réseau ferré d'une ville.
+
+
+La solution retenue pour redonner une forme correcte  à une roue usée est une opération de reprofilage, c'est-à-dire une opération d'enlèvement de matière réalisée par un outil coupant. Les roues étant axisymétriques, l'opération de reprofilage consiste à entrainer en rotation la roue autour de son axe de révolution et à donner à l'outil une trajectoire correspondant à une génératrice du profil désiré.\\
+Cette opération peut être réalisée selon deux méthodes différentes :\\
+\begin{enumerate}
+\item sur une machine appelée tour, sur laquelle l'opérateur installe la roue après l'avoir démontée de l'essieu ;
+\item sur une machine spéciale, appelée tour en fosse, sur laquelle l'opérateur installe la voiture et réalise le reprofilage sans démontage de la roue (figure \ref{ccs_psi_2018_fig_02}).\\
+\end{enumerate}
+
+Afin de garantir le confort des passagers lors de leur trajet, toutes les roues de la voiture doivent avoir les mêmes dimensions. Par conséquent, lors d'une opération de maintenance, toutes les roues doivent être reprofilées.\\
+Sur les réseaux à forte densité de circulation, la durée d'immobilisation d'une rame pour maintenance doit être la plus faible possible afin de minimiser l'impact sur le trafic.\\
+Valider la pertinence de l'utilisation d'un tour en fosse revient à comparer le temps d'immobilisation d'une rame lorsque les roues sont reprofilées sur un tour avec le temps d'immobilisation d'une rame lorsque les roues sont
+
+\begin{figure}%[h]
+%\begin{center}
+  \includegraphics[width=.7\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-02_739_1209_109_429}
+%\captionsetup{labelformat=empty}
+\caption{Implantation du tour en fosse dans la zone de maintenance du réseau ferré \label{ccs_psi_2018_fig_02}}
+%\end{center}
+\end{figure}
+
+
+
+
 \section{Analyse de la commande du dispositif de mise en translation de l'outil}
 \begin{obj}
 Analyser la chaine d'asservissement en position et en vitesse du porte-outil afin de proposer puis de régler un correcteur permettant d'assurer le niveau de précision attendu pour le profil de la roue.
 \end{obj}
 
-\subsection{Effet de la déformation de l'outil sur la forme de la roue reprofilée}
-\ifprof
-\else
-Lors du reprofilage de la roue, l'enlèvement de matière génère un effort sur l'outil qui entraine des déformations de celui-ci dont les principales sont :
-
-\begin{itemize}
-  \item une déformation en compression de l'outil dans la direction $\vec{z}_{0}$ due à l'effort radial (composante de l'effort selon $\vec{z}_{0}$, cf. schéma A1. figure \ref{ccs_psi_2018_fig_07}) ;
-  \item une déformation en flexion de l'outil dans le plan  $\left(\vec{z}_{0}, \vec{x}_{0}\right)$ due à l'effort tangentiel (composante de l'effort selon $\vec{x}_{0}$, cf. schéma B1. figure \ref{ccs_psi_2018_fig_07}).
-  \end{itemize}
-  
-À cause de ces déformations, le point C de contact entre la roue et l'outil se décale de sa position de référence.
-
-La différence entre les rayons des cercles enveloppes intérieur et extérieur du profil réalisé est appelée défaut et est notée $\Delta u$ (cf. schéma C2. figure \ref{ccs_psi_2018_fig_07}).\\
-Des relevés expérimentaux ont montré que, lors du reprofilage de la partie cylindrique d'une roue de rayon $R=0,47 \mathrm{~m}$, la déformation en compression de l'outil entraine une amplitude maximale de déplacement $\Delta z_{2}= \max \left(z_{2}(t)\right)-\min \left(z_{2}(t)\right)$ du point $C$ d'environ $5 \mu \mathrm{~m}$ (cf. schéma A2. figure \ref{ccs_psi_2018_fig_07}) et que la déformation en flexion de l'outil entraine une amplitude maximale de déplacement $\Delta x_{2}=\max \left(x_{2}(t)\right)-\min \left(x_{2}(t)\right)$ du point $C$ d'environ $0,5 \mathrm{~mm}$ (dans le cas de la flexion, le déplacement du point $C$ selon $\vec{z}_{0}$ est négligé, cf. schéma B2. figure \ref{ccs_psi_2018_fig_07}).\\
-\fi
-
-%Q17. 
-\question{Exprimer la relation entre le défaut $\Delta u_{1}$ et le déplacement $\Delta z_{2}$ du point $C$ dû à la déformation en compression de l'outil. Exprimer la relation entre le défaut $\Delta u_{2}$ et le déplacement $\Delta x_{2}$ du point $C$ dû à la déformation en flexion de l'outil. Effectuer les applications numériques pour $\Delta u_{1}$ et $\Delta u_{2}$, puis justifier que le défaut $\Delta u$ est principalement dû à la déformation en compression de l'outil.}
-\ifprof
-\begin{corrige}
-Graphiquement on a :
-\begin{itemize}
-\item $\Delta u_1 = \Delta z_2 \simeq \SI{5}{\mu m}$;
-\item $R^2 + \Delta x_2^2 = \left(R + \Delta u_2\right)^2$ soit $\Delta u_2 = \sqrt{R^2 + \Delta x_2^2} - R = \sqrt{0,47^2 + 0,0005^2} - 0,47 \simeq \SI{0,27}{\mu m}$.%\simeq R\left(1+\dfrac{\Delta x_2^2}{2R^2}\right) - R \simeq \dfrac{\Delta x_2^2}{2R}$.
-\end{itemize}
-Il y a un rapport de 18,8 entre le défaut dû à la compression et celui dû à la flexion. On néglige donc ce dernier. 
- 
-
-\end{corrige}
-\else
-\fi
-
-\ifprof
-\else
-
-Dans la suite de l'étude, seule la déformation en compression de l'outil sera prise en compte. L'outil est donc sollicité, lors du reprofilage, par un effort $\vec{f}_{c}(t)=f_{c}(t) \vec{z}_{0}$ appliqué au point de contact $C$ entre l'outil et la roue. Une roue est reprofilée lorsque son profil présente des défauts trop importants dus à l'usure créée par le contact avec les rails. Ainsi, lors du reprofilage, l'épaisseur de matière enlevée par l'outil varie en fonction de la position angulaire de la roue (figure \ref{ccs_psi_2018_fig_06}), ce qui engendre des variations de l'effort $f_{c}(t)$.
-
-
-\begin{figure}[!h]
-\begin{center}
-  \includegraphics[width=.35\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-06_515_659_1553_703}
-%\captionsetup{labelformat=empty}
-\caption{\label{ccs_psi_2018_fig_06}Modélisation du profil de la roue avant son reprofilage}
-\end{center}
-\end{figure}
-
-Dans la suite de cette étude, les défauts dus à l'usure sont modélisés par une variation sinusoïdale. Cette modélisation permet alors de considérer que $f_{c}(t)=\left(f_{c 0}+f_{c 1} \sin (\omega t)\right) \mathcal{H}(t)$ avec $f_{c 0}$ la valeur moyenne de l'effort transmis par la roue à l'outil au point $C, f_{c 1}$ l'amplitude de la variation sinusoïdale de cet effort autour de sa valeur moyenne et $\mathcal{H}(t)$ la fonction échelon.\\
-L'effort $f_{c}(t)$ peut être considéré comme un effort perturbateur extérieur appliqué à l'outil lors du reprofilage. Sa variation peut conduire à des vibrations trop importantes de l'outil, en particulier lorsque la fréquence de ce signal perturbateur correspond à la fréquence propre de la structure. Lors du reprofilage, ces vibrations sont alors responsables d'un défaut de la roue beaucoup plus important que celui attendu. La valeur maximale $\Delta u$ du défaut ainsi que les conditions à respecter pour générer le profil souhaité sont données par le diagramme des exigences de la figure \ref{ccs_psi_2018_fig_08}.
-
-\begin{figure}[!h]
-\begin{center}
-  \includegraphics[width=.8\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-07_2356_1684_114_187}
-%\captionsetup{labelformat=empty}
-\caption{\label{ccs_psi_2018_fig_07}Déformations de l'outil et défauts $\Delta u_{i}$ de la roue reprofilée}
-\end{center}
-\end{figure}
-
-\begin{figure}[!h]
-\begin{center}
-  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-08_904_1657_95_205}
-%\captionsetup{labelformat=empty}
-\caption{\label{ccs_psi_2018_fig_08}Diagramme des exigences de la chaine d'asservissement}
-\end{center}
-\end{figure}
-\fi
+%
+%\subsection{Effet de la déformation de l'outil sur la forme de la roue reprofilée}
+%\ifprof
+%\else
+%Lors du reprofilage de la roue, l'enlèvement de matière génère un effort sur l'outil qui entraine des déformations de celui-ci dont les principales sont :
+%
+%\begin{itemize}
+%  \item une déformation en compression de l'outil dans la direction $\vec{z}_{0}$ due à l'effort radial (composante de l'effort selon $\vec{z}_{0}$, cf. schéma A1. figure \ref{ccs_psi_2018_fig_07}) ;
+%  \item une déformation en flexion de l'outil dans le plan  $\left(\vec{z}_{0}, \vec{x}_{0}\right)$ due à l'effort tangentiel (composante de l'effort selon $\vec{x}_{0}$, cf. schéma B1. figure \ref{ccs_psi_2018_fig_07}).
+%  \end{itemize}
+%  
+%À cause de ces déformations, le point C de contact entre la roue et l'outil se décale de sa position de référence.
+%
+%La différence entre les rayons des cercles enveloppes intérieur et extérieur du profil réalisé est appelée défaut et est notée $\Delta u$ (cf. schéma C2. figure \ref{ccs_psi_2018_fig_07}).\\
+%Des relevés expérimentaux ont montré que, lors du reprofilage de la partie cylindrique d'une roue de rayon $R=0,47 \mathrm{~m}$, la déformation en compression de l'outil entraine une amplitude maximale de déplacement $\Delta z_{2}= \max \left(z_{2}(t)\right)-\min \left(z_{2}(t)\right)$ du point $C$ d'environ $\SI{5}{\mu m}$ (cf. schéma A2. figure \ref{ccs_psi_2018_fig_07}) et que la déformation en flexion de l'outil entraine une amplitude maximale de déplacement $\Delta x_{2}=\max \left(x_{2}(t)\right)-\min \left(x_{2}(t)\right)$ du point $C$ d'environ $0,5 \mathrm{~mm}$ (dans le cas de la flexion, le déplacement du point $C$ selon $\vec{z}_{0}$ est négligé, cf. schéma B2. figure \ref{ccs_psi_2018_fig_07}).\\
+%\fi
+%
+%%Q17. 
+%\question{Exprimer la relation entre le défaut $\Delta u_{1}$ et le déplacement $\Delta z_{2}$ du point $C$ dû à la déformation en compression de l'outil. Exprimer la relation entre le défaut $\Delta u_{2}$ et le déplacement $\Delta x_{2}$ du point $C$ dû à la déformation en flexion de l'outil. Effectuer les applications numériques pour $\Delta u_{1}$ et $\Delta u_{2}$, puis justifier que le défaut $\Delta u$ est principalement dû à la déformation en compression de l'outil.}
+%\ifprof
+%\begin{corrige}
+%Graphiquement on a :
+%\begin{itemize}
+%\item $\Delta u_1 = \Delta z_2 \simeq \SI{5}{\mu m}$;
+%\item $R^2 + \Delta x_2^2 = \left(R + \Delta u_2\right)^2$ soit $\Delta u_2 = \sqrt{R^2 + \Delta x_2^2} - R = \sqrt{0,47^2 + 0,0005^2} - 0,47 \simeq \SI{0,27}{\mu m}$.%\simeq R\left(1+\dfrac{\Delta x_2^2}{2R^2}\right) - R \simeq \dfrac{\Delta x_2^2}{2R}$.
+%\end{itemize}
+%Il y a un rapport de 18,8 entre le défaut dû à la compression et celui dû à la flexion. On néglige donc ce dernier. 
+% 
+%
+%\end{corrige}
+%\else
+%\fi
+%
+%\ifprof
+%\else
+%
+%Dans la suite de l'étude, seule la déformation en compression de l'outil sera prise en compte. L'outil est donc sollicité, lors du reprofilage, par un effort $\vec{f}_{c}(t)=f_{c}(t) \vec{z}_{0}$ appliqué au point de contact $C$ entre l'outil et la roue. Une roue est reprofilée lorsque son profil présente des défauts trop importants dus à l'usure créée par le contact avec les rails. Ainsi, lors du reprofilage, l'épaisseur de matière enlevée par l'outil varie en fonction de la position angulaire de la roue (figure \ref{ccs_psi_2018_fig_06}), ce qui engendre des variations de l'effort $f_{c}(t)$.
+%
+%
+%\begin{figure}[!h]
+%\begin{center}
+%  \includegraphics[width=.35\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-06_515_659_1553_703}
+%%\captionsetup{labelformat=empty}
+%\caption{\label{ccs_psi_2018_fig_06}Modélisation du profil de la roue avant son reprofilage}
+%\end{center}
+%\end{figure}
+%
+%Dans la suite de cette étude, les défauts dus à l'usure sont modélisés par une variation sinusoïdale. Cette modélisation permet alors de considérer que $f_{c}(t)=\left(f_{c 0}+f_{c 1} \sin (\omega t)\right) \mathcal{H}(t)$ avec $f_{c 0}$ la valeur moyenne de l'effort transmis par la roue à l'outil au point $C, f_{c 1}$ l'amplitude de la variation sinusoïdale de cet effort autour de sa valeur moyenne et $\mathcal{H}(t)$ la fonction échelon.\\
+%L'effort $f_{c}(t)$ peut être considéré comme un effort perturbateur extérieur appliqué à l'outil lors du reprofilage. Sa variation peut conduire à des vibrations trop importantes de l'outil, en particulier lorsque la fréquence de ce signal perturbateur correspond à la fréquence propre de la structure. Lors du reprofilage, ces vibrations sont alors responsables d'un défaut de la roue beaucoup plus important que celui attendu. La valeur maximale $\Delta u$ du défaut ainsi que les conditions à respecter pour générer le profil souhaité sont données par le diagramme des exigences de la figure \ref{ccs_psi_2018_fig_08}.
+%
+%\begin{figure}[!h]
+%\begin{center}
+%  \includegraphics[width=.8\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-07_2356_1684_114_187}
+%%\captionsetup{labelformat=empty}
+%\caption{\label{ccs_psi_2018_fig_07}Déformations de l'outil et défauts $\Delta u_{i}$ de la roue reprofilée}
+%\end{center}
+%\end{figure}
+%
+%\begin{figure}[!h]
+%\begin{center}
+%  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-08_904_1657_95_205}
+%%\captionsetup{labelformat=empty}
+%\caption{\label{ccs_psi_2018_fig_08}Diagramme des exigences de la chaine d'asservissement}
+%\end{center}
+%\end{figure}
+%\fi
 
 \subsection{Analyse d'une solution avec un porte-outil fixé au bâti}
 \begin{obj}
@@ -76,8 +103,14 @@ Déterminer les variations de position du point de contact $C$ entre la roue et 
 \ifprof
 \else
 
-L'outil est modélisé par un solide de masse $m_{2}=788 \mathrm{~kg}$ suspendu à une structure composée, en parallèle, d'un ressort $R_{0}$ de raideur $K=28 \times 10^{6} \mathrm{~N} \cdot \mathrm{~m}^{-1}$ et d'un amortisseur $A_{0}$ de coefficient de frottement visqueux $\lambda=14854 \mathrm{~N} \cdot \mathrm{~s} \cdot \mathrm{~m}^{-1}$ (figure \ref{ccs_psi_2018_fig_09}). La compression de l'outil soumis à l'effort perturbateur $\vec{f}_{c}(t)=f_{c}(t) \vec{z}_{0}$ génère un déplacement $z_{2}(t)$ selon $\vec{z}_{0}\left(z_{2}(t)\right.$ étant une grandeur algébrique) du point de contact $C$ entre l'outil et la roue. Les conditions initiales sont supposées nulles. La liaison entre le porte-outil et l'outil est modélisée par une liaison encastrement. Le porte outil est considéré rigide et immobile (sa déformation est négligée devant celle de l'outil). L'effet de la pesanteur est négligé.
+L'outil est modélisé par un solide de masse $m_{2}=\SI{788}{kg}$ suspendu à une structure composée, en parallèle, d'un ressort $R_{0}$ de raideur $K=28 \times 10^{6} \mathrm{~N} \cdot \mathrm{~m}^{-1}$ et d'un amortisseur $A_{0}$ de coefficient de frottement visqueux $\lambda=\SI{14854}{Nsm^{-1}}$ (figure \ref{ccs_psi_2018_fig_09}). La compression de l'outil soumis à l'effort perturbateur $\vec{f}_{c}(t)=f_{c}(t) \vec{z}_{0}$ génère un déplacement $z_{2}(t)$ selon $\vec{z}_{0}\left(z_{2}(t)\right.$ étant une grandeur algébrique) du point de contact $C$ entre l'outil et la roue. Les conditions initiales sont supposées nulles. La liaison entre le porte-outil et l'outil est modélisée par une liaison encastrement. Le porte outil est considéré rigide et immobile (sa déformation est négligée devant celle de l'outil). L'effet de la pesanteur est négligé.
 \fi
+
+\begin{figure}%[!h]
+  \includegraphics[width=.7\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-09_1027_899_95_584}
+%\captionsetup{labelformat=empty}
+\caption{\label{ccs_psi_2018_fig_09} Modèle de déformation de l'outil avec le porte-outil fixe}
+\end{figure}
 
 %Q 18. 
 \question{Exprimer l'équation différentielle liant $z_{2}(t)$ et $f_{c}(t)$, puis la fonction de transfert $S(p)=\dfrac{Z_{2}(p)}{F_{c}(p)}$ sous forme canonique. Calculer les valeurs des paramètres caractéristiques de $S(p)$. Tracer le diagramme de Bode asymptotique et l'allure du diagramme de Bode réel associés à la fonction de transfert $S(p)$. Déterminer littéralement l'amplitude $z_{2 m}$ maximale de $z_{2}(t)$, ainsi que la pulsation correspondante, lorsque $f_{c}(t)=\left(f_{c 0}+\right. \left.f_{c 1} \sin (\omega t)\right) \mathcal{H}(t)$ avec $f_{c 1}=100 \mathrm{~N}$. Effectuer l'application numérique et conclure quant au respect du critère concernant le défaut $\Delta u$ de la roue.}
@@ -131,22 +164,14 @@ Modéliser le comportement dynamique de l'outil et du porte-outil, puis étudier
 
 Le système composé de l'outil et du porte-outil est modélisé sur la figure \ref{ccs_psi_2018_fig_10}. Le porte-outil, de masse $m_{1}=5522 \mathrm{~kg}$, est considéré indéformable et en liaison glissière de direction $\vec{z}_{0}$ avec le bâti. Une chaine de motorisation électrique permet de déplacer le porte-outil et une structure de commande associée permet d'asservir la position $z_{1}(t)$ par rapport à une position de référence. La chaine de motorisation exerce une force motrice $\vec{f}_{m}(t)=f_{m}(t) \vec{z}_{0}$ sur le porte-outil.
 
-\begin{figure}[!h]
-\begin{center}
-  \includegraphics[width=.7\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-09_1027_899_95_584}
-%\captionsetup{labelformat=empty}
-\caption{\label{ccs_psi_2018_fig_09} Modèle de déformation de l'outil avec le porte-outil fixe}
-\end{center}
-\end{figure}
 
 Les positions du porte-outil et du point $C$ par rapport à leur position de référence sont respectivement paramétrées par $z_{1}(t) \vec{z}_{0}$ et $z_{2}(t) \vec{z}_{0}$, avec $z_{1}(t)$ et $z_{2}(t)$ des grandeurs algébriques (figure \ref{ccs_psi_2018_fig_10}). Les conditions initiales sont toujours supposées nulles.
 
 \begin{figure}[!h]
-\begin{center}
+\centering
   \includegraphics[width=.7\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-09_1296_889_1359_589}
 %\captionsetup{labelformat=empty}
 \caption{\label{ccs_psi_2018_fig_10}Modèle de déformation de l'outil avec le porte-outil piloté}
-\end{center}
 \end{figure}
 
 Le théorème de la résultante dynamique appliqué au porte-outil puis à l'outil permet d'obtenir les deux relations suivantes:
@@ -158,16 +183,19 @@ m_{2} \ddot{z}_{2}(t)+\lambda \dot{z}_{2}(t)+K z_{2}(t)=\lambda \dot{z}_{1}(t)+K
 \end{gathered}
 $$
 
+
 Le modèle correspondant est représenté par le schéma bloc de la figure \ref{ccs_psi_2018_fig_11}.
 
-\begin{figure}[!h]
-\begin{center}
-  \includegraphics[width=.6\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-10_294_1102_376_482}
+\begin{figure}%[!h]
+%\begin{center}
+ \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-10_294_1102_376_482}
 %\captionsetup{labelformat=empty}
 \caption{\label{ccs_psi_2018_fig_11}Modèle de l'outil et porte-outil}
-\end{center}
+%\end{center}
 \end{figure}
 \fi
+
+
 
 %Q19. 
 \question{Exprimer les fonctions $H_{1}(p), H_{2}(p), H_{3}(p)$ et $H_{4}(p)$ en fonction de $K, \lambda, m_{1}$ et $m_{2}$. Le modèle de la figure \ref{ccs_psi_2018_fig_11} est réduit au modèle équivalent de la figure \ref{ccs_psi_2018_fig_12}.}
@@ -198,11 +226,11 @@ $$
 \ifprof
 \else
 \begin{figure}[!h]
-\begin{center}
+%\begin{center}
   \includegraphics[width=.5\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-10_231_687_845_689}
 %\captionsetup{labelformat=empty}
 \caption{\label{ccs_psi_2018_fig_12}Modèle équivalent}
-\end{center}
+%\end{center}
 \end{figure}
 \fi
 
@@ -270,12 +298,12 @@ Le diagramme de Bode associé à la fonction de transfert $N_{2}(p)$ est représ
 \ifprof
 \begin{corrige}
 D'après le diagramme asymptotique donné, on a nécessairement $\omega_1<\omega_2$. On peut dresser un tableau des variations à partir de la fonction de transfert $N_2(p)$. 
-\begin{center}
+%\begin{center}
 \includegraphics[width=.7\linewidth]{fig_06}
 
 \includegraphics[width=.7\linewidth]{fig_07}
 %\textit{}
-\end{center}
+%\end{center}
 \end{corrige}
 \else
 \fi
@@ -295,11 +323,11 @@ Le gain dB est donc  $20\log A - 20 \log \omega^2$.  Pour $\omega=\SI{500}{rad.s
 Le modèle approché ( $N_{2 \text { app }}(p)$ ) est retenu pour la suite de l'étude. Le schéma bloc modélisant la régulation de la position $z_{1}(t)$ est donné en figure \ref{ccs_psi_2018_fig_13}, en considérant un correcteur proportionnel de gain $K_{p}$.
 
 \begin{figure}[!h]
-\begin{center}
+%\begin{center}
   \includegraphics[width=.6\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-10_392_961_1754_552}
 %\captionsetup{labelformat=empty}
 \caption{\label{ccs_psi_2018_fig_13}Modèle de synthèse de la régulation en position $z_{1}(t)$ du porte-outil}
-\end{center}
+%\end{center}
 \end{figure}
 
 %Q 24. 
@@ -331,11 +359,11 @@ Déterminer les paramètres d'une loi de commande afin de valider les performanc
 Au regard de ce problème, une boucle de vitesse est implantée en complément de la boucle de position pour asservir la position $z_{1}(t)$. Le modèle retenu est représenté sur le schéma bloc de la figure \ref{ccs_psi_2018_fig_14}. La boucle de vitesse est corrigée au moyen d'un correcteur proportionnel-intégral de fonction de transfert $H_{\mathrm{PI}}(p)=K_{v}\left(1+\dfrac{1}{T_{i} p}\right)$.
 
 \begin{figure}[!h]
-\begin{center}
+%\begin{center}
   \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-11_412_1459_105_303}
 %\captionsetup{labelformat=empty}
 \caption{\label{ccs_psi_2018_fig_14}Modèle de la régulation en position et en vitesse du porte-outil}
-\end{center}
+%\end{center}
 \end{figure}
 
 En utilisant le modèle approché $N_{2 \text { app }}(p)$, la fonction de transfert en boucle ouverte de l'asservissement en position du porte-outil $z_{1}(t)$ est:
@@ -406,64 +434,64 @@ K_v  =\dfrac{\omega_{\SI{0}{dB}}^3}{A\sqrt{\left(\dfrac{K_p}{T_i }-\omega_{\SI{0
 
 \ifprof
 \else
-
-La fonction de transfert $S(p)=\dfrac{Z_{2}(p)}{F_{c}(p)}$ peut alors s'exprimer uniquement en fonction du paramètre $K_{p}$. La valeur optimale de $K_{p}$ est celle permettant de minimiser le maximum de $|S(j \omega)|$. Ainsi, pour une perturbation sinusoïdale $f_{c}(t)=f_{c 1} \sin (\omega t)$, la variation de la position $z_{2}(t)$ du point $C$ aura une amplitude minimale.\\
-La solution adoptée pour déterminer la valeur optimale de $K_{p}$ consiste à balayer l'ensemble des solutions possibles de $K_{v}$ et $T_{i}$ pour $K_{p}$ variant de 0 à $K_{p \max }$, pour des pas de calcul $\Delta K_{p}=\dfrac{K_{p \max }}{N_{K_{p}}}$, où $N_{K_{p}}+1$ est le nombre de points de calcul.\\
-Le début d'un algorithme de résolution de ce problème est présenté dans le document réponse. Les valeurs maximales $\left|S_{K_{p}}\right|_{\text {max }}$ du module $|S(j \omega)|$ sont calculées avec un échantillonnage de pas $\Delta \omega=\dfrac{\omega_{\text {max }}}{N_{\omega}}$ où $\omega$ prend $N_{\omega}+1$ valeurs de 0 à $\omega_{\max }$. L'algorithme sera complété dans les questions 27 et 28 en utilisant les fonctions $|S(j \omega)|, T_{i}\left(K_{p}\right)$ et $K_{v}\left(K_{p}\right)$.\\
-\fi
-
-
-%Q 27. 
-\question{Compléter le cadre «Algorithme 1 » du document réponse. Cet algorithme doit permettre le calcul approché du maximum $\left|S_{K_{p}}\right|_{\text {max }}$, en admettant que $|S(j \omega)|$ n'admet qu'un seul maximum.}
-\ifprof
-\begin{corrige}
-
-\noindent \hspace{.4cm} $|$ Pour $i$ allant de 0 à $N_{K_P}$ :  
-
-\noindent \hspace{.8cm} $|$ Calcul de $K_P=i\times \Delta K_P$ 
-
-\noindent \hspace{.8cm} $|$ Calcul de $T_i \left( K_P\right)$ 
-
-\noindent \hspace{.8cm} $|$ Calcul de $K_v\left( K_P\right)$ 
-
-\noindent \hspace{.8cm} $|$ Calcul de $\left| S_{K_P} \right|_{\text{max}}=\left| S\left( j \times 0\right) \right|$
-
-\noindent \hspace{.8cm} $|$ Pour $j$ allant de 0 à $N_{\omega}$ :  
-
-\noindent \hspace{1.2cm} $|$ Calcul de $\omega=j\times \Delta \omega$ 
-
-\noindent \hspace{1.2cm} $|$ Calcul de $\left| S_{K_P} \right|_{\text{tmp}}=\left| S\left( j \times \omega \right) \right|$
-
-\noindent \hspace{1.2cm} $|$ Si $\left| S_{K_P} \right|_{\text{max}}< \left| S_{K_P} \right|_{\text{tmp}}$ :
-
-\noindent \hspace{1.6cm} $|$ $\left| S_{K_P} \right|_{\text{max}}= \left| S_{K_P} \right|_{\text{tmp}}$.
-
-\noindent \hspace{.8cm} $|$ On stocke $\left| S_{K_P} \right|_{\text{max}}$, $K_P$, $K_v$, $T_i$ dans un liste
-
-
-\end{corrige}
-\else
-\fi
-
-%Q 28. 
-\question{Compléter le cadre «Algorithme 2 » du document réponse. Cet algorithme doit permettre l'extraction du minimum min $\left(\left|S_{K_{p}}\right|_{\max }\right)$ et des valeurs optimales correspondantes $K_{p}^{\text {opt}}, T_{i}^{\text {opt }}$ et $K_{v}^{\text {opt }}$ de $K_{p}, T_{i}$ et $K_{v}$.}
-\ifprof
-\begin{corrige}
-
-\noindent \hspace{.4cm} $|$ On initialise $i_{\text{min}}$ et   $S_{\text{min}}$
-
-\noindent \hspace{.4cm} $|$ Pour $i$ allant de 0 à $N_{K_P}$ :  
-
-\noindent \hspace{.8cm} $|$ Si $S[i]<S_{\text{min}}$ :
-
-\noindent \hspace{1.2cm} $|$ $i_{\text{min}}\leftarrow i$
-
-\noindent \hspace{1.2cm} $|$ $S_{\text{min}}\leftarrow S[i]$
-
-\noindent \hspace{.4cm} $|$ On retourne  $K_P$, $K_v$, $T_i$ associés à $i_{\text{min}}$.
-\end{corrige}
-\else
-\fi
+%
+%La fonction de transfert $S(p)=\dfrac{Z_{2}(p)}{F_{c}(p)}$ peut alors s'exprimer uniquement en fonction du paramètre $K_{p}$. La valeur optimale de $K_{p}$ est celle permettant de minimiser le maximum de $|S(j \omega)|$. Ainsi, pour une perturbation sinusoïdale $f_{c}(t)=f_{c 1} \sin (\omega t)$, la variation de la position $z_{2}(t)$ du point $C$ aura une amplitude minimale.\\
+%La solution adoptée pour déterminer la valeur optimale de $K_{p}$ consiste à balayer l'ensemble des solutions possibles de $K_{v}$ et $T_{i}$ pour $K_{p}$ variant de 0 à $K_{p \max }$, pour des pas de calcul $\Delta K_{p}=\dfrac{K_{p \max }}{N_{K_{p}}}$, où $N_{K_{p}}+1$ est le nombre de points de calcul.\\
+%Le début d'un algorithme de résolution de ce problème est présenté dans le document réponse. Les valeurs maximales $\left|S_{K_{p}}\right|_{\text {max }}$ du module $|S(j \omega)|$ sont calculées avec un échantillonnage de pas $\Delta \omega=\dfrac{\omega_{\text {max }}}{N_{\omega}}$ où $\omega$ prend $N_{\omega}+1$ valeurs de 0 à $\omega_{\max }$. L'algorithme sera complété dans les questions 27 et 28 en utilisant les fonctions $|S(j \omega)|, T_{i}\left(K_{p}\right)$ et $K_{v}\left(K_{p}\right)$.\\
+%\fi
+%
+%
+%%Q 27. 
+%\question{Compléter le cadre «Algorithme 1 » du document réponse. Cet algorithme doit permettre le calcul approché du maximum $\left|S_{K_{p}}\right|_{\text {max }}$, en admettant que $|S(j \omega)|$ n'admet qu'un seul maximum.}
+%\ifprof
+%\begin{corrige}
+%
+%\noindent \hspace{.4cm} $|$ Pour $i$ allant de 0 à $N_{K_P}$ :  
+%
+%\noindent \hspace{.8cm} $|$ Calcul de $K_P=i\times \Delta K_P$ 
+%
+%\noindent \hspace{.8cm} $|$ Calcul de $T_i \left( K_P\right)$ 
+%
+%\noindent \hspace{.8cm} $|$ Calcul de $K_v\left( K_P\right)$ 
+%
+%\noindent \hspace{.8cm} $|$ Calcul de $\left| S_{K_P} \right|_{\text{max}}=\left| S\left( j \times 0\right) \right|$
+%
+%\noindent \hspace{.8cm} $|$ Pour $j$ allant de 0 à $N_{\omega}$ :  
+%
+%\noindent \hspace{1.2cm} $|$ Calcul de $\omega=j\times \Delta \omega$ 
+%
+%\noindent \hspace{1.2cm} $|$ Calcul de $\left| S_{K_P} \right|_{\text{tmp}}=\left| S\left( j \times \omega \right) \right|$
+%
+%\noindent \hspace{1.2cm} $|$ Si $\left| S_{K_P} \right|_{\text{max}}< \left| S_{K_P} \right|_{\text{tmp}}$ :
+%
+%\noindent \hspace{1.6cm} $|$ $\left| S_{K_P} \right|_{\text{max}}= \left| S_{K_P} \right|_{\text{tmp}}$.
+%
+%\noindent \hspace{.8cm} $|$ On stocke $\left| S_{K_P} \right|_{\text{max}}$, $K_P$, $K_v$, $T_i$ dans un liste
+%
+%
+%\end{corrige}
+%\else
+%\fi
+%
+%%Q 28. 
+%\question{Compléter le cadre «Algorithme 2 » du document réponse. Cet algorithme doit permettre l'extraction du minimum min $\left(\left|S_{K_{p}}\right|_{\max }\right)$ et des valeurs optimales correspondantes $K_{p}^{\text {opt}}, T_{i}^{\text {opt }}$ et $K_{v}^{\text {opt }}$ de $K_{p}, T_{i}$ et $K_{v}$.}
+%\ifprof
+%\begin{corrige}
+%
+%\noindent \hspace{.4cm} $|$ On initialise $i_{\text{min}}$ et   $S_{\text{min}}$
+%
+%\noindent \hspace{.4cm} $|$ Pour $i$ allant de 0 à $N_{K_P}$ :  
+%
+%\noindent \hspace{.8cm} $|$ Si $S[i]<S_{\text{min}}$ :
+%
+%\noindent \hspace{1.2cm} $|$ $i_{\text{min}}\leftarrow i$
+%
+%\noindent \hspace{1.2cm} $|$ $S_{\text{min}}\leftarrow S[i]$
+%
+%\noindent \hspace{.4cm} $|$ On retourne  $K_P$, $K_v$, $T_i$ associés à $i_{\text{min}}$.
+%\end{corrige}
+%\else
+%\fi
 
 \subsection{Analyse de l'influence du paramètre b (défini en figure \ref{ccs_psi_2018_fig_C} du document réponse)}
 \begin{obj}
@@ -485,11 +513,11 @@ D'un point de vue numérique, $K_{f}=1,5 \times 10^{9} \mathrm{~N} \cdot \mathrm
 \end{itemize}
 
 \begin{figure}[!h]
-\begin{center}
+%\begin{center}
   \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-12_563_1595_98_228}
 %\captionsetup{labelformat=empty}
 \caption{\label{ccs_psi_2018_fig_15}Modèle de la chaine d'asservissement complète}
-\end{center}
+%\end{center}
 \end{figure}
 \fi
 
@@ -513,21 +541,21 @@ D'après les équations données et en utilisant le théorème du retard, on a $
 En prenant $Z_{c}(p)=0$, le modèle de la figure \ref{ccs_psi_2018_fig_15} peut se mettre sous la forme du modèle équivalent de la figure \ref{ccs_psi_2018_fig_16}.
 
 \begin{figure}[!h]
-\begin{center}
+%\begin{center}
   \includegraphics[width=.6\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-12_234_803_861_630}
 %\captionsetup{labelformat=empty}
 \caption{\label{ccs_psi_2018_fig_16}Modèle équivalent de la chaine d'asservissement complète}
-\end{center}
+%\end{center}
 \end{figure}
 
 La figure \ref{ccs_psi_2018_fig_17} représente le diagramme de Bode de la fonction de transfert en boucle ouverte du système modélisé figure \ref{ccs_psi_2018_fig_16}, avec $b=\dfrac{5 \times 10^{-2}}{\pi} \mathrm{~mm} \cdot \mathrm{rad}^{-1}$.
 
 \begin{figure}[!h]
-\begin{center}
+%\begin{center}
   \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-12_968_1577_1324_244}
 %\captionsetup{labelformat=empty}
 \caption{\label{ccs_psi_2018_fig_17}Diagramme de Bode de la boucle ouverte du schéma bloc de la figure \ref{ccs_psi_2018_fig_16}}
-\end{center}
+%\end{center}
 \end{figure}
 
 Les «zéros de transmission» d'une fonction de transfert $H(p)$ correspondent aux pulsations $\omega$ pour lesquelles $H(j \omega)$ est nul.
