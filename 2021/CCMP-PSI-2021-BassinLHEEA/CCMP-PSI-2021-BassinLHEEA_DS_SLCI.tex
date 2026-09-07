@@ -1,0 +1,415 @@
+\section{Présentation}
+
+
+\ifprof
+\else
+Le système étudié, nommé bassin de traction, est un des nombreux bassins d'essais du Laboratoire de recherche en Hydrodynamique, Energétique et Environnement Atmosphérique (LHEEA) situé à Nantes.
+Ce bassin de traction mesure \SI{140}{m} de long, \SI{5}{m} de large, et a une profondeur constante de \SI{3}{m} (Figure \ref{fig:CCMP:2021:01} et Annexe 3). Il est équipé d'un chariot de traction pouvant se déplacer dans l'une ou l'autre des directions, avec des vitesses atteignant jusqu'à \SI{8}{m.s^{-1}} (Figure \ref{fig:CCMP:2021:02}). À une extrémité du bassin se trouve un batteur à houle permettant de générer des houles unidirectionnelles régulières de hauteur crête-à-creux maximale de \SI{0,5}{m}. À son autre extrémité, une plage d'amortissement sert à faire déferler les vagues pour limiter leur réflexion dans le bassin.
+
+
+\begin{multicols}{2}
+\begin{center}
+\includegraphics[width=.85\linewidth]{image1}
+\captionof{figure}{ \label{fig:CCMP:2021:01}Bassin de traction}
+\end{center}
+
+\begin{center}
+\includegraphics[width=.85\linewidth]{image2}
+\captionof{figure}{ \label{fig:CCMP:2021:02}Chariot de traction}
+\end{center}
+\end{multicols}
+
+Ce bassin, 2ème plus grand bassin de traction en France et le 1er au niveau académique, permet de mener un certain nombre d'expériences :
+\begin{itemize}
+	\item études de navires sur eau calme et sur houle ;
+	\item tests de résistance à l'avancement de navires avec ou sans houle ;
+	\item optimisations de carènes, tenue à la mer de navires ou structures flottantes ;
+	\item tests de technologies en Energies Marines Renouvelables.
+\end{itemize}
+ 
+Il a par exemple servi aux tests menés sur la nouvelle hydrolienne développée par Alstom (Figure \ref{fig:CCMP:2021:03}).
+L'industriel a utilisé une maquette de l'hydrolienne sur ce bassin de traction afin d'étudier son comportement pendant la phase de remorquage et, ainsi, vérifier jusqu'à quel état de mer elle pouvait être tractée.
+L'analyse fonctionnelle globale de ce bassin est disponible en Annexe 2. Le diagramme des exigences est consultable en Annexe 4.
+ 
+ \begin{figure}[!h]
+\centering
+\includegraphics[width=.45\linewidth]{image3}
+\caption{ \label{fig:CCMP:2021:03} Maquette de l'Hydrolienne testée par Alstom }
+\end{figure} 
+\fi
+
+\section{\label{s:CCMP:2021:04}Étude de l'exigence 1.2 : << Garantir un déplacement du chariot à vitesse constante >>}
+\begin{obj}
+Modéliser l'asservissement en vitesse du chariot de traction puis régler les paramètres du correcteur afin de satisfaire tous les critères de l'exigence 1.2 du cahier des charges.
+\end{obj}
+
+Dans toute la partie \ref{s:CCMP:2021:04}, on notera $F$ la transformée de Laplace de la fonction $f$ :	$F(p)=\mathcal{L}\left[f(t)\right]$
+\subsection{Modélisation de l'asservissement en vitesse}
+
+\subsubsection*{Principe de fonctionnement et schéma-blocs}
+
+\ifprof
+\else
+On étudie l'asservissement en vitesse du chariot de traction dont le schéma-blocs est donné en Figure \ref{fig:CCMP:2021:10}.
+
+\begin{itemize}
+\item Un adaptateur de gain $K_1$ permet de fournir l'image $U_C (p)$ de la consigne de vitesse $V_C (p)$.
+\item Un capteur de vitesse en rotation de gain $K_{11}$ renvoie une tension $\indice{U}{mes}(p)$ proportionnelle à la vitesse de rotation $\indice{\Omega}{mes} (p)$ de son axe. Par ailleurs, une roue libre en rotation de gain $K_9$ associée à un réducteur de vitesse épicycloïdal de gain $K_{10}$ permettent de transformer la vitesse du chariot $V(p)$ en vitesse de rotation $\indice{\Omega}{mes} (p)$ de l'axe du capteur de vitesse de rotation.
+\item L'écart $\varepsilon_U (p)$ entre $U_C (p)$ et $\indice{U}{mes} (p)$ est ensuite corrigé par un correcteur de fonction de transfert $C(p)$ afin de piloter un variateur de gain $K_2$.
+\item La tension de commande $U_m (p)$ du moteur va induire la vitesse angulaire $\Omega_m (p)$ de l'axe moteur.
+\item Un réducteur de vitesse de gain $K_7$ puis le système roue-rail de gain $K_8$ transforment le mouvement pour obtenir une vitesse $V(p)$ de translation du chariot.
+\item On notera $\indice{F}{res} (p)$ la force de l'eau sur la maquette en mouvement. $\indice{C}{res} (p)$ représente le couple équivalent à $\indice{F}{res} (p)$ ramené sur l'axe moteur.
+\end{itemize}
+On rappelle qu'il y a roulement sans glissement entre la roue libre en rotation et le rail, ainsi qu'entre la roue motrice et le rail.
+ 
+\begin{figure}[!h]
+\centering
+\includegraphics[width=\linewidth]{image10}
+\caption{ \label{fig:CCMP:2021:10} Schéma-blocs de l'asservissement en vitesse du chariot}
+\end{figure} 
+
+\subsubsection*{Données générales}
+ 
+ \begin{itemize}
+\item Rayon de la roue motrice :	$R=\SI{0,25}{m}$
+\item Rayon de la roue libre en rotation : $r=\SI{0,15}{m}$
+\item Capteur de vitesse en rotation : $K_{11}=\SI{60}{V.s.rad^{-1}}$
+\item Autres données : $K_2=1$ et $K_7=\mu=\dfrac{1}{25}$, $K_{10}=\dfrac{1}{2,5}$	$K_{12}=R\mu$.
+ \end{itemize}
+ 
+On souhaite compléter la modélisation de l'asservissement à partir du principe de fonctionnement fourni et des données générales.
+\fi
+
+% Q23
+\question{\label{q:CCMP:2021:}Indiquer les expressions littérales des gains $K_8$ et $K_9$. Déterminer ensuite $K_1$ en fonction des autres gains $K_i$ permettant d'obtenir un écart $\varepsilon_U (p)$ nul lorsque la sortie $V(p)$ est égale à la consigne $V_c (p)$ (vous préciserez les unités de chacun des gains demandés).}
+\ifprof
+\begin{corrige}
+\begin{itemize}
+\item La vitesse du chariot est obtenue grâce à la mise en rotation de la roue motrice de rayon $R$ et il a été vu que$v(t)=-R\omega_r(t)$. De plus $V(p)=K_8\Omega_R(p)$. On a donc et $K_8 = -R$ et $K_8 = -\SI{0,25}{m}$.
+\item De même en passant par la roue libre, $V(p)=r \Omega_{rl}(p)$ et $K_9 = -\dfrac{1}{r} = -\SI{6,67}{m^{-1}}$.
+\item On a $\varepsilon_U(p)=V_C(p)K_1 - V(p) K_{11}K_{10}K_9$. Pour avoir un écart nul lorsque $V(p)=V_C(p)$, on a nécessairement $K_1 = K_{11}K_{10}K_9$. On a donc  $K_1 = 60\times \dfrac{1}{2,5}\times \dfrac{-1}{0,15}=  - \SI{160}{V.s.rad^{-1} m^{-1}}$.
+\end{itemize}
+\end{corrige}
+\else
+\fi
+
+
+\subsection{Influence de la perturbation sur la réponse}
+\ifprof
+\else
+À partir de la modélisation initiale, on peut établir le schéma-blocs à retour unitaire de la Figure \ref{fig:CCMP:2021:11}. Sur ce schéma-blocs, on notera que la perturbation a été décalée en amont du moteur.
+ 
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.7\linewidth]{image11}
+\caption{ \label{fig:CCMP:2021:11} Schéma-blocs simplifié de l'asservissement}
+\end{figure}  
+ 
+Avec :
+\begin{itemize}
+\item $K_a=\SI{1000}{V.s.m^{-1}}$;
+\item $K_b=\SI{0,01}{m}$;
+\item $K_c=\SI{0,1}{V.N^{-1}}$ avec $H_m (p)= \dfrac{K_m}{\left(1+T_e p\right) \left(1+T_m.p\right) }$
+où $K_m=\SI{2}{rad.s^{-1}.V^{-1}}$ et $T_m=\SI{5}{s}$ et $T_e=\SI{0,5}{s}$.
+\end{itemize}	
+ 
+
+On fera dans un premier temps le choix d'un correcteur proportionnel : $C(p)=C$.
+On notera $V(p)=V_1 (p)-V_2 (p)$ avec $V_1 (p)= H_1 (p) V_C (p)$ et $V_2 (p)=H_2 (p) \indice{F}{res}(p)$. On précise que :
+\begin{itemize}
+    \item $v_1 (t)$ est la réponse du système à la seule consigne et on note : $V_1 (p)=\mathcal{L}\left[v_1 (t)\right] $;
+    \item $v_2 (t)$ est la réponse du système à la seule perturbation et on note : $V_2 (p)=\mathcal{L}\left[v_1 (t)\right]$.
+\end{itemize}
+On soumet le système à un échelon de consigne d'amplitude $V_0$ et à un échelon de perturbation d'amplitude $F_0$. Par linéarité, la réponse en régime permanent s'écrit comme suit :
+$\lim\limits_{t\to \infty} v(t)= v_1 - v_2$ où $v_1=\lim\limits_{t\to \infty}v_1(t)$ et $v_2=\lim\limits_{t\to \infty}v_2(t)$.
+
+Par souci de simplification, on notera également $\indice{K}{BO}=CK_a K_b K_m$.
+\fi
+
+% Q24
+\question{\label{q:CCMP:2021:}Déterminer l'expression littérale des fonctions de transfert $H_1(p)$ et $H_2 (p)$ (la forme canonique n'est pas demandée). En déduire les expressions des réponses $v_1$ et $v_2$ en fonction de $V_0$, $F_0$, $\indice{K}{BO}$, $K_m$, $K_c$ et $K_b$.}
+\ifprof
+\begin{corrige}
+Par lecture directe : $V(p)=U_m(p)H_m(p)K_b$ $=\left(\varepsilon_V(p) K_a C(p) - \indice{F}{res}(p)K_c\left(1+T_e p\right)\right) H_m(p)K_b$.
+On a donc $V(p)=\left(\left(V_c(p) - V(p) \right) K_a C(p) - \indice{F}{res}(p)K_c\left(1+T_e p\right)\right) H_m(p)K_b$ et $V(p)=K_a C(p)H_m(p)K_bV_c(p) - H_m(p)K_bK_a C(p) V(p)  - \indice{F}{res}(p)K_c\left(1+T_e p\right)H_m(p)K_b$
+Soit : 
+$V(p)\left(1+ H_m(p)K_bK_a C(p)\right)  =K_a C(p)H_m(p)K_bV_c(p) - \indice{F}{res}(p)K_c\left(1+T_e p\right)H_m(p)K_b$ et 
+$V(p) =\dfrac{K_a C(p)H_m(p)K_b}{1+ H_m(p)K_bK_a C(p)}V_c(p) -\dfrac{K_c\left(1+T_e p\right)H_m(p)K_b}{1+ H_m(p)K_bK_a C(p)} \indice{F}{res}(p)$.
+
+Par ailleurs : 
+
+$v_1=\lim\limits_{t\to \infty}v_1(t)=\lim\limits_{p\to0} p V_1(p) $ $=\lim\limits_{p\to0} p   \dfrac{K_a C \dfrac{K_m}{\left(1+T_e p\right) \left(1+T_m.p\right) }K_b}{1+ \dfrac{K_m}{\left(1+T_e p\right) \left(1+T_m.p\right) }K_bK_a C} \dfrac{V_0}{p}$
+ $=\dfrac{K_a C K_m K_b}{1+ K_mK_bK_a C} V_0$  $=\dfrac{\indice{K}{BO}}{1+ \indice{K}{BO}} V_0$.
+ 
+De même, $v_2=\lim\limits_{t\to \infty}v_2(t)=\lim\limits_{p\to0} p V_2(p) $
+$=-\dfrac{K_c K_mK_b}{1+ K_mK_bK_a C} F_0$ $=-\dfrac{K_c K_mK_b}{1+ \indice{K}{BO}}F_0$.
+\end{corrige}
+\else
+\fi
+
+\ifprof
+\else
+La perturbation $\indice{F}{res}(p)$ de cet asservissement correspond à l'action de l'eau sur la maquette en mouvement. On souhaite déterminer ici la condition sur le gain C du correcteur proportionnel (on notera $\indice{C}{pert}$ cette condition) permettant de négliger l'influence de cette perturbation vis-à-vis de la réponse à la consigne. Pour cela, on cherchera à vérifier la relation suivante : $|v_2| \leq 0,1 |v_1|$.
+\fi
+
+% Q25
+\question{\label{q:CCMP:2021:25}Déterminer la condition (notée $\indice{C}{pert}$) sur le gain $C$ du correcteur permettant de s'assurer que l'influence de la perturbation est négligeable devant l'influence de la consigne. Faire l'application numérique avec $V_0=\SI{8}{m.s^{-1}}$ et $F_0=\SI{400}{N}$.}
+\ifprof
+\begin{corrige}
+On souhaite que $|v_2| \leq 0,1 |v_1|$ 
+$\Rightarrow \dfrac{K_c K_mK_b}{1+ K_mK_bK_a C} F_0 \leq 0,1 \dfrac{K_a C K_m K_b}{1+ K_mK_bK_a C} V_0$
+$\Rightarrow K_c K_mK_b F_0 \leq 0,1 K_a C K_m K_b V_0$
+$\Rightarrow 10\dfrac{K_c K_mK_b}{K_a  K_m K_b} \dfrac{F_0}{V_0} \leq  C $
+$\Rightarrow C \geq 10\dfrac{K_c }{K_a } \dfrac{F_0}{V_0}  $
+$\Rightarrow C \geq 10\dfrac{0,1}{1000 } \dfrac{400}{8}  $
+$\Rightarrow C \geq \dfrac{5}{100} $.
+
+Analyse des unités : $\dfrac{\si{V.N^{-1}}}{\si{V.s.m^{-1}}}\times \dfrac{\si{N}}{\si{m.s^{-1}}} = 1$.
+\end{corrige}
+\else
+\fi
+
+Pour la suite du sujet, on supposera que la relation $|v_2 | \leq 0,1 |v_1 |$ est vérifiée et donc que l'on peut négliger la perturbation.
+
+\subsection{Étude d'un premier correcteur}
+\ifprof
+\else
+
+L'asservissement de vitesse est à présent modélisé par le schéma-blocs de la Figure \ref{fig:CCMP:2021:12} à retour unitaire. Cet asservissement n'est valable que pour les petites variations de vitesse.
+$H(p)$ correspond à la fonction de transfert en boucle ouverte naturelle (non corrigée), $C(p)$ est le correcteur.
+ 
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.4\linewidth]{image12}
+\caption{\label{fig:CCMP:2021:12} Schéma-blocs simplifié (sans perturbation)}
+\end{figure}  
+
+$H(p)=\dfrac{K_N}{\left(1+T_m p\right) \left(1+T_e p\right)}$. 
+Avec : $K_N=\SI{20}{m.s^{-1}.V^{-1}}$ avec $T_m\simeq \SI{5}{s}$	$T_e\simeq\SI{0,5}{s}$.
+ 
+
+Le concepteur a choisi un correcteur Proportionnel Intégral :	$C_1 (p)=\dfrac{C}{T_i p} \left(1+T_i p\right)$ avec $T_i=T_m$.
+\fi
+
+% Q26
+\question{\label{q:CCMP:2021:26}Déterminer les expressions littérales de l'erreur statique $E_S$ (consigne : échelon d'amplitude $V_0$) et de l'erreur de trainage $E_T$ (consigne : rampe de pente $\gamma_0$) de cet asservissement corrigé avec $C_1 (p)$ en fonction de la consigne, du gain $K_N$ et des paramètres du correcteur $C$ et $T_m$. En déduire la condition (notée $C_{\varepsilon}$) sur le gain $C$ du correcteur permettant de satisfaire l'exigence 1.2.3 du cahier des charges.}
+\ifprof
+\begin{corrige}
+\textbf{Méthode recommandée -- Classe de la BO}
+
+La FTBO peut s'exprimer sous la forme $F(p)=\dfrac{C}{T_i p} \left(1+T_i p\right)\dfrac{K_N}{\left(1+T_m p\right) \left(1+T_e p\right)}$ $=\dfrac{C}{T_m p}\dfrac{K_N}{ \left(1+T_e p\right)}$. $F(p)$ est une fonction de classe 1 et de gain $\indice{K}{BO} = \dfrac{CK_N}{T_m} $.
+
+L'erreur statique $E_S$ est alors nulle. L'erreur de trainage $E_t$ est donnée par  $E_t = \dfrac{\gamma_0 T_m}{C K_N}$ $ =\dfrac{1,6\times 5}{C \times 20}$. Pour valider l'exigence, il faut donc $\dfrac{0,4}{C} \leq 0,16 $
+$\Rightarrow C\geq  \SI{2,5}{sVm^{-1}}$.
+
+\begin{center}
+\begin{tabular}{p{5cm}llp{3cm}}
+\hline
+Exigence & Cahier des charges & Calcul & Validation  \\
+\hline
+Erreur statique pour une entrée $V_0 = \SI{8}{m.s^{-1}}$ & $E_S=0$ & $E_S=0$ & Validé \\
+Erreur de trainage pour une entrée $\gamma_0 = \SI{1,8}{m.s^{-2}}$ & $E_T\leq \SI{0,16}{m.s^{-1}}$ &  & Validé pour  $C\geq  \SI{2,5}{sVm^{-1}}$\\
+\hline
+\end{tabular}
+\end{center} 
+\end{corrige}
+\else
+\fi
+
+\ifprof
+\else
+Les diagrammes de Bode de la fonction de transfert en boucle ouverte corrigée de l'asservissement avec $C_1 (p)$ sont fournis sur le cahier réponse à la question \ref{q:CCMP:2021:27} (il sont aussi donnés Figure \ref{fig:CCMP:2021:bode}). Ces diagrammes de Bode ont été tracés avec la valeur particulière $C=1$.
+\fi
+
+\question{En utilisant par exemple un tableau de variations, justifier l'allure du diagramme de Bode.}
+\ifprof
+\begin{corrige}
+On a $\text{BO}(p)=C(p)H(p)=\dfrac{1+T_ip}{T_i p} \dfrac{K_N}{\left(1+T_m p \right)\left(1+T_e p \right)}$
+$=\dfrac{1+5p}{5 p} \dfrac{20}{\left(1+5 p \right)\left(1+0,5 p \right)}$
+$=\dfrac{1}{p} \dfrac{4}{1+0,5 p }$
+
+Il y a une pulsation de coupure pour $\omega = 1/0,5 = \SI{2}{rad/s}$.
+
+De plus quand $\omega << 2$, $\text{BO}(p) \simeq \dfrac{4}{p}$. On a alors pour $\omega=0,1$, 
+$\indice{G}{BO}(0,1) \simeq 20\log 4/0,1 \simeq  20\log 40 \simeq 32$.
+
+
+\begin{center}
+\includegraphics[width=.65\linewidth]{cor_01}
+
+\includegraphics[width=.65\linewidth]{cor_02}
+\end{center}
+
+\end{corrige}
+
+\else
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.45\linewidth]{Bode}
+\caption{\label{fig:CCMP:2021:bode} Diagramme de Bode de la FTBO.}
+\end{figure} 
+
+\fi
+
+
+% Q27
+\question{\label{q:CCMP:2021:27}Déterminer la condition (notée $C_{\varphi}$) sur le gain $C$ du correcteur permettant de satisfaire uniquement le critère de marge de phase de l'exigence 1.2.2 du cahier des charges. Faire l'application numérique (on pourra utiliser la courbe fournie en annexe 1).}
+\ifprof
+\begin{corrige}
+D'après le cahier des charges, on souhaite une marge de phase supérieure à $45^\circ$.
+Cette marge est obtenue pour une pulsation de \SI{2}{rad.s^{-1}}. À cette pulsation, le gain de la BO non corrigée est de \SI{2,5}{dB}. 
+
+On cherche donc $C_\varphi$ tel que $20\log C_\varphi = -2,5$ $\Rightarrow C_\varphi = 10^{-2,5/20} = 0,75$.
+Il faut donc que $C_\varphi$ soit inférieur à \SI{0,75}{mVs^{-1}} pour que la marge de phase soit supérieure à $45^\circ$.
+\end{corrige}
+\else
+\fi
+
+% Q28
+\question{\label{q:CCMP:2021:28}Conclure quant à la capacité de ce correcteur à satisfaire le cahier des charges.}
+\ifprof
+\begin{corrige}
+On a vu que :
+\begin{itemize}
+\item $C\geq  \SI{2,5}{sVm^{-1}}$;
+\item $C_{\varphi} \leq  \SI{0,75}{mVs^{-1}}$.
+\end{itemize}
+
+Il n'est donc pas possible de satisfaire le cahier des charges avec un correcteur proportionnel. 
+
+\end{corrige}
+\else
+\fi
+
+\subsection{Réglage du correcteur PID}
+On choisit finalement de prendre le correcteur Proportionnel Intégral Dérivé suivant :
+$C_2 (p)=C \left(1+\dfrac{1}{T_i p}+T_d p\right)$ avec $T_i=2 T_e$  et $T_d=\dfrac{T_e}{2}$.
+
+% Q29
+\question{\label{q:CCMP:2021:29}Montrer qu'on peut mettre ce correcteur sous la forme $C_2 (p)=\dfrac{K}{p} \left(1+T p\right)^2$ et donner les expressions de $K$ et de $T$ en fonction de $C$ et $T_e$.}
+\ifprof
+\begin{corrige}
+On a d'une part, $C_2 (p)=C \left(1+\dfrac{1}{2 T_e p}+\dfrac{T_e}{2} p\right)$ $=\dfrac{C}{2 T_e }\dfrac{1 +2 T_e p +  T_e^2p^2}{p}$.
+
+D'autre part $C_2 (p)=\dfrac{K}{p} \left(1+2 TP+ T^2 p^2\right)$.
+
+En identifiant, $T=T_e$ et $K = \dfrac{C}{2 T_e }$.
+\end{corrige}
+\else
+\fi
+
+% Q30
+\question{\label{q:CCMP:2021:30}Donner l'expression de la fonction de transfert en boucle ouverte du système corrigé. En déduire les expressions littérales de l'erreur statique $E_S$ (consigne : échelon d'amplitude $V_0$) et de l'erreur de trainage $E_T$ (consigne : rampe de pente $\gamma_0$) de cet asservissement corrigé. En déduire la condition sur la valeur du gain $K$ du correcteur permettant de satisfaire l'exigence 1.2.3 du cahier des charges.}
+\ifprof
+\begin{corrige}
+La FTBO du système corrigé est donnée par $F_2(p)=\dfrac{K}{p} \left(1+T p\right)^2\dfrac{K_N}{\left(1+T_m p\right) \left(1+T_e p\right)}$.
+
+Cette fonction étant de classe 1 et de gain $KK_N$, on a $E_S = 0$ et $E_T = \dfrac{\gamma_0}{KK_N}$. Pour respecter l'exigence 1.2.3, il faut donc nécessairement que $\dfrac{\gamma_0}{KK_N} \leq 0,16$ soit 
+$\dfrac{\gamma_0}{0,16K_N} \leq K$. On a donc $K\geq \dfrac{1,6}{0,16\times 20}$ $=\SI{0,5}{V m^{-1}}$.
+\end{corrige}
+\else
+\fi
+
+
+% Q31
+\question{\label{q:CCMP:2021:31}La courbe réelle de la phase de la FTBO est représentée sur le cahier réponses et Figure \ref{fig:CCMP:2021:bode2}. Compléter le tracé avec les diagrammes de Bode asymptotiques (gain et phase) de la FTBO du système corrigé avec le correcteur $C_2 (p$) (avec $K=\SI{0,05}{V.m^{-1}}$). On assimilera la courbe réelle de gain à son tracé asymptotique. Tracer la marge de phase sur le cahier réponses et conclure quant au respect du cahier des charges.}
+\ifprof
+\begin{corrige}
+On a $BO(p)= \dfrac{C}{2 T_e p} \left(1+ T_e p\right)^2 \dfrac{K_N}{\left(1+T_m p\right) \left(1+T_e p\right)}$
+$= \dfrac{C}{2 T_e p} \left(1+ T_e p\right) \dfrac{K_N}{\left(1+T_m p\right)}$
+$= \dfrac{0,05}{p} \left(1+ 0,5 p\right) \dfrac{20}{\left(1+5 p\right)}$
+$= \dfrac{1}{p} \left(1+ 0,5 p\right) \dfrac{1}{\left(1+5 p\right)}$
+%$= \dfrac{1}{ p} \left(1+ 0,5 p\right) \dfrac{20}{\left(1+5 p\right)}$.
+
+Il y a 2 pulsations de cassure : $\SI{2}{rad/s}$ et $\SI{0,2}{rad/s}$.
+De plus quand $\omega << \SI{0,2}{rad/s}$ , on a $BO(p)\simeq \dfrac{1}{ p}$; donc pour $\omega \simeq \SI{0,01}{rad/s}$, on a $20\log 100 =  \SI{40}{dB}$.
+
+\begin{center}
+\includegraphics[width=.65\linewidth]{cor_03}
+
+\includegraphics[width=.65\linewidth]{cor_04}
+\end{center}
+
+\end{corrige} 
+\else
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.45\linewidth]{Bode2}
+\caption{\label{fig:CCMP:2021:bode2}}
+\end{figure} 
+\fi
+
+
+
+\ifprof
+\else
+On choisit finalement le réglage du correcteur $C_2 (p)$ suivant, qui permet de satisfaire l'exigence 1.2.2 :
+$C_2 (p)=\dfrac{7,5}{p} (1+0,5 p)^2$
+On réalise une simulation, dont les résultats sont donnés sur la Figure \ref{fig:CCMP:2021:13}, la Figure \ref{fig:CCMP:2021:14} et la Figure \ref{fig:CCMP:2021:15}. 
+\fi
+
+% Q32
+\question{\label{q:CCMP:2021:32}Relever la valeur du premier dépassement puis du temps de réponse pour le système soumis à un échelon. Relever le dépassement pour le système soumis à un trapèze de vitesse. Conclure quant à la capacité de ce correcteur à satisfaire l'exigence 1.2 du cahier des charges.}
+\ifprof
+\begin{corrige}
+Le pic est atteint à \SI{8,7}{m.s^{-1}}. Le dépassement absolu est donc de \SI{0,7}{m.s^{-1}} et le dépassement relatif est donc de 8\,\%. Cela est bien inférieur aux 10\,\% exigés par le cahier des charges. 
+
+Pour la réponse à un trapèze le dépassement relatif est inférieur à $\SI{0,1}{m.s^{-1}}$.
+
+
+\textbf{Bilan :}
+\begin{center}
+\begin{tabular}{p{5cm}llp{3cm}}
+\hline
+Exigence & Cahier des charges & Mesure& Validation  \\
+\hline
+Rapidité & $T_{5\%}\leq \SI{3}{s}$ & & \\
+Stabilité & $M_G\geq\SI{12}{dB}$ & & \\
+	& $M_{\varphi} \geq\SI{45}{\degres}$ & & \\
+Erreur statique pour une entrée $V_0 = \SI{8}{m.s^{-1}}$ & $E_S=0$ & $E_S=0$ & Validé \\
+Erreur de trainage pour une entrée $\gamma_0 = \SI{1,8}{m.s^{-2}}$ & $E_T\leq \SI{0,16}{m.s^{-1}}$ &  & Validé pour  $C\geq  \SI{2,5}{sVm^{-1}}$\\
+Dépassement & $D_{1E} \leq 10\%$ & & \\
+		   & $D_{1T} \leq \SI{0,1}{m.s^{-1}}$ & & \\
+\hline
+\end{tabular}
+\end{center} 
+
+\end{corrige}
+\else
+\fi
+
+
+
+\ifprof
+\else
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.65\linewidth]{image13}
+\caption{\label{fig:CCMP:2021:13} Réponse à un échelon d'amplitude $V_0=\SI{8}{m.s^{-1}}$.}
+\end{figure} 
+ 
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.65\linewidth]{image14}
+\caption{\label{fig:CCMP:2021:14} Réponse à un trapèze de vitesse avec $V_0=\SI{8}{m.s^{-1}}$ et accélération maximale $\gamma_0$}
+\end{figure} 
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.65\linewidth]{image15}
+\caption{\label{fig:CCMP:2021:15} Evolution de la tension moteur soumis à une consigne en trapèze de vitesse.}
+\end{figure} 
+\fi
+
+
+% Q33
+\question{\label{q:CCMP:2021:33}Commenter la courbe de tension du moteur (Figure \ref{fig:CCMP:2021:15}) pour une consigne en trapèze de vitesse. Au vu de cette analyse, proposer une modification du modèle de la Figure \ref{fig:CCMP:2021:10} afin de limiter les écarts entre la simulation et le comportement réel du système.}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+

@@ -1,4 +1,7 @@
 \section*{Mise en situation}
+
+\ifprof
+\else
 Afin de garantir la fiabilité d'un réseau ferré, la norme européenne EN-15313 préconise une maintenance régulière des trains, notamment de leurs roues. L'usure excessive d'une roue, due principalement aux frottements sur les rails, peut engendrer une rupture de celle-ci et paralyser pendant plusieurs heures le réseau ferré d'une ville.
 
 
@@ -20,6 +23,7 @@ Valider la pertinence de l'utilisation d'un tour en fosse revient à comparer le
 \caption{Implantation du tour en fosse dans la zone de maintenance du réseau ferré \label{ccs_psi_2018_fig_02}}
 %\end{center}
 \end{figure}
+\fi
 
 
 
@@ -87,14 +91,16 @@ Analyser la chaine d'asservissement en position et en vitesse du porte-outil afi
 %\end{center}
 %\end{figure}
 %
-%\begin{figure}[!h]
-%\begin{center}
-%  \includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-08_904_1657_95_205}
-%%\captionsetup{labelformat=empty}
-%\caption{\label{ccs_psi_2018_fig_08}Diagramme des exigences de la chaine d'asservissement}
-%\end{center}
-%\end{figure}
-%\fi
+
+\ifprof
+\else
+\begin{figure}[!h]
+\includegraphics[width=\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-08_904_1657_95_205}
+%%%\captionsetup{labelformat=empty}
+\caption{Diagramme des exigences de la chaine d'asservissement}
+\label{ccs_psi_2018_fig_08}
+\end{figure}
+\fi
 
 \subsection{Analyse d'une solution avec un porte-outil fixé au bâti}
 \begin{obj}
@@ -104,13 +110,16 @@ Déterminer les variations de position du point de contact $C$ entre la roue et 
 \else
 
 L'outil est modélisé par un solide de masse $m_{2}=\SI{788}{kg}$ suspendu à une structure composée, en parallèle, d'un ressort $R_{0}$ de raideur $K=28 \times 10^{6} \mathrm{~N} \cdot \mathrm{~m}^{-1}$ et d'un amortisseur $A_{0}$ de coefficient de frottement visqueux $\lambda=\SI{14854}{Nsm^{-1}}$ (figure \ref{ccs_psi_2018_fig_09}). La compression de l'outil soumis à l'effort perturbateur $\vec{f}_{c}(t)=f_{c}(t) \vec{z}_{0}$ génère un déplacement $z_{2}(t)$ selon $\vec{z}_{0}\left(z_{2}(t)\right.$ étant une grandeur algébrique) du point de contact $C$ entre l'outil et la roue. Les conditions initiales sont supposées nulles. La liaison entre le porte-outil et l'outil est modélisée par une liaison encastrement. Le porte outil est considéré rigide et immobile (sa déformation est négligée devant celle de l'outil). L'effet de la pesanteur est négligé.
-\fi
+
 
 \begin{figure}%[!h]
   \includegraphics[width=.7\textwidth]{1c1a6f8d-efa8-416f-85d9-a31dfabf3ea5-09_1027_899_95_584}
 %\captionsetup{labelformat=empty}
-\caption{\label{ccs_psi_2018_fig_09} Modèle de déformation de l'outil avec le porte-outil fixe}
+\caption{Modèle de déformation de l'outil avec le porte-outil fixe}
+\label{ccs_psi_2018_fig_09} 
 \end{figure}
+\fi
+
 
 %Q 18. 
 \question{Exprimer l'équation différentielle liant $z_{2}(t)$ et $f_{c}(t)$, puis la fonction de transfert $S(p)=\dfrac{Z_{2}(p)}{F_{c}(p)}$ sous forme canonique. Calculer les valeurs des paramètres caractéristiques de $S(p)$. Tracer le diagramme de Bode asymptotique et l'allure du diagramme de Bode réel associés à la fonction de transfert $S(p)$. Déterminer littéralement l'amplitude $z_{2 m}$ maximale de $z_{2}(t)$, ainsi que la pulsation correspondante, lorsque $f_{c}(t)=\left(f_{c 0}+\right. \left.f_{c 1} \sin (\omega t)\right) \mathcal{H}(t)$ avec $f_{c 1}=100 \mathrm{~N}$. Effectuer l'application numérique et conclure quant au respect du critère concernant le défaut $\Delta u$ de la roue.}
@@ -320,7 +329,9 @@ Le gain dB est donc  $20\log A - 20 \log \omega^2$.  Pour $\omega=\SI{500}{rad.s
 \else
 \fi
 
-Le modèle approché ( $N_{2 \text { app }}(p)$ ) est retenu pour la suite de l'étude. Le schéma bloc modélisant la régulation de la position $z_{1}(t)$ est donné en figure \ref{ccs_psi_2018_fig_13}, en considérant un correcteur proportionnel de gain $K_{p}$.
+\ifprof
+\else
+Le modèle approché ($N_{2 \text { app }}(p)$) est retenu pour la suite de l'étude. Le schéma bloc modélisant la régulation de la position $z_{1}(t)$ est donné en figure \ref{ccs_psi_2018_fig_13}, en considérant un correcteur proportionnel de gain $K_{p}$.
 
 \begin{figure}[!h]
 %\begin{center}
@@ -329,6 +340,8 @@ Le modèle approché ( $N_{2 \text { app }}(p)$ ) est retenu pour la suite de l'
 \caption{\label{ccs_psi_2018_fig_13}Modèle de synthèse de la régulation en position $z_{1}(t)$ du porte-outil}
 %\end{center}
 \end{figure}
+
+\fi
 
 %Q 24. 
 \question{Justifier qu'une correction proportionnelle ne permet pas de respecter l'ensemble des critères du diagramme des exigences de la figure \ref{ccs_psi_2018_fig_08}.}
@@ -374,7 +387,7 @@ $$
 \fi
 
 %Q 25. 
-\question{Exprimer $\arg \left(H_{\mathrm{BO}}(j \omega)\right)$, l'argument de $H_{\mathrm{BO}}(j \omega)$, en fonction de $T_{i}, K_{p}$ et $\omega$. En déduire, en fonction de $K_{p}$ et $\omega_{0 \mathrm{~dB}}$ (la pulsation de coupure à 0 dB ), l'expression de $T_{i}$ permettant de vérifier le critère de marge de phase du diagramme des exigences défini en figure \ref{ccs_psi_2018_fig_08}.}
+\question{Exprimer $\arg \left(H_{\mathrm{BO}}(j \omega)\right)$, l'argument de $H_{\mathrm{BO}}(j \omega)$, en fonction de $T_{i}, K_{p}$ et $\omega$. En déduire, en fonction de $K_{p}$ et $\omega_{0 \mathrm{~dB}}$ (la pulsation de coupure à \SI{0}{dB}), l'expression de $T_{i}$ permettant de vérifier le critère de marge de phase du diagramme des exigences défini en figure \ref{ccs_psi_2018_fig_08}.}
 \ifprof
 \begin{corrige}
 On a $\arg \left(H_{\text{BO}}(j\omega)\right)=\arg\left(AK_v \right) + \arg\left(p+\dfrac{1}{T_i}\right) + \arg\left(p+K_p\right)-3 \arg(p)$
@@ -414,7 +427,7 @@ La forme proposée par le sujet et la forme déterminée à parti du schéma-blo
 \fi
 
 %Q 26.
-\question{Exprimer $\left|H_{\mathrm{BO}}(j \omega)\right|$, le module de $H_{\mathrm{BO}}(j \omega)$, en fonction de $A$, $\omega$ et des paramètres inconnus $K_{v}, K_{p}$ et $T_{i}$. En déduire, en fonction de $K_{p}, T_{i}, A$ et $\omega_{0 \mathrm{~dB}}$, l'expression de $K_{v}$ permettant d'assurer la pulsation de coupure à 0 dB .}
+\question{Exprimer $\left|H_{\mathrm{BO}}(j \omega)\right|$, le module de $H_{\mathrm{BO}}(j \omega)$, en fonction de $A$, $\omega$ et des paramètres inconnus $K_{v}, K_{p}$ et $T_{i}$. En déduire, en fonction de $K_{p}, T_{i}, A$ et $\omega_{0 \mathrm{~dB}}$, l'expression de $K_{v}$ permettant d'assurer la pulsation de coupure à \SI{0}{dB}.}
 \ifprof
 \begin{corrige}
 $H_{\text{BO}}(j\omega)=AK_v\dfrac{-\omega^2 + K_Pj\omega + \dfrac{j\omega}{T_i}+\dfrac{K_p}{T_i }}{-\omega^3}
@@ -432,9 +445,7 @@ K_v  =\dfrac{\omega_{\SI{0}{dB}}^3}{A\sqrt{\left(\dfrac{K_p}{T_i }-\omega_{\SI{0
 \else
 \fi
 
-\ifprof
-\else
-%
+
 %La fonction de transfert $S(p)=\dfrac{Z_{2}(p)}{F_{c}(p)}$ peut alors s'exprimer uniquement en fonction du paramètre $K_{p}$. La valeur optimale de $K_{p}$ est celle permettant de minimiser le maximum de $|S(j \omega)|$. Ainsi, pour une perturbation sinusoïdale $f_{c}(t)=f_{c 1} \sin (\omega t)$, la variation de la position $z_{2}(t)$ du point $C$ aura une amplitude minimale.\\
 %La solution adoptée pour déterminer la valeur optimale de $K_{p}$ consiste à balayer l'ensemble des solutions possibles de $K_{v}$ et $T_{i}$ pour $K_{p}$ variant de 0 à $K_{p \max }$, pour des pas de calcul $\Delta K_{p}=\dfrac{K_{p \max }}{N_{K_{p}}}$, où $N_{K_{p}}+1$ est le nombre de points de calcul.\\
 %Le début d'un algorithme de résolution de ce problème est présenté dans le document réponse. Les valeurs maximales $\left|S_{K_{p}}\right|_{\text {max }}$ du module $|S(j \omega)|$ sont calculées avec un échantillonnage de pas $\Delta \omega=\dfrac{\omega_{\text {max }}}{N_{\omega}}$ où $\omega$ prend $N_{\omega}+1$ valeurs de 0 à $\omega_{\max }$. L'algorithme sera complété dans les questions 27 et 28 en utilisant les fonctions $|S(j \omega)|, T_{i}\left(K_{p}\right)$ et $K_{v}\left(K_{p}\right)$.\\
