@@ -1,0 +1,211 @@
+
+%\section*{PARTIE 3. ETUDE GEOMETRIQUE ET CINEMATIQUE}
+\section{Etude géométrique et cinématique\label{2026_ats_s3}}
+
+\begin{obj}
+Pré-dimensionner en vitesse le moteur de l'unité de fermeture du moule et vérifier une donnée constructeur.
+
+\textbf{Exigence 1211} : le moule a une longueur d'au moins \SI{400}{mm}.
+\end{obj}
+%L'unité de fermeture du moule est constituée d'un mécanisme à genouillère dont le schéma cinématique complet ainsi que le fonctionnement sont décrits dans les annexes~\ref{2026_ats_ann2} et \ref{2026_ats_ann3}. 
+L'unité de fermeture du moule est constituée d'un mécanisme à genouillère  dont le schéma cinématique plan retenu pour l'étude géométrique est le suivant (figure~\ref{2026_ats_fig7}).
+
+\begin{figure}[h]
+\centering
+  \includegraphics[width=\textwidth]{fig_07}
+%\captionsetup{labelformat=empty}
+\caption{Schéma cinématique et paramétrage \label{2026_ats_fig7}}%Figure 7 : 
+\end{figure}
+
+On donne :
+
+\begin{minipage}[c]{.55\linewidth}
+\begin{itemize}
+  \item $\overrightarrow{O A}=\lambda \vec{x}_{0}+h  \vec{y}_{0} \quad$ avec $\lambda$ un paramètre algébrique (peut être $\geq 0$ ou $\leq 0$);
+  \item $\overrightarrow{O B}=e  \vec{x}_{3}$;
+  \item $\overrightarrow{A B}=d  \vec{x}_{2}$;
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{.4\linewidth}
+\begin{itemize}
+  \item $\overrightarrow{O C}=2 e \vec{x}_{3}$;
+  \item $\beta=\left(\vec{x}_{0}, \vec{x}_{2}\right)=\left(\vec{y}_{0}, \vec{y}_{2}\right)$;
+  \item $\theta=\left(\vec{x}_{0}, \vec{x}_{3}\right)=\left(\vec{y}_{0}, \vec{y}_{3}\right)$;
+  \item $\varphi=\left(\vec{x}_{0}, \vec{x}_{4}\right)=\left(\vec{y}_{0}, \vec{y}_{4}\right)$.
+\end{itemize}
+\end{minipage}
+
+
+
+
+\section{Etude géométrique générale \label{2026_ats_s3_1}}
+%Question 9. 
+\begin{question}
+Réaliser les figures de changements de bases mettant en évidence les paramètres angulaires.
+\end{question}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+
+\begin{question}
+Etablir une relation scalaire ne contenant indépendante de l'angle $\beta$ et montrer qu'elle peut se mettre sous la forme suivante : 
+$P  \cos \theta+Q  \sin \theta=R$ en précisant les expressions de $P$, $Q$ et $R$.
+\end{question}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+%%Question 10. 
+%\begin{question}
+%Ecrire une équation vectorielle de fermeture géométrique sur le cycle $OABO$. En projetant sur $\overrightarrow{x}_{0}$ et $\overrightarrow{y}_{0}$, en déduire les deux équations scalaires liant les paramètres $\lambda$, $\theta$ et $\beta$.
+%\end{question}
+%\ifprof
+%\begin{corrige}
+%\end{corrige}
+%\else
+%\fi
+%
+%%Question 11. 
+%\begin{question}
+%A partir des deux équations précédemment obtenues, établir une relation scalaire ne contenant plus l'angle $\beta$ et montrer qu'elle peut se mettre sous la forme suivante : 
+%$P  \cos \theta+Q  \sin \theta=R$ en précisant les expressions de $P$, $Q$ et $R$.
+%\end{question}
+%\ifprof
+%\begin{corrige}
+%\end{corrige}
+%\else
+%\fi
+
+Le terme $P^{2}+Q^{2}$ ne s'annulant jamais, la relation précédente peut aussi s'écrire :
+$
+\dfrac{P}{\sqrt{P^{2}+Q^{2}}}  \cos \theta+\dfrac{Q}{\sqrt{P^{2}+Q^{2}}} \sin \theta=\dfrac{R}{\sqrt{P^{2}+Q^{2}}}
+$.
+
+On pose : $\cos \psi=\frac{P}{\sqrt{P^{2}+Q^{2}}}$ et $\sin \psi=\frac{Q}{\sqrt{P^{2}+Q^{2}}}$. On rappelle que, pour $x$ et $y$ réels : $\cos \left(x-y\right)=\cos x  \cos y+\sin x \sin y$.
+
+%Question 12. 
+\begin{question}
+Exprimer $\theta$ en fonction de $P$, $Q$ et $R$.
+\end{question}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+%3.2. 
+\subsection{Prédimensionnement en vitesse du moteur \label{2026_ats_s3_2}}
+L'expression trouvée précédemment étant trop complexe à exploiter, on fournit un tracé de la fonction $\theta=\mathrm{f}(\lambda)$ sur la figure \ref{2026_ats_fig8}.
+
+\begin{figure}[h]
+\centering
+  \includegraphics[width=\textwidth]{fig_08}
+%\captionsetup{labelformat=empty}
+\caption{Tracé de la fonction $\theta=f(\lambda)$ \label{2026_ats_fig8}}
+%Figure 8 : 
+\end{figure}
+
+
+Lorsque le moule est en position fermée, l'angle $\theta$ vaut $\theta=0^{\circ}$.\\
+Lorsque le moule est en position ouverte, l'angle $\theta$ vaut $\theta=90^{\circ}$.
+
+%Question 13. 
+\begin{question}
+Déterminer $\Delta \lambda$, l'amplitude du déplacement horizontal de la pièce 1 lors d'une ouverture (ou fermeture) de moule.
+\end{question}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+%Question 14. 
+\begin{question}
+Exprimer puis calculer en \si{m/s} la vitesse moyenne $\dot{\lambda}_{\text {moy }}$ de déplacement de la pièce 1 si on souhaite que ce déplacement soit effectué en un temps $\Delta t=\SI{1,2}{s}$ (on néglige ici les phases d'accélération et de décélération).
+\end{question}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+
+Le dispositif d'entraînement en translation de l'écrou 1 est constitué d'un moteur électrique, d'une transmission poulies/courroie crantées et d'un système vis/écrou $\underline{\mathbf{6}} / \mathbf{1}$ dont le pas vaut $p_{v}=\SI{0,03}{m/tr}$ (voir figure \ref{2026_ats_fig9}).
+
+On note $\mathrm{N}_{\mathrm{m}}$ la vitesse de rotation du moteur et $\mathrm{N}_{6 / 0}$ la vitesse de rotation de la vis $\underline{6}$ par rapport au bâti 0. Ces vitesses sont exprimées en $\mathrm{tr} / \mathrm{min}$.
+
+\begin{figure}[h]
+\centering
+  \includegraphics[width=.8\textwidth]{076c1ba0-5a37-41d5-876a-83fc91dd5c32-10_1015_1549_1131_284}
+%\captionsetup{labelformat=empty}
+\caption{Schéma de la transmission de puissance \label{2026_ats_fig9}}%Figure 9 : 
+\end{figure}
+
+%Question 15. 
+\begin{question}Etablir la relation entre la vitesse moyenne $\dot{\lambda}_{\text {moy }}$ de déplacement de la pièce 1 et la vitesse de rotation $\mathrm{N}_{6 / 0}$ de la vis $\underline{6}$ en faisant intervenir le pas $\mathrm{p}_{\mathrm{v}}$ du système vis/écrou 6/1.
+\end{question}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+%Question 16. 
+\begin{question}
+Exprimer la vitesse de rotation $N_{m}$ du moteur en fonction de $N_{6 / 0}, Z_{6}$ et $Z_{m}$. En déduire $\mathrm{N}_{\mathrm{m}}$ en fonction de $\dot{\lambda}_{\text {moy }}, \mathrm{p}_{\mathrm{v}}, \mathrm{Z}_{6}$ et $\mathrm{Z}_{\mathrm{m}}$. Calculer la valeur numérique de $\mathrm{N}_{\mathrm{m}}$ (en $\mathrm{tr} / \mathrm{min}$) permettant d'obtenir l'ouverture du moule dans le temps souhaité.
+\end{question}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+%3.3. 
+\subsection{Détermination de l'amplitude d'ouverture du moule \label{2026_ats_s3_3}}
+Une grande ouverture du moule est intéressante pour la fabrication car cela libère de l'espace pour l'éjection de pièces ayant une profondeur élevée.
+
+L'angle $\theta$ précédemment exprimé intervient dans le système de transformation de mouvement de type bielle-manivelle constitué des pièces $\underline{\mathbf{3}}$, $\underline{\mathbf{4}}$ et $\underline{\mathbf{5}}$. Les positions extrêmes du moule $\mathbf{5}$ sont obtenues pour $\theta=0^{\circ}$ et $\theta=90^{\circ}$.
+
+On donne les valeurs numériques suivantes : $e = \SI{150}{mm}$ et $L=\SI{400}{mm}$.
+
+
+%Question 17. 
+\begin{question}
+A partir de l'étude du triangle OCD (figure \ref{2026_ats_fig7}) pour $\theta=90^{\circ}$, déterminer l'expression puis la valeur numérique de $\|\overrightarrow{O D}\|$.
+\end{question}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+
+%Question 18.
+\begin{question}
+En menant une étude similaire, déterminer l'expression puis la valeur numérique de $\|\overrightarrow{O D}\|$ pour $\theta=0^{\circ}$. En déduire l'amplitude $\Delta x$ d'ouverture du moule $\underline{\mathbf{5}}$. Conclure quant au respect de l'exigence '1211'.
+\end{question}
+\ifprof
+\begin{corrige}
+\end{corrige}
+\else
+\fi
+%
+%\begin{figure}[h]
+%\centering
+%  \includegraphics[width=\textwidth]{fig_ann_02.png}
+%%\captionsetup{labelformat=empty}
+%\caption{Annexe 2 : Schéma cinématique complet \label{2026_ats_ann2}}%Figure 9 : 
+%\end{figure}
+%
+%
+%\begin{figure}[h]
+%\centering
+%  \includegraphics[width=\textwidth]{fig_ann_03.png}
+%%\captionsetup{labelformat=empty}
+%\caption{Annexe 3 : Phases de fonctionnement\label{2026_ats_ann3}}%Figure 9 : 
+%\end{figure}
