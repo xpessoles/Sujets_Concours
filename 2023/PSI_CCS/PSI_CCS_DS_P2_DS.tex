@@ -1,0 +1,461 @@
+
+%\section*{II Élaboration et analyse d'un modèle dynamique de l'exosquelette}
+\section{Élaboration et analyse d'un modèle dynamique de l'exosquelette}
+\begin{obj}
+Définir un modèle dynamique de l'exosquelette et montrer la nécessité de mettre en place un asservissement.
+\end{obj}
+
+Afin d'élaborer une commande pour l'exosquelette, il est nécessaire au préalable de définir un modèle dynamique représentatif de son comportement. Seule la commande des articulations sagittales de hanche et de genou d'une jambe lorsqu'elle est décollée du sol (figure \ref{2023_ccs_psi_fig_07} et hypothèses associées) sera considérée ici (cas de la marche en ligne droite) avec les hypothèses et notations supplémentaires suivantes, en plus de celles énoncées à la partie précédente:
+
+\begin{itemize}
+  \item la liaison pivot entre 1 et 2 est équipée d'un actionneur dont le couple de sortie (appliqué par 1 sur 2) est noté $C_{1}$;
+  \item la liaison pivot entre 2 et 3 est équipée d'un actionneur dont le couple de sortie (appliqué par 2 sur 3) est noté $C_{2}$;
+  \item les différentes caractéristiques géométriques, de masses et d'inerties sont données en annexe B ;
+  \item on note respectivement $C_{\text {genou }}$ et $C_{\text {hanche }}$, les couples appliqués par le patient au niveau des articulations de genou et de hanche.\\
+Le modèle dynamique proposé sera explicité pour mettre en évidence la nécessité d'un asservissement et par la suite (partie III), permettre l'élaboration de la loi de commande globale de l'exosquelette.
+\end{itemize}
+
+%\section*{II.A - Comportement dynamique de l'exosquelette}
+%\subsection{Comportement dynamique de l'exosquelette}
+%On pose pour la suite : $\overrightarrow{B G_{3}}=-L_{0} \vec{z}^{\prime}{ }_{3}$. On note $\alpha$ l'angle entre $\vec{z}^{\prime}{ }_{3}$ et $\vec{z}_{3}: \alpha=\left(\vec{y}_{3}, \vec{y}^{\prime}{ }_{3}\right)=\left(\vec{z}_{3}, \vec{z}^{\prime}{ }_{3}\right)$.\\
+%
+%\begin{question}
+%\label{2023_ccs_psi_q_06}
+%%Q 6. 
+%Déterminer les expressions de $L_{0}$ et $\alpha$ en fonction de $l_{0}, L_{3}$ et $l_{3}$, puis calculer leurs valeurs numériques.
+%\end{question}
+%\ifprof
+%\begin{corrige}
+%On a $\vect{DB}+\vect{BG_3}+\vect{G_3D} = \vect{0}$ soit $L_3\vect{z_3}-L_0\vect{z_3}'-l_0\vect{y_3}-l_3\vect{z_3} = \vect{0}$. 
+%
+%En projetant dans la base $\mathcal{B}_3$ on a 
+%$L_3\vect{z_3}-L_0\left(\cos\alpha \vect{z_3} - \sin\alpha \vect{y_3} \right)-l_0\vect{y_3}-l_3\vect{z_3} = \vect{0}$ puis : 
+%$
+%\left\{ \begin{array}{l}
+%L_0 \sin\alpha -l_0 = 0 \\
+%L_3-L_0 \cos\alpha -l_3 = 0
+%\end{array}
+%\right.
+%$
+%
+%$
+%\Rightarrow 
+%\left\{ \begin{array}{l}
+%L_0 \sin\alpha = l_0  \\
+%L_0 \cos\alpha  = L_3 - l_3 
+%\end{array}
+%\right.
+%$.
+%On a donc $L_0 =\sqrt{l_0 ^2 + \left(L_3- l_3\right)^2}$ et $\alpha = \arcsin \left(\dfrac{l_0}{L_0}\right)$.
+%
+%\textit{Applications numériques : } $L_0= \SI{0,32}{m}$ et $\alpha \simeq \SI{0,67}{rad} \simeq 39\degres$.
+%
+%\end{corrige}
+%\else
+%\fi
+%
+%
+%\begin{question}
+%\label{2023_ccs_psi_q_07}
+%%Q 7. 
+%Déterminer l'expression de l'accélération du point $G_{3}$ (cf. annexe B et question \ref{2023_ccs_psi_q_06}) appartenant à l'ensemble \{pied+tibia\} 3 dans son mouvement par rapport au buste 1 , en fonction de $L_{0}, L_{2}, \theta_{1}, \theta_{2}$ et leurs dérivées temporelles.\\
+%\end{question}
+%\ifprof
+%\begin{corrige}
+%\begin{tabular}{p{.68\linewidth}| p{.3\linewidth}}
+%On cherche $\vectg{G_3}{3}{1} = \deriv{\vectv{G_3}{3}{1}}{\rep{1}}$.
+%
+%$\vectv{G_3}{3}{1} = \deriv{\vect{AB}+\vect{BG_3}}{\rep{1}}$
+%$= \deriv{-L_2 \vect{z_2} -L_0 \vect{z_3}'}{\rep{1}}$
+%
+%$=L_2 \thetap_1\vect{y_2}  +L_0  \left(\thetap_1 + \thetap_2 \right)\vect{y_3}'$.
+%&
+%$\deriv{\vect{z_3}'}{\rep{1}} $ $=\vecto{3}{1}\wedge \vect{z_3}' $
+%
+%$= \left(\thetap_1 + \thetap_2 \right)\vect{x_3} \wedge \vect{z_3}' $
+%
+%$= - \left(\thetap_1 + \thetap_2 \right)\vect{y_3}' $ 
+%\\
+%\end{tabular}
+%
+%Par suite, 
+%$\vectg{G_3}{3}{1} = L_2 \thetapp_1\vect{y_2}  +L_2 \thetap_1^2\vect{z_2}  + L_0  \left(\thetapp_1 + \thetapp_2 \right)\vect{y_3}'+ L_0  \left(\thetap_1 + \thetap_2 \right)^2\vect{z_3}'$.
+%
+%\end{corrige}
+%\else
+%\fi
+%
+%
+%\begin{question}
+%%Q 8. 
+%Déterminer l'expression de la projection suivant $\vec{x}_{1}$ du moment dynamique en $A$ de l'ensemble $\{$ pied + tibia $\}$ 3 dans son mouvement par rapport au buste $1, \vec{\delta}_{A, 3 / 1} \cdot \vec{x}_{1}$, sous la forme :
+%
+%$$
+%\vec{\delta}_{A, 3 / 1} \cdot \vec{x}_{1}=A_{1} \ddot{\theta}_{1}+A_{2} \ddot{\theta}_{2}+A_{3} \dot{\theta}_{1}^{2}+A_{4}\left(\dot{\theta}_{1}+\dot{\theta}_{2}\right)^{2}
+%$$
+%
+%Préciser les expressions littérales de $A_{1}, A_{2}, A_{3}$ et $A_{4}$ en fonction des différentes caractéristiques géométriques, de masses et d'inerties de l'exosquelette.
+%\end{question}
+%\ifprof
+%\begin{corrige}
+%On cherche $\vectmd{A}{3}{1} \cdot \vect{x_1}$.
+%
+%On a  $\vectmd{A}{3}{1} \cdot \vect{x_1}$  
+%$= \left(\vectmd{G_3}{3}{1}  + \vect{AG_3} \wedge m_3 \vectg{G_3}{3}{1}\right)  \cdot \vect{x_1}$ 
+%$= \left(\deriv{\vectmc{G_3}{3}{1}}{\rep{1}}  + \vect{AG_3} \wedge m_3 \vectg{G_3}{3}{1}\right)  \cdot \vect{x_1}$.
+%
+%Or, en $G_3$, centre d'inertie de 3, $\vectmc{G_3}{3}{1} = \inertie{G_3}{3}\vecto{3}{1}$
+%$ = \matinertie{I_{x3}}{I_{y3}}{I_{z3}}{I_{yz3}}{0}{0}{\bas{3}} \cdot \left(\thetap_1 + \thetap_2 \right) \vect{x_3}$ $=I_{x3}\left(\thetap_1 + \thetap_2 \right) \vect{x_3} $.
+%
+%Par suite, $\vectmd{A}{3}{1} \cdot \vect{x_1}$  
+%$= \left(\deriv{\vectmc{G_3}{3}{1}}{\rep{1}} \cdot \vect{x_1} + \left(\vect{AG_3} \wedge m_3 \vectg{G_3}{3}{1}\right)\cdot \vect{x_1} \right)  $
+%
+%$= \left(\deriv{\vectmc{G_3}{3}{1}\cdot \vect{x_1}}{\rep{1}} - \vectmc{G_3}{3}{1}\cdot \underbrace{\deriv{ \vect{x_1}}{\rep{1}}}_{0}   + \left(\vect{AG_3} \wedge m_3 \vectg{G_3}{3}{1}\right)\cdot \vect{x_1} \right)  $
+%
+%$= I_{x3}\left(\thetapp_1 + \thetapp_2 \right)     + \left(\left( -L_2 \vect{z_2}-L_0 \vect{z_3}' \right) \wedge m_3 \left( L_2 \thetapp_1\vect{y_2}  +L_2 \thetap_1^2\vect{z_2}  + L_0  \left(\thetapp_1 + \thetapp_2 \right)\vect{y_3}'+ L_0  \left(\thetap_1 + \thetap_2 \right)^2\vect{z_3}'\right)\right)\cdot \vect{x_1}  $
+%
+%
+%%$= I_{x3}\left(\thetapp_1 + \thetapp_2 \right)     
+%%-L_2  m_3  \left( \vect{z_2}  \wedge\left( L_2 \thetapp_1\vect{y_2}  +L_2 \thetap_1^2\vect{z_2}  + L_0  \left(\thetapp_1 + \thetapp_2 \right)\vect{y_3}'+ L_0  \left(\thetap_1 + \thetap_2 \right)^2\vect{z_3}'\right)\right)\cdot \vect{x_1} 
+%%$
+%%$
+%% -L_0  m_3 \left(\left(\vect{z_3}' \right) \wedge \left( L_2 \thetapp_1\vect{y_2}  +L_2 \thetap_1^2\vect{z_2}  + L_0  \left(\thetapp_1 + \thetapp_2 \right)\vect{y_3}'+ L_0  \left(\thetap_1 + \thetap_2 \right)^2\vect{z_3}'\right)\right)\cdot \vect{x_1}  $
+%%
+%%
+%%$= I_{x3}\left(\thetapp_1 + \thetapp_2 \right)     
+%%-L_2  m_3  \left( \left( L_2 \thetapp_1\vect{z_2}  \wedge\vect{y_2}  +L_2 \thetap_1^2\vect{z_2}  \wedge\vect{z_2}  + L_0  \left(\thetapp_1 + \thetapp_2 \right)\vect{z_2}  \wedge\vect{y_3}'+ L_0  \left(\thetap_1 + \thetap_2 \right)^2\vect{z_2}  \wedge\vect{z_3}'\right)\right)\cdot \vect{x_1} 
+%% -L_0  m_3 \left( \left( L_2 \thetapp_1\vect{z_3}'  \wedge\vect{y_2}  +L_2 \thetap_1^2\vect{z_3}'  \wedge\vect{z_2}  + L_0  \left(\thetapp_1 + \thetapp_2 \right)\vect{z_3}'  \wedge \vect{y_3}'+ L_0  \left(\thetap_1 + \thetap_2 \right)^2\vect{z_3}'  \wedge\vect{z_3}'\right)\right)\cdot \vect{x_1}  $
+%% 
+%%$= I_{x3}\left(\thetapp_1 + \thetapp_2 \right)     
+%%-L_2  m_3   \left(- L_2 \thetapp_1  
+%%- L_0  \left(\thetapp_1 + \thetapp_2 \right) \cos\left( \theta_2+\alpha\right)
+%%+ L_0  \left(\thetap_1 + \thetap_2 \right)^2\sin\left( \theta_2+\alpha\right)\right)
+%% -L_0  m_3 \left( - L_2 \thetapp_1 \cos\left( \theta_2+\alpha \right)  
+%% -L_2 \thetap_1^2\sin\left( \theta_2+\alpha\right)  
+%% - L_0  \left(\thetapp_1 + \thetapp_2 \right)\right)  $
+%
+%
+%$= 
+%\thetapp_1\left(I_{x3} + m_3 L_2^2 +L_2  m_3 L_0   \cos\left( \theta_2+\alpha\right) +  m_3 L_0 L_2  \cos\left( \theta_2+\alpha \right) +   m_3 L_0^2 \right)
+%+\thetapp_2\left(I_{x3} +L_2  m_3 L_0  \cos\left( \theta_2+\alpha\right) +   m_3 L_0^2 \right)
+%+\thetap_1^2\left( m_3 L_0 L_2 \sin\left( \theta_2+\alpha\right)\right)
+%+\left(\thetap_1 + \thetap_2 \right)^2\left(-L_2  m_3 L_0  \sin\left( \theta_2+\alpha\right) \right) 
+%$
+%
+%
+%Soit : $ \left\{ \begin{array}{l}
+%A_1 = I_{x3} + m_3 L_2^2 + 2 m_3 L_0 L_2 \cos\left( \theta_2+\alpha\right) +   m_3 L_0^2  \\
+%B_1 = I_{x3} + m_3 L_0 L_2 \cos\left( \theta_2+\alpha\right) +   m_3 L_0^2  \\
+%C_1 = m_3 L_0 L_2 \sin\left( \theta_2+\alpha\right) \\
+%D_1 =-m_3 L_0L_2    \sin\left( \theta_2+\alpha\right)  \\
+%\end{array}\right.
+%$.
+%
+%\end{corrige}
+%\else
+%\fi
+%
+%
+%\begin{question}
+%\label{2023_ccs_psi_q_09}
+%%Q 9. 
+%Proposer une démarche permettant de déterminer l'expression de $C_{1}$, l'action mécanique exercée sur la cuisse 2 par l'actionneur correspondant. Préciser le(les) ensemble(s) isolé(s), le(s) bilan(s) des actions mécaniques extérieurs, le(s) théorème(s) utilisé(s) et la(les) équation(s) utile(s).\\
+%\end{question}
+%\ifprof
+%\begin{corrige}
+%\begin{itemize}
+%\item On isole l'ensemble $\{2+3\}$.  
+%\item Bilan des actions mécaniques : 
+%\begin{itemize}
+%\item liaison pivot en $A$ telle que $\vectm{A}{1}{2}\cdot \vect{x_1} = 0$;
+%\item actionneur de 1 sur 2 tel que  $\vectm{A}{1}{2_m}\cdot \vect{x_1} = C_1$;
+%\item action du patient sur la hanche telle que  $\vectm{A}{1}{2_p}\cdot \vect{x_1} = \indice{C}{hanche}$;
+%\item action de la pesanteur sur 2 en $G_2$;
+%\item action de la pesanteur sur 3 en $G_3$.
+%\end{itemize}
+%\item On écrit alors le théorème du moment dynamique en $A$ en projection sur $\vect{x_0}$.
+%\end{itemize}
+%
+%\end{corrige}
+%\else
+%\fi
+%
+%
+%\begin{question}
+%%Q 10. 
+%\label{2023_ccs_psi_q_10}
+%Déterminer l'expression de $C_{1}$ en fonction de $\theta_{1}, \theta_{2}$, leurs différentes dérivées, de $C_{\text {hanche }}$ et des différentes caractéristiques géométriques, de masses et d'inerties de l'exosquelette.
+%\end{question}
+%\ifprof
+%\begin{corrige}
+%Détermination des actions mécaniques.
+%\begin{itemize}
+%\item $\vectm{A}{\text{pes}}{2}\cdot \vect{x_1}$ 
+%$ =\left(\vect{AG_2}\wedge - m_2 g \vect{z_1} \right)\cdot \vect{x_1}$
+%$ =\left(\left( l_2 - L_2\right)\vect{z_2}\wedge - m_2 g \vect{z_1} \right)\cdot \vect{x_1}$
+%$ = m_2 g\left( l_2 - L_2\right) \sin \theta_1$;
+%\item $\vectm{A}{\text{pes}}{3}\cdot \vect{x_1}$ 
+%$ =\left(\vect{AG_3}\wedge - m_3 g \vect{z_1} \right)\cdot \vect{x_1}$
+%$ =\left(\left(  - L_2 \vect{z_2}- L_0 \vect{z_3}'\right)\wedge - m_3 g \vect{z_1} \right)\cdot \vect{x_1}$
+%$ =\left(\left( L_2 \vect{z_2} + L_0 \vect{z_3}'\right)\wedge m_3 g \vect{z_1} \right)\cdot \vect{x_1}$
+%$ = - m_3 g\left(  L_2 \sin \theta_1 +  L_0 \sin\left( \alpha + \theta_2 + \theta_1\right)\right) $.
+%\end{itemize}
+%
+%Le TMD en $A$ appliqué 2+3 en projections sur $\vect{x_1}$ se traduit donc par :
+%
+%  $C_{1} + C_{\textrm {hanche }}- m_3 g\left(  L_2 \sin \theta_1 +  L_0 \sin\left( \alpha + \theta_2 + \theta_1\right)\right)  + m_2 g\left( l_2 - L_2\right) \sin \theta_1 = A_{1} \ddot{\theta}_{1}+A_{2} \ddot{\theta}_{2}+A_{3} \dot{\theta}_{1}^{2}+A_{4}\left(\dot{\theta}_{1}+\dot{\theta}_{2}\right)^{2}$.
+%
+%\end{corrige}
+%\else
+%\fi
+
+Le théorème du moment dynamique en $A$ en projection sur $\vect{x_0}$ appliqué à l'ensemble $\{2+3\}$ se traduit par :
+
+$$C_{1} + C_{\textrm {hanche }}- m_3 g\left(  L_2 \sin \theta_1 +  L_0 \sin\left( \alpha + \theta_2 + \theta_1\right)\right)  + m_2 g\left( l_2 - L_2\right) \sin \theta_1 = A_{1} \ddot{\theta}_{1}+A_{2} \ddot{\theta}_{2}+A_{3} \dot{\theta}_{1}^{2}+A_{4}\left(\dot{\theta}_{1}+\dot{\theta}_{2}\right)^{2}$$
+
+D'une manière similaire aux questions précédentes, l'application du principe fondamental de la dynamique à l'ensemble \{pied+tibia\} 3 permet d'obtenir l'expression de $C_{2}$, le couple fourni par l'actionneur de genou sagittal :
+
+$$
+C_{2}=\left[I_{x 3}+m_{3} L_{0}^{2}\right]\left(\ddot{\theta}_{1}+\ddot{\theta}_{2}\right)+m_{3} L_{2} L_{0}\left[\ddot{\theta}_{1} \cos \left(\theta_{2}+\alpha\right)+\dot{\theta}_{1}^{2} \sin \left(\theta_{2}+\alpha\right)\right]+m_{3} g L_{0} \sin \left(\theta_{2}+\theta_{1}+\alpha\right)-C_{\text {genou }}
+$$
+
+\begin{question}%Q 11. 
+\label{2023_ccs_psi_q_11}
+Déduire des deux équations précédentes que le modèle dynamique considéré peut s'écrire sous la forme matricielle suivante :
+
+$$
+\binom{C_{1}}{C_{2}}=M_{1}\binom{\ddot{\theta}_{1}}{\ddot{\theta}_{2}}+M_{2}\binom{\dot{\theta}_{1}}{\dot{\theta}_{2}}+C+M_{3}\binom{C_{\text {hanche }}}{C_{\text {genou }}}
+$$
+
+où $C$ est une matrice colonne et $M_{1}, M_{2}$ et $M_{3}$ sont des matrices $2 \times 2$. Donner l'expression littérale des coefficients de $C, M_{1}, M_{2}$ et $M_{3}$ par des relations non linéaires des paramètres de mouvement $\left(\theta_{1}, \theta_{2}\right)$, leurs dérivés premières et des différentes caractéristiques géométriques, de masses et d'inerties du problème.
+\end{question}
+\ifprof
+\begin{corrige}
+On a :
+
+$\left\{
+\begin{array}{l}
+C_{1} = - C_{\textrm {hanche }}+ m_3 g\left(  L_2 \sin \theta_1 +  L_0 \sin\left( \alpha + \theta_2 + \theta_1\right)\right)  - m_2 g\left( l_2 - L_2\right) \sin \theta_1 - A_{1} \ddot{\theta}_{1}-A_{2} \ddot{\theta}_{2}-A_{3} \dot{\theta}_{1}^{2}-A_{4}\left(\dot{\theta}_{1}+\dot{\theta}_{2}\right)^{2} \\
+C_{2}=\left[I_{x 3}+m_{3} L_{0}^{2}\right]\left(\ddot{\theta}_{1}+\ddot{\theta}_{2}\right)+m_{3} L_{2} L_{0}\left[\ddot{\theta}_{1} \cos \left(\theta_{2}+\alpha\right)+\dot{\theta}_{1}^{2} \sin \left(\theta_{2}+\alpha\right)\right]+m_{3} g L_{0} \sin \left(\theta_{2}+\theta_{1}+\alpha\right)-C_{\text {genou }}
+\end{array}\right.
+$
+
+Par identification : 
+$M_1 = \begin{pmatrix}
+-A_1 & - A_2 \\
+\left[I_{x 3}+m_{3} L_{0}^{2}\right]  +m_{3} L_{2} L_{0}\cos \left(\theta_{2}+\alpha\right) & \left[I_{x 3}+m_{3} L_{0}^{2}\right] \\
+\end{pmatrix}$,
+
+$M_2 = \begin{pmatrix}
+-A_{3} \dot{\theta}_{1}  & 0 \\
+0 & m_{3} L_{2} L_{0} \dot{\theta}_{1} \sin \left(\theta_{2}+\alpha\right) \\
+\end{pmatrix}$, 
+
+$M_3 = \begin{pmatrix}
+- 1 & 0 \\
+0 & - 1  \\
+\end{pmatrix}$
+
+et 
+$C = \begin{pmatrix}
+ m_3 g\left(  L_2 \sin \theta_1 +  L_0 \sin\left( \alpha + \theta_2 + \theta_1\right)\right) - m_2 g\left( l_2 - L_2\right) \sin \theta_1 -A_{4}\left(\dot{\theta}_{1}+\dot{\theta}_{2}\right)^{2}\\
+m_{3} g L_{0} \sin \left(\theta_{2}+\theta_{1}+\alpha\right) \\
+\end{pmatrix}$.
+
+Si on part du principe que le vecteur $C$ ne doit pas dépendre de $\dot{\theta}_1$ et $\dot{\theta}_2$ on obtient cette autre solution : 
+
+$M_1 = \begin{pmatrix}
+-A_1 & - A_2 \\
+\left[I_{x 3}+m_{3} L_{0}^{2}\right]  +m_{3} L_{2} L_{0}\cos \left(\theta_{2}+\alpha\right) & \left[I_{x 3}+m_{3} L_{0}^{2}\right] \\
+\end{pmatrix}$,
+
+$M_2 = \begin{pmatrix}
+-\left(A_{3}+A_4\right) \dot{\theta}_{1}-2A_4 \dot{\theta}_2  & -A_4\left(\dot{\theta}_2+2\dot{\theta}_1\right) \\
+0 & m_{3} L_{2} L_{0} \dot{\theta}_{1} \sin \left(\theta_{2}+\alpha\right) \\
+\end{pmatrix}$, 
+
+$M_3 = \begin{pmatrix}
+- 1 & 0 \\
+0 & - 1  \\
+\end{pmatrix}$
+
+et 
+$C = \begin{pmatrix}
+ m_3 g\left(  L_2 \sin \theta_1 +  L_0 \sin\left( \alpha + \theta_2 + \theta_1\right)\right) - m_2 g\left( l_2 - L_2\right) \sin \theta_1 \\
+m_{3} g L_{0} \sin \left(\theta_{2}+\theta_{1}+\alpha\right) \\
+\end{pmatrix}$.
+
+
+\end{corrige}
+\else
+\fi
+
+
+%\section*{II.B - Analyse du modèle dynamique}
+\subsection{Analyse du modèle dynamique}
+Le modèle dynamique déterminé à la question \ref{2023_ccs_psi_q_11} étant couplé et non linéaire, un modèle linéarisé sera exploité afin de faciliter la synthèse de la loi de commande.\\
+Autour de la position pour laquelle le pied se décolle du sol ( $\theta_{1}=0, \theta_{2}=-35^{\circ}$ ), le modèle dynamique linéarisé est :
+
+$$
+C_{a}=\left(\begin{array}{cc}
+3,4 & 2,6 \\
+2,6 & 1,9
+\end{array}\right) \ddot{\Theta}+\left(\begin{array}{cc}
+-11,5 & -19,2 \\
+7,7 & 0
+\end{array}\right) \dot{\Theta}+\left(\begin{array}{cc}
+108,2 & 5,2 \\
+15,9 & 17,1
+\end{array}\right) \Theta-C_{p}
+$$
+
+Dans cette relation, on note :
+
+\begin{itemize}
+  \item $\Theta=\binom{\theta_{1}}{\theta_{2}}$, les coordonnées angulaires des articulations ;
+  \item $C_{p}=\binom{C_{\text {hanche }}}{C_{\text {genou }}}$, les actions mécaniques exercées par le patient ;
+  \item $C_{a}=\binom{C_{1}}{C_{2}}$, les actions mécaniques générées par les actionneurs.\\
+$\Theta_{1}(p), \Theta_{2}(p), C_{1}(p), C_{2}(p), C_{\text {hanche }}(p)$ et $C_{\text {genou }}(p)$ représentent les transformées de Laplace de, respectivement, $\theta_{1}(t), \theta_{2}(t), C_{1}(t), C_{2}(t), C_{\text {hanche }}(t)$ et $C_{\text {genou }}(t)$. Pour la question suivante, on considère que seul l'actionneur de l'axe de genou est actif ( $C_{\text {hanche }}=C_{\text {genou }}=C_{1}=0$ ) et que les conditions initiales sont nulles.\\
+\end{itemize}
+
+
+%Q 12.
+\begin{question}
+\label{2023_ccs_psi_q_12}
+ Déterminer les valeurs numériques des coefficients $a_{i}$ et $b_{i}$ tels que la fonction de transfert $H_{L 4}(p)=$ $\dfrac{\Theta_{2}(p)}{C_{2}(p)}$ s'écrive :
+$$
+H_{L 4}(p)=\dfrac{a_{0}+a_{1} p+a_{2} p^{2}}{1+b_{1} p+b_{2} p^{2}+b_{3} p^{3}+b_{4} p^{4}}
+$$
+\end{question}
+\ifprof
+\begin{corrige}
+
+On a $
+\begin{pmatrix}
+C_1 \\
+C_2
+\end{pmatrix}
+=\begin{pmatrix}
+3,4 & 2,6 \\
+2,6 & 1,9
+\end{pmatrix} \begin{pmatrix}
+\thetapp_1 \\
+\thetapp_2
+\end{pmatrix}
++
+\begin{pmatrix}
+-11,5 & -19,2 \\
+7,7 & 0
+\end{pmatrix} \begin{pmatrix}
+\thetap_1 \\
+\thetap_2
+\end{pmatrix}
++
+\begin{pmatrix}
+108,2 & 5,2 \\
+15,9 & 17,1
+\end{pmatrix} 
+\begin{pmatrix}
+\theta_1 \\
+\theta_2
+\end{pmatrix}-
+\begin{pmatrix}
+\indice{C}{hanche} \\
+\indice{C}{genou}
+\end{pmatrix}
+$; donc : 
+
+$C_i(p) = 3,4 p^2 \theta_1(p) + 2,6p^2\theta_2(p) - 11,5 p\theta_1(p) - 19,2p\theta_2(p) + 108,2\theta_1(p) + 5,2\theta_2(p) - \indice{C}{hanche}(p)$
+
+$C_2(p) = 2,6 p^2 \theta_1(p) + 1,9 p^2\theta_2(p) + 7,7 p\theta_1(p) + 15,9\theta_1(p) + 17,1\theta_2(p) - \indice{C}{genou}(p)$.
+
+En utilisant les hypothèses, on a :
+
+$\left\{
+\begin{array}{l} 
+0= 3,4 p^2 \theta_1(p) + 2,6p^2\theta_2(p) - 11,5 p\theta_1(p) - 19,2p\theta_2(p) + 108,2\theta_1(p) + 5,2\theta_2(p) \\
+C_2(p) = 2,6 p^2 \theta_1(p) + 1,9 p^2\theta_2(p) + 7,7 p\theta_1(p) + 15,9\theta_1(p) + 17,1\theta_2(p) \\
+\end{array}
+\right.$
+
+$\Rightarrow \left\{
+\begin{array}{l} 
+0= \left(3,4 p^2 - 11,5 p + 108,2\right) \theta_1(p) + \left(2,6p^2 - 19,2p + 5,2\right)\theta_2(p) \\
+C_2(p) = \left( 2,6 p^2 + 7,7 p + 15,9\right)\theta_1(p) + \left( 1,9 p^2+ 17,1\right)\theta_2(p) \\
+\end{array}
+\right.$.
+
+%\begin{tiny}
+
+
+
+On a donc 
+$C_2(p) = - \left( 2,6 p^2 + 7,7 p + 15,9\right)\dfrac{2,6p^2 - 19,2p + 5,2}{3,4 p^2 - 11,5 p + 108,2}\theta_2(p) + \left( 1,9 p^2+ 17,1\right)\theta_2(p) $
+
+$\Rightarrow C_2(p) = \left( \left( 2,6 p^2 + 7,7 p + 15,9\right)\left(-2,6p^2 + 19,2p - 5,2\right) + \left(3,4 p^2 - 11,5 p + 108,2\right) \left( 1,9 p^2+ 17,1\right)\right)\dfrac{\theta_2(p)}{3,4 p^2 - 11,5 p + 108,2} $
+
+\begin{align*}
+C_2(p) =  \dfrac{\theta_2(p)}{3,4 p^2 - 11,5 p + 108,2} \\
+\left(p^4 \left( - 2,6 ^2 +3,4 \times 1,9 \right)
++p^3 \left( 2,6 \cdot 19,2 - 7,7\cdot 2,6  -11,5 \cdot 1,9\right)
++p^2 \left( -2,6 \times 5,2 +7,7 \times 19,2 - 2,6 \times 15,9 +3,4 \times 17,1 +108,2 \times 1,9 \right) 
++p \left( -7,7 \times 5,2 + 15,9 \times 19,2 -11,5 \times 17,1\right)
+- 15,9 \times 5,2 +108,2 \times 17,1\right)\\
+\cdot
+\end{align*} 
+
+
+$\Rightarrow \dfrac{\theta_2(p)}{C_2(p)} =\dfrac{3,4 p^2 - 11,5 p + 108,2} {\left(p^4 \left( - 2,6 ^2 +3,4 \times 1,9 \right)
++p^3 \left( 2,6 \times 19,2 - 7,7 \times 2,6  -11,5 \times 1,9\right) 
++p^2 \left( -2,6 \times 5,2 +7,7 \times 19,2 - 2,6 \times 15,9 +3,4 \times 17,1 +108,2 \times 1,9 \right) 
++p \left( -7,7 \times 5,2 + 15,9 \times 19,2 -11,5 \times 17,1\right)
+- 15,9 \times 5,2 +108,2 \times 17,1\right)}$
+
+
+Par suite, $b_4 = -17 \times 10^{-5}$, $b_3 = 4,6 \times 10^{-3}$, $b_2=20 \times 10^{-2} $ et $b_1 = 39 \times 10^{-3}$.
+De plus, $a_0 = 192\times 10^{-5}$, $a_1=-650\times 10^{-5}$ $a_2 =  6122\times 10^{-5}$.
+%\end{tiny}
+
+
+\end{corrige}
+\else
+\fi
+
+
+
+
+
+
+En poursuivant cette démarche, il est alors possible de mettre le modèle dynamique sous la forme de la figure \ref{2023_ccs_psi_fig_08}, faisant apparaitre le couplage entre les axes.\\
+
+
+\begin{center}
+\includegraphics[width=.7\textwidth]{2025_07_03_97545f5dc188959e5663g-06}
+%Figure 8
+\captionof{figure}{Représentation du modèle dynamique linéarisé \label{2023_ccs_psi_fig_08}}
+\end{center}
+
+
+
+
+La fonction de transfert $H_{L 4}(p)$, une fois les polynômes du numérateur et dénominateur factorisés, s'écrit :
+
+$$
+H_{L 4}(p)=K_{L 4} \dfrac{\left(p-z_{1}\right)\left(p-z_{2}\right)}{\left(p-p_{1}\right)\left(p-p_{2}\right)\left(p^{2}+0,1 p+4,9\right)}
+$$
+
+avec $z_{1}=1,7+2,2 i, z_{2}=1,7-2,2 i, p_{1}=-23,6$ et $p_{2}=50,5$.\\
+
+\begin{question}
+\label{2023_ccs_psi_q_13}
+%Q 13. 
+Au regard de cette fonction de transfert, justifier le besoin de la mise en place d'un asservissement pour l'exosquelette.
+\end{question}
+\ifprof
+\begin{corrige}
+Pour qu'une fonction de transfert soit stable, ses zeros doivent être à partie réelle strictement négative, ce qui n'est pas le cas. Un asservissement est nécessaire pour stabiliser le système.
+
+\end{corrige}
+\else
+\fi
+

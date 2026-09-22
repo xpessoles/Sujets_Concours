@@ -1,0 +1,757 @@
+
+
+%\section*{III Conception et analyse de lois de commande de l'exosquelette}
+\section{Conception et analyse de lois de commande de l'exosquelette}
+
+Le modèle dynamique multivariable de l'exosquelette linéarisé autour d'une position donnée, déterminé à la partie précédente, est exploité pour l'élaboration et l'analyse des lois de commande de l'exosquelette. La boucle interne non linéaire (figure \ref{2023_ccs_psi_fig_07}) doit permettre au système de respecter le cahier des charges (annexe A) en aboutissant, sur les différents axes considérés, à des actions mécaniques permettant la réalisation de l'exercice thérapeutique envisagé.\\
+Dans les faits, des actionneurs électriques sont présents sur chacun des axes de façon à générer les actions mécaniques. La structure de commande peut alors être détaillée par la figure \ref{2023_ccs_psi_fig_09}, où $C_{\text {ref }}$ représente l'ensemble des valeurs cibles d'actions mécaniques appliquées aux différents axes.\\
+
+
+
+\begin{center}
+\includegraphics[width=\textwidth]{2025_07_03_97545f5dc188959e5663g-07}
+%Figure 9
+\captionof{figure}{Détail de la structure de commande choisie \label{2023_ccs_psi_fig_09}}
+\end{center}
+
+
+L'élaboration de la loi de commande de l'exosquelette se déroule alors en deux étapes :
+
+\begin{itemize}
+  \item l'asservissement en couple des actionneurs (boucle bas niveau) est réalisé en négligeant l'influence des éventuels couplages entre les axes. L'influence de cet asservissement sur la dynamique de l'exosquelette et la validité de cette approche sont étudiées. L'objectif de cette boucle bas niveau est de générer sur l'exosquelette des couples identiques aux couples de référence ;
+  \item le calcul des couples de référence est réalisé par une boucle interne non linéaire.
+\end{itemize}
+
+%\section*{III.A - Conception de l'asservissement en couple d'un actionneur}
+\subsection{Conception de l'asservissement en couple d'un actionneur}
+%\section*{Objectif}
+\begin{obj}
+Élaborer l'asservissement du couple généré par un actionneur, puis le valider par une analyse de son effet sur l'exosquelette.
+\end{obj}
+
+Lors des phases de rééducation, alors que le patient doit fournir un effort sous le contrôle du thérapeute, l'exosquelette doit réagir de façon totalement transparente pour le patient. En effet, l'exosquelette doit aider le patient, ou lutter contre les actions du patient, selon le protocole choisi par le thérapeute, et cela sans aucun à-coup. Ce constat implique que le temps de réponse de l'actionneur concerné par la phase rééducative doit être inférieur au temps de réponse physiologique du patient. La grande polyvalence de l'exosquelette a contraint les ingénieurs à choisir un temps de réponse de l'asservissement en couple de l'ordre de $0,1 \mathrm{~ms}$. L'objectif de cette partie est donc de concevoir l'asservissement du couple généré par les actionneurs et de vérifier si son action est bien transparente pour le patient.
+
+%\section*{III.A.1) Modèle dynamique d'un axe}
+%\subsubsection{Modèle dynamique d'un axe}
+%Dans le but de concevoir l'asservissement du couple généré par un actionneur, il est nécessaire de déterminer le modèle dynamique de l'axe correspondant.\\
+%On considère le cas de l'ensemble \{pied+tibia\} 3, mis en mouvement par un actionneur placé sur la cuisse 2 , supposée fixe et verticale ( $\theta_{1}=0$ ). L'influence des caractéristiques d'inertie et masse de l'actionneur est négligeable devant celle de l'ensemble \{pied+tibia\} 3. L'action mécanique exercée par le patient au niveau de l'articulation du genou est notée $C_{\text {genou }}$, celle exercée par l'actionneur sur l'axe de genou est notée $C_{2}$.\\
+%
+%\begin{question}
+%\label{2023_ccs_psi_q_14}
+%%Q 14. 
+%Déterminer l'expression de l'accélération du point $G_{3}$ appartenant à l'ensemble \{pied+tibia\} 3 dans son mouvement par rapport à la cuisse 2 en fonction de $L_{0}, \theta_{2}$ et ses dérivées.\\
+%\end{question}
+%\ifprof
+%\begin{corrige}
+%On cherche $\vectg{G_3}{3}{2} = \deriv{\vectv{G_3}{3}{2}}{\rep{3}}$ $= \dderiv{-L_0 \vect{z_3}'}{\rep{3}}$
+%$= \deriv{L_0 \thetap_2 \vect{y_3}'}{\rep{3}}$
+%$= L_0 \thetapp_2 \vect{y_3}' +L_0 \thetap_2^2 \vect{z_3}' $.
+%
+%\end{corrige}
+%\else
+%\fi
+%
+%
+%\begin{question}
+%%Q 15. 
+%\label{2023_ccs_psi_q_15}
+%Par application du théorème du moment dynamique à l'ensemble \{pied+tibia\} 3 au point B , projeté suivant la direction $\vec{x}_{1}$, donner l'expression de $C_{2}$ sous la forme : $C_{2}=A_{\mathrm{eq}} \ddot{\theta}_{2}+C_{r}$.
+%
+%Préciser les expressions de $A_{\text {eq }}$ en fonction de $I_{x 3}, m_{3}, L_{0}$ et de $C_{r}$ en fonction de $C_{\text {genou }}, m_{3}, L_{0}, \alpha$ et $\theta_{2}$. Faire l'application numérique pour $A_{e q}$.
+%\end{question}
+%\ifprof
+%\begin{corrige}
+%
+%Pour calculer $\vectmd{B}{3}{2} \cdot \vect{x_1}$, on reprend le raisonnement de la question \ref{2023_ccs_psi_q_08} :  
+%
+% $\vectmd{B}{3}{2} \cdot \vect{x_1}$  
+%$= \left(\deriv{\vectmc{G_3}{3}{2}}{\rep{1}} \cdot \vect{x_1} + \left(\vect{BG_3} \wedge m_3 \vectg{G_3}{3}{1}\right)\cdot \vect{x_1} \right)  $
+%
+%$= \left(\deriv{\vectmc{G_3}{3}{2}\cdot \vect{x_1}}{\rep{1}} - \vectmc{G_3}{3}{2}\cdot \underbrace{\deriv{ \vect{x_1}}{\rep{1}}}_{0}   + \left(\vect{BG_3} \wedge m_3 \vectg{G_3}{3}{2}\right)\cdot \vect{x_1} \right)  $
+%
+%$=I_{x3}\thetapp_2 +\left( -L_0 \vect{z_3}'	 \wedge m_3  \left( L_0 \thetapp_2 \vect{y_3}' +L_0 \thetap_2^2 \vect{z_3}' \right)\right)\cdot \vect{x_1}$
+%
+%
+%$=I_{x3}\thetapp_2 + m_3 L_0^2 \thetapp_2  $.
+%
+%Bilan des actions mécaniques : 
+%\begin{itemize}
+%\item liaison pivot en $B$ telle que $\vectm{B}{2}{3}\cdot \vect{x_1} = 0$;
+%\item actionneur de 2 sur 3 tel que  $\vectm{B}{2}{3_m}\cdot \vect{x_1} = C_2$;
+%\item action du patient sur le genou telle que  $\vectm{B}{2}{3_p}\cdot \vect{x_1} = \indice{C}{genou}$;
+%\item action de la pesanteur sur 3 en $G_3$ : $\vectm{B}{Pes}{3} = \vect{BG_3}\wedge -m_3 g\vect{z_2}$ $= -L_0 \vect{z_3'}\wedge -m_3 g\vect{z_2}$
+%
+%$= - L_0 m_3 g \sin\left(\theta_2 + \alpha\right)\vect{x_1}$
+%\end{itemize}
+%
+%Le TMD appliqué à 3 en $B$ projeté sur $\vect{x_1}$ se traduit donc par : 
+%$C_2 +\indice{C}{genou} - L_0 m_3 g \sin\left(\theta_2 + \alpha\right)=I_{x3}\thetapp_2 + m_3 L_0^2 \thetapp_2  $.
+%
+%On a donc $C_2 = \left( I_{x3} + m_3 L_0^2 \right)\thetapp_2  - \indice{C}{genou} + L_0 m_3 g \sin\left(\theta_2 + \alpha\right) $.
+%
+%On a donc : $\indice{A}{eq} = I_{x3} + m_3 L_0^2$ et $C_r =  - \indice{C}{genou} + L_0 m_3 g \sin\left(\theta_2 + \alpha\right)$.
+%
+%%\textit{Application numérique :} $\indice{A}{eq} =\SI{1,925}{kg.m^2}$.
+%
+%\textit{Application numérique :} $\indice{A}{eq} =\SI{1,205}{kg.m^2}$.
+%
+%\end{corrige}
+%\else
+%\fi
+
+
+%\section*{III.A.2) Élaboration de la commande en couple de l'actionneur}
+\subsubsection{Élaboration de la commande en couple de l'actionneur}
+En exploitant le modèle dynamique précédent, le correcteur de la chaine d'asservissement en couple de l'actionneur doit être déterminé de façon à vérifier le cahier des charges ci-dessous :
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\multirow{2}{*}{Stabilité} & \multicolumn{2}{|c|}{Réponse à un échelon de consigne} \\
+\cline { 2 - 3 }
+ & Rapidité & Précision \\
+\hline
+régime apériodique critique & $t_{r, 5} \%=0,1 \mathrm{~ms}( \pm 10 \%)$ & écart en régime permanent inférieur à $1 \%$ \\
+\hline
+\end{tabular}
+\end{center}
+
+L'actionneur utilisé est un ensemble motoréducteur. Le schéma-bloc présentant la structure de la commande utilisée et le procédé est présenté en annexe C avec :
+
+\begin{itemize}
+  \item $R_{m}=2,28 \Omega$;
+  \item $L_{m}=0,49 \mathrm{mH}$;
+  \item $k_{i}=k_{e}=0,89 \mathrm{~N} \cdot \mathrm{~m} \cdot \mathrm{~A}^{-1}$;
+  \item $r$ rapport de transmission du motoréducteur ( $r=\dfrac{1}{100}$ ) ;
+  \item $A_{\mathrm{eq}}=2,0 \mathrm{~kg} \cdot \mathrm{~m}^{2}$, quel que soit le résultat obtenu à la question \ref{2023_ccs_psi_q_15};
+  \item $C_{\text {pert }}$ couple de perturbation (correspondant à $C_{r}$ rapporté sur l'axe de l'actionneur);
+  \item $C_{\text {ref }}$ couple de consigne désiré en sortie de l'actionneur ;
+  \item $K_{\text {capi }}=1 \mathrm{~V} \cdot \mathrm{~A}^{-1}$.
+\end{itemize}
+
+Pour la suite de cette partie, les conditions initiales sont considérées nulles et la synthèse du correcteur de type proportionnel-intégral se fait en considérant $C_{\text {pert }}=0$ :
+
+$$
+C_{i}(p)=K \dfrac{1+T p}{p}
+$$
+
+\begin{question}
+%Q 16. 
+\label{2023_ccs_psi_q_16}
+Calculer, en donnant les expressions littérales de $K_{c}, T_{c}, \xi_{c}$ et $\omega_{c}$, l'expression de la fonction de transfert $H_{C}(p)=\dfrac{C_{m}(p)}{C_{\text {ref }}(p)}$ sous la forme :
+
+$$
+H_{C}(p)=K_{c} \dfrac{1+T_{c} p}{1+2 \xi_{c} \dfrac{p}{\omega_{c}}+\left(\dfrac{p}{\omega_{c}}\right)^{2}}
+$$
+\end{question}
+\ifprof
+\begin{corrige}
+On rappelle que $\indice{C}{pert} = 0$.	
+On a $C_m(p) = I_m(p) k_i $ 
+$=\left(\indice{C}{ref}(p)K_1- \Omega_m(p) \dfrac{k_e}{C_i(p)}\right) \dfrac{C_i(p)}{R_m + L_mp + C_i(p)\indice{K}{capi}}   k_i $ 
+$=\left(\indice{C}{ref}(p)K_1- C_m(p) \dfrac{1}{r\indice{A}{eq}p}\dfrac{k_e}{C_i(p)}\right) \dfrac{C_i(p) k_i}{R_m + L_mp + C_i(p)\indice{K}{capi}} $
+$=\left(\indice{C}{ref}(p)K_1- C_m(p) \dfrac{1}{r\indice{A}{eq}p}\dfrac{k_e}{C_i(p)}\right) F(p) $. 
+
+On a alors 
+$C_m(p) \left(1+\dfrac{F(p)}{r\indice{A}{eq}p}\dfrac{k_e}{C_i(p)}\right)=\indice{C}{ref}(p)K_1 F(p)$
+$ \Leftrightarrow \dfrac{C_m(p) }{\indice{C}{ref}(p)} =\dfrac{K_1 F(p)}{1+\dfrac{F(p)}{r\indice{A}{eq}p}\dfrac{k_e}{C_i(p)}} $
+
+$=\dfrac{K_1 \dfrac{C_i(p) k_i}{R_m + L_mp + C_i(p)\indice{K}{capi}}}{1+\dfrac{\dfrac{C_i(p) k_i}{R_m + L_mp + C_i(p)\indice{K}{capi}}}{r\indice{A}{eq}p}\dfrac{k_e}{C_i(p)}} $
+$=\dfrac{K_1 C_i(p) k_i}{R_m + L_mp + C_i(p)\indice{K}{capi}+\dfrac{k_e k_i}{r\indice{A}{eq}p}} $
+
+On remplace la fonction du transfert du correcteur :
+
+$\dfrac{C_m(p) }{\indice{C}{ref}(p)}=\dfrac{K_1 K\dfrac{1+Tp}{p} k_i}{R_m + L_mp + K\dfrac{1+Tp}{p}\indice{K}{capi}+\dfrac{k_e k_i}{r\indice{A}{eq}p}} $
+$=\dfrac{K_1 K\left(1+Tp\right) k_i}{R_mp + L_mp^2 + K\left(1+Tp\right)\indice{K}{capi}+\dfrac{k_e k_i}{r\indice{A}{eq}}} $
+
+$=\dfrac{K_1 K\left(1+Tp\right) k_i}{R_mp + L_mp^2 + K\left(1+Tp\right)\indice{K}{capi}+\dfrac{k_e k_i}{r\indice{A}{eq}}} $
+
+%$=\dfrac{K_1 Kk_i}{K\indice{K}{capi}+\dfrac{k_e k_i}{r\indice{A}{eq}}} \dfrac{1+Tp }{\alpha L_mp^2 + \alpha\left(R_m+  K\indice{K}{capi}T\right) p+1} $ avec $\dfrac{1}{\alpha} = K\indice{K}{capi}+\dfrac{k_e k_i}{r\indice{A}{eq}}$.
+
+$=\alpha K_1 Kk_i \dfrac{1+Tp }{\alpha L_mp^2 + \alpha\left(R_m+  K\indice{K}{capi}T\right) p+1} $ avec $\dfrac{1}{\alpha} = K\indice{K}{capi}+\dfrac{k_e k_i}{r\indice{A}{eq}}$.
+
+On a donc : 
+$
+\left\{
+\begin{array}{l}
+T_c = T \\
+K_c = \alpha K_1 Kk_i  \\
+\dfrac{1}{\omega_c^2} = \alpha L_m \Rightarrow  \omega_c = \sqrt{\dfrac{1}{\alpha L_m}} \\
+\dfrac{2 \xi_c}{\omega_c} = \alpha\left(R_m+  K\indice{K}{capi}T\right) 
+\Rightarrow  \xi_c = \dfrac{\omega_c}{2}\alpha\left(R_m+  K\indice{K}{capi}T\right) = \dfrac{1}{2}\sqrt{\dfrac{\alpha}{ L_m}} \left(R_m+  K\indice{K}{capi}T\right)  \\
+\end{array}
+\right.
+$
+
+\end{corrige}
+\else
+\fi
+
+
+Pour simplifier la synthèse du correcteur, l'influence du zéro de $H_{C}(p)$ n'est pas prise en compte.\\
+
+\begin{question}%Q 17. 
+\label{2023_ccs_psi_q_17}
+Déterminer l'expression littérale, puis la valeur numérique, de $K$ afin de respecter le cahier des charges en termes de rapidité (rappel : $t_{r, 5 \%} \omega_{c} \approx 5$ pour un régime apériodique critique).\\
+\end{question}
+\ifprof
+\begin{corrige}
+On souhaite un temps de réponse de \SI{0,1e-3}{s}. 
+
+$\omega_c^2  = \dfrac{K\indice{K}{capi}+\dfrac{k_e k_i}{r\indice{A}{eq}}}{L_m} $
+$\Rightarrow K = \dfrac{L_m\omega_c^2 - \dfrac{k_e k_i}{r\indice{A}{eq}}}{\indice{K}{capi}}$
+$\Rightarrow K = \dfrac{L_m\left(\dfrac{5}{0,1 \times 10^{-3}} \right)^2 - \dfrac{k_e k_i}{r\indice{A}{eq}}}{\indice{K}{capi}}$
+
+\textit{Application numérique : } $K=1224960$ [USI].
+
+\end{corrige}
+\else
+\fi
+
+
+\begin{question}
+\label{2023_ccs_psi_q_18}
+%Q 18. 
+Déterminer l'expression littérale, puis la valeur numérique, de $T$ afin de respecter le cahier des charges en termes de stabilité.\\
+\end{question}
+\ifprof
+\begin{corrige}
+Afin que le régime soit apériodique critique, il faut que $\xi_c = 1$. 
+Par suite, $    T = \dfrac{2\sqrt{\dfrac{ L_m}{\alpha}} - R_m }{K\indice{K}{capi}} $.
+
+\textit{Application numérique : } $T=\SI{3,8e-5}{s}$.
+\end{corrige}
+\else
+\fi
+
+\begin{question}
+\label{2023_ccs_psi_q_19}
+%Q 19. 
+Déterminer l'expression littérale, puis la valeur numérique, de $K_{1}$ afin d'obtenir $K_{C}=r$ pour $H_{C}(p)$. Justifier la volonté d'obtenir cette valeur de gain pour $H_{C}(p)$.
+\end{question}
+\ifprof
+\begin{corrige}
+$K_C=r \Leftrightarrow \dfrac{K_1 k_i r \indice{A}{eq}}{k_i k_e+r A_{eq} \indice{K}{capi}K}=r$
+
+en simplifiant par $r$ et en inversant l'équation précédente, on obtient : 
+$
+K_1=\dfrac{k_i k_e+r \indice{A}{eq} \indice{K}{capi} K}{k_i \indice{A}{eq}}
+$
+
+Obtenir un gain statique unitaire pour la fonction de transfert en boucle fermée de l'asservissement en couple assure d'avoir un écart statique nul sans perturbation.
+Soit $\indice{C}{ref}(p)=\dfrac{C_0}{p}$
+
+En effet : 
+
+$ \varepsilon_s=\lim\limits_{t\rightarrow+\infty}  \left(\indice{C}{ref}(t)-C_{m}(t)\right)=\lim\limits_{p\rightarrow 0} p \left(\indice{C}{ref}(p)-C_{m}(p)\right)=\lim\limits_{p\rightarrow 0} p \left(\indice{C}{ref}(p)-C_{m}(p)\right)$
+
+et 
+$ \varepsilon_s=\lim\limits_{p\rightarrow 0} p \indice{C}{ref}(p) \left(1-H_C\right)=\lim_{p\rightarrow 0} C_{0} \left(1-K_C\dfrac{1+T_c p}{1+2\xi_c\dfrac{p}{\omega_c}+\left(\dfrac{p}{\omega_c}\right)^2}\right)=0$
+
+Cette dernière limite est bien nulle pour $K_c=1$.
+
+%L'application numérique donne : 
+%
+%\begin{align*}
+%K_1\SI{13,8e3}{s}
+%\end{align*}
+\end{corrige}
+\else
+\fi
+
+La figure \ref{2023_ccs_psi_fig_10} présente l'évolution temporelle de $C_{2}$, pour une entrée de type échelon de $1 \mathrm{~N} \cdot \mathrm{~m}$.\\
+
+
+\begin{center}
+\includegraphics[width=\textwidth]{2025_07_03_97545f5dc188959e5663g-08}
+
+%Figure 10
+\captionof{figure}{Réponse indicielle en couple de l'actionneur (agrandissement à droite)\label{2023_ccs_psi_fig_10}}
+\end{center}
+
+
+\begin{question}
+\label{2023_ccs_psi_q_20}
+%Q 20. 
+À partir de la figure \ref{2023_ccs_psi_fig_10}, discuter du respect des exigences de l'asservissement en couple.
+\end{question}
+\ifprof
+\begin{corrige}
+\begin{itemize}
+\item Stabilité : régime apériodique critique : $\quad$ \textbf{critère validé}.
+\item Rapidité : temps de réponse à $\SI{5}{\%} =\SI{0,1}{ms}$ $\quad$ Mesure : \SI{0,055}{ms} --  \textbf{critère validé}.
+\item Précision : écart en régime permanent inférieur à $\SI{1}{\%}$ $\quad$ l'écart est nul -- \textbf{critère validé}.
+\end{itemize}
+
+\end{corrige}
+\else
+\fi
+
+
+
+%\section*{III.A.3) Vérification de la cohérence de la commande en couple sur l'exosquelette}
+\subsubsection{Vérification de la cohérence de la commande en couple sur l'exosquelette}
+La conception de l'asservissement du couple de l'actionneur a été réalisée sans prendre en compte les couplages entre les axes mis en évidence à la partie précédente. Afin de vérifier le comportement de cette commande une fois les axes couplés, il est nécessaire de considérer le réglage obtenu, mais en tenant compte de la dynamique globale de l'exosquelette déterminée dans la partie II comprenant le couplage entre les axes.\\
+La figure \ref{2023_ccs_psi_fig_11} présente les réponses indicielles (entrée de type échelon de $1 \mathrm{~N} \cdot \mathrm{~m}$ ) de la position angulaire $\theta_{2}$ pour le modèle dynamique de l'exosquelette pris seul (noté Mod1) et le modèle dynamique de l'exosquelette associé à ses actionneurs avec l'asservissement en couple élaboré précédemment (noté Mod2), ainsi que l'écart angulaire entre ces deux modèles.\\
+La figure \ref{2023_ccs_psi_fig_12} présente les réponses indicielles (entrée de type échelon de $1 \mathrm{~N} \cdot \mathrm{~m}$ ) du couple $C_{2}$ pour le modèle dynamique de l'exosquelette associé à ses actionneurs avec l'asservissement en couple élaboré précédemment (Mod2) et pour le modèle dynamique de l'axe pris seul (noté Mod3), ainsi que l'écart en couple entre ces deux modèles.\\
+
+
+\begin{center}
+\includegraphics[width=\textwidth]{2025_07_03_97545f5dc188959e5663g-09}
+%Figure 11 
+\captionof{figure}{Réponse indicielle angulaire des modèles Mod1 et Mod2 et écart de position angulaire \label{2023_ccs_psi_fig_11}}
+\end{center}
+
+\begin{center}
+\includegraphics[width=\textwidth]{2025_07_03_97545f5dc188959e5663g-09(1)}
+%Figure 12
+\captionof{figure}{Réponse indicielle en couple des modèles Mod2 et Mod3 et écart de couple \label{2023_ccs_psi_fig_12}}
+\end{center}
+
+\begin{question}
+\label{2023_ccs_psi_q_21}
+%Q 21. 
+À partir des figures \ref{2023_ccs_psi_fig_11} et \ref{2023_ccs_psi_fig_12}, conclure sur la possibilité de considérer l'asservissement en couple comme amenant une action transparente pour le patient.
+\end{question}
+\ifprof
+\begin{corrige}
+
+
+\begin{itemize}
+\item La figure 11 montre que la différence entre modèle dynamique de l'exosquelette pris seul (noté Mod1) et le modèle dynamique de l'exosquelette associé à
+ses actionneurs avec l'asservissement en couple élaboré précédemment (noté Mod2) est minime. On relève au maximum $\Delta \theta_2$ de l'ordre de $\SI{3e-10}{rad}$ comparé au quelques $\SI{1e-6}{rad}$ c'est sans doute impérceptible.
+\item La figure 12 montre la différence entre dynamique de l'exosquelette associé à ses actionneurs avec l'asservissement en couple élaboré précédemment
+(Mod2) et pour le modèle dynamique de l'axe pris seul (noté Mod3). On relève au maximum $\Delta C_2$ de l'ordre de $\SI{1e-5}{N.m}$ comparé au quelques $\SI{1}{N.m}$ c'est sans doute impérceptible également.
+\end{itemize}
+
+\end{corrige}
+\else
+\fi
+
+
+Cet asservissement en couple permet, sur la figure \ref{2023_ccs_psi_fig_09}, de considérer que si les couples de commande $C_{\text {ref }}$ sont générés correctement, alors les couples $C_{a}$ appliqués sur les articulations permettront au patient d'avoir la trajectoire voulue. L'élaboration de la loi de commande non linéaire peut se faire en considérant directement des commandes en couples pour chacun des axes, c'est-à-dire en considérant la réponse en couple des actionneurs comme unitaire.
+
+%\section*{III.B - Synthèse de la loi de commande de l'exosquelette}
+\subsection{Synthèse de la loi de commande de l'exosquelette}
+%Objectif\\
+\begin{obj}
+Élaborer une loi de commande en phase de rééducation à la proprioception de la verticalité et de la marche, et en phase de renforcement musculaire.
+\end{obj}
+Les actionneurs ayant été asservis en couple, la loi de commande est réalisée pour générer des consignes en couple. Ces consignes doivent permettre à l'exosquelette de réaliser les deux types d'exercices désirés :
+
+\begin{itemize}
+  \item le renforcement musculaire. Cette partie étudie la synthèse d'une loi de commande pour cet exercice ;
+  \item la rééducation à la proprioception de la verticalité et de la marche. Cette partie analyse une loi de commande donnée pour cet exercice.
+\end{itemize}
+
+%\section*{III.B.1) Formulation d'un modèle pour la synthèse de la loi de commande}
+\subsubsection{Formulation d'un modèle pour la synthèse de la loi de commande}
+Le modèle dynamique de l'exosquelette, déterminé à l'aide de la partie II.A question \ref{2023_ccs_psi_q_11}, est de la forme:
+
+$$
+M_{1}(\Theta, \dot{\Theta}) \ddot{\Theta}+M_{2}(\Theta, \dot{\Theta}) \dot{\Theta}+C(\Theta, \dot{\Theta})+M_{3}(\Theta, \dot{\Theta}) C_{p}=C_{\mathrm{ref}}
+$$
+
+Dans cette équation, on note :
+
+\begin{itemize}
+  \item $\Theta=\binom{\theta_{1}}{\theta_{2}}$, les coordonnées angulaires des articulations ;
+  \item $C$, la matrice colonne correspondant aux effets de la pesanteur ;
+  \item $C_{p}=\binom{C_{\text {hanche }}}{C_{\text {genou }}}$, les actions mécaniques exercées par le patient ;
+  \item $C_{\text {ref }}=\binom{C_{1}}{C_{2}}$, les actions mécaniques de consigne (générées par les actionneurs dont les boucles d'asservissement en couple sont considérées comme infiniment rapides).\\
+\end{itemize}
+
+\begin{center}
+\includegraphics[width=\textwidth]{2025_07_03_97545f5dc188959e5663g-10}
+%Figure Figure 13  
+\captionof{figure}{Structure de la loi de commande couplée \label{2023_ccs_psi_fig_13}}
+\end{center}
+
+
+La structure de la loi de commande choisie, présentée figure \ref{2023_ccs_psi_fig_13}, est réalisée selon deux boucles :
+
+\begin{itemize}
+  \item une boucle externe linéaire ;
+  \item une boucle interne non linéaire, devant permettre le découplage partiel du modèle dynamique et la compensation de la pesanteur, qui détermine le couple $C_{\text {ref }}$ par la relation :
+\end{itemize}
+
+$$
+C_{\mathrm{ref}}=M_{1}(\Theta, \dot{\Theta}) U+M_{2}(\Theta, \dot{\Theta}) \dot{\Theta}+C(\Theta, \dot{\Theta})
+$$
+
+où $U=\binom{U_{1}}{U_{2}}$ sont les commandes issues du correcteur linéaire de la boucle externe.\\
+On note, de plus, les consignes de positions angulaires sous la forme $\Theta_{\text {ref }}=\binom{\theta_{1, \text { ref }}}{\theta_{2, \text { ref }}}$.\\
+En utilisant la loi correspondant à la boucle interne, le modèle dynamique peut s'écrire sous la forme :
+
+$$
+\ddot{\Theta}=U+N\left(\Theta, \dot{\Theta}, C_{p}\right)
+$$
+
+où $N\left(\Theta, \dot{\Theta}, C_{p}\right)=M(\Theta, \dot{\Theta}) C_{p}$.\\
+
+\begin{question}
+%Q 22. 
+\label{2023_ccs_psi_q_22}
+Préciser l'expression de la matrice $M$ introduite précédemment en fonction de $M_{1}$ et $M_{3}$.\\
+Afin de réaliser cette loi de commande, il est nécessaire de linéariser le modèle dynamique autour du point de fonctionnement. Ce point de fonctionnement est défini par:
+
+\begin{itemize}
+  \item $\Theta_{0}=\binom{\theta_{1,0}}{\theta_{2,0}}$, les coordonnées angulaires des articulations au point de fonctionnement;
+  \item $C_{p, 0}=\binom{C_{\text {hanche }, 0}}{C_{\text {genou }, 0}}$, les actions mécaniques exercées par le patient au point de fonctionnement ;
+  \item $u=\binom{u_{1}}{u_{2}}$, les variations des grandeurs de commandes autour de $U_{0}=\binom{U_{1,0}}{U_{2,0}}$;
+  \item $\tilde{\theta}=\binom{\tilde{\theta}_{1}}{\tilde{\theta}_{2}}$, les variations des positions angulaires autour de $\Theta_{0}=\binom{\theta_{1,0}}{\theta_{2,0}}$;
+  \item $c_{p}=\binom{c_{\text {hanche }}}{c_{\text {genou }}}$, les variations des actions mécaniques exercées par le patient autour de $C_{p, 0}=\binom{C_{\text {hanche }, 0}}{C_{\text {genou }, 0}}$.
+\end{itemize}
+\end{question}
+\ifprof
+\begin{corrige}
+On a  :
+
+$
+M_{1}(\Theta, \dot{\Theta}) \ddot{\Theta}+M_{2}(\Theta, \dot{\Theta}) \dot{\Theta}+C(\Theta, \dot{\Theta})+M_{3}(\Theta, \dot{\Theta}) C_{p}=C_{\mathrm{ref}}
+$
+
+$\Leftrightarrow
+M_{1}(\Theta, \dot{\Theta}) \left(U+M(\Theta, \dot{\Theta}) C_{p}\right)   +M_{2}(\Theta, \dot{\Theta}) \dot{\Theta}+C(\Theta, \dot{\Theta})+M_{3}(\Theta, \dot{\Theta}) C_{p}=M_{1}(\Theta, \dot{\Theta}) U+M_{2}(\Theta, \dot{\Theta}) \dot{\Theta}+C(\Theta, \dot{\Theta})
+$
+
+
+$\Leftrightarrow
+M_{1}(\Theta, \dot{\Theta}) \left(U+M(\Theta, \dot{\Theta}) C_{p}\right)   +M_{3}(\Theta, \dot{\Theta}) C_{p}=M_{1}(\Theta, \dot{\Theta}) U+M_{2}(\Theta, \dot{\Theta}) \dot{\Theta}
+$
+
+$\Leftrightarrow
+M_{1}(\Theta, \dot{\Theta}) M(\Theta, \dot{\Theta}) C_{p}   =
+M_{2}(\Theta, \dot{\Theta}) \dot{\Theta} - M_{3}(\Theta, \dot{\Theta}) C_{p}
+$
+
+
+$\Leftrightarrow
+ M(\Theta, \dot{\Theta}) C_{p}   =
+M_{1}^{-1}(\Theta, \dot{\Theta}) M_{2}(\Theta, \dot{\Theta}) \dot{\Theta} - M_{1}^{-1}M_{3}(\Theta, \dot{\Theta}) C_{p}
+$
+
+Par identification, $M(\Theta, \dot{\Theta}) = - M_{1}^{-1}M_{3}(\Theta, \dot{\Theta}) $.
+\end{corrige}
+\else
+\fi
+
+
+Une linéarisation du modèle précédent permet d'aboutir, autour du point de fonctionnement correspondant au décollement du pied, au système différentiel suivant :
+
+$$
+\ddot{\tilde{\theta}}=\left(\begin{array}{cc}
+0 & 2338 \\
+0 & -2921
+\end{array}\right) \tilde{\theta}+\left(\begin{array}{cc}
+7,35 & 9,93 \\
+9,93 & 12,9
+\end{array}\right) c_{p}+u
+$$
+
+On ne considère que le renforcement musculaire $c_{p}=\binom{0}{c_{\text {genou }}}$.\\
+Le modèle précédent permet de décrire le comportement de l'exosquelette. Aucune adaptation de la commande n'étant faite, il correspond au système non corrigé et sera exploité pour déterminer la loi de commande.\\
+Les transformées de Laplace des variations $\tilde{\theta}_{1}(t), \tilde{\theta}_{2}(t), c_{\text {genou }}(t), u_{1}(t)$ et $u_{2}(t)$ sont respectivement notées $\tilde{\theta}_{1}(p)$, $\tilde{\theta}_{2}(p), C_{g}(p), U_{1}(p)$ et $U_{2}(p)$.\\
+
+\begin{question}
+%Q 23.
+\label{2023_ccs_psi_q_23} 
+À partir du modèle précédent et de la transformée de Laplace, donner les deux relations permettant de relier $\tilde{\theta}_{1}(p), \tilde{\theta}_{2}(p), C_{g}(p), U_{1}(p)$ et $U_{2}(p)$. Il n'est pas demandé d'établir les fonctions de transfert.\\
+\end{question}
+\ifprof
+\begin{corrige}
+En développant la linéarisation du modèle et réalisant la transformée de Laplace, on a :
+
+$
+\left\{
+\begin{array}{l}
+p^2 \tilde{\theta}_1(p) = 2338 \tilde{\theta}_2(p) + 9,93 C_g(p) + U_1(p) \\
+p^2 \tilde{\theta}_2(p) = -2921 \tilde{\theta}_2(p) + 12,9 C_g(p) + U_2(p) \\
+\end{array}
+\right.
+$
+
+On obtient ainsi,
+$\tilde{\theta}_1(p)=\dfrac{ 9,93 C_g(p) + U_1(p)}{-2338+p^2} $
+et
+$\tilde{\theta}_2(p)=\dfrac{ 12,9 C_g(p) + U_1(p)}{2921+p^2}$.
+
+\end{corrige}
+\else
+\fi
+
+\begin{question}
+%Q 24. 
+\label{2023_ccs_psi_q_24}
+Conclure sur la stabilité du système non corrigé.
+\end{question}
+\ifprof
+\begin{corrige}
+
+Si on considère le système non corrigé (et non perturbé) caractérisé par les fonctions de transfert : $\dfrac{\tilde{\theta}_1(p)}{U_1(p)}$ et $\dfrac{\tilde{\theta}_2(p)}{U_2(p)}$.
+
+Il existe un pôle est à partie réelle strictement positive : $+\sqrt{2338}$. Il existe aussi deux pôles à partie réelle nulle.
+
+Ceci laisse à penser que le système non corrigé ne sera pas stable.
+\end{corrige}
+\else
+\fi
+
+
+%\section*{III.B.2) Dimensionnement de la loi de commande pour le renforcement musculaire}
+\subsubsection{Dimensionnement de la loi de commande pour le renforcement musculaire}
+En exercice de renforcement musculaire, le protocole de rééducation envisagé est que l'exosquelette réagisse aux actions mécaniques exercées par le patient avec un comportement de type raideur dont la valeur est définie en annexe A. Une action mécanique du patient sur un des axes engendre alors un déplacement de cet axe. La relation entre ces deux grandeurs en régime permanent doit être linéaire et leur rapport est appelé « raideur ».\\
+Pour ne pas perturber l'exercice, l'influence d'une action du patient sur une articulation doit être faible sur les autres articulations. Ainsi, la relation entre une action du patient sur le genou et le mouvement de l'exosquelette au niveau de la hanche doit aussi être du type raideur, mais avec un coefficient 200 fois plus important.\\
+On note $\tilde{\theta}_{\text {ref }}=\binom{\tilde{\theta}_{1, \text { ref }}}{\tilde{\theta}_{2, \text { ref }}}$ les variations de consignes de position angulaire des axes. Les transformées de Laplace de $\tilde{\theta}_{1, \text { ref }}(t)$ et $\tilde{\theta}_{2, \text { ref }}(t)$ sont respectivement notées $\tilde{\theta}_{1, \text { ref }}(p)$ et $\tilde{\theta}_{2, \text { ref }}(p)$.\\
+Les écarts sur chacun des axes d'articulation étudiés sont définis par $\tilde{\varepsilon}_{1}=\tilde{\theta}_{1, \text { ref }}-\tilde{\theta}_{1}, \tilde{\varepsilon}_{2}=\tilde{\theta}_{2, \text { ref }}-\tilde{\theta}_{2}$ et $\tilde{\varepsilon}=\binom{\tilde{\varepsilon}_{1}}{\tilde{\varepsilon}_{2}}$.\\
+
+
+\begin{question}
+%Q 25. 
+\label{2023_ccs_psi_q_25}
+Justifier, sans calcul et en supposant que le système converge en boucle fermée, qu'une commande avec une action intégrale ne permettra pas d'obtenir un comportement de type raideur avec le coefficient de valeur désirée.
+\end{question}
+\ifprof
+\begin{corrige}
+Le système est instable en boucle fermée. Afin de garantir un asservissement correct, il faudrait déjà veiller à stabiliser le système et pour cela privilégié une action dérivée soit par un correcteur proportionnel dérivé (ou à avance de phase) soit par l'ajout d'une boucle interne tenant compte de la dérivée des grandeurs asservies (ce qui revient également à mettre en place une correction dérivée.
+\end{corrige}
+\else
+\fi
+
+
+La commande choisie est du type proportionnelle-dérivée. Avec $K_{p}$ et $K_{v}$ des matrices $2 \times 2$ et $K_{v}$ diagonale, $u$ se note $u=K_{p} \tilde{\varepsilon}+K_{v} \dot{\tilde{\varepsilon}}$ où $K_{p}=\left(\begin{array}{cc}K_{p 11} & K_{p 12} \\ K_{p 21} & K_{p 22}\end{array}\right)$ et $K_{v}=\left(\begin{array}{cc}K_{v 11} & 0 \\ 0 & K_{v 22}\end{array}\right)$.\\
+En exercice de renforcement musculaire, $\tilde{\theta}_{\text {ref }}$ et $\dot{\tilde{\theta}}_{\text {ref }}$ sont nuls. Seule l'action du patient met en mouvement l'exosquelette. Les transformées de Laplace de $\tilde{\varepsilon}_{1}(t)$ et $\tilde{\varepsilon}_{2}(t)$ sont notées $\tilde{\varepsilon}_{1}(p)$ et $\tilde{\varepsilon}_{2}(p)$\\
+
+\begin{question}
+%Q 26.
+\label{2023_ccs_psi_q_26}
+ À partir du modèle linéarisé, et avec le correcteur proposé, déterminer les expressions de $\tilde{\theta}_{1}(p)$ et $\tilde{\theta}_{2}(p)$ sous la forme $\tilde{\theta}_{1}(p)=H_{C 1}(p) C_{g}(p)+H_{C 2}(p) \tilde{\theta}_{2}(p)$ et $\tilde{\theta}_{2}(p)=H_{C 3}(p) C_{g}(p)+H_{C 4}(p) \tilde{\theta}_{1}(p)$.\\
+\end{question}
+\ifprof
+\begin{corrige}
+$u=K_p\tilde{\varepsilon}+K_v\dot{\tilde{\varepsilon}}$  ce qui donne 
+
+\begin{align*}
+\left\{
+\begin{array}{l}
+u_1(t)=\indice{K}{p11}\tilde{\varepsilon}_1(t)+K_{p12}\tilde{\varepsilon}_2(t)+\indice{K}{v11} \cdot \dfrac{\d \tilde{\varepsilon}_1(t)}{\d t} \\
+u_2(t)=K_{p21}\tilde{\varepsilon}_1(t)+\indice{K}{p22}\tilde{\varepsilon}_2+\indice{K}{v22}\cdot \dfrac{\d \tilde{\varepsilon}_2(t)}{\d t}
+\end{array}
+\right.
+\end{align*}
+
+L'énoncé précise que n exercice de renforcement musculaire, $\tilde{\theta}_{ref}$ et $\dot{\tilde{\theta}}_{ref}$ sont nuls.
+
+Ainsi $\tilde{\varepsilon}_1(t)=-\tilde{\theta}_1(t)$ et $\tilde{\varepsilon}_2(t)=-\tilde{\theta}_2(t)$
+
+Dans le domaine de Laplace, on obtient donc,
+
+\begin{align*}
+\left\{
+\begin{array}{l}
+U_1(p)=-\left(\indice{K}{p11}+\indice{K}{v11}\cdot p\right)\tilde{\theta}_1(p)-K_{p12}\tilde{\theta}_2(p)\\
+U_2(p)=-\left(\indice{K}{p22}+\indice{K}{v22}\cdot p\right)\tilde{\theta}_2(p)-K_{p21}\tilde{\theta}_1(p)\\
+\end{array}
+\right.
+\end{align*}
+
+Avec le résultat de Q23, on obtient : 
+$
+\left\{
+\begin{array}{l}
+\tilde{\theta}_1(p)=\dfrac{9,93C_g(p)+\left[-\left(\indice{K}{p11}+\indice{K}{v11}\cdot p\right)\tilde{\theta}_1(p)-K_{p12}\tilde{\theta}_2(p)\right]}{p^2-2338}\\
+\tilde{\theta}_2(p)=\dfrac{12,9C_g(p)+\left[-\left(\indice{K}{p22}+\indice{K}{v22}\cdot p\right)\tilde{\theta}_2(p)-K_{p21}\tilde{\theta}_1(p)\right]}{p^2+2921}\\
+\end{array}
+\right.
+$
+
+En inversant ces équations, on obtient : 
+$\left\{
+\begin{array}{l}
+\tilde{\theta}_1(p)=\dfrac{9,93C_g(p)-K_{p12}\tilde{\theta}_2(p)}{p^2-2338+\indice{K}{p11}+\indice{K}{v11}\cdot p}\\
+\tilde{\theta}_2(p)=\dfrac{12,9C_g(p)-K_{p21}\tilde{\theta}_1(p)}{p^2+2921+\indice{K}{p22}+\indice{K}{v22}\cdot p}\\
+\end{array}
+\right.
+$
+
+\end{corrige}
+\else
+\fi
+
+\begin{question}
+%Q 27. 
+\label{2023_ccs_psi_q_27}
+Afin d'obtenir le découplage entre les axes, déterminer les valeurs des coefficients non diagonaux de $K_{p}$ permettant d'obtenir $H_{C 2}(p)=H_{C 4}(p)=0$.\\
+\end{question}
+\ifprof
+\begin{corrige}
+D'après la question précédente,
+
+\begin{align*}
+\left\{
+\begin{array}{l}
+H_{C2}(p)=\dfrac{-K_{p12}}{p^2-2338+\indice{K}{p11}+\indice{K}{v11}\cdot p}\\
+H_{C4}(p)=\dfrac{-K_{p21}}{p^2+2921+\indice{K}{p22}+\indice{K}{v22}\cdot p}\\
+\end{array}
+\right.
+\end{align*}
+
+Ainsi pour annuler $H_{C2}(p)$ et $H_{C4}(p)$, il faut, $K_{p12}=0=K_{p21}$.
+\end{corrige}
+\else
+\fi
+
+\begin{question}
+%Q 28. 
+\label{2023_ccs_psi_q_28}
+Déterminer les coefficients diagonaux des matrices $K_{p}$ et $K_{v}$ afin que les fonctions de transfert $H_{C 1}(p)$ et $H_{C 3}(p)$ soient assimilables à des fonctions du deuxième ordre $H_{C 1}(p)=\dfrac{K_{1}}{1+2 \xi \dfrac{p}{\omega_{1}}+\left(\dfrac{p}{\omega_{1}}\right)^{2}}$ et $H_{C 3}(p)=$ $\dfrac{K_{3}}{1+2 \xi \dfrac{p}{\omega}+\left(\dfrac{p}{\omega}\right)^{2}}$ permettant d'obtenir des valeurs limites de raideurs respectant l'exigence 1.2.1.1. et ayant $1+2 \xi \dfrac{p}{\omega_{3}}+\left(\dfrac{p}{\omega_{3}}\right)^{2}$\\
+un coefficient d'amortissement $\xi=0,7$.\\
+\end{question}
+\ifprof
+\begin{corrige}
+D'après la question \ref{2023_ccs_psi_q_26},
+
+
+
+
+\begin{align*}
+\left\{
+\begin{array}{l}
+H_{C1}(p)=\dfrac{9,93}{p^2-2338+\indice{K}{p11}+\indice{K}{v11}\cdot p}\\
+H_{C3}(p)=\dfrac{12,9}{p^2+2921+\indice{K}{p22}+\indice{K}{v22}\cdot p}\\
+\end{array}
+\right.
+\end{align*}
+
+Ces deux fonctions de transfert sont des fonctions du deuxième ordre mais il faut qu'elle verifie l'exigence 1.2.1.1 qui d'après l'énoncé doit correspondre à $\xi=0,7$.
+
+Il faut mettre ces deux fonctions de transfert sous la forme canonique : 
+
+\begin{align*}
+\left\{
+\begin{array}{l}
+H_{C1}(p)=\dfrac{\dfrac{9,93}{\indice{K}{p11}-2338}}{\dfrac{p^2}{\indice{K}{p11}-2338}+\dfrac{\indice{K}{v11}}{\indice{K}{p11}-2338}\cdot p+1}\\
+H_{C3}(p)=\dfrac{\dfrac{12,9}{2921+\indice{K}{p22}}}{\dfrac{p^2}{2921+\indice{K}{p22}}+\dfrac{\indice{K}{v22}}{2921+\indice{K}{p22}}\cdot p+1}\\
+\end{array}
+\right.
+\end{align*}
+
+Par identification des formes canoniques, on obtient,
+
+\begin{align*}
+\left\{
+\begin{array}{l}
+K_1=\dfrac{9,93}{\indice{K}{p11}-2338}\\
+K_3=\dfrac{12,9}{2921+\indice{K}{p22}}\\
+\omega_1=\sqrt{\indice{K}{p11}-2338}\\
+\omega_3=\sqrt{2921+\indice{K}{p22}}
+\end{array}
+\right.
+\end{align*}
+
+Avec la première relation,
+
+\begin{align*}
+\xi=\dfrac{\omega_1}{2}\dfrac{\indice{K}{v11}}{\indice{K}{p11}-2338}=\dfrac{\indice{K}{v11}}{2\sqrt{\indice{K}{p11}-2338}}=0,7
+\end{align*}
+
+Avec la deuxième relation,
+
+\begin{align*}
+\xi=\dfrac{\omega_3}{2}\dfrac{\indice{K}{v22}}{2921+\indice{K}{p22}}=\dfrac{\indice{K}{v22}}{2\sqrt{2921+\indice{K}{p22}}}=0,7
+\end{align*}
+
+L'énoncé précise que le système doit vérifier le comportement de type raideur avec l'exigence 1.2.1.1, il doit s'agir d'une erreur et doit plutôt s'agir de l'exigence 1.2.1.3 avec une raideur de \SI{5}{N.m.rad^{-1}}.
+
+On peut interpréter cette raideur par les coefficients $\dfrac{1}{K_1}$ au niveau de la hanche (200 fois plus impportante que celle du genou) et $\dfrac{1}{K_3}$ au niveau du genou
+
+On obtient ainsi deux autres relations :  
+$\left\{
+\begin{array}{l}
+\dfrac{\indice{K}{p11}-2338}{9,93}=5\time 200\\
+\dfrac{2921+\indice{K}{p22}}{12,9}=5
+\end{array}
+\right.
+$
+En combinant ces différentes relations, voici ce qu'on obtient,
+
+$
+\left\{
+\begin{array}{l}
+\indice{K}{p11}=1000\times 9,93+2338\\
+\indice{K}{p22}=5\times 12,9-2921\\
+\indice{K}{v11}=2\times 0,7\sqrt{1000\times 9,93}\\
+\indice{K}{v22}=2\times 0,7\sqrt{5\times 12,9}
+\end{array}
+\right.
+$
+Les applications numériques donnent : 
+$
+\left\{
+\begin{array}{l}
+\indice{K}{p11}=12268 \\
+\indice{K}{p22}=-2856,5 \\
+\indice{K}{v11}=139,5\\
+\indice{K}{v22}=11,24
+\end{array}
+\right.
+$
+
+\end{corrige}
+\else
+\fi
+
+\begin{question}
+\label{2023_ccs_psi_q_29}
+%Q 29. 
+La rapidité de chacun des axes peut-elle être réglée indépendamment avec une telle commande ?
+\end{question}
+\ifprof
+\begin{corrige}
+Le réglage proposé précédemment correspond à l'optimum de rapidité ($\xi=0,7$) et il est obtenu de manière indépendante pour chaque axe.
+\end{corrige}
+\else
+\fi
+
+%\section*{III.B.3) Analyse de la loi de commande pour la rééducation à la proprioception de la verticalité et de la marche}
+\subsubsection{Analyse de la loi de commande pour la rééducation à la proprioception de la verticalité et de la marche}
+
+En exercice de rééducation à la proprioception de la verticalité et de la marche, les actions mécaniques exercées par le patient sont nulles et les consignes de position non nulles.\\
+
+\begin{question}
+%Q 30. 
+\label{2023_ccs_psi_q_30}
+Justifier, sans calcul, que le correcteur élaboré précédemment ne permet pas à l'exosquelette de respecter le cahier des charges en termes de précision lors de la phase considérée ici.
+\end{question}
+\ifprof
+\begin{corrige}
+Les actions mécaniques exercées par le patient sont nulles, donc $C_p=0=C_g$
+
+Les consignes de position non nulles peuvent s'interpréter par : $\tilde{\theta}_{1,ref}\neq 0$ et $\tilde{\theta}_{2,ref}\neq 0$.
+On souhaite d'après le cahier des charges minimiser l'erreur de position du mouvement de la hanche qui doit s'interpréter comme une erreur de trainage.
+
+Le correcteur proposé est un correcteur à action dérivée.
+
+On se propose donc d'utiliser un correcteur à action intégrale du genre \textbf{Proportionnel Intégral.}
+
+\end{corrige}
+\else
+\fi
+
+Un correcteur, comprenant une composante intégrale, a été déterminé en vue de respecter le cahier des charges dans le cas d'un exercice de rééducation à la proprioception de la verticalité et de la marche. L'annexe D présente les diagrammes de Bode de la fonction de transfert en boucle ouverte $\dfrac{\tilde{\theta}_{2}(p)}{\tilde{\varepsilon}_{2}(p)}$, la boucle $\dfrac{\tilde{\theta}_{1}(p)}{\tilde{\theta}_{1, \text { ref }}(p)}$ étant fermée. On suppose que cette fonction de transfert n'a pas de pôle à partie réelle positive.\\
+
+\begin{question}
+\label{2023_ccs_psi_q_31}
+%Q 31.
+ Analyser les marges de stabilité de cette boucle avec cette loi de commande et conclure sur ses performances au regard des exigences liées à la rééducation de la proprioception de la verticalité et de la marche.
+\end{question}
+\ifprof
+\begin{corrige}
+Les marges de stabilité étant positives, la stabilité stricte du système est assurée. 
+\begin{center}
+\includegraphics{Q31}
+\end{center}
+\end{corrige}
+\else
+\fi
+

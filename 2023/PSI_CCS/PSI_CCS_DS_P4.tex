@@ -1,0 +1,38 @@
+
+%\section*{IV Synthèse}
+\section{Synthèse}
+La figure \ref{2023_ccs_psi_fig_14} représente une simulation comportementale de l'actionneur du genou dans le plan sagittal lors du décollage du pied pendant la marche, lors d'un exercice de renforcement musculaire pour un couple exercé par le patient de $C_{\text {genou }}$ de $1 \mathrm{~N} \cdot \mathrm{~m}$ avec la commande synthétisée à la partie précédente.\\
+La figure \ref{2023_ccs_psi_fig_15} représente une simulation comportementale de l'actionneur du genou dans le plan sagittal lors du décollage du pied pendant la marche, lors d'un exercice de rééducation à la proprioception de la verticalité et de la marche, avec le réglage de la commande présenté à la partie précédente, pour le ralliement à une position désirée de $\tilde{\theta}_{1, \text { ref }}=1,4 \times 10^{-2}$ rad et $\tilde{\theta}_{2, \text { ref }}=0,9 \times 10^{-2}$ rad.\\
+
+
+
+\begin{center}
+\includegraphics[width=\textwidth]{2025_07_03_97545f5dc188959e5663g-12}
+%Figure 14 
+\captionof{figure}{Évolution angulaire des articulations lors d'un renforcement musculaire \label{2023_ccs_psi_fig_14}}
+\end{center}
+
+
+\begin{center}
+\includegraphics[width=\textwidth]{2025_07_03_97545f5dc188959e5663g-12(1)}
+%Figure 15 
+\captionof{figure}{Évolution angulaire des articulations lors d'une rééducation à la proprioception de la verticalité et de la marche \label{2023_ccs_psi_fig_15}}
+\end{center}
+
+
+
+\begin{question}
+%Q 32. 
+\label{2023_ccs_psi_q_32}
+Commenter les figures \ref{2023_ccs_psi_fig_14} et \ref{2023_ccs_psi_fig_15}. Conclure sur le respect du cahier des charges avec les lois de commande considérées, vis-à-vis de la stabilité du patient et du type de comportement de rééducation de l'exosquelette.
+\end{question}
+\ifprof
+\begin{corrige}
+Il est difficile de répondre à cette question concernant la figure \ref{2023_ccs_psi_fig_14} car on ne sait pas trop ce qui est imposé.
+Ce qu'on peut dire c'est que les angle $\theta_1$ et $\theta_2$ se stabilise vers une valeur constante ce qui assure la stabilité de l'articulation.
+
+Les résultats de la simulation donné sur la figure 15 montre que les erreurs statiques sont nulles sur chaque axe et seront donc nulles en sur la position du talon ce qui est conforme à l'exigence 1.2.1.1. du cahier des charges.
+\end{corrige}
+\else
+\fi
+
