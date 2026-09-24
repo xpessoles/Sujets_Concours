@@ -1,7 +1,7 @@
 
 
 %\section*{III Conception et analyse de lois de commande de l'exosquelette}
-\section{Conception et analyse de lois de commande de l'exosquelette}
+\section{Conception et analyse de lois de commande de l'exosquelette \label{2023_ccs_psi_p_3}}
 
 Le modèle dynamique multivariable de l'exosquelette linéarisé autour d'une position donnée, déterminé à la partie précédente, est exploité pour l'élaboration et l'analyse des lois de commande de l'exosquelette. La boucle interne non linéaire (figure \ref{2023_ccs_psi_fig_07}) doit permettre au système de respecter le cahier des charges (annexe A) en aboutissant, sur les différents axes considérés, à des actions mécaniques permettant la réalisation de l'exercice thérapeutique envisagé.\\
 Dans les faits, des actionneurs électriques sont présents sur chacun des axes de façon à générer les actions mécaniques. La structure de commande peut alors être détaillée par la figure \ref{2023_ccs_psi_fig_09}, où $C_{\text {ref }}$ représente l'ensemble des valeurs cibles d'actions mécaniques appliquées aux différents axes.\\
@@ -259,7 +259,7 @@ Cette dernière limite est bien nulle pour $K_c=1$.
 \else
 \fi
 
-La figure \ref{2023_ccs_psi_fig_10} présente l'évolution temporelle de $C_{2}$, pour une entrée de type échelon de $1 \mathrm{~N} \cdot \mathrm{~m}$.\\
+La figure \ref{2023_ccs_psi_fig_10} présente l'évolution temporelle de $C_{2}$, pour une entrée de type échelon de $\SI{1}{Nm}$.\\
 
 
 \begin{center}
@@ -291,9 +291,9 @@ La figure \ref{2023_ccs_psi_fig_10} présente l'évolution temporelle de $C_{2}$
 
 %\section*{III.A.3) Vérification de la cohérence de la commande en couple sur l'exosquelette}
 \subsubsection{Vérification de la cohérence de la commande en couple sur l'exosquelette}
-La conception de l'asservissement du couple de l'actionneur a été réalisée sans prendre en compte les couplages entre les axes mis en évidence à la partie précédente. Afin de vérifier le comportement de cette commande une fois les axes couplés, il est nécessaire de considérer le réglage obtenu, mais en tenant compte de la dynamique globale de l'exosquelette déterminée dans la partie II comprenant le couplage entre les axes.\\
-La figure \ref{2023_ccs_psi_fig_11} présente les réponses indicielles (entrée de type échelon de $1 \mathrm{~N} \cdot \mathrm{~m}$ ) de la position angulaire $\theta_{2}$ pour le modèle dynamique de l'exosquelette pris seul (noté Mod1) et le modèle dynamique de l'exosquelette associé à ses actionneurs avec l'asservissement en couple élaboré précédemment (noté Mod2), ainsi que l'écart angulaire entre ces deux modèles.\\
-La figure \ref{2023_ccs_psi_fig_12} présente les réponses indicielles (entrée de type échelon de $1 \mathrm{~N} \cdot \mathrm{~m}$ ) du couple $C_{2}$ pour le modèle dynamique de l'exosquelette associé à ses actionneurs avec l'asservissement en couple élaboré précédemment (Mod2) et pour le modèle dynamique de l'axe pris seul (noté Mod3), ainsi que l'écart en couple entre ces deux modèles.\\
+La conception de l'asservissement du couple de l'actionneur a été réalisée sans prendre en compte les couplages entre les axes mis en évidence à la partie précédente. Afin de vérifier le comportement de cette commande une fois les axes couplés, il est nécessaire de considérer le réglage obtenu, mais en tenant compte de la dynamique globale de l'exosquelette déterminée dans la partie \ref{2023_ccs_psi_p_2} comprenant le couplage entre les axes.\\
+La figure \ref{2023_ccs_psi_fig_11} présente les réponses indicielles (entrée de type échelon de $\SI{1}{Nm}$) de la position angulaire $\theta_{2}$ pour le modèle dynamique de l'exosquelette pris seul (noté Mod1) et le modèle dynamique de l'exosquelette associé à ses actionneurs avec l'asservissement en couple élaboré précédemment (noté Mod2), ainsi que l'écart angulaire entre ces deux modèles.\\
+La figure \ref{2023_ccs_psi_fig_12} présente les réponses indicielles (entrée de type échelon de $\SI{1}{Nm}$ ) du couple $C_{2}$ pour le modèle dynamique de l'exosquelette associé à ses actionneurs avec l'asservissement en couple élaboré précédemment (Mod2) et pour le modèle dynamique de l'axe pris seul (noté Mod3), ainsi que l'écart en couple entre ces deux modèles.\\
 
 
 \begin{center}
@@ -346,7 +346,7 @@ Les actionneurs ayant été asservis en couple, la loi de commande est réalisé
 
 %\section*{III.B.1) Formulation d'un modèle pour la synthèse de la loi de commande}
 \subsubsection{Formulation d'un modèle pour la synthèse de la loi de commande}
-Le modèle dynamique de l'exosquelette, déterminé à l'aide de la partie II.A question \ref{2023_ccs_psi_q_11}, est de la forme:
+Le modèle dynamique de l'exosquelette, déterminé à l'aide de la partie \label{2023_ccs_psi_p_2A} question \ref{2023_ccs_psi_q_11}, est de la forme:
 
 $$
 M_{1}(\Theta, \dot{\Theta}) \ddot{\Theta}+M_{2}(\Theta, \dot{\Theta}) \dot{\Theta}+C(\Theta, \dot{\Theta})+M_{3}(\Theta, \dot{\Theta}) C_{p}=C_{\mathrm{ref}}
@@ -362,7 +362,7 @@ Dans cette équation, on note :
 \end{itemize}
 
 \begin{center}
-\includegraphics[width=\textwidth]{2025_07_03_97545f5dc188959e5663g-10}
+\includegraphics[width=.8\textwidth]{2025_07_03_97545f5dc188959e5663g-10}
 %Figure Figure 13  
 \captionof{figure}{Structure de la loi de commande couplée \label{2023_ccs_psi_fig_13}}
 \end{center}
@@ -604,8 +604,7 @@ Ainsi pour annuler $H_{C2}(p)$ et $H_{C4}(p)$, il faut, $K_{p12}=0=K_{p21}$.
 \begin{question}
 %Q 28. 
 \label{2023_ccs_psi_q_28}
-Déterminer les coefficients diagonaux des matrices $K_{p}$ et $K_{v}$ afin que les fonctions de transfert $H_{C 1}(p)$ et $H_{C 3}(p)$ soient assimilables à des fonctions du deuxième ordre $H_{C 1}(p)=\dfrac{K_{1}}{1+2 \xi \dfrac{p}{\omega_{1}}+\left(\dfrac{p}{\omega_{1}}\right)^{2}}$ et $H_{C 3}(p)=$ $\dfrac{K_{3}}{1+2 \xi \dfrac{p}{\omega}+\left(\dfrac{p}{\omega}\right)^{2}}$ permettant d'obtenir des valeurs limites de raideurs respectant l'exigence 1.2.1.1. et ayant $1+2 \xi \dfrac{p}{\omega_{3}}+\left(\dfrac{p}{\omega_{3}}\right)^{2}$\\
-un coefficient d'amortissement $\xi=0,7$.\\
+Déterminer les coefficients diagonaux des matrices $K_{p}$ et $K_{v}$ afin que les fonctions de transfert $H_{C 1}(p)$ et $H_{C 3}(p)$ soient assimilables à des fonctions du deuxième ordre $H_{C 1}(p)=\dfrac{K_{1}}{1+2 \xi \dfrac{p}{\omega_{1}}+\left(\dfrac{p}{\omega_{1}}\right)^{2}}$ et $H_{C 3}(p)=$ $\dfrac{K_{3}}{1+2 \xi \dfrac{p}{\omega}+\left(\dfrac{p}{\omega}\right)^{2}}$ permettant d'obtenir des valeurs limites de raideurs respectant l'exigence 1.2.1.1. et ayant un coefficient d'amortissement $\xi=0,7$.\\
 \end{question}
 \ifprof
 \begin{corrige}
