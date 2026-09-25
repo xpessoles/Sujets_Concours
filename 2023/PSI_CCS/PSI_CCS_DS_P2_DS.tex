@@ -4,7 +4,8 @@
 \begin{obj}
 Définir un modèle dynamique de l'exosquelette et montrer la nécessité de mettre en place un asservissement.
 \end{obj}
-
+\ifprof
+\else
 Afin d'élaborer une commande pour l'exosquelette, il est nécessaire au préalable de définir un modèle dynamique représentatif de son comportement. Seule la commande des articulations sagittales de hanche et de genou d'une jambe lorsqu'elle est décollée du sol (figure \ref{2023_ccs_psi_fig_07} et hypothèses associées) sera considérée ici (cas de la marche en ligne droite) avec les hypothèses et notations supplémentaires suivantes, en plus de celles énoncées à la partie précédente:
 
 \begin{itemize}
@@ -14,6 +15,7 @@ Afin d'élaborer une commande pour l'exosquelette, il est nécessaire au préala
   \item on note respectivement $C_{\text {genou }}$ et $C_{\text {hanche }}$, les couples appliqués par le patient au niveau des articulations de genou et de hanche.\\
 Le modèle dynamique proposé sera explicité pour mettre en évidence la nécessité d'un asservissement et par la suite (partie \ref{2023_ccs_psi_p_3}), permettre l'élaboration de la loi de commande globale de l'exosquelette.
 \end{itemize}
+\fi
 
 %\section*{II.A - Comportement dynamique de l'exosquelette}
 %\subsection{Comportement dynamique de l'exosquelette}
@@ -209,6 +211,8 @@ Le modèle dynamique proposé sera explicité pour mettre en évidence la néces
 %\else
 %\fi
 
+\ifprof
+\else
 Le théorème du moment dynamique en $A$ en projection sur $\vect{x_0}$ appliqué à l'ensemble $\{2+3\}$ se traduit par :
 
 $$C_{1} + C_{\textrm {hanche }}- m_3 g\left(  L_2 \sin \theta_1 +  L_0 \sin\left( \alpha + \theta_2 + \theta_1\right)\right)  + m_2 g\left( l_2 - L_2\right) \sin \theta_1 = A_{1} \ddot{\theta}_{1}+A_{2} \ddot{\theta}_{2}+A_{3} \dot{\theta}_{1}^{2}+A_{4}\left(\dot{\theta}_{1}+\dot{\theta}_{2}\right)^{2}$$
@@ -218,6 +222,7 @@ D'une manière similaire aux questions précédentes, l'application du principe 
 $$
 C_{2}=\left[I_{x 3}+m_{3} L_{0}^{2}\right]\left(\ddot{\theta}_{1}+\ddot{\theta}_{2}\right)+m_{3} L_{2} L_{0}\left[\ddot{\theta}_{1} \cos \left(\theta_{2}+\alpha\right)+\dot{\theta}_{1}^{2} \sin \left(\theta_{2}+\alpha\right)\right]+m_{3} g L_{0} \sin \left(\theta_{2}+\theta_{1}+\alpha\right)-C_{\text {genou }}
 $$
+\fi
 
 \begin{question}%Q 11. 
 \label{2023_ccs_psi_q_11}
@@ -293,6 +298,8 @@ m_{3} g L_{0} \sin \left(\theta_{2}+\theta_{1}+\alpha\right) \\
 
 %\section*{II.B - Analyse du modèle dynamique}
 \subsection{Analyse du modèle dynamique}
+\ifprof
+\else
 Le modèle dynamique déterminé à la question \ref{2023_ccs_psi_q_11} étant couplé et non linéaire, un modèle linéarisé sera exploité afin de faciliter la synthèse de la loi de commande.\\
 Autour de la position pour laquelle le pied se décolle du sol ( $\theta_{1}=0, \theta_{2}=-35^{\circ}$ ), le modèle dynamique linéarisé est :
 
@@ -317,6 +324,7 @@ Dans cette relation, on note :
   \item $C_{a}=\binom{C_{1}}{C_{2}}$, les actions mécaniques générées par les actionneurs.\\
 $\Theta_{1}(p), \Theta_{2}(p), C_{1}(p), C_{2}(p), C_{\text {hanche }}(p)$ et $C_{\text {genou }}(p)$ représentent les transformées de Laplace de, respectivement, $\theta_{1}(t), \theta_{2}(t), C_{1}(t), C_{2}(t), C_{\text {hanche }}(t)$ et $C_{\text {genou }}(t)$. Pour la question suivante, on considère que seul l'actionneur de l'axe de genou est actif ( $C_{\text {hanche }}=C_{\text {genou }}=C_{1}=0$ ) et que les conditions initiales sont nulles.\\
 \end{itemize}
+\fi
 
 
 %Q 12.
@@ -423,20 +431,22 @@ De plus, $a_0 = 192\times 10^{-5}$, $a_1=-650\times 10^{-5}$ $a_2 =  6122\times 
 
 
 
-
-
-
+\ifprof
+\else
 En poursuivant cette démarche, il est alors possible de mettre le modèle dynamique sous la forme de la figure \ref{2023_ccs_psi_fig_08}, faisant apparaitre le couplage entre les axes.\\
-
 
 \begin{center}
 \includegraphics[width=.7\textwidth]{2025_07_03_97545f5dc188959e5663g-06}
 %Figure 8
 \captionof{figure}{Représentation du modèle dynamique linéarisé \label{2023_ccs_psi_fig_08}}
 \end{center}
+\fi
 
 
 
+
+\ifprof
+\else
 
 La fonction de transfert $H_{L 4}(p)$, une fois les polynômes du numérateur et dénominateur factorisés, s'écrit :
 
@@ -445,6 +455,7 @@ H_{L 4}(p)=K_{L 4} \dfrac{\left(p-z_{1}\right)\left(p-z_{2}\right)}{\left(p-p_{1
 $$
 
 avec $z_{1}=1,7+2,2 i, z_{2}=1,7-2,2 i, p_{1}=-23,6$ et $p_{2}=50,5$.\\
+\fi
 
 \begin{question}
 \label{2023_ccs_psi_q_13}

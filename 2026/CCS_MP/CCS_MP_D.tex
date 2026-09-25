@@ -1,0 +1,223 @@
+%\section*{Partie D - Synthèse d'une loi de commande de l'actionneur}
+\section{Synthèse d'une loi de commande de l'actionneur}
+
+\begin{obj}
+Proposer une loi de commande de l'actionneur mettant en mouvement la nacelle et vérifier les exigences relatives à la sécurité, à l'accessibilité, au panorama et au confort des passagers.
+\end{obj}
+
+La partie précédente a montré l'instabilité d'une commande en couple de l'actionneur. Pour contrôler la vitesse de la nacelle $N$, il est nécessaire de stabiliser le comportement dynamique de l'ensemble $\Sigma$ régi par l'équation Eq. 2. L'actionneur, délivrant le couple $c_{e m}(t)$, est commandé en couple par l'intermédiaire du préactionneur par la grandeur $c_{\text {ref }}(t)$.
+
+\subsection*{Rappels et notations}
+\begin{itemize}
+  \item $\omega_{m c}(t)$ représente la vitesse angulaire de consigne du rotor de l'actionneur, exprimée en $\operatorname{rad} \cdot \mathrm{s}^{-1} . \Omega_{m c}(p)$ est sa transformée de Laplace ;
+  \item $\omega_{m}(t)$ représente la vitesse angulaire du rotor de l'actionneur, exprimée en $\mathrm{rad} \cdot \mathrm{s}^{-1} . \Omega_{m}(p)$ est sa transformée de Laplace;
+  \item $\theta_{m}(t)$ représente la position angulaire du rotor de l'actionneur, exprimée en $\operatorname{rad} . \Theta_{m}(p)$ est sa transformée de Laplace;
+  \item $c_{e m}(t)$ est l'action mécanique du type couple générée par l'actionneur sur le réducteur de vitesse exprimée en $\mathrm{N} \cdot \mathrm{m}$;
+  \item $c_{\text {ref }}(t)$ est la grandeur de commande de l'ensemble \{Préactionneur + actionneur\} exprimée en $\mathrm{N} \cdot \mathrm{m}$. Le temps de réponse de cet ensemble étant faible comparativement à la dynamique du système étudié, on considère $c_{e m}(t)=c_{r e f}(t)$ et $\Delta c_{e m}(t)=\Delta c_{\text {ref }}(t)$;
+  \item $c_{R}(t)$ représente une action mécanique résistante rapportée sur l'axe de rotation du rotor de l'actionneur, exprimée en $\mathrm{N} \cdot \mathrm{m} . C_{R}(p)$ est sa transformée de Laplace.
+\end{itemize}
+
+%\section*{I - Stabilisation du comportement dynamique de l'ensemble de mise en mouvement de la nacelle}
+\subsection{Stabilisation du comportement dynamique de l'ensemble de mise en mouvement de la nacelle}
+
+\begin{obj}
+Élaborer une commande de l'actionneur assurant la stabilité de la dynamique de l'ensemble de mise en mouvement de la nacelle.
+\end{obj}
+
+Pour contrôler la vitesse linéaire $v(t)$ de la nacelle $N$, il est nécessaire de stabiliser le comportement dynamique de l'ensemble $\Sigma$ régi par l'équation Eq.2. À cet effet, la variation de couple $\Delta c_{\text {ref }}(t)=\Delta c_{e m}(t)$ est commandée par un retour informationnel fonction de la vitesse angulaire de consigne et de la vitesse angulaire du rotor de l'actionneur telle que :
+
+$$
+\Delta c_{e m}(t)=-K_{1} \cdot \omega_{m}(t)-K_{2} \cdot \int_{0}^{t}\left(\omega_{m}(x)-K_{3} \cdot \omega_{m c}(x)\right) \cdot \mathrm{d} x \quad \text { Eq. } 3
+$$
+
+où $K_{1}, K_{2}$ et $K_{3}$ sont des constantes positives à déterminer.\\
+
+%Q22.
+\question{À l'aide des équations Eq. 2, Eq. 3, en l'absence de perturbation $\left(C_{R}(p)=0\right)$ et en supposant les conditions de Heaviside vérifiées, déterminer l'expression de la fonction de transfert $H_{\text {stab }}(p)$ en fonction de $K_{1}, K_{2}, K_{3}$, $J_{0}, k_{c r z}$ et $k_{c i n}$ telle que :
+$\Omega_{m}(p)=\indice{H}{stab}(p) \cdot \Omega_{m c}(p)$.}
+
+
+Afin de limiter les oscillations des câbles et leurs sollicitations en traction notamment, le comportement souhaité de la boucle de stabilisation est telle que $H_{\text{stab}}(p)$ s'écrive sous la forme :
+
+$$
+H_{sta b}(p)=\frac{1}{1+\frac{2 \xi_{s}}{\omega_{0 s}} \cdot p^{+} \frac{p^{2}}{\omega_{0 s}^{2}}} .
+$$
+
+Le cahier des charges relatif à la boucle de stabilisation est fourni dans le Tableau 4.
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}[t]{|l|l|l|}
+\hline
+Performances & Critères & Niveaux \\
+\hline
+Stabilité & Facteur d'amortissement de la boucle de stabilisation & $\xi_{s} \geqslant 1$ \\
+\hline
+Rapidité & Pulsation propre du système non amorti de la boucle de stabilisation & $\omega_{0 s}=3 \mathrm{rad} \cdot \mathrm{s}^{-1}$ \\
+\hline
+\end{tabular}
+\captionsetup{labelformat=empty}
+\caption{Tableau 4 - Cahier des charges de la boucle de stabilisation}
+\end{center}
+\end{table}
+
+%Q23. 
+\question{Déterminer les expressions littérales de $K_{1}, K_{2}$ et $K_{3}$ en fonction de $\xi_{s}, \omega_{0 s}, J_{0}, k_{c r z}$ et $k_{c i n}$.}
+
+Indépendamment des résultats précédents, les valeurs des paramètres du modèle (Eq. 2) adoptées sont :
+
+$$
+J_{0}=16,8 \mathrm{~kg} \cdot \mathrm{~m}^{2} \quad ; \quad k_{\text {cin }}=\frac{1}{204} \mathrm{~m} \cdot \mathrm{rad}^{-1} \quad ; \quad k_{\text {cr } z}=4,5 \mathrm{~N} .
+$$
+
+%Q24. 
+\question{En déduire les conditions sur les valeurs numériques des paramètres $K_{1}$ et $K_{2}$ permettant de satisfaire les critères du Tableau 4.}
+
+En prenant en compte la perturbation $C_{R}(p)$, il est possible de démontrer que la fonction de transfert $G_{s}(p)=\frac{\Omega_{m}(p)}{C_{R}(p)}$ s'écrit sous la forme $G_{s}(p)=\frac{\Omega_{m}(p)}{C_{R}(p)}=-H_{\text {stab }}(p) \cdot \frac{p}{J_{0} \omega_{o s}^{2}}$.\\
+
+
+Soit $n$ le nombre de passagers embarqués dans la nacelle. Considérons $c_{R}(t)=C_{R 0}(n)=$ constante.\\
+
+%Q25. 
+\question{Montrer que la masse des $n$ passagers dans la nacelle a une influence sur la position angulaire du moteur en régime permanent et en conséquence sur la position de la nacelle $z(t)$.}
+
+
+%\section*{II - Étude de la boucle de maîtrise des grandeurs cinématiques de l'actionneur}
+\subsection{Étude de la boucle de maîtrise des grandeurs cinématiques de l'actionneur}
+
+%Objectif\\
+\begin{obj}
+Déterminer les paramètres d'un correcteur permettant de satisfaire les exigences de sécurité et de confort des passagers.
+\end{obj}
+
+La dynamique du mécanisme de mise en mouvement de la nacelle étant désormais stabilisée, la vitesse $v(t)$ de la nacelle doit suivre un profil établi en fonction des critères de sécurité et de confort des passagers, de la durée de la visite et des positions de la nacelle à l'arrivée aux niveaux inférieur et supérieur. À cet effet, une boucle d'asservissement de la vitesse angulaire de l'actionneur est réalisée, conformément à la Figure 7. $C(p)$ représente le correcteur de la boucle d'asservissement de vitesse angulaire devant permettre de maîtriser les grandeurs cinématiques de la nacelle.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[alt={},max width=\textwidth]{cd8229cf-9637-40cc-9aaf-03c75c002f2c-12_443_849_1025_616}
+\captionsetup{labelformat=empty}
+\caption{Figure 7 - Schéma-blocs simplifié de l'asservissement de vitesse angulaire de l'actionneur}
+\end{center}
+\end{figure}
+
+Pour limiter les oscillations du câble, ainsi que les variations de la vitesse dues aux changements de pentes de la consigne de vitesse angulaire $\omega_{m c}(t)$, l'asservissement de vitesse angulaire du rotor de l'actionneur doit respecter les performances du Tableau 5.
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}[t]{|l|l|l|}
+\hline
+Performances & Critères & Niveaux \\
+\hline
+\multirow[t]{3}{*}{Stabilité} & Dépassement relatif du $k^{\mathrm{e}}$ dépassement pour une entrée de consigne en échelon, noté $D_{k}^{\%}$ & $D_{k}^{\%}=0 \forall k$ \\
+\hline
+ & Marge de phase, notée $M \varphi$ & $M \varphi=80^{\circ}$ \\
+\hline
+ & Marge de gain, notée $M G$ & $M G \geqslant 50 \mathrm{~dB}$ \\
+\hline
+\multirow[t]{2}{*}{Précision} & Erreur en régime permanent sur la vitesse angulaire de l'actionneur, notée $\mu_{v}$, pour une entrée de consigne en échelon & $\mu_{v}=0$ \\
+\hline
+ & Sensibilité en régime permanent à une perturbation en échelon & Insensible \\
+\hline
+\end{tabular}
+\captionsetup{labelformat=empty}
+\caption{Tableau 5 - Cahier des charges de la boucle d'asservissement de vitesse angulaire}
+\end{center}
+\end{table}
+
+La stabilisation étudiée dans la Partie D-I, et par le choix d'un facteur d'amortissement $\xi_{s} \geqslant 1$, permettent de considérer que la fonction de transfert de la boucle de stabilisation s'écrit :
+
+$$
+H_{s t a b}(p)=\frac{1}{(1+1,24 \cdot p) \cdot(1+0,09 \cdot p)} .
+$$
+
+Les ingénieurs proposent un choix de correcteur $C(p)$ du type Proportionnel Intégral, de fonction de transfert :
+
+$$
+C(p)=K_{i} \cdot \frac{1+T_{i} \cdot p}{T_{i} \cdot p} .
+$$
+
+La détermination du paramètre $T_{i}$ est telle qu'il réalise la compensation du pôle dominant de $H_{\text {stab }}(p)$.
+
+\begin{itemize}
+  \item[Q26.] Déterminer les deux pôles de $H_{\text {stab }}(p)$. Quel est le pôle dominant et justifier la réponse? En déduire la valeur numérique de $T_{i}$.
+\end{itemize}
+
+La Figure 8 fournit le diagramme de Bode de la fonction de transfert en boucle ouverte corrigée pour $K_{i}=1$ et la compensation du pôle dominant.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[alt={},max width=\textwidth]{cd8229cf-9637-40cc-9aaf-03c75c002f2c-13_907_1389_377_338}
+\captionsetup{labelformat=empty}
+\caption{Figure 8 - Diagramme de Bode de la fonction de transfert en boucle ouverte corrigée pour $K_{i}=1$ et compensation du pôle dominant}
+\end{center}
+\end{figure}
+
+%\begin{itemize}
+ % \item[Q27.] 
+%\end{itemize}
+
+
+ % Q27 
+\question{Déterminer numériquement la condition sur le paramètre $K_{i}$ permettant de satisfaire simultanément les critères de stabilité relatifs aux marges de gain et de phase.}
+
+
+Par calculs ou par manipulations du schéma-blocs de la Figure 7, il est possible de démontrer que la fonction de transfert $G(p)=\frac{\Omega_{m}(p)}{C_{R}(p)}$ s'écrit sous la forme :
+
+$$
+G(p)=\frac{\Omega_{m}(p)}{C_{R}(p)}=\frac{a_{0} \cdot p^{2}}{b_{0}+b_{1} \cdot p+b_{2} \cdot p^{2}+b_{3} \cdot p^{3}} .
+$$
+
+Soit $n$ le nombre de passagers embarqués dans la nacelle. Considérons $c_{R}(t)=C_{R 0}(n)=$ constante.
+
+\begin{itemize}
+  \item[Q28.] Montrer que, quelque soit $n$, la masse de $n$ passagers dans la nacelle n'a pas d'influence sur la vitesse et la position de la nacelle en régime permanent.
+\end{itemize}
+
+La Figure 9 fournit le diagramme de Bode de la fonction de transfert en boucle fermée $F T B F(p)=\frac{\Omega_{m}(p)}{\Omega_{m c}(p)}$ et pour les valeurs pertinentes des paramètres du correcteur $C(p)$.
+
+
+%Q29.
+\question{Conclure quant à la satisfaction ou non de l'intégralité des performances attendues du cahier des charges du Tableau 5.}
+
+Les études précédentes ont permis de déterminer une modélisation de la commande de l'actionneur afin de contrôler les grandeurs cinématiques. Il est donc désormais possible de vérifier les exigences liées à la sécurité, au panorama et au confort des passagers pour le cycle de vitesse souhaité décrit en partie A-I.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[alt={},max width=\textwidth]{cd8229cf-9637-40cc-9aaf-03c75c002f2c-14_921_1396_121_336}
+\captionsetup{labelformat=empty}
+\caption{Figure 9 - Diagramme de Bode de $F T B F(p)$}
+\end{center}
+\end{figure}
+
+%\section*{III - Vérification des performances liées à la sécurité et au confort des passagers}
+\subsection{Vérification des performances liées à la sécurité et au confort des passagers}
+%Objectif\\
+
+\begin{obj}
+Caractériser les écarts entre les performances attendues liées à la sécurité et au confort des passagers et les performances simulées (hors critères d'accessibilité de la nacelle et de panorama définis Partie A-I).
+\end{obj}
+
+L'ensemble des paramètres du modèle de la Figure 4 et les grandeurs d'entrées sont à présents connus. On considère le cycle ascensionnel de vitesse souhaitée de la nacelle $N$ établi en partie A-I, en absence de passager $n=0$ et en présence de $n=200$ passagers dans la nacelle.
+
+Un frein mécanique permet de maintenir à l'arrêt la nacelle (en $z=0 \mathrm{~m}$ et à l'altitude maximale). On considère qu'à l'instant $t=0$ de la simulation, l'actionneur délivre un couple $c_{\text {em }}(t)$ tel que $c_{\text {em }}(t=0)=C_{R 0}(n)$ où $n$ représente le nombre de passagers embarqués dans la nacelle.\\
+La simulation du modèle établi dans ce sujet permet d'obtenir les Figures 10 et 11 qui décrivent les évolutions des grandeurs cinématiques de la nacelle $N$.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[alt={},max width=\textwidth]{cd8229cf-9637-40cc-9aaf-03c75c002f2c-14_795_1240_1864_413}
+\captionsetup{labelformat=empty}
+\caption{Figure 10 - Évolution des accélérations linéaires de la nacelle en fonction du nombre de passagers $n$}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[alt={},max width=\textwidth]{cd8229cf-9637-40cc-9aaf-03c75c002f2c-15_816_1240_121_413}
+\captionsetup{labelformat=empty}
+\caption{Figure 11 - Évolution des vitesses linéaires de la nacelle en fonction du nombre de passagers $n$}
+\end{center}
+\end{figure}
+
+%Q30. 
+\question{Conclure quant à la satisfaction ou non des critères des exigences liées à la sécurité et au confort des passagers (Tableau 2), quelque soit le nombre de passagers embarqués dans la nacelle $N$.}
+

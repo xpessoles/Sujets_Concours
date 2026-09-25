@@ -3,6 +3,9 @@
 %\section*{III Conception et analyse de lois de commande de l'exosquelette}
 \section{Conception et analyse de lois de commande de l'exosquelette \label{2023_ccs_psi_p_3}}
 
+\ifprof
+\else
+
 Le modèle dynamique multivariable de l'exosquelette linéarisé autour d'une position donnée, déterminé à la partie précédente, est exploité pour l'élaboration et l'analyse des lois de commande de l'exosquelette. La boucle interne non linéaire (figure \ref{2023_ccs_psi_fig_07}) doit permettre au système de respecter le cahier des charges (annexe A) en aboutissant, sur les différents axes considérés, à des actions mécaniques permettant la réalisation de l'exercice thérapeutique envisagé.\\
 Dans les faits, des actionneurs électriques sont présents sur chacun des axes de façon à générer les actions mécaniques. La structure de commande peut alors être détaillée par la figure \ref{2023_ccs_psi_fig_09}, où $C_{\text {ref }}$ représente l'ensemble des valeurs cibles d'actions mécaniques appliquées aux différents axes.\\
 
@@ -21,6 +24,7 @@ L'élaboration de la loi de commande de l'exosquelette se déroule alors en deux
   \item l'asservissement en couple des actionneurs (boucle bas niveau) est réalisé en négligeant l'influence des éventuels couplages entre les axes. L'influence de cet asservissement sur la dynamique de l'exosquelette et la validité de cette approche sont étudiées. L'objectif de cette boucle bas niveau est de générer sur l'exosquelette des couples identiques aux couples de référence ;
   \item le calcul des couples de référence est réalisé par une boucle interne non linéaire.
 \end{itemize}
+\fi
 
 %\section*{III.A - Conception de l'asservissement en couple d'un actionneur}
 \subsection{Conception de l'asservissement en couple d'un actionneur}
@@ -29,7 +33,10 @@ L'élaboration de la loi de commande de l'exosquelette se déroule alors en deux
 Élaborer l'asservissement du couple généré par un actionneur, puis le valider par une analyse de son effet sur l'exosquelette.
 \end{obj}
 
+\ifprof
+\else
 Lors des phases de rééducation, alors que le patient doit fournir un effort sous le contrôle du thérapeute, l'exosquelette doit réagir de façon totalement transparente pour le patient. En effet, l'exosquelette doit aider le patient, ou lutter contre les actions du patient, selon le protocole choisi par le thérapeute, et cela sans aucun à-coup. Ce constat implique que le temps de réponse de l'actionneur concerné par la phase rééducative doit être inférieur au temps de réponse physiologique du patient. La grande polyvalence de l'exosquelette a contraint les ingénieurs à choisir un temps de réponse de l'asservissement en couple de l'ordre de $0,1 \mathrm{~ms}$. L'objectif de cette partie est donc de concevoir l'asservissement du couple généré par les actionneurs et de vérifier si son action est bien transparente pour le patient.
+\fi
 
 %\section*{III.A.1) Modèle dynamique d'un axe}
 %\subsubsection{Modèle dynamique d'un axe}
@@ -102,6 +109,8 @@ Lors des phases de rééducation, alors que le patient doit fournir un effort so
 
 %\section*{III.A.2) Élaboration de la commande en couple de l'actionneur}
 \subsubsection{Élaboration de la commande en couple de l'actionneur}
+\ifprof
+\else
 En exploitant le modèle dynamique précédent, le correcteur de la chaine d'asservissement en couple de l'actionneur doit être déterminé de façon à vérifier le cahier des charges ci-dessous :
 
 \begin{center}
@@ -135,14 +144,14 @@ $$
 C_{i}(p)=K \dfrac{1+T p}{p}
 $$
 
+\fi
+
 \begin{question}
 %Q 16. 
 \label{2023_ccs_psi_q_16}
-Calculer, en donnant les expressions littérales de $K_{c}, T_{c}, \xi_{c}$ et $\omega_{c}$, l'expression de la fonction de transfert $H_{C}(p)=\dfrac{C_{m}(p)}{C_{\text {ref }}(p)}$ sous la forme :
-
-$$
+Calculer, en donnant les expressions littérales de $K_{c}, T_{c}, \xi_{c}$ et $\omega_{c}$, l'expression de la fonction de transfert $H_{C}(p)=\dfrac{C_{m}(p)}{C_{\text {ref }}(p)}$ sous la forme : $
 H_{C}(p)=K_{c} \dfrac{1+T_{c} p}{1+2 \xi_{c} \dfrac{p}{\omega_{c}}+\left(\dfrac{p}{\omega_{c}}\right)^{2}}
-$$
+$.
 \end{question}
 \ifprof
 \begin{corrige}
@@ -259,6 +268,9 @@ Cette dernière limite est bien nulle pour $K_c=1$.
 \else
 \fi
 
+
+\ifprof
+\else
 La figure \ref{2023_ccs_psi_fig_10} présente l'évolution temporelle de $C_{2}$, pour une entrée de type échelon de $\SI{1}{Nm}$.\\
 
 
@@ -269,6 +281,7 @@ La figure \ref{2023_ccs_psi_fig_10} présente l'évolution temporelle de $C_{2}$
 \captionof{figure}{Réponse indicielle en couple de l'actionneur (agrandissement à droite)\label{2023_ccs_psi_fig_10}}
 \end{center}
 
+\fi
 
 \begin{question}
 \label{2023_ccs_psi_q_20}
@@ -291,6 +304,10 @@ La figure \ref{2023_ccs_psi_fig_10} présente l'évolution temporelle de $C_{2}$
 
 %\section*{III.A.3) Vérification de la cohérence de la commande en couple sur l'exosquelette}
 \subsubsection{Vérification de la cohérence de la commande en couple sur l'exosquelette}
+
+\ifprof
+\else
+
 La conception de l'asservissement du couple de l'actionneur a été réalisée sans prendre en compte les couplages entre les axes mis en évidence à la partie précédente. Afin de vérifier le comportement de cette commande une fois les axes couplés, il est nécessaire de considérer le réglage obtenu, mais en tenant compte de la dynamique globale de l'exosquelette déterminée dans la partie \ref{2023_ccs_psi_p_2} comprenant le couplage entre les axes.\\
 La figure \ref{2023_ccs_psi_fig_11} présente les réponses indicielles (entrée de type échelon de $\SI{1}{Nm}$) de la position angulaire $\theta_{2}$ pour le modèle dynamique de l'exosquelette pris seul (noté Mod1) et le modèle dynamique de l'exosquelette associé à ses actionneurs avec l'asservissement en couple élaboré précédemment (noté Mod2), ainsi que l'écart angulaire entre ces deux modèles.\\
 La figure \ref{2023_ccs_psi_fig_12} présente les réponses indicielles (entrée de type échelon de $\SI{1}{Nm}$ ) du couple $C_{2}$ pour le modèle dynamique de l'exosquelette associé à ses actionneurs avec l'asservissement en couple élaboré précédemment (Mod2) et pour le modèle dynamique de l'axe pris seul (noté Mod3), ainsi que l'écart en couple entre ces deux modèles.\\
@@ -307,6 +324,7 @@ La figure \ref{2023_ccs_psi_fig_12} présente les réponses indicielles (entrée
 %Figure 12
 \captionof{figure}{Réponse indicielle en couple des modèles Mod2 et Mod3 et écart de couple \label{2023_ccs_psi_fig_12}}
 \end{center}
+\fi
 
 \begin{question}
 \label{2023_ccs_psi_q_21}
@@ -329,7 +347,10 @@ ses actionneurs avec l'asservissement en couple élaboré précédemment (noté 
 \fi
 
 
+\ifprof
+\else
 Cet asservissement en couple permet, sur la figure \ref{2023_ccs_psi_fig_09}, de considérer que si les couples de commande $C_{\text {ref }}$ sont générés correctement, alors les couples $C_{a}$ appliqués sur les articulations permettront au patient d'avoir la trajectoire voulue. L'élaboration de la loi de commande non linéaire peut se faire en considérant directement des commandes en couples pour chacun des axes, c'est-à-dire en considérant la réponse en couple des actionneurs comme unitaire.
+\fi
 
 %\section*{III.B - Synthèse de la loi de commande de l'exosquelette}
 \subsection{Synthèse de la loi de commande de l'exosquelette}
@@ -337,15 +358,23 @@ Cet asservissement en couple permet, sur la figure \ref{2023_ccs_psi_fig_09}, de
 \begin{obj}
 Élaborer une loi de commande en phase de rééducation à la proprioception de la verticalité et de la marche, et en phase de renforcement musculaire.
 \end{obj}
+
+\ifprof
+\else
 Les actionneurs ayant été asservis en couple, la loi de commande est réalisée pour générer des consignes en couple. Ces consignes doivent permettre à l'exosquelette de réaliser les deux types d'exercices désirés :
 
 \begin{itemize}
   \item le renforcement musculaire. Cette partie étudie la synthèse d'une loi de commande pour cet exercice ;
   \item la rééducation à la proprioception de la verticalité et de la marche. Cette partie analyse une loi de commande donnée pour cet exercice.
 \end{itemize}
+\fi
 
 %\section*{III.B.1) Formulation d'un modèle pour la synthèse de la loi de commande}
 \subsubsection{Formulation d'un modèle pour la synthèse de la loi de commande}
+
+
+\ifprof
+\else
 Le modèle dynamique de l'exosquelette, déterminé à l'aide de la partie \label{2023_ccs_psi_p_2A} question \ref{2023_ccs_psi_q_11}, est de la forme:
 
 $$
@@ -382,12 +411,10 @@ $$
 où $U=\binom{U_{1}}{U_{2}}$ sont les commandes issues du correcteur linéaire de la boucle externe.\\
 On note, de plus, les consignes de positions angulaires sous la forme $\Theta_{\text {ref }}=\binom{\theta_{1, \text { ref }}}{\theta_{2, \text { ref }}}$.\\
 En utilisant la loi correspondant à la boucle interne, le modèle dynamique peut s'écrire sous la forme :
-
-$$
-\ddot{\Theta}=U+N\left(\Theta, \dot{\Theta}, C_{p}\right)
-$$
+$\ddot{\Theta}=U+N\left(\Theta, \dot{\Theta}, C_{p}\right)$
 
 où $N\left(\Theta, \dot{\Theta}, C_{p}\right)=M(\Theta, \dot{\Theta}) C_{p}$.\\
+\fi
 
 \begin{question}
 %Q 22. 
@@ -436,6 +463,8 @@ Par identification, $M(\Theta, \dot{\Theta}) = - M_{1}^{-1}M_{3}(\Theta, \dot{\T
 \else
 \fi
 
+\ifprof
+\else
 
 Une linéarisation du modèle précédent permet d'aboutir, autour du point de fonctionnement correspondant au décollement du pied, au système différentiel suivant :
 
@@ -452,6 +481,8 @@ $$
 On ne considère que le renforcement musculaire $c_{p}=\binom{0}{c_{\text {genou }}}$.\\
 Le modèle précédent permet de décrire le comportement de l'exosquelette. Aucune adaptation de la commande n'étant faite, il correspond au système non corrigé et sera exploité pour déterminer la loi de commande.\\
 Les transformées de Laplace des variations $\tilde{\theta}_{1}(t), \tilde{\theta}_{2}(t), c_{\text {genou }}(t), u_{1}(t)$ et $u_{2}(t)$ sont respectivement notées $\tilde{\theta}_{1}(p)$, $\tilde{\theta}_{2}(p), C_{g}(p), U_{1}(p)$ et $U_{2}(p)$.\\
+
+\fi
 
 \begin{question}
 %Q 23.
@@ -500,10 +531,14 @@ Ceci laisse à penser que le système non corrigé ne sera pas stable.
 
 %\section*{III.B.2) Dimensionnement de la loi de commande pour le renforcement musculaire}
 \subsubsection{Dimensionnement de la loi de commande pour le renforcement musculaire}
+
+\ifprof
+\else
 En exercice de renforcement musculaire, le protocole de rééducation envisagé est que l'exosquelette réagisse aux actions mécaniques exercées par le patient avec un comportement de type raideur dont la valeur est définie en annexe A. Une action mécanique du patient sur un des axes engendre alors un déplacement de cet axe. La relation entre ces deux grandeurs en régime permanent doit être linéaire et leur rapport est appelé « raideur ».\\
 Pour ne pas perturber l'exercice, l'influence d'une action du patient sur une articulation doit être faible sur les autres articulations. Ainsi, la relation entre une action du patient sur le genou et le mouvement de l'exosquelette au niveau de la hanche doit aussi être du type raideur, mais avec un coefficient 200 fois plus important.\\
 On note $\tilde{\theta}_{\text {ref }}=\binom{\tilde{\theta}_{1, \text { ref }}}{\tilde{\theta}_{2, \text { ref }}}$ les variations de consignes de position angulaire des axes. Les transformées de Laplace de $\tilde{\theta}_{1, \text { ref }}(t)$ et $\tilde{\theta}_{2, \text { ref }}(t)$ sont respectivement notées $\tilde{\theta}_{1, \text { ref }}(p)$ et $\tilde{\theta}_{2, \text { ref }}(p)$.\\
 Les écarts sur chacun des axes d'articulation étudiés sont définis par $\tilde{\varepsilon}_{1}=\tilde{\theta}_{1, \text { ref }}-\tilde{\theta}_{1}, \tilde{\varepsilon}_{2}=\tilde{\theta}_{2, \text { ref }}-\tilde{\theta}_{2}$ et $\tilde{\varepsilon}=\binom{\tilde{\varepsilon}_{1}}{\tilde{\varepsilon}_{2}}$.\\
+\fi
 
 
 \begin{question}
@@ -519,8 +554,11 @@ Le système est instable en boucle fermée. Afin de garantir un asservissement c
 \fi
 
 
+\ifprof
+\else
 La commande choisie est du type proportionnelle-dérivée. Avec $K_{p}$ et $K_{v}$ des matrices $2 \times 2$ et $K_{v}$ diagonale, $u$ se note $u=K_{p} \tilde{\varepsilon}+K_{v} \dot{\tilde{\varepsilon}}$ où $K_{p}=\left(\begin{array}{cc}K_{p 11} & K_{p 12} \\ K_{p 21} & K_{p 22}\end{array}\right)$ et $K_{v}=\left(\begin{array}{cc}K_{v 11} & 0 \\ 0 & K_{v 22}\end{array}\right)$.\\
 En exercice de renforcement musculaire, $\tilde{\theta}_{\text {ref }}$ et $\dot{\tilde{\theta}}_{\text {ref }}$ sont nuls. Seule l'action du patient met en mouvement l'exosquelette. Les transformées de Laplace de $\tilde{\varepsilon}_{1}(t)$ et $\tilde{\varepsilon}_{2}(t)$ sont notées $\tilde{\varepsilon}_{1}(p)$ et $\tilde{\varepsilon}_{2}(p)$\\
+\fi
 
 \begin{question}
 %Q 26.
@@ -737,7 +775,11 @@ On se propose donc d'utiliser un correcteur à action intégrale du genre \textb
 \else
 \fi
 
+\ifprof
+\else
 Un correcteur, comprenant une composante intégrale, a été déterminé en vue de respecter le cahier des charges dans le cas d'un exercice de rééducation à la proprioception de la verticalité et de la marche. L'annexe D présente les diagrammes de Bode de la fonction de transfert en boucle ouverte $\dfrac{\tilde{\theta}_{2}(p)}{\tilde{\varepsilon}_{2}(p)}$, la boucle $\dfrac{\tilde{\theta}_{1}(p)}{\tilde{\theta}_{1, \text { ref }}(p)}$ étant fermée. On suppose que cette fonction de transfert n'a pas de pôle à partie réelle positive.\\
+
+\fi
 
 \begin{question}
 \label{2023_ccs_psi_q_31}
