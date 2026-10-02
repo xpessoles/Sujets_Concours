@@ -1,0 +1,310 @@
+%\section*{Partie II - Commande en position du robot porte-sonde}
+\section{Commande en position du robot porte-sonde}
+\begin{obj}
+Vérifier que les différentes exigences 1.2 relatives à la commande en position du robot porte-sonde peuvent être satisfaites.
+\end{obj}
+
+%\section*{II. 1 - Principe de la commande du robot porte-sonde}
+\subsection{Principe de la commande du robot porte-sonde}
+La commande du robot porte-sonde repose sur la mise en œuvre de deux couches matérielles et logicielles qui communiquent l'une avec l'autre (figure \ref{2019_MP_CCINP_fig12}).
+
+\begin{itemize}
+  \item Le contrôleur haut niveau, implémenté sur le PC de contrôle du poste patient, reçoit en paramètres d'entrée, les coordonnées du positionnement désiré pour la sonde échographique, dans l'espace de travail (précession $\psi$, nutation $\theta$, rotation propre $\varphi$ ) ainsi que les positions articulaires $\left(\theta_{1}, \theta_{2}, \theta_{3}\right)$ acquises par le contrôle bas-niveau. L'ensemble de ces données est traité numériquement (calcul des modèles géométriques direct et inverse du robot, prise en compte des butées articulaires, des changements d'aspect et le traitement des singularités) afin de déterminer les consignes articulaires à transmettre au contrôleur bas niveau.
+  \item Le contrôleur bas niveau, implémenté sur la carte d'axes, reçoit les consignes articulaires et calcule les profils de vitesse $\left(\omega_{1}(\mathrm{t}), \omega_{2}(\mathrm{t}), \omega_{3}(\mathrm{t})\right)$ transmis ensuite aux variateurs de vitesse qui pilotent les moteurs des différents axes du robot. Il assure également l'acquisition des positions articulaires qui sont communiquées au contrôleur haut niveau.
+\end{itemize}
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2019_MP_CCINP_fig12}
+%\captionsetup{labelformat=empty}
+%\caption{Figure 12 - Principe de la commande du robot porte-sonde}
+\caption{Principe de la commande du robot porte-sonde \label{2019_MP_CCINP_fig12}}
+\end{center}
+\end{figure}
+
+\section*{Commande de l'axe 1}
+On se limite ici à l'étude de la commande du premier axe, dont la structure est présentée en figure \ref{2019_MP_CCINP_fig04}. Le principe associé à cette commande est décrit par la figure \ref{2019_MP_CCINP_fig13}. La structure de commande de la position angulaire $\theta_{1}$ est composée de deux boucles imbriquées disposant chacune d'un réseau correcteur :
+
+\begin{itemize}
+  \item une boucle interne de vitesse, gérée par le variateur ;
+  \item une boucle externe de position, gérée par la carte d'axes.
+\end{itemize}
+
+Un codeur incrémental, solidaire de l'axe moteur permet après traitement numérique d'obtenir une image de la position angulaire $\theta_{1}$ et de la vitesse angulaire $\omega_{1}$ de l'axe 1, grandeurs mises en œuvre au niveau des deux boucles d'asservissement. La consigne de position est élaborée par la carte d'axes, par intégration du profil de vitesse généré.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2019_MP_CCINP_fig13}
+%\captionsetup{labelformat=empty}
+%\caption{Figure 13 - Structure de l'asservissement d'un axe \label{2019_MP_CCINP_fig13}}
+\caption{Structure de l'asservissement d'un axe \label{2019_MP_CCINP_fig13}}
+\end{center}
+\end{figure}
+
+%\section*{II. 2 - Modélisation de l'axe 1}
+\subsection{Modélisation de l'axe 1}
+\begin{obj}
+Elaborer un modèle de connaissance de l'axe 1 et réaliser la synthèse de la commande.
+\end{obj}
+
+\subsubsection{Modélisation de la motorisation}
+La motorisation de l'axe 1 est réalisée à l'aide d'un moteur électrique à courant continu et aimants permanents, dont le comportement peut être modélisé par les équations suivantes :
+
+
+\begin{align*}
+& u(t)=R i(t)+L \dfrac{d i(t)}{d t}+e(t)  \tag{1}\\
+& e(t)=k_{e} \omega_{m}(t) \tag{2} \\
+& C_{m}(t)=k_{c} i(t) \tag{3}\\
+& C_{m}(t)-\indice{C}{r e}(t)=\indice{J}{eq} \dfrac{d \omega_{m}(t)}{d t} \tag{4}
+\end{align*}
+
+
+Les différentes grandeurs intervenant dans le modèle sont définies dans le tableau \ref{2019_MP_CCINP_tab02} suivant :
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}[t]{|l|l|l|}
+\hline
+Symbole & Désignation & Unités / valeurs \\
+\hline
+$u(t)$ & Tension d'induit & V \\
+\hline
+$e(t)$ & Force contre-électromotrice & V \\
+\hline
+$i(t)$ & Courant d'induit & A \\
+\hline
+$\omega_{m}(t)$ & Vitesse de rotation du moteur & rad/s \\
+\hline
+$C_{m}(t)$ & Couple moteur & $\mathrm{N} \cdot \mathrm{m}$ \\
+\hline
+$C_{\text {re }}(t)$ & Couple résistant équivalent ramené sur l'axe moteur & $\mathrm{N} \cdot \mathrm{m}$ \\
+\hline
+$R$ & Résistance de l'induit & $4,1 \Omega$ \\
+\hline
+$L$ & Inductance de l'induit & $0,18 \mathrm{mH}$ \\
+\hline
+$k_{e}$ & Constante de force contre-électromotrice & $1,6 \cdot 10^{-2} \mathrm{~V} /(\mathrm{rad} / \mathrm{s})$ \\
+\hline
+$k_{c}$ & Constante de couple & $1,6 \cdot 10^{-2} \mathrm{~N} \cdot \mathrm{~m} / \mathrm{A}$ \\
+\hline
+$J_{\text {eq }}$ & Inertie équivalente ramenée sur l'axe moteur & $\in\left[7,2 \cdot 10^{-6}, 8,6 \cdot 10^{-6}\right] \mathrm{kg} \cdot \mathrm{m}^{2}$ \\
+\hline
+\end{tabular}
+%\captionsetup{labelformat=empty}
+%\caption{Tableau 2 - Grandeurs associées au modèle de la motorisation}
+\caption{Grandeurs associées au modèle de la motorisation \label{2019_MP_CCINP_tab02}}
+\end{center}
+\end{table}
+
+On note $\Omega_{m}(p), U(p), E(p), I(p), C_{m}(p)$ et $\indice{C}{re}(p)$, les transformées de Laplace respectives de $\omega_{m}(\mathrm{t}), u(t), e(t), i(t), C_{m}(t)$ et $C_{\text {re}}(t)$.
+
+
+%\item[Q11.] 
+\begin{question}
+Déterminer sur la copie les transformées de Laplace des équations (1) à (4) du moteur définies en considérant des conditions initiales nulles. Compléter les blocs correspondants sur le schéma bloc du Document Réponse DR1 par les transmittances manquantes.
+\end{question}
+
+%\item[Q12.] 
+\begin{question}
+Déterminer les expressions littérales des fonctions de transfert en suivi de consigne $H_{1}(p)=\left.\dfrac{\Omega_{m}(p)}{U(p)}\right|_{\indice{C}{re}(p)=0}$ et en régulation $H_{2}(p)=\left.\dfrac{\Omega_{m}(p)}{\indice{C}{re}(p)}\right|_{U(p)=0}$, sous forme canonique.
+\end{question}
+
+On pose $\tau_{e}=\dfrac{L}{R}$ et $\indice{\tau}{em}=\dfrac{R \indice{J}{eq}}{k_{e} k_{c}}$, respectivement constantes de temps électrique et électromécanique du moteur à courant continu.
+
+%\item[Q13.] 
+\begin{question}
+Déterminer les valeurs numériques des constantes de temps $\tau_{e}$ et $\indice{\tau}{e m}$, pour les valeurs extrêmes de $\indice{J}{eq}$. En déduire qu'une constante de temps peut être considérée comme négligeable devant l'autre.
+\end{question}
+
+
+%\item[Q14.] 
+\begin{question}
+Montrer, en précisant l'expression de $K_{m}$, que la fonction $H_{1}(p)$ peut alors être approximée par la forme : $H_{1}(p) \approx \dfrac{K_{m}}{\left(1+\tau_{e} p\right)\left(1+\indice{\tau}{e m} p\right)}$.
+\end{question}
+  
+  
+\subsubsection*{Modélisation de la boucle de vitesse}
+La figure \ref{2019_MP_CCINP_fig14} présente la structure de la boucle de vitesse associée à la commande de l'axe 1. Pour une consigne de vitesse de rotation $\omega_{\mathrm{c}}(\mathrm{t})$ [m/s], un convertisseur génère une tension de consigne de rotation à appliquer au moteur $\mathrm{u}_{\mathrm{cv}}(\mathrm{t})[\mathrm{V}]$. Un traitement numérique de la vitesse relevée sur l'axe du moteur fournit une tension mesurée $\mathrm{u}_{\mathrm{mv}}(\mathrm{t})$ [V], image de la vitesse de rotation du moteur $\omega_{\mathrm{m}}(\mathrm{t})$. Un correcteur adapte le signal écart entre la tension de consigne et la tension mesurée, ce qui permet après correction et amplification, de définir la tension d'alimentation $\mathrm{u}_{\mathrm{m}}(\mathrm{t})$ à appliquer au moteur.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2019_MP_CCINP_fig14}
+%\captionsetup{labelformat=empty}
+%\caption{Asservissement en vitesse d'un axe\label{2019_MP_CCINP_fig13}}
+\caption{Asservissement en vitesse d'un axe\label{2019_MP_CCINP_fig14}}
+\end{center}
+\end{figure}
+
+Le tableau \ref{2019_MP_CCINP_tab03} liste les gains des différents composants intervenant dans la commande de l'axe 1.
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}[t]{|l|l|}
+\hline
+Blocs & Fonctions de transfert \\
+\hline
+Convertisseur & $K_{\text {conv }}$ (à déterminer) \\
+\hline
+Correcteur vitesse & $C_{V}(p)$ (réglé par la suite) \\
+\hline
+Amplificateur/variateur & $K_{A}=9,4$ \\
+\hline
+Codeur et traitement & $K_{\text {vit }}=8,3 \cdot 10^{-3} \mathrm{~V} /(\mathrm{rad} / \mathrm{s})$ \\
+\hline
+Réducteurs & $K_{R}$ (à déterminer) \\
+\hline
+\end{tabular}
+%\captionsetup{labelformat=empty}
+%\caption{Tableau 3 - Fonctions associées aux blocs du modèle}
+\caption{Fonctions associées aux blocs du modèle \label{2019_MP_CCINP_tab03}}
+\end{center}
+\end{table}
+
+On rappelle que les caractéristiques de la transmission sont définies dans le tableau \ref{2019_MP_CCINP_tab01}.
+
+
+\begin{table}[h]
+\centering
+\begin{tabular}[t]{|l|l|}
+\hline
+Réducteur (R) & Rapport de réduction \( r=1 / 30,7 \) \\
+\hline
+Poulie $\mathrm{P}_{0}$ & Diamètre $\mathrm{D}_{0}=42 \mathrm{~mm}$ \\
+\hline
+Poulie $\mathrm{P}_{1}$ & Diamètre $\mathrm{D}_{1}=13 \mathrm{~mm}$ \\
+\hline
+\end{tabular}
+%\caption{Tableau 1 - Caractéristiques de la transmission}
+\caption{Caractéristiques de la transmission \label{2019_MP_CCINP_tab01}}
+\end{table}
+
+
+%\item[Q15.] 
+\begin{question}
+Déterminer les expressions des gains $K_{R}$ et $K_{\text {conv }}$ ainsi que les valeurs numériques et unités associées.
+\end{question}
+
+
+%\item[Q16.] 
+\begin{question}
+Compléter le schéma-bloc sur le DR 1 en y faisant figurer les fonctions de transfert sous forme littérale dans le domaine de Laplace avec des conditions initiales nulles.
+\end{question}
+
+
+On pourrait montrer que le schéma-bloc peut se ramener au schéma à retour unitaire de la figure \ref{2019_MP_CCINP_fig15}, avec $G_{1}(p)=\dfrac{k_{c}}{R} \cdot \dfrac{1}{1+\tau_{e} p}, G_{2}(p)=\dfrac{R}{k_{c}} \cdot \dfrac{1}{1+\indice{\tau}{e m} p}$ et $K=\indice{K}{vit} K_{A} K_{m}$.
+
+%\item[Q17.] 
+\begin{question}
+À partir du schéma-bloc à retour unitaire de la figure \ref{2019_MP_CCINP_fig15}, déterminer l'expression de la fonction de transfert en boucle ouverte $H_{B O}(p)=\dfrac{\Omega_{s}(p)}{\varepsilon_{V}(p)}$, en fonction de $C_{V}(p), \tau_{e}, \indice{\tau}{em}$, et $K$.
+\end{question}
+
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2019_MP_CCINP_fig15}
+%\captionsetup{labelformat=empty}
+%\caption{Figure 15 - Schéma-bloc équivalent pour la boucle de vitesse}
+\caption{Schéma-bloc équivalent pour la boucle de vitesse \label{2019_MP_CCINP_fig15}}
+\end{center}
+\end{figure}
+
+
+%\item[Q18.] 
+\begin{question}
+En vous appuyant sur le schéma-bloc de la figure \ref{2019_MP_CCINP_fig15} et sur une analyse de la fonction de transfert $H_{B O}(p)$, discuter de la validation de l'exigence 1.2.1.1.2. Conclure sur la nécessité de mettre en place une action intégrale au niveau du correcteur.
+\end{question}
+
+  
+  
+\subsection{Synthèse de la commande : boucle de vitesse}
+\begin{obj}
+Déterminer les paramètres du correcteur de la boucle de vitesse afin de satisfaire l'exigence 1.2.1.1.
+\end{obj}
+Le système est à présent considéré en l'absence de perturbation (étude en suivi de consigne), soit $\indice{C}{r e}(p)=0$. Le correcteur de la boucle de vitesse est un correcteur Proportionnel Intégral (PI), de fonction de transfert :
+
+$$
+C_{V}(p)=K_{i} \dfrac{1+T_{i} p}{T_{i} p} .
+$$
+
+La constante de temps $T_{i}$ est choisie de manière à compenser le pôle dominant de la fonction de transfert du moteur, ce qui revient ici à prendre $T_{i}=\indice{\tau}{em}$.
+
+
+
+%\item[Q19.] 
+\begin{question}
+Déterminer, en fonction des paramètres $K_{i}, K, \indice{\tau}{em}$ et $\tau_{e}$, l'expression littérale de la fonction de transfert en vitesse sous la forme canonique d'un système du second ordre
+$$
+H_{V}(p)=\dfrac{\Omega_{s}(p)}{\Omega_{c}(p)}=\dfrac{K_{V}}{1+\dfrac{2 z}{\omega_{0}} p+\dfrac{1}{\omega_{0}^{2}} p^{2}} .
+$$
+Préciser la valeur de $K_{V}$ et les expressions littérales de $z$ et $\omega_{0}$.
+\end{question}
+
+
+
+Le gain $K_{i}$ du correcteur est fixé de manière à obtenir la réponse la plus rapide sans dépassement en boucle fermée. On rappelle que pour un modèle du second ordre, la réponse la plus rapide sans dépassement est obtenue pour un facteur d'amortissement $z=1$, valeur pour laquelle on a $t_{r 5 \%} \cdot \omega_{0} \approx 5$. On se place dans le cas où l'inertie équivalente est maximale, soit $\indice{J}{eq}=8,6 \cdot 10^{-6} \mathrm{~kg} \cdot \mathrm{~m}^{2}$.
+
+%\item[Q20] 
+\begin{question}
+Déterminer l'expression de $K_{i}$ ainsi que sa valeur numérique. Déterminer la valeur du temps de réponse $t_{r 5 \%}$ de la boucle de vitesse pour cette valeur de $K_{i}$.
+\end{question}
+
+On donne, sur le DR 2, le diagramme de Bode de la fonction de transfert en boucle ouverte du système ainsi corrigé.
+
+
+%\item[Q21] 
+\begin{question}
+Sur le DR 2, déterminer graphiquement les marges de stabilité du système et préciser leurs valeurs.
+\end{question}
+
+
+
+\subsubsection{Prise en compte des non-linéarités dans la commande : " synthèse "}
+On souhaite simuler la réponse en vitesse de l'axe 1 en intégrant dans le modèle certaines nonlinéarités : le variateur délivre une tension comprise entre $\pm 10 \mathrm{~V}$ et le courant moteur est limité à 5A. À cet effet, on construit le modèle numérique présenté en figure \ref{2019_MP_CCINP_fig16}.
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2019_MP_CCINP_fig16}
+%\captionsetup{labelformat=empty}
+%\caption{Figure 16 - Modèle numérique utilisé pour la simulation de la boucle de vitesse}
+\caption{Modèle numérique utilisé pour la simulation de la boucle de vitesse \label{2019_MP_CCINP_fig16}}
+\end{center}
+\end{figure}
+
+Les courbes du DR 3 présentent les réponses en vitesse de l'axe 1, pour une entrée en échelon d'amplitude 0,1 rad/s ainsi que l'évolution de la tension aux bornes du moteur, sans et avec prise en compte de ces non-linéarités.
+
+
+%\item[Q22] 
+\begin{question}
+Sur le DR 3, identifier les courbes correspondant aux simulations sans et avec prise en compte des non-linéarités. Commenter, sur la copie, l'évolution des performances en termes de rapidité.
+\end{question}
+
+%\item[Q23] 
+\begin{question}
+En exploitant les résultats précédents, proposer, sous forme de tableau, une synthèse des exigences de performances associées à la boucle de vitesse. Conclure quant à la validation de l'exigence 1.2.1.1.
+\end{question}
+
+
+
+\subsection{Performances de la commande en position}
+\begin{obj}
+Vérifier les performances attendues pour la boucle de position (exigence 1.2.1.2.).
+\end{obj}
+
+Les performances de la boucle de vitesse étant validées, on complète le modèle numérique avec la boucle de position (figure \ref{2019_MP_CCINP_fig13}). Les paramètres du correcteur Proportionnel Intégral Dérivé (PID) de la boucle de position sont déterminés à l'aide de l'outil de simulation numérique. La réponse temporelle en position de l'axe 1, pour une consigne en échelon de 10 degrés, est représentée sur la figure du DR 4.
+
+
+%\item[Q23] 
+\begin{question}
+En faisant apparaître les constructions, déterminer graphiquement sur le DR 4 le temps de réponse à 5\% du système. Conclure quant au respect de l'exigence 1.2.1.2.
+\end{question}
+
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=\textwidth]{2019_MP_CCINP_fig00}
+%\captionsetup{labelformat=empty}
+%\caption{Figure 16 - Modèle numérique utilisé pour la simulation de la boucle de vitesse}
+%\caption{Modèle numérique utilisé pour la simulation de la boucle de vitesse \label{2019_MP_CCINP_fig16}}
+\end{center}
+\end{figure}
+
