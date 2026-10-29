@@ -24,26 +24,40 @@ Id =1.3.2.d & La performance dynamique de chaque axe permet de modifer la postur
 \end{center}
 
 
-\begin{figure}[h]
-\begin{center}
+%\begin{figure}[h]
+%\begin{center}
+%  \includegraphics[width=\textwidth]{fig_05}
+%%\captionsetup{labelformat=empty}
+%\caption{Architecture du robot\label{ccmp_psi_2015:fig05}}
+%\end{center}
+%\end{figure}
+
+\begin{figure}[!h]
   \includegraphics[width=\textwidth]{fig_05}
 %\captionsetup{labelformat=empty}
 \caption{Architecture du robot\label{ccmp_psi_2015:fig05}}
-\end{center}
 \end{figure}
 
+
+
+
+\begin{marginfigure}
+  \includegraphics[width=\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-06}
+%\captionsetup{labelformat=empty}
+\caption{Architecture de l'actionneur \label{ccmp_psi_2015:fig06}}
+\end{marginfigure}
 La chaîne structurelle permettant de modifier la posture du haut du corps autour de l'axe de tangage est représentée sur la figure \ref{ccmp_psi_2015:fig06}. 
 
 
-\noindent\begin{minipage}[c]{.69\linewidth}
+%\noindent\begin{minipage}[c]{.69\linewidth}
 Elle est composée d'un moteur électrique $(1,2)$ synchrone à aimants permanents piloté par un variateur électronique, d'un réducteur Harmonic-Drive ${ }^{©}$ (3) de rapport de réduction $1 / 100$, d'un codeur incrémental (5) ainsi que d'un codeur angulaire absolu (6+7).
 
 Une centrale inertielle équipée d'un accéléromètre, d'un gyroscope et d'une unité de traitement permet d'obtenir en temps réel la valeur de l'angle d'inclinaison du haut du corps par rapport à la verticale.
 
 L'objectif de cette partie est de mettre en place un modèle du maintien vertical du tronc de LOLA et de déterminer une structure de commande permettant d'assurer les performances du cahier des charges de l'exigence 1.3.2.
 
-\end{minipage} \hfill
-\begin{minipage}[c]{.3\linewidth}
+%\end{minipage} \hfill
+%\begin{minipage}[c]{.3\linewidth}
 %\begin{figure}[h]
 %\begin{center}
 %  \includegraphics[width=\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-06}
@@ -52,17 +66,20 @@ L'objectif de cette partie est de mettre en place un modèle du maintien vertica
 %\end{center}
 %\end{figure}
 
-\begin{center}
-  \includegraphics[width=.95\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-06}
-%\captionsetup{labelformat=empty}
-\captionof{figure}{Architecture de l'actionneur \label{ccmp_psi_2015:fig06}}
-\end{center}
+%\begin{center}
+%  \includegraphics[width=.95\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-06}
+%%\captionsetup{labelformat=empty}
+%\captionof{figure}{Architecture de l'actionneur \label{ccmp_psi_2015:fig06}}
+%\end{center}
 
-\end{minipage} 
 
-Les performances dynamiques de l'axe de tangage doivent vérifier les critères suivants:
 
-\begin{center}
+%\end{minipage} 
+
+Les performances dynamiques de l'axe de tangage doivent vérifier les critères donner dans le tableau 
+\ref{tab_02_perf}.
+
+\begin{table*}[!h]
 \begin{tabular}{lll}
 %\hline
 \multicolumn{3}{l}{Sous-exigence 1.3.2.d: la performance dynamique de chaque axe permet de modifier la posture} \\
@@ -71,21 +88,24 @@ Les performances dynamiques de l'axe de tangage doivent vérifier les critères 
 \hline
 Marge de phase & $\mathrm{M} \varphi=50^{\circ}$ & Mini \\
 Erreur statique & $0^{\circ}$ & [ $-0.5^{\circ} ;+0.5^{\circ}$ ] \\
-Bande passante à 0 dB en boucle ouverte & $\omega_{\text {BP }}=50 \mathrm{rad} . s^{-1}$ & Mini \\
+Bande passante à \SI{0}{dB} en boucle ouverte & $\omega_{\text {BP }}=\SI{50}{rad.s^{-1}}$ & Mini \\
 Temps de réponse à 5\% & $0,2 \mathrm{~s}$ & Maxi \\
 Dépassement & $1^{\circ}$ & Maxi \\
 \hline
 \end{tabular}
-\end{center}
+\caption{Performances dynamiques de l'axe de tangage \label{tab_02_perf}}
+\end{table*}
+%\end{center}
 Le modèle mécanique utilisé pour mener notre étude est donné sur la figure \ref{ccmp_psi_2015:fig07}. L'association des liaisons entre le tronc et les jambes au niveau de la hanche est équivalente, dans le plan sagittal ( $O_T, \vy{0}, \vz{0}$ ), à une liaison pivot d'axe $\left(O_T, \vx{0}\right)$. Le tronc sera considéré comme un solide admettant le plan ( $O_T, \vy{0},\vz{0}$ ) comme plan de symétrie. Le cahier des charges stipule que LOLA doit pouvoir marcher à la vitesse de $5 \mathrm{~km} / \mathrm{h}$. Cette vitesse est atteinte en \SI{1}{s} lors de la première foulée. La loi de commande en vitesse correspondante est représentée
 
 \begin{figure}[h]
-\begin{center}
+%\begin{center}
+\centering
 %  \includegraphics[width=\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-06(1)}
-  \includegraphics[width=\textwidth]{fig_07}
+ \includegraphics[width=\textwidth]{fig_07}
 %\captionsetup{labelformat=empty}
 \caption{Modèle mécanique\label{ccmp_psi_2015:fig07}}
-\end{center}
+%\end{center}
 \end{figure}
 \fi
 
@@ -93,13 +113,15 @@ Le modèle mécanique utilisé pour mener notre étude est donné sur la figure 
 \subsection{Modèle du contrôle actif de la position verticale. \label{ccmp_psi_2015:p22}}
 \ifprof
 \else
-On note $\Gamma(t)=\dfrac{\d v(t)}{\d t}$. Les conditions de Heaviside sont vérifiées. Le schéma-bloc du contrôle de la position angulaire du tronc de LOLA est représenté sur la figure \ref{ccmp_psi_2015:ann02}. La consigne angulaire est nulle afin de garder le tronc du robot vertical: $\alpha_{c}(t)=0$. Les transformées de Laplace des fonctions seront notées en majuscules et le paramètre de Laplace sera noté $p$.
 
-Le contrôle de l'angle s'effectue par l'intermédiaire du moteur asservi en position, suivi du réducteur HarmonicDrive ${ }^{®}$ de rapport de réduction $r=\dfrac{1}{100}$. Le moment d'inertie de l'arbre moteur suivant son axe de rotation est noté $\indice{J}{m}$, le couple moteur exercé sur l'arbre d'entrée du réducteur est noté $\indice{C}{m}$. Le réducteur HarmonicDrive ${ }^{®}$ sera considéré sans masse. La masse de l'arbre moteur est négligeable devant l'ensemble des autres grandeurs inertielles. Une étude dynamique a permis de montrer que : $C_{R}=\dfrac{C_{m}}{r}-\dfrac{J_{m}}{r^{2}} \cdot \dfrac{\d^{2} \alpha(t)}{\d t^{2}}$. Ainsi, l'équation différentielle du mouvement devient :
+
+On note $\Gamma(t)=\dfrac{\mathrm{d}v(t)}{\mathrm{d}t}$. Les conditions de Heaviside sont vérifiées. Le schéma-bloc du contrôle de la position angulaire du tronc de LOLA est représenté sur la figure \ref{ccmp_psi_2015:ann02}. La consigne angulaire est nulle afin de garder le tronc du robot vertical: $\alpha_{c}(t)=0$. Les transformées de Laplace des fonctions seront notées en majuscules et le paramètre de Laplace sera noté $p$.
+
+Le contrôle de l'angle s'effectue par l'intermédiaire du moteur asservi en position, suivi du réducteur HarmonicDrive ${ }^{®}$ de rapport de réduction $r=\dfrac{1}{100}$. Le moment d'inertie de l'arbre moteur suivant son axe de rotation est noté $\indice{J}{m}$, le couple moteur exercé sur l'arbre d'entrée du réducteur est noté $\indice{C}{m}$. Le réducteur HarmonicDrive ${ }^{®}$ sera considéré sans masse. La masse de l'arbre moteur est négligeable devant l'ensemble des autres grandeurs inertielles. Une étude dynamique a permis de montrer que : $C_{R}=\dfrac{C_{m}}{r}-\dfrac{J_{m}}{r^{2}} \cdot \dfrac{\mathrm{d}^{2} \alpha(t)}{\mathrm{d}t^{2}}$. Ainsi, l'équation différentielle du mouvement devient :
 
 
 \begin{equation*}
-\indice{J}{eq} \dfrac{\dd \alpha(t)}{\d t^{2}}-m_{1} g Z_{G} \alpha(t)=m_{1} Z_{G} \dfrac{\d v(t)}{\d t}+\dfrac{C_{m}(t)}{r} \tag{1}
+\indice{J}{eq} \dfrac{\mathrm{d}^2\alpha(t)}{\mathrm{d}t^{2}}-m_{1} g Z_{G} \alpha(t)=m_{1} Z_{G} \dfrac{\mathrm{d}v(t)}{\mathrm{d}t}+\dfrac{C_{m}(t)}{r} \tag{1}
 \end{equation*}
 
 $\indice{J}{eq}$ est le moment d'inertie équivalent de l'ensemble du tronc ramené sur l'axe moteur.
@@ -107,14 +129,15 @@ $\indice{J}{eq}$ est le moment d'inertie équivalent de l'ensemble du tronc rame
 
 
 
-\begin{center}
+\begin{figure}[!h]
   \includegraphics[width=\textwidth]{ann_02}
 %\captionsetup{labelformat=empty}
-\captionof{figure}{Schéma-bloc de l'asservissement de position angulaire \label{ccmp_psi_2015:ann02}}
-\end{center}
+%\captionof{figure}{Schéma-bloc de l'asservissement de position angulaire \label{ccmp_psi_2015:ann02}}
+\caption{Schéma-bloc de l'asservissement de position angulaire \label{ccmp_psi_2015:ann02}}
+\end{figure}
 
 
-Le comportement du moteur sera considéré comme celui d'un moteur à courant continu dont les équations de comportement sont les suivantes: $u_{c}(t)=e(t)+L \dfrac{\d i(t)}{\d t}+R i(t) ; e(t)=k_{e} \omega_{m}(t)$ et $C_{m}(t)=k_{c} i(t)$.
+Le comportement du moteur sera considéré comme celui d'un moteur à courant continu dont les équations de comportement sont les suivantes: $u_{c}(t)=e(t)+L \dfrac{\mathrm{d}i(t)}{\mathrm{d}t}+R i(t) ; e(t)=k_{e} \omega_{m}(t)$ et $C_{m}(t)=k_{c} i(t)$.
 \fi
 
 %\section*{Question 9 :}
@@ -221,16 +244,17 @@ Pour appliquer le critère du Revers, tous les pôles doivent être à partie r�
 
 \ifprof
 \else
-Afin de résoudre ce problème, il est décidé d'asservir la chaîne directe en position et en vitesse. Pour cela, la centrale inertielle permet de mesurer l'angle de tangage $\alpha(t)$ ainsi que la vitesse angulaire $\dfrac{\d \alpha(t)}{\d t}$. L'asservissement ainsi réalisé est présenté sous la forme du schéma-bloc de la figure \ref{ccmp_psi_2015:fig08}. %(page 9).\\
+Afin de résoudre ce problème, il est décidé d'asservir la chaîne directe en position et en vitesse. Pour cela, la centrale inertielle permet de mesurer l'angle de tangage $\alpha(t)$ ainsi que la vitesse angulaire $\dfrac{\mathrm{d}\alpha(t)}{\mathrm{d}t}$. L'asservissement ainsi réalisé est présenté sous la forme du schéma-bloc de la figure \ref{ccmp_psi_2015:fig08}. %(page 9).\\
 
 $U_{c}(p)$ est la tension de commande en sortie du correcteur. La fonction de transfert de la centrale inertielle sera prise égale à $H_{\mathrm{ci}}(p)=K_1(p+1)$.
 
 \begin{figure}[h]
-\begin{center}
+%\begin{center}
+\centering
   \includegraphics[width=.6\textwidth]{2025_10_26_7c3d1b71880592bd5f63g-09}
 %\captionsetup{labelformat=empty}
 \caption{Schéma-bloc de l'asservissement \label{ccmp_psi_2015:fig08}}
-\end{center}
+%\end{center}
 \end{figure}
 \fi
 
@@ -359,15 +383,16 @@ $=\log\left(\dfrac{1}{T_d\sqrt{a}}\right) $.
 
 \ifprof
 \else
-La stabilité du tronc étant assurée, nous devons maintenant analyser les performances en précision et rapidité de l'asservissement de position angulaire. La consigne est nulle, ainsi seule la perturbation va écarter le tronc du robot de sa posture verticale. Cette perturbation provient du mouvement de marche souhaité c'est à dire de l'accélération subie $\Gamma(t)=\dfrac{\d v(t)}{\d t}$. Avec les réglages du correcteur, une simulation numérique a permis de tracer la réponse temporelle du système pour une perturbation $\Gamma(t)$ respectant la loi de vitesse représentée sur la figure \ref{ccmp_psi_2015:fig07}. Cette réponse est tracée sur la figure \ref{ccmp_psi_2015:ann04}.
+La stabilité du tronc étant assurée, nous devons maintenant analyser les performances en précision et rapidité de l'asservissement de position angulaire. La consigne est nulle, ainsi seule la perturbation va écarter le tronc du robot de sa posture verticale. Cette perturbation provient du mouvement de marche souhaité c'est à dire de l'accélération subie $\Gamma(t)=\dfrac{\mathrm{d}v(t)}{\mathrm{d}t}$. Avec les réglages du correcteur, une simulation numérique a permis de tracer la réponse temporelle du système pour une perturbation $\Gamma(t)$ respectant la loi de vitesse représentée sur la figure \ref{ccmp_psi_2015:fig07}. Cette réponse est tracée sur la figure \ref{ccmp_psi_2015:ann04}.
 
 
 
-\begin{center}
+\begin{figure}[!h]
   \includegraphics[width=.7\textwidth]{ann_04}
 %\captionsetup{labelformat=empty}
-\captionof{figure}{Réponse temporelle\label{ccmp_psi_2015:ann04}}
-\end{center}
+%\captionof{figure}{Réponse temporelle\label{ccmp_psi_2015:ann04}}
+\caption{Réponse temporelle\label{ccmp_psi_2015:ann04}}
+\end{figure}
 \fi
 
 
