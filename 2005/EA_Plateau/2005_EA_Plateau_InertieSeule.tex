@@ -1,0 +1,118 @@
+
+\section{Données inertielles d'une pale}
+
+\ifprof
+\else
+\textbf{Les notations sont indépendantes des parties précédentes. %Aucun calcul intégral n'est attendu dans cette partie.
+}
+
+La figure \ref{fig:2005_EA_fig_09} illustre le paramétrage d'une pale d'hélicoptère (partielle). On note \textbf{1} la partie cylindrique (de longueur $\ell$) qui fait le raccord avec le rotor (non représenté) et la pale \textbf{2}.
+
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.7\linewidth]{2005_EA_fig_09} % remplacer par votre fichier
+    \caption{Paramétrage d'une pale}
+    \label{fig:2005_EA_fig_09}
+\end{figure}
+\fi
+
+\question{Déterminer la position du centre d'inertie $G_1$ de \textbf{1} dans le repère $\repere{O}{x}{y}{z}$.}
+\ifprof
+\begin{corrige}
+La portion 1 est un cylindre $\vect{OG_1} = -\dfrac{\ell}{2}\vx{}$.
+\end{corrige}
+\else
+\fi
+
+\question{Déterminer la masse $m_1$ du solide \textbf{1} et la masse $m_2$ du solide \textbf{2}.  On fera l'hypothèse que ce sont tous deux des solides homogènes de masse volumique $\mu$.}
+\ifprof
+\begin{corrige}
+$m_1 =\mu \pi r^2 \ell$
+
+$m_2 = \mu \dfrac{1}{2} \pi R^2 L + \mu RHL$
+\end{corrige}
+\else
+\fi
+
+\question{Déterminer la position du centre d'inertie $G_2$ de coordonnées $(a_2,b_2,c_2)$ de \textbf{2} dans le repère $\repere{O}{x}{y}{z}$.}
+\ifprof
+\begin{corrige}
+La portion $2_a$ est composée d'un demi cylindre de centre d'inertie $G_a$. Pour des raisons de symétrie, seule la composante suivant $\vz{}$ est à déterminer.
+
+On a donc $m_a \vect{OG_a}\cdot \vz{} = \iint \vect{OP}\cdot \vz{} \d m$ 
+$ =\iint \rho \sin \theta \mu      \rho \d\rho \d \theta \d z$  
+$ = - \mu    \dfrac{1}{3}R^3  L \left[ \cos \theta \right]_{0}^{\pi}  $  
+$ =  2 \mu    \dfrac{1}{3}R^3  L $
+
+Avec $m_a = \mu \pi R^2/2L$, on a $ \vect{OG_a}\cdot \vz{} = \dfrac{4}{3\pi}R  $.
+
+On a donc $\vect{OG_a}=-\left(\ell+\dfrac{L}{2}\right) \vx{}+\dfrac{4}{3\pi}R \vz{}$.
+
+La portion $2_b$ es un prisme. On a $\vect{OG_b}=-\left(\ell+\dfrac{L}{2}\right) \vx{}-\dfrac{1}{3}H \vz{}$. Elle est de masse $m_b = \mu RHL$.
+
+
+On a alors $\vect{OG_2} = \dfrac{m_a \vect{OG_a} + m_b \vect{OG_b} }{m_2}$
+\end{corrige}
+\else
+\fi
+
+
+
+\question{Donner la position du centre d'inertie $G$ de l'ensemble \textbf{1+2} dans le repère $\repere{O}{x}{y}{z}$.}
+\ifprof
+\begin{corrige}
+$\vect{OG} = \dfrac{m_1 \vect{OG_1} + m_2 \vect{OG_2} }{m_1+m_2} =-a\vx{}-c\vz{}$ .
+\end{corrige}
+\else
+\fi
+
+
+On note $\inertie{P}{i} = \matinertie{A_i}{B_i}{C_i}{-D_i}{-E_i}{-F_i}{\rep{}}$  la matrice d'inertie du solide $i$ au point $P$.
+
+\question{Donner, \textbf{en justifiant} la forme de $\inertie{O}{1}$, $\inertie{G_2}{2}$, $\inertie{O}{1+2}$. }
+\ifprof
+\begin{corrige}~\\
+
+En $O$ il y a une inifinité de plans de symétrie pour 1. De plus, $\vy{}$ et $\vz{}$ jouent le même rôle. 
+$\inertie{O}{1} = \matinertie{A_1}{B_1}{B_1}{0}{0}{0}{\rep{}}$.
+
+En $G_2$ il y a 2 plans de symétrie perpendiculaires pour 2 $(G_2\,\vy{},\vz{})$ et $(G_2\,\vz{},\vx{})$ .
+$\inertie{G_2}{2} = \matinertie{A_2}{B_2}{C_2}{0}{0}{0}{\rep{}}$.
+
+
+En $O$ il y a 1 plans de symétrie permendiculaires pour 1+2  $(G_2\,\vz{},\vx{})$ .
+$\inertie{O}{1+2} = \matinertie{A_{1+2}}{B_{1+2}}{C_{1+2}}{0}{-E_{1+2}}{0}{\rep{}}$.
+
+\end{corrige}
+\else
+\fi
+
+
+\question{Déterminer $\inertie{O}{1+2}$ en fonction des composantes des matrices $\inertie{O}{1}$ et $\inertie{G_2}{2}$ et des grandeurs que vous jugerez utiles. On notera $\vect{OG_2} = a\vx{}+b\vy{}+c\vz{}$ avec $(a,b,c)\in \mathbb{R}^3$ (on pourra éventuellement simplifier l'expression de $\vect{OG_2}$ en fonction des raisonnements précédents).}
+\ifprof
+\begin{corrige}
+
+On a  $\vect{OG_2} = a\vx{}+c\vz{}$ et 
+$\inertie{O}{2} = \inertie{G_2}{2} + \matinertie{m_2c^2}{m_2 \left(a^2+c^2\right)}{m_2a^2}{0}{-m_2 ac }{0}{}$
+
+$=\matinertie{A_2+m_2c^2}{B_2 + m_2 \left(a^2+c^2\right)}{C_2 + m_2a^2}{0}{-m_2 ac }{0}{}$
+
+
+
+$\inertie{O}{1+2} =\matinertie{A_1 + A_2+m_2c^2}{B_1 + B_2 + m_2 \left(a^2+c^2\right)}{C_1 + C_2 + m_2a^2}{0}{-m_2 ac }{0}{}$
+\end{corrige}
+\else
+\fi
+
+
+\begin{solution}
+\begin{enumerate}
+\item $\vect{OG_1} = -\dfrac{\ell}{2}\vx{}$.
+\item $m_1 =\mu \pi r^2 \ell$ et $m_2 = \mu \dfrac{1}{2} \pi R^2 L + \mu RHL$.
+\item $m_a = \mu \pi R^2L/2$, $\vect{OG_a}=-\left(\ell+\dfrac{L}{2}\right) \vx{}+\dfrac{4}{3\pi}R \vz{}$, $\vect{OG_b}=-\left(\ell+\dfrac{L}{2}\right) \vx{}-\dfrac{1}{3}H \vz{}$, $m_b = \mu RHL$, $\vect{OG_2} = \dfrac{m_a \vect{OG_a} + m_b \vect{OG_b} }{m_2}$.
+\item $\vect{OG} = -a\vx{}-c\vz{}$ ...
+\item .
+\item $\inertie{O}{1+2} =\matinertie{A_1 + A_2+m_2c^2}{B_1 + B_2 + m_2 \left(a^2+c^2\right)}{C_1 + C_2 + m_2a^2}{0}{-m_2 ac }{0}{}$.
+\end{enumerate}
+\end{solution}

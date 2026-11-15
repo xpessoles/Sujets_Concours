@@ -3,27 +3,30 @@
 \begin{obj}
 Vérifier que les différentes exigences 1.2 relatives à la commande en position du robot porte-sonde peuvent être satisfaites.
 \end{obj}
+%
+%%\section*{II. 1 - Principe de la commande du robot porte-sonde}
+%\subsection{Principe de la commande du robot porte-sonde}
+%La commande du robot porte-sonde repose sur la mise en œuvre de deux couches matérielles et logicielles qui communiquent l'une avec l'autre (figure \ref{2019_MP_CCINP_fig12}).
+%
+%\begin{itemize}
+%  \item Le contrôleur haut niveau, implémenté sur le PC de contrôle du poste patient, reçoit en paramètres d'entrée, les coordonnées du positionnement désiré pour la sonde échographique, dans l'espace de travail (précession $\psi$, nutation $\theta$, rotation propre $\varphi$) ainsi que les positions articulaires $\left(\theta_{1}, \theta_{2}, \theta_{3}\right)$ acquises par le contrôle bas-niveau. L'ensemble de ces données est traité numériquement (calcul des modèles géométriques direct et inverse du robot, prise en compte des butées articulaires, des changements d'aspect et le traitement des singularités) afin de déterminer les consignes articulaires à transmettre au contrôleur bas niveau.
+%  \item Le contrôleur bas niveau, implémenté sur la carte d'axes, reçoit les consignes articulaires et calcule les profils de vitesse $\left(\omega_{1}(\mathrm{t}), \omega_{2}(\mathrm{t}), \omega_{3}(\mathrm{t})\right)$ transmis ensuite aux variateurs de vitesse qui pilotent les moteurs des différents axes du robot. Il assure également l'acquisition des positions articulaires qui sont communiquées au contrôleur haut niveau.
+%\end{itemize}
+%
+%\begin{figure}[h]
+%\begin{center}
+%  \includegraphics[width=\textwidth]{2019_MP_CCINP_fig12}
+%%\captionsetup{labelformat=empty}
+%%\caption{Figure 12 - Principe de la commande du robot porte-sonde}
+%\caption{Principe de la commande du robot porte-sonde \label{2019_MP_CCINP_fig12}}
+%\end{center}
+%\end{figure}
 
-%\section*{II. 1 - Principe de la commande du robot porte-sonde}
-\subsection{Principe de la commande du robot porte-sonde}
-La commande du robot porte-sonde repose sur la mise en œuvre de deux couches matérielles et logicielles qui communiquent l'une avec l'autre (figure \ref{2019_MP_CCINP_fig12}).
+%\section*{Commande de l'axe 1}
+%On se limite ici à l'étude de la commande du premier axe, dont la structure est présentée en figure \ref{2019_MP_CCINP_fig04}. 
+On s'intéresse à l'asservissement d'un ensemble mobile.
 
-\begin{itemize}
-  \item Le contrôleur haut niveau, implémenté sur le PC de contrôle du poste patient, reçoit en paramètres d'entrée, les coordonnées du positionnement désiré pour la sonde échographique, dans l'espace de travail (précession $\psi$, nutation $\theta$, rotation propre $\varphi$ ) ainsi que les positions articulaires $\left(\theta_{1}, \theta_{2}, \theta_{3}\right)$ acquises par le contrôle bas-niveau. L'ensemble de ces données est traité numériquement (calcul des modèles géométriques direct et inverse du robot, prise en compte des butées articulaires, des changements d'aspect et le traitement des singularités) afin de déterminer les consignes articulaires à transmettre au contrôleur bas niveau.
-  \item Le contrôleur bas niveau, implémenté sur la carte d'axes, reçoit les consignes articulaires et calcule les profils de vitesse $\left(\omega_{1}(\mathrm{t}), \omega_{2}(\mathrm{t}), \omega_{3}(\mathrm{t})\right)$ transmis ensuite aux variateurs de vitesse qui pilotent les moteurs des différents axes du robot. Il assure également l'acquisition des positions articulaires qui sont communiquées au contrôleur haut niveau.
-\end{itemize}
-
-\begin{figure}[h]
-\begin{center}
-  \includegraphics[width=\textwidth]{2019_MP_CCINP_fig12}
-%\captionsetup{labelformat=empty}
-%\caption{Figure 12 - Principe de la commande du robot porte-sonde}
-\caption{Principe de la commande du robot porte-sonde \label{2019_MP_CCINP_fig12}}
-\end{center}
-\end{figure}
-
-\section*{Commande de l'axe 1}
-On se limite ici à l'étude de la commande du premier axe, dont la structure est présentée en figure \ref{2019_MP_CCINP_fig04}. Le principe associé à cette commande est décrit par la figure \ref{2019_MP_CCINP_fig13}. La structure de commande de la position angulaire $\theta_{1}$ est composée de deux boucles imbriquées disposant chacune d'un réseau correcteur :
+Le principe associé à cette commande est décrit par la figure \ref{2019_MP_CCINP_fig13}. La structure de commande de la position angulaire $\theta_{1}$ est composée de deux boucles imbriquées disposant chacune d'un réseau correcteur :
 
 \begin{itemize}
   \item une boucle interne de vitesse, gérée par le variateur ;
@@ -52,57 +55,62 @@ La motorisation de l'axe 1 est réalisée à l'aide d'un moteur électrique à c
 
 
 \begin{align*}
-& u(t)=R i(t)+L \dfrac{d i(t)}{d t}+e(t)  \tag{1}\\
+& u(t)=R i(t)+L \dfrac{\d i(t)}{\d t}+e(t)  \tag{1}\\
 & e(t)=k_{e} \omega_{m}(t) \tag{2} \\
-& C_{m}(t)=k_{c} i(t) \tag{3}\\
-& C_{m}(t)-\indice{C}{r e}(t)=\indice{J}{eq} \dfrac{d \omega_{m}(t)}{d t} \tag{4}
+& \indice{C}{m}(t)=k_{c} i(t) \tag{3}\\
+& \indice{C}{m}(t)-\indice{C}{re}(t)=\indice{J}{eq} \dfrac{\d \omega_{m}(t)}{\d t} \tag{4}
 \end{align*}
 
 
 Les différentes grandeurs intervenant dans le modèle sont définies dans le tableau \ref{2019_MP_CCINP_tab02} suivant :
 
-\begin{table}[h]
+%\begin{table}[h]
 \begin{center}
-\begin{tabular}[t]{|l|l|l|}
+\begin{tabular}[t]{lll}
 \hline
-Symbole & Désignation & Unités / valeurs \\
+\textbf{Symbole} & \textbf{Désignation} & \textbf{Unités / valeurs} \\
 \hline
 $u(t)$ & Tension d'induit & V \\
-\hline
+%\hline
 $e(t)$ & Force contre-électromotrice & V \\
-\hline
+%\hline
 $i(t)$ & Courant d'induit & A \\
-\hline
+%\hline
 $\omega_{m}(t)$ & Vitesse de rotation du moteur & rad/s \\
-\hline
+%\hline
 $C_{m}(t)$ & Couple moteur & $\mathrm{N} \cdot \mathrm{m}$ \\
-\hline
-$C_{\text {re }}(t)$ & Couple résistant équivalent ramené sur l'axe moteur & $\mathrm{N} \cdot \mathrm{m}$ \\
-\hline
+%\hline
+$\indice{C}{re}(t)$ & Couple résistant équivalent ramené sur l'axe moteur & $\mathrm{N} \cdot \mathrm{m}$ \\
+%\hline
 $R$ & Résistance de l'induit & $4,1 \Omega$ \\
-\hline
+%\hline
 $L$ & Inductance de l'induit & $0,18 \mathrm{mH}$ \\
-\hline
+%\hline
 $k_{e}$ & Constante de force contre-électromotrice & $1,6 \cdot 10^{-2} \mathrm{~V} /(\mathrm{rad} / \mathrm{s})$ \\
-\hline
+%\hline
 $k_{c}$ & Constante de couple & $1,6 \cdot 10^{-2} \mathrm{~N} \cdot \mathrm{~m} / \mathrm{A}$ \\
-\hline
+%\hline
 $J_{\text {eq }}$ & Inertie équivalente ramenée sur l'axe moteur & $\in\left[7,2 \cdot 10^{-6}, 8,6 \cdot 10^{-6}\right] \mathrm{kg} \cdot \mathrm{m}^{2}$ \\
 \hline
 \end{tabular}
 %\captionsetup{labelformat=empty}
 %\caption{Tableau 2 - Grandeurs associées au modèle de la motorisation}
-\caption{Grandeurs associées au modèle de la motorisation \label{2019_MP_CCINP_tab02}}
+\captionof{table}{Grandeurs associées au modèle de la motorisation \label{2019_MP_CCINP_tab02}}
 \end{center}
-\end{table}
+%\end{table}
 
 On note $\Omega_{m}(p), U(p), E(p), I(p), C_{m}(p)$ et $\indice{C}{re}(p)$, les transformées de Laplace respectives de $\omega_{m}(\mathrm{t}), u(t), e(t), i(t), C_{m}(t)$ et $C_{\text {re}}(t)$.
 
 
 %\item[Q11.] 
 \begin{question}
-Déterminer sur la copie les transformées de Laplace des équations (1) à (4) du moteur définies en considérant des conditions initiales nulles. Compléter les blocs correspondants sur le schéma bloc du Document Réponse DR1 par les transmittances manquantes.
+Déterminer sur la copie les transformées de Laplace des équations (1) à (4) du moteur définies en considérant des conditions initiales nulles. 
 \end{question}
+
+\begin{question}
+Recopier er compléter le schéma bloc du Document Réponse DR1 par les transmittances manquantes (zone Moteur CC).
+\end{question}
+
 
 %\item[Q12.] 
 \begin{question}
@@ -187,7 +195,7 @@ Déterminer les expressions des gains $K_{R}$ et $K_{\text {conv }}$ ainsi que l
 
 %\item[Q16.] 
 \begin{question}
-Compléter le schéma-bloc sur le DR 1 en y faisant figurer les fonctions de transfert sous forme littérale dans le domaine de Laplace avec des conditions initiales nulles.
+Recopier le schéma-bloc du DR 1 en y faisant figurer les fonctions de transfert sous forme littérale dans le domaine de Laplace avec des conditions initiales nulles.
 \end{question}
 
 
@@ -220,7 +228,7 @@ En vous appuyant sur le schéma-bloc de la figure \ref{2019_MP_CCINP_fig15} et s
 \begin{obj}
 Déterminer les paramètres du correcteur de la boucle de vitesse afin de satisfaire l'exigence 1.2.1.1.
 \end{obj}
-Le système est à présent considéré en l'absence de perturbation (étude en suivi de consigne), soit $\indice{C}{r e}(p)=0$. Le correcteur de la boucle de vitesse est un correcteur Proportionnel Intégral (PI), de fonction de transfert :
+Le système est à présent considéré en l'absence de perturbation (étude en suivi de consigne), soit $\indice{C}{re}(p)=0$. Le correcteur de la boucle de vitesse est un correcteur Proportionnel Intégral (PI), de fonction de transfert :
 
 $$
 C_{V}(p)=K_{i} \dfrac{1+T_{i} p}{T_{i} p} .
@@ -253,29 +261,29 @@ On donne, sur le DR 2, le diagramme de Bode de la fonction de transfert en boucl
 
 %\item[Q21] 
 \begin{question}
-Sur le DR 2, déterminer graphiquement les marges de stabilité du système et préciser leurs valeurs.
+Déterminer graphiquement les marges de stabilité du système et préciser leurs valeurs.
 \end{question}
 
 
 
-\subsubsection{Prise en compte des non-linéarités dans la commande : " synthèse "}
-On souhaite simuler la réponse en vitesse de l'axe 1 en intégrant dans le modèle certaines nonlinéarités : le variateur délivre une tension comprise entre $\pm 10 \mathrm{~V}$ et le courant moteur est limité à 5A. À cet effet, on construit le modèle numérique présenté en figure \ref{2019_MP_CCINP_fig16}.
+\subsubsection{Prise en compte des non-linéarités dans la commande : "synthèse"}
+On souhaite simuler la réponse en vitesse de l'axe 1 en intégrant dans le modèle certaines non linéarités : le variateur délivre une tension comprise entre $\pm 10 \mathrm{~V}$ et le courant moteur est limité à 5A. À cet effet, on construit le modèle numérique présenté en figure \ref{2019_MP_CCINP_fig16}.
 
-\begin{figure}[h]
+%\begin{figure}[h]
 \begin{center}
   \includegraphics[width=\textwidth]{2019_MP_CCINP_fig16}
 %\captionsetup{labelformat=empty}
 %\caption{Figure 16 - Modèle numérique utilisé pour la simulation de la boucle de vitesse}
-\caption{Modèle numérique utilisé pour la simulation de la boucle de vitesse \label{2019_MP_CCINP_fig16}}
+\captionof{figure}{Modèle numérique utilisé pour la simulation de la boucle de vitesse \label{2019_MP_CCINP_fig16}}
 \end{center}
-\end{figure}
+%\end{figure}
 
 Les courbes du DR 3 présentent les réponses en vitesse de l'axe 1, pour une entrée en échelon d'amplitude 0,1 rad/s ainsi que l'évolution de la tension aux bornes du moteur, sans et avec prise en compte de ces non-linéarités.
 
 
 %\item[Q22] 
 \begin{question}
-Sur le DR 3, identifier les courbes correspondant aux simulations sans et avec prise en compte des non-linéarités. Commenter, sur la copie, l'évolution des performances en termes de rapidité.
+Esquisser les courbes du DR3 sur votre copie. Identifier les courbes correspondant aux simulations sans et avec prise en compte des non-linéarités. Commenter l'évolution des performances en termes de rapidité.
 \end{question}
 
 %\item[Q23] 
@@ -295,7 +303,7 @@ Les performances de la boucle de vitesse étant validées, on complète le modè
 
 %\item[Q23] 
 \begin{question}
-En faisant apparaître les constructions, déterminer graphiquement sur le DR 4 le temps de réponse à 5\% du système. Conclure quant au respect de l'exigence 1.2.1.2.
+Escquisser la courbe sur votre copie. En faisant apparaître les constructions, déterminer le temps de réponse à 5\% du système. Conclure quant au respect de l'exigence 1.2.1.2.
 \end{question}
 
 
@@ -304,7 +312,63 @@ En faisant apparaître les constructions, déterminer graphiquement sur le DR 4 
   \includegraphics[width=\textwidth]{2019_MP_CCINP_fig00}
 %\captionsetup{labelformat=empty}
 %\caption{Figure 16 - Modèle numérique utilisé pour la simulation de la boucle de vitesse}
-%\caption{Modèle numérique utilisé pour la simulation de la boucle de vitesse \label{2019_MP_CCINP_fig16}}
+\caption{Modèle numérique utilisé pour la simulation de la boucle de vitesse \label{2019_MP_CCINP_fig16}}
 \end{center}
 \end{figure}
+
+
+
+%%%%%%%%%%%
+
+\section*{DOCUMENT RÉPONSE}
+
+
+\subsection*{DR 1 - Schéma bloc de l'asservissement en vitesse de l'axe 1}
+\begin{center}
+\includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-21_583_1834_1940_143}
+\end{center}
+
+
+\subsection*{DR 2 - Diagramme de Bode}
+%\begin{figure}[h]
+\begin{center}
+%\captionsetup{labelformat=empty}
+  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-22_989_1690_535_186}
+
+\end{center}
+%\end{figure}
+
+%Marge de gain : Marge de phase :
+
+%\begin{figure}[h]
+\subsection*{DR 3 - Réponses temporelles : boucle de vitesse}
+\begin{center}
+%\captionsetup{labelformat=empty}
+
+  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-22_633_1818_1944_87}
+\end{center}
+%\end{figure}
+
+%Q24
+
+%\begin{figure}[h]
+\subsection*{DR 4 - Réponse temporelle : boucle de position}
+\begin{center}
+%\captionsetup{labelformat=empty}
+
+  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-23_868_1096_434_484}
+\end{center}
+%\end{figure}
+
+
+%%\caption{req [Modèle] ROBOT TELE-ECHOGRAPHIE[ Diagramme d'exigences}
+%%\begin{figure}[h]
+%\begin{center}
+%%\captionsetup{labelformat=empty}
+%  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-24_2136_1532_483_249}
+%\end{center}
+%%\end{figure}
+
+
+
 

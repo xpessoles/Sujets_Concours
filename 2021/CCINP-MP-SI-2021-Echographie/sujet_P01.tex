@@ -1,59 +1,23 @@
-\documentclass[10pt]{article}
-\usepackage[french]{babel}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{graphicx}
-\usepackage[export]{adjustbox}
-\graphicspath{ {./images/} }
-\usepackage{caption}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage[version=4]{mhchem}
-\usepackage{stmaryrd}
-\usepackage{array}
-\usepackage{ragged2e}
-\usepackage{enumitem}
 
-\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
-\newcolumntype{C}[1]{>{\Centering\arraybackslash}p{#1}}
-\newcolumntype{R}[1]{>{\RaggedLeft\arraybackslash}p{#1}}
-
-\begin{document}
-\captionsetup{singlelinecheck=false}
-\section*{ÉPREUVE MUTUALISÉE AVEC E3A-POLYTECH \\
- ÉPREUVE SPÉCIFIQUE - FILIÈRE MP}
-\section*{SCIENCES INDUSTRIELLES}
-Durée : 4 heures\\
-N.B. : le candidat attachera la plus grande importance à la clarté, à la précision et à la concision de la rédaction. Si un candidat est amené à repérer ce qui peut lui sembler être une erreur d'énoncé, il le signalera sur sa copie et devra poursuivre sa composition en expliquant les raisons des initiatives qu'il a été amené à prendre.
-
-RAPPEL DES CONSIGNES
-
-\begin{itemize}
-  \item[-] Utiliser uniquement un stylo noir ou bleu foncé non effaçable pour la rédaction de votre composition ; d'autres couleurs, excepté le vert, peuvent être utilisées, mais exclusivement pour les schémas et la mise en évidence des résultats.
-  \item[-] Ne pas utiliser de correcteur.
-  \item[-] Écrire le mot FIN à la fin de votre composition.
-\end{itemize}
 
 Les calculatrices sont autorisées.
 
-Le sujet est composé de cinq parties, toutes indépendantes.
 
-Le sujet est composé de 20 pages : page 1 à 20.\\
-Le Document Réponse est composé de 4 pages : DR1 à DR4 et du document D5.
-
-Le Document Réponse doit être rendu dans son intégralité avec la copie.
 
 \section*{Système de télé-échographie}
-\section*{Présentation}
-\section*{1. Mise en situation}
+%\section*{Présentation}
+%\section*{1. Mise en situation}
+
+\section{Présentation}
+\subsection{Mise en situation}
+
 L'échographie est une technique d'imagerie médicale basée sur l'exploitation de la réflexion d'une onde ultrasonore au niveau des interfaces physiologiques entre organes. Non irradiante, peu coûteuse et mobile, elle représente l'examen d'imagerie médicale le plus pratiqué au monde. En contrepartie, sa réalisation nécessite un manipulateur expert en imagerie médicale, capable d'analyser les images échographiques en temps réel afin d'orienter la sonde en conséquence. L'analyse et l'expertise sont donc réalisées pendant l'examen. De ce fait, cette technique d'imagerie est qualifiée de " manipulateur dépendant " : sa mise en œuvre est difficilement envisageable sur des sites isolés.
 
 La robotisation de cette technique permet toutefois d'en élargir le champ d'application. Grâce à la télé-échographie robotisée (figure 1), il devient possible de réaliser une échographie sur un patient situé sur un site isolé (appelé site patient), alors même que le spécialiste en imagerie médicale se trouve sur un site distant de celui où est pratiqué l'examen (appelé site expert).
 
 \begin{figure}[h]
 \begin{center}
-  \includegraphics[alt={},max width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-02_561_1450_1095_343}
+  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-02_561_1450_1095_343}
 \captionsetup{labelformat=empty}
 \caption{Figure 1 - Principe de la télé-échographie}
 \end{center}
@@ -61,7 +25,8 @@ La robotisation de cette technique permet toutefois d'en élargir le champ d'app
 
 Sur le site patient (figure 1a) équipé du robot porte-sonde, d'un échographe et d'un système de visioconférence, un professionnel de santé est chargé de positionner le robot porte-sonde sur le patient et de le maintenir au cours de l'examen. Depuis le site expert distant (figure 1b), le médecin dirige l'examen échographique. En manipulant une sonde fictive, il donne une consigne de position pour la sonde, que le robot exécute au contact du patient. Réalisant le lien entre les deux sites, le réseau de communication (ISDN, 4G, satellite...) permet en temps réel, le contrôle du robot, la visioconférence ainsi que la transmission des images échographiques.
 
-\section*{2. Analyse système partielle}
+%\section*{2. Analyse système partielle}
+\subsection{Analyse système partielle}
 Le diagramme d'exigences (D5 du document réponse), présente un extrait du cahier des charges du système de télé-échographie.
 
 La figure 2 décrit le robot porte-sonde constitué :
@@ -74,7 +39,7 @@ La figure 2 décrit le robot porte-sonde constitué :
 
 \begin{figure}[h]
 \begin{center}
-  \includegraphics[alt={},max width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-03_1091_902_191_189}
+  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-03_1091_902_191_189}
 \captionsetup{labelformat=empty}
 \caption{Figure 2 - Robot porte-sonde}
 \end{center}
@@ -82,7 +47,7 @@ La figure 2 décrit le robot porte-sonde constitué :
 
 \begin{figure}[h]
 \begin{center}
-  \includegraphics[alt={},max width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-03_621_522_189_1281}
+  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-03_621_522_189_1281}
 \captionsetup{labelformat=empty}
 \caption{Figure 3 - Chaîne cinématique associée à l'axe 1}
 \end{center}
@@ -109,13 +74,14 @@ La chaîne fonctionnelle assurant la rotation $\mathrm{R}_{1}$ de l'ensemble $\b
 
 \begin{figure}[h]
 \begin{center}
-  \includegraphics[alt={},max width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-03_595_1670_1579_193}
+  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-03_595_1670_1579_193}
 \captionsetup{labelformat=empty}
 \caption{Figure 4 - Diagramme de blocs internes de l'axe 1}
 \end{center}
 \end{figure}
 
-\section*{3. Problème posé}
+\subsection{Problème posé}
+%\subsection*{3. Problème posé}
 Afin que le praticien soit en mesure d'obtenir une image échographique d'intérêt, le système de télé-échographie doit lui permettre d'orienter la sonde de manière à trouver la meilleure incidence entre le plan ultrasonore et la partie de l'organe examinée. La qualité du positionnement de la sonde sur le patient qui conditionne l'obtention d'images d'intérêt nécessite de maîtriser notamment :
 
 \begin{itemize}
@@ -125,7 +91,8 @@ Afin que le praticien soit en mesure d'obtenir une image échographique d'intér
 
 L'objectif de cette étude est de vérifier certaines performances du système afin de valider partiellement le respect des exigences liées au positionnement de la sonde échographique.
 
-\section*{4. Démarche proposée}
+%\section*{4. Démarche proposée}
+\subsection{Démarche proposée}
 Le respect des exigences 1.1 relatives au déplacement de la sonde fait l'objet de la Partie I. Celle-ci a pour objectif de vérifier que la structure mécanique retenue est compatible avec les exigences liées au mouvement à imposer à la sonde (exigence 1.1.1) et à l'espace de travail attendu (exigence 1.1.2). La spécification de certaines de ces exigences, à partir d'une analyse du geste médical, fait par ailleurs l'objet de la Partie IV.
 
 Le respect des exigences 1.2 relatives à la commande du robot porte-sonde est abordé à travers les points suivants :
@@ -137,13 +104,15 @@ Le respect des exigences 1.2 relatives à la commande du robot porte-sonde est a
 
 La Partie III aborde la problématique du dimensionnement du moteur associé à l'axe 1.
 
-\section*{Partie I - Validation des performances cinématiques du robot porte-sonde}
+%\section*{Partie I - Validation des performances cinématiques du robot porte-sonde}
+\section{Validation des performances cinématiques du robot porte-sonde}
 Objectif : vérifier que les différentes exigences 1.1 relatives au déplacement de la sonde peuvent être satisfaites.
 
-\section*{Modélisation cinématique du robot porte-sonde}
+\subsection*{Modélisation cinématique du robot porte-sonde}
 Le schéma cinématique du robot porte-sonde et le paramétrage associé sont donnés dans les figures 5 et 6.
 
-\section*{I. 1 - Validation de l'exigence " Nature du mouvement " (exigence 1.1.1)}
+%\section*{I. 1 - Validation de l'exigence " Nature du mouvement " (exigence 1.1.1)}
+\subsection*{Validation de l'exigence " Nature du mouvement " (exigence 1.1.1)}
 Objectif: vérifier que l'architecture du robot porte-sonde est compatible avec la nature du mouvement attendu.
 
 Afin de trouver la meilleure incidence entre le plan ultrasonore et la partie de l'organe examinée, et pour obtenir une image d'échographie contenant les informations qu'ils cherchent, les praticiens imposent à la sonde un déplacement sphérique autour du point de contact $O$, soit une composition de trois rotations. C'est donc naturellement le mouvement attendu lors de la manipulation de la sonde par le robot. Pour la suite de l'étude, on considère que dans sa position initiale, la sonde est en contact avec le patient. Sur le schéma cinématique de la figure 5, le point $O_{S}$, extrémité de la sonde, est alors confondu avec le point $O$, origine du repère lié au patient.
@@ -154,16 +123,29 @@ $$
 \left\{v_{j / i}\right\}=\left\{\frac{\overrightarrow{\Omega_{j / i}}}{\overrightarrow{\mathrm{~V}_{j / i}}(P)}\right\}_{P} .
 $$
 
-\begin{table}[h]
-\begin{center}
-\begin{tabular}[t]{|l|l|}
-\hline
-\begin{tabular}[t]{l}
-$\left\lvert\,$\begin{tabular}[t]{l|l}
-$\overrightarrow{z_{1}}$ & Au solide (0) est associé le repère $\mathcal{R}_{0}=(O$, \\
-Au solide (1) sont associés les repères &  \\
-$\mathcal{R}_{1}=\left(O, \overrightarrow{x_{1}}, \overrightarrow{y_{1}}, \overrightarrow{z_{1}}\right)$ et $\mathcal{R}_{1}^{\prime}=\left(O, \overrightarrow{x_{1}}, \overrightarrow{y_{1}^{\prime}}, \overrightarrow{z_{1}^{\prime}}\right)$ &  \\
-\end{tabular}.\textbackslash right. \\
+%\begin{table}[h]
+%\begin{center}
+%\begin{tabular}[t]{|l|l|}
+%\hline
+%\begin{tabular}[t]{l}
+%$\left\lvert\,$\begin{tabular}[t]{l|l}
+
+Au solide (0) est associé le repère $\mathcal{R}_{0}=\left(O,\vx{0},\vy{0},\vz{0}\right)$.
+
+Au solide (1) sont associés les repères $\mathcal{R}_{1}=\left(O, \overrightarrow{x_{1}}, \overrightarrow{y_{1}}, \overrightarrow{z_{1}}\right)$ et 
+$\mathcal{R}_{1}^{\prime}=
+\left(O, 
+\overrightarrow{x_{1}}, 
+\overrightarrow{y_{1}^{\prime}}, 
+\overrightarrow{z_{1}^{\prime}}
+\right)$
+
+%\end{document}
+
+% &  \\
+%\end{tabular}.\textbackslash right. \\
+
+
 On note $\alpha=\left(\overrightarrow{z_{1}}, \overrightarrow{z^{\prime}{ }_{1}}\right)=-22,5^{\circ}$. \\
 Le solide (1) est en liaison pivot parfaite d'axe $\left(O, \overrightarrow{z_{1}}\right)$ avec (0). La rotation de 1/0 est paramétrée par l'angle variable $\theta_{1}(t)=\left(\overrightarrow{x_{0}}, \overrightarrow{x_{1}}\right)=\left(\overrightarrow{y_{0}}, \overrightarrow{y_{1}}\right)$. \\
 Au solide (2) sont associés les repères \\
@@ -174,7 +156,9 @@ Au solide (3) est associé le repère $\mathcal{R}_{3}=\left(O, \overrightarrow{
 Le solide (3) est en liaison pivot parfaite d'axe $\left(O, \overrightarrow{z_{2}^{\prime}}\right)$ avec (2). La rotation de 3/2 est paramétrée par l'angle variable $\theta_{3}(t)=\left(x_{2}^{\prime}, x_{3}^{\prime}\right)=\left(y_{2}^{\prime}, y_{3}^{\prime}\right)$. \\
 Au solide (4) correspondant à l'ensemble \{porte-sonde, sonde\} est associé le repère $\mathcal{R}_{4}=\left(O_{S}, \overrightarrow{x_{3}}, \overrightarrow{y_{3}}, \overrightarrow{z_{3}}\right)$, le point $O_{S}$ étant associé à l'extrémité de la sonde. Le solide (4) est en liaison glissière parfaite de direction $\overrightarrow{z_{3}}$ avec (3). La translation paramétrée par la longueur $\lambda=C O_{S}$ est bloquée dans l'étude proposée. \\
 Le point $O$ est l'origine commune des différents repères. \\
-\end{tabular} & \begin{tabular}[t]{l}
+
+%\end{tabular} & \begin{tabular}[t]{l}
+
 Au solide (0) est associé le repère $\mathcal{R}_{0}=\left(O, \overrightarrow{x_{0}}, \overrightarrow{y_{0}}, \overrightarrow{z_{0}}\right)$. Au solide (1) sont associés les repères \( \mathcal{R}_{1}=\left(O, \overrightarrow{x_{1}}, \overrightarrow{y_{1}}, \overrightarrow{z_{1}}\right) \text { et } \mathcal{R}_{1}^{\prime}=\left(O, \overrightarrow{x_{1}}, \overrightarrow{y_{1}^{\prime}}, \overrightarrow{z_{1}^{\prime}}\right) . \) \\
 On note $\alpha=\left(\overrightarrow{z_{1}}, \overrightarrow{z^{\prime}{ }_{1}}\right)=-22,5^{\circ}$. \\
 Le solide (1) est en liaison pivot parfaite d'axe $\left(O, \overrightarrow{z_{1}}\right)$ avec (0). La rotation de 1/0 est paramétrée par 1'angle variable $\theta_{1}(t)=\left(\overrightarrow{x_{0}}, \overrightarrow{x_{1}}\right)=\left(\overrightarrow{y_{0}}, \overrightarrow{y_{1}}\right)$. \\
@@ -185,13 +169,14 @@ Au solide (3) est associé le repère $\mathcal{R}_{3}=\left(O, \overrightarrow{
 Le solide (3) est en liaison pivot parfaite d'axe $\left(O, \overrightarrow{z_{2}^{\prime}}\right)$ avec (2). La rotation de 3/2 est paramétrée par l'angle variable $\theta_{3}(t)=\left(x_{2}^{\prime}, x_{3}^{\prime}\right)=\left(y_{2}^{\prime}, y_{3}^{\prime}\right)$. \\
 Au solide (4) correspondant à l'ensemble \{porte-sonde, sonde\} est associé le repère $\mathcal{R}_{4}=\left(O_{S}, \overrightarrow{x_{3}}, \overrightarrow{y_{3}}, \overrightarrow{z_{3}}\right)$, le point $O_{S}$ étant associé à l'extrémité de la sonde. Le solide (4) est en liaison glissière parfaite de direction $\overline{z_{3}}$ avec (3). La translation paramétrée par la longueur $\lambda=C O_{S}$ est bloquée dans l'étude proposée. \\
 Le point $O$ est l'origine commune des différents repères. \\
-\end{tabular} \\
-\hline
-\end{tabular}
-\captionsetup{labelformat=empty}
-\caption{Figure 5 - Schéma cinématique et paramétrage du robot porte-sonde, configuration " bras tendu "}
+%\end{tabular} \\
+%\hline
+%\end{tabular}
+%\captionsetup{labelformat=empty}
+\begin{center}
+\captionof{figure}{Figure 5 - Schéma cinématique et paramétrage du robot porte-sonde, configuration " bras tendu "}
 \end{center}
-\end{table}
+%\end{table}
 
 \begin{table}[h]
 \begin{center}
@@ -218,11 +203,13 @@ Angles constants & \includegraphics[max width=\textwidth, alt={}]{fa0d4e8b-3d38-
   \item[Q3.] Conclure quant à la validation de l'exigence 1.1.1.
 \end{itemize}
 
-\section*{I. 2 - Validation de l'exigence " Espace de travail " (exigence 1.1.2)}
+%\section*{I. 2 - Validation de l'exigence " Espace de travail " (exigence 1.1.2)}
+\subsection{Validation de l'exigence " Espace de travail " (exigence 1.1.2)}
+
 Objectif : vérifier l'étendue de l'espace de travail (exigence 1.1.2).\\
 L'espace de travail d'un robot est défini comme l'ensemble des positions et orientations accessibles par le repère lié à son organe terminal. En se limitant à la configuration où la sonde reste en contact avec le patient (les points $O_{S}$ et $O$ restent confondus), la détermination de l'espace de travail revient ici à définir l'ensemble des orientations possibles pour l'ensemble \{porte-sonde, sonde\}, c'est-à-dire celles du repère $\mathcal{R}_{3}=\left(O, \overrightarrow{x_{3}}, \overrightarrow{y_{3}}, \overrightarrow{z_{3}}\right)$ par rapport au repère $\mathcal{R}_{0}=\left(O, \overrightarrow{x_{0}}, \overrightarrow{y_{0}}, \overrightarrow{z_{0}}\right)$.
 
-\section*{Orientation de la sonde par rapport au patient}
+\subsection*{Orientation de la sonde par rapport au patient}
 À la sonde (S) est associé le repère $\mathcal{R}_{S}=\left(O_{S}, \overrightarrow{x_{S}}, \overrightarrow{y_{S}}, \overrightarrow{z_{S}}\right)$ défini sur la figure 7. Ce repère est coïncidant avec le repère $\mathcal{R}_{3}$. Le contact sonde/patient est assimilé à un contact ponctuel au point $O_{S}$. L'orientation de la sonde par rapport au patient est paramétrée par trois rotations successives $\mathrm{R}_{1}(\psi)$, $\mathrm{R}_{2}(\theta)$ et $\mathrm{R}_{3}(\phi)$ auxquelles sont associés les angles d'Euler $(\psi, \theta, \phi)$ (figures 7 et 8) :
 
 \begin{itemize}
@@ -233,7 +220,7 @@ L'espace de travail d'un robot est défini comme l'ensemble des positions et ori
 
 \begin{figure}[h]
 \begin{center}
-  \includegraphics[alt={},max width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-06_717_762_1833_324}
+  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-06_717_762_1833_324}
 \captionsetup{labelformat=empty}
 \caption{Figure 7 - Repère lié à la sonde et rotations}
 \end{center}
@@ -241,13 +228,13 @@ L'espace de travail d'un robot est défini comme l'ensemble des positions et ori
 
 \begin{figure}[h]
 \begin{center}
-  \includegraphics[alt={},max width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-06_722_604_1807_1230}
+  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-06_722_604_1807_1230}
 \captionsetup{labelformat=empty}
 \caption{Figure 8 - Angles d'Euler}
 \end{center}
 \end{figure}
 
-\section*{Élaboration d'un modèle géométrique direct partiel}
+\subsection*{Élaboration d'un modèle géométrique direct partiel}
 L'orientation de la sonde est paramétrée dans l'espace opérationnel (X) par les angles d'Euler $(\psi, \theta, \phi)$. Elle est liée à la configuration du robot définie quant à elle dans l'espace articulaire $(Q)$ par les angles $\left(\theta_{1}, \theta_{2}, \theta_{3}\right)$ paramétrant les rotations autour des axes 1, 2 et 3. La détermination de l'espace de travail nécessite d'établir la relation entre les coordonnées opérationnelles $(\psi, \theta, \phi)$ et les coordonnées articulaires $\left(\theta_{1}, \theta_{2}, \theta_{3}\right)$, c'est-à-dire élaborer le modèle géométrique direct du robot.
 
 \begin{itemize}
@@ -289,7 +276,7 @@ Des relations similaires non présentées ici peuvent être obtenues pour la rot
 
 \begin{figure}[h]
 \begin{center}
-  \includegraphics[alt={},max width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-08_568_723_178_250}
+  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-08_568_723_178_250}
 \captionsetup{labelformat=empty}
 \caption{Figure 9 - Évolution de l'angle de nutation $\theta$ en fonction du paramètre articulaire $\theta_{2}$}
 \end{center}
@@ -297,18 +284,18 @@ Des relations similaires non présentées ici peuvent être obtenues pour la rot
 
 \begin{figure}[h]
 \begin{center}
-  \includegraphics[alt={},max width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-08_568_743_178_1049}
+  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-08_568_743_178_1049}
 \captionsetup{labelformat=empty}
 \caption{Figure 10 - Évolution des angles $\psi$ et $\phi$ (les courbes sont ici confondues)}
 \end{center}
 \end{figure}
 
-\section*{Prise en compte des butées articulaires}
+\subsection*{Prise en compte des butées articulaires}
 En pratique, l'espace de travail est limité par la présence de butées mécaniques sur les articulations, liées aux contraintes de mise en œuvre technique. En prenant comme référence la position du robot " bras tendu ", les valeurs de ces butées sont telles que pour les deux premiers axes : $\theta_{1} \in\left[-165^{\circ}, 165^{\circ}\right], \theta_{2} \in\left[20^{\circ}, 340^{\circ}\right]$. Il n'y a pas de limitation sur l'axe 3 pour lequel $\theta_{3} \in\left[0^{\circ}, 360^{\circ}\right]$. L'espace de travail peut être décrit à partir des positions accessibles par le point $M$, extrémité du vecteur unitaire $\overrightarrow{z_{S}}$ d'origine $O_{S}$, porté par l'axe de la sonde (figure 7). Les points de coordonnées $\left(z_{S x}, z_{S y}, z_{S z}\right)$ associés à ces positions ont été représentés sur la figure 11 (le pas d'échantillonnage des paramètres articulaires $\theta_{1}$ et $\theta_{2}$ est de 2°) pour deux configurations (a) et (b).
 
 \begin{figure}[h]
 \begin{center}
-  \includegraphics[alt={},max width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-08_630_1529_1493_272}
+  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-08_630_1529_1493_272}
 \captionsetup{labelformat=empty}
 \caption{Figure 11 - Représentation de l'espace de travail, $\theta_{2} \in\left[20^{\circ}, 180^{\circ}\right]$ (a) et $\theta_{2} \in\left[180^{\circ}, 340^{\circ}\right]$ (b)}
 \end{center}
@@ -324,10 +311,12 @@ Soit la fonction $f$, définie de l'espace articulaire $(Q)$ vers l'espace opér
   \item[Q10.] La fonction $f$ est-elle bijective ? Justifier votre réponse en vous appuyant sur les tracés de la figure 11 et proposer une interprétation. Quelles seront les conséquences lors de la conception de la commande du robot ?
 \end{itemize}
 
-\section*{Partie II - Commande en position du robot porte-sonde}
+%\section*{Partie II - Commande en position du robot porte-sonde}
+\section{Commande en position du robot porte-sonde}
 Objectif : vérifier que les différentes exigences 1.2 relatives à la commande en position du robot porte-sonde peuvent être satisfaites.
 
-\section*{II. 1 - Principe de la commande du robot porte-sonde}
+%\section*{II. 1 - Principe de la commande du robot porte-sonde}
+\subsection{Principe de la commande du robot porte-sonde}
 La commande du robot porte-sonde repose sur la mise en œuvre de deux couches matérielles et logicielles qui communiquent l'une avec l'autre (figure 12).
 
 \begin{itemize}
@@ -337,13 +326,13 @@ La commande du robot porte-sonde repose sur la mise en œuvre de deux couches ma
 
 \begin{figure}[h]
 \begin{center}
-  \includegraphics[alt={},max width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-09_267_1439_1223_302}
+  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-09_267_1439_1223_302}
 \captionsetup{labelformat=empty}
 \caption{Figure 12 - Principe de la commande du robot porte-sonde}
 \end{center}
 \end{figure}
 
-\section*{Commande de l'axe 1}
+\subsection*{Commande de l'axe 1}
 On se limite ici à l'étude de la commande du premier axe, dont la structure est présentée en figure 4. Le principe associé à cette commande est décrit par la figure 13. La structure de commande de la position angulaire $\theta_{1}$ est composée de deux boucles imbriquées disposant chacune d'un réseau correcteur :
 
 \begin{itemize}
@@ -355,16 +344,17 @@ Un codeur incrémental, solidaire de l'axe moteur permet après traitement numé
 
 \begin{figure}[h]
 \begin{center}
-  \includegraphics[alt={},max width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-09_297_1476_2248_289}
+  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-09_297_1476_2248_289}
 \captionsetup{labelformat=empty}
 \caption{Figure 13 - Structure de l'asservissement d'un axe}
 \end{center}
 \end{figure}
 
-\section*{II. 2 - Modélisation de l'axe 1}
+%\section*{II. 2 - Modélisation de l'axe 1}
+\subsection{Modélisation de l'axe 1}
 Objectif : élaborer un modèle de connaissance de l'axe 1 et réaliser la synthèse de la commande.
 
-\section*{Modélisation de la motorisation}
+\subsection*{Modélisation de la motorisation}
 La motorisation de l'axe 1 est réalisée à l'aide d'un moteur électrique à courant continu et aimants permanents, dont le comportement peut être modélisé par les équations suivantes :
 
 
@@ -431,12 +421,12 @@ On pose $\tau_{e}=\frac{L}{R}$ et $\tau_{e m}=\frac{R J_{e q}}{k_{e} k_{c}}$, re
   \item[Q14.] Montrer, en précisant l'expression de $K_{m}$, que la fonction $H_{1}(p)$ peut alors être approximée par la forme : $H_{1}(p) \approx \frac{K_{m}}{\left(1+\tau_{e} p\right)\left(1+\tau_{e m} p\right)}$.
 \end{itemize}
 
-\section*{Modélisation de la boucle de vitesse}
+\subsection*{Modélisation de la boucle de vitesse}
 La figure 14 présente la structure de la boucle de vitesse associée à la commande de l'axe 1. Pour une consigne de vitesse de rotation $\omega_{\mathrm{c}}(\mathrm{t})$ [m/s], un convertisseur génère une tension de consigne de rotation à appliquer au moteur $\mathrm{u}_{\mathrm{cv}}(\mathrm{t})[\mathrm{V}]$. Un traitement numérique de la vitesse relevée sur l'axe du moteur fournit une tension mesurée $\mathrm{u}_{\mathrm{mv}}(\mathrm{t})$ [V], image de la vitesse de rotation du moteur $\omega_{\mathrm{m}}(\mathrm{t})$. Un correcteur adapte le signal écart entre la tension de consigne et la tension mesurée, ce qui permet après correction et amplification, de définir la tension d'alimentation $\mathrm{u}_{\mathrm{m}}(\mathrm{t})$ à appliquer au moteur.
 
 \begin{figure}[h]
 \begin{center}
-  \includegraphics[alt={},max width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-11_393_1668_1048_224}
+  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-11_393_1668_1048_224}
 \captionsetup{labelformat=empty}
 \caption{Figure 14 - Asservissement en vitesse d'un axe}
 \end{center}
@@ -481,7 +471,7 @@ On pourrait montrer que le schéma-bloc peut se ramener au schéma à retour uni
 
 \begin{figure}[h]
 \begin{center}
-  \includegraphics[alt={},max width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-12_338_1555_339_248}
+  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-12_338_1555_339_248}
 \captionsetup{labelformat=empty}
 \caption{Figure 15 - Schéma-bloc équivalent pour la boucle de vitesse}
 \end{center}
@@ -522,12 +512,12 @@ On donne, sur le DR 2, le diagramme de Bode de la fonction de transfert en boucl
   \item[Q21.] Sur le DR 2, déterminer graphiquement les marges de stabilité du système et préciser leurs valeurs.
 \end{itemize}
 
-\section*{Prise en compte des non-linéarités dans la commande : " synthèse "}
+\subsection*{Prise en compte des non-linéarités dans la commande : " synthèse "}
 On souhaite simuler la réponse en vitesse de l'axe 1 en intégrant dans le modèle certaines nonlinéarités : le variateur délivre une tension comprise entre $\pm 10 \mathrm{~V}$ et le courant moteur est limité à 5A. À cet effet, on construit le modèle numérique présenté en figure 16.
 
 \begin{figure}[h]
 \begin{center}
-  \includegraphics[alt={},max width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-13_458_1687_685_192}
+  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-13_458_1687_685_192}
 \captionsetup{labelformat=empty}
 \caption{Figure 16 - Modèle numérique utilisé pour la simulation de la boucle de vitesse}
 \end{center}
@@ -609,7 +599,7 @@ Ensemble $\boldsymbol{E}_{5}=\{$ rotor , réducteur, poulie $\}$
 
 \begin{figure}[h]
 \begin{center}
-  \includegraphics[alt={},max width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-15_1242_953_159_926}
+  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-15_1242_953_159_926}
 \captionsetup{labelformat=empty}
 \caption{Figure 17 - Schéma cinématique et paramétrage retenus pour le dimensionnement du moteur d'axe 1}
 \end{center}
@@ -671,7 +661,7 @@ Amplitude angulaire maximale
 
 \begin{figure}[h]
 \begin{center}
-  \includegraphics[alt={},max width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-17_615_751_313_282}
+  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-17_615_751_313_282}
 \captionsetup{labelformat=empty}
 \caption{Figure 18 - Trajectoire dans le plan $\left(P_{0}, \overrightarrow{x_{0}}, \overrightarrow{y_{0}}\right)$ du projeté de l'extrémité du vecteur}
 \end{center}
@@ -679,7 +669,7 @@ Amplitude angulaire maximale
 
 \begin{figure}[h]
 \begin{center}
-  \includegraphics[alt={},max width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-17_779_804_216_1061}
+  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-17_779_804_216_1061}
 \captionsetup{labelformat=empty}
 \caption{Figure 19 - Évolution de l'inclinaison de la sonde lors d'un examen d'échographie classique}
 \end{center}
@@ -712,7 +702,7 @@ L'exécution du code Python permet alors de générer l'histogramme de la figure
 
 \begin{figure}[h]
 \begin{center}
-  \includegraphics[alt={},max width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-18_608_1554_325_248}
+  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-18_608_1554_325_248}
 \captionsetup{labelformat=empty}
 \caption{Figure 20 - Histogramme (a) et diagramme des durées cumulées (b) générés par le code Python}
 \end{center}
@@ -751,7 +741,7 @@ Il est ainsi possible de déterminer les coefficients $\eta_{i}$, les temps $T_{
 
 \begin{figure}[h]
 \begin{center}
-  \includegraphics[alt={},max width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-19_1196_1587_1445_235}
+  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-19_1196_1587_1445_235}
 \captionsetup{labelformat=empty}
 \caption{Figure 21 - Loi de mouvement avec ou sans palier de vitesse}
 \end{center}
@@ -771,7 +761,7 @@ La structure des paquets de données échangés entre les deux postes est décri
 
 \begin{figure}[h]
 \begin{center}
-  \includegraphics[alt={},max width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-20_324_1202_906_411}
+  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-20_324_1202_906_411}
 \captionsetup{labelformat=empty}
 \caption{Figure 22 - Structure des paquets de données échangés}
 \end{center}
@@ -792,100 +782,100 @@ On se place dans la configuration la plus défavorable correspondant à une tran
   \item[Q43.] En prenant comme point de départ l'objectif global fixé et la démarche proposée présentés en page 4, réaliser une synthèse reprenant les différents points abordés dans le cadre de cette étude. Conclure sur l'aptitude des solutions retenues à satisfaire les exigences du cahier des charges abordées au cours de l'étude.
 \end{itemize}
 
-\section*{FIN}
-\begin{center}
-\begin{tabular}[t]{|L{0.45\textwidth}|L{0.45\textwidth}|}
-\hline
-\begin{tabular}[t]{L{0.9\linewidth}}
-Numéro\includegraphics[max width=\textwidth, alt={}]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-21_203_227_118_102}
- \\
-d'inscription\begin{tabular}[t]{|L{0.18\linewidth}|L{0.18\linewidth}|L{0.18\linewidth}|L{0.18\linewidth}|L{0.18\linewidth}|}
-\hline
- &  &  &  &  \\
-\hline
-\end{tabular} Nom : \_\_\_\_ \\
-Numéro de table\begin{tabular}[t]{|L{0.15\linewidth}|L{0.15\linewidth}|L{0.15\linewidth}|L{0.15\linewidth}|L{0.15\linewidth}|L{0.15\linewidth}|}
-\hline
- &  &  &  &  &  \\
-\hline
-\end{tabular} Prénom : \_\_\_\_ \\
-Né(e) le\begin{tabular}[t]{|L{0.45\linewidth}|L{0.45\linewidth}|}
-\hline
- &  \\
-\hline
-\end{tabular}\begin{tabular}[t]{|L{0.45\linewidth}|L{0.45\linewidth}|}
-\hline
- &  \\
-\hline
-\end{tabular}\begin{tabular}[t]{|L{0.23\linewidth}|L{0.23\linewidth}|L{0.23\linewidth}|L{0.23\linewidth}|}
-\hline
- &  &  &  \\
-\hline
-\end{tabular} \\
-Emplacement OR Code \\
-\end{tabular} & \begin{tabular}[t]{L{0.9\linewidth}}
-\begin{tabular}[t]{|L{0.45\linewidth}|L{0.45\linewidth}|}
-\hline
-Filière : & MP \\
-\hline
-\end{tabular} \\
-Session : 2021 \\
-Épreuve de : Sciences Industrielles
+%
+%\section*{FIN}
+%\begin{center}
+%\begin{tabular}[t]{|L{0.45\textwidth}|L{0.45\textwidth}|}
+%\hline
+%\begin{tabular}[t]{L{0.9\linewidth}}
+%Numéro\includegraphics[max width=\textwidth, alt={}]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-21_203_227_118_102}
+% \\
+%d'inscription\begin{tabular}[t]{|L{0.18\linewidth}|L{0.18\linewidth}|L{0.18\linewidth}|L{0.18\linewidth}|L{0.18\linewidth}|}
+%\hline
+% &  &  &  &  \\
+%\hline
+%\end{tabular} Nom : \_\_\_\_ \\
+%Numéro de table\begin{tabular}[t]{|L{0.15\linewidth}|L{0.15\linewidth}|L{0.15\linewidth}|L{0.15\linewidth}|L{0.15\linewidth}|L{0.15\linewidth}|}
+%\hline
+% &  &  &  &  &  \\
+%\hline
+%\end{tabular} Prénom : \_\_\_\_ \\
+%Né(e) le\begin{tabular}[t]{|L{0.45\linewidth}|L{0.45\linewidth}|}
+%\hline
+% &  \\
+%\hline
+%\end{tabular}\begin{tabular}[t]{|L{0.45\linewidth}|L{0.45\linewidth}|}
+%\hline
+% &  \\
+%\hline
+%\end{tabular}\begin{tabular}[t]{|L{0.23\linewidth}|L{0.23\linewidth}|L{0.23\linewidth}|L{0.23\linewidth}|}
+%\hline
+% &  &  &  \\
+%\hline
+%\end{tabular} \\
+%Emplacement OR Code \\
+%\end{tabular} & \begin{tabular}[t]{L{0.9\linewidth}}
+%\begin{tabular}[t]{|L{0.45\linewidth}|L{0.45\linewidth}|}
+%\hline
+%Filière : & MP \\
+%\hline
+%\end{tabular} \\
+%Session : 2021 \\
+%Épreuve de : Sciences Industrielles
+%
+%\begin{itemize}[leftmargin=*, topsep=0pt, itemsep=0pt, parsep=0pt, partopsep=0pt]
+%  \item[-] Remplir soigneusement l'en-tête de chaque feuille avant de commencer à composer
+%  \item[-] Rédiger avec un stylo non effaçable bleu ou noir
+%  \item[-] Ne rien écrire dans les marges (gauche et droite)
+%  \item[-] Numéroter chaque page (cadre en bas à droite)
+%  \item[-] Placer les feuilles A3 ouvertes, dans le même sens et dans l'ordre
+%\end{itemize} \\
+%\end{tabular} \\
+%\hline
+%\end{tabular}
+%\end{center}
+%
+%\section*{DOCUMENT RÉPONSE}
+%Ce Document Réponse doit être rendu dans son intégralité avec la copie.
+%
+%DR 1 - Schéma bloc de l'asservissement en vitesse de l'axe 1\\
+%\includegraphics[max width=\textwidth, alt={}, center]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-21_583_1834_1940_143}
+%
+%\section*{NE RIEN ÉCRIRE DANS CE CADRE}
+%\begin{figure}[h]
+%\begin{center}
+%\captionsetup{labelformat=empty}
+%\caption{DR 2 - Diagramme de Bode}
+%  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-22_989_1690_535_186}
+%\end{center}
+%\end{figure}
+%
+%Marge de gain : Marge de phase :
+%
+%\begin{figure}[h]
+%\begin{center}
+%\captionsetup{labelformat=empty}
+%\caption{DR 3 - Réponses temporelles : boucle de vitesse}
+%  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-22_633_1818_1944_87}
+%\end{center}
+%\end{figure}
+%
+%Q24
+%
+%\begin{figure}[h]
+%\begin{center}
+%\captionsetup{labelformat=empty}
+%\caption{DR 4 - Réponse temporelle : boucle de position}
+%  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-23_868_1096_434_484}
+%\end{center}
+%\end{figure}
+%
+%\begin{figure}[h]
+%\begin{center}
+%\captionsetup{labelformat=empty}
+%\caption{req [Modèle] ROBOT TELE-ECHOGRAPHIE[ Diagramme d'exigences}
+%  \includegraphics[width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-24_2136_1532_483_249}
+%\end{center}
+%\end{figure}
 
-\begin{itemize}[leftmargin=*, topsep=0pt, itemsep=0pt, parsep=0pt, partopsep=0pt]
-  \item[-] Remplir soigneusement l'en-tête de chaque feuille avant de commencer à composer
-  \item[-] Rédiger avec un stylo non effaçable bleu ou noir
-  \item[-] Ne rien écrire dans les marges (gauche et droite)
-  \item[-] Numéroter chaque page (cadre en bas à droite)
-  \item[-] Placer les feuilles A3 ouvertes, dans le même sens et dans l'ordre
-\end{itemize} \\
-\end{tabular} \\
-\hline
-\end{tabular}
-\end{center}
 
-\section*{DOCUMENT RÉPONSE}
-Ce Document Réponse doit être rendu dans son intégralité avec la copie.
-
-DR 1 - Schéma bloc de l'asservissement en vitesse de l'axe 1\\
-\includegraphics[max width=\textwidth, alt={}, center]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-21_583_1834_1940_143}
-
-\section*{NE RIEN ÉCRIRE DANS CE CADRE}
-\begin{figure}[h]
-\begin{center}
-\captionsetup{labelformat=empty}
-\caption{DR 2 - Diagramme de Bode}
-  \includegraphics[alt={},max width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-22_989_1690_535_186}
-\end{center}
-\end{figure}
-
-Marge de gain : Marge de phase :
-
-\begin{figure}[h]
-\begin{center}
-\captionsetup{labelformat=empty}
-\caption{DR 3 - Réponses temporelles : boucle de vitesse}
-  \includegraphics[alt={},max width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-22_633_1818_1944_87}
-\end{center}
-\end{figure}
-
-Q24
-
-\begin{figure}[h]
-\begin{center}
-\captionsetup{labelformat=empty}
-\caption{DR 4 - Réponse temporelle : boucle de position}
-  \includegraphics[alt={},max width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-23_868_1096_434_484}
-\end{center}
-\end{figure}
-
-\begin{figure}[h]
-\begin{center}
-\captionsetup{labelformat=empty}
-\caption{req [Modèle] ROBOT TELE-ECHOGRAPHIE[ Diagramme d'exigences}
-  \includegraphics[alt={},max width=\textwidth]{fa0d4e8b-3d38-4fa1-81c7-d2340e1d78c1-24_2136_1532_483_249}
-\end{center}
-\end{figure}
-
-
-\end{document}
